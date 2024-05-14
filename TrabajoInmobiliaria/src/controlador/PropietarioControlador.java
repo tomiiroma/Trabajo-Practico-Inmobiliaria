@@ -8,29 +8,32 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import interfaces.CompradorRepository;
-import trabajoInmobiliaria.Comprador;
+import interfaces.PropietarioRepository;
 import trabajoInmobiliaria.DatabaseConnection;
+import trabajoInmobiliaria.Propietario;
 
-public class CompradorControlador implements CompradorRepository{
+public class PropietarioControlador implements PropietarioRepository {
 
+	
 	 private final Connection connection;
 
-	    public CompradorControlador() {
+	    public PropietarioControlador() {
 	        this.connection = DatabaseConnection.getInstance().getConnection();
 	    }
 	    
 	    
 	    @Override
-	    public List<Comprador>  getAllComprador() {
-	        List<Comprador> compradores = new ArrayList<>();
+	    public List<Propietario>  getAllPropietario() {
+	        List<Propietario> compradores = new ArrayList<>();
 	     //   try {
 	          //  PreparedStatement statement = connection.prepareStatement("SELECT * FROM users ");
 	           // ResultSet resultSet = statement.executeQuery();
 	       
 	         //   while (resultSet.next()) {
-	        // public Comprador(String nombre,int id_cliente, String apellido, String correo, int telefono, LocalDate fecha_nac, int dni,int comprador, double presupuesto)
-	            //	Comprador compradores = new Comprador(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("email"));
+	        
+	       // Constructor -> (String nombre, int id_cliente, String apellido, String correo, int telefono, LocalDate fecha_nac, int dni, int id_propietario, LocalDate fecha_registro)
+	        
+	            //	Propietario propietarios = new Propietario(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("email"));
 	             //   users.add(Comprador);
 	      //      }
 	     //   } catch (SQLException e) {
@@ -41,8 +44,8 @@ public class CompradorControlador implements CompradorRepository{
 	    }
 
 	    @Override
-	    public Comprador getCompradorById(int id) {
-	        Comprador comprador = null;
+	    public Propietario getPropietarioById(int id) {
+	        Propietario comprador = null;
 	        try {
 	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE id = ?");
 	            statement.setInt(1, id);
@@ -50,8 +53,9 @@ public class CompradorControlador implements CompradorRepository{
 	            ResultSet resultSet = statement.executeQuery();
 	            
 	            if (resultSet.next()) {
-	            	// public Comprador(int comprador, double presupuesto) le falta Herencia con cliente.
-	             //   user = new Garante(resultSet.getInt("id_empleado"), resultSet.getString("name"), resultSet.getString("apellido") , resultSet.getString("telefono"), resultSet.getInt("fk_cliente"));
+	            	// public Propietario (String nombre, int id_cliente, String apellido, String correo, int telefono, LocalDate fecha_nac, int dni, int id_propietario, LocalDate fecha_registro)
+	             //   user = new Propietario(resultSet.getInt("id_empleado"), resultSet.getString("name"), resultSet.getString("apellido") , resultSet.getString("telefono"), resultSet.getInt("fk_cliente")); 
+	            	//poner datos de propietario (Arriba).
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
@@ -60,11 +64,11 @@ public class CompradorControlador implements CompradorRepository{
 	    }
 
 		@Override
-	    public void addComprador(Comprador comprador) {
+	    public void addPropietario(Propietario propietario) {
 	        try {
 	            PreparedStatement statement = connection.prepareStatement("INSERT INTO users (name, correo) VALUES (?, ?)");
-	            statement.setString(1, comprador.getNombre());
-	            statement.setString(2, comprador.getCorreo());
+	            statement.setString(1, propietario.getNombre());
+	            statement.setString(2, propietario.getCorreo());
 	            
 	            int rowsInserted = statement.executeUpdate();
 	            if (rowsInserted > 0) {
@@ -76,12 +80,12 @@ public class CompradorControlador implements CompradorRepository{
 	    }
 
 		@Override
-	    public void updateComprador(Comprador comprador) {
+	    public void updatePropietario(Propietario propietario) {
 	        try {
 	            PreparedStatement statement = connection.prepareStatement("UPDATE users SET name = ?, apellido = ? WHERE id = ?");
-	          statement.setString(1, comprador.getNombre());
-	            statement.setString(2, comprador.getApellido());
-	            statement.setInt(3, comprador.getId_cliente());
+	          statement.setString(1, propietario.getNombre());
+	            statement.setString(2, propietario.getApellido());
+	            statement.setInt(3, propietario.getId_cliente());
 	            
 	            int rowsUpdated = statement.executeUpdate();
 	            if (rowsUpdated > 0) {
@@ -93,7 +97,7 @@ public class CompradorControlador implements CompradorRepository{
 	    }
 
 	    @Override
-	    public void deleteComprador(int id) {
+	    public void deletePropietario(int id) {
 	        try {
 	            PreparedStatement statement = connection.prepareStatement("DELETE FROM users WHERE id = ?");
 	            statement.setInt(1, id);
@@ -108,4 +112,14 @@ public class CompradorControlador implements CompradorRepository{
 	
 	
 }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
