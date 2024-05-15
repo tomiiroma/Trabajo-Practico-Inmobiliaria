@@ -4,8 +4,8 @@ import java.util.List;
 
 import trabajoInmobiliaria.Ambiente;
 
-public interface AmbienteControladorRepository {
-
+public interface AmbienteRepository {
+	
 	//prototipos de metodos 
     List<Ambiente> getAllAmbiente(); 
     
@@ -16,6 +16,5 @@ public interface AmbienteControladorRepository {
     void updateAmbiente(Ambiente ambiente); 
     
     void deleteAmbiente(int id); 
-
 
 }

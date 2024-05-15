@@ -1,17 +1,17 @@
 package controlador;
 
-import java.sql.Connection;
+import java.sql.Connection;  
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import interfaces.InquilinoControladorRepository;
+import interfaces.InquilinoRepository;
 import trabajoInmobiliaria.Inquilino;
 import trabajoInmobiliaria.DatabaseConnection;
 
-public class InquilinoControlador implements InquilinoControladorRepository{
+public class InquilinoControlador implements InquilinoRepository{
 	
 
 	 private final Connection connection;

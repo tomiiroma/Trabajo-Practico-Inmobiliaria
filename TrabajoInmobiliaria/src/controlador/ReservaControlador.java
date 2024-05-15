@@ -1,19 +1,18 @@
 package controlador;
 
 
-import java.sql.Connection;
+import java.sql.Connection; 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import interfaces.ReservaControladorRepository;
+import interfaces.ReservaRepository;
 import trabajoInmobiliaria.Reserva;
-import trabajoInmobiliaria.Ambiente;
 import trabajoInmobiliaria.DatabaseConnection;
 
-public class ReservaControlador implements ReservaControladorRepository{
+public class ReservaControlador implements ReservaRepository{
 	
 	
 	 private final Connection connection;

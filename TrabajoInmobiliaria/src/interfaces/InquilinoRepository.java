@@ -4,9 +4,8 @@ import java.util.List;
 
 import trabajoInmobiliaria.Inquilino;
 
-public interface InquilinoControladorRepository {
-	
-	
+public interface InquilinoRepository {
+
 	//prototipos de metodos 
     List<Inquilino> getAllInquilino(); 
     
@@ -17,5 +16,4 @@ public interface InquilinoControladorRepository {
     void updateInquilino(Inquilino inquilino); 
     
     void deleteInquilino(int id); 
-
 }

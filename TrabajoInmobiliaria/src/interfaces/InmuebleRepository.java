@@ -4,7 +4,7 @@ import java.util.List;
 
 import trabajoInmobiliaria.Inmueble;
 
-public interface InmuebleControladorRepository {
+public interface InmuebleRepository {
 	
 	//prototipos de metodos 
     List<Inmueble> getAllInmueble(); 

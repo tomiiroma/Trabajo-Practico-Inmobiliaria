@@ -31,8 +31,6 @@ public class Venta {
 	}
 
 
-
-
 	public Reserva getReserva() {
 		return reserva;
 	}

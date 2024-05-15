@@ -1,17 +1,17 @@
 package controlador;
 
-import java.sql.Connection;
+import java.sql.Connection; 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import interfaces.AmbienteControladorRepository;
+import interfaces.AmbienteRepository;
 import trabajoInmobiliaria.Ambiente;
 import trabajoInmobiliaria.DatabaseConnection;
 
-public class AmbienteControlador implements AmbienteControladorRepository{
+public class AmbienteControlador implements AmbienteRepository{
 	
 
 	 private final Connection connection;

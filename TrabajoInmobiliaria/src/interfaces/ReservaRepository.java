@@ -4,8 +4,7 @@ import java.util.List;
 
 import trabajoInmobiliaria.Reserva;
 
-public interface ReservaControladorRepository {
-	
+public interface ReservaRepository {
 	
 	//prototipos de metodos 
     List<Reserva> getAllReserva(); 

@@ -12,9 +12,6 @@ public class Garante extends Cliente{
 		
 	}
 	
-	
-	
-
 
 	@Override
 	public String toString() {
