@@ -37,7 +37,7 @@ El sistema de gestión de la inmobiliaria ofrece una variedad de funciones para 
 
 
 #### Diagrama de Casos de Uso
-(![Trabajo Practico Programación - Casos de Uso](https://github.com/crumbytom/Trabajo-Practico-Inmobiliaria/assets/121838575/65e5492e-a8fa-4b8f-9f14-34ccda018d2e))
+(![Trabajo Practico Programación - Casos de Uso](https://github.com/crumbytom/Trabajo-Practico-Inmobiliaria/assets/121838575/65e5492e-a8fa-4b8f-9f14-34ccda018d2e)
 
 
 
