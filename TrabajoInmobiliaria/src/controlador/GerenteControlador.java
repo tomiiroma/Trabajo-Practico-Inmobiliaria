@@ -40,7 +40,7 @@ public class GerenteControlador implements GerenteControladorRepository{
 	     //       e.printStackTrace();
 	   //     }
 	    //    return users;
-	        return gerentes;
+	        return gerente;
 	    }
 
 	    
@@ -85,7 +85,7 @@ public class GerenteControlador implements GerenteControladorRepository{
 	            PreparedStatement statement = connection.prepareStatement("UPDATE users SET name = ?, apellido = ? WHERE id = ?");
 	            statement.setString(1, gerente.getNombre());
 	            statement.setString(2, gerente.getApellido());
-	            statement.setInt(3, gerente.getId_cliente());
+	            statement.setInt(3, gerente.getId_gerente());
 	            
 	            int rowsUpdated = statement.executeUpdate();
 	            if (rowsUpdated > 0) {

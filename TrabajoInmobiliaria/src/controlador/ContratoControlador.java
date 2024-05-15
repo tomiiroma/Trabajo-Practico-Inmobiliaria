@@ -1,6 +1,5 @@
 package controlador;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,44 +7,43 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import interfaces.ReservaControladorRepository;
-import trabajoInmobiliaria.Reserva;
-import trabajoInmobiliaria.Ambiente;
+import interfaces.ContratoRepository;
+import trabajoInmobiliaria.Contrato;
 import trabajoInmobiliaria.DatabaseConnection;
 
-public class ReservaControlador implements ReservaControladorRepository{
+public class ContratoControlador implements ContratoRepository{
 	
-	
+
 	 private final Connection connection;
 
-	    public ReservaControlador() {
+	    public ContratoControlador() {
 	        this.connection = DatabaseConnection.getInstance().getConnection();
 	    }
 	    
 	    
 	    @Override
-	    public List<Reserva> getAllReserva() {
-	        List<Reserva> reservas = new ArrayList<>();
+	    public List<Contrato> getAllContrato() {
+	        List<Contrato> contratos = new ArrayList<>();
 	     //   try {
 	          //  PreparedStatement statement = connection.prepareStatement("SELECT * FROM users ");
 	           // ResultSet resultSet = statement.executeQuery();
 	       
 	         //   while (resultSet.next()) {
-	        // public Comprador(String nombre,int id_cliente, String apellido, String correo, int telefono, LocalDate fecha_nac, int dni,int comprador, double presupuesto)
-	            //	Comprador compradores = new Comprador(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("email"));
-	             //   users.add(Comprador);
+	        // public Ambiente(String nombre,int id_cliente, String apellido, String correo, int telefono, LocalDate fecha_nac, int dni,int comprador, double presupuesto)
+	            //	Ambiente ambientes = new Ambiente(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("email"));
+	             //   users.add(Ambiente);
 	      //      }
 	     //   } catch (SQLException e) {
 	     //       e.printStackTrace();
 	   //     }
 	    //    return users;
-	        return reservas;
+	        return contratos;
 	    }
 
 	    
 	    @Override
-	    public Reserva getReservaById(int id) {
-	    	Reserva reserva = null;
+	    public Contrato getContratoById(int id) {
+	        Contrato contrato = null;
 	        try {
 	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE id = ?");
 	            statement.setInt(1, id);
@@ -59,19 +57,19 @@ public class ReservaControlador implements ReservaControladorRepository{
 	        } catch (SQLException e) {
 	            e.printStackTrace();
 	        }
-	        return reserva;
+	        return contrato;
 	    }
 
 		@Override
-	    public void addReserva(Reserva reserva) {
+	    public void addContrato(Contrato contrato) {
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("INSERT INTO users (pago, EstadoReserva) VALUES (?, ?)");
-	            statement.setDouble(1, reserva.getPago());
-	            statement.setBoolean(2, reserva.getEstadoreserva());
+	            PreparedStatement statement = connection.prepareStatement("INSERT INTO users (name, correo) VALUES (?, ?)");
+	            statement.setString(1, ambiente.getNombre());
+	            statement.setString(2, ambiente.getCorreo());
 	            
 	            int rowsInserted = statement.executeUpdate();
 	            if (rowsInserted > 0) {
-	                System.out.println("Reserva insertada exitosamente");
+	                System.out.println("Ambiente insertado exitosamente");
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
@@ -79,15 +77,16 @@ public class ReservaControlador implements ReservaControladorRepository{
 	    }
 
 		@Override
-	    public void updateReserva(Reserva reserva) {
+	    public void updateContrato(Contrato contrato) {
 	        try {
 	            PreparedStatement statement = connection.prepareStatement("UPDATE users SET name = ?, apellido = ? WHERE id = ?");
-	            statement.setDouble(1, reserva.getPago());
-	            statement.setBoolean(2, reserva.getEstadoreserva());
+	            statement.setString(1, contrato.getNombre());
+	            statement.setString(2, contrato.getApellido());
+	            statement.setInt(3, contrato.getId_cliente());
 	            
 	            int rowsUpdated = statement.executeUpdate();
 	            if (rowsUpdated > 0) {
-	                System.out.println("Reserva actualizada exitosamente");
+	                System.out.println("Usuario actualizado exitosamente");
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
@@ -95,14 +94,14 @@ public class ReservaControlador implements ReservaControladorRepository{
 	    }
 
 	    @Override
-	    public void deleteReserva(int id) {
+	    public void deleteContrato(int id) {
 	        try {
 	            PreparedStatement statement = connection.prepareStatement("DELETE FROM users WHERE id = ?");
 	            statement.setInt(1, id);
 	            
 	            int rowsDeleted = statement.executeUpdate();
 	            if (rowsDeleted > 0) {
-	                System.out.println("Reserva eliminada exitosamente");
+	                System.out.println("Ambiente eliminado exitosamente");
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
@@ -111,13 +110,5 @@ public class ReservaControlador implements ReservaControladorRepository{
 	
 }
 
-
-
-	
-	
-	
-	
-	
-	
 
 }

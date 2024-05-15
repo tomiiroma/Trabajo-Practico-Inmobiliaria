@@ -37,7 +37,7 @@ public class InquilinoControlador implements InquilinoControladorRepository{
 	     //       e.printStackTrace();
 	   //     }
 	    //    return users;
-	        return inquilinos;
+	        return inquilino;
 	    }
 
 	    

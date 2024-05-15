@@ -2,6 +2,7 @@ package interfaces;
 
 import java.util.List;
 
+import trabajoInmobiliaria.ContratoAlquiler;
 import trabajoInmobiliaria.Gerente;
 
 public interface ContratoAlquilerControladorRepository {
