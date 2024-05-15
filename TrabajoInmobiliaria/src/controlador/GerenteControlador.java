@@ -1,9 +1,11 @@
 package controlador;
 
+
 import java.sql.Connection; 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,10 +13,9 @@ import interfaces.GerenteRepository;
 import trabajoInmobiliaria.DatabaseConnection;
 import trabajoInmobiliaria.Gerente;
 
-public class GerenteControlador implements GerenteRepository{
 
-	
-	
+
+public class GerenteControlador implements GerenteRepository{
 
 	 private final Connection connection;
 
@@ -109,16 +110,8 @@ public class GerenteControlador implements GerenteRepository{
 	            e.printStackTrace();
 	        }
 	
-	
+
+	    }
+
 }
 
-
-
-
-
-	
-	
-	
-	
-	
-}

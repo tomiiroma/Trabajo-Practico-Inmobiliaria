@@ -6,8 +6,6 @@ import trabajoInmobiliaria.Alquiler;
 
 public interface AlquilerRepository {
 
-	
-	
 	List<Alquiler> getAllAlquiler(); 
     
     Alquiler getAlquilerById(int id); 

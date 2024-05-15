@@ -37,7 +37,7 @@ public class InmuebleControlador implements InmuebleRepository{
 	     //       e.printStackTrace();
 	   //     }
 	    //    return users;
-	        return inmuebles;
+	        return inmueble;
 	    }
 
 	    
@@ -63,9 +63,9 @@ public class InmuebleControlador implements InmuebleRepository{
 		@Override
 	    public void addInmueble(Inmueble inmueble) {
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("INSERT INTO users (name, correo) VALUES (?, ?)");
-	            statement.setString(1, inmueble.getNombre());
-	            statement.setString(2, inmueble.getCorreo());
+	            PreparedStatement statement = connection.prepareStatement("INSERT INTO users (localizacion, precio) VALUES (?, ?)");
+	            statement.setString(1, inmueble.getLocalizacion());
+	            statement.setDouble(2, inmueble.getPrecio());
 	            
 	            int rowsInserted = statement.executeUpdate();
 	            if (rowsInserted > 0) {
@@ -80,9 +80,9 @@ public class InmuebleControlador implements InmuebleRepository{
 	    public void updateInmueble(Inmueble inmueble) {
 	        try {
 	            PreparedStatement statement = connection.prepareStatement("UPDATE users SET name = ?, apellido = ? WHERE id = ?");
-	            statement.setString(1, inmueble.getNombre());
-	            statement.setString(2, inmueble.getApellido());
-	            statement.setInt(3, inmueble.getId_cliente());
+	            statement.setString(1, inmueble.getLocalizacion());
+	            statement.setDouble(2, inmueble.getPrecio());
+	            statement.setInt(3, inmueble.getId_inmueble());
 	            
 	            int rowsUpdated = statement.executeUpdate();
 	            if (rowsUpdated > 0) {

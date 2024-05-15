@@ -13,9 +13,6 @@ import trabajoInmobiliaria.DatabaseConnection;
 
 public class ContratoVentaControlador implements ContratoVentaRepository{
 	
-
-	
-
 	 private final Connection connection;
 
 	    public ContratoVentaControlador() {

@@ -13,7 +13,6 @@ import trabajoInmobiliaria.DatabaseConnection;
 
 public class AmbienteControlador implements AmbienteRepository{
 	
-
 	 private final Connection connection;
 
 	    public AmbienteControlador() {

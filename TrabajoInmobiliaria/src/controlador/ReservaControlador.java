@@ -64,9 +64,9 @@ public class ReservaControlador implements ReservaRepository{
 		@Override
 	    public void addReserva(Reserva reserva) {
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("INSERT INTO users (name, correo) VALUES (?, ?)");
-	            statement.setString(1, reserva.getNombre());
-	            statement.setString(2, reserva.getCorreo());
+	            PreparedStatement statement = connection.prepareStatement("INSERT INTO users (pago, EstadoReserva) VALUES (?, ?)");
+	            statement.setDouble(1, reserva.getPago());
+	            statement.setBoolean(2, reserva.getEstadoreserva());
 	            
 	            int rowsInserted = statement.executeUpdate();
 	            if (rowsInserted > 0) {
@@ -81,9 +81,8 @@ public class ReservaControlador implements ReservaRepository{
 	    public void updateReserva(Reserva reserva) {
 	        try {
 	            PreparedStatement statement = connection.prepareStatement("UPDATE users SET name = ?, apellido = ? WHERE id = ?");
-	            statement.setString(1, reserva.getNombre());
-	            statement.setString(2, reserva.getApellido());
-	            statement.setInt(3, reserva.getId_cliente());
+	            statement.setDouble(1, reserva.getPago());
+	            statement.setBoolean(2, reserva.getEstadoreserva());
 	            
 	            int rowsUpdated = statement.executeUpdate();
 	            if (rowsUpdated > 0) {
