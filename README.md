@@ -29,13 +29,17 @@ El sistema de gestión de la inmobiliaria ofrece una variedad de funciones para 
 ### Diagramas
 
 #### Diagrama de Clases
-![Diagrama de Clases](url_de_la_imagen)
+![Trabajo Practico Programación -diagrama Clases](https://github.com/crumbytom/Trabajo-Practico-Inmobiliaria/assets/121838575/d27970b8-aae9-49f3-9136-214c9fe7fc9b)
+
 
 #### Diagrama de Entidad-Relación
-![Diagrama de Entidad-Relación](url_de_la_imagen)
+![DER](https://github.com/crumbytom/Trabajo-Practico-Inmobiliaria/assets/121838575/d1984fef-9990-4157-8957-dac01c90c6d5)
+
 
 #### Diagrama de Casos de Uso
-![Diagrama de Casos de Uso](![Trabajo Practico Programación - Casos de Uso](https://github.com/crumbytom/Trabajo-Practico-Inmobiliaria/assets/121838575/65e5492e-a8fa-4b8f-9f14-34ccda018d2e))
+(![Trabajo Practico Programación - Casos de Uso](https://github.com/crumbytom/Trabajo-Practico-Inmobiliaria/assets/121838575/65e5492e-a8fa-4b8f-9f14-34ccda018d2e))
+
+
 
 ### Documentación Adicional
 
