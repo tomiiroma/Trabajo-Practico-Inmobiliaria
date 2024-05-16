@@ -49,4 +49,6 @@ El sistema de gestión de la inmobiliaria ofrece una variedad de funciones para 
 #### Especificación de Requisitos
 [Ver Especificación de Requisitos](https://docs.google.com/document/d/1WahZbAxO1OST5LTpUATMizDVynIiLyCeS1O3SBkWxvA/edit?usp=sharing)
 
+#### Base de Datos utilizada
+[Ver Base de Datos utilizada]https://drive.google.com/file/d/1qzsRRfrJ-Hk8Vqqu16QQMWSysdoVCdKn/view?usp=sharing
 
