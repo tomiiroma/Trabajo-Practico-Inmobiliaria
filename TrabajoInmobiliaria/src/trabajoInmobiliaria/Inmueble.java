@@ -9,7 +9,6 @@ public class Inmueble {
 	private int cantidadPersonas;
 	private Propietario propietario;
 	private String operacion; // Puede ser booleano
-	private Ambiente ambiente;
 	private String baños;
 	private String Estado;
 	private String lavadero;
@@ -20,7 +19,7 @@ public class Inmueble {
 	
 	
 	public Inmueble(int id_inmueble, String localizacion, double precio, double tamaño, int cantidadPersonas,
-			Propietario propietario, String operacion, Ambiente ambiente, String baños, String estado, String lavadero,
+			Propietario propietario, String operacion, String baños, String estado, String lavadero,
 			String patio, String dormitorios, String cocina) {
 		super();
 		this.id_inmueble = id_inmueble;
@@ -30,7 +29,6 @@ public class Inmueble {
 		this.cantidadPersonas = cantidadPersonas;
 		this.propietario = propietario;
 		this.operacion = operacion;
-		this.ambiente = ambiente;
 		this.baños = baños;
 		Estado = estado;
 		this.lavadero = lavadero;
@@ -121,18 +119,6 @@ public class Inmueble {
 
 	public void setOperacion(String operacion) {
 		this.operacion = operacion;
-	}
-
-
-
-	public Ambiente getAmbiente() {
-		return ambiente;
-	}
-
-
-
-	public void setAmbiente(Ambiente ambiente) {
-		this.ambiente = ambiente;
 	}
 
 
