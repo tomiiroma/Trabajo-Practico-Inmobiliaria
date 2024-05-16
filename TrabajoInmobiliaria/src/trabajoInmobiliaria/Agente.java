@@ -160,6 +160,7 @@ public class Agente extends Empleado {
 					String[] operaciones = { "Programar Nueva Reunion","Programar Nueva Visita","Volver"};
 					
 					String operacionSeleccionada = (String) JOptionPane.showInputDialog(null, "Seleccione una operación:",
+					
 							"Inmobiliaria Maguez | Menu Agente", JOptionPane.DEFAULT_OPTION, null, operaciones,
 							operaciones[0]);
 					
