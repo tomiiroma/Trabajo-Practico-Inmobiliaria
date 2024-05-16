@@ -6,20 +6,20 @@ public class Ambiente {
 	private String lavadero;
 	private String patio;
 	private String dormitorios;
-	private String cociona;
-	public Ambiente(String baños, String estado, String lavadero, String patio, String dormitorios, String cociona) {
+	private String cocina;
+	public Ambiente(String baños, String estado, String lavadero, String patio, String dormitorios, String cocina) {
 		super();
 		this.baños = baños;
 		Estado = estado;
 		this.lavadero = lavadero;
 		this.patio = patio;
 		this.dormitorios = dormitorios;
-		this.cociona = cociona;
+		this.cocina = cocina;
 	}
 	@Override
 	public String toString() {
 		return "Ambiente [baños=" + baños + ", Estado=" + Estado + ", lavadero=" + lavadero + ", patio=" + patio
-				+ ", dormitorios=" + dormitorios + ", cociona=" + cociona + "]";
+				+ ", dormitorios=" + dormitorios + ", cocina=" + cocina + "]";
 	}
 	public String getBaños() {
 		return baños;
@@ -51,11 +51,11 @@ public class Ambiente {
 	public void setDormitorios(String dormitorios) {
 		this.dormitorios = dormitorios;
 	}
-	public String getCociona() {
-		return cociona;
+	public String getcocina() {
+		return cocina;
 	}
-	public void setCociona(String cociona) {
-		this.cociona = cociona;
+	public void setcocina(String cocina) {
+		this.cocina = cocina;
 	}
 
 	
