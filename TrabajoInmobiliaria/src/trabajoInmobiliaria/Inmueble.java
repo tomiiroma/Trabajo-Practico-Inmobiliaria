@@ -15,12 +15,14 @@ public class Inmueble {
 	private String patio;
 	private String dormitorios;
 	private String cocina;
+	private boolean apto_mascota;
 	
 	
 	
+
 	public Inmueble(int id_inmueble, String localizacion, double precio, double tamaño, int cantidadPersonas,
-			Propietario propietario, String operacion, String baños, String estado, String lavadero,
-			String patio, String dormitorios, String cocina) {
+			Propietario propietario, String operacion, String baños, String estado, String lavadero, String patio,
+			String dormitorios, String cocina, boolean apto_mascota) {
 		super();
 		this.id_inmueble = id_inmueble;
 		this.localizacion = localizacion;
@@ -35,6 +37,7 @@ public class Inmueble {
 		this.patio = patio;
 		this.dormitorios = dormitorios;
 		this.cocina = cocina;
+		this.apto_mascota = apto_mascota;
 	}
 
 
@@ -192,6 +195,20 @@ public class Inmueble {
 	public void setCocina(String cocina) {
 		this.cocina = cocina;
 	}
+
+
+
+	public boolean isApto_mascota() {
+		return apto_mascota;
+	}
+
+
+
+	public void setApto_mascota(boolean apto_mascota) {
+		this.apto_mascota = apto_mascota;
+	}
+	
+	
 
 
 
