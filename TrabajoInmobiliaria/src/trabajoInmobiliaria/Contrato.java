@@ -12,8 +12,11 @@ public class Contrato {
 	private String descripcion;
 	private double monto;
 	private Reserva reserva;
-	
-	public Contrato(int id_contrato, LocalDate inicio_contrato, LocalDate fin_contrato, Cliente cliente, String descripcion, double monto, Reserva reserva) {
+	private Boolean mascota;
+
+
+	public Contrato(int id_contrato, LocalDate inicio_contrato, LocalDate fin_contrato, Cliente cliente,
+			 String descripcion, double monto, Reserva reserva, Boolean mascota) {
 		super();
 		this.id_contrato = id_contrato;
 		this.inicio_contrato = inicio_contrato;
@@ -22,19 +25,24 @@ public class Contrato {
 		this.descripcion = descripcion;
 		this.monto = monto;
 		this.reserva = reserva;
+		this.mascota = mascota;
 	}
+
+
 	
 	public Contrato(int id_contrato, LocalDate inicio_contrato, LocalDate fin_contrato, Cliente cliente,
-			Inmueble inmueble, String descripcion, double monto ) {
+			Inmueble inmueble, String descripcion, double monto, Boolean mascota) {
 		super();
 		this.id_contrato = id_contrato;
 		this.inicio_contrato = inicio_contrato;
 		this.fin_contrato = fin_contrato;
 		this.cliente = cliente;
-		this.inmueble = inmueble;
 		this.descripcion = descripcion;
 		this.monto = monto;
+		this.mascota = mascota;
 	}
+	
+	
 
 	public int getId_contrato() {
 		return id_contrato;
@@ -99,6 +107,20 @@ public class Contrato {
 	public void setReserva(Reserva reserva) {
 		this.reserva = reserva;
 	}
+
+
+
+	public Boolean getMascota() {
+		return mascota;
+	}
+
+
+
+	public void setMascota(Boolean mascota) {
+		this.mascota = mascota;
+	}
+	
+	
 	
 	
 	

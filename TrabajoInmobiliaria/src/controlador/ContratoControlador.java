@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.time.LocalDate;
+
 
 import interfaces.ContratoRepository;
 import trabajoInmobiliaria.Contrato;
@@ -64,8 +66,8 @@ public class ContratoControlador implements ContratoRepository{
 	    public void addContrato(Contrato contrato) {
 	        try {
 	            PreparedStatement statement = connection.prepareStatement("INSERT INTO users (name, correo) VALUES (?, ?)");
-	            statement.setString(1, ambiente.getNombre());
-	            statement.setString(2, ambiente.getCorreo());
+	            statement.setString(1, contrato.getDescripcion());
+	            statement.setDouble(2, contrato.getMonto());
 	            
 	            int rowsInserted = statement.executeUpdate();
 	            if (rowsInserted > 0) {
@@ -80,9 +82,8 @@ public class ContratoControlador implements ContratoRepository{
 	    public void updateContrato(Contrato contrato) {
 	        try {
 	            PreparedStatement statement = connection.prepareStatement("UPDATE users SET name = ?, apellido = ? WHERE id = ?");
-	            statement.setString(1, contrato.getNombre());
-	            statement.setString(2, contrato.getApellido());
-	            statement.setInt(3, contrato.getId_cliente());
+	            statement.setString(1, contrato.getDescripcion());
+	            statement.setLocalDate(2, contrato.getFin_contrato());
 	            
 	            int rowsUpdated = statement.executeUpdate();
 	            if (rowsUpdated > 0) {
