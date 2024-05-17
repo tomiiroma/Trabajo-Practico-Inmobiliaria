@@ -6,7 +6,6 @@ class Main {
 
 	public static void main(String[] args) {
 
-		
 		JOptionPane.showMessageDialog(null, "Bienvenido al Sistema de Gestión ", "Inmobiliaria Maguez",
 				JOptionPane.INFORMATION_MESSAGE);
 
