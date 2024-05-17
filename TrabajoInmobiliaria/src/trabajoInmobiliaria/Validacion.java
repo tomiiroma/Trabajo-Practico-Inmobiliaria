@@ -7,6 +7,8 @@ import javax.swing.JOptionPane;
 public interface Validacion {
 	
 	
+	//validar DNI
+
 	default int validarDni(String mensaje) {
         int dni = 0;
         boolean confirmacion = false;
@@ -54,6 +56,49 @@ public interface Validacion {
         return dni;
 	}
 	
+
+	//Validar Nombre
+	
+	default String validarNombre(String mensaje) {
+		String nombre = null;
+		boolean confirmacion = false;
+	
+		do {
+			try {
+				nombre = JOptionPane.showInputDialog(mensaje);
+
+				if(nombre==null || nombre.trim().isEmpty()){
+					JOptionPane.showMessageDialog(null, "No se admiten campos en blanco. Por favor ingrese un Nombre");
+					continue;
+				}
+				
+				nombre = nombre.trim();
+				
+
+                boolean esString = true; 
+                for (int i = 0; i < nombre.length(); i++) {
+                    if (!Character.isAlphabetic(nombre.charAt(i))) {
+                    	esString = false;
+                        break; 
+                    }
+                }
+                
+                if(!esString){
+                    JOptionPane.showMessageDialog(null, "No se permiten caracteres numericos. Ingrese Nombre nuevamente");
+                    continue;
+                }
+				
+                confirmacion = true;
+                
+			} catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al ingresar Nombre. Ingrese Nombre nuevamente");
+			}
+
+			
+		} while (confirmacion==false);
+		
+		return nombre;
+	}
 	
 	 
 	
@@ -215,6 +260,9 @@ public interface Validacion {
 	
 	
 	
+	
+	//Validar Edad
+	//Validar 
 	
 	
 	

@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 import javax.swing.JOptionPane;
 
-public class Gerente extends Empleado{
+public class Gerente extends Empleado implements Validacion{
 
 	private int id_gerente;
 
@@ -40,6 +40,10 @@ public class Gerente extends Empleado{
 					"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, opcionesGerente,
 					opcionesGerente[0]);
 	
+			
+			try {
+
+			
 			switch (opcionSeleccionada) {
 			
 			case "Registrar Nueva Propiedad":
@@ -398,6 +402,11 @@ public class Gerente extends Empleado{
 			default:
 				break;
 			}
+			
+			
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Porfavor Seleccione una Opción");
+		}
 			
 		} while (repetir);
 		
