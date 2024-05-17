@@ -403,22 +403,15 @@ public class Gerente extends Empleado implements Validacion{
 				break;
 			}
 			
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
+
 			
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Porfavor Seleccione una Opción");
 				}
 			
->>>>>>> Stashed changes
-=======
+
 			
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Porfavor Seleccione una Opción");
-		}
-			
->>>>>>> Tomi
+
 		} while (repetir);
 		
 		return true;
