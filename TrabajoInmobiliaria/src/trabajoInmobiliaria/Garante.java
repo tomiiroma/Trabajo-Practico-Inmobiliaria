@@ -18,11 +18,6 @@ public class Garante {
 	}
 
 
-
-	
-	
-	
-	
 	public int getId_garante() {
 		return id_garante;
 	}
