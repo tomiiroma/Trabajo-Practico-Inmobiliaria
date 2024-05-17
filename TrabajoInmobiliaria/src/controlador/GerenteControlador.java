@@ -27,19 +27,19 @@ public class GerenteControlador implements GerenteRepository{
 	    @Override
 	    public List<Gerente> getAllGerente() {
 	        List<Gerente> gerente = new ArrayList<>();
-	     //   try {
-	          //  PreparedStatement statement = connection.prepareStatement("SELECT * FROM users ");
-	           // ResultSet resultSet = statement.executeQuery();
+	        try {
+	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM empleado ");
+	            ResultSet resultSet = statement.executeQuery();
 	       
-	         //   while (resultSet.next()) {
-	        // public Gerente(String nombre,int id_cliente, String apellido, String correo, int telefono, LocalDate fecha_nac, int dni,int comprador, double presupuesto)
-	            //	Gerente Gerentes = new Gerente(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("email"));
-	             //   users.add(Gerente);
-	      //      }
-	     //   } catch (SQLException e) {
-	     //       e.printStackTrace();
-	   //     }
-	    //    return users;
+	            while (resultSet.next()) {
+	            								// Idem con Agente consultarle al profe
+	            	Gerente Gerentes = new Gerente(resultSet.getInt("id_empleado"), resultSet.getString("nombre"), resultSet.getString("apellido"), resultSet.getDate("fecha_nac").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("telefono"), resultSet.getString("correo"), resultSet.getInt("id_gerente"), resultSet.getString("contraseña"));
+	                gerente.add(Gerentes);
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	      }
+	    
 	        return gerente;
 	    }
 
@@ -48,14 +48,14 @@ public class GerenteControlador implements GerenteRepository{
 	    public Gerente getGerenteById(int id) {
 	    	Gerente gerente = null;
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE id = ?");
+	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM empleado WHERE id = ?");
 	            statement.setInt(1, id);
 	            
 	            ResultSet resultSet = statement.executeQuery();
 	            
 	            if (resultSet.next()) {
-	            	// public Gerente(int comprador, double presupuesto) le falta Herencia con cliente.
-	             //   user = new Garante(resultSet.getInt("id_empleado"), resultSet.getString("name"), resultSet.getString("apellido") , resultSet.getString("telefono"), resultSet.getInt("fk_cliente"));
+	            	 
+	               gerente = new Gerente(resultSet.getInt("id_empleado"), resultSet.getString("nombre"), resultSet.getString("apellido"), resultSet.getDate("fecha_nac").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("telefono"), resultSet.getString("correo"), resultSet.getInt("id_gerente"), resultSet.getString("contraseña"));
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
