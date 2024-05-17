@@ -3,6 +3,7 @@ package trabajoInmobiliaria;
 import java.time.LocalDate;
 
 public class Comprador extends Cliente{
+	
 	private int comprador;
 	private double Presupuesto;
 	public Comprador(String nombre,int id_cliente, String apellido, String correo, int telefono, LocalDate fecha_nac, int dni,int comprador, double presupuesto) {
@@ -10,10 +11,9 @@ public class Comprador extends Cliente{
 		this.comprador = comprador;
 		Presupuesto = presupuesto;
 	}
-	@Override
-	public String toString() {
-		return "Comprador [comprador=" + comprador + ", Presupuesto=" + Presupuesto + "]";
-	}
+
+	
+	
 	public int getComprador() {
 		return comprador;
 	}
