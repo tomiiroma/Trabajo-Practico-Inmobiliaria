@@ -34,7 +34,7 @@ public class Gerente extends Empleado{
 			repetir = true;
 			String[] opcionesGerente = { "Registrar Nueva Propiedad","Eliminar Propiedad","Registrar Nuevo Cliente", "Realizar Nueva Operacion",
 					"Realizar Nuevo Contrato", "Realizar Busqueda", "Agendar Reunion o Visita", "Registrar Pago","Cargar Nuevo Documento",
-					"Ver Ultimas Operaciones","Cerrar Sesion","Salir" };
+					"Ver Ultimas Operaciones","Gestionar Empleados","Cerrar Sesion","Salir" };
 	
 			String opcionSeleccionada = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
 					"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, opcionesGerente,
@@ -335,8 +335,55 @@ public class Gerente extends Empleado{
 					}
 					
 					
-				} while (repetir);
+				} 
+				
+				while (repetir);
 	
+				break;
+			
+			case "Gestionar Empleados":
+				do {
+					String[] gestionEmpleados = {"Ver Lista Empleados","Agregar Nuevo Empleado","Volver"};
+					
+					String gestionSeleccionada = (String) JOptionPane.showInputDialog(null, "Seleccione una operación:",
+							"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, gestionEmpleados,
+							gestionEmpleados[0]);
+				
+					if(gestionSeleccionada.equals("Ver Lista Empleados")){
+						
+						do {
+							
+							String[] gestionEmpleados2 = {"Ver Datos Empleado","Modificar Empleado","Eliminar Empleado","Volver"};
+							
+							String gestionSeleccionada2 = (String) JOptionPane.showInputDialog(null, "Seleccione una operación:",
+									"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, gestionEmpleados2,
+									gestionEmpleados2[0]);
+							
+							if(gestionSeleccionada2.equals("Ver Datos Empleado")){
+								JOptionPane.showMessageDialog(null, "Empleado");
+								
+							}else if(gestionSeleccionada2.equals("Modificar Empleado")){
+								JOptionPane.showMessageDialog(null, "modificar");
+								
+								
+							}else if(gestionSeleccionada2.equals("Eliminar Empleado")){
+								JOptionPane.showMessageDialog(null, "eliminar");
+								
+							}else {
+								break;
+							}
+							
+						}while(repetir);
+								
+						
+					}else if(gestionSeleccionada.equals("Agregar Nuevo Empleado")){
+						JOptionPane.showMessageDialog(null, "Cargar datos");
+						
+					}else {
+						break;
+					}
+					
+				} while (repetir);
 				break;
 			
 			case "Cerrar Sesion":

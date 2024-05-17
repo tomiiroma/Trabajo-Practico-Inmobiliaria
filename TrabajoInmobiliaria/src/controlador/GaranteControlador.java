@@ -13,9 +13,6 @@ import trabajoInmobiliaria.DatabaseConnection;
 import trabajoInmobiliaria.Garante;
 
 public class GaranteControlador implements GaranteRepository {
-
-	
-	
 	
 	    private final Connection connection;
 
@@ -65,8 +62,10 @@ public class GaranteControlador implements GaranteRepository {
 	    public void addGarante(Garante garante) {
 	        try {
 	            PreparedStatement statement = connection.prepareStatement("INSERT INTO users (name, telefono) VALUES (?, ?)");
-	            statement.setString(1, garante.getNombre());
-	            statement.setLong(2, garante.getTelefono());
+	            statement.setInt(1, garante.getId_garante());
+	            statement.setString(2, garante.getNombre());
+	            statement.setNString(3, garante.getApellido());
+	            statement.setNString(4, garante.getNumero_telefono());
 	            
 	            int rowsInserted = statement.executeUpdate();
 	            if (rowsInserted > 0) {
@@ -81,9 +80,10 @@ public class GaranteControlador implements GaranteRepository {
 	    public void updateGarante(Garante garante) {
 	        try {
 	            PreparedStatement statement = connection.prepareStatement("UPDATE users SET name = ?, apellido = ? WHERE id = ?");
+	            statement.setInt(1, garante.getId_garante());
 	            statement.setString(1, garante.getNombre());
 	            statement.setString(2, garante.getApellido());
-	            statement.setInt(3, garante.getId_garante());
+	            statement.setString(4, garante.getNumero_telefono());
 	            
 	            int rowsUpdated = statement.executeUpdate();
 	            if (rowsUpdated > 0) {
@@ -102,7 +102,7 @@ public class GaranteControlador implements GaranteRepository {
 	            
 	            int rowsDeleted = statement.executeUpdate();
 	            if (rowsDeleted > 0) {
-	                System.out.println("Usuario eliminado exitosamente");
+	                System.out.println("Garante eliminado exitosamente");
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
