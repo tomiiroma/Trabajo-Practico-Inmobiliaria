@@ -31,13 +31,13 @@ public class ContratoControlador implements ContratoRepository{
 	    @Override
 	    public List<Contrato> getAllContrato() {
 	        List<Contrato> contratos = new ArrayList<>();
-	   //     try {
-	   //        PreparedStatement statement = connection.prepareStatement("SELECT * FROM contrato ");
-	  //          ResultSet resultSet = statement.executeQuery();
+	         try {
+	           PreparedStatement statement = connection.prepareStatement("SELECT * FROM contrato ");
+	            ResultSet resultSet = statement.executeQuery();
 	       
-	      //      while (resultSet.next()) {
+	            while (resultSet.next()) {
 	        
-	           /* 	Contrato contrato = new Contrato(resultSet.getInt("id_contrato"),
+	            	Contrato contrato = new Contrato(resultSet.getInt("id_contrato"),
                             resultSet.getDate("inicio_contrato").toLocalDate(),
                             resultSet.getDate("fin_contrato").toLocalDate(),
                             new Cliente(
@@ -52,7 +52,7 @@ public class ContratoControlador implements ContratoRepository{
                             resultSet.getDouble("monto"),
                             new Reserva(
                             			
-                            /*			resultSet.getInt("id_reserva"),
+                            			resultSet.getInt("id_reserva"),
                                         resultSet.getDate("fecha_reserva").toLocalDate(),
                                         resultSet.getDate("fecha_expiracion").toLocalDate(),
                                         resultSet.getDouble("pago"),
@@ -73,12 +73,11 @@ public class ContratoControlador implements ContratoRepository{
                                         resultSet.getBoolean("estado_reserva"))); */
 
 	            
-	             //   users.add(Ambiente);
-	      //      }
-	     //   } catch (SQLException e) {
-	     //       e.printStackTrace();
-	   //     }
-	    //    return users;
+	                users.add(Ambiente);
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
 	      return contratos;
 	    }
 

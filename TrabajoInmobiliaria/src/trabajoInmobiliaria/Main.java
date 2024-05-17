@@ -8,7 +8,7 @@ class Main {
 
 		JOptionPane.showMessageDialog(null, "Bienvenido al Sistema de Gestión ", "Inmobiliaria Maguez",
 				JOptionPane.INFORMATION_MESSAGE);
-
+		
 		int respuestaSeleccionada;
 
 		Agente agente1 = new Agente();
@@ -27,7 +27,6 @@ class Main {
 			} else if (eleccionElegida1 == 1) {
 				
 				gerente1.menuGerente();
-
 
 			} else {
 				JOptionPane.showMessageDialog(null, "Hasta luego!");
