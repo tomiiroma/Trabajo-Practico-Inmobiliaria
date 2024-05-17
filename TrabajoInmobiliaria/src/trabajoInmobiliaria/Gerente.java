@@ -395,10 +395,18 @@ public class Gerente extends Empleado{
 				System.exit(0);
 				break;
 	
-			default:
+			default: JOptionPane.showMessageDialog(null, "Opcion no disponible");
 				break;
 			}
 			
+<<<<<<< Updated upstream
+=======
+			
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Porfavor Seleccione una Opción");
+				}
+			
+>>>>>>> Stashed changes
 		} while (repetir);
 		
 		return true;
