@@ -25,7 +25,7 @@ public class InquilinoControlador implements InquilinoRepository{
 	    public List<Inquilino> getAllInquilino() {
 	        List<Inquilino> inquilinos = new ArrayList<>();
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM cliente");
+	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM cliente"); // el id_inquilino deberia venir de otra tabla y conectar mediante un inner join Id_cliente = id_cliente.
 	            ResultSet resultSet = statement.executeQuery();
 	       
 	            while (resultSet.next()) { // id_inquilino no esta en la tabla cliente ""
