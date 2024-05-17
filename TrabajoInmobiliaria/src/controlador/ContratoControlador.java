@@ -10,8 +10,12 @@ import java.time.LocalDate;
 
 
 import interfaces.ContratoRepository;
+import trabajoInmobiliaria.Cliente;
+import trabajoInmobiliaria.Comprador;
 import trabajoInmobiliaria.Contrato;
 import trabajoInmobiliaria.DatabaseConnection;
+import trabajoInmobiliaria.Inquilino;
+import trabajoInmobiliaria.Reserva;
 
 public class ContratoControlador implements ContratoRepository{
 	
@@ -22,24 +26,60 @@ public class ContratoControlador implements ContratoRepository{
 	        this.connection = DatabaseConnection.getInstance().getConnection();
 	    }
 	    
-	    
+	    // (int id_contrato, LocalDate inicio_contrato, LocalDate fin_contrato, Cliente cliente,
+		// String descripcion, double  monto, Reserva reserva) 
 	    @Override
 	    public List<Contrato> getAllContrato() {
 	        List<Contrato> contratos = new ArrayList<>();
-	     //   try {
-	          //  PreparedStatement statement = connection.prepareStatement("SELECT * FROM users ");
-	           // ResultSet resultSet = statement.executeQuery();
+	   //     try {
+	   //        PreparedStatement statement = connection.prepareStatement("SELECT * FROM contrato ");
+	  //          ResultSet resultSet = statement.executeQuery();
 	       
-	         //   while (resultSet.next()) {
-	        // public Ambiente(String nombre,int id_cliente, String apellido, String correo, int telefono, LocalDate fecha_nac, int dni,int comprador, double presupuesto)
-	            //	Ambiente ambientes = new Ambiente(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("email"));
+	      //      while (resultSet.next()) {
+	        
+	           /* 	Contrato contrato = new Contrato(resultSet.getInt("id_contrato"),
+                            resultSet.getDate("inicio_contrato").toLocalDate(),
+                            resultSet.getDate("fin_contrato").toLocalDate(),
+                            new Cliente(
+                            		resultSet.getString("nombre"),
+                            		resultSet.getInt("id_cliente"),
+                                        resultSet.getString("apellido"),
+                                        resultSet.getString("correo"),
+                                        resultSet.getInt("telefono"), 
+                                        resultSet.getDate("fecha_nac").toLocalDate(),
+                                        resultSet.getInt("dni")),
+                            resultSet.getString("descripcion"),
+                            resultSet.getDouble("monto"),
+                            new Reserva(
+                            			
+                            /*			resultSet.getInt("id_reserva"),
+                                        resultSet.getDate("fecha_reserva").toLocalDate(),
+                                        resultSet.getDate("fecha_expiracion").toLocalDate(),
+                                        resultSet.getDouble("pago"),
+                                        new Comprador(resultSet.getInt("id_comprador"),
+                                                      resultSet.getString("nombre_comprador"),
+                                                      resultSet.getString("apellido_comprador"),
+                                                      resultSet.getString("correo_comprador"),
+                                                      resultSet.getInt("telefono_comprador"),
+                                                      resultSet.getDate("fecha_nac_comprador").toLocalDate(),
+                                                      resultSet.getInt("dni_comprador")),
+                                        new Inquilino(resultSet.getInt("id_inquilino"),
+                                                       resultSet.getString("nombre_inquilino"),
+                                                       resultSet.getString("apellido_inquilino"),
+                                                       resultSet.getString("correo_inquilino"),
+                                                       resultSet.getInt("telefono_inquilino"),
+                                                       resultSet.getDate("fecha_nac_inquilino").toLocalDate(),
+                                                       resultSet.getInt("dni_inquilino")),
+                                        resultSet.getBoolean("estado_reserva"))); */
+
+	            
 	             //   users.add(Ambiente);
 	      //      }
 	     //   } catch (SQLException e) {
 	     //       e.printStackTrace();
 	   //     }
 	    //    return users;
-	        return contratos;
+	      return contratos;
 	    }
 
 	    
@@ -47,7 +87,7 @@ public class ContratoControlador implements ContratoRepository{
 	    public Contrato getContratoById(int id) {
 	        Contrato contrato = null;
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE id = ?");
+	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM contrato WHERE id = ?");
 	            statement.setInt(1, id);
 	            
 	            ResultSet resultSet = statement.executeQuery();
