@@ -5,8 +5,6 @@ import java.util.List;
 import trabajoInmobiliaria.Garante;
 
 public interface GaranteRepository {
-
-	
 	
 	
 		//prototipos de metodos 
