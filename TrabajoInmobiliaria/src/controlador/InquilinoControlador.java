@@ -64,7 +64,11 @@ public class InquilinoControlador implements InquilinoRepository{
 	        try {
 	            PreparedStatement statement = connection.prepareStatement("INSERT INTO users (nombre, id_cliente, apellido, correo, telefono, fecha_nac, dni, correo) VALUES (?, null, ?, ?, ?, ?, ?, ?)");
 	            statement.setString(1, inquilino.getNombre());
-	            statement.setString(2, inquilino.getCorreo());
+	            statement.setInt(2, inquilino.getId_cliente()); // ver despues si es A.I
+	            statement.setString(3,inquilino.getApellido());
+	            statement.setString(4, inquilino.getCorreo());
+	            statement.setInt(5,inquilino.getTelefono());
+	            
 	            
 	            int rowsInserted = statement.executeUpdate();
 	            if (rowsInserted > 0) {
