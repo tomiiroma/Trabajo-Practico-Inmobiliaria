@@ -83,7 +83,7 @@ public class ContratoControlador implements ContratoRepository{
 	        try {
 	            PreparedStatement statement = connection.prepareStatement("UPDATE users SET name = ?, apellido = ? WHERE id = ?");
 	            statement.setString(1, contrato.getDescripcion());
-	            statement.setLocalDate(2, contrato.getFin_contrato());
+	           // statement.setLocalDate(2, contrato.getFin_contrato());
 	            
 	            int rowsUpdated = statement.executeUpdate();
 	            if (rowsUpdated > 0) {
