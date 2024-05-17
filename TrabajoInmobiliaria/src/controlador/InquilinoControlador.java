@@ -23,36 +23,35 @@ public class InquilinoControlador implements InquilinoRepository{
 	    
 	    @Override
 	    public List<Inquilino> getAllInquilino() {
-	        List<Inquilino> inquilino = new ArrayList<>();
-	     //   try {
-	          //  PreparedStatement statement = connection.prepareStatement("SELECT * FROM users ");
-	           // ResultSet resultSet = statement.executeQuery();
+	        List<Inquilino> inquilinos = new ArrayList<>();
+	        try {
+	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM cliente");
+	            ResultSet resultSet = statement.executeQuery();
 	       
-	         //   while (resultSet.next()) {
-	        // public Inquilino(String nombre,int id_cliente, String apellido, String correo, int telefono, LocalDate fecha_nac, int dni,int inquilino, double presupuesto)
-	            //	Inquilino inquilinos = new Inquilino(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("email"));
-	             //   users.add(Comprador);
-	      //      }
-	     //   } catch (SQLException e) {
-	     //       e.printStackTrace();
-	   //     }
-	    //    return users;
-	        return inquilino;
+	            while (resultSet.next()) { // id_inquilino no esta en la tabla cliente ""
+	            	Inquilino inquilino = new Inquilino(resultSet.getString("nombre"), resultSet.getInt("id_cliente"), resultSet.getString("apellido"), resultSet.getString("correo"), resultSet.getInt("telefono"), resultSet.getDate("fecha_nac").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("id_inquilino"));
+	                inquilinos.add(inquilino);
+	           }
+	       } catch (SQLException e) {
+	            e.printStackTrace();
+	       }
+	    
+	        return inquilinos;
 	    }
 
 	    
 	    @Override
-	    public Inquilino getInquilinoById(int id) {
+	    public Inquilino getInquilinoById(int id_cliente) {
 	    	Inquilino inquilino = null;
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE id = ?");
-	            statement.setInt(1, id);
+	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM cliente WHERE id_cliente = ?");
+	            statement.setInt(1, id_cliente);
 	            
 	            ResultSet resultSet = statement.executeQuery();
 	            
 	            if (resultSet.next()) {
-	            	// public Inquilino(int inquilino, double presupuesto) le falta Herencia con cliente.
-	             //   user = new Garante(resultSet.getInt("id_empleado"), resultSet.getString("name"), resultSet.getString("apellido") , resultSet.getString("telefono"), resultSet.getInt("fk_cliente"));
+	            							// id_inquilino no esta en la tabla cliente ""
+	                inquilino = new Inquilino(resultSet.getString("nombre"), resultSet.getInt("id_cliente"), resultSet.getString("apellido"), resultSet.getString("correo"), resultSet.getInt("telefono"), resultSet.getDate("fecha_nac").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("id_inquilino"));
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
@@ -63,7 +62,7 @@ public class InquilinoControlador implements InquilinoRepository{
 		@Override
 	    public void addInquilino(Inquilino inquilino) {
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("INSERT INTO users (name, correo) VALUES (?, ?)");
+	            PreparedStatement statement = connection.prepareStatement("INSERT INTO users (nombre, id_cliente, apellido, correo, telefono, fecha_nac, dni, correo) VALUES (?, null, ?, ?, ?, ?, ?, ?)");
 	            statement.setString(1, inquilino.getNombre());
 	            statement.setString(2, inquilino.getCorreo());
 	            
