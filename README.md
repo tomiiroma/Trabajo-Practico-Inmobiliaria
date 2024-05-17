@@ -16,6 +16,10 @@ El sistema de gestión de la inmobiliaria ofrece una variedad de funciones para 
 - Registro de Pagos
 - Carga de Documentos
 - Ver Últimas Operaciones
+- Gestionar Empleados(Ver lista de empleados)
+- Agregar Nuevo empleado
+- Eliminar Empleado
+
 
 
 ### Tecnologías Utilizadas
