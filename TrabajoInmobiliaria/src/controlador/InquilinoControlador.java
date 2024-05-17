@@ -62,12 +62,16 @@ public class InquilinoControlador implements InquilinoRepository{
 		@Override
 	    public void addInquilino(Inquilino inquilino) {
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("INSERT INTO users (nombre, id_cliente, apellido, correo, telefono, fecha_nac, dni, correo) VALUES (?, null, ?, ?, ?, ?, ?, ?)");
+	            PreparedStatement statement = connection.prepareStatement("INSERT INTO cliente (nombre, id_cliente, apellido, correo, telefono, fecha_nac, dni) VALUES (?, null, ?, ?, ?, ?, ?)");
 	            statement.setString(1, inquilino.getNombre());
-	            statement.setInt(2, inquilino.getId_cliente()); // ver despues si es A.I
+	            statement.setInt(2, inquilino.getId_cliente()); // ver despues si es A.I ya que esta poniendo un valor null.
 	            statement.setString(3,inquilino.getApellido());
 	            statement.setString(4, inquilino.getCorreo());
 	            statement.setInt(5,inquilino.getTelefono());
+	            java.sql.Date fecha_nac = java.sql.Date.valueOf(inquilino.getFecha_nac());
+	            statement.setDate(6, fecha_nac);
+	            statement.setInt(7, inquilino.getDni());
+	           
 	            
 	            
 	            int rowsInserted = statement.executeUpdate();
@@ -82,10 +86,16 @@ public class InquilinoControlador implements InquilinoRepository{
 		@Override
 	    public void updateInquilino(Inquilino inquilino) {
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("UPDATE users SET name = ?, apellido = ? WHERE id = ?");
+	            PreparedStatement statement = connection.prepareStatement("UPDATE cliente SET nombre = ?, apellido = ?, correo = ?, telefono = ?, fecha_nac = ?, dni = ? WHERE id_cliente = ?");
 	            statement.setString(1, inquilino.getNombre());
 	            statement.setString(2, inquilino.getApellido());
-	            statement.setInt(3, inquilino.getId_cliente());
+	            statement.setString(3, inquilino.getCorreo());
+	            statement.setInt(4, inquilino.getTelefono());
+	            java.sql.Date fecha_nac = java.sql.Date.valueOf(inquilino.getFecha_nac());
+	            statement.setDate(5, fecha_nac);
+	            statement.setInt(6, inquilino.getDni());
+	            statement.setInt(7, inquilino.getId_cliente());
+	            
 	            
 	            int rowsUpdated = statement.executeUpdate();
 	            if (rowsUpdated > 0) {
@@ -97,10 +107,10 @@ public class InquilinoControlador implements InquilinoRepository{
 	    }
 
 	    @Override
-	    public void deleteInquilino(int id) {
+	    public void deleteInquilino(int id_cliente) {
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("DELETE FROM users WHERE id = ?");
-	            statement.setInt(1, id);
+	            PreparedStatement statement = connection.prepareStatement("DELETE FROM cliente WHERE id_cliente = ?");
+	            statement.setInt(1, id_cliente);
 	            
 	            int rowsDeleted = statement.executeUpdate();
 	            if (rowsDeleted > 0) {
