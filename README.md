@@ -33,7 +33,8 @@ El sistema de gestión de la inmobiliaria ofrece una variedad de funciones para 
 ### Diagramas
 
 #### Diagrama de Clases
-![Trabajo Practico Programación -diagrama Clases](https://github.com/crumbytom/Trabajo-Practico-Inmobiliaria/assets/121838575/d27970b8-aae9-49f3-9136-214c9fe7fc9b)
+![Trabajo Practico Programación -diagrama Clases](https://github.com/tomiiroma/Trabajo-Practico-Inmobiliaria/assets/121838575/399f9727-ea01-4127-b5bf-3746b4b0b62b)
+
 
 
 #### Diagrama de Entidad-Relación
