@@ -4,13 +4,13 @@ import java.time.LocalDate;
 
 import javax.swing.JOptionPane;
 
-public class Gerente extends Empleado{
+public class Gerente extends Empleado implements Validacion{
 
 	private int id_gerente;
 
 	public Gerente(int id_empleado, String nombre, String apellido, LocalDate fecha_nac, int dni, int telefono,
-			String correo, int id_gerente) {
-		super(id_empleado, nombre, apellido, fecha_nac, dni, telefono, correo);
+			String correo, int id_gerente, String contraseña) {
+		super(id_empleado, nombre, apellido, fecha_nac, dni, telefono, correo,contraseña);
 		this.id_gerente = id_gerente;
 	}
 	
@@ -34,12 +34,16 @@ public class Gerente extends Empleado{
 			repetir = true;
 			String[] opcionesGerente = { "Registrar Nueva Propiedad","Eliminar Propiedad","Registrar Nuevo Cliente", "Realizar Nueva Operacion",
 					"Realizar Nuevo Contrato", "Realizar Busqueda", "Agendar Reunion o Visita", "Registrar Pago","Cargar Nuevo Documento",
-					"Ver Ultimas Operaciones","Cerrar Sesion","Salir" };
+					"Ver Ultimas Operaciones","Gestionar Empleados","Cerrar Sesion","Salir" };
 	
 			String opcionSeleccionada = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
 					"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, opcionesGerente,
 					opcionesGerente[0]);
 	
+			
+			try {
+
+			
 			switch (opcionSeleccionada) {
 			
 			case "Registrar Nueva Propiedad":
@@ -335,8 +339,55 @@ public class Gerente extends Empleado{
 					}
 					
 					
-				} while (repetir);
+				} 
+				
+				while (repetir);
 	
+				break;
+			
+			case "Gestionar Empleados":
+				do {
+					String[] gestionEmpleados = {"Ver Lista Empleados","Agregar Nuevo Empleado","Volver"};
+					
+					String gestionSeleccionada = (String) JOptionPane.showInputDialog(null, "Seleccione una operación:",
+							"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, gestionEmpleados,
+							gestionEmpleados[0]);
+				
+					if(gestionSeleccionada.equals("Ver Lista Empleados")){
+						
+						do {
+							
+							String[] gestionEmpleados2 = {"Ver Datos Empleado","Modificar Empleado","Eliminar Empleado","Volver"};
+							
+							String gestionSeleccionada2 = (String) JOptionPane.showInputDialog(null, "Seleccione una operación:",
+									"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, gestionEmpleados2,
+									gestionEmpleados2[0]);
+							
+							if(gestionSeleccionada2.equals("Ver Datos Empleado")){
+								JOptionPane.showMessageDialog(null, "Empleado");
+								
+							}else if(gestionSeleccionada2.equals("Modificar Empleado")){
+								JOptionPane.showMessageDialog(null, "modificar");
+								
+								
+							}else if(gestionSeleccionada2.equals("Eliminar Empleado")){
+								JOptionPane.showMessageDialog(null, "eliminar");
+								
+							}else {
+								break;
+							}
+							
+						}while(repetir);
+								
+						
+					}else if(gestionSeleccionada.equals("Agregar Nuevo Empleado")){
+						JOptionPane.showMessageDialog(null, "Cargar datos");
+						
+					}else {
+						break;
+					}
+					
+				} while (repetir);
 				break;
 			
 			case "Cerrar Sesion":
@@ -348,10 +399,26 @@ public class Gerente extends Empleado{
 				System.exit(0);
 				break;
 	
-			default:
+			default: JOptionPane.showMessageDialog(null, "Opcion no disponible");
 				break;
 			}
 			
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+=======
+			
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Porfavor Seleccione una Opción");
+				}
+			
+>>>>>>> Stashed changes
+=======
+			
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Porfavor Seleccione una Opción");
+		}
+			
+>>>>>>> Tomi
 		} while (repetir);
 		
 		return true;

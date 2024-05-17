@@ -3,7 +3,7 @@ package trabajoInmobiliaria;
 import java.time.LocalDate;
 
 public class Alquiler {
-
+	private int	id_alquiler; 
 	private Propietario propietario;
 	private Reserva reserva;
 	private Inquilino inquilino;
@@ -12,9 +12,10 @@ public class Alquiler {
 	private Inmueble inmueble;
 	private Boolean PermisoMascota;
 	
-	public Alquiler(Propietario propietario, Reserva reserva, Inquilino inquilino, LocalDate ini_contrato,
+	public Alquiler(int id_alquiler,Propietario propietario, Reserva reserva, Inquilino inquilino, LocalDate ini_contrato,
 			LocalDate fin_crontato, Inmueble inmueble, Boolean permisoMascota) {
 		super();
+		this.id_alquiler = id_alquiler;
 		this.propietario = propietario;
 		this.reserva = reserva;
 		this.inquilino = inquilino;
@@ -24,12 +25,16 @@ public class Alquiler {
 		PermisoMascota = permisoMascota;
 	}
 
+	
+
 	@Override
 	public String toString() {
-		return "Alquiler [propietario=" + propietario + ", reserva=" + reserva + ", inquilino=" + inquilino
-				+ ", ini_contrato=" + ini_contrato + ", fin_crontato=" + fin_crontato + ", inmueble=" + inmueble
-				+ ", PermisoMascota=" + PermisoMascota + "]";
+		return "Alquiler [id_alquiler=" + id_alquiler + ", propietario=" + propietario + ", reserva=" + reserva
+				+ ", inquilino=" + inquilino + ", ini_contrato=" + ini_contrato + ", fin_crontato=" + fin_crontato
+				+ ", inmueble=" + inmueble + ", PermisoMascota=" + PermisoMascota + "]";
 	}
+
+
 
 	public Propietario getPropietario() {
 		return propietario;
@@ -85,6 +90,18 @@ public class Alquiler {
 
 	public void setPermisoMascota(Boolean permisoMascota) {
 		PermisoMascota = permisoMascota;
+	}
+
+
+
+	public int getId_alquiler() {
+		return id_alquiler;
+	}
+
+
+
+	public void setId_alquiler(int id_alquiler) {
+		this.id_alquiler = id_alquiler;
 	}
 	
 	

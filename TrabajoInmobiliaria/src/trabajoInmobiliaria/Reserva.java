@@ -21,6 +21,8 @@ public class Reserva {
 		this.inquilino = inquilino;
 		this.estadoreserva = estadoreserva;
 	}
+	
+	
 	public Inmueble getInmueble() {
 		return inmueble;
 	}
