@@ -41,6 +41,9 @@ public class Gerente extends Empleado implements Validacion{
 					opcionesGerente[0]);
 	
 			
+			try {
+
+			
 			switch (opcionSeleccionada) {
 			
 			case "Registrar Nueva Propiedad":
@@ -399,6 +402,11 @@ public class Gerente extends Empleado implements Validacion{
 			default:
 				break;
 			}
+			
+			
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Porfavor Seleccione una Opción");
+		}
 			
 		} while (repetir);
 		
