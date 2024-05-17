@@ -9,6 +9,7 @@ import java.util.List;
 
 import interfaces.InmuebleRepository;
 import trabajoInmobiliaria.Inmueble;
+import trabajoInmobiliaria.Propietario;
 import trabajoInmobiliaria.DatabaseConnection;
 
 public class InmuebleControlador implements InmuebleRepository{
@@ -20,23 +21,45 @@ public class InmuebleControlador implements InmuebleRepository{
 	        this.connection = DatabaseConnection.getInstance().getConnection();
 	    }
 	    
+   
+	    
 	    
 	    @Override
 	    public List<Inmueble> getAllInmueble() {
 	        List<Inmueble> inmueble = new ArrayList<>();
-	     //   try {
-	          //  PreparedStatement statement = connection.prepareStatement("SELECT * FROM users ");
-	           // ResultSet resultSet = statement.executeQuery();
+	       try {
+	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM inmueble "); // Buscar el nombre en la base de datos.
+	            ResultSet resultSet = statement.executeQuery();
 	       
-	         //   while (resultSet.next()) {
-	        // public Inmueble(String nombre,int id_cliente, String apellido, String correo, int telefono, LocalDate fecha_nac, int dni,int comprador, double presupuesto)
-	            //	Inmueble inmuebles = new Inmueble(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("email"));
-	             //   users.add(Inmueble);
-	      //      }
-	     //   } catch (SQLException e) {
-	     //       e.printStackTrace();
-	   //     }
-	    //    return users;
+	            while (resultSet.next()) {
+	        
+	            	Inmueble inmuebles = new Inmueble(resultSet.getInt("id_inmueble"), 
+                            resultSet.getString("localizacion"), 
+                            resultSet.getDouble("precio"), 
+                            resultSet.getDouble("tamaño"), 
+                            resultSet.getInt("cantidadPersonas"),
+                            new Propietario(resultSet.getString("nombre_propietario"),
+                			resultSet.getInt("id_propietario"),
+                			resultSet.getString("apellido_propietario"),
+                			resultSet.getString("email_propietario"),
+                			resultSet.getInt("telefono_propietario"),
+                			resultSet.getDate("fecha_nacimiento_propietario").toLocalDate(),
+                			resultSet.getInt("dni_propietario"),
+                			resultSet.getInt("id_propietario")),  
+                            resultSet.getString("operacion"), 
+                            resultSet.getString("baños"), 
+                            resultSet.getString("estado"), 
+                            resultSet.getString("lavadero"), 
+                            resultSet.getString("patio"),
+                            resultSet.getString("dormitorios"), 
+                            resultSet.getString("cocina"), 
+                            resultSet.getBoolean("apto_mascota")); 
+	             
+	            	   inmueble.add(inmuebles);
+	          }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	       }
 	        return inmueble;
 	    }
 
@@ -45,14 +68,35 @@ public class InmuebleControlador implements InmuebleRepository{
 	    public Inmueble getInmuebleById(int id) {
 	    	Inmueble inmueble = null;
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE id = ?");
+	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM inmueble WHERE id = ?");
 	            statement.setInt(1, id);
 	            
 	            ResultSet resultSet = statement.executeQuery();
 	            
 	            if (resultSet.next()) {
-	            	// public Inmueble(int comprador, double presupuesto) le falta Herencia con cliente.
-	             //   user = new Garante(resultSet.getInt("id_empleado"), resultSet.getString("name"), resultSet.getString("apellido") , resultSet.getString("telefono"), resultSet.getInt("fk_cliente"));
+	            	
+	               inmueble = new Inmueble(resultSet.getInt("id_inmueble"), 
+                    resultSet.getString("localizacion"), 
+                    resultSet.getDouble("precio"), 
+                    resultSet.getDouble("tamaño"), 
+                    resultSet.getInt("cantidadPersonas"),
+                    new Propietario(resultSet.getString("nombre_propietario"),
+        			resultSet.getInt("id_propietario"),
+        			resultSet.getString("apellido_propietario"),
+        			resultSet.getString("email_propietario"),
+        			resultSet.getInt("telefono_propietario"),
+        			resultSet.getDate("fecha_nacimiento_propietario").toLocalDate(),
+        			resultSet.getInt("dni_propietario"),
+        			resultSet.getInt("id_propietario")),  
+                    resultSet.getString("operacion"), 
+                    resultSet.getString("baños"), 
+                    resultSet.getString("estado"), 
+                    resultSet.getString("lavadero"), 
+                    resultSet.getString("patio"),
+                    resultSet.getString("dormitorios"), 
+                    resultSet.getString("cocina"), 
+                    resultSet.getBoolean("apto_mascota")); 
+         
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
