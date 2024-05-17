@@ -70,7 +70,7 @@ public class AgenteControlador implements AgenteRepository{
 
 		@Override
 	    public void addAgente(Agente agente) {
-	        try {
+	        try {																																  // ID_AGENTE Se deberia sacar, ya que va a generar un error ya que no existe en la bdd
 	            PreparedStatement statement = connection.prepareStatement("INSERT INTO empleado (nombre, apellido, fecha_nac, dni, telefono, correo, id_agente, contraseña) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 	            statement.setString(1, agente.getNombre());
 	            statement.setString(2, agente.getApellido());
@@ -92,7 +92,7 @@ public class AgenteControlador implements AgenteRepository{
 	    }
 
 		@Override
-	    public void updateAgente(Agente agente) {
+	    public void updateAgente(Agente agente) {                                                                                                                       // ID_AGENTE Se deberia sacar, ya que va a generar un error ya que no existe en la bdd
 	        try {
 	            PreparedStatement statement = connection.prepareStatement("UPDATE empleado SET nombre = ?, apellido = ?, fecha_nac = ?, dni = ?, telefono = ?, correo = ?, id_agente = ?, contraseña = ? WHERE id_empleado = ?");
 	            statement.setString(1, agente.getNombre());

@@ -48,7 +48,7 @@ public class GerenteControlador implements GerenteRepository{
 	    public Gerente getGerenteById(int id) {
 	    	Gerente gerente = null;
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM empleado WHERE id = ?");
+	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM empleado WHERE id_empleado = ?");
 	            statement.setInt(1, id);
 	            
 	            ResultSet resultSet = statement.executeQuery();
@@ -65,10 +65,17 @@ public class GerenteControlador implements GerenteRepository{
 
 		@Override
 	    public void addGerente(Gerente gerente) {
-	        try {
-	            PreparedStatement statement = connection.prepareStatement("INSERT INTO users (name, correo) VALUES (?, ?)");
-	            statement.setString(1, gerente.getNombre());
-	            statement.setString(2, gerente.getCorreo());
+	        try {										// Podria utilizar un Inner join en una consulta insert	// Consultarle al profe sobre id_gerente. // Consultar si es valido.
+	            PreparedStatement statement = connection.prepareStatement("INSERT INTO empleado (id_empleado,nombre, apellido, fecha_nac, dni, telefono, correo, contraseña) VALUES (null, ?, ?, ?, ?, ?, ?, ?)");
+	            statement.setString(1, gerente.getNombre()); // Verificar si id_empleado es auto increment y consultarle al profe si este valor debe ser null en java.
+	            statement.setString(2, gerente.getApellido());
+	            java.sql.Date fecha_nac = java.sql.Date.valueOf(gerente.getFecha_nac());
+	            statement.setDate(3, fecha_nac);
+	            statement.setInt(4, gerente.getDni());
+	            statement.setInt(5, gerente.getTelefono());
+	            statement.setString(6, gerente.getCorreo());
+	            statement.setString(7, gerente.getContraseña());
+	            
 	            
 	            int rowsInserted = statement.executeUpdate();
 	            if (rowsInserted > 0) {
@@ -82,10 +89,16 @@ public class GerenteControlador implements GerenteRepository{
 		@Override
 	    public void updateGerente(Gerente gerente) {
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("UPDATE users SET name = ?, apellido = ? WHERE id = ?");
+	            PreparedStatement statement = connection.prepareStatement("UPDATE empleado SET nombre = ?, apellido = ?, fecha_nac = ?, dni = ?, telefono = ?, correo = ?, contraseña = ? WHERE id_empleado = ?");
 	            statement.setString(1, gerente.getNombre());
 	            statement.setString(2, gerente.getApellido());
-	            statement.setInt(3, gerente.getId_gerente());
+	            java.sql.Date fecha_nac = java.sql.Date.valueOf(gerente.getFecha_nac());
+	            statement.setDate(3, fecha_nac);
+	            statement.setInt(4, gerente.getDni());
+	            statement.setInt(5, gerente.getTelefono());
+	            statement.setNString(6, gerente.getCorreo());
+	            statement.setString(7, gerente.getContraseña());
+	            statement.setInt(8, gerente.getId_empleado());
 	            
 	            int rowsUpdated = statement.executeUpdate();
 	            if (rowsUpdated > 0) {
@@ -97,10 +110,10 @@ public class GerenteControlador implements GerenteRepository{
 	    }
 
 	    @Override
-	    public void deleteGerente(int id) {
+	    public void deleteGerente(int id_empleado) {
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("DELETE FROM users WHERE id = ?");
-	            statement.setInt(1, id);
+	            PreparedStatement statement = connection.prepareStatement("DELETE FROM empleado WHERE id_empleado = ?");
+	            statement.setInt(1, id_empleado);
 	            
 	            int rowsDeleted = statement.executeUpdate();
 	            if (rowsDeleted > 0) {
