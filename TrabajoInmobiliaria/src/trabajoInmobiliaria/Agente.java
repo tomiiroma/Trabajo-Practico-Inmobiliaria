@@ -9,8 +9,8 @@ public class Agente extends Empleado {
 	private int id_agente;
 
 	public Agente(int id_empleado, String nombre, String apellido, LocalDate fecha_nac, int dni, int telefono,
-			String correo, int id_agente) {
-		super(id_empleado, nombre, apellido, fecha_nac, dni, telefono, correo);
+			String correo, int id_agente , String contraseña) {
+		super(id_empleado, nombre, apellido, fecha_nac, dni, telefono, correo, contraseña);
 		this.id_agente = id_agente;
 	}
 

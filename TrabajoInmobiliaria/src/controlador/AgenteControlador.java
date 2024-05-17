@@ -25,54 +25,64 @@ public class AgenteControlador implements AgenteRepository{
 	    
 	    @Override
 	    public List<Agente>  getAllComprador() {
-	        List<Agente> users = new ArrayList<>();
-	     //   try {
-	          //  PreparedStatement statement = connection.prepareStatement("SELECT * FROM users ");
-	           // ResultSet resultSet = statement.executeQuery();
+	        List<Agente> agentes = new ArrayList<>();
+	        try {
+	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM empleado "); // En este caso toma selecciona todos los datos de la columna empleado.
+	            ResultSet resultSet = statement.executeQuery();
 	       
-	         //   while (resultSet.next()) {
+	            while (resultSet.next()) {
 	        
-	        // Constructor 
+	            	Agente agente = new Agente(resultSet.getInt("id_empleado"), resultSet.getString("nombre"), resultSet.getString("apellido"), resultSet.getDate("fecha_nac").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("telefono"), resultSet.getString("correo"), resultSet.getInt("id_agente"), resultSet.getString("contraseña"));
 	        
-	            //	Agente user = new Agente(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("email"));
-	             //   users.add(Agente);
-	      //      }
-	     //   } catch (SQLException e) {
-	     //       e.printStackTrace();
-	   //     }
-	    //    return users;
-	        return users;
+	            	// La clase agente tiene un atributo llamado id_agente que no pertenece a ninguna tabla y la columna de tipo_empleado no esta en la clase Empleado.
+	            	// id_agente no esta en la tabla de la base de datos y tipo_empleado no se encuentra en la clase Empleado.
+	            	
+	                agentes.add(agente);
+	          }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	       
+	        return agentes;
 	    }
 
 	    @Override
 	    public Agente getAgenteById(int id) {
-	        Agente user = null;
+	        Agente agente = null;
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE id = ?");
+	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM empleado WHERE id = ?");
 	            statement.setInt(1, id);
 	            
 	            ResultSet resultSet = statement.executeQuery();
 	            
 	            if (resultSet.next()) {
-	            	// (int id_empleado, String nombre, String apellido, LocalDate fecha_nac, int dni, int telefono,String correo, int id_agente))
-	             //   user = new Agente(resultSet.getInt("id_empleado"), resultSet.getString("name"), resultSet.getString("apellido") , resultSet.getString("telefono"), resultSet.getInt("fk_cliente"));
+	            
+	            	agente = new Agente(resultSet.getInt("id_empleado"), resultSet.getString("nombre"), resultSet.getString("apellido"), resultSet.getDate("fecha_nac").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("telefono"), resultSet.getString("correo"), resultSet.getInt("id_agente"), resultSet.getString("contraseña"));
+	           
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
 	        }
-	        return user;
+	        return agente;
 	    }
 
 		@Override
 	    public void addAgente(Agente agente) {
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("INSERT INTO users (name, telefono) VALUES (?, ?)");
+	            PreparedStatement statement = connection.prepareStatement("INSERT INTO empleado (nombre, apellido, fecha_nac, dni, telefono, correo, id_agente, contraseña) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 	            statement.setString(1, agente.getNombre());
-	            statement.setLong(2, agente.getTelefono());
+	            statement.setString(2, agente.getApellido());
+	            java.sql.Date fecha_nac = java.sql.Date.valueOf(agente.getFecha_nac());
+	            statement.setDate(3, fecha_nac);
+	            statement.setInt(4,agente.getDni());
+	            statement.setInt(5,agente.getTelefono());
+	            statement.setString(6, agente.getCorreo());
+	            statement.setInt(7, agente.getId_agente());
+	            statement.setString(8, agente.getContraseña());
 	            
 	            int rowsInserted = statement.executeUpdate();
 	            if (rowsInserted > 0) {
-	                System.out.println("Usuario insertado exitosamente");
+	                System.out.println("Agente insertado exitosamente");
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();

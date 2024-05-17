@@ -24,7 +24,7 @@ public class GaranteControlador implements GaranteRepository {
 	    public List<Garante>  getAllGarante() {
 	        List<Garante> garantes = new ArrayList<>();
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM garantes ");
+	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM garante");
 	            ResultSet resultSet = statement.executeQuery();
 	       
 	            while (resultSet.next()) {
@@ -42,7 +42,7 @@ public class GaranteControlador implements GaranteRepository {
 	    public Garante getGaranteById(int id) {
 	        Garante garante = null;
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM garantes WHERE id_garante = ?");
+	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM garante WHERE id_garante = ?");
 	            statement.setInt(1, id);
 	            
 	            ResultSet resultSet = statement.executeQuery();
@@ -60,7 +60,7 @@ public class GaranteControlador implements GaranteRepository {
 		@Override
 	    public void addGarante(Garante garante) {
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("INSERT INTO garantes (id_garante, nombre, apellido, numero_telefono) VALUES (?, ?, ?, ?)");
+	            PreparedStatement statement = connection.prepareStatement("INSERT INTO garante (id_garante, nombre, apellido, numero_telefono) VALUES (?, ?, ?, ?)");
 	            statement.setInt(1, garante.getId_garante());
 	            statement.setString(2, garante.getNombre());
 	            statement.setNString(3, garante.getApellido());
@@ -78,7 +78,7 @@ public class GaranteControlador implements GaranteRepository {
 		@Override
 	    public void updateGarante(Garante garante) {
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("UPDATE garantes SET nombre = ?, apellido = ? telefono = ? WHERE id_garante = ?");
+	            PreparedStatement statement = connection.prepareStatement("UPDATE garante SET nombre = ?, apellido = ? telefono = ? WHERE id_garante = ?");
 	            statement.setString(1, garante.getNombre());
 	            statement.setString(2, garante.getApellido());
 	            statement.setString(4, garante.getNumero_telefono());
@@ -96,7 +96,7 @@ public class GaranteControlador implements GaranteRepository {
 	    @Override
 	    public void deleteGarante(int id_garante) {
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("DELETE FROM garantes WHERE id_garante = ?");
+	            PreparedStatement statement = connection.prepareStatement("DELETE FROM garante WHERE id_garante = ?");
 	            statement.setInt(1, id_garante);
 	            
 	            int rowsDeleted = statement.executeUpdate();

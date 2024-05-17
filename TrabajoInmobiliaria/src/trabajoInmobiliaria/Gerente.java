@@ -9,8 +9,8 @@ public class Gerente extends Empleado{
 	private int id_gerente;
 
 	public Gerente(int id_empleado, String nombre, String apellido, LocalDate fecha_nac, int dni, int telefono,
-			String correo, int id_gerente) {
-		super(id_empleado, nombre, apellido, fecha_nac, dni, telefono, correo);
+			String correo, int id_gerente, String contraseña) {
+		super(id_empleado, nombre, apellido, fecha_nac, dni, telefono, correo,contraseña);
 		this.id_gerente = id_gerente;
 	}
 	
