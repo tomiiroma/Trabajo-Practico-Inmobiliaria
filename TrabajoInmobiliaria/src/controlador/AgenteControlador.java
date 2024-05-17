@@ -92,10 +92,17 @@ public class AgenteControlador implements AgenteRepository{
 		@Override
 	    public void updateAgente(Agente agente) {
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("UPDATE users SET name = ?, apellido = ? WHERE id = ?");
+	            PreparedStatement statement = connection.prepareStatement("UPDATE empleado SET nombre = ?, apellido = ?, fecha_nac = ?, dni = ?, telefono = ?, correo = ?, id_agente = ?, contraseña = ? WHERE id_empleado = ?");
 	            statement.setString(1, agente.getNombre());
 	            statement.setString(2, agente.getApellido());
-	            statement.setInt(3, agente.getId_agente());
+	            java.sql.Date fecha_nac = java.sql.Date.valueOf(agente.getFecha_nac());
+	            statement.setDate(3, fecha_nac);
+	            statement.setInt(4,agente.getDni());
+	            statement.setInt(5, agente.getTelefono());
+	            statement.setString(6, agente.getCorreo());
+	            statement.setInt(7, agente.getId_agente());
+	            statement.setString(8, agente.getContraseña());
+	            statement.setInt(9, agente.getId_empleado());
 	            
 	            int rowsUpdated = statement.executeUpdate();
 	            if (rowsUpdated > 0) {
@@ -109,7 +116,7 @@ public class AgenteControlador implements AgenteRepository{
 	    @Override
 	    public void deleteAgente(int id) {
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("DELETE FROM users WHERE id = ?");
+	            PreparedStatement statement = connection.prepareStatement("DELETE FROM empleado WHERE id_empleado = ?");
 	            statement.setInt(1, id);
 	            
 	            int rowsDeleted = statement.executeUpdate();
