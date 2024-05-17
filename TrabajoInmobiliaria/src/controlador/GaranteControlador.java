@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,45 +22,45 @@ public class GaranteControlador implements GaranteRepository {
 	    
 	    @Override
 	    public List<Garante>  getAllGarante() {
-	        List<Garante> users = new ArrayList<>();
-	     //   try {
-	          //  PreparedStatement statement = connection.prepareStatement("SELECT * FROM users ");
-	           // ResultSet resultSet = statement.executeQuery();
+	        List<Garante> garantes = new ArrayList<>();
+	        try {
+	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM garantes ");
+	            ResultSet resultSet = statement.executeQuery();
 	       
-	         //   while (resultSet.next()) {
-	            //	Garante user = new Garante(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("email"));
-	             //   users.add(Garante);
-	      //      }
-	     //   } catch (SQLException e) {
-	     //       e.printStackTrace();
-	   //     }
-	    //    return users;
-	        return users;
+	            while (resultSet.next()) {
+	            Garante garante = new Garante(resultSet.getInt("id_garante"), resultSet.getString("nombre"), resultSet.getString("apellido"), resultSet.getString("numero_telefono"));
+	                garantes.add(garante);
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	        
+	        return garantes;
 	    }
 
 	    @Override
 	    public Garante getGaranteById(int id) {
-	        Garante user = null;
+	        Garante garante = null;
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE id = ?");
+	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM garantes WHERE id_garante = ?");
 	            statement.setInt(1, id);
 	            
 	            ResultSet resultSet = statement.executeQuery();
 	            
 	            if (resultSet.next()) {
-	            	// (int id_empleado, String nombre, String apellido, LocalDate fecha_nac, int dni, int telefono, String correo, int id_gerente) Problemas con el LocalDate es un quilombo 
-	             //   user = new Garante(resultSet.getInt("id_empleado"), resultSet.getString("name"), resultSet.getString("apellido") , resultSet.getString("telefono"), resultSet.getInt("fk_cliente"));
+	            
+	                garante = new Garante(resultSet.getInt("id_garante"), resultSet.getString("nombre"), resultSet.getString("apellido") , resultSet.getString("numero_telefono"));
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
 	        }
-	        return user;
+	        return garante;
 	    }
 
 		@Override
 	    public void addGarante(Garante garante) {
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("INSERT INTO users (name, telefono) VALUES (?, ?)");
+	            PreparedStatement statement = connection.prepareStatement("INSERT INTO garantes (id_garante, nombre, apellido, numero_telefono) VALUES (?, ?, ?, ?)");
 	            statement.setInt(1, garante.getId_garante());
 	            statement.setString(2, garante.getNombre());
 	            statement.setNString(3, garante.getApellido());
@@ -79,11 +78,11 @@ public class GaranteControlador implements GaranteRepository {
 		@Override
 	    public void updateGarante(Garante garante) {
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("UPDATE users SET name = ?, apellido = ? WHERE id = ?");
-	            statement.setInt(1, garante.getId_garante());
+	            PreparedStatement statement = connection.prepareStatement("UPDATE garantes SET nombre = ?, apellido = ? telefono = ? WHERE id_garante = ?");
 	            statement.setString(1, garante.getNombre());
 	            statement.setString(2, garante.getApellido());
 	            statement.setString(4, garante.getNumero_telefono());
+	            statement.setInt(4, garante.getId_garante());
 	            
 	            int rowsUpdated = statement.executeUpdate();
 	            if (rowsUpdated > 0) {
@@ -95,10 +94,10 @@ public class GaranteControlador implements GaranteRepository {
 	    }
 
 	    @Override
-	    public void deleteGarante(int id) {
+	    public void deleteGarante(int id_garante) {
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("DELETE FROM users WHERE id = ?");
-	            statement.setInt(1, id);
+	            PreparedStatement statement = connection.prepareStatement("DELETE FROM garantes WHERE id_garante = ?");
+	            statement.setInt(1, id_garante);
 	            
 	            int rowsDeleted = statement.executeUpdate();
 	            if (rowsDeleted > 0) {
