@@ -3,42 +3,56 @@ package trabajoInmobiliaria;
 public class Inmueble {
 
 	private int id_inmueble;
+	private String tipo_inmueble;
+	private boolean disponible;
+	private double superficie_cubierta;
+	private double superficie_descubierta;
 	private String localizacion;
-	private double precio;
-	private double tamaño;
-	private int cantidadPersonas;
-	private Propietario propietario;
-	private String operacion; // Puede ser booleano
-	private String baños;
-	private String Estado;
 	private String lavadero;
-	private String patio;
-	private String dormitorios;
+	private String descripcion;
+	private int antiguedad;
+	private double precio;
+	private String banio;
+	private boolean refaccionar;
+	private String estado;
+	private String dormitorio;
 	private String cocina;
 	private boolean apto_mascota;
 	
-	
+
 	
 
-	public Inmueble(int id_inmueble, String localizacion, double precio, double tamaño, int cantidadPersonas,
-			Propietario propietario, String operacion, String baños, String estado, String lavadero, String patio,
-			String dormitorios, String cocina, boolean apto_mascota) {
+
+
+
+
+	public Inmueble(int id_inmueble, String tipo_inmueble, boolean disponible, double superficie_cubierta,
+			double superficie_descubierta, String localizacion, String lavadero, String descripcion, int antiguedad,
+			double precio, String banio, boolean refaccionar, String estado, String dormitorio, String cocina,
+			boolean apto_mascota) {
 		super();
 		this.id_inmueble = id_inmueble;
+		this.tipo_inmueble = tipo_inmueble;
+		this.disponible = disponible;
+		this.superficie_cubierta = superficie_cubierta;
+		this.superficie_descubierta = superficie_descubierta;
 		this.localizacion = localizacion;
-		this.precio = precio;
-		this.tamaño = tamaño;
-		this.cantidadPersonas = cantidadPersonas;
-		this.propietario = propietario;
-		this.operacion = operacion;
-		this.baños = baños;
-		Estado = estado;
 		this.lavadero = lavadero;
-		this.patio = patio;
-		this.dormitorios = dormitorios;
+		this.descripcion = descripcion;
+		this.antiguedad = antiguedad;
+		this.precio = precio;
+		this.banio = banio;
+		this.refaccionar = refaccionar;
+		this.estado = estado;
+		this.dormitorio = dormitorio;
 		this.cocina = cocina;
 		this.apto_mascota = apto_mascota;
 	}
+
+
+
+
+
 
 
 
@@ -48,9 +62,107 @@ public class Inmueble {
 
 
 
+
+
+
+
+
 	public void setId_inmueble(int id_inmueble) {
 		this.id_inmueble = id_inmueble;
 	}
+
+
+
+
+
+
+
+
+	public String getTipo_inmueble() {
+		return tipo_inmueble;
+	}
+
+
+
+
+
+
+
+
+	public void setTipo_inmueble(String tipo_inmueble) {
+		this.tipo_inmueble = tipo_inmueble;
+	}
+
+
+
+
+
+
+
+
+	public boolean isDisponible() {
+		return disponible;
+	}
+
+
+
+
+
+
+
+
+	public void setDisponible(boolean disponible) {
+		this.disponible = disponible;
+	}
+
+
+
+
+
+
+
+
+	public double getSuperficie_cubierta() {
+		return superficie_cubierta;
+	}
+
+
+
+
+
+
+
+
+	public void setSuperficie_cubierta(double superficie_cubierta) {
+		this.superficie_cubierta = superficie_cubierta;
+	}
+
+
+
+
+
+
+
+
+	public double getSuperficie_descubierta() {
+		return superficie_descubierta;
+	}
+
+
+
+
+
+
+
+
+	public void setSuperficie_descubierta(double superficie_descubierta) {
+		this.superficie_descubierta = superficie_descubierta;
+	}
+
+
+
+
+
 
 
 
@@ -60,93 +172,19 @@ public class Inmueble {
 
 
 
+
+
+
+
+
 	public void setLocalizacion(String localizacion) {
 		this.localizacion = localizacion;
 	}
 
 
 
-	public double getPrecio() {
-		return precio;
-	}
 
 
-
-	public void setPrecio(double precio) {
-		this.precio = precio;
-	}
-
-
-
-	public double getTamaño() {
-		return tamaño;
-	}
-
-
-
-	public void setTamaño(double tamaño) {
-		this.tamaño = tamaño;
-	}
-
-
-
-	public int getCantidadPersonas() {
-		return cantidadPersonas;
-	}
-
-
-
-	public void setCantidadPersonas(int cantidadPersonas) {
-		this.cantidadPersonas = cantidadPersonas;
-	}
-
-
-
-	public Propietario getPropietario() {
-		return propietario;
-	}
-
-
-
-	public void setPropietario(Propietario propietario) {
-		this.propietario = propietario;
-	}
-
-
-
-	public String getOperacion() {
-		return operacion;
-	}
-
-
-
-	public void setOperacion(String operacion) {
-		this.operacion = operacion;
-	}
-
-
-
-	public String getBaños() {
-		return baños;
-	}
-
-
-
-	public void setBaños(String baños) {
-		this.baños = baños;
-	}
-
-
-
-	public String getEstado() {
-		return Estado;
-	}
-
-
-
-	public void setEstado(String estado) {
-		Estado = estado;
-	}
 
 
 
@@ -156,33 +194,173 @@ public class Inmueble {
 
 
 
+
+
+
+
+
 	public void setLavadero(String lavadero) {
 		this.lavadero = lavadero;
 	}
 
 
 
-	public String getPatio() {
-		return patio;
+
+
+
+
+
+	public String getDescripcion() {
+		return descripcion;
 	}
 
 
 
-	public void setPatio(String patio) {
-		this.patio = patio;
+
+
+
+
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 
 
-	public String getDormitorios() {
-		return dormitorios;
+
+
+
+
+
+	public int getAntiguedad() {
+		return antiguedad;
 	}
 
 
 
-	public void setDormitorios(String dormitorios) {
-		this.dormitorios = dormitorios;
+
+
+
+
+
+	public void setAntiguedad(int antiguedad) {
+		this.antiguedad = antiguedad;
 	}
+
+
+
+
+
+
+
+
+	public double getPrecio() {
+		return precio;
+	}
+
+
+
+
+
+
+
+
+	public void setPrecio(double precio) {
+		this.precio = precio;
+	}
+
+
+
+
+
+
+
+
+	public String getBanio() {
+		return banio;
+	}
+
+
+
+
+
+
+
+
+	public void setBanio(String banio) {
+		this.banio = banio;
+	}
+
+
+
+
+
+
+
+
+	public boolean isRefaccionar() {
+		return refaccionar;
+	}
+
+
+
+
+
+
+
+
+	public void setRefaccionar(boolean refaccionar) {
+		this.refaccionar = refaccionar;
+	}
+
+
+
+
+
+
+
+
+	public String getEstado() {
+		return estado;
+	}
+
+
+
+
+
+
+
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+
+
+
+
+
+
+
+	public String getDormitorio() {
+		return dormitorio;
+	}
+
+
+
+
+
+
+
+
+	public void setDormitorio(String dormitorio) {
+		this.dormitorio = dormitorio;
+	}
+
+
+
+
+
 
 
 
@@ -192,9 +370,19 @@ public class Inmueble {
 
 
 
+
+
+
+
+
 	public void setCocina(String cocina) {
 		this.cocina = cocina;
 	}
+
+
+
+
+
 
 
 
@@ -204,10 +392,17 @@ public class Inmueble {
 
 
 
+
+
+
+
+
 	public void setApto_mascota(boolean apto_mascota) {
 		this.apto_mascota = apto_mascota;
 	}
-	
+
+
+
 	
 
 

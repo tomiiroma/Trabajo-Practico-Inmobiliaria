@@ -48,16 +48,18 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 			
 			case "Registrar Nueva Propiedad":
 				do {
-					String[] tipoPropiedad = { "Propiedad en Venta","Propiedad en Alquiler","Volver" };
+					String[] tipoPropiedad = { "Casa","Departamento","Volver" };
 					
-					String clienteSeleccionado = (String) JOptionPane.showInputDialog(null, "Seleccione una Opción:",
+					String clienteSeleccionado = (String) JOptionPane.showInputDialog(null, "Seleccione el tipo de Inmueble:",
 							"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, tipoPropiedad,
 							tipoPropiedad[0]);
 					
-					if(clienteSeleccionado.equals("Propiedad en Venta")){
-						JOptionPane.showMessageDialog(null, "Completar datos propiedad en venta");
+					if(clienteSeleccionado.equals("Casa")){
 						
-					}else if(clienteSeleccionado.equals("Propiedad en Alquiler")){
+						
+						
+						
+					}else if(clienteSeleccionado.equals("Departamento")){
 						JOptionPane.showMessageDialog(null, "Completar datos propiedad en alquiler");  
 
 					}else {
