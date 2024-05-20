@@ -4,6 +4,7 @@ public class Inmueble {
 
 	private int id_inmueble;
 	private String tipo_inmueble;
+	private String condicion;
 	private boolean disponible;
 	private double superficie_cubierta;
 	private double superficie_descubierta;
@@ -18,18 +19,16 @@ public class Inmueble {
 	private String dormitorio;
 	private String cocina;
 	private boolean apto_mascota;
-	private String condicion;
 	
 
-
-
-	public Inmueble(int id_inmueble, String tipo_inmueble, boolean disponible, double superficie_cubierta,
-			double superficie_descubierta, String localizacion, String lavadero, String descripcion, int antiguedad,
-			double precio, String banio, boolean refaccionar, String estado, String dormitorio, String cocina,
-			boolean apto_mascota) {
+	public Inmueble(int id_inmueble, String tipo_inmueble, String condicion, boolean disponible,
+			double superficie_cubierta, double superficie_descubierta, String localizacion, String lavadero,
+			String descripcion, int antiguedad, double precio, String banio, boolean refaccionar, String estado,
+			String dormitorio, String cocina, boolean apto_mascota) {
 		super();
 		this.id_inmueble = id_inmueble;
 		this.tipo_inmueble = tipo_inmueble;
+		this.condicion = condicion;
 		this.disponible = disponible;
 		this.superficie_cubierta = superficie_cubierta;
 		this.superficie_descubierta = superficie_descubierta;

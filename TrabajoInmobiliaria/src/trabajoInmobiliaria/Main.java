@@ -27,7 +27,9 @@ class Main {
 			} else if (eleccionElegida1 == 1) {
 				
 				gerente1.menuGerente();
+				
 
+				
 
 			} else {
 				JOptionPane.showMessageDialog(null, "Hasta luego!");

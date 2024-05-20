@@ -48,18 +48,17 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 			
 			case "Registrar Nueva Propiedad":
 				do {
-					String[] tipoPropiedad = { "Casa","Departamento","Volver" };
+					String[] tipoPropiedad = { "Casa","Propiedad en Alquiler","Volver" };
 					
 					String clienteSeleccionado = (String) JOptionPane.showInputDialog(null, "Seleccione el tipo de Inmueble:",
 							"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, tipoPropiedad,
 							tipoPropiedad[0]);
 					
-					if(clienteSeleccionado.equals("Casa")){
+					if(clienteSeleccionado.equals("Propiedad en Venta")){
 						
 						
 						
-						
-					}else if(clienteSeleccionado.equals("Departamento")){
+					}else if(clienteSeleccionado.equals("Propiedad en Alquiler")){
 						JOptionPane.showMessageDialog(null, "Completar datos propiedad en alquiler");  
 
 					}else {
@@ -416,6 +415,11 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 	}
 
 		
+	
+	
+	public void agregarInmueble(Inmueble inmueble) {
+		
+	}
 	
 	
 }
