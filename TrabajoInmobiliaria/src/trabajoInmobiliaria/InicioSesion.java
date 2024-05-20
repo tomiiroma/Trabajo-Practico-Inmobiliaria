@@ -16,10 +16,11 @@ public interface InicioSesion {
 
 		AgenteControlador agentecontrolador = new AgenteControlador();
 		GerenteControlador gerentecontrolador = new GerenteControlador();
+		System.out.print("no leyo lista empleados");
 
 		List<Agente> agentes = agentecontrolador.getAllAgente();
 		List<Gerente> gerentes = gerentecontrolador.getAllGerente();
-
+		System.out.print("leyo lista empleados");
 		boolean esAgente = false;
 		boolean inicio = false;
 

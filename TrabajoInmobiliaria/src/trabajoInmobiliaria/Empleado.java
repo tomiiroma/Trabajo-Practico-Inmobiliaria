@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 
 
-public class Empleado{
+public class Empleado implements InicioSesion{
 
 	private int id_empleado;
 	private String nombre;

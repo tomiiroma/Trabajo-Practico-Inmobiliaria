@@ -16,9 +16,11 @@ class Main{
 		Agente agente1 = new Agente();
 		Gerente gerente1 = new Gerente();
 		
-		gerente1.menuGerente();
+		Empleado empleado = new Empleado();
 		
-	/*	do {
+		empleado.IniciarSesion();
+		
+		do {
 
 			String[] opcionesRoles = { "Agente", "Gerente", "Salir" };
 			int eleccionElegida1 = JOptionPane.showOptionDialog(null, "Iniciar Sesion Como", "Inmobiliaria Maguez", 0,
@@ -43,7 +45,7 @@ class Main{
 			respuestaSeleccionada = JOptionPane.showOptionDialog(null, "Desea seguir en el programa: ", "Biblioteca", 0,
 					0, null, preguntaEleccion, preguntaEleccion[0]);
 		} while (respuestaSeleccionada == 0);
-*/
+
 	}
 
 }
