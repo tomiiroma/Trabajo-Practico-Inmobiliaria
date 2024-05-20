@@ -2,9 +2,10 @@ package trabajoInmobiliaria;
 
 import java.time.LocalDate;
 
-import javax.swing.JOptionPane;
 
-public class Empleado {
+
+
+public class Empleado{
 
 	private int id_empleado;
 	private String nombre;
@@ -99,8 +100,6 @@ public class Empleado {
 	public void setTipo_empleado(String tipo_empleado) {
 		this.tipo_empleado = tipo_empleado;
 	}
-	
-	
 	
 	
 	

@@ -24,7 +24,7 @@ public class AgenteControlador implements AgenteRepository{
 	    
 	    
 	    @Override
-	    public List<Agente>  getAllComprador() {
+	    public List<Agente>  getAllAgente() {
 	        List<Agente> agentes = new ArrayList<>();
 	        try {
 	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM empleado "); // En este caso toma selecciona todos los datos de la columna empleado.
