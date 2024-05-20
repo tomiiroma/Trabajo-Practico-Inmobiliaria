@@ -7,13 +7,13 @@ import javax.swing.JOptionPane;
 public class Gerente extends Empleado implements Validacion{
 
 	private int id_gerente;
-
+	
 	public Gerente(int id_empleado, String nombre, String apellido, LocalDate fecha_nac, int dni, int telefono,
-			String correo, int id_gerente, String contraseña) {
-		super(id_empleado, nombre, apellido, fecha_nac, dni, telefono, correo,contraseña);
+			String correo, String tipo_empleado, String contraseña, int id_gerente) {
+		super(id_empleado, nombre, apellido, fecha_nac, dni, telefono, correo, tipo_empleado, contraseña);
 		this.id_gerente = id_gerente;
 	}
-	
+
 	public Gerente() {
 		
 	}
