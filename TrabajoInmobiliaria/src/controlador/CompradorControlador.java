@@ -24,19 +24,19 @@ public class CompradorControlador implements CompradorRepository{
 	    @Override
 	    public List<Comprador>  getAllComprador() {
 	        List<Comprador> compradores = new ArrayList<>();
-	     //   try {
-	          //  PreparedStatement statement = connection.prepareStatement("SELECT * FROM users ");
-	           // ResultSet resultSet = statement.executeQuery();
+	       try {
+	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM cliente");
+	            ResultSet resultSet = statement.executeQuery();
 	       
-	         //   while (resultSet.next()) {
-	        // public Comprador(String nombre,int id_cliente, String apellido, String correo, int telefono, LocalDate fecha_nac, int dni,int comprador, double presupuesto)
-	            //	Comprador compradores = new Comprador(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("email"));
-	             //   users.add(Comprador);
-	      //      }
-	     //   } catch (SQLException e) {
-	     //       e.printStackTrace();
-	   //     }
-	    //    return users;
+	            while (resultSet.next()) {
+	        
+	            	Comprador comprador = new Comprador(resultSet.getString("nombre"), resultSet.getInt("id_cliente"), resultSet.getString("apellido"), resultSet.getString("correo"), resultSet.getInt("telefono"), resultSet.getDate("fecha_nac").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("comprador"),resultSet.getDouble("Presupuesto"));
+	                compradores.add(comprador);
+	           }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	       }
+	        
 	        return compradores;
 	    }
 
@@ -44,14 +44,14 @@ public class CompradorControlador implements CompradorRepository{
 	    public Comprador getCompradorById(int id) {
 	        Comprador comprador = null;
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE id = ?");
+	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM cliente WHERE comprador = ?");
 	            statement.setInt(1, id);
 	            
 	            ResultSet resultSet = statement.executeQuery();
 	            
 	            if (resultSet.next()) {
-	            	// public Comprador(int comprador, double presupuesto) le falta Herencia con cliente.
-	             //   user = new Garante(resultSet.getInt("id_empleado"), resultSet.getString("name"), resultSet.getString("apellido") , resultSet.getString("telefono"), resultSet.getInt("fk_cliente"));
+	            	
+	                comprador = new Comprador(resultSet.getString("nombre"), resultSet.getInt("id_cliente"), resultSet.getString("apellido"), resultSet.getString("correo"), resultSet.getInt("telefono"), resultSet.getDate("fecha_nac").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("comprador"),resultSet.getDouble("Presupuesto"));
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
@@ -62,13 +62,22 @@ public class CompradorControlador implements CompradorRepository{
 		@Override
 	    public void addComprador(Comprador comprador) {
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("INSERT INTO users (name, correo) VALUES (?, ?)");
+	            PreparedStatement statement = connection.prepareStatement("INSERT INTO cliente (nombre, id_cliente, apellido, correo, telefono, fecha_nac, dni, comprador, Presupuesto) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 	            statement.setString(1, comprador.getNombre());
-	            statement.setString(2, comprador.getCorreo());
+	            statement.setInt(2, comprador.getId_cliente());	            
+	            statement.setString(3, comprador.getApellido());
+	            statement.setString(4, comprador.getCorreo());
+	            statement.setInt(5, comprador.getTelefono());
+	            java.sql.Date fecha_nac = java.sql.Date.valueOf(comprador.getFecha_nac());
+	            statement.setDate(6, fecha_nac);
+	            statement.setInt(7, comprador.getDni());
+	            statement.setDouble(8, comprador.getPresupuesto());
+	            
+	            
 	            
 	            int rowsInserted = statement.executeUpdate();
 	            if (rowsInserted > 0) {
-	                System.out.println("Usuario insertado exitosamente");
+	                System.out.println("Cliente comprador insertado exitosamente");
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
@@ -77,15 +86,21 @@ public class CompradorControlador implements CompradorRepository{
 
 		@Override
 	    public void updateComprador(Comprador comprador) {
-	        try {
-	            PreparedStatement statement = connection.prepareStatement("UPDATE users SET name = ?, apellido = ? WHERE id = ?");
+	        try {																								// ver si utilizar como clave el id_cliente o comprador.
+	            PreparedStatement statement = connection.prepareStatement("UPDATE cliente SET nombre = ?, apellido = ? correo = ?, telefono = ?, fecha_nac = ?, dni = ?, Presupuesto = ? WHERE id_cliente = ?");
 	          statement.setString(1, comprador.getNombre());
-	            statement.setString(2, comprador.getApellido());
-	            statement.setInt(3, comprador.getId_cliente());
+	          statement.setString(2, comprador.getApellido());
+	          statement.setString(3, comprador.getCorreo());
+	          statement.setInt(4, comprador.getTelefono());
+	          java.sql.Date fecha_nac = java.sql.Date.valueOf(comprador.getFecha_nac());
+	          statement.setDate(5, fecha_nac);  
+	          statement.setInt(6, comprador.getDni());
+	          statement.setDouble(7, comprador.getPresupuesto());
+	          statement.setInt(8, comprador.getId_cliente());
 	            
 	            int rowsUpdated = statement.executeUpdate();
 	            if (rowsUpdated > 0) {
-	                System.out.println("Usuario actualizado exitosamente");
+	                System.out.println("Usuario comprador actualizado exitosamente");
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
@@ -93,10 +108,10 @@ public class CompradorControlador implements CompradorRepository{
 	    }
 
 	    @Override
-	    public void deleteComprador(int id) {
+	    public void deleteComprador(int id_cliente) {
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("DELETE FROM users WHERE id = ?");
-	            statement.setInt(1, id);
+	            PreparedStatement statement = connection.prepareStatement("DELETE FROM cliente WHERE id_cliente = ?");
+	            statement.setInt(1, id_cliente);
 	            
 	            int rowsDeleted = statement.executeUpdate();
 	            if (rowsDeleted > 0) {
