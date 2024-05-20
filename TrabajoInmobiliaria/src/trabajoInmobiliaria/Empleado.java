@@ -13,8 +13,16 @@ public class Empleado {
 	private int dni;
 	private int telefono;
 	private String correo;
+	private String tipo_empleado;
+	private String contraseña;
+	
+
+	
+	
+	
+	
 	public Empleado(int id_empleado, String nombre, String apellido, LocalDate fecha_nac, int dni, int telefono,
-			String correo) {
+			String correo, String tipo_empleado, String contraseña) {
 		super();
 		this.id_empleado = id_empleado;
 		this.nombre = nombre;
@@ -23,15 +31,16 @@ public class Empleado {
 		this.dni = dni;
 		this.telefono = telefono;
 		this.correo = correo;
+		this.tipo_empleado = tipo_empleado;
+		this.contraseña = contraseña;
 	}
+
+
 	public Empleado() {
 		
 	}
-	@Override
-	public String toString() {
-		return "Empleado [id_empleado=" + id_empleado + ", nombre=" + nombre + ", apellido=" + apellido + ", fecha_nac="
-				+ fecha_nac + ", dni=" + dni + ", telefono=" + telefono + ", correo=" + correo + "]";
-	}
+	
+
 	public int getId_empleado() {
 		return id_empleado;
 	}
@@ -74,6 +83,24 @@ public class Empleado {
 	public void setCorreo(String correo) {
 		this.correo = correo;
 	}
+	public String getContraseña() {
+		return contraseña;
+	}
+	public void setContraseña(String contraseña) {
+		this.contraseña = contraseña;
+	}
+
+
+	public String getTipo_empleado() {
+		return tipo_empleado;
+	}
+
+
+	public void setTipo_empleado(String tipo_empleado) {
+		this.tipo_empleado = tipo_empleado;
+	}
+	
+	
 	
 	
 	
