@@ -47,7 +47,7 @@ public class PropietarioControlador implements PropietarioRepository {
 	    public Propietario getPropietarioById(int id) {
 	        Propietario propietario = null;
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM cliente WHERE id = ?");
+	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM cliente WHERE id_cliente = ?");
 	            statement.setInt(1, id);
 	            
 	            ResultSet resultSet = statement.executeQuery();
@@ -66,17 +66,20 @@ public class PropietarioControlador implements PropietarioRepository {
 		@Override
 	    public void addPropietario(Propietario propietario) {
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("INSERT INTO users (nombre, id_cliente, apellido, correo, telefono, fecha_nac, dni, id_propietario) VALUES (?, null, ?, ?, ?, ?, ?, ?)");
+	            PreparedStatement statement = connection.prepareStatement("INSERT INTO cliente (nombre, id_cliente, apellido, correo, telefono, fecha_nac, dni, id_propietario) VALUES (?, null, ?, ?, ?, ?, ?, ?)");
 	            statement.setString(1, propietario.getNombre());
 	            statement.setInt(2, propietario.getId_cliente());
 	            statement.setString(3, propietario.getApellido());
 	            statement.setString(4, propietario.getCorreo());
 	            statement.setInt(5, propietario.getTelefono());
-	            
+	            java.sql.Date fecha_nac = java.sql.Date.valueOf(propietario.getFecha_nac());
+	            statement.setDate(6, fecha_nac);
+	            statement.setInt(7, propietario.getDni());
+	            statement.setInt(8, propietario.getId_propietario()); // consultar si es auto increment.
 	            
 	            int rowsInserted = statement.executeUpdate();
 	            if (rowsInserted > 0) {
-	                System.out.println("Usuario insertado exitosamente");
+	                System.out.println("Propietario insertado exitosamente");
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
@@ -86,14 +89,19 @@ public class PropietarioControlador implements PropietarioRepository {
 		@Override
 	    public void updatePropietario(Propietario propietario) {
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("UPDATE users SET name = ?, apellido = ? WHERE id = ?");
+	            PreparedStatement statement = connection.prepareStatement("UPDATE cliente SET nombre = ?, apellido = ?, correo = ?, telefono = ?, fecha_nac = ?, dni = ?  WHERE id_cliente = ?");
 	          statement.setString(1, propietario.getNombre());
 	            statement.setString(2, propietario.getApellido());
-	            statement.setInt(3, propietario.getId_cliente());
-	            
+	            statement.setString(3, propietario.getCorreo());
+	            statement.setInt(4, propietario.getTelefono());
+	            java.sql.Date fecha_nac = java.sql.Date.valueOf(propietario.getFecha_nac());
+	            statement.setDate(5, fecha_nac);
+	            statement.setInt(6, propietario.getDni());
+	            statement.setInt(7, propietario.getId_cliente());
+
 	            int rowsUpdated = statement.executeUpdate();
 	            if (rowsUpdated > 0) {
-	                System.out.println("Usuario actualizado exitosamente");
+	                System.out.println("Propietario actualizado exitosamente");
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
@@ -101,10 +109,10 @@ public class PropietarioControlador implements PropietarioRepository {
 	    }
 
 	    @Override
-	    public void deletePropietario(int id) {
+	    public void deletePropietario(int id_cliente) {
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("DELETE FROM users WHERE id = ?");
-	            statement.setInt(1, id);
+	            PreparedStatement statement = connection.prepareStatement("DELETE FROM users WHERE id_cliente = ?");
+	            statement.setInt(1, id_cliente);
 	            
 	            int rowsDeleted = statement.executeUpdate();
 	            if (rowsDeleted > 0) {
