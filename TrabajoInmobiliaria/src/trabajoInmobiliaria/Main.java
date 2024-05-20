@@ -13,6 +13,9 @@ class Main {
 
 		Agente agente1 = new Agente();
 		Gerente gerente1 = new Gerente();
+		
+		
+		gerente1.menuGerente();
 
 		do {
 			String[] opcionesRoles = { "Agente", "Gerente", "Salir" };
