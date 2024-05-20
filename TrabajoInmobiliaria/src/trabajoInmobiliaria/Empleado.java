@@ -13,6 +13,7 @@ public class Empleado {
 	private int dni;
 	private int telefono;
 	private String correo;
+	
 	public Empleado(int id_empleado, String nombre, String apellido, LocalDate fecha_nac, int dni, int telefono,
 			String correo) {
 		super();
