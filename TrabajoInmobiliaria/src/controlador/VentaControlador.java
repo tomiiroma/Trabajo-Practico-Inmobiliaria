@@ -24,19 +24,33 @@ public class VentaControlador implements VentaRepository {
 
 	    @Override
 	    public List<Venta> getAllVentas() {
-	        List<Venta> users = new ArrayList<>();
+	        List<Venta> ventas = new ArrayList<>();
 	        try {
 	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM users ");
 	            ResultSet resultSet = statement.executeQuery();
-	       
 	            while (resultSet.next()) {
-	           // 	Venta venta = new Venta(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("email"));
-	            //    ventas.add(venta);
+	            	  resultSet.getInt("id_venta");
+	                  int idReserva = resultSet.getInt("id_reserva");
+	            int  idInmueble = resultSet.getInt("id_inmueble");
+	                  int idComprador = resultSet.getInt("id_comprador");
+	                  String formaPago = resultSet.getString("forma_pago");
+	           double precioVenta = resultSet.getDouble("precio_venta");
+
+	                  
+	                  /*    idVenta,
+	                  Venta venta = new Venta(
+	                      getReservaById(idReserva),
+	                      getInmuebleById(idInmueble),
+	                      getCompradorById(idComprador),
+	                      formaPago,
+	                      precioVenta
+	                  */
+	          //     ventas.add(venta);
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
 	        }
-	        return users;
+	        return ventas;
 	    }
 
 	    @Override
