@@ -18,11 +18,8 @@ public class Inmueble {
 	private String dormitorio;
 	private String cocina;
 	private boolean apto_mascota;
+	private String condicion;
 	
-
-	
-
-
 
 
 
@@ -291,66 +288,25 @@ public class Inmueble {
 		this.banio = banio;
 	}
 
-
-
-
-
-
-
-
 	public boolean isRefaccionar() {
 		return refaccionar;
 	}
-
-
-
-
-
-
-
 
 	public void setRefaccionar(boolean refaccionar) {
 		this.refaccionar = refaccionar;
 	}
 
-
-
-
-
-
-
-
 	public String getEstado() {
 		return estado;
 	}
-
-
-
-
-
-
-
 
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 
-
-
-
-
-
-
-
 	public String getDormitorio() {
 		return dormitorio;
 	}
-
-
-
-
-
-
 
 
 	public void setDormitorio(String dormitorio) {
@@ -358,31 +314,14 @@ public class Inmueble {
 	}
 
 
-
-
-
-
-
-
 	public String getCocina() {
 		return cocina;
 	}
 
 
-
-
-
-
-
-
 	public void setCocina(String cocina) {
 		this.cocina = cocina;
 	}
-
-
-
-
-
 
 
 
@@ -392,17 +331,25 @@ public class Inmueble {
 
 
 
-
-
-
-
-
 	public void setApto_mascota(boolean apto_mascota) {
 		this.apto_mascota = apto_mascota;
 	}
 
 
+	public String getCondicion() {
+		return condicion;
+	}
 
+
+
+
+	public void setCondicion(String condicion) {
+		this.condicion = condicion;
+	}
+
+
+
+	
 	
 
 
