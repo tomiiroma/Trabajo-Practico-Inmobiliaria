@@ -24,19 +24,19 @@ public class CompradorControlador implements CompradorRepository{
 	    @Override
 	    public List<Comprador>  getAllComprador() {
 	        List<Comprador> compradores = new ArrayList<>();
-	     //   try {
-	          //  PreparedStatement statement = connection.prepareStatement("SELECT * FROM users ");
-	           // ResultSet resultSet = statement.executeQuery();
+	       try {
+	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM cliente");
+	            ResultSet resultSet = statement.executeQuery();
 	       
-	         //   while (resultSet.next()) {
-	        // public Comprador(String nombre,int id_cliente, String apellido, String correo, int telefono, LocalDate fecha_nac, int dni,int comprador, double presupuesto)
-	            //	Comprador compradores = new Comprador(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("email"));
-	             //   users.add(Comprador);
-	      //      }
-	     //   } catch (SQLException e) {
-	     //       e.printStackTrace();
-	   //     }
-	    //    return users;
+	            while (resultSet.next()) {
+	        
+	            	Comprador comprador = new Comprador(resultSet.getString("nombre"), resultSet.getInt("id_cliente"), resultSet.getString("apellido"), resultSet.getString("correo"), resultSet.getInt("telefono"), resultSet.getDate("fecha_nac").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("comprador"),resultSet.getDouble("Presupuesto"));
+	                compradores.add(comprador);
+	           }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	       }
+	        
 	        return compradores;
 	    }
 
@@ -44,14 +44,14 @@ public class CompradorControlador implements CompradorRepository{
 	    public Comprador getCompradorById(int id) {
 	        Comprador comprador = null;
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE id = ?");
+	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM cliente WHERE comprador = ?");
 	            statement.setInt(1, id);
 	            
 	            ResultSet resultSet = statement.executeQuery();
 	            
 	            if (resultSet.next()) {
-	            	// public Comprador(int comprador, double presupuesto) le falta Herencia con cliente.
-	             //   user = new Garante(resultSet.getInt("id_empleado"), resultSet.getString("name"), resultSet.getString("apellido") , resultSet.getString("telefono"), resultSet.getInt("fk_cliente"));
+	            	
+	                comprador = new Comprador(resultSet.getString("nombre"), resultSet.getInt("id_cliente"), resultSet.getString("apellido"), resultSet.getString("correo"), resultSet.getInt("telefono"), resultSet.getDate("fecha_nac").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("comprador"),resultSet.getDouble("Presupuesto"));
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
