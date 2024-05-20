@@ -27,6 +27,11 @@ public class Gerente extends Empleado implements Validacion{
 	}
 	
 	
+	
+	
+	
+	
+	
 	public boolean menuGerente() {
 		boolean repetir;
 		

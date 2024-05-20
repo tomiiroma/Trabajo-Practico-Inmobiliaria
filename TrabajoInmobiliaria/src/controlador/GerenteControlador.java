@@ -33,7 +33,7 @@ public class GerenteControlador implements GerenteRepository{
 	       
 	            while (resultSet.next()) {
 	            								// Idem con Agente consultarle al profe
-	            	Gerente Gerentes = new Gerente(resultSet.getInt("id_empleado"), resultSet.getString("nombre"), resultSet.getString("apellido"), resultSet.getDate("fecha_nac").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("telefono"), resultSet.getString("correo"), resultSet.getInt("id_gerente"), resultSet.getString("contraseña"));
+	            	Gerente Gerentes = new Gerente(resultSet.getInt("id_empleado"), resultSet.getString("nombre"), resultSet.getString("apellido"), resultSet.getDate("fecha_nac").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("telefono"), resultSet.getString("correo"), resultSet.getString("tipo_empleado"), resultSet.getString("contraseña"),resultSet.getInt("id_gerente"));
 	                gerente.add(Gerentes);
 	            }
 	        } catch (SQLException e) {
@@ -55,7 +55,7 @@ public class GerenteControlador implements GerenteRepository{
 	            
 	            if (resultSet.next()) {
 	            	 
-	               gerente = new Gerente(resultSet.getInt("id_empleado"), resultSet.getString("nombre"), resultSet.getString("apellido"), resultSet.getDate("fecha_nac").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("telefono"), resultSet.getString("correo"), resultSet.getInt("id_gerente"), resultSet.getString("contraseña"));
+	            	gerente = new Gerente(resultSet.getInt("id_empleado"), resultSet.getString("nombre"), resultSet.getString("apellido"), resultSet.getDate("fecha_nac").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("telefono"), resultSet.getString("correo"), resultSet.getString("tipo_empleado"), resultSet.getString("contraseña"),resultSet.getInt("id_gerente"));
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();

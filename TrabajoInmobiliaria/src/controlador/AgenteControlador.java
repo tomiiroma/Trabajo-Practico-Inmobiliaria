@@ -34,7 +34,7 @@ public class AgenteControlador implements AgenteRepository{
 	        
 // Lo que se podria hacer es crear una tabla en la base de datos que tenga el id_agente y en la consultar realizar un inner join. Consultar ( Ya que al realizar la consulta y no tener el dato creo que va a tirar una excepcion).
 	            	
-	            	Agente agente = new Agente(resultSet.getInt("id_empleado"), resultSet.getString("nombre"), resultSet.getString("apellido"), resultSet.getDate("fecha_nac").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("telefono"), resultSet.getString("correo"), resultSet.getInt("id_agente"), resultSet.getString("contraseña"));
+	            	Agente agente = new Agente(resultSet.getInt("id_empleado"), resultSet.getString("nombre"), resultSet.getString("apellido"), resultSet.getDate("fecha_nac").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("telefono"), resultSet.getString("correo"),  resultSet.getString("tipo_empleado"),resultSet.getString("contraseña"),resultSet.getInt("id_agente"));
 	        
 	            	// La clase agente tiene un atributo llamado id_agente que no pertenece a ninguna tabla y la columna de tipo_empleado no esta en la clase Empleado.
 	            	// id_agente no esta en la tabla de la base de datos y tipo_empleado no se encuentra en la clase Empleado.
@@ -59,7 +59,7 @@ public class AgenteControlador implements AgenteRepository{
 	            
 	            if (resultSet.next()) {
 	            
-	            	agente = new Agente(resultSet.getInt("id_empleado"), resultSet.getString("nombre"), resultSet.getString("apellido"), resultSet.getDate("fecha_nac").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("telefono"), resultSet.getString("correo"), resultSet.getInt("id_agente"), resultSet.getString("contraseña"));
+	            	agente = new Agente(resultSet.getInt("id_empleado"), resultSet.getString("nombre"), resultSet.getString("apellido"), resultSet.getDate("fecha_nac").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("telefono"), resultSet.getString("correo"),  resultSet.getString("tipo_empleado"),resultSet.getString("contraseña"),resultSet.getInt("id_agente"));
 	           
 	            }
 	        } catch (SQLException e) {
