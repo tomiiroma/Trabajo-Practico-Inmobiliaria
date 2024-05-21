@@ -474,6 +474,8 @@ public class Gerente extends Empleado implements Validacion{
 			
 		}
 	
+	/* -------------------------------------------------------------------------------- Eliminar Agente -------------------------------------------------------------------------------------------*/
+	
 	public void EliminarAgente() {
 		
 		AgenteControlador agentecontrolador = new AgenteControlador();
@@ -494,10 +496,11 @@ public class Gerente extends Empleado implements Validacion{
 		agentecontrolador.deleteAgente(Integer.parseInt(empleadoborrarselect));}
 	}
 	
-	
+/* ---------------------------------------------------------------------------------- MODIFICAR AGENTE --------------------------------------------------------------------------------------------*/	
 	public void ModificarAgente() {
 		
 		AgenteControlador agentecontrolador = new AgenteControlador();
+		String contraseña;
 		
 		if (agentecontrolador.getAllEmpleados().size()==0) {
 			
@@ -514,21 +517,29 @@ public class Gerente extends Empleado implements Validacion{
 				empleados2, empleados2[0]);
 		Agente seleccionado = agentecontrolador.getAgenteById(Integer.parseInt(empleadoselect2));
 		
-		LocalDate fecha = LocalDate.now();
+		LocalDate fecha = null;
 		
-		seleccionado.setNombre(JOptionPane.showInputDialog("Su nombre actual es: "+seleccionado.getNombre() + "Ingrese el nuevo nombre: "));
-		seleccionado.setApellido(JOptionPane.showInputDialog("Su apellido es: "+seleccionado.getApellido()+ "Ingrese el nuevo apellido"));
-		seleccionado.setFecha_nacimiento(fecha); // Modificar despues
-		seleccionado.setDni(Integer.parseInt(JOptionPane.showInputDialog("Su dni es: " +seleccionado.getDni()+"Ingrese el nuevo dni")));
-		seleccionado.setTelefono(Integer.parseInt(JOptionPane.showInputDialog("Su telefono es: "+seleccionado.getTelefono()+"Ingrese el telefono")));
-		seleccionado.setCorreo(JOptionPane.showInputDialog("Su correo es: "+seleccionado.getCorreo()+"Ingrese el nuevo correo"));
-		seleccionado.setId_agente(Integer.parseInt(JOptionPane.showInputDialog("Su id de agente es: "+seleccionado.getId_agente()+"Ingrese el nuevo id de agente")));
-		seleccionado.setContraseña(JOptionPane.showInputDialog("Ingrese la nueva contraseña"));
+		seleccionado.setNombre(validarNombre("Su nombre actual es: "+" "+seleccionado.getNombre()+" "+ "Ingrese el nuevo nombre: "));
+		seleccionado.setApellido(validarNombre("Su apellido es: "+" "+seleccionado.getApellido()+" "+"Ingrese el nuevo apellido"));
+		seleccionado.setFecha_nacimiento(validarFecha(fecha)); // Modificar despues
+		seleccionado.setDni(validarDni("Su dni es: " +seleccionado.getDni()+"Ingrese el nuevo dni"));
+		seleccionado.setTelefono(validarTelefono(JOptionPane.showInputDialog("Su telefono es: "+seleccionado.getTelefono()+"Ingrese el telefono")));
+		seleccionado.setCorreo(validarEmail(JOptionPane.showInputDialog("Su correo es: "+seleccionado.getCorreo()+"Ingrese el nuevo correo")));
+
+		seleccionado.setId_agente(Integer.parseInt(JOptionPane.showInputDialog("Su id de agente es: "+seleccionado.getId_agente()+"Ingrese el nuevo id de agente"))); // preguntarle a los chicos, si quieren que sea AI.
+		
+		do {
+		contraseña = JOptionPane.showInputDialog("Ingresar la nueva contraseña");
+		}while(!validarContraseña(contraseña));
+		
+		seleccionado.setContraseña((contraseña));
 		agentecontrolador.updateAgente(seleccionado);
 		
 	} catch (Exception e) {
 		JOptionPane.showMessageDialog(null, "Ocurrio un error"+e);}}}
 	
+	
+/* ---------------------------------------------------------------------------- Selector de Agentes ----------------------------------------------------------------------------------------- */	
 	
 	public void SelectorAgentes() {
 		
