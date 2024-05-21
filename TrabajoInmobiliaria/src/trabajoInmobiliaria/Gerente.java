@@ -1,6 +1,6 @@
 package trabajoInmobiliaria;
 
-import java.time.LocalDate;
+import java.time.LocalDate; 
 
 import javax.swing.JOptionPane;
 
@@ -37,9 +37,18 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 		
 		do {		
 			repetir = true;
-			String[] opcionesGerente = { "Gestionar Propiedades","Registrar Nueva Propiedad","Eliminar Propiedad","Registrar Nuevo Cliente", "Realizar Nueva Operacion",
-					"Realizar Nuevo Contrato", "Realizar Busqueda", "Agendar Reunion o Visita", "Registrar Pago","Cargar Nuevo Documento",
-					"Ver Ultimas Operaciones","Gestionar Empleados","Cerrar Sesion","Salir" };
+			String[] opcionesGerente = { "Gestionar Propiedades", 
+											"Registrar Nuevo Cliente", 
+											"Realizar Nueva Operacion",
+											"Realizar Nuevo Contrato", 
+											"Realizar Busqueda"   , 
+											"Agendar Reunion o Visita", 
+											"Registrar Pago",
+											"Cargar Nuevo Documento",
+											"Ver Ultimas Operaciones" , 
+											"Gestionar Empleados",
+											"Cerrar Sesion",
+											"Salir" };
 	
 			String opcionSeleccionada = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
 					"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, opcionesGerente,
@@ -61,9 +70,8 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 					
 					if(gestionSeleccionada.equals("Ver Inmuebles")){
 						
-						JOptionPane.showMessageDialog(null, "Inmuebles: "+"\n");
-						
-						
+						JOptionPane.showMessageDialog(null, "Inmuebles: "+"\n"+inmuebleControlador.getAllInmueble());
+											
 						
 						
 						
@@ -71,9 +79,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 						
 						
 						
-						
-						
-						
+
 						
 						
 					}else if(gestionSeleccionada.equals("Eliminar Inmueble")){
@@ -84,6 +90,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 					}	
 				} while (repetir);
 				break;		
+				
 				
 			case "Registrar Nuevo Cliente":
 				do {
