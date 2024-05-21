@@ -376,7 +376,7 @@ public class Gerente extends Empleado implements Validacion{
 							
 /* --------------------- */    if(gestionSeleccionada2.equals("Ver Datos Empleado")){ /* ---------------------------------------------------------------------------------*/
 								
-								JOptionPane.showMessageDialog(null, "Empleado");
+			  /* desde aca */  JOptionPane.showMessageDialog(null, "Empleado");
 								
 								String[] listaEmpleado = {"Ver empleados","seleccionar empleado","Salir"};
 								
@@ -541,19 +541,25 @@ public class Gerente extends Empleado implements Validacion{
 		AgenteControlador agentecontrolador = new AgenteControlador();
 			
 		//	JOptionPane.showMessageDialog(null, "Cargar datos");
-			validarNombre(nombre);
-			validarNombre(apellido);
+			nombre =validarNombre("Escribir el nombre");
+			apellido = validarNombre("Escribir el apellido");
 			fecha = validarFecha(fecha);
 			dni = validarDni("Validacion de dni");
 			
 			telefonoentrada = JOptionPane.showInputDialog("Ingresar telefono"); // telefono validado.
 			telefono = validarTelefono(telefonoentrada);
 			
-			String correo = JOptionPane.showInputDialog(null, "Ingresar correo"); // falta validar correo,tipo_empleado,contraseña.
-			String tipo_empleado = JOptionPane.showInputDialog("Ingresar el tipo de empleado");
+			String correo = JOptionPane.showInputDialog(null, "Ingresar correo"); //contraseña.
+			String correoverificado = validarEmail(correo);
+			
+			
+			String tipo_empleado = "agente"; //JOptionPane.showInputDialog("Ingresar el tipo de empleado");
+			
 			String contraseña = JOptionPane.showInputDialog("Ingresar password");
+			
 			int id_agente = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el id del agente"));
-			agentecontrolador.addAgente(new Agente(0,nombre,apellido,fecha,dni,telefono,correo,tipo_empleado,contraseña,id_agente));
+			
+			agentecontrolador.addAgente(new Agente(0,nombre,apellido,fecha,dni,telefono,correoverificado,tipo_empleado,contraseña,id_agente));
 			
 			
 			

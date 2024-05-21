@@ -1,6 +1,8 @@
 package trabajoInmobiliaria;
 
 import java.time.LocalDate;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 
@@ -65,7 +67,7 @@ public interface Validacion {
 	
 		do {
 			try {
-				nombre = JOptionPane.showInputDialog("Ingresar el nombre");
+				nombre = JOptionPane.showInputDialog(mensaje);
 
 				if(nombre==null || nombre.trim().isEmpty()){
 					JOptionPane.showMessageDialog(null, "No se admiten campos en blanco. Por favor ingrese un Nombre");
@@ -148,12 +150,12 @@ public interface Validacion {
 			
 		} catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Error al ingresar la fecha. Debes ingresar números.");
-          
+            flag=false;
         
 		} catch (Exception e) {
 			
 			JOptionPane.showMessageDialog(null, "error al ingresar la fecha.");
-			
+			flag=false;
 		} 
 		
 		
@@ -226,6 +228,41 @@ public interface Validacion {
 		return telefono;
 		
 	}
+	
+	/* --------------------------------------------------------------------------------------- Validar Correo --------------------------------------------------------------------------------------------------------- */
+	
+	/* pruebas no definitivo */
+	
+	default String validarEmail(String email) {
+	boolean flag=true;
+	String mail;
+		
+	do {	
+		
+		if (flag==false) {	email = JOptionPane.showInputDialog("Ingresar un correo electronico ------@------.com");}
+		
+		
+		flag = true;
+		
+		mail = "^[^@]+@[^@]+\\.com$"; 
+		
+		Pattern pattern = Pattern.compile(mail);
+		Matcher matcher = pattern.matcher(email);
+		
+		if (!matcher.matches()) {
+			
+			JOptionPane.showMessageDialog(null, "El correo electrónico ingresado no es válidoo");
+			flag = false;
+			
+		} 
+		
+		}while(!flag);
+		
+		return email;
+		
+	}
+	
+	
 	
 	
 }
