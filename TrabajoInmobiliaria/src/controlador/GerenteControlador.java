@@ -28,13 +28,13 @@ public class GerenteControlador implements GerenteRepository{
 	    public List<Gerente> getAllGerente() {
 	        List<Gerente> gerente = new ArrayList<>();
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM empleado ");
+	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM empleado where tipo_empleado = 'Gerente'");
 	            ResultSet resultSet = statement.executeQuery();
 	       
 	            while (resultSet.next()) {
-	            								// Idem con Agente consultarle al profe
-	            	Gerente Gerentes = new Gerente(resultSet.getInt("id_empleado"), resultSet.getString("nombre"), resultSet.getString("apellido"), resultSet.getDate("fecha_nac").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("telefono"), resultSet.getString("correo"), resultSet.getString("tipo_empleado"), resultSet.getString("contraseña"),resultSet.getInt("id_gerente"));
-	                gerente.add(Gerentes);
+	            	Gerente Gerentes = new Gerente(resultSet.getInt("id_empleado"), resultSet.getString("nombre"), resultSet.getString("apellido"), resultSet.getDate("fecha_nacimiento").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("telefono"), resultSet.getString("correo"), resultSet.getString("tipo_empleado"), resultSet.getString("contraseña"),resultSet.getInt("id_gerente"));
+	                
+	            	gerente.add(Gerentes);
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
@@ -69,7 +69,7 @@ public class GerenteControlador implements GerenteRepository{
 	            PreparedStatement statement = connection.prepareStatement("INSERT INTO empleado (id_empleado,nombre, apellido, fecha_nac, dni, telefono, correo, contraseña) VALUES (null, ?, ?, ?, ?, ?, ?, ?)");
 	            statement.setString(1, gerente.getNombre()); // Verificar si id_empleado es auto increment y consultarle al profe si este valor debe ser null en java.
 	            statement.setString(2, gerente.getApellido());
-	            java.sql.Date fecha_nac = java.sql.Date.valueOf(gerente.getFecha_nac());
+	            java.sql.Date fecha_nac = java.sql.Date.valueOf(gerente.getFecha_nacimiento());
 	            statement.setDate(3, fecha_nac);
 	            statement.setInt(4, gerente.getDni());
 	            statement.setInt(5, gerente.getTelefono());
@@ -92,7 +92,7 @@ public class GerenteControlador implements GerenteRepository{
 	            PreparedStatement statement = connection.prepareStatement("UPDATE empleado SET nombre = ?, apellido = ?, fecha_nac = ?, dni = ?, telefono = ?, correo = ?, contraseña = ? WHERE id_empleado = ?");
 	            statement.setString(1, gerente.getNombre());
 	            statement.setString(2, gerente.getApellido());
-	            java.sql.Date fecha_nac = java.sql.Date.valueOf(gerente.getFecha_nac());
+	            java.sql.Date fecha_nac = java.sql.Date.valueOf(gerente.getFecha_nacimiento());
 	            statement.setDate(3, fecha_nac);
 	            statement.setInt(4, gerente.getDni());
 	            statement.setInt(5, gerente.getTelefono());

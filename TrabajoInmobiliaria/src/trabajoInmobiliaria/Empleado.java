@@ -10,7 +10,7 @@ public class Empleado implements InicioSesion{
 	private int id_empleado;
 	private String nombre;
 	private String apellido;
-	private LocalDate fecha_nac;
+	private LocalDate fecha_nacimiento;
 	private int dni;
 	private int telefono;
 	private String correo;
@@ -22,13 +22,13 @@ public class Empleado implements InicioSesion{
 	
 	
 	
-	public Empleado(int id_empleado, String nombre, String apellido, LocalDate fecha_nac, int dni, int telefono,
+	public Empleado(int id_empleado, String nombre, String apellido, LocalDate fecha_nacimiento, int dni, int telefono,
 			String correo, String tipo_empleado, String contraseña) {
 		super();
 		this.id_empleado = id_empleado;
 		this.nombre = nombre;
 		this.apellido = apellido;
-		this.fecha_nac = fecha_nac;
+		this.fecha_nacimiento = fecha_nacimiento;
 		this.dni = dni;
 		this.telefono = telefono;
 		this.correo = correo;
@@ -60,11 +60,11 @@ public class Empleado implements InicioSesion{
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
-	public LocalDate getFecha_nac() {
-		return fecha_nac;
+	public LocalDate getFecha_nacimiento() {
+		return fecha_nacimiento;
 	}
-	public void setFecha_nac(LocalDate fecha_nac) {
-		this.fecha_nac = fecha_nac;
+	public void setFecha_nacimiento(LocalDate fecha_nacimiento) {
+		this.fecha_nacimiento = fecha_nacimiento;
 	}
 	public int getDni() {
 		return dni;

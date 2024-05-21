@@ -26,14 +26,14 @@ public class PropietarioControlador implements PropietarioRepository {
 	    public List<Propietario>  getAllPropietario() {
 	        List<Propietario> propietarios = new ArrayList<>();
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM cliente ");
+	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM cliente where tipo_cliente='Propietario'");
 	            ResultSet resultSet = statement.executeQuery();
 	       
 	           while (resultSet.next()) {
 	        
 	       
 	        
-	            	Propietario propietario = new Propietario(resultSet.getString("nombre"), resultSet.getInt("id_cliente"), resultSet.getString("apellido"), resultSet.getString("correo"), resultSet.getInt("telefono"), resultSet.getDate("fecha_nac").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("id_propietario"));
+	            	Propietario propietario = new Propietario(resultSet.getString("nombre"), resultSet.getInt("id_cliente"), resultSet.getString("apellido"), resultSet.getString("correo"), resultSet.getInt("telefono"), resultSet.getDate("fecha_nacimiento").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("id_propietario"));
 	               propietarios.add(propietario);
 	            }
 	       } catch (SQLException e) {
@@ -72,7 +72,7 @@ public class PropietarioControlador implements PropietarioRepository {
 	            statement.setString(3, propietario.getApellido());
 	            statement.setString(4, propietario.getCorreo());
 	            statement.setInt(5, propietario.getTelefono());
-	            java.sql.Date fecha_nac = java.sql.Date.valueOf(propietario.getFecha_nac());
+	            java.sql.Date fecha_nac = java.sql.Date.valueOf(propietario.getFecha_nacimiento());
 	            statement.setDate(6, fecha_nac);
 	            statement.setInt(7, propietario.getDni());
 	            statement.setInt(8, propietario.getId_propietario()); // consultar si es auto increment.
@@ -94,7 +94,7 @@ public class PropietarioControlador implements PropietarioRepository {
 	            statement.setString(2, propietario.getApellido());
 	            statement.setString(3, propietario.getCorreo());
 	            statement.setInt(4, propietario.getTelefono());
-	            java.sql.Date fecha_nac = java.sql.Date.valueOf(propietario.getFecha_nac());
+	            java.sql.Date fecha_nac = java.sql.Date.valueOf(propietario.getFecha_nacimiento());
 	            statement.setDate(5, fecha_nac);
 	            statement.setInt(6, propietario.getDni());
 	            statement.setInt(7, propietario.getId_cliente());

@@ -1,6 +1,12 @@
 package trabajoInmobiliaria;
 
+import java.util.List;
+
 import javax.swing.JOptionPane;
+
+import controlador.AgenteControlador;
+import controlador.CompradorControlador;
+import controlador.InquilinoControlador;
 
 class Main{
 
@@ -15,8 +21,9 @@ class Main{
 
 		Agente agente1 = new Agente();
 		Gerente gerente1 = new Gerente();
-		
 		Empleado empleado = new Empleado();
+		
+   
 		
 		empleado.IniciarSesion();
 		
@@ -47,5 +54,6 @@ class Main{
 		} while (respuestaSeleccionada == 0);
 
 	}
+	
 
 }
