@@ -61,6 +61,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 					
 					if(gestionSeleccionada.equals("Ver Inmuebles")){
 						
+						JOptionPane.showMessageDialog(null, "Inmuebles: "+"\n");
 						
 						
 						

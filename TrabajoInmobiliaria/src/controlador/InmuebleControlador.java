@@ -27,6 +27,7 @@ public class InmuebleControlador implements InmuebleRepository{
 	    @Override
 	    public List<Inmueble> getAllInmueble() {
 	        List<Inmueble> inmueble = new ArrayList<>();
+	        
 	       try {
 	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM inmueble "); // Buscar el nombre en la base de datos. consultarle al profe me parece que necesita un join con Propietario.
 	            ResultSet resultSet = statement.executeQuery();
