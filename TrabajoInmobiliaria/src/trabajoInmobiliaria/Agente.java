@@ -21,7 +21,7 @@ public class Agente extends Empleado {
 
 	@Override
 	public String toString() {
-		return "Agente [id_agente=" + id_agente + "]";
+		return super.toString() + "Agente [id_agente=" + id_agente + "]";
 	}
 
 	public int getId_agente() {

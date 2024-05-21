@@ -99,6 +99,14 @@ public class Empleado {
 	public void setTipo_empleado(String tipo_empleado) {
 		this.tipo_empleado = tipo_empleado;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Empleado [id_empleado=" + id_empleado + ", nombre=" + nombre + ", apellido=" + apellido + ", fecha_nac="
+				+ fecha_nac + ", dni=" + dni + ", telefono=" + telefono + ", correo=" + correo + ", tipo_empleado="
+				+ tipo_empleado + ", contraseña=" + contraseña + "]";
+	}
 	
 	
 	

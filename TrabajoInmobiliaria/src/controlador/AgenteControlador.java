@@ -24,7 +24,7 @@ public class AgenteControlador implements AgenteRepository{
 	    
 	    
 	    @Override
-	    public List<Agente>  getAllComprador() {
+	    public List<Agente>  getAllEmpleados() {
 	        List<Agente> agentes = new ArrayList<>();
 	        try {
 	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM empleado "); // En este caso toma selecciona todos los datos de la columna empleado.
@@ -34,7 +34,7 @@ public class AgenteControlador implements AgenteRepository{
 	        
 // Lo que se podria hacer es crear una tabla en la base de datos que tenga el id_agente y en la consultar realizar un inner join. Consultar ( Ya que al realizar la consulta y no tener el dato creo que va a tirar una excepcion).
 	            	
-	            	Agente agente = new Agente(resultSet.getInt("id_empleado"), resultSet.getString("nombre"), resultSet.getString("apellido"), resultSet.getDate("fecha_nac").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("telefono"), resultSet.getString("correo"),  resultSet.getString("tipo_empleado"),resultSet.getString("contraseña"),resultSet.getInt("id_agente"));
+	            	Agente agente = new Agente(resultSet.getInt("id_empleado"), resultSet.getString("nombre"), resultSet.getString("apellido"), resultSet.getDate("fecha_nacimiento").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("telefono"), resultSet.getString("correo"),  resultSet.getString("tipo_empleado"),resultSet.getString("contraseña"),resultSet.getInt("id_agente"));
 	        
 	            	// La clase agente tiene un atributo llamado id_agente que no pertenece a ninguna tabla y la columna de tipo_empleado no esta en la clase Empleado.
 	            	// id_agente no esta en la tabla de la base de datos y tipo_empleado no se encuentra en la clase Empleado.
@@ -52,14 +52,14 @@ public class AgenteControlador implements AgenteRepository{
 	    public Agente getAgenteById(int id) {
 	        Agente agente = null;
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM empleado WHERE id = ?");
+	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM empleado WHERE id_empleado = ?");
 	            statement.setInt(1, id);
 	            
 	            ResultSet resultSet = statement.executeQuery();
 	            
 	            if (resultSet.next()) {
 	            
-	            	agente = new Agente(resultSet.getInt("id_empleado"), resultSet.getString("nombre"), resultSet.getString("apellido"), resultSet.getDate("fecha_nac").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("telefono"), resultSet.getString("correo"),  resultSet.getString("tipo_empleado"),resultSet.getString("contraseña"),resultSet.getInt("id_agente"));
+	            	agente = new Agente(resultSet.getInt("id_empleado"), resultSet.getString("nombre"), resultSet.getString("apellido"), resultSet.getDate("fecha_nacimiento").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("telefono"), resultSet.getString("correo"),  resultSet.getString("tipo_empleado"),resultSet.getString("contraseña"),resultSet.getInt("id_agente"));
 	           
 	            }
 	        } catch (SQLException e) {
@@ -71,7 +71,7 @@ public class AgenteControlador implements AgenteRepository{
 		@Override
 	    public void addAgente(Agente agente) {
 	        try {																																  // ID_AGENTE Se deberia sacar, ya que va a generar un error ya que no existe en la bdd
-	            PreparedStatement statement = connection.prepareStatement("INSERT INTO empleado (nombre, apellido, fecha_nac, dni, telefono, correo, id_agente, contraseña) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+	            PreparedStatement statement = connection.prepareStatement("INSERT INTO empleado (id_empleado, nombre, apellido, fecha_nacimiento, dni, telefono, correo, id_agente, contraseña) VALUES (null, ?, ?, ?, ?, ?, ?, ?, ?)");
 	            statement.setString(1, agente.getNombre());
 	            statement.setString(2, agente.getApellido());
 	            java.sql.Date fecha_nac = java.sql.Date.valueOf(agente.getFecha_nac());
@@ -94,7 +94,7 @@ public class AgenteControlador implements AgenteRepository{
 		@Override
 	    public void updateAgente(Agente agente) {                                                                                                                       // ID_AGENTE Se deberia sacar, ya que va a generar un error ya que no existe en la bdd
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("UPDATE empleado SET nombre = ?, apellido = ?, fecha_nac = ?, dni = ?, telefono = ?, correo = ?, id_agente = ?, contraseña = ? WHERE id_empleado = ?");
+	            PreparedStatement statement = connection.prepareStatement("UPDATE empleado SET nombre = ?, apellido = ?, fecha_nacimiento = ?, dni = ?, telefono = ?, correo = ?, id_agente = ?, contraseña = ? WHERE id_empleado = ?");
 	            statement.setString(1, agente.getNombre());
 	            statement.setString(2, agente.getApellido());
 	            java.sql.Date fecha_nac = java.sql.Date.valueOf(agente.getFecha_nac());
@@ -116,10 +116,10 @@ public class AgenteControlador implements AgenteRepository{
 	    }
 
 	    @Override
-	    public void deleteAgente(int id) {
+	    public void deleteAgente(int id_empleado) {
 	        try {
 	            PreparedStatement statement = connection.prepareStatement("DELETE FROM empleado WHERE id_empleado = ?");
-	            statement.setInt(1, id);
+	            statement.setInt(1, id_empleado);
 	            
 	            int rowsDeleted = statement.executeUpdate();
 	            if (rowsDeleted > 0) {
