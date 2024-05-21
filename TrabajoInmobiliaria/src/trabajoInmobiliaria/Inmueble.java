@@ -21,6 +21,8 @@ public class Inmueble {
 	private boolean apto_mascota;
 	
 
+
+
 	public Inmueble(int id_inmueble, String tipo_inmueble, String condicion, boolean disponible,
 			double superficie_cubierta, double superficie_descubierta, String localizacion, String lavadero,
 			String descripcion, int antiguedad, double precio, String banio, boolean refaccionar, String estado,

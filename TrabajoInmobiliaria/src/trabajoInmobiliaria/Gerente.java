@@ -4,6 +4,9 @@ import java.time.LocalDate;
 
 import javax.swing.JOptionPane;
 
+import controlador.GerenteControlador;
+import controlador.InmuebleControlador;
+
 public class Gerente extends Empleado implements Validacion, InicioSesion{
 
 	private int id_gerente;
@@ -30,9 +33,11 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 	public boolean menuGerente() {
 		boolean repetir;
 		
+		InmuebleControlador inmuebleControlador = new InmuebleControlador();
+		
 		do {		
 			repetir = true;
-			String[] opcionesGerente = { "Registrar Nueva Propiedad","Eliminar Propiedad","Registrar Nuevo Cliente", "Realizar Nueva Operacion",
+			String[] opcionesGerente = { "Gestionar Propiedades","Registrar Nueva Propiedad","Eliminar Propiedad","Registrar Nuevo Cliente", "Realizar Nueva Operacion",
 					"Realizar Nuevo Contrato", "Realizar Busqueda", "Agendar Reunion o Visita", "Registrar Pago","Cargar Nuevo Documento",
 					"Ver Ultimas Operaciones","Gestionar Empleados","Cerrar Sesion","Salir" };
 	
@@ -46,50 +51,38 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 			
 			switch (opcionSeleccionada) {
 			
-			case "Registrar Nueva Propiedad":
-				do {
-					String[] tipoPropiedad = { "Casa","Propiedad en Alquiler","Volver" };
+			case"Gestionar Propiedades":
+				do {			
+					String[] opcionesGestion = { "Ver Inmuebles","Agregar Inmueble","Modificar Inmueble","Eliminar Inmueble","Volver" };
 					
-					String clienteSeleccionado = (String) JOptionPane.showInputDialog(null, "Seleccione el tipo de Inmueble:",
-							"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, tipoPropiedad,
-							tipoPropiedad[0]);
+					String gestionSeleccionada = (String) JOptionPane.showInputDialog(null, "Seleccione el tipo de Operacion:",
+							"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, opcionesGestion,
+							opcionesGestion[0]);
 					
-					if(clienteSeleccionado.equals("Propiedad en Venta")){
+					if(gestionSeleccionada.equals("Ver Inmuebles")){
 						
 						
 						
-					}else if(clienteSeleccionado.equals("Propiedad en Alquiler")){
-						JOptionPane.showMessageDialog(null, "Completar datos propiedad en alquiler");  
-
+						
+						
+						
+					}else if(gestionSeleccionada.equals("Agregar Inmueble")){
+						
+						
+						
+						
+						
+						
+						
+						
+					}else if(gestionSeleccionada.equals("Eliminar Inmueble")){
+						
+		
 					}else {
 						break;
-					}
-							
+					}	
 				} while (repetir);
-	
-				break;
-	
-			case "Eliminar Propiedad":
-				do {
-					String[] propiedadesAEliminar = { "Propiedad1","Propiedad2","Volver" };
-					
-					String propiedadAeliminarSeleccionada = (String) JOptionPane.showInputDialog(null, "Seleccione una propiedad:",
-							"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, propiedadesAEliminar,
-							propiedadesAEliminar[0]);
-					
-					if(propiedadAeliminarSeleccionada.equals("Propiedad1")){
-						JOptionPane.showMessageDialog(null, "Propiedad eliminada con exito");
-						
-					}else if(propiedadAeliminarSeleccionada.equals("Propiedad2")){
-						JOptionPane.showMessageDialog(null, "Propiedad eliminada con exito");
-						
-					}else {
-						break;
-					}
-				} while (repetir);
-				
-				
-				break;	
+				break;		
 				
 			case "Registrar Nuevo Cliente":
 				do {
