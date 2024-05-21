@@ -376,95 +376,23 @@ public class Gerente extends Empleado implements Validacion{
 							
 /* --------------------- */    if(gestionSeleccionada2.equals("Ver Datos Empleado")){ /* ---------------------------------------------------------------------------------*/
 								
-			  /* desde aca */  JOptionPane.showMessageDialog(null, "Empleado");
-								
-								String[] listaEmpleado = {"Ver empleados","seleccionar empleado","Salir"};
-								
-								int seleccionEmpleado = JOptionPane.showOptionDialog(null, "Elegir opcion", null, 0, 0, null, listaEmpleado, listaEmpleado[0]);
-								
-								switch(seleccionEmpleado) {
-								
-								case 0:  // Ver empleados
-								
-									 JOptionPane.showMessageDialog(null, "La lista de empleados"+"\n"+agentecontrolador.getAllEmpleados());
-									
-									
-								break;
-								
-								
-								
-/*---------------------------------*/  case 1: // Ver empleado por id /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
-									
-							
-								String[] empleados = new String[agentecontrolador.getAllEmpleados().size()];
-										for (int i = 0; i < empleados.length; i++) {
-												empleados[i] = Integer.toString(agentecontrolador.getAllEmpleados().get(i).getId_empleado());
-																}
-															String empleadoselect = (String) JOptionPane.showInputDialog(null, "Seleccione usuario", null, 0, null,
-																	empleados, empleados[0]);
-
-																if (agentecontrolador.getAllEmpleados().size()==0) {
-		
-																	JOptionPane.showMessageDialog(null, "No hay empleados registrados.");
-		
-																	} else  { // JOptionPane.showMessageDialog(null, agentecontrolador.getAgenteById(Integer.parseInt(empleadoselect)));
-																			Agente seleccionado = agentecontrolador.getAgenteById(Integer.parseInt(empleadoselect));
-																				JOptionPane.showMessageDialog(null, "El agente seleccionado es:"+seleccionado.toString()); // Recordar cambiar los nombres en el archivo principal..
-	
-																		}
-									
-									
-									break;
-									
-								case 2: // Salir
-									
-									break;
-								
-								}
+									SelectorAgentes();
 								
 								
 								
 	/* -------------------------------------------------------MODIFICAR EMPLEADO---------------------------------------------------------------------------------------------------------------------------------------------*/							
 							}else if(gestionSeleccionada2.equals("Modificar Empleado")){
 							
+								ModificarAgente();
 								
-								String[] empleados2 = new String[agentecontrolador.getAllEmpleados().size()];
-								for (int i = 0; i < empleados2.length; i++) {
-									empleados2[i] = Integer.toString(agentecontrolador.getAllEmpleados().get(i).getId_empleado());
-								}
-								String empleadoselect2 = (String) JOptionPane.showInputDialog(null, "Seleccione usuario", null, 0, null,
-										empleados2, empleados2[0]);
-								Agente seleccionado = agentecontrolador.getAgenteById(Integer.parseInt(empleadoselect2));
-								
-								
-								
-								seleccionado.setNombre(JOptionPane.showInputDialog("Su nombre actual es: "+seleccionado.getNombre() + "Ingrese el nuevo nombre: "));
-								seleccionado.setApellido(JOptionPane.showInputDialog("Su apellido es: "+seleccionado.getApellido()+ "Ingrese el nuevo apellido"));
-								seleccionado.setFecha_nac(LocalDate.now()); // Modificar despues
-								seleccionado.setDni(Integer.parseInt(JOptionPane.showInputDialog("Su dni es: " +seleccionado.getDni()+"Ingrese el nuevo dni")));
-								seleccionado.setTelefono(Integer.parseInt(JOptionPane.showInputDialog("Su telefono es: "+seleccionado.getTelefono()+"Ingrese el telefono")));
-								seleccionado.setCorreo(JOptionPane.showInputDialog("Su correo es: "+seleccionado.getCorreo()+"Ingrese el nuevo correo"));
-								seleccionado.setId_agente(Integer.parseInt(JOptionPane.showInputDialog("Su id de agente es: "+seleccionado.getId_agente()+"Ingrese el nuevo id de agente")));
-								seleccionado.setContraseña(JOptionPane.showInputDialog("Ingrese la nueva contraseña"));
-								agentecontrolador.updateAgente(seleccionado);
 	/* ----------------------------------------------------------------------------------- FIN MODIFICAR EMPLEADO --------------------------------------------------------------------------------------------------------*/								
 								
 	/* --------------------------------------------------------------------ELIMINAR EMPLEADO-------------------------------------------------------------------------------------------------------------------------------*/							
 								
 							}else if(gestionSeleccionada2.equals("Eliminar Empleado")){
-								JOptionPane.showMessageDialog(null, "eliminar");
 								
-								String[] borrarempleado = new String[agentecontrolador.getAllEmpleados().size()];
-								for (int i = 0; i < borrarempleado.length; i++) {
-									borrarempleado[i] = Integer.toString(agentecontrolador.getAllEmpleados().get(i).getId_empleado());
-								}
-								String empleadoborrarselect = (String) JOptionPane.showInputDialog(null, "Seleccione usuario", null, 0, null,
-										borrarempleado, borrarempleado[0]);
-								
-								agentecontrolador.deleteAgente(Integer.parseInt(empleadoborrarselect));
-								
-								
-								
+								EliminarAgente();
+										
 							}else {
 								break;
 							}
@@ -474,21 +402,8 @@ public class Gerente extends Empleado implements Validacion{
 /*-----------------------------------------------------------------------------Agregar empleado --------------------------------------------------------------------------------------------------------------------------- */
 					}else if(gestionSeleccionada.equals("Agregar Nuevo Empleado")){ 
 						
-						AgregarEmpleado();
-						
-				/*		JOptionPane.showMessageDialog(null, "Cargar datos");
-						
-						String nombre = JOptionPane.showInputDialog("Ingresar nombre");
-						String apellido = JOptionPane.showInputDialog("Ingresar apellido");
-						LocalDate fecha = LocalDate.now();
-						int dni = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el dni"));
-						int telefono = Integer.parseInt(JOptionPane.showInputDialog("Ingresar telefono"));
-						String correo = JOptionPane.showInputDialog(null, "Ingresar correo");
-						String tipo_empleado = JOptionPane.showInputDialog("Ingresar el tipo de empleado");
-						String contraseña = JOptionPane.showInputDialog("Ingresar password");
-						int id_agente = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el id del agente"));
-						agentecontrolador.addAgente(new Agente(0,nombre,apellido,fecha,dni,telefono,correo,tipo_empleado,contraseña,id_agente));*/
-						
+						AgregarAgente();
+										
 						// Funciona 0 Porque es AI en la base de  datos y id_agente deberia ser AI tambien actualmente no lo es.
 
 						
@@ -524,17 +439,10 @@ public class Gerente extends Empleado implements Validacion{
 		return true;
 	}
 
+	
+	/* ---------------------------------------------------------------------- Metodos de Gestion de Agentes --------------------------------------------------------------------------------- */
 		
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	public void AgregarEmpleado() {
+	public void AgregarAgente() {
 		int dni = 0,telefono;	
 		LocalDate fecha = null;
 		String nombre="", apellido="" ,telefonoentrada="", contraseña;
@@ -553,7 +461,7 @@ public class Gerente extends Empleado implements Validacion{
 			String correoverificado = validarEmail(correo);
 			
 			
-			String tipo_empleado = "agente"; //JOptionPane.showInputDialog("Ingresar el tipo de empleado");
+			String tipo_empleado = "Agente"; //JOptionPane.showInputDialog("Ingresar el tipo de empleado");
 			
 			do {
 			contraseña = JOptionPane.showInputDialog("Ingresar password");
@@ -565,6 +473,113 @@ public class Gerente extends Empleado implements Validacion{
 			
 			
 		}
+	
+	public void EliminarAgente() {
+		
+		AgenteControlador agentecontrolador = new AgenteControlador();
+		
+		if (agentecontrolador.getAllEmpleados().size()==0) {
+			
+			JOptionPane.showMessageDialog(null, "No se han encontrado agentes.");
+			
+		} else {
+		
+		String[] borrarempleado = new String[agentecontrolador.getAllEmpleados().size()];
+		for (int i = 0; i < borrarempleado.length; i++) {
+			borrarempleado[i] = Integer.toString(agentecontrolador.getAllEmpleados().get(i).getId_empleado());
+		}
+		String empleadoborrarselect = (String) JOptionPane.showInputDialog(null, "Seleccione usuario", null, 0, null,
+				borrarempleado, borrarempleado[0]);
+		
+		agentecontrolador.deleteAgente(Integer.parseInt(empleadoborrarselect));}
+	}
+	
+	
+	public void ModificarAgente() {
+		
+		AgenteControlador agentecontrolador = new AgenteControlador();
+		
+		if (agentecontrolador.getAllEmpleados().size()==0) {
+			
+			JOptionPane.showMessageDialog(null, "No se han encontrado agentes.");
+			
+		} else {
+		
+	try {
+		String[] empleados2 = new String[agentecontrolador.getAllEmpleados().size()];
+		for (int i = 0; i < empleados2.length; i++) {
+			empleados2[i] = Integer.toString(agentecontrolador.getAllEmpleados().get(i).getId_empleado());
+		}
+		String empleadoselect2 = (String) JOptionPane.showInputDialog(null, "Seleccione usuario", null, 0, null,
+				empleados2, empleados2[0]);
+		Agente seleccionado = agentecontrolador.getAgenteById(Integer.parseInt(empleadoselect2));
+		
+		LocalDate fecha = LocalDate.now();
+		
+		seleccionado.setNombre(JOptionPane.showInputDialog("Su nombre actual es: "+seleccionado.getNombre() + "Ingrese el nuevo nombre: "));
+		seleccionado.setApellido(JOptionPane.showInputDialog("Su apellido es: "+seleccionado.getApellido()+ "Ingrese el nuevo apellido"));
+		seleccionado.setFecha_nacimiento(fecha); // Modificar despues
+		seleccionado.setDni(Integer.parseInt(JOptionPane.showInputDialog("Su dni es: " +seleccionado.getDni()+"Ingrese el nuevo dni")));
+		seleccionado.setTelefono(Integer.parseInt(JOptionPane.showInputDialog("Su telefono es: "+seleccionado.getTelefono()+"Ingrese el telefono")));
+		seleccionado.setCorreo(JOptionPane.showInputDialog("Su correo es: "+seleccionado.getCorreo()+"Ingrese el nuevo correo"));
+		seleccionado.setId_agente(Integer.parseInt(JOptionPane.showInputDialog("Su id de agente es: "+seleccionado.getId_agente()+"Ingrese el nuevo id de agente")));
+		seleccionado.setContraseña(JOptionPane.showInputDialog("Ingrese la nueva contraseña"));
+		agentecontrolador.updateAgente(seleccionado);
+		
+	} catch (Exception e) {
+		JOptionPane.showMessageDialog(null, "Ocurrio un error"+e);}}}
+	
+	
+	public void SelectorAgentes() {
+		
+		AgenteControlador agentecontrolador = new AgenteControlador();   	
+		
+		 /* desde aca */  JOptionPane.showMessageDialog(null, "Empleado");
+			
+			String[] listaEmpleado = {"Ver empleados","seleccionar empleado","Salir"};
+			
+			int seleccionEmpleado = JOptionPane.showOptionDialog(null, "Elegir opcion", null, 0, 0, null, listaEmpleado, listaEmpleado[0]);
+			
+			switch(seleccionEmpleado) {
+			
+			case 0:  // Ver empleados
+			
+				 JOptionPane.showMessageDialog(null, "La lista de empleados"+"\n"+agentecontrolador.getAllEmpleados());
+				
+				
+			break;
+			
+			
+			
+/*---------------------------------*/  case 1: // Ver empleado por id /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+		
+		String[] empleados = new String[agentecontrolador.getAllEmpleados().size()];
+			for (int i = 0; i < empleados.length; i++) {
+			empleados[i] = Integer.toString(agentecontrolador.getAllEmpleados().get(i).getId_empleado());}
+										
+			
+			String empleadoselect = (String) JOptionPane.showInputDialog(null, "Seleccione usuario", null, 0, null,
+			empleados, empleados[0]);
+
+			if (agentecontrolador.getAllEmpleados().size()==0) { JOptionPane.showMessageDialog(null, "No hay empleados registrados.");}
+			else  { // JOptionPane.showMessageDialog(null, agentecontrolador.getAgenteById(Integer.parseInt(empleadoselect)));
+					Agente seleccionado = agentecontrolador.getAgenteById(Integer.parseInt(empleadoselect));
+					JOptionPane.showMessageDialog(null, "El agente seleccionado es:"+seleccionado.toString()); /* Recordar cambiar los nombres en el archivo princ */ }
+				
+				break;
+				
+			case 2: // Salir
+				
+				break;}}
+	
+	
+/* Fin del metodo SelectorAgente -------------------------------------------------------------------------------------------------------------------------------------------*/	
+	
+	
+	
+	
+	
+	
 	
 	
 }

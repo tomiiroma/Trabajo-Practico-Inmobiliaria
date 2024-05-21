@@ -69,7 +69,7 @@ public class GerenteControlador implements GerenteRepository{
 	            PreparedStatement statement = connection.prepareStatement("INSERT INTO empleado (id_empleado,nombre, apellido, fecha_nac, dni, telefono, correo, contraseña) VALUES (null, ?, ?, ?, ?, ?, ?, ?)");
 	            statement.setString(1, gerente.getNombre()); // Verificar si id_empleado es auto increment y consultarle al profe si este valor debe ser null en java.
 	            statement.setString(2, gerente.getApellido());
-	            java.sql.Date fecha_nac = java.sql.Date.valueOf(gerente.getFecha_nac());
+	            java.sql.Date fecha_nac = java.sql.Date.valueOf(gerente.getFecha_nacimiento());
 	            statement.setDate(3, fecha_nac);
 	            statement.setInt(4, gerente.getDni());
 	            statement.setInt(5, gerente.getTelefono());
@@ -92,7 +92,7 @@ public class GerenteControlador implements GerenteRepository{
 	            PreparedStatement statement = connection.prepareStatement("UPDATE empleado SET nombre = ?, apellido = ?, fecha_nac = ?, dni = ?, telefono = ?, correo = ?, contraseña = ? WHERE id_empleado = ?");
 	            statement.setString(1, gerente.getNombre());
 	            statement.setString(2, gerente.getApellido());
-	            java.sql.Date fecha_nac = java.sql.Date.valueOf(gerente.getFecha_nac());
+	            java.sql.Date fecha_nac = java.sql.Date.valueOf(gerente.getFecha_nacimiento());
 	            statement.setDate(3, fecha_nac);
 	            statement.setInt(4, gerente.getDni());
 	            statement.setInt(5, gerente.getTelefono());

@@ -27,7 +27,7 @@ public class AgenteControlador implements AgenteRepository{
 	    public List<Agente>  getAllEmpleados() {
 	        List<Agente> agentes = new ArrayList<>();
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM empleado "); // En este caso toma selecciona todos los datos de la columna empleado.
+	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM empleado where tipo_empleado ='Agente'"); // En este caso toma selecciona todos los datos de la columna empleado.
 	            ResultSet resultSet = statement.executeQuery();
 	       
 	            while (resultSet.next()) {
@@ -74,7 +74,7 @@ public class AgenteControlador implements AgenteRepository{
 	            PreparedStatement statement = connection.prepareStatement("INSERT INTO empleado (id_empleado, nombre, apellido, fecha_nacimiento, dni, telefono, correo, tipo_empleado, id_agente, contraseña) VALUES (null, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 	            statement.setString(1, agente.getNombre());
 	            statement.setString(2, agente.getApellido());
-	            java.sql.Date fecha_nac = java.sql.Date.valueOf(agente.getFecha_nac());
+	            java.sql.Date fecha_nac = java.sql.Date.valueOf(agente.getFecha_nacimiento());
 	            statement.setDate(3, fecha_nac);
 	            statement.setInt(4,agente.getDni());
 	            statement.setInt(5,agente.getTelefono());
@@ -98,7 +98,7 @@ public class AgenteControlador implements AgenteRepository{
 	            PreparedStatement statement = connection.prepareStatement("UPDATE empleado SET nombre = ?, apellido = ?, fecha_nacimiento = ?, dni = ?, telefono = ?, correo = ?, id_agente = ?, contraseña = ? WHERE id_empleado = ?");
 	            statement.setString(1, agente.getNombre());
 	            statement.setString(2, agente.getApellido());
-	            java.sql.Date fecha_nac = java.sql.Date.valueOf(agente.getFecha_nac());
+	            java.sql.Date fecha_nac = java.sql.Date.valueOf(agente.getFecha_nacimiento());
 	            statement.setDate(3, fecha_nac);
 	            statement.setInt(4,agente.getDni());
 	            statement.setInt(5, agente.getTelefono());
