@@ -40,7 +40,7 @@ public class InmuebleControlador implements InmuebleRepository{
                             resultSet.getBoolean("disponible"),
                             resultSet.getDouble("superficie_cubierta"),
                             resultSet.getDouble("superficie_descubierta"),
-                            resultSet.getString("localizacion"), 
+                            resultSet.getString("locacion"), 
                             resultSet.getString("lavadero"), 
                             resultSet.getString("descripcion"), 
                             resultSet.getInt("antiguedad"), 
@@ -78,7 +78,7 @@ public class InmuebleControlador implements InmuebleRepository{
                    resultSet.getBoolean("disponible"),
                    resultSet.getDouble("superficie_cubierta"),
                    resultSet.getDouble("superficie_descubierta"),
-                   resultSet.getString("localizacion"), 
+                   resultSet.getString("locacion"), 
                    resultSet.getString("lavadero"), 
                    resultSet.getString("descripcion"), 
                    resultSet.getInt("antiguedad"), 
@@ -104,7 +104,7 @@ public class InmuebleControlador implements InmuebleRepository{
 	    public void addInmueble(Inmueble inmueble) {
 	        try {                                               // id_propietario como clave foranea que conecta los datos del inmueble con el propietario.
 	            PreparedStatement statement = connection.prepareStatement(
-	                    "INSERT INTO inmueble (id_inmueble,tipo_inmueble, condicion, disponible, superficie_cubierta, superficie_descubierta, localizacion, lavadero, descripcion, antiguedad, precio, banio, refaccionar, estado, dormitorio, cocina, apto_mascota) " +
+	                    "INSERT INTO inmueble (id_inmueble,tipo_inmueble, condicion, disponible, superficie_cubierta, superficie_descubierta, locacion, lavadero, descripcion, antiguedad, precio, banio, refaccionar, estado, dormitorio, cocina, apto_mascota) " +
 	                    "VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
 	                );
 	            
@@ -114,7 +114,7 @@ public class InmuebleControlador implements InmuebleRepository{
 	            statement.setBoolean(4, inmueble.isDisponible());
 	            statement.setDouble(5, inmueble.getSuperficie_cubierta());
 	            statement.setDouble(6, inmueble.getSuperficie_descubierta());
-	            statement.setString(7, inmueble.getLocalizacion());
+	            statement.setString(7, inmueble.getlocacion());
 	            statement.setString(8, inmueble.getLavadero());
 	            statement.setString(9, inmueble.getDescripcion());
 	            statement.setInt(10, inmueble.getAntiguedad());
@@ -140,7 +140,7 @@ public class InmuebleControlador implements InmuebleRepository{
 	    public void updateInmueble(Inmueble inmueble) {
 	        try {
 	        	PreparedStatement statement = connection.prepareStatement(
-	        		    "INSERT INTO inmueble (tipo_inmueble, condicion, disponible, superficie_cubierta, superficie_descubierta, localizacion, lavadero, descripcion, antiguedad, precio, banio, refaccionar, estado, dormitorio, cocina, apto_mascota) " +
+	        		    "INSERT INTO inmueble (tipo_inmueble, condicion, disponible, superficie_cubierta, superficie_descubierta, locacion, lavadero, descripcion, antiguedad, precio, banio, refaccionar, estado, dormitorio, cocina, apto_mascota) " +
 	        		    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
 	        		);	            
 	        	statement.setString(1, inmueble.getTipo_inmueble());
@@ -148,7 +148,7 @@ public class InmuebleControlador implements InmuebleRepository{
 	            statement.setBoolean(3, inmueble.isDisponible());
 	            statement.setDouble(4, inmueble.getSuperficie_cubierta());
 	            statement.setDouble(5, inmueble.getSuperficie_descubierta());
-	            statement.setString(6, inmueble.getLocalizacion());
+	            statement.setString(6, inmueble.getlocacion());
 	            statement.setString(7, inmueble.getLavadero());
 	            statement.setString(8, inmueble.getDescripcion());
 	            statement.setInt(9, inmueble.getAntiguedad());

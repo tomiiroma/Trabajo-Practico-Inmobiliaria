@@ -8,7 +8,7 @@ public class Inmueble {
 	private boolean disponible;
 	private double superficie_cubierta;
 	private double superficie_descubierta;
-	private String localizacion;
+	private String locacion;
 	private String lavadero;
 	private String descripcion;
 	private int antiguedad;
@@ -24,7 +24,7 @@ public class Inmueble {
 
 
 	public Inmueble(int id_inmueble, String tipo_inmueble, String condicion, boolean disponible,
-			double superficie_cubierta, double superficie_descubierta, String localizacion, String lavadero,
+			double superficie_cubierta, double superficie_descubierta, String locacion, String lavadero,
 			String descripcion, int antiguedad, double precio, String banio, boolean refaccionar, String estado,
 			String dormitorio, String cocina, boolean apto_mascota) {
 		super();
@@ -34,7 +34,7 @@ public class Inmueble {
 		this.disponible = disponible;
 		this.superficie_cubierta = superficie_cubierta;
 		this.superficie_descubierta = superficie_descubierta;
-		this.localizacion = localizacion;
+		this.locacion = locacion;
 		this.lavadero = lavadero;
 		this.descripcion = descripcion;
 		this.antiguedad = antiguedad;
@@ -164,8 +164,8 @@ public class Inmueble {
 
 
 
-	public String getLocalizacion() {
-		return localizacion;
+	public String getlocacion() {
+		return locacion;
 	}
 
 
@@ -175,8 +175,8 @@ public class Inmueble {
 
 
 
-	public void setLocalizacion(String localizacion) {
-		this.localizacion = localizacion;
+	public void setlocacion(String locacion) {
+		this.locacion = locacion;
 	}
 
 
