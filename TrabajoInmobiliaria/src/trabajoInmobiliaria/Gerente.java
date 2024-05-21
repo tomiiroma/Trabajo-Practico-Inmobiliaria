@@ -537,7 +537,7 @@ public class Gerente extends Empleado implements Validacion{
 	public void AgregarEmpleado() {
 		int dni = 0,telefono;	
 		LocalDate fecha = null;
-		String nombre="", apellido="" ,telefonoentrada="";
+		String nombre="", apellido="" ,telefonoentrada="", contraseña;
 		AgenteControlador agentecontrolador = new AgenteControlador();
 			
 		//	JOptionPane.showMessageDialog(null, "Cargar datos");
@@ -555,8 +555,9 @@ public class Gerente extends Empleado implements Validacion{
 			
 			String tipo_empleado = "agente"; //JOptionPane.showInputDialog("Ingresar el tipo de empleado");
 			
-			String contraseña = JOptionPane.showInputDialog("Ingresar password");
-			
+			do {
+			contraseña = JOptionPane.showInputDialog("Ingresar password");
+			} while(!validarContraseña(contraseña));
 			int id_agente = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el id del agente"));
 			
 			agentecontrolador.addAgente(new Agente(0,nombre,apellido,fecha,dni,telefono,correoverificado,tipo_empleado,contraseña,id_agente));

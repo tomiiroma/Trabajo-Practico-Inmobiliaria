@@ -104,6 +104,8 @@ public interface Validacion {
 	
 	// Revisar luego que mas se le puede implementar.
 	
+/* --------------------------------------------------------------------------- Validar Fechas ----------------------------------------------------------------------------------------------------------------*/	
+	
 	default LocalDate validarFecha(LocalDate fecha) {
 		int año,mes,dia;
 		boolean flag;
@@ -169,7 +171,7 @@ public interface Validacion {
 	// Fin del metodo validar Fecha.
 	
 	
-	// Validar Telefono: 
+	/* -------------------------------------------------------------------------------------------------  Validar Telefono: ------------------------------------------------------------------------------------*/ 
 	
 	default int validarTelefono(String telefonoen) {
 		boolean flag = true;
@@ -261,6 +263,64 @@ public interface Validacion {
 		return email;
 		
 	}
+	
+	
+	/* ------------------------------------------------------------------------------------ Validar Contraseña ---------------------------------------------------------------------------------------------------------- */
+	
+	
+	default boolean validarContraseña(String contraseña) {
+	boolean flag=true;
+	int acumnum=0;
+		if (contraseña.isEmpty() || contraseña.contains(" ")) {
+            
+			JOptionPane.showMessageDialog(null, "La password esta vacio o contiene espacios.");
+			flag=false;
+			
+        } else if (contraseña.length() < 8 && flag==true) {
+			
+        	JOptionPane.showMessageDialog(null, "La contraseña posee menos de 8 carácteres.");
+        	flag=false;
+        } 
+		
+		
+		
+		Pattern pattern = Pattern.compile("^[a-zA-Z0-9]+$");
+        Matcher matcher = pattern.matcher(contraseña);
+        
+        if (!matcher.matches() && flag==true) {
+            JOptionPane.showMessageDialog(null, "La contraseña debe contener solo caracteres alfabéticos y numéricos.");
+            flag = false;
+        }
+		
+
+
+		for (int i = 0; i < contraseña.length(); i++) {
+			
+			 if (Character.isDigit(contraseña.charAt(i))) {
+				 
+				 acumnum++;
+				 
+			 }
+			
+			
+		}
+
+		if (acumnum < 2 && flag==true) {
+			
+			JOptionPane.showMessageDialog(null, "La contraseña debe contener por lo menos 2 numeros.");
+			flag = false;
+		}
+	
+		
+			
+			return flag;
+			
+		}
+	
+	
+	
+	
+	
 	
 	
 	
