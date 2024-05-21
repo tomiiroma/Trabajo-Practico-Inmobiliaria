@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import controlador.AgenteControlador;
 import controlador.CompradorControlador;
 import controlador.InquilinoControlador;
+import controlador.PropietarioControlador;
 
 class Main{
 
@@ -23,7 +24,9 @@ class Main{
 		Gerente gerente1 = new Gerente();
 		Empleado empleado = new Empleado();
 		
-   
+		
+		
+		
 		
 		empleado.IniciarSesion();
 		

@@ -22,23 +22,29 @@ public class CompradorControlador implements CompradorRepository{
 	    
 	    
 	    @Override
-	    public List<Comprador>  getAllComprador() {
+	    public List<Comprador> getAllComprador() {
 	        List<Comprador> compradores = new ArrayList<>();
-	       try {
-	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM cliente where tipo_cliente='Comprador'");
+	        try {
+	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM cliente WHERE tipo_cliente='Comprador'");
 	            ResultSet resultSet = statement.executeQuery();
-	       
+	            
 	            while (resultSet.next()) {
-	        
-	            	Comprador comprador = new Comprador(resultSet.getString("nombre"), resultSet.getInt("id_cliente"), resultSet.getString("apellido"), resultSet.getString("correo"), resultSet.getInt("telefono"), resultSet.getDate("fecha_nacimiento").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("comprador"),resultSet.getDouble("Presupuesto"));
+	                Comprador comprador = new Comprador(resultSet.getString("nombre"), 
+	                                                    resultSet.getInt("id_cliente"), 
+	                                                    resultSet.getString("apellido"), 
+	                                                    resultSet.getString("correo"), 
+	                                                    resultSet.getInt("telefono"), 
+	                                                    resultSet.getDate("fecha_nacimiento").toLocalDate(), 
+	                                                    resultSet.getInt("dni"), 
+	                                                    0, resultSet.getDouble("Presupuesto"));
 	                compradores.add(comprador);
-	           }
+	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
-	       }
-	        
+	        }
 	        return compradores;
 	    }
+
 
 	    @Override
 	    public Comprador getCompradorById(int id) {

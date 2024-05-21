@@ -28,8 +28,8 @@ public class InquilinoControlador implements InquilinoRepository{
 	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM cliente where tipo_cliente='Inquilino'"); 
 	            ResultSet resultSet = statement.executeQuery();
 	       
-	            while (resultSet.next()) { // id_inquilino no esta en la tabla cliente ""
-	            	Inquilino inquilino = new Inquilino(resultSet.getString("nombre"), resultSet.getInt("id_cliente"), resultSet.getString("apellido"), resultSet.getString("correo"), resultSet.getInt("telefono"), resultSet.getDate("fecha_nac").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("id_inquilino"));
+	            while (resultSet.next()) { 
+	            	Inquilino inquilino = new Inquilino(resultSet.getString("nombre"), resultSet.getInt("id_cliente"), resultSet.getString("apellido"), resultSet.getString("correo"), resultSet.getInt("telefono"), resultSet.getDate("fecha_nacimiento").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("id_inquilino"));
 	                inquilinos.add(inquilino);
 	           }
 	       } catch (SQLException e) {
