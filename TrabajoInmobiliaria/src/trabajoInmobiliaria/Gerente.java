@@ -9,8 +9,8 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 	private int id_gerente;
 
 	public Gerente(int id_empleado, String nombre, String apellido, LocalDate fecha_nac, int dni, int telefono,
-			String correo, int id_gerente) {
-		super(id_empleado, nombre, apellido, fecha_nac, dni, telefono, correo);
+			String correo, int id_gerente, String contraseña) {
+		super(id_empleado, nombre, apellido, fecha_nac, dni, telefono, correo,contraseña);
 		this.id_gerente = id_gerente;
 	}
 	
@@ -400,15 +400,19 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 				System.exit(0);
 				break;
 	
-			default:
+			default: JOptionPane.showMessageDialog(null, "Opcion no disponible");
 				break;
 			}
 			
+
 			
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Porfavor Seleccione una Opción");
-		}
+				}
 			
+
+			
+
 		} while (repetir);
 		
 		return true;
