@@ -3,7 +3,7 @@ package trabajoInmobiliaria;
 import java.time.LocalDate;
 
 import controlador.AgenteControlador;
-
+import controlador.GerenteControlador;
 
 import javax.swing.JOptionPane;
 
@@ -375,8 +375,33 @@ public class Gerente extends Empleado implements Validacion{
 									gestionEmpleados2[0]);
 							
 /* --------------------- */    if(gestionSeleccionada2.equals("Ver Datos Empleado")){ /* ---------------------------------------------------------------------------------*/
+								int seleccionopcion =0;
+							do {
+								String[] lista = {"Ver Agentes","Ver gerentes","Salir"};
+	
+								seleccionopcion = JOptionPane.showOptionDialog(null, "Elegir opcion", null, 0, 0, null, lista, lista[0]);
+	
+								switch(seleccionopcion) {
 								
-									SelectorAgentes();
+								case 0:
+									
+								SelectorAgentes();
+								
+								break;
+								
+								case 1:
+									
+								seleccionarGerentes();
+								
+								break;
+								
+								
+								case 2:
+									
+									break;
+								}}while(seleccionopcion!=2);
+								
+	
 								
 								
 								
@@ -584,12 +609,18 @@ public class Gerente extends Empleado implements Validacion{
 				break;}}
 	
 	
-/* Fin del metodo SelectorAgente -------------------------------------------------------------------------------------------------------------------------------------------*/	
+/*----------------------------------------------------------------- Fin del metodo SelectorAgente ---------------------------------------------------------------------------------------------------------------------------*/	
 	
 	
+/*-----------------------------------------------------------------------------SELECCIONAR GERENTES------------------------------------------------------------------------------------------------------------------------- */	
 	
-	
-	
+	public void seleccionarGerentes() {
+		
+		GerenteControlador gerentecontrolador = new GerenteControlador();
+		
+		 JOptionPane.showMessageDialog(null, "La lista de empleados"+"\n"+gerentecontrolador.getAllGerente());
+		
+	}
 	
 	
 	
