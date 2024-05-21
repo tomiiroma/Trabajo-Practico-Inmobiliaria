@@ -65,7 +65,7 @@ public interface Validacion {
 	
 		do {
 			try {
-				nombre = JOptionPane.showInputDialog(mensaje);
+				nombre = JOptionPane.showInputDialog("Ingresar el nombre");
 
 				if(nombre==null || nombre.trim().isEmpty()){
 					JOptionPane.showMessageDialog(null, "No se admiten campos en blanco. Por favor ingrese un Nombre");
@@ -102,17 +102,14 @@ public interface Validacion {
 	
 	// Revisar luego que mas se le puede implementar.
 	
-	default LocalDate validarFecha() {
+	default LocalDate validarFecha(LocalDate fecha) {
 		int año,mes,dia;
-		LocalDate fecha = null;
 		boolean flag;
 		do {		
 		flag=true;
 		try {
-			año = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el año"));
-			mes = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el mes"));
-			dia = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el dia"));
 
+			año = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el año"));
 			// ver el tema del año (si es para una fecha de nacimiento por ejemplo).
 			if (año<1900) {
 				
@@ -120,15 +117,18 @@ public interface Validacion {
 				flag=false;
 				
 			}
-			
+	if (flag==true) {		
+			mes = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el mes"));
 			if (mes<1 || mes>12) {
 				
 				JOptionPane.showMessageDialog(null, "mes ingresado no válido");
 				flag=false;
 				
 				
-			}
-			
+			}} else { mes=0;}
+	
+	if (flag==true) {		
+			dia = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el dia"));
 			
 			if (dia<1 || dia>31) {
 			
@@ -136,9 +136,9 @@ public interface Validacion {
 				flag=false;
 				
 				
-			}
+			}} else { dia=0;}
 			
-			
+		
 			if (flag==true) {
 				
 				  fecha = LocalDate.of(año, mes, dia);
@@ -159,7 +159,7 @@ public interface Validacion {
 		
 		
 		
-	} while(flag==true);	
+	} while(!flag==true);	
 		
 		return fecha;
 	}
@@ -167,12 +167,65 @@ public interface Validacion {
 	// Fin del metodo validar Fecha.
 	
 	
+	// Validar Telefono: 
 	
+	default int validarTelefono(String telefonoen) {
+		boolean flag = true;
+		boolean flagNumerico;
+		boolean error=false, errorvacios;
+		int telefono=0;
+		do {
+			flag = true;
+			flagNumerico = true;
+			errorvacios = false;
+	if (error==true) {
+		telefonoen = JOptionPane.showInputDialog("Ingrese el telefono");
+	}
 	
-	//Validar Edad
-	//Validar 
+	if (telefonoen.isEmpty() || telefonoen.contains(" ")) {
+            
+			JOptionPane.showMessageDialog(null, "El telefono contiene espacios vacios o directamente esta vacio.");
+			error = true;
+			flag=false;
+			errorvacios=true;
+        }
+
+		if (telefonoen.length() != 8 && errorvacios==false) {
+			
+			JOptionPane.showMessageDialog(null,"Debe contener 8 caracteres numericos"); // En caso de querer mas caracteres numericos se va a tener que hacer long
+	        error = true;
+	        flag=false;
+	    } else {
+		
+		  for (int i = 0; i < telefonoen.length(); i++) {
+	            if (!Character.isDigit(telefonoen.charAt(i))) {
+	                flagNumerico = false;
+	                error = true;
+	                flag=false;
+	            }
+	        }}
+		  
 	
-	
+	if (flagNumerico == false) {	JOptionPane.showMessageDialog(null, "Se ingreso una cadena de texto en lugar de numerico.");}	  
+		  
+		  
+		  
+	if (flagNumerico == true && flag==true)	{
+		try {
+			
+			telefono = Integer.parseInt(telefonoen);
+		} catch (Exception e) {
+
+			JOptionPane.showMessageDialog(null, e);
+		}
+		
+		}}while(!flag==true);
+		
+		
+		
+		return telefono;
+		
+	}
 	
 	
 }

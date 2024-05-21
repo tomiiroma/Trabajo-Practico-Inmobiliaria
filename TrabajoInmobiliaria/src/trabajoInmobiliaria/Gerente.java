@@ -447,8 +447,9 @@ public class Gerente extends Empleado implements Validacion{
 								seleccionado.setId_agente(Integer.parseInt(JOptionPane.showInputDialog("Su id de agente es: "+seleccionado.getId_agente()+"Ingrese el nuevo id de agente")));
 								seleccionado.setContraseña(JOptionPane.showInputDialog("Ingrese la nueva contraseña"));
 								agentecontrolador.updateAgente(seleccionado);
+	/* ----------------------------------------------------------------------------------- FIN MODIFICAR EMPLEADO --------------------------------------------------------------------------------------------------------*/								
 								
-								
+	/* --------------------------------------------------------------------ELIMINAR EMPLEADO-------------------------------------------------------------------------------------------------------------------------------*/							
 								
 							}else if(gestionSeleccionada2.equals("Eliminar Empleado")){
 								JOptionPane.showMessageDialog(null, "eliminar");
@@ -464,7 +465,6 @@ public class Gerente extends Empleado implements Validacion{
 								
 								
 								
-/* ----------------------------------------------------------------------------------- FIN MODIFICAR EMPLEADO --------------------------------------------------------------------------------------------------------*/								
 							}else {
 								break;
 							}
@@ -473,7 +473,10 @@ public class Gerente extends Empleado implements Validacion{
 								
 /*-----------------------------------------------------------------------------Agregar empleado --------------------------------------------------------------------------------------------------------------------------- */
 					}else if(gestionSeleccionada.equals("Agregar Nuevo Empleado")){ 
-						JOptionPane.showMessageDialog(null, "Cargar datos");
+						
+						AgregarEmpleado();
+						
+				/*		JOptionPane.showMessageDialog(null, "Cargar datos");
 						
 						String nombre = JOptionPane.showInputDialog("Ingresar nombre");
 						String apellido = JOptionPane.showInputDialog("Ingresar apellido");
@@ -484,7 +487,7 @@ public class Gerente extends Empleado implements Validacion{
 						String tipo_empleado = JOptionPane.showInputDialog("Ingresar el tipo de empleado");
 						String contraseña = JOptionPane.showInputDialog("Ingresar password");
 						int id_agente = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el id del agente"));
-						agentecontrolador.addAgente(new Agente(0,nombre,apellido,fecha,dni,telefono,correo,tipo_empleado,contraseña,id_agente));
+						agentecontrolador.addAgente(new Agente(0,nombre,apellido,fecha,dni,telefono,correo,tipo_empleado,contraseña,id_agente));*/
 						
 						// Funciona 0 Porque es AI en la base de  datos y id_agente deberia ser AI tambien actualmente no lo es.
 
@@ -522,6 +525,39 @@ public class Gerente extends Empleado implements Validacion{
 	}
 
 		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public void AgregarEmpleado() {
+		int dni = 0,telefono;	
+		LocalDate fecha = null;
+		String nombre="", apellido="" ,telefonoentrada="";
+		AgenteControlador agentecontrolador = new AgenteControlador();
+			
+		//	JOptionPane.showMessageDialog(null, "Cargar datos");
+			validarNombre(nombre);
+			validarNombre(apellido);
+			fecha = validarFecha(fecha);
+			dni = validarDni("Validacion de dni");
+			
+			telefonoentrada = JOptionPane.showInputDialog("Ingresar telefono"); // telefono validado.
+			telefono = validarTelefono(telefonoentrada);
+			
+			String correo = JOptionPane.showInputDialog(null, "Ingresar correo"); // falta validar correo,tipo_empleado,contraseña.
+			String tipo_empleado = JOptionPane.showInputDialog("Ingresar el tipo de empleado");
+			String contraseña = JOptionPane.showInputDialog("Ingresar password");
+			int id_agente = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el id del agente"));
+			agentecontrolador.addAgente(new Agente(0,nombre,apellido,fecha,dni,telefono,correo,tipo_empleado,contraseña,id_agente));
+			
+			
+			
+		}
 	
 	
 }
