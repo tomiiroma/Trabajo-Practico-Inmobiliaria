@@ -12,6 +12,8 @@ import javax.swing.JOptionPane;
 public class Gerente extends Empleado implements Validacion{
 
 	private int id_gerente;
+	//private static int acumuladorgerentes=0;
+	//private static int aculadorempleados=0;
 	
 	public Gerente(int id_empleado, String nombre, String apellido, LocalDate fecha_nac, int dni, int telefono,
 			String correo, String tipo_empleado, String contraseña, int id_gerente) {
@@ -39,7 +41,7 @@ public class Gerente extends Empleado implements Validacion{
 	
 	public boolean menuGerente() {
 		boolean repetir;
-		AgenteControlador agentecontrolador = new AgenteControlador();
+		
 		
 		do {		
 			repetir = true;
@@ -408,7 +410,29 @@ public class Gerente extends Empleado implements Validacion{
 	/* -------------------------------------------------------MODIFICAR EMPLEADO---------------------------------------------------------------------------------------------------------------------------------------------*/							
 							}else if(gestionSeleccionada2.equals("Modificar Empleado")){
 							
-								ModificarAgente();
+								String[] lista = {"Modificar agente","Modificar gerente","Salir"};
+								
+								int seleccion = JOptionPane.showOptionDialog(null, "Ingresar opciones", "Gestor de empleados",0 , 0 , null, lista, lista[0]);
+								
+								switch (seleccion) {
+								case 0:
+									ModificarAgente();
+									
+									break;
+									
+								case 1:
+									ModificarGerente();
+									
+									break;
+
+								case 2: //Salir									
+									break;
+								default:
+									break;
+								}
+								
+								
+								
 								
 	/* ----------------------------------------------------------------------------------- FIN MODIFICAR EMPLEADO --------------------------------------------------------------------------------------------------------*/								
 								
@@ -603,7 +627,7 @@ public class Gerente extends Empleado implements Validacion{
 		seleccionado.setTelefono(validarTelefono(JOptionPane.showInputDialog("Su telefono es: "+seleccionado.getTelefono()+"Ingrese el telefono")));
 		seleccionado.setCorreo(validarEmail(JOptionPane.showInputDialog("Su correo es: "+seleccionado.getCorreo()+"Ingrese el nuevo correo")));
 
-		seleccionado.setId_agente(Integer.parseInt(JOptionPane.showInputDialog("Su id de agente es: "+seleccionado.getId_agente()+"Ingrese el nuevo id de agente"))); // preguntarle a los chicos, si quieren que sea AI.
+		seleccionado.setId_agente(Integer.parseInt(JOptionPane.showInputDialog("Su id de agente es: "+seleccionado.getId_agente()+"Ingrese el nuevo id de agente"))); 
 		
 		do {
 		contraseña = JOptionPane.showInputDialog("Ingresar la nueva contraseña");
@@ -622,7 +646,7 @@ public class Gerente extends Empleado implements Validacion{
 		
 		AgenteControlador agentecontrolador = new AgenteControlador();   	
 		
-		 /* desde aca */  JOptionPane.showMessageDialog(null, "Empleado");
+		 /* desde aca */  //JOptionPane.showMessageDialog(null, "Empleado");
 			
 			String[] listaEmpleado = {"Ver empleados","seleccionar empleado","Salir"};
 			
@@ -740,7 +764,7 @@ public class Gerente extends Empleado implements Validacion{
 			contraseña = JOptionPane.showInputDialog("Ingresar password");
 			} while(!validarContraseña(contraseña));
 			int id_gerente = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el id del gerente"));
-			
+		//	acumuladorgerentes++;
 			gerentecontrolador.addGerente(new Gerente(0,nombre,apellido,fecha,dni,telefono,correoverificado,tipo_empleado,contraseña,id_gerente));
 			
 			
