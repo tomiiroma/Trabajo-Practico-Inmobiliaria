@@ -122,6 +122,7 @@ public class AgenteControlador implements AgenteRepository{
 	            PreparedStatement statement = connection.prepareStatement("DELETE FROM empleado WHERE id_empleado = ?");
 	            statement.setInt(1, id_empleado);
 	            
+	            
 	            int rowsDeleted = statement.executeUpdate();
 	            if (rowsDeleted > 0) {
 	                System.out.println("Usuario eliminado exitosamente");
