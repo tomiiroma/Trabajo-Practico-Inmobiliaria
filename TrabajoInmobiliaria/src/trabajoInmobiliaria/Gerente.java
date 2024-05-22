@@ -559,8 +559,13 @@ public class Gerente extends Empleado implements Validacion{
 		} else {
 		
 		String[] borrarempleado = new String[agentecontrolador.getAllEmpleados().size()];
+		
 		for (int i = 0; i < borrarempleado.length; i++) {
+			
+		
 			borrarempleado[i] = Integer.toString(agentecontrolador.getAllEmpleados().get(i).getId_empleado());
+	
+		
 		}
 		String empleadoborrarselect = (String) JOptionPane.showInputDialog(null, "Seleccione usuario", null, 0, null,
 				borrarempleado, borrarempleado[0]);
@@ -749,6 +754,8 @@ public class Gerente extends Empleado implements Validacion{
 	
 	public void EliminarGerente() {
 		
+	
+		
 		GerenteControlador gerentecontrolador = new GerenteControlador();
 		
 		if (gerentecontrolador.getAllGerente().size()==0) {
@@ -759,12 +766,49 @@ public class Gerente extends Empleado implements Validacion{
 		
 		String[] borrarempleado = new String[gerentecontrolador.getAllGerente().size()];
 		for (int i = 0; i < borrarempleado.length; i++) {
-			borrarempleado[i] = Integer.toString(gerentecontrolador.getAllGerente().get(i).getId_empleado());
-		}
-		String empleadoborrarselect = (String) JOptionPane.showInputDialog(null, "Seleccione usuario", null, 0, null,
-				borrarempleado, borrarempleado[0]);
+			
 		
-		gerentecontrolador.deleteGerente(Integer.parseInt(empleadoborrarselect));}
+			  Gerente gerente = gerentecontrolador.getAllGerente().get(i);
+			    borrarempleado[i] = gerente.getId_empleado() + "  " + gerente.getNombre() + " " + gerente.getApellido() + "  " + gerente.getCorreo();
+		   
+		}
+		
+		try {
+			String empleadoborrarselect = (String) JOptionPane.showInputDialog(null, "Seleccione usuario", null, 0, null,
+					borrarempleado, borrarempleado[0]);
+			
+			int indiceSeleccionado = -1;
+
+			for (int i = 0; i < borrarempleado.length; i++) {
+		        if (borrarempleado[i].equals(empleadoborrarselect)) {
+		            indiceSeleccionado = i; 
+		        }
+		    }
+			
+
+			 if (indiceSeleccionado != -1) {
+			        
+			 String idEmpleadoSeleccionado = Integer.toString(gerentecontrolador.getAllGerente().get(indiceSeleccionado).getId_empleado());
+
+			 gerentecontrolador.deleteGerente((Integer.parseInt(idEmpleadoSeleccionado)));
+			        
+			        
+			    } else {
+			        JOptionPane.showMessageDialog(null, "Empleado no encontrado.");
+			    }
+			
+			
+		
+			
+			
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e);
+		}
+		
+		
+		
+		}
+		
 	}
 	
 	
@@ -773,7 +817,46 @@ public class Gerente extends Empleado implements Validacion{
 	
 	
 	
-	
+public void ModificarGerente() {
+		
+		GerenteControlador gerentecontrolador = new GerenteControlador();
+		String contraseña;
+		
+		if (gerentecontrolador.getAllGerente().size()==0) {
+			
+			JOptionPane.showMessageDialog(null, "No se han encontrado gerentes.");
+			
+		} else {
+		
+	try {
+		String[] empleados2 = new String[gerentecontrolador.getAllGerente().size()];
+		for (int i = 0; i < empleados2.length; i++) {
+			empleados2[i] = Integer.toString(gerentecontrolador.getAllGerente().get(i).getId_empleado());
+		}
+		String empleadoselect2 = (String) JOptionPane.showInputDialog(null, "Seleccione usuario", null, 0, null,
+				empleados2, empleados2[0]);
+		Gerente seleccionado = gerentecontrolador.getGerenteById(Integer.parseInt(empleadoselect2));
+		
+		LocalDate fecha = null;
+		
+		seleccionado.setNombre(validarNombre("Su nombre actual es: "+" "+seleccionado.getNombre()+" "+ "Ingrese el nuevo nombre: "));
+		seleccionado.setApellido(validarNombre("Su apellido es: "+" "+seleccionado.getApellido()+" "+"Ingrese el nuevo apellido"));
+		seleccionado.setFecha_nacimiento(validarFecha(fecha)); // Modificar despues
+		seleccionado.setDni(validarDni("Su dni es: " +seleccionado.getDni()+"Ingrese el nuevo dni"));
+		seleccionado.setTelefono(validarTelefono(JOptionPane.showInputDialog("Su telefono es: "+seleccionado.getTelefono()+"Ingrese el telefono")));
+		seleccionado.setCorreo(validarEmail(JOptionPane.showInputDialog("Su correo es: "+seleccionado.getCorreo()+"Ingrese el nuevo correo")));
+
+		seleccionado.setId_gerente(Integer.parseInt(JOptionPane.showInputDialog("Su id de agente es: "+seleccionado.getId_gerente()+"Ingrese el nuevo id de agente"))); // preguntarle a los chicos, si quieren que sea AI.
+		
+		do {
+		contraseña = JOptionPane.showInputDialog("Ingresar la nueva contraseña");
+		}while(!validarContraseña(contraseña));
+		
+		seleccionado.setContraseña((contraseña));
+		gerentecontrolador.updateGerente(seleccionado);;
+		
+	} catch (Exception e) {
+		JOptionPane.showMessageDialog(null, "Ocurrio un error"+e);}}}
 	
 	
 	
