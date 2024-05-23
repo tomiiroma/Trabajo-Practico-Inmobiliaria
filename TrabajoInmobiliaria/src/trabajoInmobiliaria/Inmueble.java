@@ -18,16 +18,26 @@ public class Inmueble {
 	private boolean disponible;
 	private boolean refaccionar;
 	private boolean apto_mascota;
-	private boolean lavadero;
+	private boolean patio;
+
 	
+
+
+
+
+
+
+
+
+
 
 
 
 
 	public Inmueble(int id_inmueble, String tipo_inmueble, String condicion, String cantAmbientes, String barrio,
 			String direccion, String descripcion, String antiguedad, String banio, String dormitorio,
-			double superficie_cubierta, double superficie_descubierta, double precio, Boolean disponible,
-			boolean refaccionar, boolean apto_mascota, boolean lavadero) {
+			double superficie_cubierta, double superficie_descubierta, double precio, boolean disponible,
+			boolean refaccionar, boolean apto_mascota, boolean patio) {
 		super();
 		this.id_inmueble = id_inmueble;
 		this.tipo_inmueble = tipo_inmueble;
@@ -45,7 +55,7 @@ public class Inmueble {
 		this.disponible = disponible;
 		this.refaccionar = refaccionar;
 		this.apto_mascota = apto_mascota;
-		this.lavadero = lavadero;
+		this.patio = patio;
 	}
 
 
@@ -386,8 +396,8 @@ public class Inmueble {
 
 
 
-	public boolean isLavadero() {
-		return lavadero;
+	public boolean ispatio() {
+		return patio;
 	}
 
 
@@ -406,8 +416,8 @@ public class Inmueble {
 
 
 
-	public void setLavadero(boolean lavadero) {
-		this.lavadero = lavadero;
+	public void setpatio(boolean patio) {
+		this.patio = patio;
 	}
 
 
@@ -430,7 +440,7 @@ public class Inmueble {
 				+ "\nm2 superficie descubierta: " + superficie_descubierta 
 				+ "\nBarrio: " + barrio 
 				+"\nDireccion del Inmueble:"+direccion
-				+ "\nCantidad de lavaderos: "+ lavadero 
+				+ "\nPatio: "+ patio 
 				+ "\nDescripción: " + descripcion 
 				+ "Años de antiguedad:" + antiguedad 
 				+ "\nPrecio del inmueble: " + precio

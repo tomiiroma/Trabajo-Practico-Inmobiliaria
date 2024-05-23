@@ -517,19 +517,19 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 			String refaccionSeleccion = (String) JOptionPane.showInputDialog(null, "¿Se debe refaccionar el Inmueble?",
 					"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, refaccion,refaccion[0]);
 			
-			if(refaccionSeleccion.equals("Si")){ //EL INMUEBLE SE DEBE REFACCIONAR = TRUE
+			if(refaccionSeleccion.equals("Si")){ // EL INMUEBLE ESTA DISPONIBLE = TRUE &&EL INMUEBLE SE DEBE REFACCIONAR = TRUE
 				
 				String[] apto_mascota = { "Si","No"};			
 				String apto_mascotaSeleccion = (String) JOptionPane.showInputDialog(null, "¿El inmueble es apto para mascotas?",
 						"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, apto_mascota,apto_mascota[0]);
 				
-				if(apto_mascotaSeleccion.equals("Si")){//EL INMUEBLE ES APTO MASCOTA = TRUE
+				if(apto_mascotaSeleccion.equals("Si")){//EL INMUEBLE ESTA DISPONIBLE = TRUE &&EL INMUEBLE SE DEBE REFACCIONAR = TRUE & EL INMUEBLE ES APTO MASCOTA = TRUE
 					
-					String[] lavadero = { "Si","No"};			
-					String lavaderoSeleccion = (String) JOptionPane.showInputDialog(null, "¿El inmueble posee lavadero?",
-							"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, lavadero,lavadero[0]);
+					String[] patio = { "Si","No"};			
+					String patioSeleccion = (String) JOptionPane.showInputDialog(null, "¿El inmueble posee patio?",
+							"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, patio,patio[0]);
 					
-					if(lavaderoSeleccion.equals("Si")){//EL INMUEBLE tiene lavadero = TRue
+					if(patioSeleccion.equals("Si")){//EL INMUEBLE ESTA DISPONIBLE = TRUE &&EL INMUEBLE SE DEBE REFACCIONAR = TRUE & EL INMUEBLE ES APTO MASCOTA = TRUE && EL INMUEBLE tiene patio = TRue
 						
 						inmuebleControlador.addInmueble(new Inmueble(0,
 								inmuebleSeleccionado,
@@ -548,8 +548,9 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 								true,
 								true,
 								true));
+						break;
 														
-					}else {//EL INMUEBLE NO lavadero = FALSE
+					}else {//EL INMUEBLE ESTA DISPONIBLE = TRUE &&EL INMUEBLE SE DEBE REFACCIONAR = TRUE & EL INMUEBLE ES APTO MASCOTA = TRUE && EL INMUEBLE tiene patio = false
 						inmuebleControlador.addInmueble(new Inmueble(0,
 								inmuebleSeleccionado,
 								condicionSeleccionada,
@@ -567,19 +568,162 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 								true,
 								true,
 								false));
+						break;
 					}
 					
 					
 					
-				}else {//EL INMUEBLE NO ES APTO MASCOTA = FALSE
+				}else {//EL INMUEBLE ESTA DISPONIBLE = TRUE &&EL INMUEBLE SE DEBE REFACCIONAR = TRUE & EL INMUEBLE ES APTO MASCOTA = false 
+					String[] patio = { "Si","No"};			
+					String patioSeleccion = (String) JOptionPane.showInputDialog(null, "¿El inmueble posee patio?",
+							"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, patio,patio[0]);
+					if(patioSeleccion.equals(disponibleSeleccion)){ //EL INMUEBLE ESTA DISPONIBLE = TRUE &&EL INMUEBLE SE DEBE REFACCIONAR = TRUE & EL INMUEBLE ES APTO MASCOTA = false  && patio true
+						inmuebleControlador.addInmueble(new Inmueble(0,
+								inmuebleSeleccionado,
+								condicionSeleccionada,
+								cantAmbientes,
+								barrioSeleccion,
+								direccion,
+								descripcion,
+								antiguedad,
+								banios,
+								dormitorio,
+								superficie_cubierta,
+								superficie_descubierta,
+								precio,
+								true,
+								true,
+								false,
+								true));
+						break;
+						
+					}else {//EL INMUEBLE ESTA DISPONIBLE = TRUE &&EL INMUEBLE SE DEBE REFACCIONAR = TRUE & EL INMUEBLE ES APTO MASCOTA = false  && patio false
+						inmuebleControlador.addInmueble(new Inmueble(0,
+								inmuebleSeleccionado,
+								condicionSeleccionada,
+								cantAmbientes,
+								barrioSeleccion,
+								direccion,
+								descripcion,
+								antiguedad,
+								banios,
+								dormitorio,
+								superficie_cubierta,
+								superficie_descubierta,
+								precio,
+								true,
+								true,
+								false,
+								false));
+						break;
+					}
+					
 					
 				}
 				
 				
+			}else {// EL INMUEBLE ESTA DISPONIBLE = TRUE &&EL INMUEBLE  no SE DEBE REFACCIONAR = false
+				String[] apto_mascota = { "Si","No"};			
+				String apto_mascotaSeleccion = (String) JOptionPane.showInputDialog(null, "¿El inmueble es apto para mascotas?",
+						"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, apto_mascota,apto_mascota[0]);
 				
+				if(apto_mascotaSeleccion.equals("Si")){// EL INMUEBLE ESTA DISPONIBLE = TRUE &&EL INMUEBLE  no SE DEBE REFACCIONAR = false && mascota true
+					String[] patio = { "Si","No"};			
+					String patioSeleccion = (String) JOptionPane.showInputDialog(null, "¿El inmueble posee patio?",
+							"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, patio,patio[0]);
+					
+					if(patioSeleccion.equals("Si")){// EL INMUEBLE ESTA DISPONIBLE = TRUE &&REFACCIONAR = false && mascota true && patio true
+						inmuebleControlador.addInmueble(new Inmueble(0,
+								inmuebleSeleccionado,
+								condicionSeleccionada,
+								cantAmbientes,
+								barrioSeleccion,
+								direccion,
+								descripcion,
+								antiguedad,
+								banios,
+								dormitorio,
+								superficie_cubierta,
+								superficie_descubierta,
+								precio,
+								true,
+								false,
+								true,
+								true));
+						break;
+	
+						
+					}else {// EL INMUEBLE ESTA DISPONIBLE = TRUE &&REFACCIONAR = false && mascota true && patio false
+						inmuebleControlador.addInmueble(new Inmueble(0,
+								inmuebleSeleccionado,
+								condicionSeleccionada,
+								cantAmbientes,
+								barrioSeleccion,
+								direccion,
+								descripcion,
+								antiguedad,
+								banios,
+								dormitorio,
+								superficie_cubierta,
+								superficie_descubierta,
+								precio,
+								true,
+								false,
+								true,
+								false));
+						break;
+					}
+					
+					
+					
+				}else {// EL INMUEBLE ESTA DISPONIBLE = TRUE &&REFACCIONAR = false && mascota false
+					String[] patio = { "Si","No"};			
+					String patioSeleccion = (String) JOptionPane.showInputDialog(null, "¿El inmueble posee patio?",
+							"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, patio,patio[0]);
+					
+					if(patioSeleccion.equals("Si")){// EL INMUEBLE ESTA DISPONIBLE = TRUE &&REFACCIONAR = false && mascota false && patio true
+						inmuebleControlador.addInmueble(new Inmueble(0,
+								inmuebleSeleccionado,
+								condicionSeleccionada,
+								cantAmbientes,
+								barrioSeleccion,
+								direccion,
+								descripcion,
+								antiguedad,
+								banios,
+								dormitorio,
+								superficie_cubierta,
+								superficie_descubierta,
+								precio,
+								true,
+								false,
+								false,
+								true));
+						break;
+						
+						
+					}else {// EL INMUEBLE ESTA DISPONIBLE = TRUE &&REFACCIONAR = false && mascota false && patio false
+						inmuebleControlador.addInmueble(new Inmueble(0,
+								inmuebleSeleccionado,
+								condicionSeleccionada,
+								cantAmbientes,
+								barrioSeleccion,
+								direccion,
+								descripcion,
+								antiguedad,
+								banios,
+								dormitorio,
+								superficie_cubierta,
+								superficie_descubierta,
+								precio,
+								true,
+								false,
+								false,
+								false));
+						break;
+					}
+				}
 				
-				
-			}else {//EL INMUEBLE NO DEBE REFACCIONAR = FALSE
 				
 			}
 			
@@ -601,11 +745,11 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 				
 				if(apto_mascotaSeleccion.equals("Si")){//Disponible = false && refaccion true && apto mascota true
 					
-					String[] lavadero = { "Si","No"};			
-					String lavaderoSeleccion = (String) JOptionPane.showInputDialog(null, "¿El inmueble posee lavadero?",
-							"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, lavadero,lavadero[0]);
+					String[] patio = { "Si","No"};			
+					String patioSeleccion = (String) JOptionPane.showInputDialog(null, "¿El inmueble posee patio?",
+							"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, patio,patio[0]);
 					
-					if(lavaderoSeleccion.equals("Si")){//Disponible = false && refaccion true && apto mascota true && lavadero true
+					if(patioSeleccion.equals("Si")){//Disponible = false && refaccion true && apto mascota true && patio true
 						inmuebleControlador.addInmueble(new Inmueble(0,
 								inmuebleSeleccionado,
 								condicionSeleccionada,
@@ -623,8 +767,9 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 								true,
 								true,
 								true));			
+						break;
 						
-					}else {//Disponible = false && refaccion true && apto mascota true && lavadero false
+					}else {//Disponible = false && refaccion true && apto mascota true && patio false
 						inmuebleControlador.addInmueble(new Inmueble(0,
 								inmuebleSeleccionado,
 								condicionSeleccionada,
@@ -642,6 +787,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 								true,
 								true,
 								false));
+						break;
 						
 					}
 					
@@ -649,11 +795,11 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 					
 				}else {//Disponible = false && refaccion true && apto mascota false
 					
-					String[] lavadero = { "Si","No"};			
-					String lavaderoSeleccion = (String) JOptionPane.showInputDialog(null, "¿El inmueble posee lavadero?",
-							"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, lavadero,lavadero[0]);
+					String[] patio = { "Si","No"};			
+					String patioSeleccion = (String) JOptionPane.showInputDialog(null, "¿El inmueble posee patio?",
+							"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, patio,patio[0]);
 					
-					if(lavaderoSeleccion.equals("Si")){//Disponible = false && refaccion true && apto mascota false && lavadero true
+					if(patioSeleccion.equals("Si")){//Disponible = false && refaccion true && apto mascota false && patio true
 						inmuebleControlador.addInmueble(new Inmueble(0,
 								inmuebleSeleccionado,
 								condicionSeleccionada,
@@ -671,9 +817,9 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 								true,
 								false,
 								true));
+						break;
 						
-						
-					}else {//Disponible = false && refaccion true && apto mascota false && lavadero false
+					}else {//Disponible = false && refaccion true && apto mascota false && patio false
 						inmuebleControlador.addInmueble(new Inmueble(0,
 								inmuebleSeleccionado,
 								condicionSeleccionada,
@@ -691,6 +837,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 								true,
 								false,
 								false));
+						break;
 					}
 					
 				}
@@ -703,11 +850,11 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 				
 				if(apto_mascotaSeleccion.equals("Si")){//Disponible = false && refaccion false && mascota true
 					
-					String[] lavadero = { "Si","No"};			
-					String lavaderoSeleccion = (String) JOptionPane.showInputDialog(null, "¿El inmueble posee lavadero?",
-							"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, lavadero,lavadero[0]);
+					String[] patio = { "Si","No"};			
+					String patioSeleccion = (String) JOptionPane.showInputDialog(null, "¿El inmueble posee patio?",
+							"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, patio,patio[0]);
 					
-					if(lavaderoSeleccion.equals("Si")){//Disponible = false && refaccion false && mascota true && lavadero true
+					if(patioSeleccion.equals("Si")){//Disponible = false && refaccion false && mascota true && patio true
 						inmuebleControlador.addInmueble(new Inmueble(0,
 								inmuebleSeleccionado,
 								condicionSeleccionada,
@@ -726,7 +873,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 								true,
 								true));
 								
-					}else {//Disponible = false && refaccion false && mascota true && lavadero false						
+					}else {//Disponible = false && refaccion false && mascota true && patio false						
 						inmuebleControlador.addInmueble(new Inmueble(0,
 								inmuebleSeleccionado,
 								condicionSeleccionada,
@@ -743,14 +890,15 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 								false,
 								false,
 								true,
-								false));						
+								false));		
+						break;
 					}		
 					
 				}else {//Disponible = false && refaccion false && mascota false
-					String[] lavadero = { "Si","No"};			
-					String lavaderoSeleccion = (String) JOptionPane.showInputDialog(null, "¿El inmueble posee lavadero?",
-							"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, lavadero,lavadero[0]);
-					if(lavaderoSeleccion.equals("Si")){//Disponible = false && refaccion false && mascota false && lavadero true
+					String[] patio = { "Si","No"};			
+					String patioSeleccion = (String) JOptionPane.showInputDialog(null, "¿El inmueble posee patio?",
+							"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, patio,patio[0]);
+					if(patioSeleccion.equals("Si")){//Disponible = false && refaccion false && mascota false && patio true
 						inmuebleControlador.addInmueble(new Inmueble(0,
 								inmuebleSeleccionado,
 								condicionSeleccionada,
@@ -768,10 +916,8 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 								false,
 								false,
 								true));	
-						
-						
-						
-					}else {//Disponible = false && refaccion false && mascota false && lavadero false
+						break;
+					}else {//Disponible = false && refaccion false && mascota false && patio false
 						inmuebleControlador.addInmueble(new Inmueble(0,
 								inmuebleSeleccionado,
 								condicionSeleccionada,
@@ -789,6 +935,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 								false,
 								false,
 								false));	
+						break;
 					}
 					
 					
@@ -797,11 +944,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 			
 		}
 		
-		
 
-			
-			
-			
 		} while (repetir);	
 		return true;	
 	}
