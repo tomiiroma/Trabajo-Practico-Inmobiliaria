@@ -2,41 +2,46 @@ package trabajoInmobiliaria;
 
 import java.time.LocalDate;
 
-import javax.swing.JOptionPane;
 
-public class Empleado {
+
+
+public class Empleado implements InicioSesion{
 
 	private int id_empleado;
 	private String nombre;
 	private String apellido;
-	private LocalDate fecha_nac;
+	private LocalDate fecha_nacimiento;
 	private int dni;
 	private int telefono;
 	private String correo;
+	private String tipo_empleado;
 	private String contraseña;
-	public Empleado(int id_empleado, String nombre, String apellido, LocalDate fecha_nac, int dni, int telefono,
-			String correo, String contraseña) {
+	
+
+	
+	
+	
+	
+	public Empleado(int id_empleado, String nombre, String apellido, LocalDate fecha_nacimiento, int dni, int telefono,
+			String correo, String tipo_empleado, String contraseña) {
 		super();
 		this.id_empleado = id_empleado;
 		this.nombre = nombre;
 		this.apellido = apellido;
-		this.fecha_nac = fecha_nac;
+		this.fecha_nacimiento = fecha_nacimiento;
 		this.dni = dni;
 		this.telefono = telefono;
 		this.correo = correo;
+		this.tipo_empleado = tipo_empleado;
 		this.contraseña = contraseña;
 	}
+
+
 	public Empleado() {
 		
 	}
 	
-	@Override
-	public String toString() {
-		return "Empleado [id_empleado=" + id_empleado + ", nombre=" + nombre + ", apellido=" + apellido + ", fecha_nac="
-				+ fecha_nac + ", dni=" + dni + ", telefono=" + telefono + ", correo=" + correo + ", contraseña="
-				+ contraseña + "]";
-		
-	}
+
 	public int getId_empleado() {
 		return id_empleado;
 	}
@@ -55,11 +60,11 @@ public class Empleado {
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
-	public LocalDate getFecha_nac() {
-		return fecha_nac;
+	public LocalDate getFecha_nacimiento() {
+		return fecha_nacimiento;
 	}
-	public void setFecha_nac(LocalDate fecha_nac) {
-		this.fecha_nac = fecha_nac;
+	public void setFecha_nacimiento(LocalDate fecha_nacimiento) {
+		this.fecha_nacimiento = fecha_nacimiento;
 	}
 	public int getDni() {
 		return dni;
@@ -85,7 +90,16 @@ public class Empleado {
 	public void setContraseña(String contraseña) {
 		this.contraseña = contraseña;
 	}
-	
+
+
+	public String getTipo_empleado() {
+		return tipo_empleado;
+	}
+
+
+	public void setTipo_empleado(String tipo_empleado) {
+		this.tipo_empleado = tipo_empleado;
+	}
 	
 	
 	

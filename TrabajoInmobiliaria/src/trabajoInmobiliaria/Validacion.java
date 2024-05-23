@@ -1,5 +1,7 @@
 package trabajoInmobiliaria;
 
+import java.time.LocalDate;
+
 import javax.swing.JOptionPane;
 
 public interface Validacion {
@@ -98,12 +100,77 @@ public interface Validacion {
 		return nombre;
 	}
 	
+	// Revisar luego que mas se le puede implementar.
+	
+	default LocalDate validarFecha() {
+		int año,mes,dia;
+		LocalDate fecha = null;
+		boolean flag;
+		do {		
+		flag=true;
+		try {
+			año = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el año"));
+			mes = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el mes"));
+			dia = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el dia"));
+
+			// ver el tema del año (si es para una fecha de nacimiento por ejemplo).
+			if (año<1900) {
+				
+				JOptionPane.showMessageDialog(null, "Año ingresado no válido");
+				flag=false;
+				
+			}
+			
+			if (mes<1 || mes>12) {
+				
+				JOptionPane.showMessageDialog(null, "mes ingresado no válido");
+				flag=false;
+				
+				
+			}
+			
+			
+			if (dia<1 || dia>31) {
+			
+				JOptionPane.showMessageDialog(null, "Día ingresado no válido");
+				flag=false;
+				
+				
+			}
+			
+			
+			if (flag==true) {
+				
+				  fecha = LocalDate.of(año, mes, dia);
+				
+			}
+			
+			
+		} catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Error al ingresar la fecha. Debes ingresar números.");
+          
+        
+		} catch (Exception e) {
+			
+			JOptionPane.showMessageDialog(null, "error al ingresar la fecha.");
+			
+		} 
+		
+		
+		
+		
+	} while(flag==true);	
+		
+		return fecha;
+	}
+	
+	// Fin del metodo validar Fecha.
+	
+	
 	
 	
 	//Validar Edad
 	//Validar 
-	
-	
 	
 	
 	

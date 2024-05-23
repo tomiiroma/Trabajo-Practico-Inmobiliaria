@@ -1,20 +1,37 @@
 package trabajoInmobiliaria;
 
+import java.util.List;
+
 import javax.swing.JOptionPane;
 
-class Main {
+import controlador.AgenteControlador;
+import controlador.CompradorControlador;
+import controlador.InquilinoControlador;
+import controlador.PropietarioControlador;
+
+class Main{
 
 	public static void main(String[] args) {
 
 		JOptionPane.showMessageDialog(null, "Bienvenido al Sistema de Gestión ", "Inmobiliaria Maguez",
 				JOptionPane.INFORMATION_MESSAGE);
-
+		
+		
+		
 		int respuestaSeleccionada;
 
 		Agente agente1 = new Agente();
 		Gerente gerente1 = new Gerente();
-
+		Empleado empleado = new Empleado();
+		
+		
+		
+		
+		
+		empleado.IniciarSesion();
+		
 		do {
+
 			String[] opcionesRoles = { "Agente", "Gerente", "Salir" };
 			int eleccionElegida1 = JOptionPane.showOptionDialog(null, "Iniciar Sesion Como", "Inmobiliaria Maguez", 0,
 					0, null, opcionesRoles, opcionesRoles[0]);
@@ -40,5 +57,6 @@ class Main {
 		} while (respuestaSeleccionada == 0);
 
 	}
+	
 
 }
