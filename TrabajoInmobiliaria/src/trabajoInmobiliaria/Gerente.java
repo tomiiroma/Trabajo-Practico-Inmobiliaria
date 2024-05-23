@@ -467,12 +467,17 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 	
 	
 	public boolean modificarInmueble() {
+		boolean repetir;
+		
+		do {		
+			repetir = true;
+			
 		
 		if(inmuebleControlador.getAllInmueble().isEmpty()){
-			JOptionPane.showMessageDialog(null, "No hay Inmuebles cargados" );
+			JOptionPane.showMessageDialog(null, "No hay Inmuebles cargados");
 		}else {
-			boolean repetir;
 			
+					
 			String[] opcionesInmuebles = new String[inmuebleControlador.getAllInmueble().size()];
 			for (int i = 0; i < opcionesInmuebles.length; i++) {
 			Inmueble inmueble = inmuebleControlador.getAllInmueble().get(i);
@@ -508,7 +513,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 	            	
 				String[] opcionesModificar = { "Tipo de Inmueble","Condición","Cantidad de Ambientes","Barrio","Dirección","Descripcion",
 						"Años Antiguedad del edificio","Cantidad de Baños","Cantidad de Dormitorios","m2 Superficie Cubierta",
-						"m2 Superficie Descubierta","Precio","Disponibilidad actual","Refacción","Apto para Mascotas","Patio"};
+						"m2 Superficie Descubierta","Precio","Disponibilidad actual","Refacción","Apto para Mascotas","Patio","Volver"};
 					
 				String opcionSeleccionada = (String) JOptionPane.showInputDialog(null, "Seleccione un atributo para Modificar:",
 						"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, opcionesModificar,
@@ -613,20 +618,19 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 					
 					
 				}else {
-					
-				}
-	            	
+					break;
+				}            	
 				 inmuebleControlador.updateInmueble(inmuebleAmodificar);
                  JOptionPane.showMessageDialog(null, "Inmueble actualizado exitosamente");
-        		
-
-	            	}
-
-				}			
+        		break;
+		            	}
+	
+					}			
+				}
 			}
-			return repetir;
-		}
-		return false;
+		
+		}while(repetir);
+		return true;
 	}
 	
 	
