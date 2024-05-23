@@ -22,7 +22,7 @@ class Main{
 
 		Agente agente1 = new Agente();
 		Gerente gerente1 = new Gerente();
-<<<<<<< HEAD
+
 		Empleado empleado = new Empleado();
 		
 		
@@ -31,10 +31,7 @@ class Main{
 		
 		empleado.IniciarSesion();
 		
-=======
-		
 
->>>>>>> origin/Tomi
 		do {
 
 			String[] opcionesRoles = { "Agente", "Gerente", "Salir" };

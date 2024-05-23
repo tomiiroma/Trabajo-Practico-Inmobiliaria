@@ -163,25 +163,7 @@ public interface Validacion {
 		
 		return fecha;
 	}
-	
-	// Fin del metodo validar Fecha.
-	
-	
-	
-	
-	//Validar Edad
-	//Validar 
-	
-	
-	
-	
-<<<<<<< HEAD
-=======
-	
-	
-	
-	
->>>>>>> origin/Tomi
+
 }
 
 	
