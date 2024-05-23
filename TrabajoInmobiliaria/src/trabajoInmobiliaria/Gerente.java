@@ -1,30 +1,49 @@
 package trabajoInmobiliaria;
 
 import java.time.LocalDate;
+import java.util.Iterator;
+import java.util.LinkedList;
 
 import controlador.AgenteControlador;
 import controlador.GerenteControlador;
 
 import javax.swing.JOptionPane;
 
+<<<<<<< HEAD
 
 
 public class Gerente extends Empleado implements Validacion{
+=======
+import controlador.AgenteControlador;
+import controlador.GerenteControlador;
+import controlador.InmuebleControlador;
+
+public class Gerente extends Empleado implements Validacion, InicioSesion{
+>>>>>>> mainPrueba
 
 	private int id_gerente;
 	//private static int acumuladorgerentes=0;
 	//private static int aculadorempleados=0;
 	
-	public Gerente(int id_empleado, String nombre, String apellido, LocalDate fecha_nac, int dni, int telefono,
+
+	
+
+	
+	
+	public Gerente(int id_empleado, String nombre, String apellido, LocalDate fecha_nacimiento, int dni, int telefono,
 			String correo, String tipo_empleado, String contraseña, int id_gerente) {
-		super(id_empleado, nombre, apellido, fecha_nac, dni, telefono, correo, tipo_empleado, contraseña);
+		super(id_empleado, nombre, apellido, fecha_nacimiento, dni, telefono, correo, tipo_empleado, contraseña);
 		this.id_gerente = id_gerente;
 	}
+
+
 
 	public Gerente() {
 		
 	}
 
+	
+	
 	public int getId_gerente() {
 		return id_gerente;
 	}
@@ -34,74 +53,67 @@ public class Gerente extends Empleado implements Validacion{
 	}
 	
 	
-	
-	
-	
-	
-	
+
+	InmuebleControlador inmuebleControlador = new InmuebleControlador();
+
 	public boolean menuGerente() {
 		boolean repetir;
 		
 		
 		do {		
 			repetir = true;
-			String[] opcionesGerente = { "Registrar Nueva Propiedad","Eliminar Propiedad","Registrar Nuevo Cliente", "Realizar Nueva Operacion",
-					"Realizar Nuevo Contrato", "Realizar Busqueda", "Agendar Reunion o Visita", "Registrar Pago","Cargar Nuevo Documento",
-					"Ver Ultimas Operaciones","Gestionar Empleados","Cerrar Sesion","Salir" };
+			String[] opcionesGerente = { "Gestionar Propiedades", 
+											"Registrar Nuevo Cliente", 
+											"Realizar Nueva Operacion",
+											"Realizar Nuevo Contrato", 
+											"Realizar Busqueda"   , 
+											"Agendar Reunion o Visita", 
+											"Registrar Pago",
+											"Cargar Nuevo Documento",
+											"Ver Ultimas Operaciones" , 
+											"Gestionar Empleados",
+											"Cerrar Sesion",
+											"Salir" };
 	
 			String opcionSeleccionada = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
 					"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, opcionesGerente,
 					opcionesGerente[0]);
-	
-			
-			try {
 
+			try {
 			
 			switch (opcionSeleccionada) {
 			
-			case "Registrar Nueva Propiedad":
-				do {
-					String[] tipoPropiedad = { "Propiedad en Venta","Propiedad en Alquiler","Volver" };
+			case"Gestionar Propiedades":
+				do {			
 					
-					String clienteSeleccionado = (String) JOptionPane.showInputDialog(null, "Seleccione una Opción:",
-							"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, tipoPropiedad,
-							tipoPropiedad[0]);
+					Inmueble inmueble = new Inmueble();
+					String[] opcionesGestion = { "Ver Inmuebles","Agregar Inmueble","Modificar Inmueble","Eliminar Inmueble","Volver" };
 					
-					if(clienteSeleccionado.equals("Propiedad en Venta")){
-						JOptionPane.showMessageDialog(null, "Completar datos propiedad en venta");
+					String gestionSeleccionada = (String) JOptionPane.showInputDialog(null, "Seleccione el tipo de Operacion:",
+							"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, opcionesGestion,
+							opcionesGestion[0]);
+					
+					if(gestionSeleccionada.equals("Ver Inmuebles")){
 						
-					}else if(clienteSeleccionado.equals("Propiedad en Alquiler")){
-						JOptionPane.showMessageDialog(null, "Completar datos propiedad en alquiler");  
-
-					}else {
-						break;
-					}
-							
-				} while (repetir);
+						verInmuebles();										
+						
+					}else if(gestionSeleccionada.equals("Agregar Inmueble")){
+						agregarInmueble();					
 	
-				break;
-	
-			case "Eliminar Propiedad":
-				do {
-					String[] propiedadesAEliminar = { "Propiedad1","Propiedad2","Volver" };
-					
-					String propiedadAeliminarSeleccionada = (String) JOptionPane.showInputDialog(null, "Seleccione una propiedad:",
-							"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, propiedadesAEliminar,
-							propiedadesAEliminar[0]);
-					
-					if(propiedadAeliminarSeleccionada.equals("Propiedad1")){
-						JOptionPane.showMessageDialog(null, "Propiedad eliminada con exito");
 						
-					}else if(propiedadAeliminarSeleccionada.equals("Propiedad2")){
-						JOptionPane.showMessageDialog(null, "Propiedad eliminada con exito");
+					}else if(gestionSeleccionada.equals("Modificar Inmueble")){
+						modificarInmueble();
 						
-					}else {
+		
+					}else if(gestionSeleccionada.equals("Eliminar Inmueble")){
+						eliminarInmueble();
+						
+					}else {						
 						break;
 					}
 				} while (repetir);
+				break;		
 				
-				
-				break;	
 				
 			case "Registrar Nuevo Cliente":
 				do {
@@ -416,7 +428,11 @@ public class Gerente extends Empleado implements Validacion{
 								
 								switch (seleccion) {
 								case 0:
+<<<<<<< HEAD
 									ModificarAgente();
+=======
+									//ModificarAgente();
+>>>>>>> mainPrueba
 									
 									break;
 									
@@ -447,7 +463,11 @@ public class Gerente extends Empleado implements Validacion{
 							switch (seleccionopcion) {
 
 							case 0:
+<<<<<<< HEAD
 							EliminarAgente();
+=======
+							//EliminarAgente();
+>>>>>>> mainPrueba
 							break;
 							
 							case 1:
@@ -481,7 +501,11 @@ public class Gerente extends Empleado implements Validacion{
 					switch (Agregarseleccion) {
 					case 0:
 						
+<<<<<<< HEAD
 						AgregarAgente();
+=======
+						//AgregarAgente();
+>>>>>>> mainPrueba
 						
 						break;
 
@@ -534,9 +558,45 @@ public class Gerente extends Empleado implements Validacion{
 		
 		return true;
 	}
+	
+	
 
 	
+<<<<<<< HEAD
 	/* ---------------------------------------------------------------------- AGREGAR EMPLEADO -------------------------------------------------------------------------------------------------------------------- */
+=======
+	
+	
+	public void verInmuebles() {
+		if(inmuebleControlador.getAllInmueble().isEmpty()){
+			JOptionPane.showMessageDialog(null, "No hay Inmuebles cargados" );
+		}else {
+			String[] opcionesInmuebles = new String[inmuebleControlador.getAllInmueble().size()];
+			for (int i = 0; i < opcionesInmuebles.length; i++) {
+			Inmueble inmueble = inmuebleControlador.getAllInmueble().get(i);
+			opcionesInmuebles[i] = "ID Inmueble: " + inmueble.getId_inmueble() + " - Dirección: " + inmueble.getDireccion()+ " - Ambientes: " +inmueble.getCantAmbientes();		
+			}
+					
+			String inmuebleSeleccionado = (String) JOptionPane.showInputDialog(null, "Seleccione Inmueble", "Visualizar Inmueble",
+			JOptionPane.QUESTION_MESSAGE, null, opcionesInmuebles, opcionesInmuebles[0]);
+					
+			if(inmuebleSeleccionado !=null){
+				Inmueble inmuebleAmostrar = null;
+			for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
+			String opcion = "ID Inmueble: " + inmueble.getId_inmueble() + " - Dirección: " + inmueble.getDireccion()+ " - Ambientes: " +inmueble.getCantAmbientes();
+							
+			if(opcion.equals(inmuebleSeleccionado)){
+				inmuebleAmostrar=inmueble;
+				}      
+			}
+						
+			if(inmuebleAmostrar !=null){
+				JOptionPane.showMessageDialog(null, "Datos del Inmueble:\n" + inmuebleAmostrar.toString(), "Datos del Inmueble", JOptionPane.INFORMATION_MESSAGE);		
+				}
+			} 
+		}
+	} 
+>>>>>>> mainPrueba
 		
 	public void AgregarAgente() {
 		int dni = 0,telefono;	
@@ -898,5 +958,595 @@ public void ModificarGerente() {
 	
 	
 	
+	
+	
+	public boolean modificarInmueble() {
+		boolean repetir;
+		
+		do {		
+			repetir = true;
+			
+		
+		if(inmuebleControlador.getAllInmueble().isEmpty()){
+			JOptionPane.showMessageDialog(null, "No hay Inmuebles cargados");
+		}else {
+			
+					
+			String[] opcionesInmuebles = new String[inmuebleControlador.getAllInmueble().size()];
+			for (int i = 0; i < opcionesInmuebles.length; i++) {
+			Inmueble inmueble = inmuebleControlador.getAllInmueble().get(i);
+			opcionesInmuebles[i] = "ID Inmueble: " + inmueble.getId_inmueble() + " - Dirección: " + inmueble.getDireccion()+ " - Ambientes: " +inmueble.getCantAmbientes();		
+			}
+			
+			String inmuebleSeleccionado = (String) JOptionPane.showInputDialog(null, "Seleccione Inmueble", "Modificar Inmueble",
+			JOptionPane.QUESTION_MESSAGE, null, opcionesInmuebles, opcionesInmuebles[0]);
+			
+			if(inmuebleSeleccionado !=null){
+				Inmueble inmuebleAmodificar = null;
+				
+				for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
+					String opcion = "ID Inmueble: " + inmueble.getId_inmueble() + " - Dirección: " + inmueble.getDireccion()+ " - Ambientes: " +inmueble.getCantAmbientes();
+									
+					if(opcion.equals(inmuebleSeleccionado)){
+						inmuebleAmodificar=inmueble;
+						break;
+						}      
+					}	
+			
+			if(inmuebleAmodificar!=null){
+	            Inmueble inmuebleAModificar = null;
+	            for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
+					String opcion = "ID Inmueble: " + inmueble.getId_inmueble() + " - Dirección: " + inmueble.getDireccion()+ " - Ambientes: " +inmueble.getCantAmbientes();
+	                if (opcion.equals(inmuebleSeleccionado)) {
+	                    inmuebleAModificar = inmueble;
+	                    break;
+	                	}
+	            	}
+				
+	            if(inmuebleAmodificar !=null){
+	            	
+				String[] opcionesModificar = { "Tipo de Inmueble","Condición","Cantidad de Ambientes","Barrio","Dirección","Descripcion",
+						"Años Antiguedad del edificio","Cantidad de Baños","Cantidad de Dormitorios","m2 Superficie Cubierta",
+						"m2 Superficie Descubierta","Precio","Disponibilidad actual","Refacción","Apto para Mascotas","Patio","Volver"};
+					
+				String opcionSeleccionada = (String) JOptionPane.showInputDialog(null, "Seleccione un atributo para Modificar:",
+						"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, opcionesModificar,
+						opcionesModificar[0]);		
+				
+				
+				if(opcionSeleccionada.equals("Tipo de Inmueble")){
+					String tipoInmueble = obtenerTipoInmueble();
+					inmuebleAmodificar.setTipo_inmueble(tipoInmueble);
+					JOptionPane.showMessageDialog(null, "Tipo de Inmueble actualizado");
+					
+					
+					
+				}else if(opcionSeleccionada.equals("Condición")){
+					String condicion = obtenerCondicion();
+					inmuebleAmodificar.setCondicion(condicion);
+					JOptionPane.showMessageDialog(null, "Tipo de Condicion actualizada");
+				
+					
+					
+				}else if(opcionSeleccionada.equals("Cantidad de Ambientes")){
+					String cantAmbientes = obtenerAmbientes();
+					inmuebleAmodificar.setCantAmbientes(cantAmbientes);		
+					JOptionPane.showMessageDialog(null, "Cantidad de Ambientes Actualizada");
+					
+					
+					
+				}else if(opcionSeleccionada.equals("Barrio")){
+					String barrio = obtenerBarrio();
+					inmuebleAmodificar.setBarrio(barrio);
+					
+					
+					
+				}else if(opcionSeleccionada.equals("Dirección")){
+					String direccion = obtenerDireccion();
+					inmuebleAmodificar.setDireccion(direccion);
+					
+					
+					
+				}else if(opcionSeleccionada.equals("Descripcion")){
+					String descripcion = obtenerDescripcion();
+					inmuebleAmodificar.setDescripcion(descripcion);
+					
+					
+					
+				}else if(opcionSeleccionada.equals("Años Antiguedad del edificio")){
+					String antiguedad = obtenerAntiguedad();
+					inmuebleAmodificar.setAntiguedad(antiguedad);
+					
+					
+					
+				}else if(opcionSeleccionada.equals("Cantidad de Baños")){
+					String banios = obtenerBanios();
+					inmuebleAmodificar.setBanio(banios);
+					
+					
+					
+				}else if(opcionSeleccionada.equals("Cantidad de Dormitorios")){
+					String dormitorio = obtenerDormitorio();
+	        		inmuebleAmodificar.setDormitorio(dormitorio);
+
+					
+					
+				}else if(opcionSeleccionada.equals("Cantidad de Baños")){
+					String banio = obtenerBanios();
+	        		inmuebleAmodificar.setBanio(banio);
+
+					
+				}else if(opcionSeleccionada.equals("m2 Superficie Cubierta")) {
+					double superficieCubierta = obtenerM2Cubierta();
+					inmuebleAmodificar.setSuperficie_cubierta(superficieCubierta);	
+					
+					
+				}else if(opcionSeleccionada.equals("m2 Superficie Descubierta")){
+					double superficieDescubierta = obtenerM2Descubierta();
+					inmuebleAmodificar.setSuperficie_descubierta(superficieDescubierta);
+					
+					
+				}else if(opcionSeleccionada.equals("Precio")){
+					double precio = obtenerPrecio();
+					inmuebleAmodificar.setPrecio(precio);					
+					
+					
+				}else if(opcionSeleccionada.equals("Disponibilidad Actual")){
+					boolean disponible = obtenerDisponible().equals("Si");
+					inmuebleAmodificar.setDisponible(disponible);					
+					
+					
+				}else if(opcionSeleccionada.equals("Refacción")){
+					boolean refaccionar = obtenerRefaccion().equals("Si");
+					inmuebleAmodificar.setRefaccionar(refaccionar);				
+					
+					
+				}else if(opcionSeleccionada.equals("Apto para Mascotas")){
+					boolean aptoMascota = obtenerMascota().equals("Si");
+					inmuebleAmodificar.setApto_mascota(aptoMascota);				
+					
+					
+				}else if(opcionSeleccionada.equals("Patio")){
+					boolean tienePatio = obtenerLavadero().equals("Si");
+					inmuebleAmodificar.setpatio(tienePatio);
+					
+					
+				}else {
+					break;
+				}            	
+				 inmuebleControlador.updateInmueble(inmuebleAmodificar);
+                 JOptionPane.showMessageDialog(null, "Inmueble actualizado exitosamente");
+        		break;
+		            	}
+	
+					}			
+				}
+			}
+		
+		}while(repetir);
+		return true;
+	}
+	
+	
+	
+	
+	public void agregarInmueble() {
+		String tipoInmueble = obtenerTipoInmueble();
+		String condicion = obtenerCondicion();
+		String cantAmbientes = obtenerAmbientes();
+		String barrio = obtenerBarrio();
+		String direccion = obtenerDireccion();
+		String descripcion = obtenerDescripcion();
+		String antiguedad = obtenerAntiguedad();
+		String banios = obtenerBanios();
+		String dormitorio = obtenerDormitorio();
+		double superficieCubierta = obtenerM2Cubierta();
+		double superficieDescubierta = obtenerM2Descubierta();
+		double precio = obtenerPrecio();
+		boolean disponible = obtenerDisponible().equals("Si");
+		boolean refaccionar = obtenerRefaccion().equals("Si");
+		boolean aptoMascota = obtenerMascota().equals("Si");
+		boolean tienePatio = obtenerLavadero().equals("Si");
+
+		    // Agregar el inmueble al controlador
+		    inmuebleControlador.addInmueble(new Inmueble(0, tipoInmueble, condicion, cantAmbientes, barrio, direccion, descripcion, antiguedad,
+		            banios, dormitorio, superficieCubierta, superficieDescubierta, precio, disponible, refaccionar, aptoMascota, tienePatio));
+		}
+	
+	
+	
+	public String obtenerTipoInmueble() {
+		String[] tipoInmueble = { "Casa","Departamento"};
+	    return (String) JOptionPane.showInputDialog(null, "Seleccione el tipo de Inmueble:",
+	            "Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, tipoInmueble, tipoInmueble[0]);
+	}
+	
+	public String obtenerCondicion() {
+		String[] tipoInmueble = { "Excelente","Muy bueno","Bueno","Regular","Malo"};
+	    return (String) JOptionPane.showInputDialog(null, "Seleccione el tipo de condición del Inmueble:",
+	            "Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, tipoInmueble, tipoInmueble[0]);
+	}
+	
+	public String obtenerBarrio() {
+		String[] barrio = {"Agronomía", "Almagro", "Balvanera", "Barracas", "Belgrano", "Boedo", "Caballito", "Chacarita",
+	            "Coghlan", "Colegiales", "Constitución", "Flores", "Floresta", "La Boca", "La Paternal", "Liniers",
+	            "Mataderos", "Monte Castro", "Monserrat", "Nueva Pompeya", "Núñez", "Palermo", "Parque Avellaneda",
+	            "Parque Chacabuco", "Parque Chas", "Parque Patricios", "Puerto Madero", "Recoleta", "Retiro",
+	            "Saavedra", "San Cristóbal", "San Nicolás", "San Telmo", "Vélez Sársfield", "Versalles",
+	            "Villa Crespo", "Villa del Parque", "Villa Devoto", "Villa General Mitre", "Villa Lugano",
+	            "Villa Luro", "Villa Ortúzar", "Villa Pueyrredón", "Villa Real", "Villa Riachuelo",
+	            "Villa Santa Rita", "Villa Soldati", "Villa Urquiza"};
+		
+	    return (String) JOptionPane.showInputDialog(null, "Seleccione el tipo de condición del Inmueble:",
+	            "Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, barrio, barrio[0]);
+	}
+	
+	
+	public String obtenerDisponible() {
+		String[] disponibleSeleccion = { "Si","No"};
+	    return (String) JOptionPane.showInputDialog(null, "Seleccione la disponibilidad del Inmueble:",
+	            "Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, disponibleSeleccion, disponibleSeleccion[0]);
+	}
+	
+	
+	public String obtenerRefaccion() {
+		String[] refaccionSeleccion = { "Si","No"};
+	    return (String) JOptionPane.showInputDialog(null, "Seleccione si hay que Refaccionar:",
+	            "Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, refaccionSeleccion, refaccionSeleccion[0]);
+	}
+	
+	public String obtenerLavadero() {
+		String[] lavaderoSeleccion = { "Si","No"};
+	    return (String) JOptionPane.showInputDialog(null, "¿Tiene lavadero?",
+	            "Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, lavaderoSeleccion, lavaderoSeleccion[0]);
+	}
+	
+	public String obtenerMascota() {
+		String[] mascotaSeleccion = { "Si","No"};
+	    return (String) JOptionPane.showInputDialog(null, "¿Es apto para mascotas?",
+	            "Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, mascotaSeleccion, mascotaSeleccion[0]);
+	}
+	
+
+	public String obtenerAmbientes() {
+	    return JOptionPane.showInputDialog("Ingrese la cantidad de Ambientes del Inmueble");
+	}
+	
+	
+	public Double obtenerM2Cubierta() {
+	    return Double.parseDouble(JOptionPane.showInputDialog("Ingrese los m2 de de Superficie Cubierta"));
+	}
+	
+	
+	public Double obtenerM2Descubierta() {
+	    return Double.parseDouble(JOptionPane.showInputDialog("Ingrese los m2 de de Superficie Descubierta"));
+	}
+	
+	
+	public String obtenerDireccion() {
+	    return JOptionPane.showInputDialog("Ingrese la direccion del Inmueble");
+	}
+	
+	
+	public String obtenerDescripcion() {
+	    return JOptionPane.showInputDialog("Ingrese una descripción del inmueble");
+	}
+	
+
+	public String obtenerAntiguedad() {
+	    return JOptionPane.showInputDialog("Ingrese la antiguedad que tiene el Edficio");
+	}
+	
+	
+	public String obtenerBanios() {
+	    return JOptionPane.showInputDialog("Ingrese la cantidad de Baños");
+	}
+	
+			
+	public String obtenerDormitorio() {
+	    return JOptionPane.showInputDialog("Ingrese la cantidad de Dormitorios");
+	}
+	
+	
+	public Double obtenerPrecio() {
+	    return Double.parseDouble(JOptionPane.showInputDialog("Ingrese el Precio del Inmueble"));		
+	}
+	
+
+	
+	
+	
+	
+	
+	
+	public void eliminarInmueble() {
+		
+		if(inmuebleControlador.getAllInmueble().isEmpty()){
+			JOptionPane.showMessageDialog(null, "No hay Inmuebles cargados" );
+		}else {
+				
+			JOptionPane.showMessageDialog(null, "Eliminar Inmueble");
+			
+		    String[] opcionesInmuebles = new String[inmuebleControlador.getAllInmueble().size()];
+		    for (int i = 0; i < opcionesInmuebles.length; i++) {
+	            Inmueble inmueble = inmuebleControlador.getAllInmueble().get(i);
+	            opcionesInmuebles[i] = "ID Inmueble: " + inmueble.getId_inmueble() + " - Dirección: " + inmueble.getDireccion()+ " - Ambientes: " +inmueble.getCantAmbientes();
+	        }
+		       
+		    String inmuebleSeleccionado = (String) JOptionPane.showInputDialog(null, "Seleccione Inmueble a Eliminar", "Eliminar Inmueble",
+		    		JOptionPane.QUESTION_MESSAGE, null, opcionesInmuebles, opcionesInmuebles[0]);
+		   
+		    if(inmuebleSeleccionado != null){
+	            Inmueble inmuebleAEliminar = null;
+	            // Buscar el inmueble seleccionado en la lista de inmuebles
+	            for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
+	                String opcion = "ID Inmueble: " + inmueble.getId_inmueble() + " - Dirección: " + inmueble.getDireccion()+ " - Ambientes: " +inmueble.getCantAmbientes();
+	                if (opcion.equals(inmuebleSeleccionado)) {
+	                    inmuebleAEliminar = inmueble;
+	                    break;
+	                }
+	            }
+	            
+	            if (inmuebleAEliminar != null) {
+	                // Realizar la eliminación del inmueble
+	                inmuebleControlador.deleteInmueble(inmuebleAEliminar.getId_inmueble());
+	                JOptionPane.showMessageDialog(null, "Inmueble eliminado exitosamente");
+	            }
+		    }       
+		}
+	}
+	
+	
+	
+/* ---------------------------------------------------------------------------- Selector de Agentes ----------------------------------------------------------------------------------------- */	
+	
+	public void SelectorAgentes() {
+		
+		AgenteControlador agentecontrolador = new AgenteControlador();   	
+		
+		 /* desde aca */  //JOptionPane.showMessageDialog(null, "Empleado");
+			
+			String[] listaEmpleado = {"Ver empleados","seleccionar empleado","Salir"};
+			
+			int seleccionEmpleado = JOptionPane.showOptionDialog(null, "Elegir opcion", null, 0, 0, null, listaEmpleado, listaEmpleado[0]);
+			
+			switch(seleccionEmpleado) {
+			
+			case 0:  // Ver empleados
+			
+				 JOptionPane.showMessageDialog(null, "La lista de empleados"+"\n"+agentecontrolador.getAllAgente());
+				
+				
+			break;
+			
+			
+			
+/*---------------------------------*/  case 1: // Ver empleado por id /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+		
+	if (agentecontrolador.getAllAgente().size()==0) { JOptionPane.showMessageDialog(null, "No hay empleados registrados.");}
+	else  {
+		String[] empleados = new String[agentecontrolador.getAllAgente().size()];
+			for (int i = 0; i < empleados.length; i++) {
+			empleados[i] = Integer.toString(agentecontrolador.getAllAgente().get(i).getId_empleado());}
+										
+			
+			String empleadoselect = (String) JOptionPane.showInputDialog(null, "Seleccione usuario", null, 0, null,
+			empleados, empleados[0]);
+
+				// JOptionPane.showMessageDialog(null, agentecontrolador.getAgenteById(Integer.parseInt(empleadoselect)));
+					Agente seleccionado = agentecontrolador.getAgenteById(Integer.parseInt(empleadoselect));
+					JOptionPane.showMessageDialog(null, "El agente seleccionado es:"+seleccionado.toString()); /* Recordar cambiar los nombres en el archivo princ */ }
+				
+				break;
+				
+			case 2: // Salir
+				
+				break;}}
+	
+	
+/*----------------------------------------------------------------- Fin del metodo SelectorAgente ---------------------------------------------------------------------------------------------------------------------------*/	
+	
+	
+/*-----------------------------------------------------------------------------SELECCIONAR GERENTES------------------------------------------------------------------------------------------------------------------------- */	
+	
+	public void seleccionarGerentes() {
+		
+		GerenteControlador gerentecontrolador = new GerenteControlador();
+		
+		
+		String[] listaGerente = {"Ver gerentes","Seleccionar gerentes","Salir"};
+		
+		int seleccionGerente = JOptionPane.showOptionDialog(null,"Elegir opcion", null, 0, 0, null, listaGerente, listaGerente[0]);
+		
+		
+		 switch(seleccionGerente) {
+		 
+		 
+		 case 0: // Ver todos los gerentes.
+			 
+			if (gerentecontrolador.getAllGerente().size()>0) { 
+			 JOptionPane.showMessageDialog(null, "La lista de empleados"+"\n"+gerentecontrolador.getAllGerente());} else {
+			
+				 JOptionPane.showMessageDialog(null, "No hay gerentes en la base de datos");}
+
+		break;
+		
+		 case 1: // Ver gerente por id.
+			 if(gerentecontrolador.getAllGerente().size()==0) {   JOptionPane.showMessageDialog(null, "No hay gerentes en la base de datos");}
+			 else {
+			 
+			 String[] gerentes = new String[gerentecontrolador.getAllGerente().size()];
+			 
+			 for (int i = 0; i < gerentes.length; i++) {
+				
+				 gerentes[i] = Integer.toString(gerentecontrolador.getAllGerente().get(i).getId_empleado());
+				 
+			}
+			 
+			 String gerentesselect = (String) JOptionPane.showInputDialog(null,"seleccionar gerentes",null,0,null,gerentes,gerentes[0]);
+			
+				 Gerente gseleccionado = gerentecontrolador.getGerenteById(Integer.parseInt(gerentesselect));
+			 JOptionPane.showMessageDialog(null, "El gerente seleccionado es: "+gseleccionado.toString());
+			 }
+		 
+			 break;
+			 
+		 case 2: // Salir
+			 
+			 break;
+		 
+		 }
+		 
+	}
+	
+/* ---------------------------------------------------------------------------------------- AGREGAR GERENTES ----------------------------------------------------------------------------------------------------- */	
+	
+	
+	public void AgregarGerente() {
+		int dni = 0,telefono;	
+		LocalDate fecha = null;
+		String nombre="", apellido="" ,telefonoentrada="", contraseña;
+		GerenteControlador gerentecontrolador = new GerenteControlador();
+			
+		//	JOptionPane.showMessageDialog(null, "Cargar datos");
+			nombre =validarNombre("Escribir el nombre");
+			apellido = validarNombre("Escribir el apellido");
+			fecha = validarFecha(fecha);
+			dni = validarDni("Validacion de dni");
+			telefonoentrada = JOptionPane.showInputDialog("Ingresar telefono"); 
+			telefono = validarTelefono(telefonoentrada);
+			String correo = JOptionPane.showInputDialog(null, "Ingresar correo"); 
+			String correoverificado = validarEmail(correo);
+			String tipo_empleado = "Gerente"; 		
+			do {
+			contraseña = JOptionPane.showInputDialog("Ingresar password");
+			} while(!validarContraseña(contraseña));
+			int id_gerente = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el id del gerente"));
+		//	acumuladorgerentes++;
+			gerentecontrolador.addGerente(new Gerente(0,nombre,apellido,fecha,dni,telefono,correoverificado,tipo_empleado,contraseña,id_gerente));
+			
+			
+			
+		}
+	
+	
+/* ----------------------------------------------------------------------------------- ELIMINAR GERENTE ------------------------------------------------------------------------------------------------------------------ */	
+	
+	
+	
+	public void EliminarGerente() {
+		
+	
+		
+		GerenteControlador gerentecontrolador = new GerenteControlador();
+		
+		if (gerentecontrolador.getAllGerente().size()==0) {
+			
+			JOptionPane.showMessageDialog(null, "No se han encontrado agentes.");
+			
+		} else {
+		
+		String[] borrarempleado = new String[gerentecontrolador.getAllGerente().size()];
+		for (int i = 0; i < borrarempleado.length; i++) {
+			
+		
+			  Gerente gerente = gerentecontrolador.getAllGerente().get(i);
+			    borrarempleado[i] = gerente.getId_empleado() + "  " + gerente.getNombre() + " " + gerente.getApellido() + "  " + gerente.getCorreo();
+		   
+		}
+		
+		try {
+			String empleadoborrarselect = (String) JOptionPane.showInputDialog(null, "Seleccione usuario", null, 0, null,
+					borrarempleado, borrarempleado[0]);
+			
+			int indiceSeleccionado = -1;
+
+			for (int i = 0; i < borrarempleado.length; i++) {
+		        if (borrarempleado[i].equals(empleadoborrarselect)) {
+		            indiceSeleccionado = i; 
+		        }
+		    }
+			
+
+			 if (indiceSeleccionado != -1) {
+			        
+			 String idEmpleadoSeleccionado = Integer.toString(gerentecontrolador.getAllGerente().get(indiceSeleccionado).getId_empleado());
+
+			 gerentecontrolador.deleteGerente((Integer.parseInt(idEmpleadoSeleccionado)));
+			        
+			        
+			    } else {
+			        JOptionPane.showMessageDialog(null, "Empleado no encontrado.");
+			    }
+			
+			
+		
+			
+			
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e);
+		}
+		
+		
+		
+		}
+		
+	}
+	
+	
+/* ----------------------------------------------------------------------------------- MODIFICAR GERENTE ----------------------------------------------------------------------------------------------------------------- */	
+	
+	
+	
+	
+public void ModificarGerente() {
+		
+		GerenteControlador gerentecontrolador = new GerenteControlador();
+		String contraseña;
+		
+		if (gerentecontrolador.getAllGerente().size()==0) {
+			
+			JOptionPane.showMessageDialog(null, "No se han encontrado gerentes.");
+			
+		} else {
+		
+	try {
+		String[] empleados2 = new String[gerentecontrolador.getAllGerente().size()];
+		for (int i = 0; i < empleados2.length; i++) {
+			empleados2[i] = Integer.toString(gerentecontrolador.getAllGerente().get(i).getId_empleado());
+		}
+		String empleadoselect2 = (String) JOptionPane.showInputDialog(null, "Seleccione usuario", null, 0, null,
+				empleados2, empleados2[0]);
+		Gerente seleccionado = gerentecontrolador.getGerenteById(Integer.parseInt(empleadoselect2));
+		
+		LocalDate fecha = null;
+		
+		seleccionado.setNombre(validarNombre("Su nombre actual es: "+" "+seleccionado.getNombre()+" "+ "Ingrese el nuevo nombre: "));
+		seleccionado.setApellido(validarNombre("Su apellido es: "+" "+seleccionado.getApellido()+" "+"Ingrese el nuevo apellido"));
+		seleccionado.setFecha_nacimiento(validarFecha(fecha)); // Modificar despues
+		seleccionado.setDni(validarDni("Su dni es: " +seleccionado.getDni()+"Ingrese el nuevo dni"));
+		seleccionado.setTelefono(validarTelefono(JOptionPane.showInputDialog("Su telefono es: "+seleccionado.getTelefono()+"Ingrese el telefono")));
+		seleccionado.setCorreo(validarEmail(JOptionPane.showInputDialog("Su correo es: "+seleccionado.getCorreo()+"Ingrese el nuevo correo")));
+
+		seleccionado.setId_gerente(Integer.parseInt(JOptionPane.showInputDialog("Su id de agente es: "+seleccionado.getId_gerente()+"Ingrese el nuevo id de agente"))); // preguntarle a los chicos, si quieren que sea AI.
+		
+		do {
+		contraseña = JOptionPane.showInputDialog("Ingresar la nueva contraseña");
+		}while(!validarContraseña(contraseña));
+		
+		seleccionado.setContraseña((contraseña));
+		gerentecontrolador.updateGerente(seleccionado);;
+		
+	} catch (Exception e) {
+		JOptionPane.showMessageDialog(null, "Ocurrio un error"+e);}}}
+	
+	
+	
+	
+	
+	
+	
+	
+
 	
 }

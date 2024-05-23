@@ -6,7 +6,11 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class DatabaseConnection {
+<<<<<<< HEAD
     private static final String URL = "jdbc:mysql://localhost:3306/pruebasmag";
+=======
+    private static final String URL = "jdbc:mysql://localhost:3306/inmobiliaria";
+>>>>>>> mainPrueba
     private static final String USER = "root";
     private static final String PASSWORD = "";
     

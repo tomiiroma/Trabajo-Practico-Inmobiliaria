@@ -32,9 +32,15 @@ public class GerenteControlador implements GerenteRepository{
 	            ResultSet resultSet = statement.executeQuery();
 	       
 	            while (resultSet.next()) {
+<<<<<<< HEAD
 	            								// Idem con Agente consultarle al profe
 	            	Gerente Gerentes = new Gerente(resultSet.getInt("id_empleado"), resultSet.getString("nombre"), resultSet.getString("apellido"), resultSet.getDate("fecha_nacimiento").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("telefono"), resultSet.getString("correo"), resultSet.getString("tipo_empleado"), resultSet.getString("contraseña"),resultSet.getInt("id_gerente"));
 	                gerente.add(Gerentes);
+=======
+	            	Gerente Gerentes = new Gerente(resultSet.getInt("id_empleado"), resultSet.getString("nombre"), resultSet.getString("apellido"), resultSet.getDate("fecha_nacimiento").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("telefono"), resultSet.getString("correo"), resultSet.getString("tipo_empleado"), resultSet.getString("contraseña"),resultSet.getInt("id_gerente"));
+	                
+	            	gerente.add(Gerentes);
+>>>>>>> mainPrueba
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
@@ -66,11 +72,19 @@ public class GerenteControlador implements GerenteRepository{
 		@Override
 	    public void addGerente(Gerente gerente) {
 	        try {										// Podria utilizar un Inner join en una consulta insert	// Consultarle al profe sobre id_gerente. // Consultar si es valido.
+<<<<<<< HEAD
 	            PreparedStatement statement = connection.prepareStatement("INSERT INTO empleado (id_empleado,nombre, apellido, fecha_nacimiento, dni, telefono, correo, tipo_empleado, contraseña, id_gerente) VALUES (null, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 	            statement.setString(1, gerente.getNombre()); 
 	            statement.setString(2, gerente.getApellido());
 	            java.sql.Date fecha_nac = java.sql.Date.valueOf(gerente.getFecha_nacimiento());
 	            statement.setDate(3, fecha_nac);
+=======
+	            PreparedStatement statement = connection.prepareStatement("INSERT INTO empleado (id_empleado,nombre, apellido, fecha_nacimiento, dni, telefono, correo, contraseña) VALUES (null, ?, ?, ?, ?, ?, ?, ?)");
+	            statement.setString(1, gerente.getNombre()); // Verificar si id_empleado es auto increment y consultarle al profe si este valor debe ser null en java.
+	            statement.setString(2, gerente.getApellido());
+	            java.sql.Date fecha_nacimiento = java.sql.Date.valueOf(gerente.getFecha_nacimiento());
+	            statement.setDate(3, fecha_nacimiento);
+>>>>>>> mainPrueba
 	            statement.setInt(4, gerente.getDni());
 	            statement.setInt(5, gerente.getTelefono());
 	            statement.setString(6, gerente.getCorreo());
@@ -93,8 +107,13 @@ public class GerenteControlador implements GerenteRepository{
 	            PreparedStatement statement = connection.prepareStatement("UPDATE empleado SET nombre = ?, apellido = ?, fecha_nacimiento = ?, dni = ?, telefono = ?, correo = ?, contraseña = ? WHERE id_empleado = ?");
 	            statement.setString(1, gerente.getNombre());
 	            statement.setString(2, gerente.getApellido());
+<<<<<<< HEAD
 	            java.sql.Date fecha_nac = java.sql.Date.valueOf(gerente.getFecha_nacimiento());
 	            statement.setDate(3, fecha_nac);
+=======
+	            java.sql.Date fecha_nacimiento = java.sql.Date.valueOf(gerente.getFecha_nacimiento());
+	            statement.setDate(3, fecha_nacimiento);
+>>>>>>> mainPrueba
 	            statement.setInt(4, gerente.getDni());
 	            statement.setInt(5, gerente.getTelefono());
 	            statement.setNString(6, gerente.getCorreo());
@@ -128,4 +147,3 @@ public class GerenteControlador implements GerenteRepository{
 	    }
 
 }
-

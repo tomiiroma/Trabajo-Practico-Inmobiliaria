@@ -2,6 +2,8 @@ package trabajoInmobiliaria;
 
 import java.time.LocalDate;
 
+import controlador.PropietarioControlador;
+
 public class Propietario extends Cliente {
 	private int id_propietario;
 	
@@ -19,6 +21,18 @@ public class Propietario extends Cliente {
 	}
 
 	
-	
+	public void MostrarPropietario(PropietarioControlador propietario) {
+		  for (Propietario propietarios : propietario.getAllPropietario()) {
+		        System.out.println("ID Cliente: " + propietarios.getId_cliente());
+		        System.out.println("Nombre: " + propietarios.getNombre());
+		        System.out.println("Apellido: " + propietarios.getApellido());
+		        System.out.println("Correo: " + propietarios.getCorreo());
+		        System.out.println("Teléfono: " + propietarios.getTelefono());
+		        System.out.println("Fecha de Nacimiento: " + propietarios.getFecha_nacimiento());
+		        System.out.println("DNI: " + propietarios.getDni());
+		        System.out.println("ID Inquilino: " + propietarios.getId_propietario());
+		        System.out.println("----------------------------------------");
+		    }		
+	}
 
 }

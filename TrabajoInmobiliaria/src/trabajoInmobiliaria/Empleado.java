@@ -2,9 +2,10 @@ package trabajoInmobiliaria;
 
 import java.time.LocalDate;
 
-import javax.swing.JOptionPane;
 
-public class Empleado {
+
+
+public class Empleado implements InicioSesion{
 
 	private int id_empleado;
 	private String nombre;
@@ -17,9 +18,11 @@ public class Empleado {
 	private String contraseña;
 	
 
+
 	
 	
 	
+
 	
 	public Empleado(int id_empleado, String nombre, String apellido, LocalDate fecha_nacimiento, int dni, int telefono,
 			String correo, String tipo_empleado, String contraseña) {
@@ -59,6 +62,7 @@ public class Empleado {
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
+<<<<<<< HEAD
 	
 	
 	
@@ -67,6 +71,11 @@ public class Empleado {
 	}
 
 
+=======
+	public LocalDate getFecha_nacimiento() {
+		return fecha_nacimiento;
+	}
+>>>>>>> mainPrueba
 	public void setFecha_nacimiento(LocalDate fecha_nacimiento) {
 		this.fecha_nacimiento = fecha_nacimiento;
 	}
@@ -116,9 +125,6 @@ public class Empleado {
 	}
 
 
-	
-	
-	
 	
 	
 	

@@ -71,7 +71,7 @@ public class AlquilerControlador implements AlquilerRepository {
 	    public void addAlquiler(Alquiler alquiler) {
 	        try {
 	            PreparedStatement statement = connection.prepareStatement("INSERT INTO Alquiler (Inmueble.localizacion, Inquilino.nombre) VALUES (?, ?)");
-	            statement.setString(1, alquiler.getInmueble().getLocalizacion());
+	            statement.setString(1, alquiler.getInmueble().getDireccion());
 	            statement.setString(2, alquiler.getInquilino().getNombre());
 	            
 	            int rowsInserted = statement.executeUpdate();
@@ -87,7 +87,7 @@ public class AlquilerControlador implements AlquilerRepository {
 	    public void updateAlquiler(Alquiler alquiler) {
 	        try {
 	            PreparedStatement statement = connection.prepareStatement("UPDATE users SET name = ?, apellido = ? WHERE id = ?");
-	            statement.setString(1, alquiler.getInmueble().getLocalizacion());
+	            statement.setString(1, alquiler.getInmueble().getDireccion());
 	            statement.setString(2, alquiler.getInquilino().getNombre());
 	            statement.setInt(3, alquiler.getId_alquiler());
 	            

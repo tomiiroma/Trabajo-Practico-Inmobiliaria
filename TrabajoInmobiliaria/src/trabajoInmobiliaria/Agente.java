@@ -4,14 +4,20 @@ import java.time.LocalDate;
 
 import javax.swing.JOptionPane;
 
-public class Agente extends Empleado {
+public class Agente extends Empleado implements Validacion, InicioSesion{
 
 	private int id_agente;
 
 
-	public Agente(int id_empleado, String nombre, String apellido, LocalDate fecha_nac, int dni, int telefono,
+	
+	
+	
+
+
+
+	public Agente(int id_empleado, String nombre, String apellido, LocalDate fecha_nacimiento, int dni, int telefono,
 			String correo, String tipo_empleado, String contraseña, int id_agente) {
-		super(id_empleado, nombre, apellido, fecha_nac, dni, telefono, correo, tipo_empleado, contraseña);
+		super(id_empleado, nombre, apellido, fecha_nacimiento, dni, telefono, correo, tipo_empleado, contraseña);
 		this.id_agente = id_agente;
 	}
 

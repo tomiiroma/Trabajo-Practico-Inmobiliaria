@@ -25,11 +25,11 @@ public class InquilinoControlador implements InquilinoRepository{
 	    public List<Inquilino> getAllInquilino() {
 	        List<Inquilino> inquilinos = new ArrayList<>();
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM cliente"); // el id_inquilino deberia venir de otra tabla y conectar mediante un inner join Id_cliente = id_cliente.
+	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM cliente where tipo_cliente='Inquilino'"); 
 	            ResultSet resultSet = statement.executeQuery();
 	       
-	            while (resultSet.next()) { // id_inquilino no esta en la tabla cliente ""
-	            	Inquilino inquilino = new Inquilino(resultSet.getString("nombre"), resultSet.getInt("id_cliente"), resultSet.getString("apellido"), resultSet.getString("correo"), resultSet.getInt("telefono"), resultSet.getDate("fecha_nac").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("id_inquilino"));
+	            while (resultSet.next()) { 
+	            	Inquilino inquilino = new Inquilino(resultSet.getString("nombre"), resultSet.getInt("id_cliente"), resultSet.getString("apellido"), resultSet.getString("correo"), resultSet.getInt("telefono"), resultSet.getDate("fecha_nacimiento").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("id_inquilino"));
 	                inquilinos.add(inquilino);
 	           }
 	       } catch (SQLException e) {
@@ -51,7 +51,7 @@ public class InquilinoControlador implements InquilinoRepository{
 	            
 	            if (resultSet.next()) {
 	            							// id_inquilino no esta en la tabla cliente ""
-	                inquilino = new Inquilino(resultSet.getString("nombre"), resultSet.getInt("id_cliente"), resultSet.getString("apellido"), resultSet.getString("correo"), resultSet.getInt("telefono"), resultSet.getDate("fecha_nac").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("id_inquilino"));
+	                inquilino = new Inquilino(resultSet.getString("nombre"), resultSet.getInt("id_cliente"), resultSet.getString("apellido"), resultSet.getString("correo"), resultSet.getInt("telefono"), resultSet.getDate("fecha_nacimiento").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("id_inquilino"));
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
@@ -68,7 +68,7 @@ public class InquilinoControlador implements InquilinoRepository{
 	            statement.setString(3,inquilino.getApellido());
 	            statement.setString(4, inquilino.getCorreo());
 	            statement.setInt(5,inquilino.getTelefono());
-	            java.sql.Date fecha_nac = java.sql.Date.valueOf(inquilino.getFecha_nac());
+	            java.sql.Date fecha_nac = java.sql.Date.valueOf(inquilino.getFecha_nacimiento());
 	            statement.setDate(6, fecha_nac);
 	            statement.setInt(7, inquilino.getDni());
 	           
@@ -91,7 +91,7 @@ public class InquilinoControlador implements InquilinoRepository{
 	            statement.setString(2, inquilino.getApellido());
 	            statement.setString(3, inquilino.getCorreo());
 	            statement.setInt(4, inquilino.getTelefono());
-	            java.sql.Date fecha_nac = java.sql.Date.valueOf(inquilino.getFecha_nac());
+	            java.sql.Date fecha_nac = java.sql.Date.valueOf(inquilino.getFecha_nacimiento());
 	            statement.setDate(5, fecha_nac);
 	            statement.setInt(6, inquilino.getDni());
 	            statement.setInt(7, inquilino.getId_cliente());

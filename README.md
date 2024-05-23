@@ -33,7 +33,8 @@ El sistema de gestión de la inmobiliaria ofrece una variedad de funciones para 
 ### Diagramas
 
 #### Diagrama de Clases
-![Trabajo Practico Programación -diagrama Clases](https://github.com/crumbytom/Trabajo-Practico-Inmobiliaria/assets/121838575/d27970b8-aae9-49f3-9136-214c9fe7fc9b)
+![Trabajo Practico Programación -diagrama Clases](https://github.com/tomiiroma/Trabajo-Practico-Inmobiliaria/assets/121838575/399f9727-ea01-4127-b5bf-3746b4b0b62b)
+
 
 
 #### Diagrama de Entidad-Relación
@@ -52,7 +53,7 @@ El sistema de gestión de la inmobiliaria ofrece una variedad de funciones para 
 [Ver Elicitación de Requisitos](https://docs.google.com/document/d/1xmh8EnPiNzzSzMS_TK0IyI62A19I3GhWQTdsgg4EK3o/edit?usp=sharing)
 
 #### Especificación de Requisitos
-[Ver Especificación de Requisitos](https://docs.google.com/document/d/1WahZbAxO1OST5LTpUATMizDVynIiLyCeS1O3SBkWxvA/edit?usp=sharing)](https://drive.google.com/file/d/1cQAQaM0aBJnTzr5y-0lzpbXl6Ar9Rau9/view?usp=sharing)
+[Ver Especificación de Requisitos](https://docs.google.com/document/d/1WahZbAxO1OST5LTpUATMizDVynIiLyCeS1O3SBkWxvA/edit?usp=sharing)
 
 #### Base de Datos utilizada
 [Ver Base de Datos utilizada](https://drive.google.com/file/d/1P7TuTiVBMGVbriQVDdwxY2fCdreJlHLC/view?usp=sharing)
