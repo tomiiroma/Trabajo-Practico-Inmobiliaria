@@ -6,6 +6,7 @@ public class Inmueble {
 	private String tipo_inmueble;
 	private String condicion;
 	private String cantAmbientes;
+	private String piso;
 	private String barrio;
 	private String direccion;
 	private String descripcion;
@@ -22,8 +23,13 @@ public class Inmueble {
 
 
 
-	public Inmueble(int id_inmueble, String tipo_inmueble, String condicion, String cantAmbientes, String barrio,
-			String direccion, String descripcion, String antiguedad, String banio, String dormitorio,
+
+
+
+
+	
+	public Inmueble(int id_inmueble, String tipo_inmueble, String condicion, String cantAmbientes, String piso,
+			String barrio, String direccion, String descripcion, String antiguedad, String banio, String dormitorio,
 			double superficie_cubierta, double superficie_descubierta, double precio, boolean disponible,
 			boolean refaccionar, boolean apto_mascota, boolean patio) {
 		super();
@@ -31,6 +37,7 @@ public class Inmueble {
 		this.tipo_inmueble = tipo_inmueble;
 		this.condicion = condicion;
 		this.cantAmbientes = cantAmbientes;
+		this.piso = piso;
 		this.barrio = barrio;
 		this.direccion = direccion;
 		this.descripcion = descripcion;
@@ -48,7 +55,7 @@ public class Inmueble {
 
 
 
-	
+
 	public Inmueble() {
 		
 	}
@@ -411,10 +418,40 @@ public class Inmueble {
 		this.patio = patio;
 	}
 
+	
+	
 
 
 
 
+
+
+
+
+	public String getPiso() {
+		return piso;
+	}
+
+
+
+
+	public void setPiso(String piso) {
+		this.piso = piso;
+	}
+
+
+
+
+	public boolean isPatio() {
+		return patio;
+	}
+
+
+
+
+	public void setPatio(boolean patio) {
+		this.patio = patio;
+	}
 
 
 
@@ -424,6 +461,7 @@ public class Inmueble {
 		return "\nLista de Inmuebles"+"\n"
 				+ "\nId de Inmueble:" + id_inmueble 
 				+ "\nTipo de Inmueble: " + tipo_inmueble
+				+"\nPiso: "+piso
 				+"\nCantidad de Ambientes:"+cantAmbientes
 				+ "\nCondición:" + condicion
 				+ "\nDisponibilidad: " + disponible 

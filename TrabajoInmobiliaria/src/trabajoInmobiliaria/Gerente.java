@@ -633,6 +633,13 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 					inmuebleAmodificar.setTipo_inmueble(tipoInmueble);
 					JOptionPane.showMessageDialog(null, "Tipo de Inmueble actualizado");
 					
+					 if (!tipoInmueble.equals("Departamento")) {
+                         inmuebleAmodificar.setPiso(null);
+                     }else {
+                    	 String piso = obtenerPiso();
+                         inmuebleAmodificar.setPiso(piso);
+                     }
+					
 					
 					
 				}else if(opcionSeleccionada.equals("Condición")){
@@ -748,6 +755,10 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 		String tipoInmueble = obtenerTipoInmueble();
 		String condicion = obtenerCondicion();
 		String cantAmbientes = obtenerAmbientes();
+	    String piso = null; 
+	    if (tipoInmueble.equals("Departamento")) {
+	        piso = obtenerPiso();
+	    }
 		String barrio = obtenerBarrio();
 		String direccion = obtenerDireccion();
 		String descripcion = obtenerDescripcion();
@@ -762,8 +773,9 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 		boolean aptoMascota = obtenerMascota().equals("Si");
 		boolean tienePatio = obtenerLavadero().equals("Si");
 
+		
 		    // Agregar el inmueble al controlador
-		    inmuebleControlador.addInmueble(new Inmueble(0, tipoInmueble, condicion, cantAmbientes, barrio, direccion, descripcion, antiguedad,
+		    inmuebleControlador.addInmueble(new Inmueble(0, tipoInmueble, condicion, cantAmbientes, piso,barrio, direccion, descripcion, antiguedad,
 		            banios, dormitorio, superficieCubierta, superficieDescubierta, precio, disponible, refaccionar, aptoMascota, tienePatio));
 		}
 	
@@ -801,6 +813,12 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 	    return (String) JOptionPane.showInputDialog(null, "Seleccione la disponibilidad del Inmueble:",
 	            "Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, disponibleSeleccion, disponibleSeleccion[0]);
 	}
+	
+	
+	public String obtenerPiso() {
+	    return JOptionPane.showInputDialog("Ingrese en que piso se encuentra el Departamento");
+	}
+
 	
 	
 	public String obtenerRefaccion() {
