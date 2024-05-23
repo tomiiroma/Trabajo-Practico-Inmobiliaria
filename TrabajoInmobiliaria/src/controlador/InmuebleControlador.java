@@ -52,8 +52,8 @@ public class InmuebleControlador implements InmuebleRepository{
                             resultSet.getBoolean("disponible"),
                             resultSet.getBoolean("refaccionar"),
                             resultSet.getBoolean("apto_mascota"),
-                    		resultSet.getBoolean("patio"));     
-
+                    		resultSet.getBoolean("patio"),     
+	            			resultSet.getBoolean("activo")); 
           
 	            	   inmueble.add(inmuebles);
 	          }
@@ -93,7 +93,9 @@ public class InmuebleControlador implements InmuebleRepository{
                             resultSet.getBoolean("disponible"),
                             resultSet.getBoolean("refaccionar"),
                             resultSet.getBoolean("apto_mascota"),
-                    		resultSet.getBoolean("patio"));          
+                    		resultSet.getBoolean("patio"),     
+                    		resultSet.getBoolean("activo")); 
+
 	              
          
 	            }
@@ -110,8 +112,8 @@ public class InmuebleControlador implements InmuebleRepository{
 	    public void addInmueble(Inmueble inmueble) {
 	        try {                                               // id_propietario como clave foranea que conecta los datos del inmueble con el propietario.
 	            PreparedStatement statement = connection.prepareStatement(
-	            	    "INSERT INTO inmueble (id_inmueble, tipo_inmueble, condicion, disponible, cantAmbientes, piso, superficie_cubierta, superficie_descubierta, barrio, direccion, patio, descripcion, antiguedad, precio, banio, refaccionar, dormitorio, apto_mascota) " +
-	            	    	    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)"
+	            	    "INSERT INTO inmueble (id_inmueble, tipo_inmueble, condicion, disponible, cantAmbientes, piso, superficie_cubierta, superficie_descubierta, barrio, direccion, patio, descripcion, antiguedad, precio, banio, refaccionar, dormitorio, apto_mascota,activo) " +
+	            	    	    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
 	                );
 	            
 	            statement.setInt(1, inmueble.getId_inmueble());
@@ -132,7 +134,8 @@ public class InmuebleControlador implements InmuebleRepository{
 	            statement.setBoolean(16, inmueble.isRefaccionar());
 	            statement.setString(17, inmueble.getDormitorio());
 	            statement.setBoolean(18, inmueble.isApto_mascota());
-      
+	            statement.setBoolean(19, inmueble.isActivo());
+
 	            
 	            
 
@@ -151,7 +154,7 @@ public class InmuebleControlador implements InmuebleRepository{
 		public void updateInmueble(Inmueble inmueble) {
 		    try {
 		        PreparedStatement statement = connection.prepareStatement(
-		            "UPDATE inmueble SET tipo_inmueble = ?, condicion = ?, disponible = ?, cantAmbientes = ?, piso = ?, superficie_cubierta = ?, superficie_descubierta = ?, barrio = ?, direccion = ?, patio = ?, descripcion = ?, antiguedad = ?, precio = ?, banio = ?, refaccionar = ?, dormitorio = ?, apto_mascota = ? WHERE id_inmueble = ?"
+		            "UPDATE inmueble SET tipo_inmueble = ?, condicion = ?, disponible = ?, cantAmbientes = ?, piso = ?, superficie_cubierta = ?, superficie_descubierta = ?, barrio = ?, direccion = ?, patio = ?, descripcion = ?, antiguedad = ?, precio = ?, banio = ?, refaccionar = ?, dormitorio = ?, apto_mascota = ?, activo = ? WHERE id_inmueble = ?"
 		        );
 		        statement.setString(1, inmueble.getTipo_inmueble());
 		        statement.setString(2, inmueble.getCondicion());
@@ -170,7 +173,8 @@ public class InmuebleControlador implements InmuebleRepository{
 		        statement.setBoolean(15, inmueble.isRefaccionar());
 		        statement.setString(16, inmueble.getDormitorio());
 		        statement.setBoolean(17, inmueble.isApto_mascota());
-		        statement.setInt(18, inmueble.getId_inmueble());
+		        statement.setBoolean(18, inmueble.isActivo());
+		        statement.setInt(19, inmueble.getId_inmueble());
 
 		        int rowsUpdated = statement.executeUpdate();
 		        if (rowsUpdated > 0) {
@@ -180,6 +184,7 @@ public class InmuebleControlador implements InmuebleRepository{
 		        e.printStackTrace();
 		    }
 		}
+
 
 
 

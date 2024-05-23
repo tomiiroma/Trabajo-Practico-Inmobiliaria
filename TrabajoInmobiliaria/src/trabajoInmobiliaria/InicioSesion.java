@@ -25,6 +25,7 @@ public interface InicioSesion {
         for (Agente agente : agentes) {
             if (agente.getDni() == dni && agente.getContraseña().equals(cont)) {
                 System.out.print("leyo lista agente");
+                
 
                 inicio = true;
                 esAgente = true;

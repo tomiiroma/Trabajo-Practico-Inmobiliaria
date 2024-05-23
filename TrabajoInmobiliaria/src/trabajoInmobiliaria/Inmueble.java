@@ -20,6 +20,7 @@ public class Inmueble {
 	private boolean refaccionar;
 	private boolean apto_mascota;
 	private boolean patio;
+	private boolean activo;
 
 
 
@@ -27,11 +28,14 @@ public class Inmueble {
 
 
 
-	
+
+
+
+
 	public Inmueble(int id_inmueble, String tipo_inmueble, String condicion, String cantAmbientes, String piso,
 			String barrio, String direccion, String descripcion, String antiguedad, String banio, String dormitorio,
 			double superficie_cubierta, double superficie_descubierta, double precio, boolean disponible,
-			boolean refaccionar, boolean apto_mascota, boolean patio) {
+			boolean refaccionar, boolean apto_mascota, boolean patio, boolean activo) {
 		super();
 		this.id_inmueble = id_inmueble;
 		this.tipo_inmueble = tipo_inmueble;
@@ -51,6 +55,7 @@ public class Inmueble {
 		this.refaccionar = refaccionar;
 		this.apto_mascota = apto_mascota;
 		this.patio = patio;
+		this.activo = activo;
 	}
 
 
@@ -456,27 +461,41 @@ public class Inmueble {
 
 
 
+	public boolean isActivo() {
+		return activo;
+	}
+
+
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
+	}
+
+
+
+
 	@Override
 	public String toString() {
 		return "\nLista de Inmuebles"+"\n"
 				+ "\nId de Inmueble:" + id_inmueble 
 				+ "\nTipo de Inmueble: " + tipo_inmueble
 				+"\nPiso: "+piso
-				+"\nCantidad de Ambientes:"+cantAmbientes
-				+ "\nCondición:" + condicion
+				+"\nCantidad de Ambientes: "+cantAmbientes
+				+ "\nCondición: " + condicion
 				+ "\nDisponibilidad: " + disponible 
 				+ "\nm2 superficie cubierta: " + superficie_cubierta
 				+ "\nm2 superficie descubierta: " + superficie_descubierta 
 				+ "\nBarrio: " + barrio 
-				+"\nDireccion del Inmueble:"+direccion
+				+"\nDireccion del Inmueble: "+direccion
 				+ "\nPatio: "+ patio 
 				+ "\nDescripción: " + descripcion 
-				+ "Años de antiguedad:" + antiguedad 
+				+ "\nAños de antiguedad: " + antiguedad 
 				+ "\nPrecio del inmueble: " + precio
 				+ "\nCantidad de Baños: " + banio 
 				+ "\nSe debe refaccionar: " + refaccionar 
-				+ "\nCantidad de Dormitorios"+ dormitorio 
-				+ "\nEs apto para mascota: " + apto_mascota;
+				+ "\nCantidad de Dormitorios: "+ dormitorio 
+				+ "\nEs apto para mascota: " + apto_mascota
+				+"\nInmueble Activo: "+activo;
 	}
 
 
