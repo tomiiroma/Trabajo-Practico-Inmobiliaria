@@ -466,10 +466,12 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 	
 	
 	
-	public void modificarInmueble() {
+	public boolean modificarInmueble() {
+		
 		if(inmuebleControlador.getAllInmueble().isEmpty()){
 			JOptionPane.showMessageDialog(null, "No hay Inmuebles cargados" );
 		}else {
+			boolean repetir;
 			
 			String[] opcionesInmuebles = new String[inmuebleControlador.getAllInmueble().size()];
 			for (int i = 0; i < opcionesInmuebles.length; i++) {
@@ -504,12 +506,127 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 				
 	            if(inmuebleAmodificar !=null){
 	            	
+				String[] opcionesModificar = { "Tipo de Inmueble","Condición","Cantidad de Ambientes","Barrio","Dirección","Descripcion",
+						"Años Antiguedad del edificio","Cantidad de Baños","Cantidad de Dormitorios","m2 Superficie Cubierta",
+						"m2 Superficie Descubierta","Precio","Disponibilidad actual","Refacción","Apto para Mascotas","Patio"};
+					
+				String opcionSeleccionada = (String) JOptionPane.showInputDialog(null, "Seleccione un atributo para Modificar:",
+						"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, opcionesModificar,
+						opcionesModificar[0]);		
+				
+				
+				if(opcionSeleccionada.equals("Tipo de Inmueble")){
+					String tipoInmueble = obtenerTipoInmueble();
+					inmuebleAmodificar.setTipo_inmueble(tipoInmueble);
+					JOptionPane.showMessageDialog(null, "Tipo de Inmueble actualizado");
+					
+					
+					
+				}else if(opcionSeleccionada.equals("Condición")){
+					String condicion = obtenerCondicion();
+					inmuebleAmodificar.setCondicion(condicion);
+					JOptionPane.showMessageDialog(null, "Tipo de Condicion actualizada");
+				
+					
+					
+				}else if(opcionSeleccionada.equals("Cantidad de Ambientes")){
+					String cantAmbientes = obtenerAmbientes();
+					inmuebleAmodificar.setCantAmbientes(cantAmbientes);		
+					JOptionPane.showMessageDialog(null, "Cantidad de Ambientes Actualizada");
+					
+					
+					
+				}else if(opcionSeleccionada.equals("Barrio")){
+					String barrio = obtenerBarrio();
+					inmuebleAmodificar.setBarrio(barrio);
+					
+					
+					
+				}else if(opcionSeleccionada.equals("Dirección")){
+					String direccion = obtenerDireccion();
+					inmuebleAmodificar.setDireccion(direccion);
+					
+					
+					
+				}else if(opcionSeleccionada.equals("Descripcion")){
+					String descripcion = obtenerDescripcion();
+					inmuebleAmodificar.setDescripcion(descripcion);
+					
+					
+					
+				}else if(opcionSeleccionada.equals("Años Antiguedad del edificio")){
+					String antiguedad = obtenerAntiguedad();
+					inmuebleAmodificar.setAntiguedad(antiguedad);
+					
+					
+					
+				}else if(opcionSeleccionada.equals("Cantidad de Baños")){
+					String banios = obtenerBanios();
+					inmuebleAmodificar.setBanio(banios);
+					
+					
+					
+				}else if(opcionSeleccionada.equals("Cantidad de Dormitorios")){
+					String dormitorio = obtenerDormitorio();
+	        		inmuebleAmodificar.setDormitorio(dormitorio);
+
+					
+					
+				}else if(opcionSeleccionada.equals("Cantidad de Baños")){
+					String banio = obtenerBanios();
+	        		inmuebleAmodificar.setBanio(banio);
+
+					
+				}else if(opcionSeleccionada.equals("m2 Superficie Cubierta")) {
+					double superficieCubierta = obtenerM2Cubierta();
+					inmuebleAmodificar.setSuperficie_cubierta(superficieCubierta);	
+					
+					
+				}else if(opcionSeleccionada.equals("m2 Superficie Descubierta")){
+					double superficieDescubierta = obtenerM2Descubierta();
+					inmuebleAmodificar.setSuperficie_descubierta(superficieDescubierta);
+					
+					
+				}else if(opcionSeleccionada.equals("Precio")){
+					double precio = obtenerPrecio();
+					inmuebleAmodificar.setPrecio(precio);					
+					
+					
+				}else if(opcionSeleccionada.equals("Disponibilidad Actual")){
+					boolean disponible = obtenerDisponible().equals("Si");
+					inmuebleAmodificar.setDisponible(disponible);					
+					
+					
+				}else if(opcionSeleccionada.equals("Refacción")){
+					boolean refaccionar = obtenerRefaccion().equals("Si");
+					inmuebleAmodificar.setRefaccionar(refaccionar);				
+					
+					
+				}else if(opcionSeleccionada.equals("Apto para Mascotas")){
+					boolean aptoMascota = obtenerMascota().equals("Si");
+					inmuebleAmodificar.setApto_mascota(aptoMascota);				
+					
+					
+				}else if(opcionSeleccionada.equals("Patio")){
+					boolean tienePatio = obtenerLavadero().equals("Si");
+					inmuebleAmodificar.setpatio(tienePatio);
+					
+					
+				}else {
+					
+				}
+	            	
+				 inmuebleControlador.updateInmueble(inmuebleAmodificar);
+                 JOptionPane.showMessageDialog(null, "Inmueble actualizado exitosamente");
+        		
+
 	            	}
-	            JOptionPane.showMessageDialog(null, "Datos del Inmueble modificados exitosamente");
 
 				}			
 			}
+			return repetir;
 		}
+		return false;
 	}
 	
 	
