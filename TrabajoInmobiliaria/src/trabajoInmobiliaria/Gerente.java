@@ -1,6 +1,8 @@
 package trabajoInmobiliaria;
 
-import java.time.LocalDate; 
+import java.time.LocalDate;
+import java.util.Iterator;
+import java.util.LinkedList;
 
 import javax.swing.JOptionPane;
 
@@ -59,10 +61,8 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 			String opcionSeleccionada = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
 					"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, opcionesGerente,
 					opcionesGerente[0]);
-	
-			
-			try {
 
+			try {
 			
 			switch (opcionSeleccionada) {
 			
@@ -83,10 +83,10 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 						agregarInmueble();
 						
 						
-
-						
 						
 					}else if(gestionSeleccionada.equals("Eliminar Inmueble")){
+						
+						eliminarInmueble();
 						
 		
 					}else {
@@ -452,284 +452,388 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 	
 	
 	
-	public void agregarInmueble() {
+	
+	public boolean agregarInmueble() {
+		
+		boolean repetir;
+		
 		JOptionPane.showMessageDialog(null, "Cargar Datos del Inmueble");
+		
+		
+		do {
+			
+		repetir = true;
 		
 		String[] tipoInmueble = { "Casa","Departamento"};
 		String inmuebleSeleccionado = (String) JOptionPane.showInputDialog(null, "Seleccione tipo de Propiedad:",
 				"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, tipoInmueble,
 				tipoInmueble[0]);
+				
 		
 		String[] tipoCondicion = { "Excelente","Muy bueno","Bueno","Regular","Malo"};
 		String condicionSeleccionada = (String) JOptionPane.showInputDialog(null, "Seleccione el tipo de condicion del Inmueble:",
 				"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, tipoCondicion,
 				tipoCondicion[0]);
 		
+		String cantAmbientes = JOptionPane.showInputDialog("Ingrese la cantidad de Ambientes del Inmueble");
+
+		String[] barrio = { 
+				   "Agronomía", "Almagro", "Balvanera", "Barracas", "Belgrano", "Boedo", "Caballito", "Chacarita", 
+				   "Coghlan", "Colegiales", "Constitución", "Flores", "Floresta", "La Boca", "La Paternal", "Liniers", 
+				   "Mataderos", "Monte Castro", "Monserrat", "Nueva Pompeya", "Núñez", "Palermo", "Parque Avellaneda", 
+				   "Parque Chacabuco", "Parque Chas", "Parque Patricios", "Puerto Madero", "Recoleta", "Retiro", 
+				   "Saavedra", "San Cristóbal", "San Nicolás", "San Telmo", "Vélez Sársfield", "Versalles", 
+				   "Villa Crespo", "Villa del Parque", "Villa Devoto", "Villa General Mitre", "Villa Lugano", 
+				   "Villa Luro", "Villa Ortúzar", "Villa Pueyrredón", "Villa Real", "Villa Riachuelo", 
+				   "Villa Santa Rita", "Villa Soldati", "Villa Urquiza"};	
+		String barrioSeleccion = (String) JOptionPane.showInputDialog(null, "Seleccione El Barrio donde se encuentra el inmueble",
+		"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, barrio,barrio[0]); 
 		
-		String[] tipoDisponible = { "Si","No"};
-		String disponibilidadSeleccioanda = (String) JOptionPane.showInputDialog(null, "¿Actualmente el Inmueble esta disponible?",
-				"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, tipoDisponible,
-				tipoDisponible[0]);
 		
 		
-		if(disponibilidadSeleccioanda.equals("si")){ // disponible es true
-			double superficie_cubierta = Double.parseDouble(JOptionPane.showInputDialog("Ingrese superficie_cubierta"));
-			double superficie_descubierta = Double.parseDouble(JOptionPane.showInputDialog("Ingrese superficie descubierta"));		
-	        String locacion = JOptionPane.showInputDialog("Ingrese la locación del inmueble: ");
-	        String lavadero = JOptionPane.showInputDialog("Ingrese la cantidad de lavaderos que tiene el Inmueble");
-	        String descripcion = JOptionPane.showInputDialog("Ingrese una descripción del inmueble:");
-	        int antiguedad = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la antiguedad que tiene el Inmueble"));
-			double precio = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el Precio del Inmueble"));		
-			String banios = JOptionPane.showInputDialog("Ingrese la cantidad de baños");
+		String direccion = JOptionPane.showInputDialog("Ingrese la direccion del Inmueble");	
+		
+		String descripcion = JOptionPane.showInputDialog("Ingrese una descripción del inmueble:");
+				
+		String antiguedad = JOptionPane.showInputDialog("Ingrese la antiguedad que tiene el Edficio");
+		
+		String banios = JOptionPane.showInputDialog("Ingrese la cantidad de Baños");
+		
+		String dormitorio= JOptionPane.showInputDialog("Ingrese la cantidad de Dormitorios");
+		
+		double superficie_cubierta = Double.parseDouble(JOptionPane.showInputDialog("Ingrese los m2 de de Superficie Cubierta"));
+		
+		double superficie_descubierta = Double.parseDouble(JOptionPane.showInputDialog("Ingrese los m2 de superficie descubierta"));		
+	       
+		double precio = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el Precio del Inmueble"));		
 	        
-			String[] refaccionar = { "Si","No"};			
-			String refaccionarSeleccion = (String) JOptionPane.showInputDialog(null, "¿Se debe refaccionar el Inmueble?",
-					"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, refaccionar,
-					refaccionar[0]);
+		String[] disponible = { "Si","No"};			
+		String disponibleSeleccion = (String) JOptionPane.showInputDialog(null, "¿Actualmente esta disponible el Inmueble?",
+				"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, disponible,disponible[0]);
+		
+		if(disponibleSeleccion.equals("Si")){//EL INMUEBLE ESTA DISPONIBLE = TRUE
 			
-
+			String[] refaccion = { "Si","No"};			
+			String refaccionSeleccion = (String) JOptionPane.showInputDialog(null, "¿Se debe refaccionar el Inmueble?",
+					"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, refaccion,refaccion[0]);
 			
-
-			if(refaccionarSeleccion.equalsIgnoreCase("Si")){ //refaccionar es true
-				String[] estado = { "Excelente","Muy Bueno","Bueno","Regular","Malo"}; //cambiar o borrar
-				String estadoSeleccion = (String) JOptionPane.showInputDialog(null, "Seleccione el estado del Inmueble",
-						"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, estado,
-						estado[0]);
+			if(refaccionSeleccion.equals("Si")){ //EL INMUEBLE SE DEBE REFACCIONAR = TRUE
 				
-				String dormitorio = JOptionPane.showInputDialog("Ingrese la cantidad de dormitorios:");
-		        String cocina = JOptionPane.showInputDialog("Ingrese la cantidad de cocinas:");
-		        
-				String[] aptoMascotas = { "Si","No"};
-				String aptoMascotasSeleccion = (String) JOptionPane.showInputDialog(null, "¿El inmueble es apto para Mascotas?",
-						"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, aptoMascotas,
-						aptoMascotas[0]);
+				String[] apto_mascota = { "Si","No"};			
+				String apto_mascotaSeleccion = (String) JOptionPane.showInputDialog(null, "¿El inmueble es apto para mascotas?",
+						"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, apto_mascota,apto_mascota[0]);
 				
-				if(aptoMascotasSeleccion.equals("Si")){				
-					inmuebleControlador.addInmueble(new Inmueble(0,
-							inmuebleSeleccionado,
-							condicionSeleccionada,
-							true, // disponible	
-							superficie_cubierta,
-							superficie_descubierta,
-							locacion,
-							lavadero,
-							descripcion,
-							antiguedad,
-							precio,
-							banios,
-							true, // refaccionar
-							estadoSeleccion,
-							dormitorio,
-							cocina,
-							true));	// apto mascotas				
-				}else {
-					inmuebleControlador.addInmueble(new Inmueble(0,
-							inmuebleSeleccionado,
-							condicionSeleccionada,
-							true,
-							superficie_cubierta,
-							superficie_descubierta,
-							locacion,
-							lavadero,
-							descripcion,
-							antiguedad,
-							precio,
-							banios,
-							true,
-							estadoSeleccion,
-							dormitorio,
-							cocina,
-							false)); // no apto mascotas
-				}		       
-				
-			}else { //refaccionar es false
-				String[] estado = { "Excelente","Muy Bueno","Bueno","Regular","Malo"};		
-				String estadoSeleccion = (String) JOptionPane.showInputDialog(null, "Seleccione el estado del Inmueble",
-						"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, estado,
-						estado[0]);
-				
-				String dormitorio = JOptionPane.showInputDialog("Ingrese la cantidad de dormitorios:");
-		        String cocina = JOptionPane.showInputDialog("Ingrese la cantidad de cocinas:");
-		        
-				String[] aptoMascotas = { "Si","No"};			
-				String aptoMascotasSeleccion = (String) JOptionPane.showInputDialog(null, "¿El inmueble es apto para Mascotas?",
-						"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, aptoMascotas,
-						aptoMascotas[0]);
-				
-				if(aptoMascotasSeleccion.equals("Si")){ // apto para mascotas
-					inmuebleControlador.addInmueble(new Inmueble(0,
-							inmuebleSeleccionado,
-							condicionSeleccionada,
-							true, //disponible
-							superficie_cubierta,
-							superficie_descubierta,
-							locacion,
-							lavadero,
-							descripcion,
-							antiguedad,
-							precio,
-							banios,
-							false,//refaccion
-							estadoSeleccion,
-							dormitorio,
-							cocina,
-							true));	// si es apto para mascotas			
-				}else {
-					inmuebleControlador.addInmueble(new Inmueble(0,
-							inmuebleSeleccionado,
-							condicionSeleccionada,
-							true,
-							superficie_cubierta,
-							superficie_descubierta,
-							locacion,
-							lavadero,
-							descripcion,
-							antiguedad,
-							precio,
-							banios,
-							false ,
-							estadoSeleccion,
-							dormitorio,
-							cocina,
-							false));	// si es apto para mascotas			
-				}
-			}
-
-			
-		}else { //disponible es false
-			double superficie_cubierta = Double.parseDouble(JOptionPane.showInputDialog("Ingrese superficie_cubierta"));
-			double superficie_descubierta = Double.parseDouble(JOptionPane.showInputDialog("Ingrese superficie descubierta"));		
-	        String locacion = JOptionPane.showInputDialog("Ingrese la locación del inmueble: ");
-	        String lavadero = JOptionPane.showInputDialog("Ingrese la cantidad de lavaderos que tiene el Inmueble");
-	        String descripcion = JOptionPane.showInputDialog("Ingrese una descripción del inmueble:");
-	        int antiguedad = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la antiguedad que tiene el Inmueble"));
-			double precio = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el Precio del Inmueble"));		
-			String banios = JOptionPane.showInputDialog("Ingrese la cantidad de baños");
-			
-			String[] refaccionar = { "Si","No"};			
-			String refaccionarSeleccion = (String) JOptionPane.showInputDialog(null, "¿Se debe refaccionar el Inmueble?",
-					"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, refaccionar,
-					refaccionar[0]);
-			
-			if(refaccionarSeleccion.equalsIgnoreCase("Si")){ // refaccion true
-				String[] estado = { "Excelente","Muy Bueno","Bueno","Regular","Malo"};	
-				String estadoSeleccion = (String) JOptionPane.showInputDialog(null, "Seleccione el estado del Inmueble",
-						"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, estado,
-						estado[0]);
-				
-				String dormitorio = JOptionPane.showInputDialog("Ingrese la cantidad de dormitorios:");
-		        String cocina = JOptionPane.showInputDialog("Ingrese la cantidad de cocinas:");
-		        
-				String[] aptoMascotas = { "Si","No"};				
-				String aptoMascotasSeleccion = (String) JOptionPane.showInputDialog(null, "¿El inmueble es apto para Mascotas?",
-						"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, aptoMascotas,
-						aptoMascotas[0]);
-				
-				if(aptoMascotasSeleccion.equals("Si")){
-					inmuebleControlador.addInmueble(new Inmueble(0,
-							inmuebleSeleccionado,
-							condicionSeleccionada,
-							false, // disponible
-							superficie_cubierta,
-							superficie_descubierta,
-							locacion,
-							lavadero,
-							descripcion,
-							antiguedad,
-							precio,
-							banios,
-							true, //refaccion
-							estadoSeleccion,
-							dormitorio,
-							cocina,
-							true));	// si es apto para mascotas		
-				
-				}else {
-					inmuebleControlador.addInmueble(new Inmueble(0,
-							inmuebleSeleccionado,
-							condicionSeleccionada,
-							false, //disponible
-							superficie_cubierta,
-							superficie_descubierta,
-							locacion,
-							lavadero,
-							descripcion,
-							antiguedad,
-							precio,
-							banios,
-							true,  //refaccion
-							estadoSeleccion,
-							dormitorio,
-							cocina,
-							false)); // no es apto para mascotas		
-				}
-				
-				 
-			}else { // refaccion false
-				String[] estado = { "Excelente","Muy Bueno","Bueno","Regular","Malo"};
-				
-				String estadoSeleccion = (String) JOptionPane.showInputDialog(null, "Seleccione el estado del Inmueble",
-						"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, estado,
-						estado[0]);
-				
-				String dormitorio = JOptionPane.showInputDialog("Ingrese la cantidad de dormitorios:");
-		        String cocina = JOptionPane.showInputDialog("Ingrese la cantidad de cocinas:");
-		        
-		        
-				String[] aptoMascotas = { "Si","No"};
-				
-				String aptoMascotasSeleccion = (String) JOptionPane.showInputDialog(null, "¿El inmueble es apto para Mascotas?",
-						"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, aptoMascotas,
-						aptoMascotas[0]);
-				
-				if(aptoMascotasSeleccion.equals("Si")){
-					inmuebleControlador.addInmueble(new Inmueble(0,
-							inmuebleSeleccionado,
-							condicionSeleccionada,
-							false, //disponible
-							superficie_cubierta,
-							superficie_descubierta,
-							locacion,
-							lavadero,
-							descripcion,
-							antiguedad,
-							precio,
-							banios,
-							false,  //refaccion
-							estadoSeleccion,
-							dormitorio,
-							cocina,
-							true)); // no es apto para mascotas	
+				if(apto_mascotaSeleccion.equals("Si")){//EL INMUEBLE ES APTO MASCOTA = TRUE
 					
-				}else {
-					inmuebleControlador.addInmueble(new Inmueble(0,
-							inmuebleSeleccionado,
-							condicionSeleccionada,
-							false, //disponible
-							superficie_cubierta,
-							superficie_descubierta,
-							locacion,
-							lavadero,
-							descripcion,
-							antiguedad,
-							precio,
-							banios,
-							false,  //refaccion
-							estadoSeleccion,
-							dormitorio,
-							cocina,
-							false)); // no es apto para mascotas	
+					String[] lavadero = { "Si","No"};			
+					String lavaderoSeleccion = (String) JOptionPane.showInputDialog(null, "¿El inmueble posee lavadero?",
+							"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, lavadero,lavadero[0]);
+					
+					if(lavaderoSeleccion.equals("Si")){//EL INMUEBLE tiene lavadero = TRue
+						
+						inmuebleControlador.addInmueble(new Inmueble(0,
+								inmuebleSeleccionado,
+								condicionSeleccionada,
+								cantAmbientes,
+								barrioSeleccion,
+								direccion,
+								descripcion,
+								antiguedad,
+								banios,
+								dormitorio,
+								superficie_cubierta,
+								superficie_descubierta,
+								precio,
+								true,
+								true,
+								true,
+								true));
+														
+					}else {//EL INMUEBLE NO lavadero = FALSE
+						inmuebleControlador.addInmueble(new Inmueble(0,
+								inmuebleSeleccionado,
+								condicionSeleccionada,
+								cantAmbientes,
+								barrioSeleccion,
+								direccion,
+								descripcion,
+								antiguedad,
+								banios,
+								dormitorio,
+								superficie_cubierta,
+								superficie_descubierta,
+								precio,
+								true,
+								true,
+								true,
+								false));
+					}
+					
+					
+					
+				}else {//EL INMUEBLE NO ES APTO MASCOTA = FALSE
+					
 				}
 				
+				
+				
+				
+				
+			}else {//EL INMUEBLE NO DEBE REFACCIONAR = FALSE
+				
 			}
-	        
+			
+			
+			
+			
+			
+			
+		}else {//EL INMUEBLE NO ESTA DISPONIBLE = FALSE
+			String[] refaccion = { "Si","No"};			
+			String refaccionSeleccion = (String) JOptionPane.showInputDialog(null, "¿Se debe refaccionar el Inmueble?",
+					"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, refaccion,refaccion[0]);
+			
+			if(refaccionSeleccion.equals("Si")){//Disponible = false && refaccion true
+				
+				String[] apto_mascota = { "Si","No"};			
+				String apto_mascotaSeleccion = (String) JOptionPane.showInputDialog(null, "¿El inmueble es apto para mascotas?",
+						"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, apto_mascota,apto_mascota[0]);
+				
+				if(apto_mascotaSeleccion.equals("Si")){//Disponible = false && refaccion true && apto mascota true
+					
+					String[] lavadero = { "Si","No"};			
+					String lavaderoSeleccion = (String) JOptionPane.showInputDialog(null, "¿El inmueble posee lavadero?",
+							"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, lavadero,lavadero[0]);
+					
+					if(lavaderoSeleccion.equals("Si")){//Disponible = false && refaccion true && apto mascota true && lavadero true
+						inmuebleControlador.addInmueble(new Inmueble(0,
+								inmuebleSeleccionado,
+								condicionSeleccionada,
+								cantAmbientes,
+								barrioSeleccion,
+								direccion,
+								descripcion,
+								antiguedad,
+								banios,
+								dormitorio,
+								superficie_cubierta,
+								superficie_descubierta,
+								precio,
+								false,
+								true,
+								true,
+								true));			
+						
+					}else {//Disponible = false && refaccion true && apto mascota true && lavadero false
+						inmuebleControlador.addInmueble(new Inmueble(0,
+								inmuebleSeleccionado,
+								condicionSeleccionada,
+								cantAmbientes,
+								barrioSeleccion,
+								direccion,
+								descripcion,
+								antiguedad,
+								banios,
+								dormitorio,
+								superficie_cubierta,
+								superficie_descubierta,
+								precio,
+								false,
+								true,
+								true,
+								false));
+						
+					}
+					
+					
+					
+				}else {//Disponible = false && refaccion true && apto mascota false
+					
+					String[] lavadero = { "Si","No"};			
+					String lavaderoSeleccion = (String) JOptionPane.showInputDialog(null, "¿El inmueble posee lavadero?",
+							"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, lavadero,lavadero[0]);
+					
+					if(lavaderoSeleccion.equals("Si")){//Disponible = false && refaccion true && apto mascota false && lavadero true
+						inmuebleControlador.addInmueble(new Inmueble(0,
+								inmuebleSeleccionado,
+								condicionSeleccionada,
+								cantAmbientes,
+								barrioSeleccion,
+								direccion,
+								descripcion,
+								antiguedad,
+								banios,
+								dormitorio,
+								superficie_cubierta,
+								superficie_descubierta,
+								precio,
+								false,
+								true,
+								false,
+								true));
+						
+						
+					}else {//Disponible = false && refaccion true && apto mascota false && lavadero false
+						inmuebleControlador.addInmueble(new Inmueble(0,
+								inmuebleSeleccionado,
+								condicionSeleccionada,
+								cantAmbientes,
+								barrioSeleccion,
+								direccion,
+								descripcion,
+								antiguedad,
+								banios,
+								dormitorio,
+								superficie_cubierta,
+								superficie_descubierta,
+								precio,
+								false,
+								true,
+								false,
+								false));
+					}
+					
+				}
+				
+	
+			}else {//Disponible = false && refaccion false
+				String[] apto_mascota = { "Si","No"};			
+				String apto_mascotaSeleccion = (String) JOptionPane.showInputDialog(null, "¿El inmueble es apto para mascotas?",
+						"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, apto_mascota,apto_mascota[0]);
+				
+				if(apto_mascotaSeleccion.equals("Si")){//Disponible = false && refaccion false && mascota true
+					
+					String[] lavadero = { "Si","No"};			
+					String lavaderoSeleccion = (String) JOptionPane.showInputDialog(null, "¿El inmueble posee lavadero?",
+							"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, lavadero,lavadero[0]);
+					
+					if(lavaderoSeleccion.equals("Si")){//Disponible = false && refaccion false && mascota true && lavadero true
+						inmuebleControlador.addInmueble(new Inmueble(0,
+								inmuebleSeleccionado,
+								condicionSeleccionada,
+								cantAmbientes,
+								barrioSeleccion,
+								direccion,
+								descripcion,
+								antiguedad,
+								banios,
+								dormitorio,
+								superficie_cubierta,
+								superficie_descubierta,
+								precio,
+								false,
+								false,
+								true,
+								true));
+								
+					}else {//Disponible = false && refaccion false && mascota true && lavadero false						
+						inmuebleControlador.addInmueble(new Inmueble(0,
+								inmuebleSeleccionado,
+								condicionSeleccionada,
+								cantAmbientes,
+								barrioSeleccion,
+								direccion,
+								descripcion,
+								antiguedad,
+								banios,
+								dormitorio,
+								superficie_cubierta,
+								superficie_descubierta,
+								precio,
+								false,
+								false,
+								true,
+								false));						
+					}		
+					
+				}else {//Disponible = false && refaccion false && mascota false
+					String[] lavadero = { "Si","No"};			
+					String lavaderoSeleccion = (String) JOptionPane.showInputDialog(null, "¿El inmueble posee lavadero?",
+							"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, lavadero,lavadero[0]);
+					if(lavaderoSeleccion.equals("Si")){//Disponible = false && refaccion false && mascota false && lavadero true
+						inmuebleControlador.addInmueble(new Inmueble(0,
+								inmuebleSeleccionado,
+								condicionSeleccionada,
+								cantAmbientes,
+								barrioSeleccion,
+								direccion,
+								descripcion,
+								antiguedad,
+								banios,
+								dormitorio,
+								superficie_cubierta,
+								superficie_descubierta,
+								precio,
+								false,
+								false,
+								false,
+								true));	
+						
+						
+						
+					}else {//Disponible = false && refaccion false && mascota false && lavadero false
+						inmuebleControlador.addInmueble(new Inmueble(0,
+								inmuebleSeleccionado,
+								condicionSeleccionada,
+								cantAmbientes,
+								barrioSeleccion,
+								direccion,
+								descripcion,
+								antiguedad,
+								banios,
+								dormitorio,
+								superficie_cubierta,
+								superficie_descubierta,
+								precio,
+								false,
+								false,
+								false,
+								false));	
+					}
+					
+					
+				}
+			}
+			
 		}
 		
+		
 
+			
+			
+			
+		} while (repetir);	
+		return true;	
+	}
+	
+	
+	
+	
+	
+	public void eliminarInmueble() {
+		JOptionPane.showMessageDialog(null, "Eliminar Inmueble");
 		
 		
+		
+		String[] borrarInmueble = new String[inmuebleControlador.getAllInmueble().size()];
+
+		for (int i = 0; i < borrarInmueble.length ; i++) {
+			borrarInmueble[i] = Integer.toString(inmuebleControlador.getAllInmueble().get(i).getId_inmueble());
+
+		}
+		
+	    String inmuebleSeleccion = (String) JOptionPane.showInputDialog(null, "Seleccione Inmueble", "Eliminar Inmueble",
+	    		JOptionPane.QUESTION_MESSAGE,
+	        null,
+	        borrarInmueble,
+	        borrarInmueble[0]
+	    );
+		
+		
+		inmuebleControlador.deleteInmueble(Integer.parseInt(inmuebleSeleccion));
 		
 	}
+	
 	
 	
 }

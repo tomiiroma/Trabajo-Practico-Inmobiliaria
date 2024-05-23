@@ -5,46 +5,47 @@ public class Inmueble {
 	private int id_inmueble;
 	private String tipo_inmueble;
 	private String condicion;
-	private boolean disponible;
+	private String cantAmbientes;
+	private String barrio;
+	private String direccion;
+	private String descripcion;
+	private String antiguedad;
+	private String banio;
+	private String dormitorio;
 	private double superficie_cubierta;
 	private double superficie_descubierta;
-	private String locacion;
-	private String lavadero;
-	private String descripcion;
-	private int antiguedad;
 	private double precio;
-	private String banio;
+	private boolean disponible;
 	private boolean refaccionar;
-	private String estado;
-	private String dormitorio;
-	private String cocina;
 	private boolean apto_mascota;
+	private boolean lavadero;
 	
 
 
 
-	public Inmueble(int id_inmueble, String tipo_inmueble, String condicion, boolean disponible,
-			double superficie_cubierta, double superficie_descubierta, String locacion, String lavadero,
-			String descripcion, int antiguedad, double precio, String banio, boolean refaccionar, String estado,
-			String dormitorio, String cocina, boolean apto_mascota) {
+
+	public Inmueble(int id_inmueble, String tipo_inmueble, String condicion, String cantAmbientes, String barrio,
+			String direccion, String descripcion, String antiguedad, String banio, String dormitorio,
+			double superficie_cubierta, double superficie_descubierta, double precio, Boolean disponible,
+			boolean refaccionar, boolean apto_mascota, boolean lavadero) {
 		super();
 		this.id_inmueble = id_inmueble;
 		this.tipo_inmueble = tipo_inmueble;
 		this.condicion = condicion;
-		this.disponible = disponible;
-		this.superficie_cubierta = superficie_cubierta;
-		this.superficie_descubierta = superficie_descubierta;
-		this.locacion = locacion;
-		this.lavadero = lavadero;
+		this.cantAmbientes = cantAmbientes;
+		this.barrio = barrio;
+		this.direccion = direccion;
 		this.descripcion = descripcion;
 		this.antiguedad = antiguedad;
-		this.precio = precio;
 		this.banio = banio;
-		this.refaccionar = refaccionar;
-		this.estado = estado;
 		this.dormitorio = dormitorio;
-		this.cocina = cocina;
+		this.superficie_cubierta = superficie_cubierta;
+		this.superficie_descubierta = superficie_descubierta;
+		this.precio = precio;
+		this.disponible = disponible;
+		this.refaccionar = refaccionar;
 		this.apto_mascota = apto_mascota;
+		this.lavadero = lavadero;
 	}
 
 
@@ -164,8 +165,23 @@ public class Inmueble {
 
 
 
-	public String getlocacion() {
-		return locacion;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public String getBarrio() {
+		return barrio;
 	}
 
 
@@ -175,8 +191,8 @@ public class Inmueble {
 
 
 
-	public void setlocacion(String locacion) {
-		this.locacion = locacion;
+	public void setBarrio(String barrio) {
+		this.barrio = barrio;
 	}
 
 
@@ -186,8 +202,8 @@ public class Inmueble {
 
 
 
-	public String getLavadero() {
-		return lavadero;
+	public String getDireccion() {
+		return direccion;
 	}
 
 
@@ -197,9 +213,13 @@ public class Inmueble {
 
 
 
-	public void setLavadero(String lavadero) {
-		this.lavadero = lavadero;
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
 	}
+
+
+
+
 
 
 
@@ -230,7 +250,34 @@ public class Inmueble {
 
 
 
-	public int getAntiguedad() {
+
+
+
+
+
+	public String getCantAmbientes() {
+		return cantAmbientes;
+	}
+
+
+
+
+
+
+
+
+	public void setCantAmbientes(String cantAmbientes) {
+		this.cantAmbientes = cantAmbientes;
+	}
+
+
+
+
+
+
+
+
+	public String getAntiguedad() {
 		return antiguedad;
 	}
 
@@ -241,7 +288,7 @@ public class Inmueble {
 
 
 
-	public void setAntiguedad(int antiguedad) {
+	public void setAntiguedad(String antiguedad) {
 		this.antiguedad = antiguedad;
 	}
 
@@ -297,13 +344,6 @@ public class Inmueble {
 		this.refaccionar = refaccionar;
 	}
 
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
 
 	public String getDormitorio() {
 		return dormitorio;
@@ -314,15 +354,6 @@ public class Inmueble {
 		this.dormitorio = dormitorio;
 	}
 
-
-	public String getCocina() {
-		return cocina;
-	}
-
-
-	public void setCocina(String cocina) {
-		this.cocina = cocina;
-	}
 
 
 
@@ -347,6 +378,82 @@ public class Inmueble {
 	public void setCondicion(String condicion) {
 		this.condicion = condicion;
 	}
+
+
+
+
+
+
+
+
+	public boolean isLavadero() {
+		return lavadero;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public void setLavadero(boolean lavadero) {
+		this.lavadero = lavadero;
+	}
+
+
+
+
+
+
+
+
+
+	@Override
+	public String toString() {
+		return "\nLista de Inmuebles"+"\n"
+				+ "\nId de Inmueble:" + id_inmueble 
+				+ "\nTipo de Inmueble: " + tipo_inmueble
+				+"\nCantidad de Ambientes:"+cantAmbientes
+				+ "\nCondición:" + condicion
+				+ "\nDisponibilidad: " + disponible 
+				+ "\nm2 superficie cubierta: " + superficie_cubierta
+				+ "\nm2 superficie descubierta: " + superficie_descubierta 
+				+ "\nBarrio: " + barrio 
+				+"\nDireccion del Inmueble:"+direccion
+				+ "\nCantidad de lavaderos: "+ lavadero 
+				+ "\nDescripción: " + descripcion 
+				+ "Años de antiguedad:" + antiguedad 
+				+ "\nPrecio del inmueble: " + precio
+				+ "\nCantidad de Baños: " + banio 
+				+ "\nSe debe refaccionar: " + refaccionar 
+				+ "\nCantidad de Dormitorios"+ dormitorio 
+				+ "\nEs apto para mascota: " + apto_mascota;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
