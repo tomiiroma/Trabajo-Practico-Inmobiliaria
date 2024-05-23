@@ -22,6 +22,7 @@ class Main{
 
 		Agente agente1 = new Agente();
 		Gerente gerente1 = new Gerente();
+<<<<<<< HEAD
 		Empleado empleado = new Empleado();
 		
 		
@@ -30,6 +31,10 @@ class Main{
 		
 		empleado.IniciarSesion();
 		
+=======
+		
+
+>>>>>>> origin/Tomi
 		do {
 
 			String[] opcionesRoles = { "Agente", "Gerente", "Salir" };
@@ -44,7 +49,9 @@ class Main{
 			} else if (eleccionElegida1 == 1) {
 				
 				gerente1.menuGerente();
+				
 
+				
 
 			} else {
 				JOptionPane.showMessageDialog(null, "Hasta luego!");

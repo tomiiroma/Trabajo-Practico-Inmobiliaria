@@ -175,6 +175,13 @@ public interface Validacion {
 	
 	
 	
+<<<<<<< HEAD
+=======
+	
+	
+	
+	
+>>>>>>> origin/Tomi
 }
 
 	

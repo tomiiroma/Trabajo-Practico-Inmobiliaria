@@ -17,6 +17,7 @@ public class Empleado implements InicioSesion{
 	private String tipo_empleado;
 	private String contraseña;
 	
+<<<<<<< HEAD
 
 	
 	
@@ -24,6 +25,11 @@ public class Empleado implements InicioSesion{
 	
 	public Empleado(int id_empleado, String nombre, String apellido, LocalDate fecha_nacimiento, int dni, int telefono,
 			String correo, String tipo_empleado, String contraseña) {
+=======
+	
+	public Empleado(int id_empleado, String nombre, String apellido, LocalDate fecha_nac, int dni, int telefono,
+			String correo, String contraseña) {
+>>>>>>> origin/Tomi
 		super();
 		this.id_empleado = id_empleado;
 		this.nombre = nombre;
@@ -41,7 +47,12 @@ public class Empleado implements InicioSesion{
 		
 	}
 	
+<<<<<<< HEAD
 
+=======
+	
+	
+>>>>>>> origin/Tomi
 	public int getId_empleado() {
 		return id_empleado;
 	}
@@ -100,7 +111,6 @@ public class Empleado implements InicioSesion{
 	public void setTipo_empleado(String tipo_empleado) {
 		this.tipo_empleado = tipo_empleado;
 	}
-	
 	
 	
 }

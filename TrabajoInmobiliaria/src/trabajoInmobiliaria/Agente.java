@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 import javax.swing.JOptionPane;
 
-public class Agente extends Empleado {
+public class Agente extends Empleado implements Validacion, InicioSesion{
 
 	private int id_agente;
 
