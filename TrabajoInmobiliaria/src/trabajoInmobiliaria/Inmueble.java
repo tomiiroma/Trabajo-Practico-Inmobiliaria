@@ -20,18 +20,6 @@ public class Inmueble {
 	private boolean apto_mascota;
 	private boolean patio;
 
-	
-
-
-
-
-
-
-
-
-
-
-
 
 
 	public Inmueble(int id_inmueble, String tipo_inmueble, String condicion, String cantAmbientes, String barrio,

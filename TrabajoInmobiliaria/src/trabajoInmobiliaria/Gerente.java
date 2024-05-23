@@ -427,28 +427,46 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 	
 	public void verInmuebles() {
-		JOptionPane.showMessageDialog(null, inmuebleControlador.getAllInmueble());
+		if(inmuebleControlador.getAllInmueble().isEmpty()){
+			JOptionPane.showMessageDialog(null, "No hay Inmuebles cargados" );
+		}else {
+					String[] opcionesInmuebles = new String[inmuebleControlador.getAllInmueble().size()];
+					for (int i = 0; i < opcionesInmuebles.length; i++) {
+						Inmueble inmueble = inmuebleControlador.getAllInmueble().get(i);
+						opcionesInmuebles[i] = "ID Inmueble: " + inmueble.getId_inmueble() + " - Dirección: " + inmueble.getDireccion()+ " - Ambientes: " +inmueble.getCantAmbientes();
+					}
+					
+					String inmuebleSeleccionado = (String) JOptionPane.showInputDialog(null, "Seleccione Inmueble", "Visualizas Inmueble",
+							JOptionPane.QUESTION_MESSAGE, null, opcionesInmuebles, opcionesInmuebles[0]);
+					
+					if(inmuebleSeleccionado !=null){
+						Inmueble inmuebleAmostrar = null;
+						for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
+							String opcion = "ID Inmueble: " + inmueble.getId_inmueble() + " - Dirección: " + inmueble.getDireccion()+ " - Ambientes: " +inmueble.getCantAmbientes();
+							
+							if(opcion.equals(inmuebleSeleccionado)){
+								inmuebleAmostrar=inmueble;
+							}      
+						}
+						
+					if(inmuebleAmostrar !=null){
+					JOptionPane.showMessageDialog(null, "Datos del Inmueble:\n" + inmuebleAmostrar.toString(), "Datos del Inmueble", JOptionPane.INFORMATION_MESSAGE);		
+					}
+				} 
+			}
+		} 
+		
+	
+	
+	
+	public void modificarInmueble() {
+		
 	}
-	
-	
 	
 	
 	
@@ -727,11 +745,6 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 				
 			}
 			
-			
-			
-			
-			
-			
 		}else {//EL INMUEBLE NO ESTA DISPONIBLE = FALSE
 			String[] refaccion = { "Si","No"};			
 			String refaccionSeleccion = (String) JOptionPane.showInputDialog(null, "¿Se debe refaccionar el Inmueble?",
@@ -950,33 +963,41 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 	}
 	
 	
-	
-	
-	
 	public void eliminarInmueble() {
-		JOptionPane.showMessageDialog(null, "Eliminar Inmueble");
 		
-		
-		
-		String[] borrarInmueble = new String[inmuebleControlador.getAllInmueble().size()];
-
-		for (int i = 0; i < borrarInmueble.length ; i++) {
-			borrarInmueble[i] = Integer.toString(inmuebleControlador.getAllInmueble().get(i).getId_inmueble());
-
+		if(inmuebleControlador.getAllInmueble().isEmpty()){
+			JOptionPane.showMessageDialog(null, "No hay Inmuebles cargados" );
+		}else {
+				
+			JOptionPane.showMessageDialog(null, "Eliminar Inmueble");
+			
+		    String[] opcionesInmuebles = new String[inmuebleControlador.getAllInmueble().size()];
+		    for (int i = 0; i < opcionesInmuebles.length; i++) {
+	            Inmueble inmueble = inmuebleControlador.getAllInmueble().get(i);
+	            opcionesInmuebles[i] = "ID Inmueble: " + inmueble.getId_inmueble() + " - Dirección: " + inmueble.getDireccion()+ " - Ambientes: " +inmueble.getCantAmbientes();
+	        }
+		       
+		    String inmuebleSeleccionado = (String) JOptionPane.showInputDialog(null, "Seleccione Inmueble a Eliminar", "Eliminar Inmueble",
+		    		JOptionPane.QUESTION_MESSAGE, null, opcionesInmuebles, opcionesInmuebles[0]);
+		   
+		    if(inmuebleSeleccionado != null){
+	            Inmueble inmuebleAEliminar = null;
+	            // Buscar el inmueble seleccionado en la lista de inmuebles
+	            for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
+	                String opcion = "ID Inmueble: " + inmueble.getId_inmueble() + " - Dirección: " + inmueble.getDireccion()+ " - Ambientes: " +inmueble.getCantAmbientes();
+	                if (opcion.equals(inmuebleSeleccionado)) {
+	                    inmuebleAEliminar = inmueble;
+	                    break;
+	                }
+	            }
+	            
+	            if (inmuebleAEliminar != null) {
+	                // Realizar la eliminación del inmueble
+	                inmuebleControlador.deleteInmueble(inmuebleAEliminar.getId_inmueble());
+	                JOptionPane.showMessageDialog(null, "Inmueble eliminado exitosamente");
+	            }
+		    }       
 		}
-		
-	    String inmuebleSeleccion = (String) JOptionPane.showInputDialog(null, "Seleccione Inmueble", "Eliminar Inmueble",
-	    		JOptionPane.QUESTION_MESSAGE,
-	        null,
-	        borrarInmueble,
-	        borrarInmueble[0]
-	    );
-		
-		
-		inmuebleControlador.deleteInmueble(Integer.parseInt(inmuebleSeleccion));
-		
 	}
-	
-	
 	
 }
