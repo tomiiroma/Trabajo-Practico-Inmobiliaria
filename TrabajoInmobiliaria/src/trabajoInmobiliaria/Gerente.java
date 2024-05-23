@@ -9,17 +9,10 @@ import controlador.GerenteControlador;
 
 import javax.swing.JOptionPane;
 
-<<<<<<< HEAD
-
-
-public class Gerente extends Empleado implements Validacion{
-=======
-import controlador.AgenteControlador;
-import controlador.GerenteControlador;
 import controlador.InmuebleControlador;
 
 public class Gerente extends Empleado implements Validacion, InicioSesion{
->>>>>>> mainPrueba
+
 
 	private int id_gerente;
 	//private static int acumuladorgerentes=0;
@@ -428,11 +421,11 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 								
 								switch (seleccion) {
 								case 0:
-<<<<<<< HEAD
+
 									ModificarAgente();
-=======
+
 									//ModificarAgente();
->>>>>>> mainPrueba
+
 									
 									break;
 									
@@ -463,12 +456,11 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 							switch (seleccionopcion) {
 
 							case 0:
-<<<<<<< HEAD
+
 							EliminarAgente();
-=======
+
 							//EliminarAgente();
->>>>>>> mainPrueba
-							break;
+		break;
 							
 							case 1:
 								
@@ -501,11 +493,11 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 					switch (Agregarseleccion) {
 					case 0:
 						
-<<<<<<< HEAD
+
 						AgregarAgente();
-=======
+
 						//AgregarAgente();
->>>>>>> mainPrueba
+
 						
 						break;
 
@@ -562,9 +554,9 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 	
 
 	
-<<<<<<< HEAD
+
 	/* ---------------------------------------------------------------------- AGREGAR EMPLEADO -------------------------------------------------------------------------------------------------------------------- */
-=======
+
 	
 	
 	public void verInmuebles() {
@@ -596,7 +588,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 			} 
 		}
 	} 
->>>>>>> mainPrueba
+
 		
 	public void AgregarAgente() {
 		int dni = 0,telefono;	
