@@ -48,7 +48,10 @@ public class Inmueble {
 
 
 
-
+	
+	public Inmueble() {
+		
+	}
 
 
 

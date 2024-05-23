@@ -145,38 +145,41 @@ public class InmuebleControlador implements InmuebleRepository{
 	    }
 
 		@Override
-	    public void updateInmueble(Inmueble inmueble) {
-	        try {
-	        	PreparedStatement statement = connection.prepareStatement(
-	        		    "INSERT INTO inmueble (id_inmueble, tipo_inmueble, condicion, disponible, cantAmbientes, superficie_cubierta, superficie_descubierta, barrio, direccion, patio, descripcion, antiguedad, precio, banio, refaccionar, dormitorio, apto_mascota) " +
-	        		    	    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
-	        		);	            
-	            statement.setInt(1, inmueble.getId_inmueble());
-	            statement.setString(2, inmueble.getTipo_inmueble());
-	            statement.setString(3, inmueble.getCondicion());
-	            statement.setBoolean(4, inmueble.isDisponible());
-	            statement.setString(5, inmueble.getCantAmbientes());
-	            statement.setDouble(6, inmueble.getSuperficie_cubierta());
-	            statement.setDouble(7, inmueble.getSuperficie_descubierta());
-	            statement.setString(8, inmueble.getBarrio());
-	            statement.setString(9, inmueble.getDireccion());
-	            statement.setBoolean(10, inmueble.ispatio());
-	            statement.setString(11, inmueble.getDescripcion());
-	            statement.setString(12, inmueble.getAntiguedad());
-	            statement.setDouble(13, inmueble.getPrecio());
-	            statement.setString(14, inmueble.getBanio());
-	            statement.setBoolean(15, inmueble.isRefaccionar());
-	            statement.setString(16, inmueble.getDormitorio());
-	            statement.setBoolean(17, inmueble.isApto_mascota());
+		public void updateInmueble(Inmueble inmueble) {
+		    try {
+		        PreparedStatement statement = connection.prepareStatement(
+		            "UPDATE inmueble SET tipo_inmueble = ?, condicion = ?, disponible = ?, cantAmbientes = ?, " +
+		            "superficie_cubierta = ?, superficie_descubierta = ?, barrio = ?, direccion = ?, patio = ?, " +
+		            "descripcion = ?, antiguedad = ?, precio = ?, banio = ?, refaccionar = ?, dormitorio = ?, " +
+		            "apto_mascota = ? WHERE id_inmueble = ?"
+		        );
+		        statement.setString(1, inmueble.getTipo_inmueble());
+		        statement.setString(2, inmueble.getCondicion());
+		        statement.setBoolean(3, inmueble.isDisponible());
+		        statement.setString(4, inmueble.getCantAmbientes());
+		        statement.setDouble(5, inmueble.getSuperficie_cubierta());
+		        statement.setDouble(6, inmueble.getSuperficie_descubierta());
+		        statement.setString(7, inmueble.getBarrio());
+		        statement.setString(8, inmueble.getDireccion());
+		        statement.setBoolean(9, inmueble.ispatio());
+		        statement.setString(10, inmueble.getDescripcion());
+		        statement.setString(11, inmueble.getAntiguedad());
+		        statement.setDouble(12, inmueble.getPrecio());
+		        statement.setString(13, inmueble.getBanio());
+		        statement.setBoolean(14, inmueble.isRefaccionar());
+		        statement.setString(15, inmueble.getDormitorio());
+		        statement.setBoolean(16, inmueble.isApto_mascota());
+		        statement.setInt(17, inmueble.getId_inmueble());
 
-	            int rowsUpdated = statement.executeUpdate();
-	            if (rowsUpdated > 0) {
-	                System.out.println("Inmueble actualizado exitosamente");
-	            }
-	        } catch (SQLException e) {
-	            e.printStackTrace();
-	        }
-	    }
+		        int rowsUpdated = statement.executeUpdate();
+		        if (rowsUpdated > 0) {
+		            System.out.println("Inmueble actualizado exitosamente");
+		        }
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }
+		}
+
 
 	    @Override
 	    public void deleteInmueble(int id_inmueble) {
