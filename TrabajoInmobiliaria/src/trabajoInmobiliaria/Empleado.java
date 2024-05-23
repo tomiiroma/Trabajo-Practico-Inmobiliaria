@@ -44,38 +44,43 @@ public class Empleado implements InicioSesion{
 	}
 	
 
+
+
 	public int getId_empleado() {
 		return id_empleado;
 	}
+
+
 	public void setId_empleado(int id_empleado) {
 		this.id_empleado = id_empleado;
 	}
+
+
 	public String getNombre() {
 		return nombre;
 	}
+
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+
 	public String getApellido() {
 		return apellido;
 	}
+
+
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
-<<<<<<< HEAD
-	
-	
-	
+
+
 	public LocalDate getFecha_nacimiento() {
 		return fecha_nacimiento;
 	}
 
 
-=======
-	public LocalDate getFecha_nacimiento() {
-		return fecha_nacimiento;
-	}
->>>>>>> mainPrueba
 	public void setFecha_nacimiento(LocalDate fecha_nacimiento) {
 		this.fecha_nacimiento = fecha_nacimiento;
 	}
@@ -84,26 +89,30 @@ public class Empleado implements InicioSesion{
 	public int getDni() {
 		return dni;
 	}
+
+
 	public void setDni(int dni) {
 		this.dni = dni;
 	}
+
+
 	public int getTelefono() {
 		return telefono;
 	}
+
+
 	public void setTelefono(int telefono) {
 		this.telefono = telefono;
 	}
+
+
 	public String getCorreo() {
 		return correo;
 	}
+
+
 	public void setCorreo(String correo) {
 		this.correo = correo;
-	}
-	public String getContraseña() {
-		return contraseña;
-	}
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
 	}
 
 
@@ -114,6 +123,16 @@ public class Empleado implements InicioSesion{
 
 	public void setTipo_empleado(String tipo_empleado) {
 		this.tipo_empleado = tipo_empleado;
+	}
+
+
+	public String getContraseña() {
+		return contraseña;
+	}
+
+
+	public void setContraseña(String contraseña) {
+		this.contraseña = contraseña;
 	}
 
 
