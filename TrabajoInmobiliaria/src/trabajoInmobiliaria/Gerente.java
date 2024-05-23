@@ -6,6 +6,7 @@ import java.util.LinkedList;
 
 import javax.swing.JOptionPane;
 
+import controlador.AgenteControlador;
 import controlador.GerenteControlador;
 import controlador.InmuebleControlador;
 
@@ -370,31 +371,140 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 						
 						do {
 							
-							String[] gestionEmpleados2 = {"Ver Datos Empleado","Modificar Empleado","Eliminar Empleado","Volver"};
+							String[] gestionEmpleados2 = {"Ver Datos Empleado","Modificar Empleado","Agregar empleado","Eliminar Empleado","Volver"};
 							
 							String gestionSeleccionada2 = (String) JOptionPane.showInputDialog(null, "Seleccione una operación:",
 									"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, gestionEmpleados2,
 									gestionEmpleados2[0]);
 							
-							if(gestionSeleccionada2.equals("Ver Datos Empleado")){
-								JOptionPane.showMessageDialog(null, "Empleado");
+/* --------------------- */    if(gestionSeleccionada2.equals("Ver Datos Empleado")){ /* ---------------------------------------------------------------------------------*/
+								int seleccionopcion =0;
+							do {
+								String[] lista = {"Ver Agentes","Ver gerentes","Salir"};
+	
+								seleccionopcion = JOptionPane.showOptionDialog(null, "Elegir opcion", null, 0, 0, null, lista, lista[0]);
+	
+								switch(seleccionopcion) {
 								
+								case 0:
+									
+								SelectorAgentes();
+								
+								break;
+								
+								case 1:
+									
+								seleccionarGerentes();
+								
+								break;
+								
+								
+								case 2:
+									
+									break;
+								}}while(seleccionopcion!=2);
+								
+	
+								
+								
+								
+	/* -------------------------------------------------------MODIFICAR EMPLEADO---------------------------------------------------------------------------------------------------------------------------------------------*/							
 							}else if(gestionSeleccionada2.equals("Modificar Empleado")){
-								JOptionPane.showMessageDialog(null, "modificar");
+							
+								String[] lista = {"Modificar agente","Modificar gerente","Salir"};
 								
+								int seleccion = JOptionPane.showOptionDialog(null, "Ingresar opciones", "Gestor de empleados",0 , 0 , null, lista, lista[0]);
+								
+								switch (seleccion) {
+								case 0:
+									//ModificarAgente();
+									
+									break;
+									
+								case 1:
+									ModificarGerente();
+									
+									break;
+
+								case 2: //Salir									
+									break;
+								default:
+									break;
+								}
+								
+								
+								
+								
+	/* ----------------------------------------------------------------------------------- FIN MODIFICAR EMPLEADO --------------------------------------------------------------------------------------------------------*/								
+								
+	/* --------------------------------------------------------------------ELIMINAR EMPLEADO-------------------------------------------------------------------------------------------------------------------------------*/							
 								
 							}else if(gestionSeleccionada2.equals("Eliminar Empleado")){
-								JOptionPane.showMessageDialog(null, "eliminar");
 								
+								String[] lista = {"Eliminar Agentes","Eliminar gerentes","Salir"};
+								
+							int	seleccionopcion = JOptionPane.showOptionDialog(null, "Elegir opcion", null, 0, 0, null, lista, lista[0]);
+								
+							switch (seleccionopcion) {
+
+							case 0:
+							//EliminarAgente();
+							break;
+							
+							case 1:
+								
+								EliminarGerente();
+								
+								break;
+							
+							case 2: 
+								
+								break;
+								
+								
+								
+							}
+							
+										
 							}else {
 								break;
 							}
 							
 						}while(repetir);
 								
+/*-----------------------------------------------------------------------------Agregar empleado --------------------------------------------------------------------------------------------------------------------------- */
+					}else if(gestionSeleccionada.equals("Agregar Nuevo Empleado")){ 
 						
-					}else if(gestionSeleccionada.equals("Agregar Nuevo Empleado")){
-						JOptionPane.showMessageDialog(null, "Cargar datos");
+					String[] OpcionesAgregar = {"Agregar Agente", "Agregar Gerente", "Salir"};	
+						
+					int Agregarseleccion = JOptionPane.showOptionDialog(null,"Elegir opcion", null, 0, 0, null, OpcionesAgregar, OpcionesAgregar[0]);
+					
+					switch (Agregarseleccion) {
+					case 0:
+						
+						//AgregarAgente();
+						
+						break;
+
+					case 1:
+						
+						AgregarGerente();
+						
+						break;
+						
+					case 2:
+						
+						break;
+						
+					default:
+						break;
+					}
+					
+										
+						// Funciona 0 Porque es AI en la base de  datos y id_agente deberia ser AI tambien actualmente no lo es.
+
+						
+/*-----------------------------------------------------------------------------Fin Agregar empleado ---------------------------------------------------------------------------------------------------------------------- */
 						
 					}else {
 						break;
@@ -412,26 +522,19 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 				System.exit(0);
 				break;
 	
-			default: JOptionPane.showMessageDialog(null, "Opcion no disponible");
+			default:
 				break;
 			}
 			
-
 			
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Porfavor Seleccione una Opción");
-				}
+		}
 			
-
-			
-
 		} while (repetir);
 		
 		return true;
 	}
-
-		
-	
 	
 	
 
@@ -806,6 +909,257 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 		    }       
 		}
 	}
+	
+	
+	
+/* ---------------------------------------------------------------------------- Selector de Agentes ----------------------------------------------------------------------------------------- */	
+	
+	public void SelectorAgentes() {
+		
+		AgenteControlador agentecontrolador = new AgenteControlador();   	
+		
+		 /* desde aca */  //JOptionPane.showMessageDialog(null, "Empleado");
+			
+			String[] listaEmpleado = {"Ver empleados","seleccionar empleado","Salir"};
+			
+			int seleccionEmpleado = JOptionPane.showOptionDialog(null, "Elegir opcion", null, 0, 0, null, listaEmpleado, listaEmpleado[0]);
+			
+			switch(seleccionEmpleado) {
+			
+			case 0:  // Ver empleados
+			
+				 JOptionPane.showMessageDialog(null, "La lista de empleados"+"\n"+agentecontrolador.getAllAgente());
+				
+				
+			break;
+			
+			
+			
+/*---------------------------------*/  case 1: // Ver empleado por id /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+		
+	if (agentecontrolador.getAllAgente().size()==0) { JOptionPane.showMessageDialog(null, "No hay empleados registrados.");}
+	else  {
+		String[] empleados = new String[agentecontrolador.getAllAgente().size()];
+			for (int i = 0; i < empleados.length; i++) {
+			empleados[i] = Integer.toString(agentecontrolador.getAllAgente().get(i).getId_empleado());}
+										
+			
+			String empleadoselect = (String) JOptionPane.showInputDialog(null, "Seleccione usuario", null, 0, null,
+			empleados, empleados[0]);
+
+				// JOptionPane.showMessageDialog(null, agentecontrolador.getAgenteById(Integer.parseInt(empleadoselect)));
+					Agente seleccionado = agentecontrolador.getAgenteById(Integer.parseInt(empleadoselect));
+					JOptionPane.showMessageDialog(null, "El agente seleccionado es:"+seleccionado.toString()); /* Recordar cambiar los nombres en el archivo princ */ }
+				
+				break;
+				
+			case 2: // Salir
+				
+				break;}}
+	
+	
+/*----------------------------------------------------------------- Fin del metodo SelectorAgente ---------------------------------------------------------------------------------------------------------------------------*/	
+	
+	
+/*-----------------------------------------------------------------------------SELECCIONAR GERENTES------------------------------------------------------------------------------------------------------------------------- */	
+	
+	public void seleccionarGerentes() {
+		
+		GerenteControlador gerentecontrolador = new GerenteControlador();
+		
+		
+		String[] listaGerente = {"Ver gerentes","Seleccionar gerentes","Salir"};
+		
+		int seleccionGerente = JOptionPane.showOptionDialog(null,"Elegir opcion", null, 0, 0, null, listaGerente, listaGerente[0]);
+		
+		
+		 switch(seleccionGerente) {
+		 
+		 
+		 case 0: // Ver todos los gerentes.
+			 
+			if (gerentecontrolador.getAllGerente().size()>0) { 
+			 JOptionPane.showMessageDialog(null, "La lista de empleados"+"\n"+gerentecontrolador.getAllGerente());} else {
+			
+				 JOptionPane.showMessageDialog(null, "No hay gerentes en la base de datos");}
+
+		break;
+		
+		 case 1: // Ver gerente por id.
+			 if(gerentecontrolador.getAllGerente().size()==0) {   JOptionPane.showMessageDialog(null, "No hay gerentes en la base de datos");}
+			 else {
+			 
+			 String[] gerentes = new String[gerentecontrolador.getAllGerente().size()];
+			 
+			 for (int i = 0; i < gerentes.length; i++) {
+				
+				 gerentes[i] = Integer.toString(gerentecontrolador.getAllGerente().get(i).getId_empleado());
+				 
+			}
+			 
+			 String gerentesselect = (String) JOptionPane.showInputDialog(null,"seleccionar gerentes",null,0,null,gerentes,gerentes[0]);
+			
+				 Gerente gseleccionado = gerentecontrolador.getGerenteById(Integer.parseInt(gerentesselect));
+			 JOptionPane.showMessageDialog(null, "El gerente seleccionado es: "+gseleccionado.toString());
+			 }
+		 
+			 break;
+			 
+		 case 2: // Salir
+			 
+			 break;
+		 
+		 }
+		 
+	}
+	
+/* ---------------------------------------------------------------------------------------- AGREGAR GERENTES ----------------------------------------------------------------------------------------------------- */	
+	
+	
+	public void AgregarGerente() {
+		int dni = 0,telefono;	
+		LocalDate fecha = null;
+		String nombre="", apellido="" ,telefonoentrada="", contraseña;
+		GerenteControlador gerentecontrolador = new GerenteControlador();
+			
+		//	JOptionPane.showMessageDialog(null, "Cargar datos");
+			nombre =validarNombre("Escribir el nombre");
+			apellido = validarNombre("Escribir el apellido");
+			fecha = validarFecha(fecha);
+			dni = validarDni("Validacion de dni");
+			telefonoentrada = JOptionPane.showInputDialog("Ingresar telefono"); 
+			telefono = validarTelefono(telefonoentrada);
+			String correo = JOptionPane.showInputDialog(null, "Ingresar correo"); 
+			String correoverificado = validarEmail(correo);
+			String tipo_empleado = "Gerente"; 		
+			do {
+			contraseña = JOptionPane.showInputDialog("Ingresar password");
+			} while(!validarContraseña(contraseña));
+			int id_gerente = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el id del gerente"));
+		//	acumuladorgerentes++;
+			gerentecontrolador.addGerente(new Gerente(0,nombre,apellido,fecha,dni,telefono,correoverificado,tipo_empleado,contraseña,id_gerente));
+			
+			
+			
+		}
+	
+	
+/* ----------------------------------------------------------------------------------- ELIMINAR GERENTE ------------------------------------------------------------------------------------------------------------------ */	
+	
+	
+	
+	public void EliminarGerente() {
+		
+	
+		
+		GerenteControlador gerentecontrolador = new GerenteControlador();
+		
+		if (gerentecontrolador.getAllGerente().size()==0) {
+			
+			JOptionPane.showMessageDialog(null, "No se han encontrado agentes.");
+			
+		} else {
+		
+		String[] borrarempleado = new String[gerentecontrolador.getAllGerente().size()];
+		for (int i = 0; i < borrarempleado.length; i++) {
+			
+		
+			  Gerente gerente = gerentecontrolador.getAllGerente().get(i);
+			    borrarempleado[i] = gerente.getId_empleado() + "  " + gerente.getNombre() + " " + gerente.getApellido() + "  " + gerente.getCorreo();
+		   
+		}
+		
+		try {
+			String empleadoborrarselect = (String) JOptionPane.showInputDialog(null, "Seleccione usuario", null, 0, null,
+					borrarempleado, borrarempleado[0]);
+			
+			int indiceSeleccionado = -1;
+
+			for (int i = 0; i < borrarempleado.length; i++) {
+		        if (borrarempleado[i].equals(empleadoborrarselect)) {
+		            indiceSeleccionado = i; 
+		        }
+		    }
+			
+
+			 if (indiceSeleccionado != -1) {
+			        
+			 String idEmpleadoSeleccionado = Integer.toString(gerentecontrolador.getAllGerente().get(indiceSeleccionado).getId_empleado());
+
+			 gerentecontrolador.deleteGerente((Integer.parseInt(idEmpleadoSeleccionado)));
+			        
+			        
+			    } else {
+			        JOptionPane.showMessageDialog(null, "Empleado no encontrado.");
+			    }
+			
+			
+		
+			
+			
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e);
+		}
+		
+		
+		
+		}
+		
+	}
+	
+	
+/* ----------------------------------------------------------------------------------- MODIFICAR GERENTE ----------------------------------------------------------------------------------------------------------------- */	
+	
+	
+	
+	
+public void ModificarGerente() {
+		
+		GerenteControlador gerentecontrolador = new GerenteControlador();
+		String contraseña;
+		
+		if (gerentecontrolador.getAllGerente().size()==0) {
+			
+			JOptionPane.showMessageDialog(null, "No se han encontrado gerentes.");
+			
+		} else {
+		
+	try {
+		String[] empleados2 = new String[gerentecontrolador.getAllGerente().size()];
+		for (int i = 0; i < empleados2.length; i++) {
+			empleados2[i] = Integer.toString(gerentecontrolador.getAllGerente().get(i).getId_empleado());
+		}
+		String empleadoselect2 = (String) JOptionPane.showInputDialog(null, "Seleccione usuario", null, 0, null,
+				empleados2, empleados2[0]);
+		Gerente seleccionado = gerentecontrolador.getGerenteById(Integer.parseInt(empleadoselect2));
+		
+		LocalDate fecha = null;
+		
+		seleccionado.setNombre(validarNombre("Su nombre actual es: "+" "+seleccionado.getNombre()+" "+ "Ingrese el nuevo nombre: "));
+		seleccionado.setApellido(validarNombre("Su apellido es: "+" "+seleccionado.getApellido()+" "+"Ingrese el nuevo apellido"));
+		seleccionado.setFecha_nacimiento(validarFecha(fecha)); // Modificar despues
+		seleccionado.setDni(validarDni("Su dni es: " +seleccionado.getDni()+"Ingrese el nuevo dni"));
+		seleccionado.setTelefono(validarTelefono(JOptionPane.showInputDialog("Su telefono es: "+seleccionado.getTelefono()+"Ingrese el telefono")));
+		seleccionado.setCorreo(validarEmail(JOptionPane.showInputDialog("Su correo es: "+seleccionado.getCorreo()+"Ingrese el nuevo correo")));
+
+		seleccionado.setId_gerente(Integer.parseInt(JOptionPane.showInputDialog("Su id de agente es: "+seleccionado.getId_gerente()+"Ingrese el nuevo id de agente"))); // preguntarle a los chicos, si quieren que sea AI.
+		
+		do {
+		contraseña = JOptionPane.showInputDialog("Ingresar la nueva contraseña");
+		}while(!validarContraseña(contraseña));
+		
+		seleccionado.setContraseña((contraseña));
+		gerentecontrolador.updateGerente(seleccionado);;
+		
+	} catch (Exception e) {
+		JOptionPane.showMessageDialog(null, "Ocurrio un error"+e);}}}
+	
+	
+	
+	
+	
+	
+	
 	
 
 	

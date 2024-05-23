@@ -63,7 +63,7 @@ public class AgenteControlador implements AgenteRepository{
 	            
 	            if (resultSet.next()) {
 	            
-	            	agente = new Agente(resultSet.getInt("id_empleado"), resultSet.getString("nombre"), resultSet.getString("apellido"), resultSet.getDate("fecha_nac").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("telefono"), resultSet.getString("correo"),  resultSet.getString("tipo_empleado"),resultSet.getString("contraseña"),resultSet.getInt("id_agente"));
+	            	agente = new Agente(resultSet.getInt("id_empleado"), resultSet.getString("nombre"), resultSet.getString("apellido"), resultSet.getDate("fecha_nacimiento").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("telefono"), resultSet.getString("correo"),  resultSet.getString("tipo_empleado"),resultSet.getString("contraseña"),resultSet.getInt("id_agente"));
 	           
 	            }
 	        } catch (SQLException e) {
@@ -75,11 +75,11 @@ public class AgenteControlador implements AgenteRepository{
 		@Override
 	    public void addAgente(Agente agente) {
 	        try {																																  // ID_AGENTE Se deberia sacar, ya que va a generar un error ya que no existe en la bdd
-	            PreparedStatement statement = connection.prepareStatement("INSERT INTO empleado (nombre, apellido, fecha_nac, dni, telefono, correo, id_agente, contraseña) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+	            PreparedStatement statement = connection.prepareStatement("INSERT INTO empleado (nombre, apellido, fecha_nacimiento, dni, telefono, correo, id_agente, contraseña) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 	            statement.setString(1, agente.getNombre());
 	            statement.setString(2, agente.getApellido());
-	            java.sql.Date fecha_nac = java.sql.Date.valueOf(agente.getFecha_nacimiento());
-	            statement.setDate(3, fecha_nac);
+	            java.sql.Date fecha_nacimiento = java.sql.Date.valueOf(agente.getFecha_nacimiento());
+	            statement.setDate(3, fecha_nacimiento);
 	            statement.setInt(4,agente.getDni());
 	            statement.setInt(5,agente.getTelefono());
 	            statement.setString(6, agente.getCorreo());
@@ -98,11 +98,11 @@ public class AgenteControlador implements AgenteRepository{
 		@Override
 	    public void updateAgente(Agente agente) {                                                                                                                       // ID_AGENTE Se deberia sacar, ya que va a generar un error ya que no existe en la bdd
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("UPDATE empleado SET nombre = ?, apellido = ?, fecha_nac = ?, dni = ?, telefono = ?, correo = ?, id_agente = ?, contraseña = ? WHERE id_empleado = ?");
+	            PreparedStatement statement = connection.prepareStatement("UPDATE empleado SET nombre = ?, apellido = ?, fecha_nacimiento = ?, dni = ?, telefono = ?, correo = ?, id_agente = ?, contraseña = ? WHERE id_empleado = ?");
 	            statement.setString(1, agente.getNombre());
 	            statement.setString(2, agente.getApellido());
-	            java.sql.Date fecha_nac = java.sql.Date.valueOf(agente.getFecha_nacimiento());
-	            statement.setDate(3, fecha_nac);
+	            java.sql.Date fecha_nacimiento = java.sql.Date.valueOf(agente.getFecha_nacimiento());
+	            statement.setDate(3, fecha_nacimiento);
 	            statement.setInt(4,agente.getDni());
 	            statement.setInt(5, agente.getTelefono());
 	            statement.setString(6, agente.getCorreo());
