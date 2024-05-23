@@ -1228,7 +1228,7 @@ public void AgregarAgente() {
 		do {
 		contraseña = JOptionPane.showInputDialog("Ingresar password");
 		} while(!validarContraseña(contraseña));
-		int id_agente = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el id del gerente"));
+		int id_agente = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el id del agente"));
 	//	acumuladorgerentes++;
 		agentecontrolador.addAgente(new Agente(0,nombre,apellido,fecha,dni,telefono,correoverificado,tipo_empleado,contraseña,id_agente));
 		
