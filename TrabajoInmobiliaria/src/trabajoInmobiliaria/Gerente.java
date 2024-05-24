@@ -1018,22 +1018,10 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 		break;
 		
 		 case 1: // Ver gerente por id.
-			 if(gerentecontrolador.getAllGerente().size()==0) {   JOptionPane.showMessageDialog(null, "No hay gerentes en la base de datos");}
-			 else {
-			 
-			 String[] gerentes = new String[gerentecontrolador.getAllGerente().size()];
-			 
-			 for (int i = 0; i < gerentes.length; i++) {
-				
-				 gerentes[i] = Integer.toString(gerentecontrolador.getAllGerente().get(i).getId_empleado());
-				 
-			}
-			 
-			 String gerentesselect = (String) JOptionPane.showInputDialog(null,"seleccionar gerentes",null,0,null,gerentes,gerentes[0]);
 			
-				 Gerente gseleccionado = gerentecontrolador.getGerenteById(Integer.parseInt(gerentesselect));
-			 JOptionPane.showMessageDialog(null, "El gerente seleccionado es: "+gseleccionado.toString());
-			 }
+		Gerente seleccionado =	ObtenerGerenteId();
+		
+		JOptionPane.showMessageDialog(null, seleccionado.toString());
 		 
 			 break;
 			 
@@ -1324,116 +1312,6 @@ try {
 
 
 
-/* -------------------------------------------------------------------------------------  OBTENER INMUEBLE ------------------------------------------------------------------------------------ */
-
-/* VER Validaciones */
-
-public Inmueble SeleccionarInmueble() {
-    Inmueble inmuebleAmostrar = null;
-
-    if (inmuebleControlador.getAllInmueble().isEmpty()) {
-        JOptionPane.showMessageDialog(null, "No hay Inmuebles cargados");
-    } else {
-        String[] opcionesInmuebles = new String[inmuebleControlador.getAllInmueble().size()];
-        for (int i = 0; i < opcionesInmuebles.length; i++) {
-            Inmueble inmueble = inmuebleControlador.getAllInmueble().get(i);
-            opcionesInmuebles[i] = "ID Inmueble: " + inmueble.getId_inmueble() + " - Dirección: " + inmueble.getDireccion() + " - Ambientes: " + inmueble.getCantAmbientes();
-        }
-
-        String inmuebleSeleccionado = (String) JOptionPane.showInputDialog(null, "Seleccione Inmueble", "Visualizar Inmueble",
-                JOptionPane.QUESTION_MESSAGE, null, opcionesInmuebles, opcionesInmuebles[0]);
-
-        if (inmuebleSeleccionado != null) {
-            for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
-                String opcion = "ID Inmueble: " + inmueble.getId_inmueble() + " - Dirección: " + inmueble.getDireccion() + " - Ambientes: " + inmueble.getCantAmbientes();
-
-                if (opcion.equals(inmuebleSeleccionado)) {
-                    inmuebleAmostrar = inmueble;
-                    break; // Salir del bucle una vez que se encuentre el inmueble seleccionado
-                }
-            }
-        }
-    }
-
-    // Verificar si se seleccionó un inmueble antes de retornarlo
-    if (inmuebleAmostrar == null) {
-        JOptionPane.showMessageDialog(null, "No se seleccionó ningún inmueble");
-    }
-
-    return inmuebleAmostrar;
-}
-		
-	
-	
-
-
-
-/* ------------------------------------------------------------------------------------ OBTENER EMPLEADO POR ID ---------------------------------------------------------------------------------------------------------- */
-
-
-public Agente SeleccionarAgente() {
-	
-	AgenteControlador agentecontrolador = new AgenteControlador();
-	
-	String[] empleados = new String[agentecontrolador.getAllAgente().size()];
-	for (int i = 0; i < empleados.length; i++) {
-	empleados[i] = Integer.toString(agentecontrolador.getAllAgente().get(i).getId_empleado());}
-								
-	
-	String empleadoselect = (String) JOptionPane.showInputDialog(null, "Seleccione usuario", null, 0, null,
-	empleados, empleados[0]);
-
-		// JOptionPane.showMessageDialog(null, agentecontrolador.getAgenteById(Integer.parseInt(empleadoselect)));
-			Agente seleccionado = agentecontrolador.getAgenteById(Integer.parseInt(empleadoselect));
-			JOptionPane.showMessageDialog(null, "El agente seleccionado es:"+seleccionado.toString()); /* Recordar cambiar los nombres en el archivo princ */
-	
-	
-	
-	return seleccionado;
-}
-
-
-
-
-
-/* ------------------------------------------------------------------------------------ REALIZAR RESERVA ---------------------------------------------------------------------------------------- */
-
-public void HacerReserva(Cliente cliente) {
-	double monto_total = 0; LocalDate fecha_pago = null; String forma_pago = "";
-	
-	try {
-		
-		ReservaControlador reservacontrolador = new ReservaControlador();
-		
-		Inmueble inmueble = SeleccionarInmueble();
-		
-		JOptionPane.showMessageDialog(null, "A ver"+inmueble);
-		
-		int fk_inmueble = inmueble.getId_inmueble();
-		
-		JOptionPane.showMessageDialog(null, fk_inmueble);
-		
-		int fk_cliente =1;
-		
-		fecha_pago = LocalDate.now();
-		
-		monto_total = Double.parseDouble(JOptionPane.showInputDialog("Ingresar el monto requerido"));
-		
-		forma_pago = JOptionPane.showInputDialog("Ingresar una forma de pago");
-		
-		
-		Agente agente = SeleccionarAgente();
-		
-		int fk_empleado = agente.getId_empleado();
-	
-		JOptionPane.showMessageDialog(null, fk_empleado);
-		
-		reservacontrolador.addReserva(new Reserva(0,fk_inmueble,fk_cliente,fecha_pago,monto_total,forma_pago,fk_empleado));
-	} catch (Exception e) {
-		JOptionPane.showMessageDialog(null, e);
-	}
-	
-}
 
 
 
