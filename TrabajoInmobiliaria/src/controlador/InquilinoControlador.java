@@ -29,7 +29,7 @@ public class InquilinoControlador implements InquilinoRepository{
 	            ResultSet resultSet = statement.executeQuery();
 	       
 	            while (resultSet.next()) { 
-	            	Inquilino inquilino = new Inquilino(resultSet.getString("nombre"), resultSet.getInt("id_cliente"), resultSet.getString("apellido"), resultSet.getString("correo"), resultSet.getInt("telefono"), resultSet.getDate("fecha_nacimiento").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("id_inquilino"));
+	            	Inquilino inquilino = new Inquilino(resultSet.getString("nombre"), resultSet.getInt("id_cliente"), resultSet.getString("apellido"), resultSet.getString("correo"), resultSet.getString("direccion"),resultSet.getInt("telefono"), resultSet.getDate("fecha_nacimiento").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("id_inquilino"));
 	                inquilinos.add(inquilino);
 	           }
 	       } catch (SQLException e) {
@@ -51,7 +51,7 @@ public class InquilinoControlador implements InquilinoRepository{
 	            
 	            if (resultSet.next()) {
 	            							// id_inquilino no esta en la tabla cliente ""
-	                inquilino = new Inquilino(resultSet.getString("nombre"), resultSet.getInt("id_cliente"), resultSet.getString("apellido"), resultSet.getString("correo"), resultSet.getInt("telefono"), resultSet.getDate("fecha_nacimiento").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("id_inquilino"));
+	                inquilino = new Inquilino(resultSet.getString("nombre"), resultSet.getInt("id_cliente"), resultSet.getString("apellido"), resultSet.getString("correo"), resultSet.getString("direccion"),resultSet.getInt("telefono"), resultSet.getDate("fecha_nacimiento").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("id_inquilino"));
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
@@ -62,15 +62,18 @@ public class InquilinoControlador implements InquilinoRepository{
 		@Override
 	    public void addInquilino(Inquilino inquilino) {
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("INSERT INTO cliente (nombre, id_cliente, apellido, correo, telefono, fecha_nac, dni) VALUES (?, null, ?, ?, ?, ?, ?)");
+	        	PreparedStatement statement = connection.prepareStatement("INSERT INTO cliente (nombre, apellido, correo,direccion, telefono, fecha_nacimiento, dni, tipo_cliente, id_inquilino) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 	            statement.setString(1, inquilino.getNombre());
-	            statement.setInt(2, inquilino.getId_cliente()); // ver despues si es A.I ya que esta poniendo un valor null.
-	            statement.setString(3,inquilino.getApellido());
+	            statement.setString(2,inquilino.getApellido());
+	            statement.setString(3, inquilino.getCorreo());
 	            statement.setString(4, inquilino.getCorreo());
 	            statement.setInt(5,inquilino.getTelefono());
-	            java.sql.Date fecha_nac = java.sql.Date.valueOf(inquilino.getFecha_nacimiento());
-	            statement.setDate(6, fecha_nac);
+	            java.sql.Date fecha_nacimiento = java.sql.Date.valueOf(inquilino.getFecha_nacimiento());
+	            statement.setDate(6, fecha_nacimiento);
 	            statement.setInt(7, inquilino.getDni());
+	            statement.setString(8, "Inquilino");
+	            statement.setInt(9,inquilino.getId_inquilino());
+
 	           
 	            
 	            

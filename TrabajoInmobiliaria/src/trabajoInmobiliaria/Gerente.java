@@ -116,7 +116,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 						JOptionPane.showMessageDialog(null, "Completar Propietario");
 						
 					}else if(clienteSeleccionado.equals("Nuevo Inquilino")){
-						JOptionPane.showMessageDialog(null, "Completar Inquilino");  
+						agregarInquilino();
 
 					}else {
 						break;
@@ -1033,7 +1033,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 			String correoverificado = validarEmail(correo);
 			String tipo_empleado = "Gerente"; 		
 			do {
-			contraseña = JOptionPane.showInputDialog("Ingresar password");
+			contraseña = JOptionPane.showInputDialog("Ingresar Contrasena");
 			} while(!validarContraseña(contraseña));
 			int id_gerente = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el id del gerente"));
 		//	acumuladorgerentes++;
