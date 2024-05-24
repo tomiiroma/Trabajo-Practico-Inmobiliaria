@@ -18,9 +18,11 @@ public class Empleado implements InicioSesion{
 	private String contraseña;
 	
 
+
 	
 	
 	
+
 	
 	public Empleado(int id_empleado, String nombre, String apellido, LocalDate fecha_nacimiento, int dni, int telefono,
 			String correo, String tipo_empleado, String contraseña) {
@@ -100,7 +102,6 @@ public class Empleado implements InicioSesion{
 	public void setTipo_empleado(String tipo_empleado) {
 		this.tipo_empleado = tipo_empleado;
 	}
-	
 	
 	
 }
