@@ -45,6 +45,15 @@ public class Reserva {
 	}
 	
 	
+	
+	
+
+	@Override
+	public String toString() {
+		return "Reserva [id_reserva=" + id_reserva + ", fk_inmueble=" + fk_inmueble + ", fk_cliente=" + fk_cliente
+				+ ", fecha_pago=" + fecha_pago + ", pago=" + pago + ", forma_pago=" + forma_pago + ", fk_empleado="
+				+ fk_empleado + "]";
+	}
 
 
 	public int getFk_inmueble() {

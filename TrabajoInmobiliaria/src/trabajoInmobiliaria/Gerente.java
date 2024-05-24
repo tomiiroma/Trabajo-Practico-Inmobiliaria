@@ -68,7 +68,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 											"Cargar Nuevo Documento",
 											"Ver Ultimas Operaciones" , 
 											"Gestionar Empleados",
-											"Realizar Reserva",
+											"Gestionar Reserva",
 											"Cerrar Sesion",
 											"Salir" };
 	
@@ -530,14 +530,38 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 				break;
 			
 				
-/*--------*/ case "Realizar Reserva": /*----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*--------*/ case "Gestionar Reserva": /*----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 			do {	
 			
-				JOptionPane.showMessageDialog(null, "hola");
-					
-				 Cliente cliente1 = new Cliente("Juan", 1, "Perez", "juan@example.com", 123456789, LocalDate.of(1990, 5, 15), 12345678);
+			String[] OpcionesReserva = {"Ver reservas","Realizar reservas","Salir"};
+			
+			int opcionR = JOptionPane.showOptionDialog(null, "Seleccionar opcion", null, 0, 0, null, OpcionesReserva, OpcionesReserva[0]);
+			
+			
+			switch (opcionR) {
+			
+			case 0:
 				
-				 HacerReserva(cliente1);
+				VerListaReservas();
+				
+				break;
+
+			case 1:
+				
+				Cliente cliente1 = new Cliente("Juan", 1, "Perez", "juan@example.com", 123456789, LocalDate.of(1990, 5, 15), 12345678);
+				HacerReserva(cliente1);
+				
+				break;
+				
+			case 2:
+				
+				break;
+				
+			default:
+				break;
+			}
+			
+				
 				 
 			break;
 			

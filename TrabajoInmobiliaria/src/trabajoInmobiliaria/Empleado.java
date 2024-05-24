@@ -313,6 +313,33 @@ public class Empleado implements InicioSesion, Validacion{
 		
 	}
 	
+	/* ------------------------------------------------------------------------------------------------------- VER TODAS LAS RESERVAS ------------------------------------------------------------------------------------------------- */
+
+	
+	
+	public void VerListaReservas() {
+		ReservaControlador reservacontrolador = new ReservaControlador();
+		try {
+			
+			JOptionPane.showMessageDialog(null, "Lista de reservas: " + reservacontrolador.getAllReserva());
+			
+			
+		} catch (Exception e) {
+			
+		}
+		
+		
+		
+	}
+	
+	/* ----------------------------------------------------------------------------------------------------- VER RESERVAS POR ID ------------------------------------------------------------------------------------------------------ */
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }

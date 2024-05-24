@@ -25,19 +25,19 @@ public class ReservaControlador implements ReservaRepository{
 	    @Override
 	    public List<Reserva> getAllReserva() {
 	        List<Reserva> reservas = new ArrayList<>();
-	     //   try {
-	          //  PreparedStatement statement = connection.prepareStatement("SELECT * FROM users ");
-	           // ResultSet resultSet = statement.executeQuery();
+	        try {
+	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM reserva");
+	            ResultSet resultSet = statement.executeQuery();
 	       
-	         //   while (resultSet.next()) {
-	        // public Comprador(String nombre,int id_cliente, String apellido, String correo, int telefono, LocalDate fecha_nac, int dni,int comprador, double presupuesto)
-	            //	Comprador compradores = new Comprador(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("email"));
-	             //   users.add(Comprador);
-	      //      }
-	     //   } catch (SQLException e) {
-	     //       e.printStackTrace();
-	   //     }
-	    //    return users;
+	            while (resultSet.next()) {
+	       
+	            	Reserva reserva = new Reserva(resultSet.getInt("id_reserva"), resultSet.getInt("fk_inmueble_id"), resultSet.getInt("fk_cliente_id"), resultSet.getDate("fecha_pago").toLocalDate(), resultSet.getDouble("monto_total"), resultSet.getString("forma_pago"),resultSet.getInt("fk_empleado_id"));
+	                reservas.add(reserva);
+	            }
+	        } catch (SQLException e) {
+	           e.printStackTrace();
+	       }
+	   
 	        return reservas;
 	    }
 

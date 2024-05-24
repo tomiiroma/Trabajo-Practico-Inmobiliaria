@@ -370,14 +370,13 @@ public interface Validacion {
         	if (num>=0) {
         		
         		monto_final = num;
-        		JOptionPane.showMessageDialog(null, numero);
+        		
         		validacion_final = true;
         		
         	} else { JOptionPane.showMessageDialog(null, "Se ingreso un valor negativo o un 0");
         	validacion_final = false;}
         	
-        	JOptionPane.showMessageDialog(null, validacion_final);
-        	JOptionPane.showMessageDialog(null, valido);
+        	
         
         }
         
