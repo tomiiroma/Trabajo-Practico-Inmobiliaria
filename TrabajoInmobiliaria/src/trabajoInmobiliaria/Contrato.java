@@ -5,28 +5,32 @@ import java.time.LocalDate;
 public class Contrato {
 	
 	private int id_contrato;
+	private String tipo_contrato;
+	private String descripcion;
+	private String url_contrato;
+	private Inmueble inmueble;
+	private Cliente cliente;
 	LocalDate inicio_contrato;
 	LocalDate fin_contrato;
-	private Cliente cliente;
-	private Inmueble inmueble;
-	private String descripcion;
-	private double monto;
-	private Reserva reserva;
+	private boolean apto_mascota;
 
 
-	public Contrato(int id_contrato, LocalDate inicio_contrato, LocalDate fin_contrato, Cliente cliente,
-			 String descripcion, double monto, Reserva reserva) {
+	
+
+
+	public Contrato(int id_contrato, String tipo_contrato, String descripcion, String url_contrato, Inmueble inmueble,
+			Cliente cliente, LocalDate inicio_contrato, LocalDate fin_contrato, boolean apto_mascota) {
 		super();
 		this.id_contrato = id_contrato;
+		this.tipo_contrato = tipo_contrato;
+		this.descripcion = descripcion;
+		this.url_contrato = url_contrato;
+		this.inmueble = inmueble;
+		this.cliente = cliente;
 		this.inicio_contrato = inicio_contrato;
 		this.fin_contrato = fin_contrato;
-		this.cliente = cliente;
-		this.descripcion = descripcion;
-		this.monto = monto;
-		this.reserva = reserva;
+		this.apto_mascota = apto_mascota;
 	}
-
-
 
 	public int getId_contrato() {
 		return id_contrato;
@@ -74,22 +78,6 @@ public class Contrato {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
-	}
-
-	public double getMonto() {
-		return monto;
-	}
-
-	public void setMonto(double monto) {
-		this.monto = monto;
-	}
-
-	public Reserva getReserva() {
-		return reserva;
-	}
-
-	public void setReserva(Reserva reserva) {
-		this.reserva = reserva;
 	}
 
 

@@ -14,8 +14,10 @@ import trabajoInmobiliaria.Cliente;
 import trabajoInmobiliaria.Comprador;
 import trabajoInmobiliaria.Contrato;
 import trabajoInmobiliaria.DatabaseConnection;
+import trabajoInmobiliaria.Inmueble;
 import trabajoInmobiliaria.Inquilino;
 import trabajoInmobiliaria.Reserva;
+
 
 public class ContratoControlador implements ContratoRepository{
 	
@@ -26,59 +28,50 @@ public class ContratoControlador implements ContratoRepository{
 	        this.connection = DatabaseConnection.getInstance().getConnection();
 	    }
 	    
-	    // (int id_contrato, LocalDate inicio_contrato, LocalDate fin_contrato, Cliente cliente,
-		// String descripcion, double  monto, Reserva reserva) 
+	
 	    @Override
 	    public List<Contrato> getAllContrato() {
 	        List<Contrato> contratos = new ArrayList<>();
-	   //     try {
-	   //        PreparedStatement statement = connection.prepareStatement("SELECT * FROM contrato ");
-	  //          ResultSet resultSet = statement.executeQuery();
-	       
-	      //      while (resultSet.next()) {
-	        
-	           /* 	Contrato contrato = new Contrato(resultSet.getInt("id_contrato"),
-                            resultSet.getDate("inicio_contrato").toLocalDate(),
-                            resultSet.getDate("fin_contrato").toLocalDate(),
-                            new Cliente(
-                            		resultSet.getString("nombre"),
-                            		resultSet.getInt("id_cliente"),
-                                        resultSet.getString("apellido"),
-                                        resultSet.getString("correo"),
-                                        resultSet.getInt("telefono"), 
-                                        resultSet.getDate("fecha_nac").toLocalDate(),
-                                        resultSet.getInt("dni")),
-                            resultSet.getString("descripcion"),
-                            resultSet.getDouble("monto"),
-                            new Reserva(
-                            			
-                            /*			resultSet.getInt("id_reserva"),
-                                        resultSet.getDate("fecha_reserva").toLocalDate(),
-                                        resultSet.getDate("fecha_expiracion").toLocalDate(),
-                                        resultSet.getDouble("pago"),
-                                        new Comprador(resultSet.getInt("id_comprador"),
-                                                      resultSet.getString("nombre_comprador"),
-                                                      resultSet.getString("apellido_comprador"),
-                                                      resultSet.getString("correo_comprador"),
-                                                      resultSet.getInt("telefono_comprador"),
-                                                      resultSet.getDate("fecha_nac_comprador").toLocalDate(),
-                                                      resultSet.getInt("dni_comprador")),
-                                        new Inquilino(resultSet.getInt("id_inquilino"),
-                                                       resultSet.getString("nombre_inquilino"),
-                                                       resultSet.getString("apellido_inquilino"),
-                                                       resultSet.getString("correo_inquilino"),
-                                                       resultSet.getInt("telefono_inquilino"),
-                                                       resultSet.getDate("fecha_nac_inquilino").toLocalDate(),
-                                                       resultSet.getInt("dni_inquilino")),
-                                        resultSet.getBoolean("estado_reserva"))); */
+	        try {
+	           PreparedStatement statement = connection.prepareStatement("SELECT * FROM contrato ");
+	           ResultSet resultSet = statement.executeQuery();
+	       InmuebleControlador controlador = new InmuebleControlador();
+	       InquilinoControlador inquilino = new InquilinoControlador();
+	       PropietarioControlador propietario = new PropietarioControlador();
 
-	            
-	             //   users.add(Ambiente);
-	      //      }
-	     //   } catch (SQLException e) {
-	     //       e.printStackTrace();
-	   //     }
-	    //    return users;
+
+	           while (resultSet.next()) {
+	        	   
+	               int idContrato = resultSet.getInt("id_contrato");
+	               String tipo_contrato = resultSet.getString("tipo_contrato");
+	               String descripcion = resultSet.getString("descripcion");
+	               String url_contrato = resultSet.getString("url_contrato");	               
+	               LocalDate inicioContrato = resultSet.getDate("inicio_contrato").toLocalDate();
+	               LocalDate finContrato = resultSet.getDate("fin_contrato").toLocalDate();
+
+	               int fkInmuebleId = resultSet.getInt("fk_inmueble_id");
+	               int fkClienteId = resultSet.getInt("fk_cliente_id");
+
+	              Inmueble inmueble = controlador.getInmuebleById(fkInmuebleId);
+	              
+	              Cliente cliente = null;
+	              switch (resultSet.getString("tipo_contrato")) {
+	                  case "Venta":
+	                      cliente = propietario.getPropietarioById(fkClienteId);
+	                      break;
+	                  case "Alquiler":
+	                      cliente = inquilino.getInquilinoById(fkClienteId);
+	                      break;
+	              }
+	              
+	               boolean aptoMascota = resultSet.getBoolean("apto_mascota");	               
+
+	              Contrato contrato = new Contrato(idContrato, tipo_contrato, descripcion,url_contrato,inmueble,cliente,inicioContrato,finContrato,aptoMascota);
+	              
+	              contratos.add(contrato);
+	           }
+	        } catch (SQLException e) {
+	        }
 	      return contratos;
 	    }
 
@@ -93,8 +86,9 @@ public class ContratoControlador implements ContratoRepository{
 	            ResultSet resultSet = statement.executeQuery();
 	            
 	            if (resultSet.next()) {
-	            	// public Comprador(int comprador, double presupuesto) le falta Herencia con cliente.
-	             //   user = new Garante(resultSet.getInt("id_empleado"), resultSet.getString("name"), resultSet.getString("apellido") , resultSet.getString("telefono"), resultSet.getInt("fk_cliente"));
+	            	
+	            	
+	            	
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();

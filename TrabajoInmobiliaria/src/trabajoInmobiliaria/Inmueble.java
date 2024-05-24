@@ -56,6 +56,27 @@ public class Inmueble {
 
 
 
+	public Inmueble(int fkInmuebleId) {
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+
+	public boolean isPatio() {
+		return patio;
+	}
+
+
+
+
+	public void setPatio(boolean patio) {
+		this.patio = patio;
+	}
+
+
+
+
 	public int getId_inmueble() {
 		return id_inmueble;
 	}
