@@ -13,6 +13,10 @@ public class Comprador extends Cliente{
 	}
 
 	
+	public Comprador(String nombre,int id_cliente, String apellido, String correo,String direccion, int telefono, LocalDate fecha_nacimiento, int dni) {
+		super(nombre,id_cliente,apellido,correo,direccion,telefono,fecha_nacimiento,dni);
+		
+	}
 	
 	public int getComprador() {
 		return comprador;

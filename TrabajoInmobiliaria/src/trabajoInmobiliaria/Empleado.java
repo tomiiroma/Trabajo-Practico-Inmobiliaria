@@ -8,8 +8,8 @@ import controlador.AgenteControlador;
 import controlador.ReservaControlador;
 import controlador.InmuebleControlador;
 import controlador.GerenteControlador;
-
-
+import controlador.InquilinoControlador;
+import controlador.CompradorControlador;
 
 public class Empleado implements InicioSesion, Validacion{
 
@@ -252,9 +252,9 @@ public class Empleado implements InicioSesion, Validacion{
 	
 	/* ------------------------------------------------------------------------------------ REALIZAR RESERVA --------------------------------------------------------------------------------------------------------------------------- */
 
-	public void HacerReserva(Cliente cliente) {
+	public void HacerReserva() {
 		String monto_total = "0"; LocalDate fecha_pago = null; String forma_pago = "";
-		int fk_inmueble=0,  fk_empleado=0;
+		int fk_inmueble=0,  fk_empleado=0, fk_cliente = 0;
 		double pago=0;
 		boolean error = false;
 		try {
@@ -276,7 +276,45 @@ public class Empleado implements InicioSesion, Validacion{
 			}
 			
 			
-			int fk_cliente =1;
+			
+			String[] opcionescliente = {"Inquilino","Comprador","Cancelar"};
+			
+			int opcionselect = JOptionPane.showOptionDialog(null, "Seleccionar el tipo de cliente", null, 0, 0, null, opcionescliente, opcionescliente[0]);
+			
+			switch (opcionselect) {
+			
+			
+			case 0:
+			
+				Inquilino inquilino = SelectorInquilino();
+				
+				if (inquilino == null)  {JOptionPane.showMessageDialog(null,"No se ha encontrado ningun inquilino");  error=true;}
+				
+				else { fk_cliente = inquilino.getId_cliente();}
+				
+				break;
+
+			case 1:
+				
+				Comprador comprador = SelectorComprador();
+				
+				if (comprador == null) { JOptionPane.showMessageDialog(null, "No se ha encontrado ningun comprador"); error=true;}
+				
+				else {fk_cliente = comprador.getId_cliente();}
+				
+				break;
+				
+			case 2:
+				
+				error = true;
+				
+				break;
+				
+			default:
+				break;
+			}
+			
+			
 			
 			fecha_pago = LocalDate.now();
 			
@@ -332,7 +370,95 @@ public class Empleado implements InicioSesion, Validacion{
 		
 	}
 	
-	/* ----------------------------------------------------------------------------------------------------- VER RESERVAS POR ID ------------------------------------------------------------------------------------------------------ */
+	/* ----------------------------------------------------------------------------------------------------- OBTENER INQUILINO POR ID ---------------------------------------------------------------------------------- */
+	
+	public Inquilino SelectorInquilino() {
+		
+	InquilinoControlador controladorinquilino = new InquilinoControlador();	
+		
+	Inquilino inquilino = null;	
+		
+	if (controladorinquilino.getAllInquilino().size()==0) {
+		
+		JOptionPane.showMessageDialog(null, "No hay inquilinos en la base de datos.");
+		
+	} else {	
+		
+		String[] inquilinos = new String[controladorinquilino.getAllInquilino().size()];
+		 
+		 for (int i = 0; i < inquilinos.length; i++) {
+			
+			 inquilinos[i] = Integer.toString(controladorinquilino.getAllInquilino().get(i).getId_cliente());
+			 
+		}
+		
+		 
+		 String inquilinoselec = (String) JOptionPane.showInputDialog(null,"seleccionar inquilinos",null,0,null,inquilinos,inquilinos[0]);
+			
+		 inquilino = controladorinquilino.getInquilinoById(Integer.parseInt(inquilinoselec));
+		
+	}
+		
+		
+		
+	
+	return inquilino;
+		
+	}
+	
+	
+	/* ---------------------------------------------------------------------------------------OBTENER COMPRADOR POR ID   -------------------------------------------------------------------------------------------- */
+	
+	public Comprador SelectorComprador() {
+		
+		CompradorControlador controladorcomprador = new CompradorControlador();
+		
+		Comprador comprador = null;
+		
+		if (controladorcomprador.getAllComprador().size()==0) {
+			
+			JOptionPane.showMessageDialog(null, "No hay comprador en la base de datos.");
+			
+		} else {
+			
+			String[] compradores = new String[controladorcomprador.getAllComprador().size()];
+		
+			for (int i = 0; i < compradores.length; i++) {
+				
+				compradores[i] = Integer.toString(controladorcomprador.getAllComprador().get(i).getId_cliente());
+				 
+			}
+			
+			String compradorselec = (String) JOptionPane.showInputDialog(null,"Seleccionar compradores",null,0,null,compradores,compradores[0]);
+			
+			comprador = controladorcomprador.getCompradorById(Integer.parseInt(compradorselec));
+			
+		}
+		
+		return comprador;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

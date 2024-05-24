@@ -548,8 +548,8 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 
 			case 1:
 				
-			//	Cliente cliente1 = new Cliente("Juan", 1, "Perez", "juan@example.com", 123456789, LocalDate.of(1990, 5, 15), 12345678);
-			//	HacerReserva(cliente1);
+				
+				HacerReserva();
 				
 				break;
 				
