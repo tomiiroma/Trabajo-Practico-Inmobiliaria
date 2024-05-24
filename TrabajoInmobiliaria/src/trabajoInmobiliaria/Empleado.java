@@ -11,7 +11,7 @@ import controlador.GerenteControlador;
 
 
 
-public class Empleado implements InicioSesion{
+public class Empleado implements InicioSesion, Validacion{
 
 	private int id_empleado;
 	private String nombre;
@@ -253,36 +253,60 @@ public class Empleado implements InicioSesion{
 	/* ------------------------------------------------------------------------------------ REALIZAR RESERVA --------------------------------------------------------------------------------------------------------------------------- */
 
 	public void HacerReserva(Cliente cliente) {
-		double monto_total = 0; LocalDate fecha_pago = null; String forma_pago = "";
-		
+		String monto_total = "0"; LocalDate fecha_pago = null; String forma_pago = "";
+		int fk_inmueble=0,  fk_empleado=0;
+		double pago=0;
+		boolean error = false;
 		try {
 			
 			ReservaControlador reservacontrolador = new ReservaControlador();
 			
+			
 			Inmueble inmueble = SeleccionarInmueble();
 			
 			JOptionPane.showMessageDialog(null, "A ver"+inmueble);
+			if (inmueble == null) { JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun inmueble.");	
+			error = true;
+			}
 			
-			int fk_inmueble = inmueble.getId_inmueble();
+			else {
+
+				 fk_inmueble = inmueble.getId_inmueble();
+				
+			}
 			
-			JOptionPane.showMessageDialog(null, fk_inmueble);
 			
 			int fk_cliente =1;
 			
 			fecha_pago = LocalDate.now();
 			
-			monto_total = Double.parseDouble(JOptionPane.showInputDialog("Ingresar el monto requerido"));
+			
+			monto_total = JOptionPane.showInputDialog("Ingresar el monto requerido como entero o como decimal con dos decimales.");
+			
+			pago = ValidarMonto(monto_total);
 			
 			forma_pago = JOptionPane.showInputDialog("Ingresar una forma de pago");
 			
 			
 			Agente agente = SeleccionarAgente();
 			
-			int fk_empleado = agente.getId_empleado();
-		
-			JOptionPane.showMessageDialog(null, fk_empleado);
+			if (agente == null) {
+				
+				JOptionPane.showMessageDialog(null, "No se ha ingresado ningun agente");				
 			
-			reservacontrolador.addReserva(new Reserva(0,fk_inmueble,fk_cliente,fecha_pago,monto_total,forma_pago,fk_empleado));
+			
+			} else {
+				
+				 fk_empleado = agente.getId_empleado();
+				
+			}
+		
+			
+			if (error==false) {
+			reservacontrolador.addReserva(new Reserva(0,fk_inmueble,fk_cliente,fecha_pago,pago,forma_pago,fk_empleado));
+			}
+			
+			
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e);
 		}

@@ -319,10 +319,101 @@ public interface Validacion {
 		}
 	
 	
+/* ---------------------------------------------------------------------------------------- VALIDAR MONTO ------------------------------------------------------------------------------------------------------------------ */	
+	
+	default double ValidarMonto(String monto) {
+        double monto_final=0;
+		String numero = monto;
+		boolean valido=true, validacion_final; 
+		
+		do {
+			
+			validacion_final = false; 
+			
+			if (valido==false) {
+				
+				numero = JOptionPane.showInputDialog(null, "Ingresar un monto con el siguiente formato numero + . + 2 digitos");
+				
+			}
+		
+		boolean	flag = ValidarNumero(numero); /* Se valida el monto en la subfuncion, esta se encarga de validar si se escribio un numero entero, en caso de serlo retorna valor True */
+		
+		
+        String patron = "\\d+(\\.\\d{2})?"; /* Patron que permite escribir infinitos digitos luego separado con un . y escribir decimales*/
+          
+        Pattern pattern = Pattern.compile(patron); /* se asigna el patron */
+        
+        Matcher matcher = pattern.matcher(numero);
+        
+        if (flag == true) {	monto =	monto+".00"; /* Si en la Bandera se optiene verdadero significa que se escribio un entero y a este se le asigna .00 para evitar conflictos con la otra bandera. */
+        JOptionPane.showMessageDialog(null, numero);
+        valido = true;}
+        
+        else {
+        
+       if (matcher.matches()) {
+    	   
+    	   /* Se valida que el valor ingresado corresponda a un double o sea un valor con decimales pero el patron solo admite 2 digitos despues del punto. */
+    	   
+    	   valido = true;
+    	   
+    	   
+       } else {
+    	   
+    	   
+    	   JOptionPane.showMessageDialog(null, "Se debe agregar un numero");
+    	   valido = false;
+    	   
+       }}
+    	
+        if (valido == true) {double num = Double.parseDouble(numero);
+        	if (num>=0) {
+        		
+        		monto_final = num;
+        		JOptionPane.showMessageDialog(null, numero);
+        		validacion_final = true;
+        		
+        	} else { JOptionPane.showMessageDialog(null, "Se ingreso un valor negativo o un 0");
+        	validacion_final = false;}
+        	
+        	JOptionPane.showMessageDialog(null, validacion_final);
+        	JOptionPane.showMessageDialog(null, valido);
+        
+        }
+        
+		}while(validacion_final == false);
+        
+		
+		return monto_final;
+	}
 	
 	
 	
+	/* ------------------------------------------------------------------------------------------------------ SUBFUNCION DEL VALIDAR MONTO ---------------------------------------------------------------------------------------------------*/
+	default boolean ValidarNumero(String monto) {
+	boolean	flag = false;
+		
+		String patronNumeroEntero = "\\d+";  /* Patron numero sin decimales */
+		
+		 Pattern pattern2 = Pattern.compile(patronNumeroEntero);
+	        
+	        Matcher matcher2 = pattern2.matcher(monto);
+		
+	        if (matcher2.matches()) {
+	            
+	        	flag = true;
+	        	
+	        } else {
+	        	
+	        	flag = false;
+	            
+	        }
+	        
+	        return flag;
+	    
+	}
 	
+/* -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/	
 	
 	
 	
