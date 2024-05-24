@@ -7,27 +7,53 @@ public class Cliente {
 	private int id_cliente;
 	private String apellido;
 	private String correo;
+	private String direccion;
 	private int telefono;
 	private LocalDate fecha_nacimiento;
 	private int dni;
+
 	
-	public Cliente(String nombre, int id_cliente, String apellido, String correo, int telefono, LocalDate fecha_nacimiento,
+	public Cliente(String nombre, int id_cliente, String apellido, String correo, String direccion, int telefono, LocalDate fecha_nacimiento,
 			int dni) {
 		super();
 		this.nombre = nombre;
 		this.id_cliente = id_cliente;
 		this.apellido = apellido;
 		this.correo = correo;
+		this.direccion = direccion;
 		this.telefono = telefono;
 		this.fecha_nacimiento = fecha_nacimiento;
 		this.dni = dni;
 	}
+
+	
+	public Cliente(String nombre, String apellido, String correo,String direccion, int telefono, LocalDate fecha_nacimiento, int dni) {
+		super();
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.correo = correo;
+		this.direccion = direccion;
+		this.telefono = telefono;
+		this.fecha_nacimiento = fecha_nacimiento;
+		this.dni = dni;
+	}
+
 
 	@Override
 	public String toString() {
 		return "Cliente [nombre=" + nombre + ", id_cliente=" + id_cliente + ", apellido=" + apellido + ", correo="
 				+ correo + ", telefono=" + telefono + ", fecha_nac=" + fecha_nacimiento + ", dni=" + dni + "]";
 	}
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
 
 	public String getNombre() {
 		return nombre;

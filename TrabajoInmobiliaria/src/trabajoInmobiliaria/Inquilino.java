@@ -4,14 +4,25 @@ import java.time.LocalDate;
 
 import controlador.InquilinoControlador;
 
-public class Inquilino extends Cliente{
+public class Inquilino extends Cliente implements Validacion{
 	
 	private int id_inquilino;
 	
 
-	public Inquilino(String nombre, int id_cliente, String apellido, String correo, int telefono, LocalDate fecha_nacimiento,
-			int dni, int id_inquilino) {
-		super(nombre, id_cliente, apellido, correo, telefono, fecha_nacimiento, dni);
+
+	
+
+	public Inquilino(String nombre, String apellido, String correo, String direccion, int telefono,
+			LocalDate fecha_nacimiento, int dni, int id_inquilino) {
+		super(nombre, apellido, correo, direccion, telefono, fecha_nacimiento, dni);
+		this.id_inquilino = id_inquilino;
+	}
+
+
+
+	public Inquilino(String nombre, int id_cliente, String apellido, String correo,String direccion, int telefono,
+			LocalDate fecha_nacimiento, int dni, int id_inquilino) {
+		super(nombre, id_cliente, apellido, correo, direccion, telefono, fecha_nacimiento, dni);
 		this.id_inquilino = id_inquilino;
 	}
 
@@ -39,7 +50,7 @@ public class Inquilino extends Cliente{
 		    }
 	}
 
-
+	
 
 	
 	

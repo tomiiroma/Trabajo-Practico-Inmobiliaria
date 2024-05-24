@@ -33,6 +33,7 @@ public class CompradorControlador implements CompradorRepository{
 	                                                    resultSet.getInt("id_cliente"), 
 	                                                    resultSet.getString("apellido"), 
 	                                                    resultSet.getString("correo"), 
+	                                                    resultSet.getString("direccion"), 
 	                                                    resultSet.getInt("telefono"), 
 	                                                    resultSet.getDate("fecha_nacimiento").toLocalDate(), 
 	                                                    resultSet.getInt("dni"), 
@@ -57,7 +58,7 @@ public class CompradorControlador implements CompradorRepository{
 	            
 	            if (resultSet.next()) {
 	            	
-	                comprador = new Comprador(resultSet.getString("nombre"), resultSet.getInt("id_cliente"), resultSet.getString("apellido"), resultSet.getString("correo"), resultSet.getInt("telefono"), resultSet.getDate("fecha_nac").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("comprador"),resultSet.getDouble("Presupuesto"));
+	                comprador = new Comprador(resultSet.getString("nombre"), resultSet.getInt("id_cliente"), resultSet.getString("apellido"), resultSet.getString("correo"),resultSet.getString("direccion"), resultSet.getInt("telefono"), resultSet.getDate("fecha_nac").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("comprador"),resultSet.getDouble("Presupuesto"));
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();

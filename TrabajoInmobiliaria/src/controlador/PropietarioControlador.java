@@ -33,7 +33,7 @@ public class PropietarioControlador implements PropietarioRepository {
 	        
 	       
 	        
-	            	Propietario propietario = new Propietario(resultSet.getString("nombre"), resultSet.getInt("id_cliente"), resultSet.getString("apellido"), resultSet.getString("correo"), resultSet.getInt("telefono"), resultSet.getDate("fecha_nacimiento").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("id_propietario"));
+	            	Propietario propietario = new Propietario(resultSet.getString("nombre"), resultSet.getInt("id_cliente"), resultSet.getString("apellido"), resultSet.getString("correo"),resultSet.getString("direccion") ,resultSet.getInt("telefono"), resultSet.getDate("fecha_nacimiento").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("id_propietario"));
 	               propietarios.add(propietario);
 	            }
 	       } catch (SQLException e) {
@@ -54,7 +54,7 @@ public class PropietarioControlador implements PropietarioRepository {
 	            
 	            if (resultSet.next()) {
 	            	
-	                propietario = new Propietario(resultSet.getString("nombre"), resultSet.getInt("id_cliente"), resultSet.getString("apellido"), resultSet.getString("correo"), resultSet.getInt("telefono"), resultSet.getDate("fecha_nac").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("id_propietario")); 
+	                propietario = new Propietario(resultSet.getString("nombre"), resultSet.getInt("id_cliente"), resultSet.getString("apellido"), resultSet.getString("correo"),resultSet.getString("direccion") ,resultSet.getInt("telefono"), resultSet.getDate("fecha_nacimiento").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("id_propietario")); 
 	            
 	            }
 	        } catch (SQLException e) {
@@ -66,16 +66,17 @@ public class PropietarioControlador implements PropietarioRepository {
 		@Override
 	    public void addPropietario(Propietario propietario) {
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("INSERT INTO cliente (nombre, id_cliente, apellido, correo, telefono, fecha_nac, dni, id_propietario) VALUES (?, null, ?, ?, ?, ?, ?, ?)");
+	            PreparedStatement statement = connection.prepareStatement("INSERT INTO cliente (nombre, apellido, correo, direccion, telefono, fecha_nacimiento, dni, tipo_cliente, id_propietario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 	            statement.setString(1, propietario.getNombre());
-	            statement.setInt(2, propietario.getId_cliente());
-	            statement.setString(3, propietario.getApellido());
-	            statement.setString(4, propietario.getCorreo());
+	            statement.setString(2, propietario.getApellido());
+	            statement.setString(3, propietario.getCorreo());
+	            statement.setString(4, propietario.getDireccion());
 	            statement.setInt(5, propietario.getTelefono());
-	            java.sql.Date fecha_nac = java.sql.Date.valueOf(propietario.getFecha_nacimiento());
-	            statement.setDate(6, fecha_nac);
+	            java.sql.Date fecha_nacimiento = java.sql.Date.valueOf(propietario.getFecha_nacimiento());
+	            statement.setDate(6, fecha_nacimiento);
 	            statement.setInt(7, propietario.getDni());
-	            statement.setInt(8, propietario.getId_propietario()); // consultar si es auto increment.
+	            statement.setString(8, "Propietario");
+	            statement.setInt(9, propietario.getId_propietario());
 	            
 	            int rowsInserted = statement.executeUpdate();
 	            if (rowsInserted > 0) {
@@ -89,7 +90,7 @@ public class PropietarioControlador implements PropietarioRepository {
 		@Override
 	    public void updatePropietario(Propietario propietario) {
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("UPDATE cliente SET nombre = ?, apellido = ?, correo = ?, telefono = ?, fecha_nac = ?, dni = ?  WHERE id_cliente = ?");
+	            PreparedStatement statement = connection.prepareStatement("UPDATE cliente SET nombre = ?, apellido = ?, correo = ?, telefono = ?, fecha_nacimiento = ?, dni = ?  WHERE id_cliente = ?");
 	          statement.setString(1, propietario.getNombre());
 	            statement.setString(2, propietario.getApellido());
 	            statement.setString(3, propietario.getCorreo());
