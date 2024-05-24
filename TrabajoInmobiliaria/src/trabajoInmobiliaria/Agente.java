@@ -134,6 +134,7 @@ public class Agente extends Empleado implements Validacion, InicioSesion{
 						
 					}else if(operacionSeleccionada.equals("Nuevo Contrato de Alquiler")){
 						JOptionPane.showMessageDialog(null, "Completar y verificar datos del alquiler");  
+						registrarContrato();
 
 					}else {
 						break;

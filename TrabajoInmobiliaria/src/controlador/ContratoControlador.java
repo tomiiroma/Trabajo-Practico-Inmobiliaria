@@ -84,10 +84,37 @@ public class ContratoControlador implements ContratoRepository{
 	            statement.setInt(1, id);
 	            
 	            ResultSet resultSet = statement.executeQuery();
-	            
+	            InmuebleControlador controlador = new InmuebleControlador();
+	 	       InquilinoControlador inquilino = new InquilinoControlador();
+	 	       PropietarioControlador propietario = new PropietarioControlador();
 	            if (resultSet.next()) {
 	            	
-	            	
+	                int idContrato = resultSet.getInt("id_contrato");
+		               String tipo_contrato = resultSet.getString("tipo_contrato");
+		               String descripcion = resultSet.getString("descripcion");
+		               String url_contrato = resultSet.getString("url_contrato");	               
+		               LocalDate inicioContrato = resultSet.getDate("inicio_contrato").toLocalDate();
+		               LocalDate finContrato = resultSet.getDate("fin_contrato").toLocalDate();
+
+		               int fkInmuebleId = resultSet.getInt("fk_inmueble_id");
+		               int fkClienteId = resultSet.getInt("fk_cliente_id");
+
+		              Inmueble inmueble = controlador.getInmuebleById(fkInmuebleId);
+		              
+		              Cliente cliente = null;
+		              switch (resultSet.getString("tipo_contrato")) {
+		                  case "Venta":
+		                      cliente = propietario.getPropietarioById(fkClienteId);
+		                      break;
+		                  case "Alquiler":
+		                      cliente = inquilino.getInquilinoById(fkClienteId);
+		                      break;
+		              }
+		              
+		               boolean aptoMascota = resultSet.getBoolean("apto_mascota");	               
+
+		               contrato = new Contrato(idContrato, tipo_contrato, descripcion,url_contrato,inmueble,cliente,inicioContrato,finContrato,aptoMascota);
+		              
 	            	
 	            }
 	        } catch (SQLException e) {
@@ -99,9 +126,18 @@ public class ContratoControlador implements ContratoRepository{
 		@Override
 	    public void addContrato(Contrato contrato) {
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("INSERT INTO users (name, correo) VALUES (?, ?)");
-	            statement.setString(1, contrato.getDescripcion());
-	            statement.setDouble(2, contrato.getMonto());
+	            PreparedStatement statement = connection.prepareStatement("INSERT INTO contrato (tipo_contrato, descripcion, url_contrato, fk_inmueble_id, fk_cliente_id, inicio_contrato, fin_contrato, apto_mascota) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+	            statement.setString(1, contrato.getTipo_contrato());
+	            statement.setString(2, contrato.getDescripcion());
+	            statement.setString(3, contrato.getUrl_contrato());
+	            statement.setInt(4, contrato.getInmueble().getId_inmueble());
+	            statement.setInt(5, contrato.getCliente().getId_cliente());
+	            java.sql.Date inicio_contrato = java.sql.Date.valueOf(contrato.getInicio_contrato());
+	            statement.setDate(6, inicio_contrato);
+	            java.sql.Date fin_contrato = java.sql.Date.valueOf(contrato.getFin_contrato());
+	            statement.setDate(7, fin_contrato);
+	            statement.setBoolean(8, contrato.isApto_mascota());
+
 	            
 	            int rowsInserted = statement.executeUpdate();
 	            if (rowsInserted > 0) {

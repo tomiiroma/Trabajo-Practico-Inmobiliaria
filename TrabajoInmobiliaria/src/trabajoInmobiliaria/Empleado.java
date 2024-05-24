@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 import javax.swing.JOptionPane;
 
+import controlador.ContratoControlador;
+import controlador.InmuebleControlador;
 import controlador.InquilinoControlador;
 import controlador.PropietarioControlador;
 
@@ -155,5 +157,35 @@ public class Empleado implements InicioSesion,Validacion{
 		int id_Propietario = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el id del Propietario"));
 		
 		controlador.addPropietario(new Propietario(nombre, apellido, correoverificado , direccion, telefonocliente, fecha, dni ,id_Propietario));
+	}
+	
+	
+	public void registrarContrato() {
+		ContratoControlador controlador = new ContratoControlador();
+		LocalDate inicio = null;
+		LocalDate fin = null;
+
+		InmuebleControlador inmueblecont = new InmuebleControlador();
+		InquilinoControlador clientecont = new InquilinoControlador();
+
+		
+		String tipocontrato = JOptionPane.showInputDialog("Ingrese el tipo de contrato");
+		String descripcion = JOptionPane.showInputDialog("Ingrese el descripcion del contrato");
+		String url = JOptionPane.showInputDialog("Ingrese la url del contrato");
+		
+		  int idInmueble = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del inmueble"));
+		    Inmueble inmueble = inmueblecont.getInmuebleById(idInmueble);
+
+
+		    int idCliente = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del cliente"));
+		    Cliente cliente = clientecont.getInquilinoById(idCliente);		
+		    
+		    inicio = validarFecha(inicio);
+		    
+		fin = validarFecha(fin);
+	    boolean aptoMascota = JOptionPane.showConfirmDialog(null, "¿El contrato permite mascotas?", "Permite mascotas", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
+	
+	    Contrato contrato = new Contrato(0, tipocontrato, descripcion, url,inmueble,cliente, inicio, fin, aptoMascota);
+	    controlador.addContrato(contrato);
 	}
 }

@@ -92,7 +92,6 @@ public class InmuebleControlador implements InmuebleRepository{
                             resultSet.getBoolean("refaccionar"),
                             resultSet.getBoolean("apto_mascota"),
                     		resultSet.getBoolean("patio"));          
-	              
          
 	            }
 	            
