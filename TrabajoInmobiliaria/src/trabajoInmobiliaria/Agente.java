@@ -85,9 +85,9 @@ public class Agente extends Empleado implements Validacion, InicioSesion{
 					
 					if(clienteSeleccionado.equals("Nuevo Propietario")){
 						JOptionPane.showMessageDialog(null, "Completar Propietario");
-						
+						agregarPropietario();
 					}else if(clienteSeleccionado.equals("Nuevo Inquilino")){
-						JOptionPane.showMessageDialog(null, "Completar Inquilino");  
+						agregarInquilino();
 
 					}else {
 						break;

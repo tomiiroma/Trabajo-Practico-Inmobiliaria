@@ -66,7 +66,7 @@ public class InquilinoControlador implements InquilinoRepository{
 	            statement.setString(1, inquilino.getNombre());
 	            statement.setString(2,inquilino.getApellido());
 	            statement.setString(3, inquilino.getCorreo());
-	            statement.setString(4, inquilino.getCorreo());
+	            statement.setString(4, inquilino.getDireccion());
 	            statement.setInt(5,inquilino.getTelefono());
 	            java.sql.Date fecha_nacimiento = java.sql.Date.valueOf(inquilino.getFecha_nacimiento());
 	            statement.setDate(6, fecha_nacimiento);

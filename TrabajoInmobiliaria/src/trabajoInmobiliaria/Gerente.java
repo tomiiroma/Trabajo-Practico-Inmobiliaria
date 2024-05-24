@@ -113,7 +113,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 							tipoCliente[0]);
 					
 					if(clienteSeleccionado.equals("Nuevo Propietario")){
-						JOptionPane.showMessageDialog(null, "Completar Propietario");
+						agregarPropietario();
 						
 					}else if(clienteSeleccionado.equals("Nuevo Inquilino")){
 						agregarInquilino();

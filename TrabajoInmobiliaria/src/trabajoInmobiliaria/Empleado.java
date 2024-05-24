@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import javax.swing.JOptionPane;
 
 import controlador.InquilinoControlador;
+import controlador.PropietarioControlador;
 
 
 
@@ -130,5 +131,29 @@ public class Empleado implements InicioSesion,Validacion{
 		int id_Inquilino = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el id del Inquilino"));
 		
 		controlador.addInquilino(new Inquilino(nombre,apellido, correoverificado , direccion, telefonocliente, fecha, dni ,id_Inquilino));
+	}
+	
+	
+	public void agregarPropietario() {
+		
+		LocalDate fecha = null;
+		int telefonocliente;
+		PropietarioControlador controlador = new PropietarioControlador();
+	
+		
+		String nombre = validarNombre("Ingrese el nombre del Cliente");
+		String apellido = validarNombre("Ingrese el apellido del Cliente");
+		String correo = JOptionPane.showInputDialog(null, "Ingresar correo"); 
+		String correoverificado = validarEmail(correo);
+		String direccion = JOptionPane.showInputDialog("Ingrese direccion del Cliente");
+		String telefonoentrada = JOptionPane.showInputDialog("Ingresar telefono"); 
+		telefonocliente = validarTelefono(telefonoentrada);
+		fecha = validarFecha(fecha);
+		int dni = validarDni("Ingrese Dni");
+		
+		
+		int id_Propietario = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el id del Propietario"));
+		
+		controlador.addPropietario(new Propietario(nombre, apellido, correoverificado , direccion, telefonocliente, fecha, dni ,id_Propietario));
 	}
 }

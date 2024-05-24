@@ -7,11 +7,17 @@ import controlador.PropietarioControlador;
 public class Propietario extends Cliente {
 	private int id_propietario;
 	
-	public Propietario(String nombre, int id_cliente, String apellido, String correo, int telefono, LocalDate fecha_nac,
+	public Propietario(String nombre, int id_cliente, String apellido, String correo,String direccion, int telefono, LocalDate fecha_nacimiento,
 			int dni, int id_propietario) {
-		super(nombre, id_cliente, apellido, correo, telefono, fecha_nac, dni);
+		super(nombre, id_cliente, apellido, correo,direccion, telefono, fecha_nacimiento, dni);
 		this.id_propietario = id_propietario;
 		
+	}
+	
+	public Propietario(String nombre, String apellido, String correo, String direccion, int telefono,
+			LocalDate fecha_nacimiento, int dni, int id_inquilino) {
+		super(nombre, apellido, correo, direccion, telefono, fecha_nacimiento, dni);
+		this.id_propietario = id_inquilino;
 	}
 	public int getId_propietario() {
 		return id_propietario;
