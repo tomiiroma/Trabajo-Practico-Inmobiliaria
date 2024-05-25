@@ -551,7 +551,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 			case 1:
 				
 				
-				HacerReserva();
+				RealizarReserva();
 				
 				break;
 				

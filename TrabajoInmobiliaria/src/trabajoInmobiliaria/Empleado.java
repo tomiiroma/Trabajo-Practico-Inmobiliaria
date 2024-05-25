@@ -253,127 +253,118 @@ public class Empleado implements InicioSesion, Validacion{
 	
 	/* ------------------------------------------------------------------------------------ REALIZAR RESERVA --------------------------------------------------------------------------------------------------------------------------- */
 
-	public void HacerReserva() {
-		String monto_total = "0"; LocalDate fecha_pago = null; String forma_pago = "";
-		int fk_inmueble=0,  fk_empleado=0, fk_cliente = 0;
-		double pago=0;
+	/* ------------------------------------------------------------------------------------------------------- Realizar reservas 2 ------------------------------------------------------------------------------- */
+	
+	
+	
+	
+	public void RealizarReserva() {
+		
 		boolean error = false;
+		Cliente cliente = null;
+		Empleado empleado = null;
+		LocalDate fecha_pago = null;
+		String pago="";
+		double montovalidado;
+		
 		try {
 			
-			ReservaControlador reservacontrolador = new ReservaControlador();
-			
-			
-			Inmueble inmueble = SeleccionarInmueble();
-			
-			JOptionPane.showMessageDialog(null, "A ver"+inmueble);
-			if (inmueble == null) { JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun inmueble.");	
-			error = true;
-			}
-			
-			else {
-
-				 fk_inmueble = inmueble.getId_inmueble();
-				
-			}
-			
-			
-			
-			String[] opcionescliente = {"Inquilino","Comprador","Cancelar"};
-			
-			int opcionselect = JOptionPane.showOptionDialog(null, "Seleccionar el tipo de cliente", null, 0, 0, null, opcionescliente, opcionescliente[0]);
-			
-			switch (opcionselect) {
-			
-			
-			case 0:
-			
-				Inquilino inquilino = SelectorInquilino();
-				
-				if (inquilino == null)  {JOptionPane.showMessageDialog(null,"No se ha encontrado ningun inquilino");  error=true;}
-				
-				else { fk_cliente = inquilino.getId_cliente();}
-				
-				break;
-
-			case 1:
-				
-				Comprador comprador = SelectorComprador();
-				
-				if (comprador == null) { JOptionPane.showMessageDialog(null, "No se ha encontrado ningun comprador"); error=true;}
-				
-				else {fk_cliente = comprador.getId_cliente();}
-				
-				break;
-				
-			case 2:
-				
-				error = true;
-				
-				break;
-				
-			default:
-				break;
-			}
-			
-			
-			
-			fecha_pago = LocalDate.now();
-			
-			
-			monto_total = JOptionPane.showInputDialog("Ingresar el monto requerido como entero o como decimal con dos decimales.");
-			
-			pago = ValidarMonto(monto_total);
-			
-			forma_pago = JOptionPane.showInputDialog("Ingresar una forma de pago");
-			
-			String[] Empleados = {"Agente","Gerente","Cancelar"};
-			
-			int selectEmpleado = JOptionPane.showOptionDialog(null, "Seleccionar quien realizara la operación", "Reserva", 0, 0, null, Empleados, Empleados[0]);
-			
-			switch (selectEmpleado) {
-			case 0:
-				
-				Agente agente = SeleccionarAgente(); // llama a la función seleccionarAgente que devulve un agente.
-				
-				if (agente == null) { // En caso que la funcion devuelva un null se cumplirá la condicion y ejecuta la lineas de codigo 339 y 340
-					
-					JOptionPane.showMessageDialog(null, "No se ha ingresado ningun agente");				
-					error = true; // En caso de no haber empleados devuelve error = true
-					
-				} else {
-					
-					fk_empleado = agente.getId_empleado(); //  toma el id del empleado
-					
-				}
-				
-				
-				break;
-
-			case 1: // Seleccionar Gerente
-				
-				Gerente gerente = ObtenerGerenteId();
-				if (gerente == null) { JOptionPane.showMessageDialog(null, "No se ha ingresado ningun Gerente"); error=true;} // En caso de no haber gerentes devuelve error = true;
-				else { fk_empleado = gerente.getId_empleado();} // toma el id del gerente.
-				break;
-				
-			case 2:
-				JOptionPane.showMessageDialog(null, "Se cancelo la operación");
-				error = true;
-				break;
-			}
-			
+		ReservaControlador reservacontrolador = new ReservaControlador();
 		
+		
+		
+		Inmueble inmueble = SeleccionarInmueble();
+		
+		if (inmueble==null) {error=true;}
+		
+		
+		String[] Clientes = {"Inquilino","Comprador","Cancelar Operación"};
+		
+		
+		int clienteseleccionado = JOptionPane.showOptionDialog(null, "Seleccionar el tipo de cliente","Selección de clientes", 0, 0, null, Clientes, Clientes[0]);
+		
+		
+		switch (clienteseleccionado) {
+		case 0:
 			
-			if (error==false) {
-			reservacontrolador.addReserva(new Reserva(0,fk_inmueble,fk_cliente,fecha_pago,pago,forma_pago,fk_empleado));
-			}
+			 cliente = SelectorInquilino();
 			
 			
+			break;
+
+		case 1:
+			
+			cliente = SelectorComprador();
+			
+			break;
+			
+			
+		case 2:
+			
+			JOptionPane.showMessageDialog(null, "Se ha cancelado la operación");
+			
+			break;
+			
+		default:
+			break;
+		}
+		
+		if (cliente==null) {error=true;}
+		
+		
+		fecha_pago = validarFecha(fecha_pago);
+		
+		pago = JOptionPane.showInputDialog("Ingresar un número entero o con dos decimales para el monto de la reserva");
+		
+		montovalidado = ValidarMonto(pago);
+		
+		String forma_pago = JOptionPane.showInputDialog(null, "Escribar la forma de pago");
+		
+		
+		String[] Empleados = {"Agente","Gerente","Cancelar operación"};
+		
+		
+		int seleccionEmpleados = JOptionPane.showOptionDialog(null, "Seleccionar el tipo de empleado que realizara la reserva", "Modulo reserva", 0, 0, null, Empleados, Empleados[0]);
+		
+		
+		if (seleccionEmpleados==0) {	empleado = SeleccionarAgente();}
+		
+		else if (seleccionEmpleados==1) { empleado = ObtenerGerenteId();}
+		
+		else { JOptionPane.showMessageDialog(null, "Se cancelo la operacioón"); error=true; }
+		
+		if (empleado==null) {error = true;}
+		
+		if (error==false) {
+			
+			
+			reservacontrolador.addReserva(new Reserva(inmueble,cliente,fecha_pago,montovalidado,forma_pago,empleado));
+			
+			
+		}
+		
+		
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e);
 		}
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
+	
 	
 	/* ------------------------------------------------------------------------------------------------------- VER TODAS LAS RESERVAS ------------------------------------------------------------------------------------------------- */
 

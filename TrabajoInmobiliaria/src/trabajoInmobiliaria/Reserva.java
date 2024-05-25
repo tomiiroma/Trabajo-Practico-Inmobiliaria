@@ -3,23 +3,19 @@ package trabajoInmobiliaria;
 import java.time.LocalDate;
 
 public class Reserva {
-	private int id_reserva;
-	private int fk_inmueble;
-	private int fk_cliente;
+	
 	private Inmueble inmueble;
 	private Cliente cliente;
 	private LocalDate fecha_pago;
 	private double pago;
     private String forma_pago;
-    private int fk_empleado;
     private Empleado empleado;
     
     
     
-	public Reserva(int id_reserva, Inmueble inmueble, Cliente cliente, LocalDate fecha_pago, double pago,
+	public Reserva(Inmueble inmueble, Cliente cliente, LocalDate fecha_pago, double pago,
 			String forma_pago, Empleado empleado) {
 		super();
-		this.id_reserva = id_reserva;
 		this.inmueble = inmueble;
 		this.cliente = cliente;
 		this.fecha_pago = fecha_pago;
@@ -29,77 +25,13 @@ public class Reserva {
 	}
 
 	
-	public Reserva (int id_reserva, int fk_inmueble, int fk_cliente, LocalDate fecha_pago, double pago, String forma_pago, int fk_empleado) {
-		
-		
-		this.id_reserva = id_reserva;
-		this.fk_inmueble = fk_inmueble;
-		this.fk_cliente = fk_cliente;
-		this.fecha_pago = fecha_pago;
-		this.pago = pago;
-		this.forma_pago = forma_pago;
-		this.fk_empleado = fk_empleado;
-		
-		
-		
-	}
-	
-	
-	
-	
+
 
 	@Override
 	public String toString() {
-		return "Reserva [id_reserva=" + id_reserva + ", fk_inmueble=" + fk_inmueble + ", fk_cliente=" + fk_cliente
-				+ ", fecha_pago=" + fecha_pago + ", pago=" + pago + ", forma_pago=" + forma_pago + ", fk_empleado="
-				+ fk_empleado + "]";
+		return "Reserva [inmueble=" + inmueble + ", cliente=" + cliente + ", fecha_pago=" + fecha_pago + ", pago="
+				+ pago + ", forma_pago=" + forma_pago + ", empleado=" + empleado + "]";
 	}
-
-
-	public int getFk_inmueble() {
-		return fk_inmueble;
-	}
-
-
-	public void setFk_inmueble(int fk_inmueble) {
-		this.fk_inmueble = fk_inmueble;
-	}
-
-
-	public int getFk_cliente() {
-		return fk_cliente;
-	}
-
-
-	public void setFk_cliente(int fk_cliente) {
-		this.fk_cliente = fk_cliente;
-	}
-
-
-	public int getFk_empleado() {
-		return fk_empleado;
-	}
-
-
-	public void setFk_empleado(int fk_empleado) {
-		this.fk_empleado = fk_empleado;
-	}
-
-
-	public int getId_reserva() {
-		return id_reserva;
-	}
-
-
-
-
-
-
-	public void setId_reserva(int id_reserva) {
-		this.id_reserva = id_reserva;
-	}
-
-
 
 
 
@@ -110,9 +42,11 @@ public class Reserva {
 
 
 
+
 	public void setInmueble(Inmueble inmueble) {
 		this.inmueble = inmueble;
 	}
+
 
 
 
@@ -122,9 +56,11 @@ public class Reserva {
 
 
 
+
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
+
 
 
 
@@ -134,9 +70,11 @@ public class Reserva {
 
 
 
+
 	public void setFecha_pago(LocalDate fecha_pago) {
 		this.fecha_pago = fecha_pago;
 	}
+
 
 
 
@@ -146,9 +84,11 @@ public class Reserva {
 
 
 
+
 	public void setPago(double pago) {
 		this.pago = pago;
 	}
+
 
 
 
@@ -158,9 +98,11 @@ public class Reserva {
 
 
 
+
 	public void setForma_pago(String forma_pago) {
 		this.forma_pago = forma_pago;
 	}
+
 
 
 
@@ -170,15 +112,15 @@ public class Reserva {
 
 
 
+
 	public void setEmpleado(Empleado empleado) {
 		this.empleado = empleado;
 	}
+
+
+
+
 	
-    
-    
-    
-    
-    
     
     
     
