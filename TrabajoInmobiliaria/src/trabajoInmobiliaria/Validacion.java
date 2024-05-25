@@ -277,9 +277,9 @@ public interface Validacion {
 			JOptionPane.showMessageDialog(null, "La password esta vacio o contiene espacios.");
 			flag=false;
 			
-        } else if (contraseña.length() < 8 && flag==true) {
+        } else if (contraseña.length() < 6 && flag==true) {
 			
-        	JOptionPane.showMessageDialog(null, "La contraseña posee menos de 8 carácteres.");
+        	JOptionPane.showMessageDialog(null, "La contraseña posee menos de 6 carácteres.");
         	flag=false;
         } 
 		

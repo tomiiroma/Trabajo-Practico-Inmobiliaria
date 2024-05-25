@@ -74,9 +74,14 @@ public class VentaControlador implements VentaRepository {
 		@Override
 	    public void addVenta(Venta venta) {
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("INSERT INTO users (name, email) VALUES (?, ?)");
-	            statement.setString(1, venta.getComprador().toString());
-	            statement.setDouble(2, venta.getPrecio_venta());
+	            PreparedStatement statement = connection.prepareStatement("INSERT INTO venta (fk_inmueble_id, fk_cliente_id, fk_contrato_id, monto_total, forma_pago, fk_empleado_id) VALUES (?, ?, ?, ?, ?, ?)");
+	            statement.setInt(1, venta.getFk_inmueble());
+	            statement.setInt(2, venta.getFk_cliente());
+	            statement.setInt(3, venta.getFk_contrato());
+	            statement.setDouble(4, venta.getMonto_total());
+	            statement.setString(5, venta.getForma_pago());
+	            statement.setInt(6, venta.getFk_empleado_id());
+	            
 	            
 	            int rowsInserted = statement.executeUpdate();
 	            if (rowsInserted > 0) {
@@ -91,7 +96,7 @@ public class VentaControlador implements VentaRepository {
 	    public void updateVenta(Venta venta) {
 	        try {
 	            PreparedStatement statement = connection.prepareStatement("UPDATE users SET name = ?, email = ? WHERE id = ?");
-	            statement.setString(1, venta.getInmueble().toString());
+	            statement.setString(1, venta.getForma_pago().toString());
 	            statement.setString(2, venta.getForma_pago());
 	            statement.setInt(3, venta.getId_venta());
 	            

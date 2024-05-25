@@ -145,6 +145,8 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 					if(operacionNuevaSeleccionada.equals("Realizar Venta")){
 						JOptionPane.showMessageDialog(null, "Completar Venta");
 						
+						RealizarVenta();
+						
 					}else if(operacionNuevaSeleccionada.equals("Realizar Alquiler")){
 						JOptionPane.showMessageDialog(null, "Completar Alquiler");  
 

@@ -10,6 +10,7 @@ import controlador.InmuebleControlador;
 import controlador.GerenteControlador;
 import controlador.InquilinoControlador;
 import controlador.CompradorControlador;
+import controlador.VentaControlador;
 
 public class Empleado implements InicioSesion, Validacion{
 
@@ -332,39 +333,32 @@ public class Empleado implements InicioSesion, Validacion{
 			switch (selectEmpleado) {
 			case 0:
 				
-				Agente agente = SeleccionarAgente();
+				Agente agente = SeleccionarAgente(); // llama a la función seleccionarAgente que devulve un agente.
 				
-				if (agente == null) {
+				if (agente == null) { // En caso que la funcion devuelva un null se cumplirá la condicion y ejecuta la lineas de codigo 339 y 340
 					
 					JOptionPane.showMessageDialog(null, "No se ha ingresado ningun agente");				
-					error = true;
+					error = true; // En caso de no haber empleados devuelve error = true
 					
 				} else {
 					
-					fk_empleado = agente.getId_empleado();
+					fk_empleado = agente.getId_empleado(); //  toma el id del empleado
 					
 				}
 				
 				
 				break;
 
-			case 1:
+			case 1: // Seleccionar Gerente
 				
 				Gerente gerente = ObtenerGerenteId();
-				
-				if (gerente == null) { JOptionPane.showMessageDialog(null, "No se ha ingresado ningun Gerente"); error=true;}
-				
-				else { fk_empleado = gerente.getId_empleado();}
-				
+				if (gerente == null) { JOptionPane.showMessageDialog(null, "No se ha ingresado ningun Gerente"); error=true;} // En caso de no haber gerentes devuelve error = true;
+				else { fk_empleado = gerente.getId_empleado();} // toma el id del gerente.
 				break;
 				
 			case 2:
-				
 				JOptionPane.showMessageDialog(null, "Se cancelo la operación");
 				error = true;
-				
-				break;
-			default:
 				break;
 			}
 			
@@ -470,10 +464,78 @@ public class Empleado implements InicioSesion, Validacion{
 	
 	
 	
+	/* ----------------------------------------------------------------------------- REALIZAR VENTA ------------------------------------------------------------------------------------------------------------ */
 	
 	
+	public void RealizarVenta() {
+		
+		VentaControlador ventacontrolador = new VentaControlador();
+		int identificador_inmueble=0 , identificador_cliente=0, ID_empleado=0;
+		boolean error=false;
+		double  monto_total;
+		String validar_monto , forma_pago;
+		
+		String [] RealizarVent = {"Realizar venta","cancelar operacion"};
+		
+		int opciones = JOptionPane.showOptionDialog(null, "Seleccionar una opcion","Módulo venta", 0, 0, null, RealizarVent, RealizarVent[0]);
+		
 	
-	
+		switch (opciones) {
+			
+			case 0:
+			
+			Inmueble inmueble = SeleccionarInmueble();	// Este metodo retorna un inmueble
+				
+			if (inmueble == null) { JOptionPane.showMessageDialog(null, "No se ha ingresado ningun inmueble"); error=true;}
+			
+			else { identificador_inmueble = inmueble.getId_inmueble();}
+				
+			Cliente cliente = SelectorComprador();
+			
+			if (cliente == null ) {JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun comprador"); error = true;}
+			
+			else {  identificador_cliente = cliente.getId_cliente();}
+			
+			/* Espacio para un metodo que retorne un contrato. */
+			
+			int identificador_contrato = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el id del contrato"));
+			
+			/* fin del espacio para el metodo que retorne un contrato */
+			
+			validar_monto = JOptionPane.showInputDialog(null, "Ingresar el monto requerido para la transacción");
+			
+			monto_total = ValidarMonto(validar_monto);
+			
+			forma_pago = JOptionPane.showInputDialog(null, "Ingresar la forma de pago");
+			
+		
+			
+			String[] SeleccionarEmpleado = {"Agente" , "Gerente"};
+			
+			int SeleccionEmpleado = JOptionPane.showOptionDialog(null, "Seleccionar el tipo de empleado que realizara la operacion", "Módulo venta", 0, 0, null, SeleccionarEmpleado, SeleccionarEmpleado[0]);
+			
+			if (SeleccionEmpleado==0) 
+			{ Agente empleado = SeleccionarAgente();  
+			  ID_empleado = empleado.getId_empleado();
+			}
+			else if (SeleccionEmpleado==1) {
+				Gerente empleado = ObtenerGerenteId();
+			 ID_empleado = empleado.getId_empleado();
+			}
+			else {error=true;}
+			
+			if (error==false) {	ventacontrolador.addVenta(new Venta(0,identificador_inmueble,identificador_cliente,identificador_contrato,monto_total,forma_pago,ID_empleado));}
+			
+			break;
+			
+			case 1:
+				
+				JOptionPane.showMessageDialog(null, "Se ha cancelado la operación");
+				
+				break;
+		}
+		
+	}
 	
 	
 	
