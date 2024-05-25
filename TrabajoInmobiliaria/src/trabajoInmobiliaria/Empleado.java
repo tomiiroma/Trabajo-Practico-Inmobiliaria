@@ -325,19 +325,49 @@ public class Empleado implements InicioSesion, Validacion{
 			
 			forma_pago = JOptionPane.showInputDialog("Ingresar una forma de pago");
 			
+			String[] Empleados = {"Agente","Gerente","Cancelar"};
 			
-			Agente agente = SeleccionarAgente();
+			int selectEmpleado = JOptionPane.showOptionDialog(null, "Seleccionar quien realizara la operación", "Reserva", 0, 0, null, Empleados, Empleados[0]);
 			
-			if (agente == null) {
+			switch (selectEmpleado) {
+			case 0:
 				
-				JOptionPane.showMessageDialog(null, "No se ha ingresado ningun agente");				
-			
-			
-			} else {
+				Agente agente = SeleccionarAgente();
 				
-				 fk_empleado = agente.getId_empleado();
+				if (agente == null) {
+					
+					JOptionPane.showMessageDialog(null, "No se ha ingresado ningun agente");				
+					error = true;
+					
+				} else {
+					
+					fk_empleado = agente.getId_empleado();
+					
+				}
 				
+				
+				break;
+
+			case 1:
+				
+				Gerente gerente = ObtenerGerenteId();
+				
+				if (gerente == null) { JOptionPane.showMessageDialog(null, "No se ha ingresado ningun Gerente"); error=true;}
+				
+				else { fk_empleado = gerente.getId_empleado();}
+				
+				break;
+				
+			case 2:
+				
+				JOptionPane.showMessageDialog(null, "Se cancelo la operación");
+				error = true;
+				
+				break;
+			default:
+				break;
 			}
+			
 		
 			
 			if (error==false) {

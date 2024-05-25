@@ -984,7 +984,8 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 			
 			case 0:  // Ver empleados
 			
-				 JOptionPane.showMessageDialog(null, "La lista de empleados"+"\n"+agentecontrolador.getAllAgente());
+				if (agentecontrolador.getAllAgente().size()==0) {JOptionPane.showMessageDialog(null, "No se han encontrado agentes.");} else {
+				 JOptionPane.showMessageDialog(null, "La lista de empleados"+"\n"+agentecontrolador.getAllAgente());}
 				
 				
 			break;
