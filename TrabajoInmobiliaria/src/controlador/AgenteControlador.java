@@ -120,7 +120,61 @@ public class AgenteControlador implements AgenteRepository{
 	        }
 	    }
 
-	    @Override
+		
+		
+		@Override
+		public void deleteAgente(int id) {
+		    try {
+		        
+		        String sql = "SELECT COUNT(*) AS total FROM " +
+		                     "(SELECT 1 FROM venta WHERE fk_empleado_id = ? " +
+		                     "UNION ALL " +
+		                     "SELECT 1 FROM visita WHERE fk_empleado_id = ? " +
+		                     "UNION ALL " +
+		                     "SELECT 1 FROM reserva WHERE fk_empleado_id = ? " +
+		                     "UNION ALL " +
+		                     "SELECT 1 FROM reunion WHERE fk_empleado_id = ? " +
+		                     "UNION ALL " +
+		                     "SELECT 1 FROM alquiler WHERE fk_empleado_id = ?) AS ref_count";
+		        
+		        PreparedStatement checkStatement = connection.prepareStatement(sql);
+		        for (int i = 1; i <= 5; i++) {
+		            checkStatement.setInt(i, id);
+		        }
+		        
+		        ResultSet resultSet = checkStatement.executeQuery();
+		        resultSet.next();
+		        int referencesCount = resultSet.getInt("total");
+		        
+		        if (referencesCount > 0) {
+		            JOptionPane.showMessageDialog(null,"El empleado no puede ser eliminado porque tiene referencias en otras tablas.");
+		            return;
+		        }
+		        
+		        PreparedStatement deleteStatement = connection.prepareStatement("DELETE FROM empleado WHERE id_empleado = ?");
+		        deleteStatement.setInt(1, id);
+		        
+		        int rowsDeleted = deleteStatement.executeUpdate();
+		        if (rowsDeleted > 0) {
+		            System.out.println("Empleado eliminado exitosamente");
+
+
+		        
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }
+		}
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	  /*  @Override
 	    public void deleteAgente(int id) {
 	        try {
 	            PreparedStatement statement = connection.prepareStatement("DELETE FROM empleado WHERE id_empleado = ?");
@@ -135,7 +189,7 @@ public class AgenteControlador implements AgenteRepository{
 	        }
 	    }
 	
-	
+	*/
 	
 	
 	
