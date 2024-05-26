@@ -157,8 +157,9 @@ public class AgenteControlador implements AgenteRepository{
 		        int rowsDeleted = deleteStatement.executeUpdate();
 		        if (rowsDeleted > 0) {
 		            System.out.println("Empleado eliminado exitosamente");
-
-
+		        } else {
+		            System.out.println("No se encontró ningún empleado con ese ID.");
+		        }
 		        
 		    } catch (SQLException e) {
 		        e.printStackTrace();

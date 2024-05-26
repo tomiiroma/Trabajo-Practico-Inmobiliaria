@@ -9,6 +9,8 @@ import controlador.AgenteControlador;
 import controlador.GerenteControlador;
 import controlador.InmuebleControlador;
 import controlador.ReservaControlador;
+import controlador.VentaControlador;
+import controlador.AlquilerControlador;
 
 public class Gerente extends Empleado implements Validacion, InicioSesion{
 
@@ -463,9 +465,11 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 							break;
 							
 							case 1:
-								
-								EliminarGerente();
-								
+						Gerente repetido =	VerificarReferenciasGerente();
+						
+						if (repetido != null) {
+								EliminarGerente(repetido);
+						}
 								break;
 							
 							case 2: 
@@ -1095,9 +1099,9 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 	
 	
 	
-	public void EliminarGerente() {
+	public void EliminarGerente(Gerente seleccionado) {
 		
-	
+	try {
 		
 		GerenteControlador gerentecontrolador = new GerenteControlador();
 		
@@ -1106,8 +1110,12 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 			JOptionPane.showMessageDialog(null, "No se han encontrado agentes.");
 			
 		} else {
+			
+		 int id_empleadog = seleccionado.getId_empleado();
+		 
+		 gerentecontrolador.deleteGerente(id_empleadog);
 		
-		String[] borrarempleado = new String[gerentecontrolador.getAllGerente().size()];
+	/*	String[] borrarempleado = new String[gerentecontrolador.getAllGerente().size()];
 		for (int i = 0; i < borrarempleado.length; i++) {
 			
 		
@@ -1140,17 +1148,17 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 			        JOptionPane.showMessageDialog(null, "Empleado no encontrado.");
 			    }
 			
-			
+		*/	
 		
 			
-			
+		}	
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e);
 		}
 		
 		
 		
-		}
+	//	 }
 		
 	}
 	
@@ -1337,7 +1345,87 @@ try {
 
 }
 
+public Gerente VerificarReferenciasGerente() {
+	
+	Boolean gerente_repetido = false;
+	
+	VentaControlador ventas = new VentaControlador();
+	
+	ReservaControlador reservas = new ReservaControlador();
+	
+	// AlquilereControlador alquileres = new AlquilereControlador();
+	
+	Gerente seleccionado = ObtenerGerenteId();
+	
 
+	try {
+	
+	/*for (Venta venta : ventas.getAllVentas() ) {
+		
+			
+		
+		if (seleccionado.getId_empleado() == venta.getFk_empleado_id()) {
+			
+			gerente_repetido = true;
+			
+		}
+		
+		
+	} */
+	
+	for (Reserva reserva : reservas.getAllReserva()) {
+		
+		if (seleccionado.getId_empleado() == reserva.getEmpleado().getId_empleado()) {
+			
+			
+			gerente_repetido = true;
+			
+			
+		}
+		
+		
+		
+	}
+	
+/*	for (Alquiler alquiler : alquileres.getAllAlquileres()) {
+		
+		if (seleccionado.getId_empleado() == alquiler.getEmpleado().getId_empleado()) {
+	
+		encontrado = true;
+	
+		}
+		
+	} */
+	
+
+/* for (Contrato contrato : contratos.getAllContratos()) {
+  
+  	if (seleccionado.getId_empelado() == contrato.getEmpleado().getId_empleado()) {
+  	
+  	 encontrado = true;
+  	
+  	}
+ 
+  }
+  
+   */	
+	
+	} catch (Exception e) {
+		
+		JOptionPane.showMessageDialog(null, e);
+		
+	} 
+	
+	
+	if (gerente_repetido == true) {
+		
+		JOptionPane.showMessageDialog(null, "El gerente tiene claves foraneas, no es posible eliminarlo de la base de datos.");
+		seleccionado = null;
+	} 
+	
+	
+	return seleccionado;
+}
 
 
 
