@@ -104,10 +104,92 @@ public interface Validacion {
 	}
 	
 	
+	//validar el ingreso de pisos en inmueble
 	
 	
+	default String validarEntero(String mensaje) {
+		String entero = null;
+		boolean confirmacion = false;
 	
-	//Validar String
+		do {
+			try {
+				entero = JOptionPane.showInputDialog(mensaje);
+
+				if(entero==null || entero.trim().isEmpty()){
+					JOptionPane.showMessageDialog(null, "No se admiten campos en blanco. Por favor Reingrese los datos");
+					continue;
+				}
+				
+				entero = entero.trim();
+				
+                boolean esEntero = true; 
+                for (int i = 0; i < entero.length(); i++) {
+                    if (!Character.isDigit(entero.charAt(i))) {
+                    	esEntero = false;
+                        break; 
+                    }
+                }
+                
+                if(!esEntero){
+                    JOptionPane.showMessageDialog(null, "Solo se permiten caracteres numericos. Porfavor reingrese los datos.");
+                    continue;
+                }
+
+
+				confirmacion = true;
+                
+			} catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error. Reingrese los datos ingresados");
+			}
+
+			
+		} while (confirmacion==false);
+		
+		return entero;
+	}
+	
+	
+	default String validarDouble(String mensaje) {
+		String doUble = null;
+		boolean confirmacion = false;
+	
+		do {
+			try {
+				doUble = JOptionPane.showInputDialog(mensaje);
+
+				if(doUble==null || doUble.trim().isEmpty()){
+					JOptionPane.showMessageDialog(null, "No se admiten campos en blanco. Por favor Reingrese los datos");
+					continue;
+				}
+								
+				
+                boolean esdoUble = true; 
+                for (int i = 0; i < doUble.length(); i++) {
+                    if (!Character.isDigit(doUble.charAt(i))&& doUble.charAt(i) != '.') {
+                    	esdoUble = false;
+                        break; 
+                    }
+                }
+                
+                if(!esdoUble){
+                    JOptionPane.showMessageDialog(null, "Solo se permiten caracteres numericos. Porfavor reingrese los datos.");
+                    continue;
+                }
+               
+				confirmacion = true;
+                
+			} catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error. Reingrese los datos ingresados");
+			}
+
+			
+		} while (confirmacion==false);
+		
+		return doUble;
+	}
+	
+	
+	//Validar cadenaString
 	
 		default String validarCadena(String mensaje) {
 			String cadena = null;
@@ -123,10 +205,11 @@ public interface Validacion {
 					}
 					
 					cadena = cadena.trim();
+					confirmacion = true;
 					
 	                
 				} catch (Exception e) {
-	                JOptionPane.showMessageDialog(null, "Error. Reingrese los datos");
+	                JOptionPane.showMessageDialog(null, "Error. Reingrese los datos ingresados");
 				}
 
 				

@@ -791,7 +791,8 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 					
 					
 				}else if(opcionSeleccionada.equals("Descripcion")){
-					String descripcion = obtenerDescripcion();
+					String descripcion = null;
+					descripcion = validarCadena("Ingrese una descripción del inmueble");
 					inmuebleAmodificar.setDescripcion(descripcion);
 					
 					
@@ -850,7 +851,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 					
 					
 				}else if(opcionSeleccionada.equals("Patio")){
-					boolean tienePatio = obtenerLavadero().equals("Si");
+					boolean tienePatio = obtenerPatio().equals("Si");
 					inmuebleAmodificar.setpatio(tienePatio);
 					
 					
@@ -879,31 +880,48 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 	
 	
 	public void agregarInmueble() {
+		String descripcion = null;
+		String piso = null; 
+		String cantAmbientes = null;
+		String antiguedad = null;
+		String banios = null;
+		String dormitorios= null;
+		String direccion = null;
+		String dormitorio = null;
+		String precio = null;
+		String superficieCubierta= null;
+		String superficieDescubierta= null;
 		String tipoInmueble = obtenerTipoInmueble();
 		String condicion = obtenerCondicion();
-		String cantAmbientes = obtenerAmbientes();
-	    String piso = null; 
+		double superficieDescubiertaVali = 0;
+		
+		 cantAmbientes = validarEntero("Ingrese la cantidad de Ambientes que tiene el Inmueble");
 	    if (tipoInmueble.equals("Departamento")) {
-	        piso = obtenerPiso();
+	    	piso = validarEntero("Ingrese el numero de piso donde se encuentra el Departamento");
 	    }
 		String barrio = obtenerBarrio();
-		String direccion = obtenerDireccion();
-		String descripcion = obtenerDescripcion();
-		String antiguedad = obtenerAntiguedad();
-		String banios = obtenerBanios();
-		String dormitorio = obtenerDormitorio();
-		double superficieCubierta = obtenerM2Cubierta();
-		double superficieDescubierta = obtenerM2Descubierta();
-		double precio = obtenerPrecio();
+		direccion = validarCadena("Ingrese la dirección");
+		descripcion = validarCadena("Ingrese una descripción del inmueble");
+		antiguedad = validarEntero("Ingrese la antiguedad que tiene el inmueble");
+		banios = validarEntero("Ingrese la cantidad baños que tiene el inmueble");
+		dormitorio = validarEntero("Ingrese la cantidad dormitorios que tiene el inmueble");
+		superficieCubierta = validarDouble("Ingrese la cantidad la cantidad de m2 de superficie cubierta");
+		Double superficieCubiertaVali = Double.parseDouble(superficieDescubierta);
+		boolean tienePatio = obtenerPatio().equals("Si");
+		if(tienePatio==true){
+			superficieDescubierta = validarDouble("Ingrese la cantidad la cantidad de m2 de superficie descubierta");
+			superficieDescubiertaVali = Double.parseDouble(superficieDescubierta);
+		}
+		precio = validarDouble("Ingrese el precio del Inmueble");
+		Double precioValidado = Double.parseDouble(precio);		
 		boolean disponible = obtenerDisponible();
 		boolean refaccionar = obtenerRefaccion().equals("Si");
 		boolean aptoMascota = obtenerMascota().equals("Si");
-		boolean tienePatio = obtenerLavadero().equals("Si");
 		boolean activo = obtenerActivo();
 		
 		    // Agregar el inmueble al controlador
 		    inmuebleControlador.addInmueble(new Inmueble(0, tipoInmueble, condicion, cantAmbientes, piso,barrio, direccion, descripcion, antiguedad,
-		            banios, dormitorio, superficieCubierta, superficieDescubierta, precio, disponible, refaccionar, aptoMascota, tienePatio,activo));
+		            banios, dormitorio, superficieCubiertaVali, superficieDescubiertaVali, precioValidado, disponible, refaccionar, aptoMascota, tienePatio,activo));
 		}
 	
 	
@@ -968,7 +986,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 	            "Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, refaccionSeleccion, refaccionSeleccion[0]);
 	}
 	
-	public String obtenerLavadero() {
+	public String obtenerPatio() {
 		String[] lavaderoSeleccion = { "Si","No"};
 	    return (String) JOptionPane.showInputDialog(null, "¿Tiene lavadero?",
 	            "Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, lavaderoSeleccion, lavaderoSeleccion[0]);
