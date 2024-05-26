@@ -742,7 +742,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 	            if(inmuebleAmodificar !=null){
 	            	
 				String[] opcionesModificar = { "Tipo de Inmueble","Condición","Cantidad de Ambientes","Barrio","Dirección","Descripcion",
-						"Años Antiguedad del edificio","Cantidad de Baños","Cantidad de Dormitorios","m2 Superficie Cubierta",
+						"Años Antiguedad","Cantidad de Baños","Cantidad de Dormitorios","m2 Superficie Cubierta",
 						"m2 Superficie Descubierta","Precio","Disponibilidad actual","Refacción","Apto para Mascotas","Patio","Activar/Deshabilitar Inmueble","Volver"};
 					
 				String opcionSeleccionada = (String) JOptionPane.showInputDialog(null, "Seleccione un atributo para Modificar:",
@@ -796,7 +796,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 					
 					
 					
-				}else if(opcionSeleccionada.equals("Años Antiguedad del edificio")){
+				}else if(opcionSeleccionada.equals("Años Antiguedad")){
 					String antiguedad = obtenerAntiguedad();
 					inmuebleAmodificar.setAntiguedad(antiguedad);
 					
@@ -1007,7 +1007,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 	
 
 	public String obtenerAntiguedad() {
-	    return JOptionPane.showInputDialog("Ingrese la antiguedad que tiene el Edficio");
+	    return JOptionPane.showInputDialog("Ingrese la antiguedad del Inmueble");
 	}
 	
 	
@@ -1087,8 +1087,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 			
 			case 0:  // Ver empleados
 			
-				 JOptionPane.showMessageDialog(null, "La lista de empleados"+"\n"+agentecontrolador.getAllAgente());
-				
+				 JOptionPane.showMessageDialog(null, "La lista de empleados"+"\n"+agentecontrolador.getAllAgente());	
 				
 			break;
 			

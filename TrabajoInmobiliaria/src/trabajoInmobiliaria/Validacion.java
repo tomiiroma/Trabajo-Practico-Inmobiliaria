@@ -103,6 +103,38 @@ public interface Validacion {
 		return nombre;
 	}
 	
+	
+	
+	
+	
+	//Validar String
+	
+		default String validarCadena(String mensaje) {
+			String cadena = null;
+			boolean confirmacion = false;
+		
+			do {
+				try {
+					cadena = JOptionPane.showInputDialog(mensaje);
+
+					if(cadena==null || cadena.trim().isEmpty()){
+						JOptionPane.showMessageDialog(null, "No se admiten campos en blanco. Por favor Reingrese los datos");
+						continue;
+					}
+					
+					cadena = cadena.trim();
+					
+	                
+				} catch (Exception e) {
+	                JOptionPane.showMessageDialog(null, "Error. Reingrese los datos");
+				}
+
+				
+			} while (confirmacion==false);
+			
+			return cadena;
+		}
+	
 	// Revisar luego que mas se le puede implementar.
 	
 /* --------------------------------------------------------------------------- Validar Fechas ----------------------------------------------------------------------------------------------------------------*/	
