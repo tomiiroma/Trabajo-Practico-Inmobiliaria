@@ -113,6 +113,17 @@ public class Contrato {
 	public void setApto_mascota(boolean apto_mascota) {
 		this.apto_mascota = apto_mascota;
 	}
+	
+	
+
+	@Override
+	public String toString() {
+		return "Contrato [id_contrato=" + id_contrato + ", tipo_contrato=" + tipo_contrato + ", descripcion="
+				+ descripcion + ", url_contrato=" + url_contrato + ", inmueble=" + inmueble + ", cliente=" + cliente
+				+ ", inicio_contrato=" + inicio_contrato + ", fin_contrato=" + fin_contrato + ", apto_mascota="
+				+ apto_mascota + "]";
+	}
+
 
 	public void MostrarContrato(ContratoControlador contrato) {
 		  for (Contrato contratos : contrato.getAllContrato()) {

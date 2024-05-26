@@ -62,15 +62,25 @@ public class AgenteControlador implements AgenteRepository{
 	            ResultSet resultSet = statement.executeQuery();
 	            
 	            if (resultSet.next()) {
-	            
-	            	agente = new Agente(resultSet.getInt("id_empleado"), resultSet.getString("nombre"), resultSet.getString("apellido"), resultSet.getDate("fecha_nacimiento").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("telefono"), resultSet.getString("correo"),  resultSet.getString("tipo_empleado"),resultSet.getString("contraseña"),resultSet.getInt("id_agente"));
-	           
+	                int id_empleado = resultSet.getInt("id_empleado");
+	                String nombre = resultSet.getString("nombre");
+	                String apellido = resultSet.getString("apellido");
+	                LocalDate fecha_nacimiento = resultSet.getDate("fecha_nacimiento").toLocalDate();
+	                int dni = resultSet.getInt("dni");
+	                int telefono = resultSet.getInt("telefono");
+	                String correo = resultSet.getString("correo");
+	                String tipo_empleado = resultSet.getString("tipo_empleado");
+	                String contraseña = resultSet.getString("contraseña");
+	                int id_agente = resultSet.getInt("id_agente");
+	                
+	                agente = new Agente(id_empleado, nombre, apellido, fecha_nacimiento, dni, telefono, correo, tipo_empleado, contraseña, id_agente);
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
 	        }
 	        return agente;
 	    }
+
 
 		@Override
 	    public void addAgente(Agente agente) {

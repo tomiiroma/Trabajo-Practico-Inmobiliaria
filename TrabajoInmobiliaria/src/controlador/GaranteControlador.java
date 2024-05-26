@@ -28,7 +28,7 @@ public class GaranteControlador implements GaranteRepository {
 	            ResultSet resultSet = statement.executeQuery();
 	       
 	            while (resultSet.next()) {
-	            Garante garante = new Garante(resultSet.getInt("id_garante"), resultSet.getString("nombre"), resultSet.getString("apellido"), resultSet.getString("numero_telefono"));
+	            Garante garante = new Garante(resultSet.getInt("id_garante"), resultSet.getString("nombre"), resultSet.getString("apellido"), resultSet.getString("telefono"));
 	                garantes.add(garante);
 	            }
 	        } catch (SQLException e) {
@@ -49,7 +49,7 @@ public class GaranteControlador implements GaranteRepository {
 	            
 	            if (resultSet.next()) {
 	            
-	                garante = new Garante(resultSet.getInt("id_garante"), resultSet.getString("nombre"), resultSet.getString("apellido") , resultSet.getString("numero_telefono"));
+	                garante = new Garante(resultSet.getInt("id_garante"), resultSet.getString("nombre"), resultSet.getString("apellido") , resultSet.getString("telefono"));
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
@@ -60,7 +60,7 @@ public class GaranteControlador implements GaranteRepository {
 		@Override
 	    public void addGarante(Garante garante) {
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("INSERT INTO garante (id_garante, nombre, apellido, numero_telefono) VALUES (?, ?, ?, ?)");
+	            PreparedStatement statement = connection.prepareStatement("INSERT INTO garante (id_garante, nombre, apellido, telefono) VALUES (?, ?, ?, ?)");
 	            statement.setInt(1, garante.getId_garante());
 	            statement.setString(2, garante.getNombre());
 	            statement.setNString(3, garante.getApellido());

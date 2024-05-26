@@ -80,42 +80,38 @@ public class ContratoControlador implements ContratoRepository{
 	    public Contrato getContratoById(int id) {
 	        Contrato contrato = null;
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM contrato WHERE id = ?");
+	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM contrato WHERE id_contrato = ?");
 	            statement.setInt(1, id);
 	            
 	            ResultSet resultSet = statement.executeQuery();
 	            InmuebleControlador controlador = new InmuebleControlador();
-	 	       InquilinoControlador inquilino = new InquilinoControlador();
-	 	       PropietarioControlador propietario = new PropietarioControlador();
+	            InquilinoControlador inquilino = new InquilinoControlador();
+	            PropietarioControlador propietario = new PropietarioControlador();
+
 	            if (resultSet.next()) {
-	            	
 	                int idContrato = resultSet.getInt("id_contrato");
-		               String tipo_contrato = resultSet.getString("tipo_contrato");
-		               String descripcion = resultSet.getString("descripcion");
-		               String url_contrato = resultSet.getString("url_contrato");	               
-		               LocalDate inicioContrato = resultSet.getDate("inicio_contrato").toLocalDate();
-		               LocalDate finContrato = resultSet.getDate("fin_contrato").toLocalDate();
+	                String tipo_contrato = resultSet.getString("tipo_contrato");
+	                String descripcion = resultSet.getString("descripcion");
+	                String url_contrato = resultSet.getString("url_contrato");
+	                LocalDate inicioContrato = resultSet.getDate("inicio_contrato").toLocalDate();
+	                LocalDate finContrato = resultSet.getDate("fin_contrato").toLocalDate();
+	                int fkInmuebleId = resultSet.getInt("fk_inmueble_id");
+	                int fkClienteId = resultSet.getInt("fk_cliente_id");
 
-		               int fkInmuebleId = resultSet.getInt("fk_inmueble_id");
-		               int fkClienteId = resultSet.getInt("fk_cliente_id");
+	                Inmueble inmueble = controlador.getInmuebleById(fkInmuebleId);
+	                
+	                Cliente cliente = null;
+	                if ("Venta".equalsIgnoreCase(tipo_contrato)) {
+	                    cliente = propietario.getPropietarioById(fkClienteId);
+	                } else if ("Alquiler".equalsIgnoreCase(tipo_contrato)) {
+	                    cliente = inquilino.getInquilinoById(fkClienteId);
+	                }
 
-		              Inmueble inmueble = controlador.getInmuebleById(fkInmuebleId);
-		              
-		              Cliente cliente = null;
-		              switch (resultSet.getString("tipo_contrato")) {
-		                  case "Venta":
-		                      cliente = propietario.getPropietarioById(fkClienteId);
-		                      break;
-		                  case "Alquiler":
-		                      cliente = inquilino.getInquilinoById(fkClienteId);
-		                      break;
-		              }
-		              
-		               boolean aptoMascota = resultSet.getBoolean("apto_mascota");	               
+	                boolean aptoMascota = resultSet.getBoolean("apto_mascota");
 
-		               contrato = new Contrato(idContrato, tipo_contrato, descripcion,url_contrato,inmueble,cliente,inicioContrato,finContrato,aptoMascota);
-		              
-	            	
+	                contrato = new Contrato(idContrato, tipo_contrato, descripcion, url_contrato, inmueble, cliente, inicioContrato, finContrato, aptoMascota);
+	            } else {
+	                System.out.println("No se encontró el contrato con id: " + id);
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();

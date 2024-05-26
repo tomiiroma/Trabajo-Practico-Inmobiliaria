@@ -11,6 +11,7 @@ import java.util.List;
 import interfaces.CompradorRepository;
 import trabajoInmobiliaria.Comprador;
 import trabajoInmobiliaria.DatabaseConnection;
+import trabajoInmobiliaria.Inquilino;
 
 public class CompradorControlador implements CompradorRepository{
 
@@ -37,7 +38,8 @@ public class CompradorControlador implements CompradorRepository{
 	                                                    resultSet.getInt("telefono"), 
 	                                                    resultSet.getDate("fecha_nacimiento").toLocalDate(), 
 	                                                    resultSet.getInt("dni"), 
-	                                                    0, resultSet.getDouble("Presupuesto"));
+	                                                    resultSet.getInt("id_comprador"));
+
 	                compradores.add(comprador);
 	            }
 	        } catch (SQLException e) {
@@ -51,14 +53,14 @@ public class CompradorControlador implements CompradorRepository{
 	    public Comprador getCompradorById(int id) {
 	        Comprador comprador = null;
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM cliente WHERE comprador = ?");
+	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM cliente WHERE id_cliente = ?");
 	            statement.setInt(1, id);
 	            
 	            ResultSet resultSet = statement.executeQuery();
 	            
 	            if (resultSet.next()) {
 	            	
-	                comprador = new Comprador(resultSet.getString("nombre"), resultSet.getInt("id_cliente"), resultSet.getString("apellido"), resultSet.getString("correo"),resultSet.getString("direccion"), resultSet.getInt("telefono"), resultSet.getDate("fecha_nac").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("comprador"),resultSet.getDouble("Presupuesto"));
+	            	comprador = new Comprador(resultSet.getString("nombre"), resultSet.getInt("id_cliente"), resultSet.getString("apellido"), resultSet.getString("correo"), resultSet.getString("direccion"),resultSet.getInt("telefono"), resultSet.getDate("fecha_nacimiento").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("id_comprador"));
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
@@ -78,7 +80,6 @@ public class CompradorControlador implements CompradorRepository{
 	            java.sql.Date fecha_nac = java.sql.Date.valueOf(comprador.getFecha_nacimiento());
 	            statement.setDate(6, fecha_nac);
 	            statement.setInt(7, comprador.getDni());
-	            statement.setDouble(8, comprador.getPresupuesto());
 	            
 	            
 	            
@@ -102,8 +103,7 @@ public class CompradorControlador implements CompradorRepository{
 	          java.sql.Date fecha_nac = java.sql.Date.valueOf(comprador.getFecha_nacimiento());
 	          statement.setDate(5, fecha_nac);  
 	          statement.setInt(6, comprador.getDni());
-	          statement.setDouble(7, comprador.getPresupuesto());
-	          statement.setInt(8, comprador.getId_cliente());
+	          statement.setInt(7, comprador.getId_cliente());
 	            
 	            int rowsUpdated = statement.executeUpdate();
 	            if (rowsUpdated > 0) {

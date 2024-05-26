@@ -27,6 +27,13 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 
 
 
+	@Override
+	public String toString() {
+		return "Gerente [id_gerente=" + id_gerente;
+	}
+
+
+
 	public Gerente() {
 		
 	}
@@ -135,7 +142,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 							operacionesNueva[0]);
 					
 					if(operacionNuevaSeleccionada.equals("Realizar Venta")){
-						JOptionPane.showMessageDialog(null, "Completar Venta");
+						registrarVenta();
 						
 					}else if(operacionNuevaSeleccionada.equals("Realizar Alquiler")){
 						JOptionPane.showMessageDialog(null, "Completar Alquiler");  

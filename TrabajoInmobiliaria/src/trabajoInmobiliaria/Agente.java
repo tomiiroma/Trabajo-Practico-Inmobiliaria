@@ -106,10 +106,10 @@ public class Agente extends Empleado implements Validacion, InicioSesion{
 							operaciones[0]);
 					
 					if(operacionSeleccionada.equals("Realizar Venta")){
-						JOptionPane.showMessageDialog(null, "Completar Venta");
+						registrarVenta();
 						
 					}else if(operacionSeleccionada.equals("Realizar Alquiler")){
-						JOptionPane.showMessageDialog(null, "Completar Alquiler");  
+						AgregarAlquiler();  
 
 					}else {
 						break;

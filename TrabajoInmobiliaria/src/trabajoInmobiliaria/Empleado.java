@@ -4,10 +4,16 @@ import java.time.LocalDate;
 
 import javax.swing.JOptionPane;
 
+import controlador.AgenteControlador;
+import controlador.AlquilerControlador;
+import controlador.CompradorControlador;
 import controlador.ContratoControlador;
+import controlador.GaranteControlador;
+import controlador.GerenteControlador;
 import controlador.InmuebleControlador;
 import controlador.InquilinoControlador;
 import controlador.PropietarioControlador;
+import controlador.VentaControlador;
 
 
 
@@ -112,6 +118,18 @@ public class Empleado implements InicioSesion,Validacion{
 		this.tipo_empleado = tipo_empleado;
 	}
 	
+	
+	
+	@Override
+	public String toString() {
+		return "Empleado [id_empleado=" + id_empleado + ", nombre=" + nombre + ", apellido=" + apellido
+				+ ", fecha_nacimiento=" + fecha_nacimiento + ", dni=" + dni + ", telefono=" + telefono + ", correo="
+				+ correo + ", tipo_empleado=" + tipo_empleado + ", contraseña=" + contraseña + "]";
+	}
+
+
+
+
 	public void agregarInquilino() {
 		
 		LocalDate fecha = null;
@@ -188,4 +206,101 @@ public class Empleado implements InicioSesion,Validacion{
 	    Contrato contrato = new Contrato(0, tipocontrato, descripcion, url,inmueble,cliente, inicio, fin, aptoMascota);
 	    controlador.addContrato(contrato);
 	}
+	
+	
+	public void MostrarVentas(VentaControlador venta) {
+		  for (Venta ventas : venta.getAllVentas()) {
+		        System.out.println("ID Venta: " + ventas.getId_venta());
+		        System.out.println("Comprador: " + ventas.getComprador());
+		        System.out.println("Contrato: " + ventas.getContrato());
+		        System.out.println("Monto Total: " + ventas.getMonto_total());
+		        System.out.println("Forma Pago: " + ventas.getForma_pago());
+		        System.out.println("Empleado que vendio: " + ventas.getEmpleado());
+		        System.out.println("----------------------------------------");
+		    }		
+	}
+	
+	
+	public void registrarVenta() {
+	    VentaControlador controlador = new VentaControlador();
+	    InmuebleControlador inmuebleCont = new InmuebleControlador();
+	    CompradorControlador compradorCont = new CompradorControlador();
+	    ContratoControlador contratoCont = new ContratoControlador();
+	    AgenteControlador agenteCont = new AgenteControlador();
+	    GerenteControlador gerenteCont = new GerenteControlador();
+
+	    int idInmueble = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del inmueble"));
+	    Inmueble inmueble = inmuebleCont.getInmuebleById(idInmueble);
+
+	    int idComprador = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del comprador"));
+	    Comprador comprador = compradorCont.getCompradorById(idComprador);
+
+	    int idContrato = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del contrato"));
+	    Contrato contrato = contratoCont.getContratoById(idContrato);
+
+	    double montoTotal = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el monto total de la venta"));
+	    String formaPago = JOptionPane.showInputDialog("Ingrese la forma de pago");
+
+	    int idEmpleado = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del empleado"));
+	    String tipoEmpleado = JOptionPane.showInputDialog("Ingrese el tipo de empleado (agente/gerente)");
+
+	    Empleado empleado = null;
+	    if (tipoEmpleado.equalsIgnoreCase("agente")) {
+	        empleado = agenteCont.getAgenteById(idEmpleado);
+	    } else if (tipoEmpleado.equalsIgnoreCase("gerente")) {
+	        empleado = gerenteCont.getGerenteById(idEmpleado);
+	    }
+
+	    Venta venta = new Venta(0, inmueble, comprador, contrato, montoTotal, formaPago, empleado, tipoEmpleado);
+	    controlador.addVenta(venta);
+	}
+	
+	public void VerAlquileres(AlquilerControlador alquiler) {
+		  for (Alquiler alquileres : alquiler.getAllAlquiler()) {
+		        System.out.println("ID alquiler: " + alquileres.getId_alquiler());
+		        System.out.println("Monto Total: " + alquileres.getMonto_total());
+		        System.out.println("Comprador: " + alquileres.getFecha());
+		        System.out.println("Forma Pago: " + alquileres.getForma_pago());
+		        System.out.println("Contrato: " + alquileres.getGarante());
+		        System.out.println("Contrato: " + alquileres.getContrato());
+		        System.out.println("Contrato: " + alquileres.getCliente());
+		        System.out.println("Empleado que vendio: " + alquileres.getEmpleado());
+		        System.out.println("Empleado que vendio: " + alquileres.getInmueble());
+		        System.out.println("----------------------------------------");
+		    }	
+	}
+	
+	public void AgregarAlquiler() {
+		AlquilerControlador controlador= new AlquilerControlador();
+		GaranteControlador garante = new GaranteControlador();
+		ContratoControlador contrato = new ContratoControlador();
+		InquilinoControlador inquilino = new InquilinoControlador();
+		AgenteControlador agente = new AgenteControlador();
+		InmuebleControlador inmueble = new InmuebleControlador();
+		LocalDate fecha = null;
+		
+		int monto = Integer.parseInt(JOptionPane.showInputDialog("Ingrese Monto Total"));
+	    fecha = validarFecha(fecha);
+	    String forma_pago = JOptionPane.showInputDialog("Ingrese Forma de Pago");
+	    
+	    int idGarante = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del garante"));
+	    Garante garantes = garante.getGaranteById(idGarante);
+	    
+	    int idContrato = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del Contrato"));
+	    Contrato contratos = contrato.getContratoById(idContrato);
+	    
+	    int idInquilino = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del del Inquilino"));
+	    Cliente cliente = inquilino.getInquilinoById(idInquilino);
+	    
+	    int idEmpleado = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del del Empleado"));
+	    Empleado empleado = agente.getAgenteById(idEmpleado);
+	    
+	    int idInmueble = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del del Inmueble"));
+	    Inmueble inmuebles = inmueble.getInmuebleById(idInmueble);
+	    
+	    Alquiler alquiler = new Alquiler(0, monto, fecha, forma_pago, garantes, contratos, cliente, empleado, inmuebles);
+	    controlador.addAlquiler(alquiler);
+	}
+
+	
 }

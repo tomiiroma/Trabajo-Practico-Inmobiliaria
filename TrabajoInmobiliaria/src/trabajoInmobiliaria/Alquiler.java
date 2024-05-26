@@ -4,104 +4,86 @@ import java.time.LocalDate;
 
 public class Alquiler {
 	private int	id_alquiler; 
-	private Propietario propietario;
-	private Reserva reserva;
-	private Inquilino inquilino;
-	private LocalDate ini_contrato;
-	private LocalDate fin_crontato;
+	private int monto_total;
+	private LocalDate fecha;
+	private String forma_pago;
+	private Garante garante;
+	private Contrato contrato;
+	private Cliente cliente;
+	private Empleado empleado;
 	private Inmueble inmueble;
-	private Boolean PermisoMascota;
-	
-	public Alquiler(int id_alquiler,Propietario propietario, Reserva reserva, Inquilino inquilino, LocalDate ini_contrato,
-			LocalDate fin_crontato, Inmueble inmueble, Boolean permisoMascota) {
+	public Alquiler(int id_alquiler, int monto_total, LocalDate fecha, String forma_pago, Garante garante,
+			Contrato contrato, Cliente cliente, Empleado empleado, Inmueble inmueble) {
 		super();
 		this.id_alquiler = id_alquiler;
-		this.propietario = propietario;
-		this.reserva = reserva;
-		this.inquilino = inquilino;
-		this.ini_contrato = ini_contrato;
-		this.fin_crontato = fin_crontato;
+		this.monto_total = monto_total;
+		this.fecha = fecha;
+		this.forma_pago = forma_pago;
+		this.garante = garante;
+		this.contrato = contrato;
+		this.cliente = cliente;
+		this.empleado = empleado;
 		this.inmueble = inmueble;
-		PermisoMascota = permisoMascota;
 	}
-
-	
-
 	@Override
 	public String toString() {
-		return "Alquiler [id_alquiler=" + id_alquiler + ", propietario=" + propietario + ", reserva=" + reserva
-				+ ", inquilino=" + inquilino + ", ini_contrato=" + ini_contrato + ", fin_crontato=" + fin_crontato
-				+ ", inmueble=" + inmueble + ", PermisoMascota=" + PermisoMascota + "]";
+		return "Alquiler [id_alquiler=" + id_alquiler + ", monto_total=" + monto_total + ", fecha=" + fecha
+				+ ", forma_pago=" + forma_pago + ", garante=" + garante + ", contrato=" + contrato + ", cliente="
+				+ cliente + ", empleado=" + empleado + ", inmueble=" + inmueble + "]";
 	}
-
-
-
-	public Propietario getPropietario() {
-		return propietario;
-	}
-
-	public void setPropietario(Propietario propietario) {
-		this.propietario = propietario;
-	}
-
-	public Reserva getReserva() {
-		return reserva;
-	}
-
-	public void setReserva(Reserva reserva) {
-		this.reserva = reserva;
-	}
-
-	public Inquilino getInquilino() {
-		return inquilino;
-	}
-
-	public void setInquilino(Inquilino inquilino) {
-		this.inquilino = inquilino;
-	}
-
-	public LocalDate getIni_contrato() {
-		return ini_contrato;
-	}
-
-	public void setIni_contrato(LocalDate ini_contrato) {
-		this.ini_contrato = ini_contrato;
-	}
-
-	public LocalDate getFin_crontato() {
-		return fin_crontato;
-	}
-
-	public void setFin_crontato(LocalDate fin_crontato) {
-		this.fin_crontato = fin_crontato;
-	}
-
-	public Inmueble getInmueble() {
-		return inmueble;
-	}
-
-	public void setInmueble(Inmueble inmueble) {
-		this.inmueble = inmueble;
-	}
-
-	public Boolean getPermisoMascota() {
-		return PermisoMascota;
-	}
-
-	public void setPermisoMascota(Boolean permisoMascota) {
-		PermisoMascota = permisoMascota;
-	}
-
-
-
 	public int getId_alquiler() {
 		return id_alquiler;
 	}
-
-
-
 	public void setId_alquiler(int id_alquiler) {
 		this.id_alquiler = id_alquiler;
+	}
+	public int getMonto_total() {
+		return monto_total;
+	}
+	public void setMonto_total(int monto_total) {
+		this.monto_total = monto_total;
+	}
+	public LocalDate getFecha() {
+		return fecha;
+	}
+	public void setFecha(LocalDate fecha) {
+		this.fecha = fecha;
+	}
+	public String getForma_pago() {
+		return forma_pago;
+	}
+	public void setForma_pago(String forma_pago) {
+		this.forma_pago = forma_pago;
+	}
+	public Garante getGarante() {
+		return garante;
+	}
+	public void setGarante(Garante garante) {
+		this.garante = garante;
+	}
+	public Contrato getContrato() {
+		return contrato;
+	}
+	public void setContrato(Contrato contrato) {
+		this.contrato = contrato;
+	}
+	public Cliente getCliente() {
+		return cliente;
+	}
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+	public Empleado getEmpleado() {
+		return empleado;
+	}
+	public void setEmpleado(Empleado empleado) {
+		this.empleado = empleado;
+	}
+	public Inmueble getInmueble() {
+		return inmueble;
+	}
+	public void setInmueble(Inmueble inmueble) {
+		this.inmueble = inmueble;
 	}
 	
 	
