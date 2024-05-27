@@ -79,8 +79,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 			
 			case"Gestionar Propiedades":
 				do {			
-					try {
-						
+					try {					
 
 					
 					Inmueble inmueble = new Inmueble();
@@ -812,7 +811,6 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 				}
 				
 				opcionesInmuebles[opcionesInmuebles.length - 1] = "Volver";
-	
 				
 				//mostramos los inmuebles disponibles
 				String inmuebleSeleccionado = (String) JOptionPane.showInputDialog(null,"Seleccione Inmueble", "Visualizar Inmueble",
