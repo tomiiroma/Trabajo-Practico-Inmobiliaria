@@ -6,7 +6,9 @@ import trabajoInmobiliaria.Agente;
 
 public interface AgenteRepository {
 
+	
 	List<Agente> getAllAgente(); 
+
     
     Agente getAgenteById(int id); 
     

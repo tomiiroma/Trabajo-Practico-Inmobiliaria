@@ -85,7 +85,7 @@ public class AgenteControlador implements AgenteRepository{
 		@Override
 	    public void addAgente(Agente agente) {
 	        try {																																  // ID_AGENTE Se deberia sacar, ya que va a generar un error ya que no existe en la bdd
-	            PreparedStatement statement = connection.prepareStatement("INSERT INTO empleado (nombre, apellido, fecha_nacimiento, dni, telefono, correo, id_agente, contraseña) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+	            PreparedStatement statement = connection.prepareStatement("INSERT INTO empleado (nombre, apellido, fecha_nacimiento, dni, telefono, correo, tipo_empleado, id_agente, contraseña) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 	            statement.setString(1, agente.getNombre());
 	            statement.setString(2, agente.getApellido());
 	            java.sql.Date fecha_nacimiento = java.sql.Date.valueOf(agente.getFecha_nacimiento());
@@ -93,8 +93,9 @@ public class AgenteControlador implements AgenteRepository{
 	            statement.setInt(4,agente.getDni());
 	            statement.setInt(5,agente.getTelefono());
 	            statement.setString(6, agente.getCorreo());
-	            statement.setInt(7, agente.getId_agente());
-	            statement.setString(8, agente.getContraseña());
+	            statement.setString(7, agente.getTipo_empleado());
+	            statement.setInt(8, agente.getId_agente());
+	            statement.setString(9, agente.getContraseña());
 	            
 	            int rowsInserted = statement.executeUpdate();
 	            if (rowsInserted > 0) {
@@ -129,7 +130,62 @@ public class AgenteControlador implements AgenteRepository{
 	        }
 	    }
 
-	    @Override
+		
+		
+		@Override
+		public void deleteAgente(int id) {
+		    try {
+		        
+		        String sql = "SELECT COUNT(*) AS total FROM " +
+		                     "(SELECT 1 FROM venta WHERE fk_empleado_id = ? " +
+		                     "UNION ALL " +
+		                     "SELECT 1 FROM visita WHERE fk_empleado_id = ? " +
+		                     "UNION ALL " +
+		                     "SELECT 1 FROM reserva WHERE fk_empleado_id = ? " +
+		                     "UNION ALL " +
+		                     "SELECT 1 FROM reunion WHERE fk_empleado_id = ? " +
+		                     "UNION ALL " +
+		                     "SELECT 1 FROM alquiler WHERE fk_empleado_id = ?) AS ref_count";
+		        
+		        PreparedStatement checkStatement = connection.prepareStatement(sql);
+		        for (int i = 1; i <= 5; i++) {
+		            checkStatement.setInt(i, id);
+		        }
+		        
+		        ResultSet resultSet = checkStatement.executeQuery();
+		        resultSet.next();
+		        int referencesCount = resultSet.getInt("total");
+		        
+		        if (referencesCount > 0) {
+		            JOptionPane.showMessageDialog(null,"El empleado no puede ser eliminado porque tiene referencias en otras tablas.");
+		            return;
+		        }
+		        
+		        PreparedStatement deleteStatement = connection.prepareStatement("DELETE FROM empleado WHERE id_empleado = ?");
+		        deleteStatement.setInt(1, id);
+		        
+		        int rowsDeleted = deleteStatement.executeUpdate();
+		        if (rowsDeleted > 0) {
+		            System.out.println("Empleado eliminado exitosamente");
+		        } else {
+		            System.out.println("No se encontró ningún empleado con ese ID.");
+		        }
+		        
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }
+		}
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	  /*  @Override
 	    public void deleteAgente(int id) {
 	        try {
 	            PreparedStatement statement = connection.prepareStatement("DELETE FROM empleado WHERE id_empleado = ?");
@@ -144,7 +200,7 @@ public class AgenteControlador implements AgenteRepository{
 	        }
 	    }
 	
-	
+	*/
 	
 	
 	

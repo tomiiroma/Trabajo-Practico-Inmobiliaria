@@ -66,7 +66,7 @@ public class GerenteControlador implements GerenteRepository{
 		@Override
 	    public void addGerente(Gerente gerente) {
 	        try {										// Podria utilizar un Inner join en una consulta insert	// Consultarle al profe sobre id_gerente. // Consultar si es valido.
-	            PreparedStatement statement = connection.prepareStatement("INSERT INTO empleado (id_empleado,nombre, apellido, fecha_nacimiento, dni, telefono, correo, contraseña) VALUES (null, ?, ?, ?, ?, ?, ?, ?)");
+	            PreparedStatement statement = connection.prepareStatement("INSERT INTO empleado (id_empleado,nombre, apellido, fecha_nacimiento, dni, telefono, correo, tipo_empleado, contraseña, id_gerente) VALUES (null, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 	            statement.setString(1, gerente.getNombre()); // Verificar si id_empleado es auto increment y consultarle al profe si este valor debe ser null en java.
 	            statement.setString(2, gerente.getApellido());
 	            java.sql.Date fecha_nacimiento = java.sql.Date.valueOf(gerente.getFecha_nacimiento());
@@ -74,8 +74,9 @@ public class GerenteControlador implements GerenteRepository{
 	            statement.setInt(4, gerente.getDni());
 	            statement.setInt(5, gerente.getTelefono());
 	            statement.setString(6, gerente.getCorreo());
-	            statement.setString(7, gerente.getContraseña());
-	            
+	            statement.setString(7, gerente.getTipo_empleado());
+	            statement.setString(8, gerente.getContraseña());
+	            statement.setInt(9, gerente.getId_gerente());
 	            
 	            int rowsInserted = statement.executeUpdate();
 	            if (rowsInserted > 0) {

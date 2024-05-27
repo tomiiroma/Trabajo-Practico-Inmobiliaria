@@ -68,7 +68,7 @@ public class VentaControlador implements VentaRepository {
 	                	  empleado = controladorGerente.getGerenteById(fkEmpleadoId);
 	                  }
 	                  	
-	                  Venta venta = new Venta(id_venta, inmueble, comprador, contrato, montototal,forma_pago,empleado);
+	                  Venta venta = new Venta(id_venta, inmueble, comprador, contrato, montototal,forma_pago,empleado, tipoEmpleado);
 	                  
 	                  ventas.add(venta);
 	            }
@@ -114,7 +114,7 @@ public class VentaControlador implements VentaRepository {
 	                    empleado = controladorGerente.getGerenteById(fkEmpleadoId);
 	                }
 
-	                venta = new Venta(id_venta, inmueble, comprador, contrato, montototal, forma_pago, empleado);
+	                venta = new Venta(id_venta, inmueble, comprador, contrato, montototal, forma_pago, empleado, tipoEmpleado);
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();

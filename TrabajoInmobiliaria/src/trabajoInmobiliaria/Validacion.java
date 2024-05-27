@@ -103,6 +103,123 @@ public interface Validacion {
 		return nombre;
 	}
 	
+	
+	//validar el ingreso de pisos en inmueble
+	
+	
+	default String validarEntero(String mensaje) {
+		String entero = null;
+		boolean confirmacion = false;
+	
+		do {
+			try {
+				entero = JOptionPane.showInputDialog(mensaje);
+
+				if(entero==null || entero.trim().isEmpty()){
+					JOptionPane.showMessageDialog(null, "No se admiten campos en blanco. Por favor Reingrese los datos");
+					continue;
+				}
+				
+				entero = entero.trim();
+				
+                boolean esEntero = true; 
+                for (int i = 0; i < entero.length(); i++) {
+                    if (!Character.isDigit(entero.charAt(i))) {
+                    	esEntero = false;
+                        break; 
+                    }
+                }
+                
+                if(!esEntero){
+                    JOptionPane.showMessageDialog(null, "Solo se permiten caracteres numericos. Porfavor reingrese los datos.");
+                    continue;
+                }
+
+
+				confirmacion = true;
+                
+			} catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error. Reingrese los datos ingresados");
+			}
+
+			
+		} while (confirmacion==false);
+		
+		return entero;
+	}
+	
+	
+	default double validarDouble(String mensaje) {
+		double valor = 0;
+		boolean esDouble = false;
+	
+		do {
+			try {
+				String entrada = JOptionPane.showInputDialog(mensaje);
+
+				valor = Double.parseDouble(entrada);
+				esDouble=true;		
+                
+			} catch (Exception e) {
+                JOptionPane.showMessageDialog( null, "Error. Reingrese los datos ingresados");
+			}
+
+			
+		} while (esDouble==false);
+		
+		return valor;
+	}
+	
+	//validar seleccion
+	
+
+	
+	
+	//Validar cadenaString
+	
+		default String validarCadena(String mensaje) {
+			String cadena = null;
+			boolean confirmacion = false;
+		
+			do {
+				try {
+					cadena = JOptionPane.showInputDialog(mensaje);
+
+					if(cadena==null || cadena.trim().isEmpty()){
+						JOptionPane.showMessageDialog(null, "No se admiten campos en blanco. Por favor Reingrese los datos");
+						continue;
+					}
+					
+					cadena = cadena.trim();
+					
+	                boolean valido = true; 
+	                for (int i = 0; i < cadena.length(); i++) {
+	                    char caracter = cadena.charAt(i);
+
+	                    if (!Character.isDigit(caracter) && !Character.isAlphabetic(caracter)) {
+	                    	valido = false;
+	                        break; 
+	                    }
+	                }
+	                
+	                if(valido == false){
+	                	JOptionPane.showMessageDialog(null, "No se permite el ingreso de caracteres especiales");
+	                	continue;
+	                }
+					
+					confirmacion = true;
+					
+	                
+				} catch (Exception e) {
+	                JOptionPane.showMessageDialog(null, "Error. Reingrese los datos ingresados");
+				}
+
+				
+			} while (confirmacion==false);
+			
+			return cadena;
+		}
+	
 	// Revisar luego que mas se le puede implementar.
 	
 /* --------------------------------------------------------------------------- Validar Fechas ----------------------------------------------------------------------------------------------------------------*/	
@@ -277,9 +394,9 @@ public interface Validacion {
 			JOptionPane.showMessageDialog(null, "La password esta vacio o contiene espacios.");
 			flag=false;
 			
-        } else if (contraseña.length() < 8 && flag==true) {
+        } else if (contraseña.length() < 6 && flag==true) {
 			
-        	JOptionPane.showMessageDialog(null, "La contraseña posee menos de 8 carácteres.");
+        	JOptionPane.showMessageDialog(null, "La contraseña posee menos de 6 carácteres.");
         	flag=false;
         } 
 		
@@ -319,10 +436,100 @@ public interface Validacion {
 		}
 	
 	
+/* ---------------------------------------------------------------------------------------- VALIDAR MONTO ------------------------------------------------------------------------------------------------------------------ */	
+	
+	default double ValidarMonto(String monto) {
+        double monto_final=0;
+		String numero = monto;
+		boolean valido=true, validacion_final; 
+		
+		do {
+			
+			validacion_final = false; 
+			
+			if (valido==false) {
+				
+				numero = JOptionPane.showInputDialog(null, "Ingresar un monto con el siguiente formato numero + . + 2 digitos");
+				
+			}
+		
+		boolean	flag = ValidarNumero(numero); /* Se valida el monto en la subfuncion, esta se encarga de validar si se escribio un numero entero, en caso de serlo retorna valor True */
+		
+		
+        String patron = "\\d+(\\.\\d{2})?"; /* Patron que permite escribir infinitos digitos luego separado con un . y escribir decimales*/
+          
+        Pattern pattern = Pattern.compile(patron); /* se asigna el patron */
+        
+        Matcher matcher = pattern.matcher(numero);
+        
+        if (flag == true) {	monto =	monto+".00"; /* Si en la Bandera se optiene verdadero significa que se escribio un entero y a este se le asigna .00 para evitar conflictos con la otra bandera. */
+        JOptionPane.showMessageDialog(null, numero);
+        valido = true;}
+        
+        else {
+        
+       if (matcher.matches()) {
+    	   
+    	   /* Se valida que el valor ingresado corresponda a un double o sea un valor con decimales pero el patron solo admite 2 digitos despues del punto. */
+    	   
+    	   valido = true;
+    	   
+    	   
+       } else {
+    	   
+    	   
+    	   JOptionPane.showMessageDialog(null, "Se debe agregar un numero");
+    	   valido = false;
+    	   
+       }}
+    	
+        if (valido == true) {double num = Double.parseDouble(numero);
+        	if (num>=0) {
+        		
+        		monto_final = num;
+        		
+        		validacion_final = true;
+        		
+        	} else { JOptionPane.showMessageDialog(null, "Se ingreso un valor negativo o un 0");
+        	validacion_final = false;}
+        	
+        	
+        
+        }
+        
+		}while(validacion_final == false);
+        
+		
+		return monto_final;
+	}
 	
 	
 	
+	/* ------------------------------------------------------------------------------------------------------ SUBFUNCION DEL VALIDAR MONTO ---------------------------------------------------------------------------------------------------*/
+	default boolean ValidarNumero(String monto) {
+	boolean	flag = false;
+		
+		String patronNumeroEntero = "\\d+";  /* Patron numero sin decimales */
+		
+		 Pattern pattern2 = Pattern.compile(patronNumeroEntero);
+	        
+	        Matcher matcher2 = pattern2.matcher(monto);
+		
+	        if (matcher2.matches()) {
+	            
+	        	flag = true;
+	        	
+	        } else {
+	        	
+	        	flag = false;
+	            
+	        }
+	        
+	        return flag;
+	    
+	}
 	
+/* -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/	
 	
 	
 	
