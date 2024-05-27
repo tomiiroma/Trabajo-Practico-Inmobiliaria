@@ -702,20 +702,25 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 		do {		
 			repetir = true;
 			
-		
 		if(inmuebleControlador.getAllInmueble().isEmpty()){
 			JOptionPane.showMessageDialog(null, "No hay Inmuebles cargados");
 		}else {
 			
-					
 			String[] opcionesInmuebles = new String[inmuebleControlador.getAllInmueble().size()];
 			for (int i = 0; i < opcionesInmuebles.length; i++) {
 			Inmueble inmueble = inmuebleControlador.getAllInmueble().get(i);
 			opcionesInmuebles[i] = "ID Inmueble: " + inmueble.getId_inmueble() + " - Dirección: " + inmueble.getDireccion()+ " - Ambientes: " +inmueble.getCantAmbientes();		
 			}
+			opcionesInmuebles[opcionesInmuebles.length - 1] = "Volver";
+
 			
 			String inmuebleSeleccionado = (String) JOptionPane.showInputDialog(null, "Seleccione Inmueble", "Modificar Inmueble",
 			JOptionPane.QUESTION_MESSAGE, null, opcionesInmuebles, opcionesInmuebles[0]);
+			
+            if (inmuebleSeleccionado == null || inmuebleSeleccionado.equals("Volver")) {
+                repetir = false; 
+                break;
+            }
 			
 			if(inmuebleSeleccionado !=null){
 				Inmueble inmuebleAmodificar = null;
@@ -739,9 +744,14 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 	                	}
 	            	}
 				
-	            if(inmuebleAmodificar !=null){
+	            if(inmuebleAmodificar !=null){	        
+	            	boolean repetir2;
 	            	
+	            do {
+	            	repetir2 =false;
 	            	
+	            try {
+					
 				String[] opcionesModificar = { "Tipo de Inmueble","Condición","Cantidad de Ambientes","Barrio","Dirección","Descripcion",
 						"Años Antiguedad","Cantidad de Baños","Cantidad de Dormitorios","m2 Superficie Cubierta",
 						"Precio","Disponibilidad actual","Refacción","Apto para Mascotas","Patio","Activar/Deshabilitar Inmueble","Volver"};
@@ -758,6 +768,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 					
 					 if (!tipoInmueble.equals("Departamento")) {
                          inmuebleAmodificar.setPiso(null);
+
                      }else {
                     	String piso = null;
              	    	piso = validarEntero("Ingrese el numero de piso donde se encuentra el Departamento");
@@ -770,7 +781,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 					String condicion = obtenerCondicion();
 					inmuebleAmodificar.setCondicion(condicion);
 					JOptionPane.showMessageDialog(null, "Tipo de Condicion actualizada");
-				
+
 					
 					
 				}else if(opcionSeleccionada.equals("Cantidad de Ambientes")){					
@@ -778,7 +789,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 					cantAmbientes = validarEntero("Ingrese la cantidad de Ambientes que tiene el Inmueble");
 					inmuebleAmodificar.setCantAmbientes(cantAmbientes);		
 					JOptionPane.showMessageDialog(null, "Cantidad de Ambientes Actualizada");
-					
+
 					
 					
 				}else if(opcionSeleccionada.equals("Barrio")){
@@ -793,28 +804,28 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 					direccion = validarCadena("Ingrese la dirección");
 					inmuebleAmodificar.setDireccion(direccion);
 					JOptionPane.showMessageDialog(null, "Dirección Actualizada");
-					
+
 					
 				}else if(opcionSeleccionada.equals("Descripcion")){
 					String descripcion = null;
 					descripcion = validarCadena("Ingrese una descripción del inmueble");
 					inmuebleAmodificar.setDescripcion(descripcion);
 					JOptionPane.showMessageDialog(null, "Descripcion Actualizada");
-					
+
 					
 				}else if(opcionSeleccionada.equals("Años Antiguedad")){
 					String antiguedad = null;
 					antiguedad = validarEntero("Ingrese la antiguedad que tiene el inmueble");
 					inmuebleAmodificar.setAntiguedad(antiguedad);
 					JOptionPane.showMessageDialog(null, "Antiguedad actualizada");
-		
+
 					
 				}else if(opcionSeleccionada.equals("Cantidad de Baños")){
 					String banios = null;
 					banios = validarCadena("Ingrese la cantidad de baños ");
 					inmuebleAmodificar.setBanio(banios);
 					JOptionPane.showMessageDialog(null, "Cantidad de baños Actualizada");
-					
+
 					
 				}else if(opcionSeleccionada.equals("Cantidad de Dormitorios")){
 					String dormitorio = null;
@@ -829,16 +840,17 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 					inmuebleAmodificar.setSuperficie_cubierta(superficieCubierta);	
 					JOptionPane.showMessageDialog(null, "m2 cubierta Actualizada");
 
+
 				}else if(opcionSeleccionada.equals("Patio")){
 					boolean tienePatio = obtenerPatio();	
 
 					if(tienePatio==true){
 						double superficieDescubierta = validarDouble("Ingrese la cantidad la cantidad de m2 de superficie descubierta");
 						inmuebleAmodificar.setSuperficie_descubierta(superficieDescubierta);
+
 						
 					}else {
 						inmuebleAmodificar.setSuperficie_descubierta(0);
-						break;
 					}
 					
 	
@@ -848,21 +860,22 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 					inmuebleAmodificar.setPrecio(precio);					
 					JOptionPane.showMessageDialog(null, "Precio actualizado");
 
+
 					
 				}else if(opcionSeleccionada.equals("Disponibilidad actual")){
 					boolean disponible = obtenerDisponible();
 				    inmuebleAmodificar.setDisponible(disponible);
-				    
+
 				    
 				}else if(opcionSeleccionada.equals("Refacción")){
 					boolean refaccionar = obtenerRefaccion().equals("Si");
 					inmuebleAmodificar.setRefaccionar(refaccionar);				
-					
+
 					
 				}else if(opcionSeleccionada.equals("Apto para Mascotas")){
 					boolean aptoMascota = obtenerMascota().equals("Si");
 					inmuebleAmodificar.setApto_mascota(aptoMascota);				
-					
+
 					
 					
 					
@@ -876,6 +889,12 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 				 inmuebleControlador.updateInmueble(inmuebleAmodificar);
                  JOptionPane.showMessageDialog(null, "Inmueble actualizado exitosamente");
         		break;
+        		
+	            } catch (Exception e) {
+	            	JOptionPane.showMessageDialog(null, "Porfavor Seleccione una opción.");
+	            }
+	            
+	            }while(repetir2 == false);
 		            	}
 	
 					}			
