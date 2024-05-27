@@ -393,38 +393,6 @@ public class Agente extends Empleado implements Validacion, InicioSesion{
 	
 	
 	
-	
-	
-	
-	
-	public void verInmuebles() {
-		if(inmuebleControlador.getAllInmueble().isEmpty()){
-			JOptionPane.showMessageDialog(null, "No hay Inmuebles cargados" );
-		}else {
-			String[] opcionesInmuebles = new String[inmuebleControlador.getAllInmueble().size()];
-			for (int i = 0; i < opcionesInmuebles.length; i++) {
-			Inmueble inmueble = inmuebleControlador.getAllInmueble().get(i);
-			opcionesInmuebles[i] = "ID Inmueble: " + inmueble.getId_inmueble() + " - Dirección: " + inmueble.getDireccion()+ " - Ambientes: " +inmueble.getCantAmbientes();		
-			}
-					
-			String inmuebleSeleccionado = (String) JOptionPane.showInputDialog(null, "Seleccione Inmueble", "Visualizar Inmueble",
-			JOptionPane.QUESTION_MESSAGE, null, opcionesInmuebles, opcionesInmuebles[0]);
-					
-			if(inmuebleSeleccionado !=null){
-				Inmueble inmuebleAmostrar = null;
-			for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
-			String opcion = "ID Inmueble: " + inmueble.getId_inmueble() + " - Dirección: " + inmueble.getDireccion()+ " - Ambientes: " +inmueble.getCantAmbientes();
-							
-			if(opcion.equals(inmuebleSeleccionado)){
-				inmuebleAmostrar=inmueble;
-				}      
-			}
-						
-			if(inmuebleAmostrar !=null){
-				JOptionPane.showMessageDialog(null, "Datos del Inmueble:\n" + inmuebleAmostrar.toString(), "Datos del Inmueble", JOptionPane.INFORMATION_MESSAGE);		
-				}
-			} 
-		}
-	} 
+
 
 }

@@ -190,6 +190,8 @@ public interface Validacion {
 						continue;
 					}
 					
+					cadena = cadena.trim();
+					
 	                boolean valido = true; 
 	                for (int i = 0; i < cadena.length(); i++) {
 	                    char caracter = cadena.charAt(i);
@@ -205,7 +207,6 @@ public interface Validacion {
 	                	continue;
 	                }
 					
-					cadena = cadena.trim();
 					confirmacion = true;
 					
 	                
