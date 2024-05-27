@@ -56,7 +56,7 @@ public class AgenteControlador implements AgenteRepository{
 	    public Agente getAgenteById(int id) {
 	        Agente agente = null;
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM empleado WHERE id = ?");
+	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM empleado WHERE id_empleado = ?");
 	            statement.setInt(1, id);
 	            
 	            ResultSet resultSet = statement.executeQuery();
