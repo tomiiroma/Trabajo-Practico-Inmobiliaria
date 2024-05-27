@@ -127,12 +127,11 @@ public class VentaControlador implements VentaRepository {
 	    public void addVenta(Venta venta) {
 	        try {
 	            PreparedStatement statement = connection.prepareStatement(
-	                    "INSERT INTO venta (id_venta, fk_inmueble_id, fk_cliente_id, fk_contrato_id, monto_total, forma_pago, fk_empleado_id, tipo_empleado) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
+	                    "INSERT INTO venta (id_venta, fk_inmueble_id,  fk_contrato_id, monto_total, forma_pago, fk_empleado_id, tipo_empleado) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
 	                );
 
 	                statement.setInt(1, venta.getId_venta());
 	                statement.setInt(2, venta.getInmueble().getId_inmueble());
-	                statement.setInt(3, venta.getComprador().getId_comprador());  
 	                statement.setInt(4, venta.getContrato().getId_contrato());
 	                statement.setDouble(5, venta.getMonto_total());
 	                statement.setString(6, venta.getForma_pago());
