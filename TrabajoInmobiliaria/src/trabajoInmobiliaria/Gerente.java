@@ -744,7 +744,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 	            	
 				String[] opcionesModificar = { "Tipo de Inmueble","Condición","Cantidad de Ambientes","Barrio","Dirección","Descripcion",
 						"Años Antiguedad","Cantidad de Baños","Cantidad de Dormitorios","m2 Superficie Cubierta",
-						"m2 Superficie Descubierta","Precio","Disponibilidad actual","Refacción","Apto para Mascotas","Patio","Activar/Deshabilitar Inmueble","Volver"};
+						"Precio","Disponibilidad actual","Refacción","Apto para Mascotas","Patio","Activar/Deshabilitar Inmueble","Volver"};
 					
 				String opcionSeleccionada = (String) JOptionPane.showInputDialog(null, "Seleccione un atributo para Modificar:",
 						"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, opcionesModificar,
@@ -761,7 +761,6 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
                      }else {
                     	String piso = null;
              	    	piso = validarEntero("Ingrese el numero de piso donde se encuentra el Departamento");
-
                          inmuebleAmodificar.setPiso(piso);
                      }
 					
@@ -831,21 +830,18 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 					JOptionPane.showMessageDialog(null, "m2 cubierta Actualizada");
 
 				}else if(opcionSeleccionada.equals("Patio")){
-					boolean tienePatio = obtenerPatio();
+					boolean tienePatio = obtenerPatio();	
+
 					if(tienePatio==true){
-						inmuebleAmodificar.setpatio(tienePatio);
+						double superficieDescubierta = validarDouble("Ingrese la cantidad la cantidad de m2 de superficie descubierta");
+						inmuebleAmodificar.setSuperficie_descubierta(superficieDescubierta);
 						
 					}else {
-						JOptionPane.showMessageDialog(null, "Opcion No disponible");
+						inmuebleAmodificar.setSuperficie_descubierta(0);
 						break;
 					}
 					
 	
-				}else if(opcionSeleccionada.equals("m2 Superficie Descubierta")){
-					double superficieDescubierta = obtenerM2Descubierta();
-					inmuebleAmodificar.setSuperficie_descubierta(superficieDescubierta);
-					
-					
 				}else if(opcionSeleccionada.equals("Precio")){
 					double precio = 0;
 					precio = validarDouble("Ingrese el precio del Inmueble");
@@ -1176,51 +1172,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 	    
 	    
 	}
-	
 
-	public String obtenerAmbientes() {
-	    return JOptionPane.showInputDialog("Ingrese la cantidad de Ambientes del Inmueble");
-	}
-	
-	
-	public Double obtenerM2Cubierta() {
-	    return Double.parseDouble(JOptionPane.showInputDialog("Ingrese los m2 de de Superficie Cubierta"));
-	}
-	
-	
-	public Double obtenerM2Descubierta() {
-	    return Double.parseDouble(JOptionPane.showInputDialog("Ingrese los m2 de de Superficie Descubierta"));
-	}
-	
-	
-	public String obtenerDireccion() {
-	    return JOptionPane.showInputDialog("Ingrese la direccion del Inmueble");
-	}
-	
-	
-	public String obtenerDescripcion() {
-	    return JOptionPane.showInputDialog("Ingrese una descripción del inmueble");
-	}
-	
-
-	public String obtenerAntiguedad() {
-	    return JOptionPane.showInputDialog("Ingrese la antiguedad del Inmueble");
-	}
-	
-	
-	public String obtenerBanios() {
-	    return JOptionPane.showInputDialog("Ingrese la cantidad de Baños");
-	}
-	
-			
-	public String obtenerDormitorio() {
-	    return JOptionPane.showInputDialog("Ingrese la cantidad de Dormitorios");
-	}
-	
-	
-	public Double obtenerPrecio() {
-	    return Double.parseDouble(JOptionPane.showInputDialog("Ingrese el Precio del Inmueble"));		
-	}
 	
 	//-------------------------------------------------------------------------------------------------------------------------
 	
