@@ -194,7 +194,7 @@ public interface Validacion {
 	                for (int i = 0; i < cadena.length(); i++) {
 	                    char caracter = cadena.charAt(i);
 
-	                    if (!Character.isDigit(caracter) && !Character.isAlphabetic(caracter)) {
+	                    if (!Character.isDigit(caracter) || !Character.isAlphabetic(caracter)) {
 	                    	valido = false;
 	                        break; 
 	                    }
