@@ -258,7 +258,7 @@ public class Empleado implements InicioSesion, Validacion{
 	
 	
 	
-	public void RealizarReserva() {
+	public boolean RealizarReserva() {
 		
 		boolean error = false;
 		Cliente cliente = null;
@@ -340,13 +340,16 @@ public class Empleado implements InicioSesion, Validacion{
 			
 			reservacontrolador.addReserva(new Reserva(inmueble,cliente,fecha_pago,montovalidado,forma_pago,empleado));
 			
+			return true;
 			
 		}
 		
 		
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e);
+			
 		}
+		return error;
 		
 		
 		
@@ -532,7 +535,42 @@ public class Empleado implements InicioSesion, Validacion{
 	
 	
 	
+	/* ------------------------------------------------------------------------------------ RESERVA 2 ------------------------------------------------------------------------------------------------------ */
 	
+	
+		public boolean RealizarReservaTEST(Cliente cliente,Inmueble inmueble, Empleado empleado, LocalDate fecha_pago,double pago) {
+			
+			boolean flag;
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			return false;
+		}
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	
 	
 	

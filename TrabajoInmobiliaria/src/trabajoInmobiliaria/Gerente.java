@@ -497,7 +497,53 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 					switch (Agregarseleccion) {
 					case 0:
 						
-						AgregarAgente();
+						String correo="",tipo_empleado="Agente";
+						int telefono,dni=0,telefon0=0,id_agente=0;	
+						LocalDate fecha = null, fecha_nac=null;
+						String nombre="", apellido="" ,telefonoentrada="", contraseña="";
+						AgenteControlador agentecontrolador = new AgenteControlador();
+						boolean error = false;
+						//	JOptionPane.showMessageDialog(null, "Cargar datos");
+						/*	nombre =validarNombre("Escribir el nombre");
+							apellido = validarNombre("Escribir el apellido");
+							fecha = validarFecha(fecha);
+							dni = validarDni("Validacion de dni"); 
+							telefonoentrada = JOptionPane.showInputDialog("Ingresar telefono");  
+							telefono = validarTelefono(telefonoentrada);
+						 */
+							
+							
+							
+							
+							
+							try {
+								
+								nombre = JOptionPane.showInputDialog(null, "Ingresar el nombre del agente");							
+								apellido = JOptionPane.showInputDialog(null,"Ingresar el apellido del agente");
+								 dni = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el dni"));
+								telefon0 = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el numero"));
+								int dia = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el dia"));
+								int mes = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el mes"));
+								int año = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el año"));
+								fecha_nac = LocalDate.of(año, mes, dia);
+								 correo = JOptionPane.showInputDialog(null, "Ingresar correo"); 
+								 contraseña = JOptionPane.showInputDialog("Ingresar la contraseña");
+								 tipo_empleado = "Agente"; 		
+								id_agente = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el id del empleado"));
+								
+							} catch (Exception e) {
+								
+								JOptionPane.showMessageDialog(null, "Error");
+								 error = true;
+							}
+							
+							AgregarAgente2(nombre,apellido,fecha_nac,dni,telefon0,correo,contraseña,id_agente);
+							
+						
+							
+							
+							
+				/*	AgregarAgente(); */
 						
 						break;
 
@@ -1427,11 +1473,49 @@ public Gerente VerificarReferenciasGerente() {
 	return seleccionado;
 }
 
+/* ------------------------------------------------------------------------ Agregar Agente 2 (Test) ------------------------------------------------------------------------------------------------------------ */
 
 
 
 
 
+
+
+
+public boolean AgregarAgente2(String nombre, String apellido, LocalDate fecha, int dni, int telefono, String correo, String contraseña, int id_agente) {
+   
+	AgenteControlador agentecontrolador = new AgenteControlador();	
+	
+	JOptionPane.showMessageDialog(null, "contraseña"+contraseña);
+	
+	if (validarNombre2(nombre) && validarNombre2(apellido) && validarFecha2(fecha) && validarDni2(dni) && validarTelefono2(telefono) && validarEmail2(correo) && validarContraseña(contraseña)) {
+	
+		
+  
+			
+    	
+        Agente agente = new Agente(0, nombre, apellido, fecha, dni, telefono, correo, "Agente", contraseña, id_agente);
+      
+        
+        agentecontrolador.addAgente(agente);
+        return true;
+    } else {
+    	
+    	JOptionPane.showMessageDialog(null, "nombre"+nombre+"apellido"+apellido+"fecha"+fecha+"dni"+dni+"telefono"+telefono);
+    	
+    	JOptionPane.showMessageDialog(null, "Se ingreso un dato erroneo");
+    	
+        return false;
+    }
+}
+
+
+
+
+
+
+
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
 	
 }

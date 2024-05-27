@@ -415,7 +415,131 @@ public interface Validacion {
 /* -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/	
 	
 	
+/*-------------------------------------------------------------------------------------------- ValidarNombre 2 ---------------------------------------------------------------------------------------------------------------- */	
 	
+	default boolean validarNombre2(String nombre) {
+		
+		boolean confirmacion = true;
+	
+		
+			try {
+				
+
+				if(nombre==null || nombre.trim().isEmpty()){
+					JOptionPane.showMessageDialog(null, "No se admiten campos en blanco. Por favor ingrese un Nombre");
+					
+				}
+				
+				nombre = nombre.trim();
+				
+
+                boolean esString = true; 
+                for (int i = 0; i < nombre.length(); i++) {
+                    if (!Character.isAlphabetic(nombre.charAt(i))) {
+                    	esString = false;
+                        break; 
+                    }
+                }
+                
+                if(!esString){
+                    JOptionPane.showMessageDialog(null, "No se permiten caracteres numericos. Ingrese Nombre nuevamente");
+                    confirmacion = false;
+                }
+				
+               
+                
+			} catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al ingresar Nombre. Ingrese Nombre nuevamente");
+			}
+
+			
+		
+		
+		return confirmacion;
+	}
+	
+	
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */	
+	
+/* ------------------------------------------------------------------------------------------------- VALIDAR DNI 2 ---------------------------------------------------------------------------------------------------------- */
+	
+	
+	default boolean validarDni2(int dni) {
+	    
+	    if (String.valueOf(dni).length() != 8) {
+	        JOptionPane.showMessageDialog(null, "El DNI debe tener exactamente 8 dígitos.");
+	        return false;
+	    }
+
+	    return true;
+	}
+	
+	
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */	
+
+/* --------------------------------------------------------------------------- Validar Fechas 2----------------------------------------------------------------------------------------------------------------*/	
+		
+		default boolean validarFecha2(LocalDate fecha) {
+		    boolean error = true;
+
+		   
+		    if (fecha == null || fecha.isAfter(LocalDate.now())) {
+		        JOptionPane.showMessageDialog(null, "La fecha no puede ser nula ni puede estar en el futuro");
+		        error = false;
+		    }
+
+		    return error; // 
+		}
+		
+/* -------------------------------------------------------------------------------- Validar Telefono --------------------------------------------------------------------------------------------------------------------- */
+		
+		
+		default boolean validarTelefono2(int telefonoen) {
+		    boolean error = true;
+
+		  
+		    if (String.valueOf(telefonoen).length() != 8) {
+		        JOptionPane.showMessageDialog(null, "Debe contener 8 dígitos numéricos");
+		        error = false;
+		    }
+
+		   
+		    return error;
+		}
+		
+		
+/*--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/		
+	
+/* --------------------------------------------------------------------------------------------------------------- Validar Email ------------------------------------------------------------------------------------------- */		
+		
+		
+		/* pruebas no definitivo */
+		
+		default boolean validarEmail2(String email) {
+		boolean flag=true;
+		String mail;
+			
+			mail = "^[^@]+@[^@]+\\.com$"; 
+			
+			Pattern pattern = Pattern.compile(mail);
+			Matcher matcher = pattern.matcher(email);
+			
+			if (!matcher.matches()) {
+				
+				JOptionPane.showMessageDialog(null, "El correo electrónico ingresado no es válidoo");
+				flag = false;
+				
+			} 
+			
+			
+			
+			return flag;
+			
+		}
+		
+		
+/*---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/		
+		
 }
 
 	
