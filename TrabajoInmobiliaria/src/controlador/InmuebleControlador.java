@@ -96,7 +96,8 @@ public class InmuebleControlador implements InmuebleRepository{
                     		resultSet.getBoolean("patio"),     
                     		resultSet.getBoolean("activo")); 
 
-	                      
+	              
+         
 	            }
 	            
 	        } catch (SQLException e) {
@@ -125,7 +126,7 @@ public class InmuebleControlador implements InmuebleRepository{
 	            statement.setDouble(8, inmueble.getSuperficie_descubierta());
 	            statement.setString(9, inmueble.getBarrio());
 	            statement.setString(10, inmueble.getDireccion());
-	            statement.setBoolean(11, inmueble.ispatio());
+	            statement.setBoolean(11, inmueble.isPatio());
 	            statement.setString(12, inmueble.getDescripcion());
 	            statement.setString(13, inmueble.getAntiguedad());
 	            statement.setDouble(14, inmueble.getPrecio());
@@ -164,7 +165,7 @@ public class InmuebleControlador implements InmuebleRepository{
 		        statement.setDouble(7, inmueble.getSuperficie_descubierta());
 		        statement.setString(8, inmueble.getBarrio());
 		        statement.setString(9, inmueble.getDireccion());
-		        statement.setBoolean(10, inmueble.ispatio());
+		        statement.setBoolean(10, inmueble.isPatio());
 		        statement.setString(11, inmueble.getDescripcion());
 		        statement.setString(12, inmueble.getAntiguedad());
 		        statement.setDouble(13, inmueble.getPrecio());
