@@ -106,7 +106,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 							volverSubmenu = true;						
 							}
 						} catch (Exception e) {
-							JOptionPane.showMessageDialog(null, "Porfavor seleccione una opción valida");
+							JOptionPane.showMessageDialog(null, "Porfavor Seleccione una opción valida.");
 							}
 						} while (!volverSubmenu);
 						break;
@@ -552,7 +552,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 			
 			
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Porfavor Seleccione una Opción");
+			JOptionPane.showMessageDialog(null, "Porfavor Seleccione una opción valida.");
 		}
 			
 		} while (repetir);
@@ -567,9 +567,79 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 	
 // --------------------------------------------------------TODO INMUEBLES-----------------------------------------------------------
 	
-	// ---------------------------LISTA INMUEBLES DISPONIBLES---------------------------
+	//-----------------------------------------ACTIVAR INMUEBLE --------------------------------------	
 	
-		public void verInmueblesDisponibles() {	
+		public boolean activarInmueble() { // solo activamos la lista de inmuebles cargados por agente 
+			boolean repetir;
+
+		do {
+			repetir =true;
+		
+			int count = 0; // cuenta los inmuebles inactivos 
+		    for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
+		        if (!inmueble.isActivo()) {
+		            count++;
+		        }
+		    }
+
+		    if (count == 0) {
+		        JOptionPane.showMessageDialog(null, "No hay Inmuebles inactivos cargados");
+		        break;
+		    }
+
+		    String[] opcionesInmuebles = new String[count];
+		    int index = 0;
+		    for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
+		        if (!inmueble.isActivo()) {
+		            opcionesInmuebles[index++] = "ID Inmueble: " + inmueble.getId_inmueble() +
+		            							 " - Dirección: " + inmueble.getDireccion() +
+		                                         " - Ambientes: " + inmueble.getCantAmbientes();
+		        }
+		    }
+
+		    String inmuebleSeleccionado = (String) JOptionPane.showInputDialog(null,
+		            "Seleccione Inmueble para activar","Activar Inmueble", JOptionPane.QUESTION_MESSAGE,null, opcionesInmuebles,
+		            opcionesInmuebles[0]);
+
+		    if (inmuebleSeleccionado != null) {
+		        for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
+		            String opcion = "ID Inmueble: " + inmueble.getId_inmueble() +
+		                            " - Dirección: " + inmueble.getDireccion() +
+		                            " - Ambientes: " + inmueble.getCantAmbientes();
+		            if (opcion.equals(inmuebleSeleccionado)) {
+		            	
+		            	boolean activo = obtenerActivo();
+		            	
+		            	if(activo){
+		            		
+		            		inmueble.setActivo(true);
+		            		inmuebleControlador.updateInmueble(inmueble);
+		            		JOptionPane.showMessageDialog(null, "El inmueble ha sido activado Correctamente");
+		            		
+		            	}else {
+		            		JOptionPane.showMessageDialog(null, "No se ha activado el Inmueble");
+		            	}
+		                break;
+		            }
+		        }
+		    }	
+		} while (!repetir);
+		
+		return true;
+		}
+		
+	
+	
+	
+	// ---------------------------LISTA INMUEBLES DISPONIBLES---------------------------
+		public boolean verInmueblesDisponibles() {	
+			boolean repetir;
+			
+			do {
+				repetir = false;
+			try {
+				
+
 			
 			int count = 0; // cuenta los inmuebles activos y disponibles
 			for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
@@ -580,7 +650,8 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 			
 			if (count == 0) { // verificar si hay inmuebles disponibles 
 			    JOptionPane.showMessageDialog(null, "No hay Inmuebles activos y disponibles cargados");
-			    return;
+			    repetir = true;
+			    continue;	
 			}
 			
 			String[] opcionesInmuebles = new String[count]; // array con las opciones de inmuebles disponibles
@@ -593,9 +664,17 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 			    }
 			}
 			
+			opcionesInmuebles[opcionesInmuebles.length - 1] = "Volver";
+
+			
 			//mostramos los inmuebles disponibles
 			String inmuebleSeleccionado = (String) JOptionPane.showInputDialog(null,"Seleccione Inmueble", "Visualizar Inmueble",
 			        JOptionPane.INFORMATION_MESSAGE,null,opcionesInmuebles, opcionesInmuebles[0]);
+			
+            if (inmuebleSeleccionado.equals("Volver")) {
+                repetir = true; 
+                continue;
+            }
 			
 			//mostramos el inmueble seleccionado
 			if (inmuebleSeleccionado != null) {
@@ -606,80 +685,16 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 			        if (opcion.equals(inmuebleSeleccionado)) {
 			            JOptionPane.showMessageDialog(null, 
 			            		"Datos del Inmueble:\n" + inmueble.toString(),"Datos del Inmueble",JOptionPane.INFORMATION_MESSAGE);
-			            break;
 			        }
 			    }
 			}
-		
+				} catch (Exception e) {
+	            	JOptionPane.showMessageDialog(null, "Porfavor Seleccione una opción valida.");
+				}
+			} while (!repetir);
+			return true;
 		}
 			
-	
-	
-
-		
-
-	
-//-----------------------------------------ACTIVAR INMUEBLE --------------------------------------	
-	
-	public boolean activarInmueble() { // solo activamos la lista de inmuebles cargados por agente 
-		boolean repetir;
-
-	do {
-		repetir =true;
-	
-		int count = 0; // cuenta los inmuebles inactivos 
-	    for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
-	        if (!inmueble.isActivo()) {
-	            count++;
-	        }
-	    }
-
-	    if (count == 0) {
-	        JOptionPane.showMessageDialog(null, "No hay Inmuebles inactivos cargados");
-	        break;
-	    }
-
-	    String[] opcionesInmuebles = new String[count];
-	    int index = 0;
-	    for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
-	        if (!inmueble.isActivo()) {
-	            opcionesInmuebles[index++] = "ID Inmueble: " + inmueble.getId_inmueble() +
-	            							 " - Dirección: " + inmueble.getDireccion() +
-	                                         " - Ambientes: " + inmueble.getCantAmbientes();
-	        }
-	    }
-
-	    String inmuebleSeleccionado = (String) JOptionPane.showInputDialog(null,
-	            "Seleccione Inmueble para activar","Activar Inmueble", JOptionPane.QUESTION_MESSAGE,null, opcionesInmuebles,
-	            opcionesInmuebles[0]);
-
-	    if (inmuebleSeleccionado != null) {
-	        for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
-	            String opcion = "ID Inmueble: " + inmueble.getId_inmueble() +
-	                            " - Dirección: " + inmueble.getDireccion() +
-	                            " - Ambientes: " + inmueble.getCantAmbientes();
-	            if (opcion.equals(inmuebleSeleccionado)) {
-	            	
-	            	boolean activo = obtenerActivo();
-	            	
-	            	if(activo){
-	            		
-	            		inmueble.setActivo(true);
-	            		inmuebleControlador.updateInmueble(inmueble);
-	            		JOptionPane.showMessageDialog(null, "El inmueble ha sido activado Correctamente");
-	            		
-	            	}else {
-	            		JOptionPane.showMessageDialog(null, "No se ha activado el Inmueble");
-	            	}
-	                break;
-	            }
-	        }
-	    }	
-	} while (!repetir);
-	
-	return true;
-	}
-	
 
 	// ---------------------------VER INMUEBLES---------------------------
 		public boolean verInmuebles() {
@@ -995,13 +1010,13 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 						"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, tipoInmueble, tipoInmueble[0]);
 				
 				if(seleccion ==null){
-		    		JOptionPane.showMessageDialog(null, "Porfavor seleccione una opcion correcta.");
+		    		JOptionPane.showMessageDialog(null, "Porfavor Seleccione una opción valida.");
 		    	}else {
 		    		return seleccion;
 		    	}
 				
 			} catch (Exception e) {
-	    		JOptionPane.showMessageDialog(null, "Error! Porfavor seleccione una opcion correcta.");
+	    		JOptionPane.showMessageDialog(null, "Error! Porfavor Seleccione una opción valida.");
 	
 			}
 			
@@ -1023,13 +1038,13 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 						"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, tipoInmueble, tipoInmueble[0]);
 				
 				if(seleccion ==null){
-		    		JOptionPane.showMessageDialog(null, "Porfavor seleccione una opcion correcta.");
+		    		JOptionPane.showMessageDialog(null, "Porfavor Seleccione una opción valida.");
 		    	}else {
 		    		return seleccion;
 		    	}
 				
 			} catch (Exception e) {
-	    		JOptionPane.showMessageDialog(null, "Error! Porfavor seleccione una opcion correcta.");
+	    		JOptionPane.showMessageDialog(null, "Error! Porfavor Seleccione una opción valida.");
 	
 			}
 			
@@ -1058,13 +1073,13 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 						"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, barrio, barrio[0]);
 				
 				if(seleccion ==null){
-		    		JOptionPane.showMessageDialog(null, "Porfavor seleccione una opcion correcta.");
+		    		JOptionPane.showMessageDialog(null, "Porfavor Seleccione una opción valida.");
 		    	}else {
 		    		return seleccion;
 		    	}
 				
 			} catch (Exception e) {
-	    		JOptionPane.showMessageDialog(null, "Error! Porfavor seleccione una opcion correcta.");
+	    		JOptionPane.showMessageDialog(null, "Error! Porfavor Seleccione una opción valida.");
 	
 			}
 			
@@ -1089,13 +1104,13 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 		    			"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, disponibleSeleccion, disponibleSeleccion[0]);
 		    	 
 		    	if(seleccion ==null){
-		    		JOptionPane.showMessageDialog(null, "Porfavor seleccione una opcion correcta.");
+		    		JOptionPane.showMessageDialog(null, "Porfavor Seleccione una opción valida.");
 		    	}else {
 		    		confirmacion = true;
 		    	}
 				
 			} catch (Exception e) {
-	    		JOptionPane.showMessageDialog(null, "Error! Porfavor seleccione una opcion correcta.");
+	    		JOptionPane.showMessageDialog(null, "Error! Porfavor Seleccione una opción valida.");
 	
 			}
 	    
@@ -1117,13 +1132,13 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 				            "Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, activoSeleccion, activoSeleccion[0]);
 		    	 
 		    	if(seleccion ==null){
-		    		JOptionPane.showMessageDialog(null, "Porfavor seleccione una opcion correcta.");
+		    		JOptionPane.showMessageDialog(null, "Porfavor Seleccione una opción valida.");
 		    	}else {
 		    		confirmacion = true;
 		    	}
 				
 			} catch (Exception e) {
-	    		JOptionPane.showMessageDialog(null, "Error! Porfavor seleccione una opcion correcta.");
+	    		JOptionPane.showMessageDialog(null, "Error! Porfavor Seleccione una opción valida.");
 	
 			}
 	    
@@ -1148,13 +1163,13 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 						"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, refaccionSeleccion, refaccionSeleccion[0]);
 				
 				if(seleccion ==null){
-		    		JOptionPane.showMessageDialog(null, "Porfavor seleccione una opcion correcta.");
+		    		JOptionPane.showMessageDialog(null, "Porfavor Seleccione una opción valida.");
 		    	}else {
 		    		return seleccion;
 		    	}
 				
 			} catch (Exception e) {
-	    		JOptionPane.showMessageDialog(null, "Error! Porfavor seleccione una opcion correcta.");
+	    		JOptionPane.showMessageDialog(null, "Error! Porfavor Seleccione una opción valida.");
 	
 			}
 			
@@ -1176,13 +1191,13 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 						"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, patioSeleccion, patioSeleccion[0]);
 				
 				if(seleccion ==null){
-					JOptionPane.showMessageDialog(null, "Porfavor seleccione una opcion correcta.");
+					JOptionPane.showMessageDialog(null, "Porfavor Seleccione una opción valida.");
 				}else {
 					confirmacion = true;
 				}
 				
 			} catch (Exception e) {
-				JOptionPane.showMessageDialog(null, "Error! Porfavor seleccione una opcion correcta.");
+				JOptionPane.showMessageDialog(null, "Error! Porfavor Seleccione una opción valida.");
 				
 			}
 			
@@ -1207,13 +1222,13 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 						"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, mascotaSeleccion, mascotaSeleccion[0]);
 				
 				if(seleccion ==null){
-		    		JOptionPane.showMessageDialog(null, "Porfavor seleccione una opcion correcta.");
+		    		JOptionPane.showMessageDialog(null, "Porfavor Seleccione una opción valida.");
 		    	}else {
 		    		return seleccion;
 		    	}
 				
 			} catch (Exception e) {
-	    		JOptionPane.showMessageDialog(null, "Error! Porfavor seleccione una opcion correcta.");
+	    		JOptionPane.showMessageDialog(null, "Error! Porfavor Seleccione una opción valida.");
 	
 			}
 			
