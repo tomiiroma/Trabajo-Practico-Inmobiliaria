@@ -6,6 +6,7 @@ public class Inmueble {
 	private String tipo_inmueble;
 	private String condicion;
 	private String cantAmbientes;
+	private String piso;
 	private String barrio;
 	private String direccion;
 	private String descripcion;
@@ -19,18 +20,22 @@ public class Inmueble {
 	private boolean refaccionar;
 	private boolean apto_mascota;
 	private boolean patio;
-    
+
+	private boolean activo;
 
 
-	public Inmueble(int id_inmueble, String tipo_inmueble, String condicion, String cantAmbientes, String barrio,
-			String direccion, String descripcion, String antiguedad, String banio, String dormitorio,
+
+
+	public Inmueble(int id_inmueble, String tipo_inmueble, String condicion, String cantAmbientes, String piso,
+			String barrio, String direccion, String descripcion, String antiguedad, String banio, String dormitorio,
 			double superficie_cubierta, double superficie_descubierta, double precio, boolean disponible,
-			boolean refaccionar, boolean apto_mascota, boolean patio) {
+			boolean refaccionar, boolean apto_mascota, boolean patio, boolean activo) {
 		super();
 		this.id_inmueble = id_inmueble;
 		this.tipo_inmueble = tipo_inmueble;
 		this.condicion = condicion;
 		this.cantAmbientes = cantAmbientes;
+		this.piso = piso;
 		this.barrio = barrio;
 		this.direccion = direccion;
 		this.descripcion = descripcion;
@@ -44,11 +49,12 @@ public class Inmueble {
 		this.refaccionar = refaccionar;
 		this.apto_mascota = apto_mascota;
 		this.patio = patio;
+		this.activo = activo;
 	}
 
 
 
-	
+
 	public Inmueble() {
 		
 	}
@@ -245,25 +251,9 @@ public class Inmueble {
 	}
 
 
-
-
-
-
-
-
-
-
-
-
-
 	public String getCantAmbientes() {
 		return cantAmbientes;
 	}
-
-
-
-
-
 
 
 
@@ -272,21 +262,9 @@ public class Inmueble {
 	}
 
 
-
-
-
-
-
-
 	public String getAntiguedad() {
 		return antiguedad;
 	}
-
-
-
-
-
-
 
 
 	public void setAntiguedad(String antiguedad) {
@@ -294,44 +272,18 @@ public class Inmueble {
 	}
 
 
-
-
-
-
-
-
 	public double getPrecio() {
 		return precio;
 	}
-
-
-
-
-
-
 
 
 	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
 
-
-
-
-
-
-
-
 	public String getBanio() {
 		return banio;
 	}
-
-
-
-
-
-
-
 
 	public void setBanio(String banio) {
 		this.banio = banio;
@@ -355,9 +307,6 @@ public class Inmueble {
 		this.dormitorio = dormitorio;
 	}
 
-
-
-
 	public boolean isApto_mascota() {
 		return apto_mascota;
 	}
@@ -374,49 +323,47 @@ public class Inmueble {
 	}
 
 
-
-
 	public void setCondicion(String condicion) {
 		this.condicion = condicion;
 	}
-
-
-
-
-
-
-
 
 	public boolean ispatio() {
 		return patio;
 	}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	public void setpatio(boolean patio) {
 		this.patio = patio;
 	}
 
+	
+
+	public String getPiso() {
+		return piso;
+	}
 
 
+	public void setPiso(String piso) {
+		this.piso = piso;
+	}
 
 
+	public boolean isPatio() {
+		return patio;
+	}
 
 
+	public void setPatio(boolean patio) {
+		this.patio = patio;
+	}
+
+	public boolean isActivo() {
+		return activo;
+	}
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
+	}
 
 
 	@Override
@@ -424,50 +371,26 @@ public class Inmueble {
 		return "\nLista de Inmuebles"+"\n"
 				+ "\nId de Inmueble:" + id_inmueble 
 				+ "\nTipo de Inmueble: " + tipo_inmueble
-				+"\nCantidad de Ambientes:"+cantAmbientes
-				+ "\nCondición:" + condicion
+				+"\nPiso: "+piso
+				+"\nCantidad de Ambientes: "+cantAmbientes
+				+ "\nCondición: " + condicion
 				+ "\nDisponibilidad: " + disponible 
 				+ "\nm2 superficie cubierta: " + superficie_cubierta
 				+ "\nm2 superficie descubierta: " + superficie_descubierta 
 				+ "\nBarrio: " + barrio 
-				+"\nDireccion del Inmueble:"+direccion
+				+"\nDireccion del Inmueble: "+direccion
 				+ "\nPatio: "+ patio 
 				+ "\nDescripción: " + descripcion 
-				+ "Años de antiguedad:" + antiguedad 
+				+ "\nAños de antiguedad: " + antiguedad 
 				+ "\nPrecio del inmueble: " + precio
 				+ "\nCantidad de Baños: " + banio 
 				+ "\nSe debe refaccionar: " + refaccionar 
-				+ "\nCantidad de Dormitorios"+ dormitorio 
-				+ "\nEs apto para mascota: " + apto_mascota;
+				+ "\nCantidad de Dormitorios: "+ dormitorio 
+				+ "\nEs apto para mascota: " + apto_mascota
+				+"\nInmueble Activo: "+activo;
 	}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-	
-
-
-
-	
-	
-	
-	
-	
 	
 	
 	

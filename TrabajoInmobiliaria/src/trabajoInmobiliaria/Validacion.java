@@ -103,6 +103,122 @@ public interface Validacion {
 		return nombre;
 	}
 	
+	
+	//validar el ingreso de pisos en inmueble
+	
+	
+	default String validarEntero(String mensaje) {
+		String entero = null;
+		boolean confirmacion = false;
+	
+		do {
+			try {
+				entero = JOptionPane.showInputDialog(mensaje);
+
+				if(entero==null || entero.trim().isEmpty()){
+					JOptionPane.showMessageDialog(null, "No se admiten campos en blanco. Por favor Reingrese los datos");
+					continue;
+				}
+				
+				entero = entero.trim();
+				
+                boolean esEntero = true; 
+                for (int i = 0; i < entero.length(); i++) {
+                    if (!Character.isDigit(entero.charAt(i))) {
+                    	esEntero = false;
+                        break; 
+                    }
+                }
+                
+                if(!esEntero){
+                    JOptionPane.showMessageDialog(null, "Solo se permiten caracteres numericos. Porfavor reingrese los datos.");
+                    continue;
+                }
+
+
+				confirmacion = true;
+                
+			} catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error. Reingrese los datos ingresados");
+			}
+
+			
+		} while (confirmacion==false);
+		
+		return entero;
+	}
+	
+	
+	default double validarDouble(String mensaje) {
+		double valor = 0;
+		boolean esDouble = false;
+	
+		do {
+			try {
+				String entrada = JOptionPane.showInputDialog(mensaje);
+
+				valor = Double.parseDouble(entrada);
+				esDouble=true;		
+                
+			} catch (Exception e) {
+                JOptionPane.showMessageDialog( null, "Error. Reingrese los datos ingresados");
+			}
+
+			
+		} while (esDouble==false);
+		
+		return valor;
+	}
+	
+	//validar seleccion
+	
+
+	
+	
+	//Validar cadenaString
+	
+		default String validarCadena(String mensaje) {
+			String cadena = null;
+			boolean confirmacion = false;
+		
+			do {
+				try {
+					cadena = JOptionPane.showInputDialog(mensaje);
+
+					if(cadena==null || cadena.trim().isEmpty()){
+						JOptionPane.showMessageDialog(null, "No se admiten campos en blanco. Por favor Reingrese los datos");
+						continue;
+					}
+					
+	                boolean valido = true; 
+	                for (int i = 0; i < cadena.length(); i++) {
+	                    char caracter = cadena.charAt(i);
+
+	                    if (!Character.isDigit(caracter) || !Character.isAlphabetic(caracter)) {
+	                    	valido = false;
+	                        break; 
+	                    }
+	                }
+	                
+	                if(valido == false){
+	                	JOptionPane.showMessageDialog(null, "No se permite el ingreso de caracteres especiales");
+	                	continue;
+	                }
+					
+					cadena = cadena.trim();
+					confirmacion = true;
+					
+	                
+				} catch (Exception e) {
+	                JOptionPane.showMessageDialog(null, "Error. Reingrese los datos ingresados");
+				}
+
+				
+			} while (confirmacion==false);
+			
+			return cadena;
+		}
+	
 	// Revisar luego que mas se le puede implementar.
 	
 /* --------------------------------------------------------------------------- Validar Fechas ----------------------------------------------------------------------------------------------------------------*/	
