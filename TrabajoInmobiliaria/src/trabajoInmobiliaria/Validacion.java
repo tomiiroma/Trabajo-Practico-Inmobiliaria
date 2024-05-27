@@ -149,44 +149,30 @@ public interface Validacion {
 	}
 	
 	
-	default String validarDouble(String mensaje) {
-		String doUble = null;
-		boolean confirmacion = false;
+	default double validarDouble(String mensaje) {
+		double valor = 0;
+		boolean esDouble = false;
 	
 		do {
 			try {
-				doUble = JOptionPane.showInputDialog(mensaje);
+				String entrada = JOptionPane.showInputDialog(mensaje);
 
-				if(doUble==null || doUble.trim().isEmpty()){
-					JOptionPane.showMessageDialog(null, "No se admiten campos en blanco. Por favor Reingrese los datos");
-					continue;
-				}
-								
-				
-                boolean esdoUble = true; 
-                for (int i = 0; i < doUble.length(); i++) {
-                    if (!Character.isDigit(doUble.charAt(i))&& doUble.charAt(i) != '.') {
-                    	esdoUble = false;
-                        break; 
-                    }
-                }
-                
-                if(!esdoUble){
-                    JOptionPane.showMessageDialog(null, "Solo se permiten caracteres numericos. Porfavor reingrese los datos.");
-                    continue;
-                }
-               
-				confirmacion = true;
+				valor = Double.parseDouble(entrada);
+				esDouble=true;		
                 
 			} catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error. Reingrese los datos ingresados");
+                JOptionPane.showMessageDialog( null, "Error. Reingrese los datos ingresados");
 			}
 
 			
-		} while (confirmacion==false);
+		} while (esDouble==false);
 		
-		return doUble;
+		return valor;
 	}
+	
+	//validar seleccion
+	
+
 	
 	
 	//Validar cadenaString
@@ -203,6 +189,21 @@ public interface Validacion {
 						JOptionPane.showMessageDialog(null, "No se admiten campos en blanco. Por favor Reingrese los datos");
 						continue;
 					}
+					
+	                boolean valido = true; 
+	                for (int i = 0; i < cadena.length(); i++) {
+	                    char caracter = cadena.charAt(i);
+
+	                    if (!Character.isDigit(caracter) && !Character.isAlphabetic(caracter)) {
+	                    	valido = false;
+	                        break; 
+	                    }
+	                }
+	                
+	                if(valido == false){
+	                	JOptionPane.showMessageDialog(null, "No se permite el ingreso de caracteres especiales");
+	                	continue;
+	                }
 					
 					cadena = cadena.trim();
 					confirmacion = true;
