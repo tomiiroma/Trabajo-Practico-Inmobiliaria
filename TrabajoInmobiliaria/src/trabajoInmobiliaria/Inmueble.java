@@ -20,7 +20,6 @@ public class Inmueble {
 	private boolean refaccionar;
 	private boolean apto_mascota;
 	private boolean patio;
-
 	private boolean activo;
 
 
@@ -60,15 +59,19 @@ public class Inmueble {
 	}
 
 
-
-
-	public int getId_inmueble() {
-		return id_inmueble;
+	public Inmueble(int fkInmuebleId) {
+		// TODO Auto-generated constructor stub
 	}
 
 
 
 
+	
+
+
+	public int getId_inmueble() {
+		return id_inmueble;
+	}
 
 
 
@@ -80,17 +83,9 @@ public class Inmueble {
 
 
 
-
-
-
-
 	public String getTipo_inmueble() {
 		return tipo_inmueble;
 	}
-
-
-
-
 
 
 
@@ -102,87 +97,44 @@ public class Inmueble {
 
 
 
-
-
-
-
-	public boolean isDisponible() {
-		return disponible;
+	public String getCondicion() {
+		return condicion;
 	}
 
 
 
 
-
-
-
-
-	public void setDisponible(boolean disponible) {
-		this.disponible = disponible;
+	public void setCondicion(String condicion) {
+		this.condicion = condicion;
 	}
 
 
 
 
-
-
-
-
-	public double getSuperficie_cubierta() {
-		return superficie_cubierta;
+	public String getCantAmbientes() {
+		return cantAmbientes;
 	}
 
 
 
 
-
-
-
-
-	public void setSuperficie_cubierta(double superficie_cubierta) {
-		this.superficie_cubierta = superficie_cubierta;
+	public void setCantAmbientes(String cantAmbientes) {
+		this.cantAmbientes = cantAmbientes;
 	}
 
 
 
 
-
-
-
-
-	public double getSuperficie_descubierta() {
-		return superficie_descubierta;
+	public String getPiso() {
+		return piso;
 	}
 
 
 
 
-
-
-
-
-	public void setSuperficie_descubierta(double superficie_descubierta) {
-		this.superficie_descubierta = superficie_descubierta;
+	public void setPiso(String piso) {
+		this.piso = piso;
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -194,17 +146,9 @@ public class Inmueble {
 
 
 
-
-
-
-
 	public void setBarrio(String barrio) {
 		this.barrio = barrio;
 	}
-
-
-
-
 
 
 
@@ -216,21 +160,9 @@ public class Inmueble {
 
 
 
-
-
-
-
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-
-
-
-
-
-
-
-
 
 
 
@@ -242,24 +174,11 @@ public class Inmueble {
 
 
 
-
-
-
-
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
 
 
-	public String getCantAmbientes() {
-		return cantAmbientes;
-	}
-
-
-
-	public void setCantAmbientes(String cantAmbientes) {
-		this.cantAmbientes = cantAmbientes;
-	}
 
 
 	public String getAntiguedad() {
@@ -267,35 +186,27 @@ public class Inmueble {
 	}
 
 
+
+
 	public void setAntiguedad(String antiguedad) {
 		this.antiguedad = antiguedad;
 	}
 
 
-	public double getPrecio() {
-		return precio;
-	}
 
-
-	public void setPrecio(double precio) {
-		this.precio = precio;
-	}
 
 	public String getBanio() {
 		return banio;
 	}
 
+
+
+
 	public void setBanio(String banio) {
 		this.banio = banio;
 	}
 
-	public boolean isRefaccionar() {
-		return refaccionar;
-	}
 
-	public void setRefaccionar(boolean refaccionar) {
-		this.refaccionar = refaccionar;
-	}
 
 
 	public String getDormitorio() {
@@ -303,13 +214,89 @@ public class Inmueble {
 	}
 
 
+
+
 	public void setDormitorio(String dormitorio) {
 		this.dormitorio = dormitorio;
 	}
 
+
+
+
+	public double getSuperficie_cubierta() {
+		return superficie_cubierta;
+	}
+
+
+
+
+	public void setSuperficie_cubierta(double superficie_cubierta) {
+		this.superficie_cubierta = superficie_cubierta;
+	}
+
+
+
+
+	public double getSuperficie_descubierta() {
+		return superficie_descubierta;
+	}
+
+
+
+
+	public void setSuperficie_descubierta(double superficie_descubierta) {
+		this.superficie_descubierta = superficie_descubierta;
+	}
+
+
+
+
+	public double getPrecio() {
+		return precio;
+	}
+
+
+
+
+	public void setPrecio(double precio) {
+		this.precio = precio;
+	}
+
+
+
+
+	public boolean isDisponible() {
+		return disponible;
+	}
+
+
+
+
+	public void setDisponible(boolean disponible) {
+		this.disponible = disponible;
+	}
+
+
+
+
+	public boolean isRefaccionar() {
+		return refaccionar;
+	}
+
+
+
+
+	public void setRefaccionar(boolean refaccionar) {
+		this.refaccionar = refaccionar;
+	}
+
+
+
+
 	public boolean isApto_mascota() {
 		return apto_mascota;
 	}
+
 
 
 
@@ -318,34 +305,6 @@ public class Inmueble {
 	}
 
 
-	public String getCondicion() {
-		return condicion;
-	}
-
-
-	public void setCondicion(String condicion) {
-		this.condicion = condicion;
-	}
-
-	public boolean ispatio() {
-		return patio;
-	}
-
-
-	public void setpatio(boolean patio) {
-		this.patio = patio;
-	}
-
-	
-
-	public String getPiso() {
-		return piso;
-	}
-
-
-	public void setPiso(String piso) {
-		this.piso = piso;
-	}
 
 
 	public boolean isPatio() {
@@ -353,17 +312,27 @@ public class Inmueble {
 	}
 
 
+
+
 	public void setPatio(boolean patio) {
 		this.patio = patio;
 	}
+
+
+
 
 	public boolean isActivo() {
 		return activo;
 	}
 
+
+
+
 	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}
+
+
 
 
 	@Override

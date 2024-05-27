@@ -24,6 +24,9 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 
 
 
+
+
+
 	public Gerente() {
 		
 	}
@@ -156,10 +159,10 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 							tipoCliente[0]);
 					
 					if(clienteSeleccionado.equals("Nuevo Propietario")){
-						JOptionPane.showMessageDialog(null, "Completar Propietario");
+						agregarPropietario();
 						
 					}else if(clienteSeleccionado.equals("Nuevo Inquilino")){
-						JOptionPane.showMessageDialog(null, "Completar Inquilino");  
+						agregarInquilino();
 
 					}else {
 						break;
@@ -178,9 +181,8 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 							operacionesNueva[0]);
 					
 					if(operacionNuevaSeleccionada.equals("Realizar Venta")){
-						JOptionPane.showMessageDialog(null, "Completar Venta");
 						
-						RealizarVenta();
+						registrarVenta();
 						
 					}else if(operacionNuevaSeleccionada.equals("Realizar Alquiler")){
 						JOptionPane.showMessageDialog(null, "Completar Alquiler");  
@@ -1503,7 +1505,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 			String correoverificado = validarEmail(correo);
 			String tipo_empleado = "Gerente"; 		
 			do {
-			contraseña = JOptionPane.showInputDialog("Ingresar password");
+			contraseña = JOptionPane.showInputDialog("Ingresar Contrasena");
 			} while(!validarContraseña(contraseña));
 			int id_gerente = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el id del gerente"));
 		//	acumuladorgerentes++;

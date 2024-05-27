@@ -8,7 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import interfaces.VentaRepository;
+import trabajoInmobiliaria.Agente;
+import trabajoInmobiliaria.Cliente;
+import trabajoInmobiliaria.Comprador;
+import trabajoInmobiliaria.Contrato;
 import trabajoInmobiliaria.DatabaseConnection;
+import trabajoInmobiliaria.Empleado;
 import trabajoInmobiliaria.Inmueble;
 import trabajoInmobiliaria.Venta;
 
@@ -26,26 +31,46 @@ public class VentaControlador implements VentaRepository {
 	    public List<Venta> getAllVentas() {
 	        List<Venta> ventas = new ArrayList<>();
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM users ");
+	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM venta");
 	            ResultSet resultSet = statement.executeQuery();
+	            InmuebleControlador controladorInmueble = new InmuebleControlador();
+	            CompradorControlador controladorComprador = new CompradorControlador();
+	            ContratoControlador controladorContrato = new ContratoControlador();
+	            AgenteControlador controladorAgente = new AgenteControlador();
+	            GerenteControlador controladorGerente = new GerenteControlador();
+
+	            
 	            while (resultSet.next()) {
-	            	  resultSet.getInt("id_venta");
-	                  int idReserva = resultSet.getInt("id_reserva");
-	            int  idInmueble = resultSet.getInt("id_inmueble");
-	                  int idComprador = resultSet.getInt("id_comprador");
-	                  String formaPago = resultSet.getString("forma_pago");
-	           double precioVenta = resultSet.getDouble("precio_venta");
+	            	
+	            	
+	            	  int id_venta = resultSet.getInt("id_venta");
+	            	  
+	            	  int fkInmuebleId = resultSet.getInt("fk_inmueble_id");
+	            	  int fkCompradorId = resultSet.getInt("fk_cliente_id");
+	            	  int fkContratoId = resultSet.getInt("fk_contrato_id");
+	            	  double montototal = resultSet.getInt("monto_total");
+	            	  int fkEmpleadoId = resultSet.getInt("fk_empleado_id");
+
+	            	  
+	            	  String forma_pago = resultSet.getString("forma_pago");
+
+	            	  Inmueble inmueble = controladorInmueble.getInmuebleById(fkInmuebleId);
+	            	  Comprador comprador = controladorComprador.getCompradorById(fkCompradorId);
+	                  Contrato contrato = controladorContrato.getContratoById(fkContratoId);
+	                  String tipoEmpleado = resultSet.getString("tipo_empleado");
 
 	                  
-	                  /*    idVenta,
-	                  Venta venta = new Venta(
-	                      getReservaById(idReserva),
-	                      getInmuebleById(idInmueble),
-	                      getCompradorById(idComprador),
-	                      formaPago,
-	                      precioVenta
-	                  */
-	          //     ventas.add(venta);
+	                  Empleado empleado = null;
+	                  
+	                  if(tipoEmpleado.equalsIgnoreCase("agente")) {
+	                	  empleado = controladorAgente.getAgenteById(fkEmpleadoId);
+	                  }else if(tipoEmpleado.equalsIgnoreCase("gerente")) {
+	                	  empleado = controladorGerente.getGerenteById(fkEmpleadoId);
+	                  }
+	                  	
+	                  Venta venta = new Venta(id_venta, inmueble, comprador, contrato, montototal,forma_pago,empleado, tipoEmpleado);
+	                  
+	                  ventas.add(venta);
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
@@ -57,13 +82,39 @@ public class VentaControlador implements VentaRepository {
 	    public Venta getVentaById(int id) {
 	        Venta venta = null;
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE id = ?");
+	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM venta WHERE id_venta = ?");
 	            statement.setInt(1, id);
 	            
 	            ResultSet resultSet = statement.executeQuery();
 	            
+	            InmuebleControlador controladorInmueble = new InmuebleControlador();
+	            CompradorControlador controladorComprador = new CompradorControlador();
+	            ContratoControlador controladorContrato = new ContratoControlador();
+	            AgenteControlador controladorAgente = new AgenteControlador();
+	            GerenteControlador controladorGerente = new GerenteControlador();
+
 	            if (resultSet.next()) {
-	          //      venta = new Venta(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("email"));
+	                int id_venta = resultSet.getInt("id_venta");
+	                int fkInmuebleId = resultSet.getInt("fk_inmueble_id");
+	                int fkCompradorId = resultSet.getInt("fk_cliente_id");
+	                int fkContratoId = resultSet.getInt("fk_contrato_id");
+	                double montototal = resultSet.getDouble("monto_total");
+	                String forma_pago = resultSet.getString("forma_pago");
+	                int fkEmpleadoId = resultSet.getInt("fk_empleado_id");
+	                String tipoEmpleado = resultSet.getString("tipo_empleado");
+
+	                Inmueble inmueble = controladorInmueble.getInmuebleById(fkInmuebleId);
+	                Comprador comprador = controladorComprador.getCompradorById(fkCompradorId);
+	                Contrato contrato = controladorContrato.getContratoById(fkContratoId);
+	                
+	                Empleado empleado = null;
+	                if ("agente".equalsIgnoreCase(tipoEmpleado)) {
+	                    empleado = controladorAgente.getAgenteById(fkEmpleadoId);
+	                } else if ("gerente".equalsIgnoreCase(tipoEmpleado)) {
+	                    empleado = controladorGerente.getGerenteById(fkEmpleadoId);
+	                }
+
+	                venta = new Venta(id_venta, inmueble, comprador, contrato, montototal, forma_pago, empleado, tipoEmpleado);
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
@@ -71,17 +122,24 @@ public class VentaControlador implements VentaRepository {
 	        return venta;
 	    }
 
+
 		@Override
 	    public void addVenta(Venta venta) {
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("INSERT INTO venta (fk_inmueble_id, fk_cliente_id, fk_contrato_id, monto_total, forma_pago, fk_empleado_id) VALUES (?, ?, ?, ?, ?, ?)");
-	            statement.setInt(1, venta.getFk_inmueble());
-	            statement.setInt(2, venta.getFk_cliente());
-	            statement.setInt(3, venta.getFk_contrato());
-	            statement.setDouble(4, venta.getMonto_total());
-	            statement.setString(5, venta.getForma_pago());
-	            statement.setInt(6, venta.getFk_empleado_id());
-	            
+	            PreparedStatement statement = connection.prepareStatement(
+	                    "INSERT INTO venta (id_venta, fk_inmueble_id, fk_cliente_id, fk_contrato_id, monto_total, forma_pago, fk_empleado_id, tipo_empleado) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
+	                );
+
+	                statement.setInt(1, venta.getId_venta());
+	                statement.setInt(2, venta.getInmueble().getId_inmueble());
+	                statement.setInt(3, venta.getComprador().getId_comprador());  
+	                statement.setInt(4, venta.getContrato().getId_contrato());
+	                statement.setDouble(5, venta.getMonto_total());
+	                statement.setString(6, venta.getForma_pago());
+	                statement.setInt(7, venta.getEmpleado().getId_empleado()); 
+	                statement.setString(8, venta.getEmpleado().getTipo_empleado());
+	        	        
+	        	        
 	            
 	            int rowsInserted = statement.executeUpdate();
 	            if (rowsInserted > 0) {
@@ -96,7 +154,7 @@ public class VentaControlador implements VentaRepository {
 	    public void updateVenta(Venta venta) {
 	        try {
 	            PreparedStatement statement = connection.prepareStatement("UPDATE users SET name = ?, email = ? WHERE id = ?");
-	            statement.setString(1, venta.getForma_pago().toString());
+	            statement.setString(1, venta.getInmueble().toString());
 	            statement.setString(2, venta.getForma_pago());
 	            statement.setInt(3, venta.getId_venta());
 	            

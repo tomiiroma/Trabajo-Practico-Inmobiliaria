@@ -1,8 +1,20 @@
 package trabajoInmobiliaria;
 
-import java.time.LocalDate;
+import java.time.LocalDate; 
 
 import javax.swing.JOptionPane;
+
+
+import controlador.AgenteControlador;
+import controlador.AlquilerControlador;
+import controlador.CompradorControlador;
+import controlador.ContratoControlador;
+import controlador.GaranteControlador;
+import controlador.GerenteControlador;
+import controlador.InmuebleControlador;
+import controlador.InquilinoControlador;
+import controlador.PropietarioControlador;
+import controlador.VentaControlador;
 
 import controlador.AgenteControlador;
 import controlador.ReservaControlador;
@@ -12,7 +24,9 @@ import controlador.InquilinoControlador;
 import controlador.CompradorControlador;
 import controlador.VentaControlador;
 
-public class Empleado implements InicioSesion, Validacion{
+
+
+public class Empleado implements InicioSesion,Validacion{
 
 	private int id_empleado;
 	private String nombre;
@@ -23,11 +37,6 @@ public class Empleado implements InicioSesion, Validacion{
 	private String correo;
 	private String tipo_empleado;
 	private String contraseña;
-	
-
-
-	
-	
 	
 
 	
@@ -44,6 +53,8 @@ public class Empleado implements InicioSesion, Validacion{
 		this.tipo_empleado = tipo_empleado;
 		this.contraseña = contraseña;
 	}
+	
+	
 
 
 	public Empleado() {
@@ -143,12 +154,6 @@ public class Empleado implements InicioSesion, Validacion{
 	}
 
 
-	@Override
-	public String toString() {
-		return "Empleado [id_empleado=" + id_empleado + ", nombre=" + nombre + ", apellido=" + apellido
-				+ ", fecha_nacimiento=" + fecha_nacimiento + ", dni=" + dni + ", telefono=" + telefono + ", correo="
-				+ correo + ", tipo_empleado=" + tipo_empleado + ", contraseña=" + contraseña + "]";
-	}
 
 	
 	InmuebleControlador inmuebleControlador = new InmuebleControlador(); 
@@ -457,98 +462,193 @@ public class Empleado implements InicioSesion, Validacion{
 	
 	/* ----------------------------------------------------------------------------- REALIZAR VENTA ------------------------------------------------------------------------------------------------------------ */
 	
+
+
 	
-	public void RealizarVenta() {
+	@Override
+	public String toString() {
+		return "Empleado [id_empleado=" + id_empleado + ", nombre=" + nombre + ", apellido=" + apellido
+				+ ", fecha_nacimiento=" + fecha_nacimiento + ", dni=" + dni + ", telefono=" + telefono + ", correo="
+				+ correo + ", tipo_empleado=" + tipo_empleado + ", contraseña=" + contraseña + "]";
+	}
+
+
+
+
+	public void agregarInquilino() {
 		
-		VentaControlador ventacontrolador = new VentaControlador();
-		int identificador_inmueble=0 , identificador_cliente=0, ID_empleado=0;
-		boolean error=false;
-		double  monto_total;
-		String validar_monto , forma_pago;
-		
-		String [] RealizarVent = {"Realizar venta","cancelar operacion"};
-		
-		int opciones = JOptionPane.showOptionDialog(null, "Seleccionar una opcion","Módulo venta", 0, 0, null, RealizarVent, RealizarVent[0]);
-		
+		LocalDate fecha = null;
+		int telefonocliente;
+		InquilinoControlador controlador = new InquilinoControlador();
 	
-		switch (opciones) {
-			
-			case 0:
-			
-			Inmueble inmueble = SeleccionarInmueble();	// Este metodo retorna un inmueble
-				
-			if (inmueble == null) { JOptionPane.showMessageDialog(null, "No se ha ingresado ningun inmueble"); error=true;}
-			
-			else { identificador_inmueble = inmueble.getId_inmueble();}
-				
-			Cliente cliente = SelectorComprador();
-			
-			if (cliente == null ) {JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun comprador"); error = true;}
-			
-			else {  identificador_cliente = cliente.getId_cliente();}
-			
-			/* Espacio para un metodo que retorne un contrato. */
-			
-			int identificador_contrato = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el id del contrato"));
-			
-			/* fin del espacio para el metodo que retorne un contrato */
-			
-			validar_monto = JOptionPane.showInputDialog(null, "Ingresar el monto requerido para la transacción");
-			
-			monto_total = ValidarMonto(validar_monto);
-			
-			forma_pago = JOptionPane.showInputDialog(null, "Ingresar la forma de pago");
-			
 		
-			
-			String[] SeleccionarEmpleado = {"Agente" , "Gerente"};
-			
-			int SeleccionEmpleado = JOptionPane.showOptionDialog(null, "Seleccionar el tipo de empleado que realizara la operacion", "Módulo venta", 0, 0, null, SeleccionarEmpleado, SeleccionarEmpleado[0]);
-			
-			if (SeleccionEmpleado==0) 
-			{ Agente empleado = SeleccionarAgente();  
-			  ID_empleado = empleado.getId_empleado();
-			}
-			else if (SeleccionEmpleado==1) {
-				Gerente empleado = ObtenerGerenteId();
-			 ID_empleado = empleado.getId_empleado();
-			}
-			else {error=true;}
-			
-			if (error==false) {	ventacontrolador.addVenta(new Venta(0,identificador_inmueble,identificador_cliente,identificador_contrato,monto_total,forma_pago,ID_empleado));}
-			
-			break;
-			
-			case 1:
-				
-				JOptionPane.showMessageDialog(null, "Se ha cancelado la operación");
-				
-				break;
-		}
+		String nombre = validarNombre("Ingrese el nombre del Cliente");
+		String apellido = validarNombre("Ingrese el apellido del Cliente");
+		String correo = JOptionPane.showInputDialog(null, "Ingresar correo"); 
+		String correoverificado = validarEmail(correo);
+		String direccion = JOptionPane.showInputDialog("Ingrese direccion del Cliente");
+		String telefonoentrada = JOptionPane.showInputDialog("Ingresar telefono"); 
+		telefonocliente = validarTelefono(telefonoentrada);
+		fecha = validarFecha(fecha);
+		int dni = validarDni("Ingrese Dni");
 		
+		
+		int id_Inquilino = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el id del Inquilino"));
+		
+		controlador.addInquilino(new Inquilino(nombre,apellido, correoverificado , direccion, telefonocliente, fecha, dni ,id_Inquilino));
+	}
+	
+	
+	public void agregarPropietario() {
+		
+		LocalDate fecha = null;
+		int telefonocliente;
+		PropietarioControlador controlador = new PropietarioControlador();
+	
+		
+		String nombre = validarNombre("Ingrese el nombre del Cliente");
+		String apellido = validarNombre("Ingrese el apellido del Cliente");
+		String correo = JOptionPane.showInputDialog(null, "Ingresar correo"); 
+		String correoverificado = validarEmail(correo);
+		String direccion = JOptionPane.showInputDialog("Ingrese direccion del Cliente");
+		String telefonoentrada = JOptionPane.showInputDialog("Ingresar telefono"); 
+		telefonocliente = validarTelefono(telefonoentrada);
+		fecha = validarFecha(fecha);
+		int dni = validarDni("Ingrese Dni");
+		
+		
+		int id_Propietario = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el id del Propietario"));
+		
+		controlador.addPropietario(new Propietario(nombre, apellido, correoverificado , direccion, telefonocliente, fecha, dni ,id_Propietario));
+	}
+	
+	
+	public void registrarContrato() {
+		ContratoControlador controlador = new ContratoControlador();
+		LocalDate inicio = null;
+		LocalDate fin = null;
+
+		InmuebleControlador inmueblecont = new InmuebleControlador();
+		InquilinoControlador clientecont = new InquilinoControlador();
+
+		
+		String tipocontrato = JOptionPane.showInputDialog("Ingrese el tipo de contrato");
+		String descripcion = JOptionPane.showInputDialog("Ingrese el descripcion del contrato");
+		String url = JOptionPane.showInputDialog("Ingrese la url del contrato");
+		
+		  int idInmueble = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del inmueble"));
+		    Inmueble inmueble = inmueblecont.getInmuebleById(idInmueble);
+
+
+		    int idCliente = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del cliente"));
+		    Cliente cliente = clientecont.getInquilinoById(idCliente);		
+		    
+		    inicio = validarFecha(inicio);
+		    
+		fin = validarFecha(fin);
+	    boolean aptoMascota = JOptionPane.showConfirmDialog(null, "¿El contrato permite mascotas?", "Permite mascotas", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
+	
+	    Contrato contrato = new Contrato(0, tipocontrato, descripcion, url,inmueble,cliente, inicio, fin, aptoMascota);
+	    controlador.addContrato(contrato);
+	}
+	
+	
+	public void MostrarVentas(VentaControlador venta) {
+		  for (Venta ventas : venta.getAllVentas()) {
+		        System.out.println("ID Venta: " + ventas.getId_venta());
+		        System.out.println("Comprador: " + ventas.getComprador());
+		        System.out.println("Contrato: " + ventas.getContrato());
+		        System.out.println("Monto Total: " + ventas.getMonto_total());
+		        System.out.println("Forma Pago: " + ventas.getForma_pago());
+		        System.out.println("Empleado que vendio: " + ventas.getEmpleado());
+		        System.out.println("----------------------------------------");
+		    }		
+	}
+	
+	
+	public void registrarVenta() {
+	    VentaControlador controlador = new VentaControlador();
+	    InmuebleControlador inmuebleCont = new InmuebleControlador();
+	    CompradorControlador compradorCont = new CompradorControlador();
+	    ContratoControlador contratoCont = new ContratoControlador();
+	    AgenteControlador agenteCont = new AgenteControlador();
+	    GerenteControlador gerenteCont = new GerenteControlador();
+
+	    int idInmueble = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del inmueble"));
+	    Inmueble inmueble = inmuebleCont.getInmuebleById(idInmueble);
+
+	    int idComprador = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del comprador"));
+	    Comprador comprador = compradorCont.getCompradorById(idComprador);
+
+	    int idContrato = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del contrato"));
+	    Contrato contrato = contratoCont.getContratoById(idContrato);
+
+	    double montoTotal = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el monto total de la venta"));
+	    String formaPago = JOptionPane.showInputDialog("Ingrese la forma de pago");
+
+	    int idEmpleado = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del empleado"));
+	    String tipoEmpleado = JOptionPane.showInputDialog("Ingrese el tipo de empleado (agente/gerente)");
+
+	    Empleado empleado = null;
+	    if (tipoEmpleado.equalsIgnoreCase("agente")) {
+	        empleado = agenteCont.getAgenteById(idEmpleado);
+	    } else if (tipoEmpleado.equalsIgnoreCase("gerente")) {
+	        empleado = gerenteCont.getGerenteById(idEmpleado);
+	    }
+
+	    Venta venta = new Venta(0, inmueble, comprador, contrato, montoTotal, formaPago, empleado, tipoEmpleado);
+	    controlador.addVenta(venta);
 	}
 	
 	
 	
 	
+	public void VerAlquileres(AlquilerControlador alquiler) {
+		  for (Alquiler alquileres : alquiler.getAllAlquiler()) {
+		        System.out.println("ID alquiler: " + alquileres.getId_alquiler());
+		        System.out.println("Monto Total: " + alquileres.getMonto_total());
+		        System.out.println("Comprador: " + alquileres.getFecha());
+		        System.out.println("Forma Pago: " + alquileres.getForma_pago());
+		        System.out.println("Contrato: " + alquileres.getGarante());
+		        System.out.println("Contrato: " + alquileres.getContrato());
+		        System.out.println("Contrato: " + alquileres.getCliente());
+		        System.out.println("Empleado que vendio: " + alquileres.getEmpleado());
+		        System.out.println("Empleado que vendio: " + alquileres.getInmueble());
+		        System.out.println("----------------------------------------");
+		    }	
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public void AgregarAlquiler() {
+		AlquilerControlador controlador= new AlquilerControlador();
+		GaranteControlador garante = new GaranteControlador();
+		ContratoControlador contrato = new ContratoControlador();
+		InquilinoControlador inquilino = new InquilinoControlador();
+		AgenteControlador agente = new AgenteControlador();
+		InmuebleControlador inmueble = new InmuebleControlador();
+		LocalDate fecha = null;
+		
+		int monto = Integer.parseInt(JOptionPane.showInputDialog("Ingrese Monto Total"));
+	    fecha = validarFecha(fecha);
+	    String forma_pago = JOptionPane.showInputDialog("Ingrese Forma de Pago");
+	    
+	    int idGarante = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del garante"));
+	    Garante garantes = garante.getGaranteById(idGarante);
+	    
+	    int idContrato = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del Contrato"));
+	    Contrato contratos = contrato.getContratoById(idContrato);
+	    
+	    int idInquilino = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del del Inquilino"));
+	    Cliente cliente = inquilino.getInquilinoById(idInquilino);
+	    
+	    int idEmpleado = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del del Empleado"));
+	    Empleado empleado = agente.getAgenteById(idEmpleado);
+	    
+	    int idInmueble = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del del Inmueble"));
+	    Inmueble inmuebles = inmueble.getInmuebleById(idInmueble);
+	    
+	    Alquiler alquiler = new Alquiler(0, monto, fecha, forma_pago, garantes, contratos, cliente, empleado, inmuebles);
+	    controlador.addAlquiler(alquiler);
+	}
+
 	
 }

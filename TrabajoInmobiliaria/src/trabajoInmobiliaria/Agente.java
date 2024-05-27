@@ -86,9 +86,9 @@ public class Agente extends Empleado implements Validacion, InicioSesion{
 					
 					if(clienteSeleccionado.equals("Nuevo Propietario")){
 						JOptionPane.showMessageDialog(null, "Completar Propietario");
-						
+						agregarPropietario();
 					}else if(clienteSeleccionado.equals("Nuevo Inquilino")){
-						JOptionPane.showMessageDialog(null, "Completar Inquilino");  
+						agregarInquilino();
 
 					}else {
 						break;
@@ -107,10 +107,10 @@ public class Agente extends Empleado implements Validacion, InicioSesion{
 							operaciones[0]);
 					
 					if(operacionSeleccionada.equals("Realizar Venta")){
-						JOptionPane.showMessageDialog(null, "Completar Venta");
+						registrarVenta();
 						
 					}else if(operacionSeleccionada.equals("Realizar Alquiler")){
-						JOptionPane.showMessageDialog(null, "Completar Alquiler");  
+						AgregarAlquiler();  
 
 					}else {
 						break;
@@ -135,6 +135,7 @@ public class Agente extends Empleado implements Validacion, InicioSesion{
 						
 					}else if(operacionSeleccionada.equals("Nuevo Contrato de Alquiler")){
 						JOptionPane.showMessageDialog(null, "Completar y verificar datos del alquiler");  
+						registrarContrato();
 
 					}else {
 						break;

@@ -96,8 +96,7 @@ public class InmuebleControlador implements InmuebleRepository{
                     		resultSet.getBoolean("patio"),     
                     		resultSet.getBoolean("activo")); 
 
-	              
-         
+	                      
 	            }
 	            
 	        } catch (SQLException e) {
