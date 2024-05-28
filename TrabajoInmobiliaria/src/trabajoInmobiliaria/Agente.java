@@ -320,9 +320,9 @@ public class Agente extends Empleado implements Validacion, InicioSesion{
 			boolean refaccionar = obtenerRefaccion().equals("Si");
 			boolean aptoMascota = obtenerMascota().equals("Si");
 			
-			//estos valores solo los puede modificar el gerente
+			boolean activo = true;
+			//estes valor solo lo puede modificar el gerente
 			boolean disponible = false;
-			boolean activo = false;
 			
 			    // Agregar el inmueble al controlador
 			    inmuebleControlador.addInmueble(new Inmueble(0, tipoInmueble, condicion, cantAmbientes, piso,barrio, direccion, descripcion, antiguedad,

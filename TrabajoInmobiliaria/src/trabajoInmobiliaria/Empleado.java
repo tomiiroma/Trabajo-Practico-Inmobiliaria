@@ -865,7 +865,7 @@ public class Empleado implements InicioSesion,Validacion{
 	    
 	    do {		
 		    try {
-		    	 seleccion = (String) JOptionPane.showInputDialog(null, "¿El inmueble esta Disponible para poder Ser reservado?",
+		    	 seleccion = (String) JOptionPane.showInputDialog(null, "¿El inmueble se encuentra en condiciones para habilitarlo?",
 		    			"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, disponibleSeleccion, disponibleSeleccion[0]);
 		    	 
 		    	if(seleccion ==null){
