@@ -162,15 +162,18 @@ public class Empleado implements InicioSesion,Validacion{
 	/* VER Validaciones */
 
 	public Inmueble SeleccionarInmueble() {
+		
 	    Inmueble inmuebleAmostrar = null;
 	 
 	    if (inmuebleControlador.getAllInmueble().isEmpty()) {
 	        JOptionPane.showMessageDialog(null, "No hay Inmuebles cargados");
+	        
 	    } else {
+	    	
 	        String[] opcionesInmuebles = new String[inmuebleControlador.getAllInmueble().size()];
 	        for (int i = 0; i < opcionesInmuebles.length; i++) {
 	            Inmueble inmueble = inmuebleControlador.getAllInmueble().get(i);
-	            opcionesInmuebles[i] = "ID Inmueble: " + inmueble.getId_inmueble() + " - Dirección: " + inmueble.getDireccion() + " - Ambientes: " + inmueble.getCantAmbientes();
+	            opcionesInmuebles[i] = "ID Inmueble: " + inmueble.getId_inmueble() + " - Dirección: " + inmueble.getDireccion() +" "+inmueble.getAlturaDireccion()+ " - Ambientes: " + inmueble.getCantAmbientes();
 	        }
 
 	        String inmuebleSeleccionado = (String) JOptionPane.showInputDialog(null, "Seleccione Inmueble", "Visualizar Inmueble",
@@ -178,7 +181,7 @@ public class Empleado implements InicioSesion,Validacion{
 
 	        if (inmuebleSeleccionado != null) {
 	            for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
-	                String opcion = "ID Inmueble: " + inmueble.getId_inmueble() + " - Dirección: " + inmueble.getDireccion() + " - Ambientes: " + inmueble.getCantAmbientes();
+					String opcion = "ID Inmueble: " + inmueble.getId_inmueble() + " - Dirección: " + inmueble.getDireccion() +" "+inmueble.getAlturaDireccion()+ " - Ambientes: " + inmueble.getCantAmbientes();					
 
 	                if (opcion.equals(inmuebleSeleccionado)) {
 	                    inmuebleAmostrar = inmueble;
@@ -724,14 +727,14 @@ public class Empleado implements InicioSesion,Validacion{
 				opcionesInmuebles[i] = "ID Inmueble: " + inmueble.getId_inmueble() + " - Tipo de Inmueble: "+inmueble.getTipo_inmueble() +" - Dirección: " + inmueble.getDireccion()+ " - Ambientes: " +inmueble.getCantAmbientes();
 			}		
 
+			
 			String inmuebleSeleccionado = (String) JOptionPane.showInputDialog(null, "Seleccione Inmueble", "Lista De Inmuebles",
 			JOptionPane.QUESTION_MESSAGE, null, opcionesInmuebles, opcionesInmuebles[0]);
 					
-
 			if(inmuebleSeleccionado !=null){
 				Inmueble inmuebleAmostrar = null;
-			for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
-			String opcion = "ID Inmueble: " + inmueble.getId_inmueble() + " - Tipo de Inmueble: "+inmueble.getTipo_inmueble() +" - Dirección: " + inmueble.getDireccion()+ " - Ambientes: " +inmueble.getCantAmbientes();
+				for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
+					String opcion = "ID Inmueble: " + inmueble.getId_inmueble() + " - Tipo de Inmueble: "+inmueble.getTipo_inmueble() +" - Dirección: " + inmueble.getDireccion()+ " - Ambientes: " +inmueble.getCantAmbientes();
 							
 			
 			if(opcion.equals(inmuebleSeleccionado)){

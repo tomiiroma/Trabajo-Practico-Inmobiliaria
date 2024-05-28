@@ -141,8 +141,7 @@ public class InmuebleControlador implements InmuebleRepository{
 	            statement.setString(20, inmueble.getAlturaDireccion());
 	            statement.setString(21, inmueble.getNroDepto());
 
-	            
-	            
+
 
  
 	            int rowsInserted = statement.executeUpdate();
@@ -159,7 +158,7 @@ public class InmuebleControlador implements InmuebleRepository{
 		public void updateInmueble(Inmueble inmueble) {
 		    try {
 		        PreparedStatement statement = connection.prepareStatement(
-		            "UPDATE inmueble SET tipo_inmueble = ?, condicion = ?, disponible = ?, cantAmbientes = ?, piso = ?, superficie_cubierta = ?, superficie_descubierta = ?, barrio = ?, direccion = ?, patio = ?, descripcion = ?, antiguedad = ?, precio = ?, banio = ?, refaccionar = ?, dormitorio = ?, apto_mascota = ?, activo = ?,alturaDireccion = ?, nroDepto = ?, WHERE id_inmueble = ?"
+		            "UPDATE inmueble SET tipo_inmueble = ?, condicion = ?, disponible = ?, cantAmbientes = ?, piso = ?, superficie_cubierta = ?, superficie_descubierta = ?, barrio = ?, direccion = ?, patio = ?, descripcion = ?, antiguedad = ?, precio = ?, banio = ?, refaccionar = ?, dormitorio = ?, apto_mascota = ?, activo = ?,alturaDireccion = ?, nroDepto = ? WHERE id_inmueble = ?"
 		        );
 		        statement.setString(1, inmueble.getTipo_inmueble());
 		        statement.setString(2, inmueble.getCondicion());
@@ -179,11 +178,12 @@ public class InmuebleControlador implements InmuebleRepository{
 		        statement.setString(16, inmueble.getDormitorio());
 		        statement.setBoolean(17, inmueble.isApto_mascota());
 		        statement.setBoolean(18, inmueble.isActivo());
-		        statement.setInt(19, inmueble.getId_inmueble());
-	            statement.setString(20, inmueble.getAlturaDireccion());
-	            statement.setString(21, inmueble.getNroDepto());
+	            statement.setString(19, inmueble.getAlturaDireccion());
+	            statement.setString(20, inmueble.getNroDepto());
+	            statement.setInt(21, inmueble.getId_inmueble());
 
 		        int rowsUpdated = statement.executeUpdate();
+		        
 		        if (rowsUpdated > 0) {
 		            System.out.println("Inmueble actualizado exitosamente");
 		        }
