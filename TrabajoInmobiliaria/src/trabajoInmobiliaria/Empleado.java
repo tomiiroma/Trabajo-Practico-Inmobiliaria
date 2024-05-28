@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 import javax.swing.JOptionPane;
 
-
 import controlador.AgenteControlador;
 import controlador.AlquilerControlador;
 import controlador.CompradorControlador;
@@ -1023,9 +1022,90 @@ public class Empleado implements InicioSesion,Validacion{
 	    
 	}
 	
+/* ---------------------------------------------------------------------------- Selector de Agentes ----------------------------------------------------------------------------------------- */	
+	
+	public void SelectorAgentes() {
+		
+		AgenteControlador agentecontrolador = new AgenteControlador();   	
+		
+		 /* desde aca */  //JOptionPane.showMessageDialog(null, "Empleado");
+			
+			String[] listaEmpleado = {"Ver empleados","seleccionar empleado","Salir"};
+			
+			int seleccionEmpleado = JOptionPane.showOptionDialog(null, "Elegir opcion", null, 0, 0, null, listaEmpleado, listaEmpleado[0]);
+			
+			switch(seleccionEmpleado) {
+			
+			case 0:  // Ver empleados
+			
+				if (agentecontrolador.getAllAgente().size()==0) {JOptionPane.showMessageDialog(null, "No se han encontrado agentes.");} else {
+				 JOptionPane.showMessageDialog(null, "La lista de empleados"+"\n"+agentecontrolador.getAllAgente());}
+				
+				 JOptionPane.showMessageDialog(null, "La lista de empleados"+"\n"+agentecontrolador.getAllAgente());	
+				
+			break;
+			
+			
+			
+/*---------------------------------*/  case 1: // Ver empleado por id /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+		
+	if (agentecontrolador.getAllAgente().size()==0) { JOptionPane.showMessageDialog(null, "No hay empleados registrados.");}
+	else  {
+		String[] empleados = new String[agentecontrolador.getAllAgente().size()];
+			for (int i = 0; i < empleados.length; i++) {
+			empleados[i] = Integer.toString(agentecontrolador.getAllAgente().get(i).getId_empleado());}
+										
+			
+			String empleadoselect = (String) JOptionPane.showInputDialog(null, "Seleccione usuario", null, 0, null,
+			empleados, empleados[0]);
+
+				// JOptionPane.showMessageDialog(null, agentecontrolador.getAgenteById(Integer.parseInt(empleadoselect)));
+					Agente seleccionado = agentecontrolador.getAgenteById(Integer.parseInt(empleadoselect));
+					JOptionPane.showMessageDialog(null, "El agente seleccionado es:"+seleccionado.toString()); /* Recordar cambiar los nombres en el archivo princ */ }
+				
+				break;
+				
+			case 2: // Salir
+				
+				break;}}
+	
+	
+/*----------------------------------------------------------------- Fin del metodo SelectorAgente ---------------------------------------------------------------------------------------------------------------------------*/	
+	
+/* --------------------------------------------------------------- Seleccionar Agente por ID --------------------------------------------------------------------------------------------------------------------------------*/
+	
+	
+	public Agente SelectorAgente() {
+	
+		AgenteControlador agentecontrolador = new AgenteControlador();
+		
+		Agente seleccionado = null;
+		
+	if (agentecontrolador.getAllAgente().size()==0) { JOptionPane.showMessageDialog(null, "No hay empleados registrados.");}
+	else  {
+		String[] empleados = new String[agentecontrolador.getAllAgente().size()];
+			for (int i = 0; i < empleados.length; i++) {
+			empleados[i] = Integer.toString(agentecontrolador.getAllAgente().get(i).getId_empleado());}
+										
+			
+			String empleadoselect = (String) JOptionPane.showInputDialog(null, "Seleccione usuario", null, 0, null,
+			empleados, empleados[0]);
+
+				// JOptionPane.showMessageDialog(null, agentecontrolador.getAgenteById(Integer.parseInt(empleadoselect)));
+					 seleccionado = agentecontrolador.getAgenteById(Integer.parseInt(empleadoselect));
+					JOptionPane.showMessageDialog(null, "El agente seleccionado es:"+seleccionado.toString());
+	
+					
+	}
+	
+	
+	return seleccionado;
+	
+	}
 	
 	
 	
+	/*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 	
 	
 	

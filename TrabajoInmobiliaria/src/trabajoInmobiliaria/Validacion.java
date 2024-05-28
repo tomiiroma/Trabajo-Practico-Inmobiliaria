@@ -586,7 +586,7 @@ public interface Validacion {
 	    if (String.valueOf(dni).length() != 8) {
 	        JOptionPane.showMessageDialog(null, "El DNI debe tener exactamente 8 dígitos.");
 	        return false;
-	    }
+	    } else if (dni<0) { JOptionPane.showMessageDialog(null, "Se ingreso un dni negativo."); return false; }
 
 	    return true;
 	}
@@ -599,10 +599,27 @@ public interface Validacion {
 		default boolean validarFecha2(LocalDate fecha) {
 		    boolean error = true;
 
+		   LocalDate fecha_hoy = LocalDate.now();
 		   
-		    if (fecha == null || fecha.isAfter(LocalDate.now()) || fecha.isBefore(LocalDate.of(1900, 1, 1))) {
-		        JOptionPane.showMessageDialog(null, "La fecha no puede ser nula, ni puede estar en el futuro y no puede ser anterior al 1900.");
+		    LocalDate Es_menor = fecha_hoy.minusYears(18);
+		    
+		    
+		    if (fecha == null) {
+		        JOptionPane.showMessageDialog(null, "La fecha no puede ser nula o se ingreso un dia o mes no validos.");
 		        error = false;
+		    }
+		    
+		    else if (fecha.isBefore(LocalDate.of(1900, 1, 1))) {
+		    	
+		    	JOptionPane.showMessageDialog(null, "La fecha no puede estar ni en el futuro, ni puede ser anterior al 1900.");
+		    	error = false;
+		    } else if (fecha.isAfter(Es_menor)) {
+		    	
+		    	
+		    	JOptionPane.showMessageDialog(null, "El agente debe ser mayor de 18 años...");
+		    	error = false;
+		    	
+		    	
 		    }
 
 		    return error; // 
@@ -618,7 +635,7 @@ public interface Validacion {
 		    if (String.valueOf(telefonoen).length() != 8) {
 		        JOptionPane.showMessageDialog(null, "El telefono debe tener 8 dígitos numéricos");
 		        error = false;
-		    }
+		    } else if (telefonoen < 0) { JOptionPane.showMessageDialog(null, "Se ingreso un número negativo."); error=false;}
 
 		   
 		    return error;
