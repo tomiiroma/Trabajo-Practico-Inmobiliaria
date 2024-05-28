@@ -37,17 +37,22 @@ class Main{
 		
 		
 
-		 do {
-	            Boolean esAgente = empleado.IniciarSesion();
+	      do {
+	            String dni = JOptionPane.showInputDialog("Ingrese DNI");
+	            
+	            String cont = JOptionPane.showInputDialog("Ingrese Contrasena");
 
-	         
-	             if (esAgente) {
-	                agente1.menuAgente();
-	            } else {
-	                gerente1.menuGerente();
+	            Boolean esAgente = empleado.IniciarSesion(dni, cont);
+
+	            if (esAgente != null) {
+	                if (esAgente) {
+	                    agente1.menuAgente();
+	                } else {
+	                    gerente1.menuGerente();
+	                }
 	            }
 
-	            String[] preguntaEleccion = { "Si", "No" };
+	            String[] preguntaEleccion = {"Si", "No"};
 	            respuestaSeleccionada = JOptionPane.showOptionDialog(null, "¿Desea seguir en el programa?", "Inmobiliaria", 0, JOptionPane.INFORMATION_MESSAGE, null, preguntaEleccion, preguntaEleccion[0]);
 	        } while (respuestaSeleccionada == 0);
 	    }
