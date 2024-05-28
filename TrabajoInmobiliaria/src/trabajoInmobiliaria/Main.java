@@ -5,9 +5,12 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import controlador.AgenteControlador;
+import controlador.AlquilerControlador;
 import controlador.CompradorControlador;
+import controlador.ContratoControlador;
 import controlador.InquilinoControlador;
 import controlador.PropietarioControlador;
+import controlador.VentaControlador;
 
 class Main{
 
@@ -26,8 +29,11 @@ class Main{
 		Empleado empleado = new Empleado();
 		
 		
+		Contrato contrato = new Contrato();
+		ContratoControlador controlador = new ContratoControlador();
 		
-		
+		VentaControlador venta = new VentaControlador();
+		AlquilerControlador alquiler = new AlquilerControlador();
 		
 		empleado.IniciarSesion();
 		

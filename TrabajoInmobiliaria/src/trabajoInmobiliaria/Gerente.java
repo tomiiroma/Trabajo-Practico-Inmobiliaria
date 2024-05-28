@@ -15,17 +15,15 @@ import controlador.AlquilerControlador;
 public class Gerente extends Empleado implements Validacion, InicioSesion{
 
 	private int id_gerente;
-	
 
-	
-
-	
-	
 	public Gerente(int id_empleado, String nombre, String apellido, LocalDate fecha_nacimiento, int dni, int telefono,
 			String correo, String tipo_empleado, String contraseña, int id_gerente) {
 		super(id_empleado, nombre, apellido, fecha_nacimiento, dni, telefono, correo, tipo_empleado, contraseña);
 		this.id_gerente = id_gerente;
 	}
+
+
+
 
 
 
@@ -60,6 +58,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 		
 		do {		
 			repetir = true;
+			try {
 			String[] opcionesGerente = { "Gestionar Propiedades", 
 											"Registrar Nuevo Cliente", 
 											"Realizar Nueva Operacion",
@@ -78,12 +77,13 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 					"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, opcionesGerente,
 					opcionesGerente[0]);
 
-			try {
 			
 			switch (opcionSeleccionada) {
 			
 			case"Gestionar Propiedades":
 				do {			
+					try {					
+
 					
 					Inmueble inmueble = new Inmueble();
 					String[] opcionesGestion = { "Ver Inmuebles","Agregar Inmueble","Modificar Inmueble","Eliminar Inmueble","Volver" };
@@ -93,8 +93,40 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 							opcionesGestion[0]);
 					
 					if(gestionSeleccionada.equals("Ver Inmuebles")){
+				        boolean volverSubmenu = false;
+
+						do {
+							try {
+							
+							
+						String[] submenuPropieades = { "Ver todos los Inmuebles","Ver Inmuebles Disponibles","Activar Inmuebles cargados por Agente","Volver" };
 						
-						verInmuebles();										
+						String seleccionSubmenu = (String) JOptionPane.showInputDialog(null, "Seleccione una Opción:",
+								"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, submenuPropieades,
+								submenuPropieades[0]);
+						
+						if(seleccionSubmenu.equals("Ver todos los Inmuebles")){
+							verInmuebles();		
+									
+							
+						}else if(seleccionSubmenu.equals("Ver Inmuebles Disponibles")) {
+							verInmueblesDisponibles();
+	
+							
+						}else if(seleccionSubmenu.equals("Activar Inmuebles cargados por Agente")){					
+							activarInmueble();
+							
+						}else{
+							volverSubmenu = true;						
+							}
+						
+						} catch (Exception e) {
+							JOptionPane.showMessageDialog(null, "Porfavor Seleccione una opción valida.");
+							}
+							
+							
+						} while (!volverSubmenu);
+						break;
 						
 					}else if(gestionSeleccionada.equals("Agregar Inmueble")){
 						agregarInmueble();					
@@ -110,6 +142,10 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 					}else {						
 						break;
 					}
+					
+					} catch (Exception e) {
+						JOptionPane.showMessageDialog(null, "Porfavor Seleccione una opción valida.");
+					}	
 				} while (repetir);
 				break;		
 				
@@ -123,10 +159,10 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 							tipoCliente[0]);
 					
 					if(clienteSeleccionado.equals("Nuevo Propietario")){
-						JOptionPane.showMessageDialog(null, "Completar Propietario");
+						agregarPropietario();
 						
 					}else if(clienteSeleccionado.equals("Nuevo Inquilino")){
-						JOptionPane.showMessageDialog(null, "Completar Inquilino");  
+						agregarInquilino();
 
 					}else {
 						break;
@@ -145,9 +181,8 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 							operacionesNueva[0]);
 					
 					if(operacionNuevaSeleccionada.equals("Realizar Venta")){
-						JOptionPane.showMessageDialog(null, "Completar Venta");
 						
-						RealizarVenta();
+						registrarVenta();
 						
 					}else if(operacionNuevaSeleccionada.equals("Realizar Alquiler")){
 						JOptionPane.showMessageDialog(null, "Completar Alquiler");  
@@ -274,7 +309,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 					}else {
 						break;
 					}
-					
+		
 					
 				} while (repetir);
 	
@@ -363,8 +398,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 					}else {
 						break;
 					}
-					
-					
+		
 				} 
 				
 				while (repetir);
@@ -632,11 +666,12 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 	
 			default:
 				break;
+				
 			}
 			
 			
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Porfavor Seleccione una Opción");
+			JOptionPane.showMessageDialog(null, "Porfavor Seleccione una opción valida.");
 		}
 			
 		} while (repetir);
@@ -649,375 +684,407 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 	
 	
 	
-	public void verInmuebles() {
+// --------------------------------------------------------TODO INMUEBLES-----------------------------------------------------------
+	//-----------------------------------------ELIMINAR INMUEBLE --------------------------------------
+	
+	
+	
+	public boolean eliminarInmueble() {
+		boolean repetir;
+		do {
+			repetir = true;
+			
+		try {
+			
 		if(inmuebleControlador.getAllInmueble().isEmpty()){
-			JOptionPane.showMessageDialog(null, "No hay Inmuebles cargados" );
-		}else {
-			String[] opcionesInmuebles = new String[inmuebleControlador.getAllInmueble().size()];
-			for (int i = 0; i < opcionesInmuebles.length; i++) {
-			Inmueble inmueble = inmuebleControlador.getAllInmueble().get(i);
-			opcionesInmuebles[i] = "ID Inmueble: " + inmueble.getId_inmueble() + " - Dirección: " + inmueble.getDireccion()+ " - Ambientes: " +inmueble.getCantAmbientes();		
-			}
-					
-			String inmuebleSeleccionado = (String) JOptionPane.showInputDialog(null, "Seleccione Inmueble", "Visualizar Inmueble",
-			JOptionPane.QUESTION_MESSAGE, null, opcionesInmuebles, opcionesInmuebles[0]);
-					
-			if(inmuebleSeleccionado !=null){
-				Inmueble inmuebleAmostrar = null;
-			for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
-			String opcion = "ID Inmueble: " + inmueble.getId_inmueble() + " - Dirección: " + inmueble.getDireccion()+ " - Ambientes: " +inmueble.getCantAmbientes();
-							
-			if(opcion.equals(inmuebleSeleccionado)){
-				inmuebleAmostrar=inmueble;
-				}      
-			}
-						
-			if(inmuebleAmostrar !=null){
-				JOptionPane.showMessageDialog(null, "Datos del Inmueble:\n" + inmuebleAmostrar.toString(), "Datos del Inmueble", JOptionPane.INFORMATION_MESSAGE);		
-				}
-			} 
+			JOptionPane.showMessageDialog(null, "No hay Inmuebles cargados");		
+		    repetir = true;
+		    continue;	
+			
 		}
-	} 
+						
+			    String[] opcionesInmuebles = new String[inmuebleControlador.getAllInmueble().size()];
+			    for (int i = 0; i < opcionesInmuebles.length; i++) {
+		            Inmueble inmueble = inmuebleControlador.getAllInmueble().get(i);
+		            opcionesInmuebles[i] = "ID Inmueble: " + inmueble.getId_inmueble() + " - Dirección: " + inmueble.getDireccion()+ " - Ambientes: " +inmueble.getCantAmbientes();
+		        }
+			    
+				opcionesInmuebles[opcionesInmuebles.length - 1] = "Volver";
+	
+			       
+			    String inmuebleSeleccionado = (String) JOptionPane.showInputDialog(null, "Seleccione Inmueble a Eliminar", "Eliminar Inmueble",
+			    		JOptionPane.QUESTION_MESSAGE, null, opcionesInmuebles, opcionesInmuebles[0]);
+			    
+			    
+	            if (inmuebleSeleccionado.equals("Volver")) {
+	                repetir = true; 
+	                continue;
+	            }
+			   
+			    if(inmuebleSeleccionado != null){
+		            Inmueble inmuebleAEliminar = null;
+		            // Buscar el inmueble seleccionado en la lista de inmuebles
+		            for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
+		                String opcion = "ID Inmueble: " + inmueble.getId_inmueble() + " - Dirección: " + inmueble.getDireccion()+ " - Ambientes: " +inmueble.getCantAmbientes();
+		                if (opcion.equals(inmuebleSeleccionado)) {
+		                    inmuebleAEliminar = inmueble;
+		                    break;
+		                }
+		            }
+		            
+		            if (inmuebleAEliminar != null) {
+		                // Realizar la eliminación del inmueble
+		                inmuebleControlador.deleteInmueble(inmuebleAEliminar.getId_inmueble());
+		                JOptionPane.showMessageDialog(null, "Inmueble eliminado exitosamente");
+		            }
+			    }       
+			
+		
+		} catch (Exception e) {
+			
+            JOptionPane.showMessageDialog(null, "Porfavor Seleccione una opción valida.");
+            repetir=false;
+			}		
+		
+		} while (!repetir);
+
+		return true;
+	}
+		
+	//-----------------------------------------ACTIVAR INMUEBLE --------------------------------------	
+	
+		public boolean activarInmueble() { // solo activamos la lista de inmuebles cargados por agente 
+			boolean repetir;
+
+		do {
+			repetir =true;
+		
+		try {
+			
+			int count = 0; // cuenta los inmuebles inactivos 
+		    for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
+		        if (!inmueble.isActivo()) {
+		            count++;
+		        }
+		    }
+
+		    if (count == 0) {
+		        JOptionPane.showMessageDialog(null, "No hay Inmuebles inactivos cargados");
+			    repetir = false;
+			    break;	
+		    }
+
+		    
+		    String[] opcionesInmuebles = new String[count];
+		    int index = 0;
+		    for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
+		        if (!inmueble.isActivo()) {
+		            opcionesInmuebles[index++] = "ID Inmueble: " + inmueble.getId_inmueble() +
+		            							 " - Dirección: " + inmueble.getDireccion() +
+		                                         " - Ambientes: " + inmueble.getCantAmbientes();
+		        }
+		    }		    
+		    
+			opcionesInmuebles[opcionesInmuebles.length - 1] = "Volver";
+	    
+		    String inmuebleSeleccionado = (String) JOptionPane.showInputDialog(null,
+		            "Seleccione Inmueble para activar","Activar Inmueble", JOptionPane.QUESTION_MESSAGE,null, opcionesInmuebles,
+		            opcionesInmuebles[0]);
+		    
+		    
+            if (inmuebleSeleccionado.equals("Volver")) {
+                repetir = true; 
+                continue;
+            }
+
+		     for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
+		          String opcion = "ID Inmueble: " + inmueble.getId_inmueble() +
+		                          " - Dirección: " + inmueble.getDireccion() +
+		                          " - Ambientes: " + inmueble.getCantAmbientes();
+		          
+		          if (opcion.equals(inmuebleSeleccionado)) {	            	
+		        	  boolean activo = obtenerActivo();
+		            	
+		            if(activo){	            		
+		            	inmueble.setActivo(true);
+		            	inmuebleControlador.updateInmueble(inmueble);
+		            	JOptionPane.showMessageDialog(null, "El inmueble ha sido activado Correctamente");	            		
+		            }else {
+		            	JOptionPane.showMessageDialog(null, "El inmueble no ha sido activado");
+		            }
+		          }	        
+		    }	
+		    
+		} catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Porfavor Seleccione una opción valida.");
+            repetir=false;
+			}
+		
+		} while (!repetir);
+		
+		return true;
+	}
 		
 	
+
+			
+
+
 	
 	
+//-----------------------------------------MODIFICAR INMUEBLE --------------------------------------u	
 	public boolean modificarInmueble() {
 		boolean repetir;
 		
 		do {		
-			repetir = true;
-			
-		
-		if(inmuebleControlador.getAllInmueble().isEmpty()){
-			JOptionPane.showMessageDialog(null, "No hay Inmuebles cargados");
-		}else {
-			
+			repetir = false;
 					
-			String[] opcionesInmuebles = new String[inmuebleControlador.getAllInmueble().size()];
-			for (int i = 0; i < opcionesInmuebles.length; i++) {
-			Inmueble inmueble = inmuebleControlador.getAllInmueble().get(i);
-			opcionesInmuebles[i] = "ID Inmueble: " + inmueble.getId_inmueble() + " - Dirección: " + inmueble.getDireccion()+ " - Ambientes: " +inmueble.getCantAmbientes();		
+		try {
+
+			if(inmuebleControlador.getAllInmueble().isEmpty()){
+				JOptionPane.showMessageDialog(null, "No hay Inmuebles cargados");
+				repetir = true;
+				continue;
 			}
 			
-			String inmuebleSeleccionado = (String) JOptionPane.showInputDialog(null, "Seleccione Inmueble", "Modificar Inmueble",
-			JOptionPane.QUESTION_MESSAGE, null, opcionesInmuebles, opcionesInmuebles[0]);
+			String[] opcionesInmuebles = new String[inmuebleControlador.getAllInmueble().size()];
+			for (int i = 0; i < opcionesInmuebles.length; i++) {
+				Inmueble inmueble = inmuebleControlador.getAllInmueble().get(i);				
+				opcionesInmuebles[i] = "ID Inmueble: " + inmueble.getId_inmueble() + " - Dirección: " + inmueble.getDireccion()+ " - Ambientes: " +inmueble.getCantAmbientes();		
 			
+			}		
+			opcionesInmuebles[opcionesInmuebles.length - 1] = "Volver";
+
+			String inmuebleSeleccionado = (String) JOptionPane.showInputDialog(null, "Seleccione Inmueble", "Modificar Inmueble",
+					JOptionPane.QUESTION_MESSAGE, null, opcionesInmuebles, opcionesInmuebles[0]);
+			
+            if (inmuebleSeleccionado.equals("Volver")) {
+                repetir = true; 
+                continue;
+            }
+			
+            Inmueble inmuebleAmodificar = null;
+            
 			if(inmuebleSeleccionado !=null){
-				Inmueble inmuebleAmodificar = null;
-				
 				for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
-					String opcion = "ID Inmueble: " + inmueble.getId_inmueble() + " - Dirección: " + inmueble.getDireccion()+ " - Ambientes: " +inmueble.getCantAmbientes();
-									
+					String opcion = "ID Inmueble: " + inmueble.getId_inmueble() + " - Dirección: " + inmueble.getDireccion()+ " - Ambientes: " +inmueble.getCantAmbientes();							
+					
 					if(opcion.equals(inmuebleSeleccionado)){
 						inmuebleAmodificar=inmueble;
 						break;
 						}      
-					}	
-			
-			if(inmuebleAmodificar!=null){
-	            Inmueble inmuebleAModificar = null;
-	            for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
-					String opcion = "ID Inmueble: " + inmueble.getId_inmueble() + " - Dirección: " + inmueble.getDireccion()+ " - Ambientes: " +inmueble.getCantAmbientes();
-	                if (opcion.equals(inmuebleSeleccionado)) {
-	                    inmuebleAModificar = inmueble;
-	                    break;
-	                	}
-	            	}
-				
-	            if(inmuebleAmodificar !=null){
+					}			
+		
+	            if(inmuebleAmodificar !=null){	        
 	            	
-				String[] opcionesModificar = { "Tipo de Inmueble","Condición","Cantidad de Ambientes","Barrio","Dirección","Descripcion",
-						"Años Antiguedad del edificio","Cantidad de Baños","Cantidad de Dormitorios","m2 Superficie Cubierta",
-						"m2 Superficie Descubierta","Precio","Disponibilidad actual","Refacción","Apto para Mascotas","Patio","Volver"};
-					
-				String opcionSeleccionada = (String) JOptionPane.showInputDialog(null, "Seleccione un atributo para Modificar:",
-						"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, opcionesModificar,
-						opcionesModificar[0]);		
-				
-				
+	            	boolean repetir2;
+	            	
+	            do {
+	            	repetir2 = false;
+	            	
+	            try {
+					String[] opcionesModificar = { "Tipo de Inmueble","Condición","Cantidad de Ambientes","Barrio","Dirección","Descripcion",
+							"Años Antiguedad","Cantidad de Baños","Cantidad de Dormitorios","m2 Superficie Cubierta",
+							"Precio","Disponibilidad actual","Refacción","Apto para Mascotas","Patio","Activar/Deshabilitar Inmueble","Volver"};
+						
+					String opcionSeleccionada = (String) JOptionPane.showInputDialog(null, "Seleccione un atributo para Modificar:",
+							"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, opcionesModificar,
+							opcionesModificar[0]);		
+								
 				if(opcionSeleccionada.equals("Tipo de Inmueble")){
 					String tipoInmueble = obtenerTipoInmueble();
 					inmuebleAmodificar.setTipo_inmueble(tipoInmueble);
 					JOptionPane.showMessageDialog(null, "Tipo de Inmueble actualizado");
 					
-					
+					 if (!tipoInmueble.equals("Departamento")) {
+                         inmuebleAmodificar.setPiso(null);
+                         
+                     }else {
+                    	String piso = null;
+             	    	piso = validarEntero("Ingrese el numero de piso donde se encuentra el Departamento");
+                         inmuebleAmodificar.setPiso(piso);
+                     }										
 					
 				}else if(opcionSeleccionada.equals("Condición")){
 					String condicion = obtenerCondicion();
 					inmuebleAmodificar.setCondicion(condicion);
 					JOptionPane.showMessageDialog(null, "Tipo de Condicion actualizada");
-				
 					
 					
-				}else if(opcionSeleccionada.equals("Cantidad de Ambientes")){
-					String cantAmbientes = obtenerAmbientes();
+				}else if(opcionSeleccionada.equals("Cantidad de Ambientes")){					
+					String cantAmbientes = null;
+					cantAmbientes = validarEntero("Ingrese la cantidad de Ambientes que tiene el Inmueble");
 					inmuebleAmodificar.setCantAmbientes(cantAmbientes);		
 					JOptionPane.showMessageDialog(null, "Cantidad de Ambientes Actualizada");
-					
 					
 					
 				}else if(opcionSeleccionada.equals("Barrio")){
 					String barrio = obtenerBarrio();
 					inmuebleAmodificar.setBarrio(barrio);
-					
+					JOptionPane.showMessageDialog(null, "Barrio Actualizado!");
 					
 					
 				}else if(opcionSeleccionada.equals("Dirección")){
-					String direccion = obtenerDireccion();
+					String direccion = null;
+					direccion = validarCadena("Ingrese la dirección");
 					inmuebleAmodificar.setDireccion(direccion);
-					
-					
-					
-				}else if(opcionSeleccionada.equals("Descripcion")){
-					String descripcion = obtenerDescripcion();
-					inmuebleAmodificar.setDescripcion(descripcion);
-					
-					
-					
-				}else if(opcionSeleccionada.equals("Años Antiguedad del edificio")){
-					String antiguedad = obtenerAntiguedad();
-					inmuebleAmodificar.setAntiguedad(antiguedad);
-					
-					
-					
-				}else if(opcionSeleccionada.equals("Cantidad de Baños")){
-					String banios = obtenerBanios();
-					inmuebleAmodificar.setBanio(banios);
-					
-					
-					
-				}else if(opcionSeleccionada.equals("Cantidad de Dormitorios")){
-					String dormitorio = obtenerDormitorio();
-	        		inmuebleAmodificar.setDormitorio(dormitorio);
+					JOptionPane.showMessageDialog(null, "Dirección Actualizada");
 
 					
+				}else if(opcionSeleccionada.equals("Descripcion")){
+					String descripcion = null;
+					descripcion = validarCadena("Ingrese una descripción del inmueble");
+					inmuebleAmodificar.setDescripcion(descripcion);
+					JOptionPane.showMessageDialog(null, "Descripcion Actualizada");
+
+					
+				}else if(opcionSeleccionada.equals("Años Antiguedad")){
+					String antiguedad = null;
+					antiguedad = validarEntero("Ingrese la antiguedad que tiene el inmueble");
+					inmuebleAmodificar.setAntiguedad(antiguedad);
+					JOptionPane.showMessageDialog(null, "Antiguedad actualizada");
+
 					
 				}else if(opcionSeleccionada.equals("Cantidad de Baños")){
-					String banio = obtenerBanios();
-	        		inmuebleAmodificar.setBanio(banio);
+					String banios = null;
+					banios = validarCadena("Ingrese la cantidad de baños ");
+					inmuebleAmodificar.setBanio(banios);
+					JOptionPane.showMessageDialog(null, "Cantidad de baños Actualizada");
+
+					
+				}else if(opcionSeleccionada.equals("Cantidad de Dormitorios")){
+					String dormitorio = null;
+					dormitorio = validarCadena("Ingrese la cantidad de dormitorios");
+					inmuebleAmodificar.setDormitorio(dormitorio);
+					JOptionPane.showMessageDialog(null, "Cantidad de dormitorios Actualizada");
 
 					
 				}else if(opcionSeleccionada.equals("m2 Superficie Cubierta")) {
-					double superficieCubierta = obtenerM2Cubierta();
+					double superficieCubierta = 0;
+					superficieCubierta = validarDouble("Ingrese la cantidad la cantidad de m2 de superficie cubierta");
 					inmuebleAmodificar.setSuperficie_cubierta(superficieCubierta);	
-					
-					
-				}else if(opcionSeleccionada.equals("m2 Superficie Descubierta")){
-					double superficieDescubierta = obtenerM2Descubierta();
-					inmuebleAmodificar.setSuperficie_descubierta(superficieDescubierta);
-					
-					
+					JOptionPane.showMessageDialog(null, "m2 cubierta Actualizada");
+
+
+				}else if(opcionSeleccionada.equals("Patio")){
+					boolean tienePatio = obtenerPatio();	
+
+					if(tienePatio==true){
+						double superficieDescubierta = validarDouble("Ingrese la cantidad la cantidad de m2 de superficie descubierta");
+						inmuebleAmodificar.setSuperficie_descubierta(superficieDescubierta);					
+					}else {
+						inmuebleAmodificar.setSuperficie_descubierta(0);
+					}			
+	
 				}else if(opcionSeleccionada.equals("Precio")){
-					double precio = obtenerPrecio();
+					double precio = 0;
+					precio = validarDouble("Ingrese el precio del Inmueble");
 					inmuebleAmodificar.setPrecio(precio);					
+					JOptionPane.showMessageDialog(null, "Precio actualizado");
+
 					
-					
-				}else if(opcionSeleccionada.equals("Disponibilidad Actual")){
-					boolean disponible = obtenerDisponible().equals("Si");
-					inmuebleAmodificar.setDisponible(disponible);					
-					
-					
+				}else if(opcionSeleccionada.equals("Disponibilidad actual")){
+					boolean disponible = obtenerDisponible();
+				    inmuebleAmodificar.setDisponible(disponible);
+
+				    
 				}else if(opcionSeleccionada.equals("Refacción")){
 					boolean refaccionar = obtenerRefaccion().equals("Si");
 					inmuebleAmodificar.setRefaccionar(refaccionar);				
-					
+
 					
 				}else if(opcionSeleccionada.equals("Apto para Mascotas")){
 					boolean aptoMascota = obtenerMascota().equals("Si");
-					inmuebleAmodificar.setApto_mascota(aptoMascota);				
+					inmuebleAmodificar.setApto_mascota(aptoMascota);						
 					
 					
-				}else if(opcionSeleccionada.equals("Patio")){
-					boolean tienePatio = obtenerLavadero().equals("Si");
-					inmuebleAmodificar.setpatio(tienePatio);
-					
-					
+				}else if(opcionSeleccionada.equals("Activar/Deshabilitar Inmueble")){
+					   boolean activo = obtenerActivo();
+					    inmuebleAmodificar.setActivo(activo);
+					    
 				}else {
 					break;
-				}            	
+				}
 				 inmuebleControlador.updateInmueble(inmuebleAmodificar);
                  JOptionPane.showMessageDialog(null, "Inmueble actualizado exitosamente");
-        		break;
-		            	}
-	
-					}			
-				}
-			}
-		
-		}while(repetir);
-		return true;
-	}
-	
-	
-	
-	
-	public void agregarInmueble() {
-		String tipoInmueble = obtenerTipoInmueble();
-		String condicion = obtenerCondicion();
-		String cantAmbientes = obtenerAmbientes();
-		String barrio = obtenerBarrio();
-		String direccion = obtenerDireccion();
-		String descripcion = obtenerDescripcion();
-		String antiguedad = obtenerAntiguedad();
-		String banios = obtenerBanios();
-		String dormitorio = obtenerDormitorio();
-		double superficieCubierta = obtenerM2Cubierta();
-		double superficieDescubierta = obtenerM2Descubierta();
-		double precio = obtenerPrecio();
-		boolean disponible = obtenerDisponible().equals("Si");
-		boolean refaccionar = obtenerRefaccion().equals("Si");
-		boolean aptoMascota = obtenerMascota().equals("Si");
-		boolean tienePatio = obtenerLavadero().equals("Si");
-
-		    // Agregar el inmueble al controlador
-		    inmuebleControlador.addInmueble(new Inmueble(0, tipoInmueble, condicion, cantAmbientes, barrio, direccion, descripcion, antiguedad,
-		            banios, dormitorio, superficieCubierta, superficieDescubierta, precio, disponible, refaccionar, aptoMascota, tienePatio));
-		}
-	
-	
-	
-	public String obtenerTipoInmueble() {
-		String[] tipoInmueble = { "Casa","Departamento"};
-	    return (String) JOptionPane.showInputDialog(null, "Seleccione el tipo de Inmueble:",
-	            "Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, tipoInmueble, tipoInmueble[0]);
-	}
-	
-	public String obtenerCondicion() {
-		String[] tipoInmueble = { "Excelente","Muy bueno","Bueno","Regular","Malo"};
-	    return (String) JOptionPane.showInputDialog(null, "Seleccione el tipo de condición del Inmueble:",
-	            "Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, tipoInmueble, tipoInmueble[0]);
-	}
-	
-	public String obtenerBarrio() {
-		String[] barrio = {"Agronomía", "Almagro", "Balvanera", "Barracas", "Belgrano", "Boedo", "Caballito", "Chacarita",
-	            "Coghlan", "Colegiales", "Constitución", "Flores", "Floresta", "La Boca", "La Paternal", "Liniers",
-	            "Mataderos", "Monte Castro", "Monserrat", "Nueva Pompeya", "Núñez", "Palermo", "Parque Avellaneda",
-	            "Parque Chacabuco", "Parque Chas", "Parque Patricios", "Puerto Madero", "Recoleta", "Retiro",
-	            "Saavedra", "San Cristóbal", "San Nicolás", "San Telmo", "Vélez Sársfield", "Versalles",
-	            "Villa Crespo", "Villa del Parque", "Villa Devoto", "Villa General Mitre", "Villa Lugano",
-	            "Villa Luro", "Villa Ortúzar", "Villa Pueyrredón", "Villa Real", "Villa Riachuelo",
-	            "Villa Santa Rita", "Villa Soldati", "Villa Urquiza"};
-		
-	    return (String) JOptionPane.showInputDialog(null, "Seleccione el tipo de condición del Inmueble:",
-	            "Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, barrio, barrio[0]);
-	}
-	
-	
-	public String obtenerDisponible() {
-		String[] disponibleSeleccion = { "Si","No"};
-	    return (String) JOptionPane.showInputDialog(null, "Seleccione la disponibilidad del Inmueble:",
-	            "Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, disponibleSeleccion, disponibleSeleccion[0]);
-	}
-	
-	
-	public String obtenerRefaccion() {
-		String[] refaccionSeleccion = { "Si","No"};
-	    return (String) JOptionPane.showInputDialog(null, "Seleccione si hay que Refaccionar:",
-	            "Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, refaccionSeleccion, refaccionSeleccion[0]);
-	}
-	
-	public String obtenerLavadero() {
-		String[] lavaderoSeleccion = { "Si","No"};
-	    return (String) JOptionPane.showInputDialog(null, "¿Tiene lavadero?",
-	            "Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, lavaderoSeleccion, lavaderoSeleccion[0]);
-	}
-	
-	public String obtenerMascota() {
-		String[] mascotaSeleccion = { "Si","No"};
-	    return (String) JOptionPane.showInputDialog(null, "¿Es apto para mascotas?",
-	            "Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, mascotaSeleccion, mascotaSeleccion[0]);
-	}
-	
-
-	public String obtenerAmbientes() {
-	    return JOptionPane.showInputDialog("Ingrese la cantidad de Ambientes del Inmueble");
-	}
-	
-	
-	public Double obtenerM2Cubierta() {
-	    return Double.parseDouble(JOptionPane.showInputDialog("Ingrese los m2 de de Superficie Cubierta"));
-	}
-	
-	
-	public Double obtenerM2Descubierta() {
-	    return Double.parseDouble(JOptionPane.showInputDialog("Ingrese los m2 de de Superficie Descubierta"));
-	}
-	
-	
-	public String obtenerDireccion() {
-	    return JOptionPane.showInputDialog("Ingrese la direccion del Inmueble");
-	}
-	
-	
-	public String obtenerDescripcion() {
-	    return JOptionPane.showInputDialog("Ingrese una descripción del inmueble");
-	}
-	
-
-	public String obtenerAntiguedad() {
-	    return JOptionPane.showInputDialog("Ingrese la antiguedad que tiene el Edficio");
-	}
-	
-	
-	public String obtenerBanios() {
-	    return JOptionPane.showInputDialog("Ingrese la cantidad de Baños");
-	}
-	
-			
-	public String obtenerDormitorio() {
-	    return JOptionPane.showInputDialog("Ingrese la cantidad de Dormitorios");
-	}
-	
-	
-	public Double obtenerPrecio() {
-	    return Double.parseDouble(JOptionPane.showInputDialog("Ingrese el Precio del Inmueble"));		
-	}
-	
-
-	
-	
-	
-	
-	
-	
-	public void eliminarInmueble() {
-		
-		if(inmuebleControlador.getAllInmueble().isEmpty()){
-			JOptionPane.showMessageDialog(null, "No hay Inmuebles cargados" );
-		}else {
-				
-			JOptionPane.showMessageDialog(null, "Eliminar Inmueble");
-			
-		    String[] opcionesInmuebles = new String[inmuebleControlador.getAllInmueble().size()];
-		    for (int i = 0; i < opcionesInmuebles.length; i++) {
-	            Inmueble inmueble = inmuebleControlador.getAllInmueble().get(i);
-	            opcionesInmuebles[i] = "ID Inmueble: " + inmueble.getId_inmueble() + " - Dirección: " + inmueble.getDireccion()+ " - Ambientes: " +inmueble.getCantAmbientes();
-	        }
-		       
-		    String inmuebleSeleccionado = (String) JOptionPane.showInputDialog(null, "Seleccione Inmueble a Eliminar", "Eliminar Inmueble",
-		    		JOptionPane.QUESTION_MESSAGE, null, opcionesInmuebles, opcionesInmuebles[0]);
-		   
-		    if(inmuebleSeleccionado != null){
-	            Inmueble inmuebleAEliminar = null;
-	            // Buscar el inmueble seleccionado en la lista de inmuebles
-	            for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
-	                String opcion = "ID Inmueble: " + inmueble.getId_inmueble() + " - Dirección: " + inmueble.getDireccion()+ " - Ambientes: " +inmueble.getCantAmbientes();
-	                if (opcion.equals(inmuebleSeleccionado)) {
-	                    inmuebleAEliminar = inmueble;
-	                    break;
-	                }
+        		
+	            } catch (Exception e) {
+	            	JOptionPane.showMessageDialog(null, "Porfavor Seleccione una opción valida.");
 	            }
 	            
-	            if (inmuebleAEliminar != null) {
-	                // Realizar la eliminación del inmueble
-	                inmuebleControlador.deleteInmueble(inmuebleAEliminar.getId_inmueble());
-	                JOptionPane.showMessageDialog(null, "Inmueble eliminado exitosamente");
-	            }
-		    }       
-		}
+	            }while(!repetir2);
+	            
+		            	}
+					
+				}
+			
+			} catch (Exception e) {
+            	JOptionPane.showMessageDialog(null, "Porfavor Seleccione una opción valida.");
+				
+				}
+		}while(!repetir);
+			
+		return true;
 	}
+
+
+//-----------------------------------------AGREGAR NUEVO INMUEBLE --------------------------------------
+	public void agregarInmueble() {
+		String descripcion = null;
+		String piso = null; 
+		String cantAmbientes = null;
+		String antiguedad = null;
+		String banios = null;
+		String dormitorios= null;
+		String direccion = null;
+		String dormitorio = null;
+		String tipoInmueble = obtenerTipoInmueble();
+		String condicion = obtenerCondicion();
+		double precio =0;
+		double superficieCubierta = 0;
+		double superficieDescubierta = 0;
+		
+		 cantAmbientes = validarEntero("Ingrese la cantidad de Ambientes que tiene el Inmueble");
+	    if (tipoInmueble.equals("Departamento")) {
+	    	piso = validarEntero("Ingrese el numero de piso donde se encuentra el Departamento");
+	    }
+		String barrio = obtenerBarrio();
+		direccion = validarCadena("Ingrese la dirección");
+		descripcion = validarCadena("Ingrese una descripción del inmueble");
+		antiguedad = validarEntero("Ingrese la antiguedad que tiene el inmueble");
+		banios = validarEntero("Ingrese la cantidad baños que tiene el inmueble");
+		dormitorio = validarEntero("Ingrese la cantidad dormitorios que tiene el inmueble");
+		superficieCubierta = validarDouble("Ingrese la cantidad la cantidad de m2 de superficie cubierta");
+		
+		boolean tienePatio = obtenerPatio();
+		if(tienePatio==true){
+			superficieDescubierta = validarDouble("Ingrese la cantidad la cantidad de m2 de superficie descubierta");
+		}
+		precio = validarDouble("Ingrese el precio del Inmueble");
+		boolean disponible = obtenerDisponible();
+		boolean refaccionar = obtenerRefaccion().equals("Si");
+		boolean aptoMascota = obtenerMascota().equals("Si");
+		boolean activo = obtenerActivo();
+		
+		    // Agregar el inmueble al controlador
+		    inmuebleControlador.addInmueble(new Inmueble(0, tipoInmueble, condicion, cantAmbientes, piso,barrio, direccion, descripcion, antiguedad,
+		            banios, dormitorio, superficieCubierta, superficieDescubierta, precio, disponible, refaccionar, aptoMascota, tienePatio,activo));
+		}
 	
+	
+	
+	
+
+
+	
+	//-------------------------------------------------------------------------------------------------------------------------
+	
+	
+	
+	
+	
+	
+
 	
 	
 /* ---------------------------------------------------------------------------- Selector de Agentes ----------------------------------------------------------------------------------------- */	
@@ -1039,6 +1106,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 				if (agentecontrolador.getAllAgente().size()==0) {JOptionPane.showMessageDialog(null, "No se han encontrado agentes.");} else {
 				 JOptionPane.showMessageDialog(null, "La lista de empleados"+"\n"+agentecontrolador.getAllAgente());}
 				
+				 JOptionPane.showMessageDialog(null, "La lista de empleados"+"\n"+agentecontrolador.getAllAgente());	
 				
 			break;
 			
@@ -1130,7 +1198,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 			String correoverificado = validarEmail(correo);
 			String tipo_empleado = "Gerente"; 		
 			do {
-			contraseña = JOptionPane.showInputDialog("Ingresar password");
+			contraseña = JOptionPane.showInputDialog("Ingresar Contrasena");
 			} while(!validarContraseña(contraseña));
 			int id_gerente = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el id del gerente"));
 		//	acumuladorgerentes++;
