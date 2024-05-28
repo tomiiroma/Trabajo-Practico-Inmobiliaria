@@ -83,8 +83,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 			case"Gestionar Propiedades":
 				do {			
 					try {					
-
-					
+			
 					Inmueble inmueble = new Inmueble();
 					String[] opcionesGestion = { "Ver Inmuebles","Agregar Inmueble","Modificar Inmueble","Eliminar Inmueble","Volver" };
 					
@@ -99,13 +98,13 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 							try {
 							
 							
-						String[] submenuPropieades = { "Ver todos los Inmuebles","Ver Inmuebles Disponibles","Activar Inmuebles cargados por Agente","Volver" };
+						String[] submenuPropieades = { "Ver Lista Completa de Inmuebles","Ver Inmuebles Disponibles","Activar Inmuebles cargados por Agente","Volver" };
 						
 						String seleccionSubmenu = (String) JOptionPane.showInputDialog(null, "Seleccione una Opción:",
 								"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, submenuPropieades,
 								submenuPropieades[0]);
 						
-						if(seleccionSubmenu.equals("Ver todos los Inmuebles")){
+						if(seleccionSubmenu.equals("Ver Lista Completa de Inmuebles")){
 							verInmuebles();		
 									
 							
@@ -992,6 +991,8 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 		String dormitorios= null;
 		String direccion = null;
 		String dormitorio = null;
+		String alturaDireccion = null;
+		String nroDepto = null;
 		String tipoInmueble = obtenerTipoInmueble();
 		String condicion = obtenerCondicion();
 		double precio =0;
@@ -1001,9 +1002,12 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 		 cantAmbientes = validarEntero("Ingrese la cantidad de Ambientes que tiene el Inmueble");
 	    if (tipoInmueble.equals("Departamento")) {
 	    	piso = validarEntero("Ingrese el numero de piso donde se encuentra el Departamento");
+	    	nroDepto=validarCadena("Indique el Número o Letra de depatartamento"); //validar despues 
 	    }
+	    
 		String barrio = obtenerBarrio();
 		direccion = validarCadena("Ingrese la dirección");
+		alturaDireccion = validarCadena("Ingrese la Altura de la calle del Inmueble");
 		descripcion = validarCadena("Ingrese una descripción del inmueble");
 		antiguedad = validarEntero("Ingrese la antiguedad que tiene el inmueble");
 		banios = validarEntero("Ingrese la cantidad baños que tiene el inmueble");
@@ -1020,9 +1024,11 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 		boolean aptoMascota = obtenerMascota().equals("Si");
 		boolean activo = obtenerActivo();
 		
+		
+
 		    // Agregar el inmueble al controlador
 		    inmuebleControlador.addInmueble(new Inmueble(0, tipoInmueble, condicion, cantAmbientes, piso,barrio, direccion, descripcion, antiguedad,
-		            banios, dormitorio, superficieCubierta, superficieDescubierta, precio, disponible, refaccionar, aptoMascota, tienePatio,activo));
+		            banios, dormitorio, superficieCubierta, superficieDescubierta, precio, disponible, refaccionar, aptoMascota, tienePatio,activo,alturaDireccion,nroDepto));
 		}
 	
 	
