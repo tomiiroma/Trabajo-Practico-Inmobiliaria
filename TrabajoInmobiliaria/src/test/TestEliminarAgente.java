@@ -137,14 +137,14 @@ public class TestEliminarAgente {
 
 			
 			 
-			 gerentecontrolador.deleteAgente((Integer.parseInt(idEmpleadoSeleccionado)));
+			 gerentecontrolador.deleteAgente(((1)));
 			 
 			
 			 
 			 for (Agente agente : gerentecontrolador.getAllAgente()) {
 				 
 				 
-				 if (agente.getId_agente() == Integer.parseInt(idEmpleadoSeleccionado)) {
+				 if (agente.getId_agente() == 1) {
 					 
 					 flag = false;
 					 

@@ -543,8 +543,8 @@ public interface Validacion {
 				
 
 				if(nombre==null || nombre.trim().isEmpty()){
-					JOptionPane.showMessageDialog(null, "No se admiten campos en blanco. Por favor ingrese un Nombre");
-					
+					JOptionPane.showMessageDialog(null, "No se admiten campos en blanco.");
+					confirmacion = false;
 				}
 				
 				nombre = nombre.trim();
@@ -559,7 +559,7 @@ public interface Validacion {
                 }
                 
                 if(!esString){
-                    JOptionPane.showMessageDialog(null, "No se permiten caracteres numericos. Ingrese Nombre nuevamente");
+                    JOptionPane.showMessageDialog(null, "No se permiten espacios en blanco o caracteres numericos.");
                     confirmacion = false;
                 }
 				
@@ -567,6 +567,7 @@ public interface Validacion {
                 
 			} catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Error al ingresar Nombre. Ingrese Nombre nuevamente");
+                confirmacion = false;
 			}
 
 			
@@ -611,7 +612,7 @@ public interface Validacion {
 		    
 		    else if (fecha.isBefore(LocalDate.of(1900, 1, 1))) {
 		    	
-		    	JOptionPane.showMessageDialog(null, "La fecha no puede estar ni en el futuro, ni puede ser anterior al 1900.");
+		    	JOptionPane.showMessageDialog(null, "La fecha no puede ser anterior al 1900.");
 		    	error = false;
 		    } else if (fecha.isAfter(Es_menor)) {
 		    	

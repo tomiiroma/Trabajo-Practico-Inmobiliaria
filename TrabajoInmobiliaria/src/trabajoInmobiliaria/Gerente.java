@@ -1545,7 +1545,7 @@ public boolean AgregarAgente2(String nombre, String apellido, LocalDate fecha, i
 				
 				agente_repetido = true;
 				
-				JOptionPane.showMessageDialog(null, "El agente ya se encuentra en la base de datos.");
+				JOptionPane.showMessageDialog(null, "El dni ingresado, ya se encuentra en la base de datos.");
 				
 			
 				
@@ -1560,6 +1560,7 @@ public boolean AgregarAgente2(String nombre, String apellido, LocalDate fecha, i
     	if (agente_repetido == false) {
         Agente agente = new Agente(0, nombre, apellido, fecha, dni, telefono, correo, "Agente", contraseña, id_agente);
       
+        JOptionPane.showMessageDialog(null, "El agente se ha agregado con exito.");
         
         agentecontrolador.addAgente(agente);
         return true;
@@ -1567,7 +1568,7 @@ public boolean AgregarAgente2(String nombre, String apellido, LocalDate fecha, i
     	}
     } else {
     	 	
-    	JOptionPane.showMessageDialog(null, "Se ingreso un dato erroneo y no se pudo ingresar el agente a la base de datos.");
+    	//
     	
         return false;
     }
@@ -1647,7 +1648,7 @@ try {
 	return true;
 	
 	
-	} else {  JOptionPane.showMessageDialog(null, "Algun parametro ingresado es incorrecto.");
+	} else {  
 	
 	  return false;
 	
