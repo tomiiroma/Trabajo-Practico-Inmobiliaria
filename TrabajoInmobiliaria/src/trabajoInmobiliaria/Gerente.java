@@ -1,6 +1,6 @@
 package trabajoInmobiliaria;
 
-import java.time.LocalDate;
+import java.time.LocalDate; 
 
 
 import javax.swing.JOptionPane;
@@ -1005,6 +1005,16 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 		boolean aptoMascota = obtenerMascota().equals("Si");
 		boolean activo = true; //esto cambia segun las operaciones que se hagan con el inmueble
 		
+		if(tipoInmueble.equals("Departamento") && validarDepto(direccion, alturaDireccion, piso, nroDepto)){
+			JOptionPane.showMessageDialog(null, "Error! No se pudo registrar el Departamento. Departamento duplicado.");
+			return;
+		}
+		
+		if(tipoInmueble.equals("Casa") && validarCasa(direccion, alturaDireccion)){
+			JOptionPane.showMessageDialog(null, "Error! No se pudo registrar la Casa. Casa duplicada.");
+			return;
+		}
+		
 		
 
 		    // Agregar el inmueble al controlador
@@ -1019,6 +1029,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 
 	
 	//-------------------------------------------------------------------------------------------------------------------------
+	
 	
 	
 	
