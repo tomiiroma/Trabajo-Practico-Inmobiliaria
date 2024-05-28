@@ -600,8 +600,8 @@ public interface Validacion {
 		    boolean error = true;
 
 		   
-		    if (fecha == null || fecha.isAfter(LocalDate.now())) {
-		        JOptionPane.showMessageDialog(null, "La fecha no puede ser nula ni puede estar en el futuro");
+		    if (fecha == null || fecha.isAfter(LocalDate.now()) || fecha.isBefore(LocalDate.of(1900, 1, 1))) {
+		        JOptionPane.showMessageDialog(null, "La fecha no puede ser nula, ni puede estar en el futuro y no puede ser anterior al 1900.");
 		        error = false;
 		    }
 
@@ -616,7 +616,7 @@ public interface Validacion {
 
 		  
 		    if (String.valueOf(telefonoen).length() != 8) {
-		        JOptionPane.showMessageDialog(null, "Debe contener 8 dígitos numéricos");
+		        JOptionPane.showMessageDialog(null, "El telefono debe tener 8 dígitos numéricos");
 		        error = false;
 		    }
 

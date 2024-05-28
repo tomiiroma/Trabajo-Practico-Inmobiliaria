@@ -536,15 +536,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 						LocalDate fecha = null, fecha_nac=null;
 						String nombre="", apellido="" ,telefonoentrada="", contraseña="";
 						AgenteControlador agentecontrolador = new AgenteControlador();
-						boolean error = false;
-						//	JOptionPane.showMessageDialog(null, "Cargar datos");
-						/*	nombre =validarNombre("Escribir el nombre");
-							apellido = validarNombre("Escribir el apellido");
-							fecha = validarFecha(fecha);
-							dni = validarDni("Validacion de dni"); 
-							telefonoentrada = JOptionPane.showInputDialog("Ingresar telefono");  
-							telefono = validarTelefono(telefonoentrada);
-						 */
+						
 							
 							
 							
@@ -568,7 +560,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 							} catch (Exception e) {
 								
 								JOptionPane.showMessageDialog(null, "Error");
-								 error = true;
+								
 							}
 							
 							AgregarAgente2(nombre,apellido,fecha_nac,dni,telefon0,correo,contraseña,id_agente);
@@ -1553,20 +1545,39 @@ public Gerente VerificarReferenciasGerente() {
 public boolean AgregarAgente2(String nombre, String apellido, LocalDate fecha, int dni, int telefono, String correo, String contraseña, int id_agente) {
    
 	AgenteControlador agentecontrolador = new AgenteControlador();	
+	boolean agente_repetido=false;
 	
 	JOptionPane.showMessageDialog(null, "contraseña"+contraseña);
 	
 	if (validarNombre2(nombre) && validarNombre2(apellido) && validarFecha2(fecha) && validarDni2(dni) && validarTelefono2(telefono) && validarEmail2(correo) && validarContraseña(contraseña)) {
 	
 		
-  
+		for (Agente agente : agentecontrolador.getAllAgente()) {
 			
-    	
+			if (agente.getDni() == dni) {
+				
+				agente_repetido = true;
+				
+				JOptionPane.showMessageDialog(null, "El agente ya se encuentra en la base de datos.");
+				
+			
+				
+				return false;
+			
+			 
+			}
+			
+			
+		}
+			
+    	if (agente_repetido == false) {
         Agente agente = new Agente(0, nombre, apellido, fecha, dni, telefono, correo, "Agente", contraseña, id_agente);
       
         
         agentecontrolador.addAgente(agente);
         return true;
+        
+    	}
     } else {
     	
     	JOptionPane.showMessageDialog(null, "nombre"+nombre+"apellido"+apellido+"fecha"+fecha+"dni"+dni+"telefono"+telefono);
@@ -1575,6 +1586,9 @@ public boolean AgregarAgente2(String nombre, String apellido, LocalDate fecha, i
     	
         return false;
     }
+	
+	return false;
+	
 }
 
 
