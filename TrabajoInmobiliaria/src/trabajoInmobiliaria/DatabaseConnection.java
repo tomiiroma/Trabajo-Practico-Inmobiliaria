@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 
 public class DatabaseConnection {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/inmobiliaria";
+    private static final String URL = "jdbc:mysql://localhost:3306/inmobiliaria2";
     private static final String USER = "root";
     private static final String PASSWORD = "";
     

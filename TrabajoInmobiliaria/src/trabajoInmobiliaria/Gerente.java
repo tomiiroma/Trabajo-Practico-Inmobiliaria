@@ -11,6 +11,7 @@ import controlador.InmuebleControlador;
 import controlador.ReservaControlador;
 import controlador.VentaControlador;
 import controlador.AlquilerControlador;
+import controlador.ControladorEmpleado;
 
 public class Gerente extends Empleado implements Validacion, InicioSesion{
 
@@ -1589,9 +1590,9 @@ public boolean AgregarAgente2(String nombre, String apellido, LocalDate fecha, i
 public boolean ModificarAgente2(Agente agente,String nombre, String apellido, LocalDate fecha, int dni, int telefono, String correo, String contraseña, int id_agente) {
 	
 	AgenteControlador agentecontrolador = new AgenteControlador();
-
+	ControladorEmpleado empleadocontrolador = new ControladorEmpleado();
 	
-	if (agentecontrolador.getAllAgente().size()==0) {
+	if (agentecontrolador.getAllAgente().size()==0 || agente==null) {
 		
 		JOptionPane.showMessageDialog(null, "No se han encontrado gerentes.");
 		
