@@ -1,6 +1,6 @@
 package trabajoInmobiliaria;
 
-import java.time.LocalDate; 
+import java.time.LocalDate;  
 
 
 import javax.swing.JOptionPane;

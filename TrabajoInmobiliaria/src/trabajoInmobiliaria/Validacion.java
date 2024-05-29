@@ -573,11 +573,11 @@ public interface Validacion {
 			if(inmueble.getTipo_inmueble().equals("Casa") && inmueble.getDireccion().equalsIgnoreCase(direccion) 
 					&& inmueble.getAlturaDireccion().equalsIgnoreCase(alturaDireccion)){
 				
-				return true;
+				return true; // encontro misma casa
 			}
 		}
 			
-		return false;
+		return false; // no encontro misma casa
 	}
 	
 	
