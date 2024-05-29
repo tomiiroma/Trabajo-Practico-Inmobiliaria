@@ -675,6 +675,44 @@ public interface Validacion {
 		
 /*---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/		
 		
+		
+		
+/* ------------------------------------------------------------------------------------------------------ Validar fecha PagoReservas --------------------------------------------------------------------------------------------- */		
+
+		
+		default boolean validarFecha_pagoReserva(LocalDate fecha) {
+		    boolean error = true;
+
+		   
+		    
+		    
+		    
+		    if (fecha == null) {
+		        JOptionPane.showMessageDialog(null, "La fecha no puede ser nula o se ingreso un dia o mes no validos.");
+		        error = false;
+		    }
+		    
+		    else if (fecha.isBefore(LocalDate.now())) {
+		    	
+		    	JOptionPane.showMessageDialog(null, "La fecha no puede ser anterior al dia de hoy.");
+		    	error = false;
+		    } else if (fecha.isAfter(LocalDate.of(2028, 5, 30))) {
+		    	
+		    	
+		    	JOptionPane.showMessageDialog(null, "Se ingreso una fecha que no es valida.");
+		    	error = false;
+		    	
+		    	
+		    }
+
+		    return error; // 
+		}
+		
+
+/*----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+		
+		
+		
 }
 
 	

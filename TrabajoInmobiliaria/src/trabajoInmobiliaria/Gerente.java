@@ -467,8 +467,8 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 									String correo="";
 									int dni=0,telefon0=0,id_agente=0;	
 									LocalDate fecha_nac=null;
-									String nombre="", apellido="" ,telefonoentrada="", contraseña="";
-									AgenteControlador agentecontrolador = new AgenteControlador();
+									String nombre="", apellido="", contraseña="";
+									
 									Agente agenteseleccionado = null;
 										
 										
@@ -499,7 +499,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 										
 									
 									
-									ModificarAgente2(agenteseleccionado,nombre,apellido,fecha_nac,dni,telefon0,correo,contraseña,id_agente);
+									ModificarAgente(agenteseleccionado,nombre,apellido,fecha_nac,dni,telefon0,correo,contraseña,id_agente);
 									
 									
 									
@@ -571,8 +571,8 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 						String correo="";
 						int dni=0,telefon0=0,id_agente=0;	
 						LocalDate fecha_nac=null;
-						String nombre="", apellido="" ,telefonoentrada="", contraseña="";
-						AgenteControlador agentecontrolador = new AgenteControlador();
+						String nombre="", apellido="" , contraseña="";
+						
 						
 							
 							
@@ -599,7 +599,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 								
 							}
 							
-							AgregarAgente2(nombre,apellido,fecha_nac,dni,telefon0,correo,contraseña,id_agente);
+							AgregarAgente(nombre,apellido,fecha_nac,dni,telefon0,correo,contraseña,id_agente);
 							
 						
 							
@@ -662,8 +662,82 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 
 			case 1:
 				
+			try {
 				
-				RealizarReserva();
+				Empleado empleado = null;
+				
+				Cliente cliente = null;
+				
+				Inmueble inmueble = null;
+				
+				
+				
+				inmueble = SeleccionarInmueble();
+				
+				
+				int dia = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el dia"));
+				int mes = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el mes"));
+				int año = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el año"));
+				
+				LocalDate fecha_pago = LocalDate.of(año, mes, dia);
+				String pago = JOptionPane.showInputDialog("Ingresar el monto del pago");
+				
+				String[] Clientes = {"Inquilino","Comprador","Cancelar Operación"};
+				
+				
+				int clienteseleccionado = JOptionPane.showOptionDialog(null, "Seleccionar el tipo de cliente","Selección de clientes", 0, 0, null, Clientes, Clientes[0]);
+				
+				
+				switch (clienteseleccionado) {
+				case 0:
+					
+					cliente = SelectorInquilino();
+					
+					
+					break;
+					
+				case 1:
+					
+					cliente = SelectorComprador();
+					
+					break;
+					
+					
+				case 2:
+					
+					JOptionPane.showMessageDialog(null, "Se ha cancelado la operación");
+					
+					break;
+					
+				default:
+					break;
+				}
+				
+				
+				
+				String[] Empleados = {"Agente","Gerente","Cancelar operación"};
+				
+				
+				int seleccionEmpleados = JOptionPane.showOptionDialog(null, "Seleccionar el tipo de empleado que realizara la reserva", "Modulo reserva", 0, 0, null, Empleados, Empleados[0]);
+				
+				
+				if (seleccionEmpleados==0) {	empleado = SeleccionarAgente();}
+				
+				else if (seleccionEmpleados==1) { empleado = ObtenerGerenteId();}
+				
+				else { JOptionPane.showMessageDialog(null, "Se cancelo la operacioón");}
+				
+				
+				RealizarReserva(inmueble,empleado,cliente,fecha_pago,pago);
+				
+				
+				
+			} catch (Exception e) {
+				
+				JOptionPane.showMessageDialog(null, "Se produjo un error.");
+				
+			}	
+				
 				
 				break;
 				
@@ -1306,77 +1380,85 @@ public void ModificarGerente() {
 	
 	/* ---------------------------------------------------------------------------------------- MODIFICAR AGENTE ----------------------------------------------------------------------------------------------------------*/
 
-
-public void ModificarAgente() {
+public boolean ModificarAgente(Agente agente,String nombre, String apellido, LocalDate fecha, int dni, int telefono, String correo, String contraseña, int id_agente) {
 	
 	AgenteControlador agentecontrolador = new AgenteControlador();
-	String contraseña;
 	
-	if (agentecontrolador.getAllAgente().size()==0) {
+	if (agentecontrolador.getAllAgente().size()==0 || agente==null) {
 		
 		JOptionPane.showMessageDialog(null, "No se han encontrado gerentes.");
 		
+		 return false;
 	} else {
 	
+		
+		
+		
 try {
-	String[] empleados2 = new String[agentecontrolador.getAllAgente().size()];
-	for (int i = 0; i < empleados2.length; i++) {
-		empleados2[i] = Integer.toString(agentecontrolador.getAllAgente().get(i).getId_empleado());
+	
+	if (validarNombre2(nombre) && validarNombre2(apellido) && validarFecha2(fecha) && validarDni2(dni) && validarTelefono2(telefono) && validarEmail2(correo) && validarContraseña(contraseña)) {
+	
+	
+	
+	agente.setNombre(nombre);
+	agente.setApellido(apellido);
+	agente.setFecha_nacimiento(fecha); 
+	
+	agente.setDni(dni);
+	
+	agente.setTelefono(telefono);
+	agente.setCorreo(correo);
+	agente.setContraseña(contraseña);
+	
+	agente.setId_agente(agente.getId_agente());
+	
+	
+	agente.setContraseña((contraseña));
+	
+	
+     
+   
+    
+	
+	for (Agente agentes : agentecontrolador.getAllAgente()) {
+		
+		if ( dni == agentes.getDni() && agente.getId_empleado() != agentes.getId_empleado() ) {
+			
+			JOptionPane.showMessageDialog(null, "Se esta intenta modificar el dni al de una persona existente en la base de datos.");
+			
+			  return false;
+			
+		} 
+			
+		
+		
+		
 	}
-	String empleadoselect2 = (String) JOptionPane.showInputDialog(null, "Seleccione usuario", null, 0, null,
-			empleados2, empleados2[0]);
-	Agente seleccionado = agentecontrolador.getAgenteById(Integer.parseInt(empleadoselect2));
 	
-	LocalDate fecha = null;
 	
-	seleccionado.setNombre(validarNombre("Su nombre actual es: "+" "+seleccionado.getNombre()+" "+ "Ingrese el nuevo nombre: "));
-	seleccionado.setApellido(validarNombre("Su apellido es: "+" "+seleccionado.getApellido()+" "+"Ingrese el nuevo apellido"));
-	seleccionado.setFecha_nacimiento(validarFecha(fecha)); // Modificar despues
-	seleccionado.setDni(validarDni("Su dni es: " +seleccionado.getDni()+"Ingrese el nuevo dni"));
-	seleccionado.setTelefono(validarTelefono(JOptionPane.showInputDialog("Su telefono es: "+seleccionado.getTelefono()+"Ingrese el telefono")));
-	seleccionado.setCorreo(validarEmail(JOptionPane.showInputDialog("Su correo es: "+seleccionado.getCorreo()+"Ingrese el nuevo correo")));
+	agentecontrolador.updateAgente(agente);
+	
+	return true;
+	
+	
+	} else {  
+	
+	  return false;
+	
+	}	
 
-	seleccionado.setId_agente(Integer.parseInt(JOptionPane.showInputDialog("Su id de agente es: "+seleccionado.getId_agente()+"Ingrese el nuevo id de agente"))); // preguntarle a los chicos, si quieren que sea AI.
-	
-	do {
-	contraseña = JOptionPane.showInputDialog("Ingresar la nueva contraseña");
-	}while(!validarContraseña(contraseña));
-	
-	seleccionado.setContraseña((contraseña));
-	agentecontrolador.updateAgente(seleccionado);;
-	
+
 } catch (Exception e) {
-	JOptionPane.showMessageDialog(null, "Ocurrio un error"+e);}}}
+	JOptionPane.showMessageDialog(null, "Ocurrio un error"+e);}}
+	
+	
+	return false;
+}
 
 
 /* -------------------------------------------------------------------------------------- AGREGAR AGENTE --------------------------------------------------------------------------------------------------------------- */
 	
-public void AgregarAgente() {
-	int dni = 0,telefono;	
-	LocalDate fecha = null;
-	String nombre="", apellido="" ,telefonoentrada="", contraseña;
-	AgenteControlador agentecontrolador = new AgenteControlador();
-		
-	//	JOptionPane.showMessageDialog(null, "Cargar datos");
-		nombre =validarNombre("Escribir el nombre");
-		apellido = validarNombre("Escribir el apellido");
-		fecha = validarFecha(fecha);
-		dni = validarDni("Validacion de dni");
-		telefonoentrada = JOptionPane.showInputDialog("Ingresar telefono"); 
-		telefono = validarTelefono(telefonoentrada);
-		String correo = JOptionPane.showInputDialog(null, "Ingresar correo"); 
-		String correoverificado = validarEmail(correo);
-		String tipo_empleado = "Agente"; 		
-		do {
-		contraseña = JOptionPane.showInputDialog("Ingresar password");
-		} while(!validarContraseña(contraseña));
-		int id_agente = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el id del agente"));
-	//	acumuladorgerentes++;
-		agentecontrolador.addAgente(new Agente(0,nombre,apellido,fecha,dni,telefono,correoverificado,tipo_empleado,contraseña,id_agente));
-		
-		
-		
-	}
+
 	
 
 /* --------------------------------------------------------------------------------- ELIMINAR AGENTE ------------------------------------------------------------------------------------------------------------------ */
@@ -1521,7 +1603,7 @@ public Gerente VerificarReferenciasGerente() {
 	return seleccionado;
 }
 
-/* ------------------------------------------------------------------------ Agregar Agente 2 (Test) ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------ Agregar Agente (Test) ------------------------------------------------------------------------------------------------------------ */
 
 
 
@@ -1530,7 +1612,7 @@ public Gerente VerificarReferenciasGerente() {
 
 
 
-public boolean AgregarAgente2(String nombre, String apellido, LocalDate fecha, int dni, int telefono, String correo, String contraseña, int id_agente) {
+public boolean AgregarAgente(String nombre, String apellido, LocalDate fecha, int dni, int telefono, String correo, String contraseña, int id_agente) {
    
 	AgenteControlador agentecontrolador = new AgenteControlador();	
 	boolean agente_repetido=false;
@@ -1587,80 +1669,6 @@ public boolean AgregarAgente2(String nombre, String apellido, LocalDate fecha, i
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
 
-public boolean ModificarAgente2(Agente agente,String nombre, String apellido, LocalDate fecha, int dni, int telefono, String correo, String contraseña, int id_agente) {
-	
-	AgenteControlador agentecontrolador = new AgenteControlador();
-	ControladorEmpleado empleadocontrolador = new ControladorEmpleado();
-	
-	if (agentecontrolador.getAllAgente().size()==0 || agente==null) {
-		
-		JOptionPane.showMessageDialog(null, "No se han encontrado gerentes.");
-		
-		 return false;
-	} else {
-	
-		
-		
-		
-try {
-	
-	if (validarNombre2(nombre) && validarNombre2(apellido) && validarFecha2(fecha) && validarDni2(dni) && validarTelefono2(telefono) && validarEmail2(correo) && validarContraseña(contraseña)) {
-	
-	
-	
-	agente.setNombre(nombre);
-	agente.setApellido(apellido);
-	agente.setFecha_nacimiento(fecha); 
-	
-	agente.setDni(dni);
-	
-	agente.setTelefono(telefono);
-	agente.setCorreo(correo);
-	agente.setContraseña(contraseña);
-	
-	agente.setId_agente(agente.getId_agente());
-	
-	
-	agente.setContraseña((contraseña));
-	
-	
-     
-   
-    
-	
-	for (Agente agentes : agentecontrolador.getAllAgente()) {
-		
-		if ( dni == agentes.getDni() && agente.getId_empleado() != agentes.getId_empleado() ) {
-			
-			JOptionPane.showMessageDialog(null, "Se esta intenta modificar el dni al de una persona existente en la base de datos.");
-			
-			  return false;
-			
-		} 
-			
-		
-		
-		
-	}
-	
-	
-	agentecontrolador.updateAgente(agente);
-	
-	return true;
-	
-	
-	} else {  
-	
-	  return false;
-	
-	}	
 
-
-} catch (Exception e) {
-	JOptionPane.showMessageDialog(null, "Ocurrio un error"+e);}}
-	
-	
-	return false;
-}
 
 }

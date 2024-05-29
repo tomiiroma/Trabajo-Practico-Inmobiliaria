@@ -34,7 +34,7 @@ public class TestModifcarAgente {
 			
 			 	boolean flag=false;
 			 	
-			 	if (gerente1.ModificarAgente2(agente, "Daniel", "Fernandez", fecha_nacimiento, 12345670, 12345678, "Agente@agente.com", "Daniel1234", 3030)==true) {
+			 	if (gerente1.ModificarAgente(agente, "Daniel", "Fernandez", fecha_nacimiento, 12345670, 12345678, "Agente@agente.com", "Daniel1234", 3030)==true) {
 			 		
 			 		
 			 		flag = true;
@@ -69,7 +69,7 @@ public class TestModifcarAgente {
 			
 			 	boolean flag=false;
 			 	
-			 	if (gerente1.ModificarAgente2(agente, "Daniel12", "Fernandez", fecha_nacimiento, 42323232, 12345678, "Agente@agente.com", "Daniel1234", 3030)==true) {
+			 	if (gerente1.ModificarAgente(agente, "Daniel12", "Fernandez", fecha_nacimiento, 42323232, 12345678, "Agente@agente.com", "Daniel1234", 3030)==true) {
 			 		
 			 		
 			 		flag = false;
@@ -105,7 +105,7 @@ public class TestModifcarAgente {
 			
 			 	boolean flag=false;
 			 	
-			 	if (gerente1.ModificarAgente2(agente, "asda sd", "Fernandez", fecha_nacimiento, 42323232, 12345678, "Agente@agente.com", "Daniel1234", 3030)==true) {
+			 	if (gerente1.ModificarAgente(agente, "asda sd", "Fernandez", fecha_nacimiento, 42323232, 12345678, "Agente@agente.com", "Daniel1234", 3030)==true) {
 			 		
 			 		
 			 		flag = false;
@@ -139,7 +139,7 @@ public class TestModifcarAgente {
 			
 			 	boolean flag=false;
 			 	
-			 	if (gerente1.ModificarAgente2(agente, "Daniel", "asdd123", fecha_nacimiento, 42323232, 12345678, "Agente@agente.com", "Daniel1234", 3030)==true) {
+			 	if (gerente1.ModificarAgente(agente, "Daniel", "asdd123", fecha_nacimiento, 42323232, 12345678, "Agente@agente.com", "Daniel1234", 3030)==true) {
 			 		
 			 		
 			 		flag = false;
@@ -172,7 +172,7 @@ public class TestModifcarAgente {
 			
 			 	boolean flag=false;
 			 	
-			 	if (gerente1.ModificarAgente2(agente, "Daniel", "asd dds", fecha_nacimiento, 42323232, 12345678, "Agente@agente.com", "Daniel1234", 3030)==true) {
+			 	if (gerente1.ModificarAgente(agente, "Daniel", "asd dds", fecha_nacimiento, 42323232, 12345678, "Agente@agente.com", "Daniel1234", 3030)==true) {
 			 		
 			 		
 			 		flag = false;
@@ -205,7 +205,7 @@ public class TestModifcarAgente {
 			
 			 	boolean flag=false;
 			 	
-			 	if (gerente1.ModificarAgente2(agente, "Daniel", "Fernandez", fecha_nacimiento, 423232321, 12345678, "Agente@agente.com", "Daniel1234", 3030)==true) {
+			 	if (gerente1.ModificarAgente(agente, "Daniel", "Fernandez", fecha_nacimiento, 423232321, 12345678, "Agente@agente.com", "Daniel1234", 3030)==true) {
 			 		
 			 		
 			 		flag = false;
@@ -238,7 +238,7 @@ public class TestModifcarAgente {
 			
 			 	boolean flag=false;
 			 	
-			 	if (gerente1.ModificarAgente2(agente, "Daniel", "Fernandez", fecha_nacimiento, -2332321, 12345678, "Agente@agente.com", "Daniel1234", 3030)==true) {
+			 	if (gerente1.ModificarAgente(agente, "Daniel", "Fernandez", fecha_nacimiento, -2332321, 12345678, "Agente@agente.com", "Daniel1234", 3030)==true) {
 			 		
 			 		
 			 		flag = false;
@@ -273,7 +273,7 @@ public class TestModifcarAgente {
 			
 			 	boolean flag=false;
 			 	
-			 	if (gerente1.ModificarAgente2(agente, "Daniel", "Fernandez", fecha_nacimiento, 42332321, 12345678, "Agente@agente.com", "Daniel1234", 3030)==true) {
+			 	if (gerente1.ModificarAgente(agente, "Daniel", "Fernandez", fecha_nacimiento, 42332321, 12345678, "Agente@agente.com", "Daniel1234", 3030)==true) {
 			 		
 			 		
 			 		flag = false;
@@ -307,7 +307,7 @@ public class TestModifcarAgente {
 			
 			 	boolean flag=false;
 			 	
-			 	if (gerente1.ModificarAgente2(agente, "Daniel", "Fernandez", fecha_nacimiento, 42332321, 12345678, "Agente@agente.com", "Daniel1234", 3030)==true) {
+			 	if (gerente1.ModificarAgente(agente, "Daniel", "Fernandez", fecha_nacimiento, 42332321, 12345678, "Agente@agente.com", "Daniel1234", 3030)==true) {
 			 		
 			 		
 			 		flag = false;
@@ -339,7 +339,7 @@ public class TestModifcarAgente {
 			
 			 	boolean flag=false;
 			 	
-			 	if (gerente1.ModificarAgente2(agente, "Daniel", "Fernandez", fecha_nacimiento, 42332321, 12345678, "Agente@agente.com", "Daniel1234", 3030)==true) {
+			 	if (gerente1.ModificarAgente(agente, "Daniel", "Fernandez", fecha_nacimiento, 42332321, 12345678, "Agente@agente.com", "Daniel1234", 3030)==true) {
 			 		
 			 		
 			 		flag = false;
@@ -375,7 +375,7 @@ public class TestModifcarAgente {
 			
 			 	boolean flag=false;
 			 	
-			 	if (gerente1.ModificarAgente2(agente, "Daniel", "Fernandez", fecha_nacimiento, 42332321, -2345678, "Agente@agente.com", "Daniel1234", 3030)==true) {
+			 	if (gerente1.ModificarAgente(agente, "Daniel", "Fernandez", fecha_nacimiento, 42332321, -2345678, "Agente@agente.com", "Daniel1234", 3030)==true) {
 			 		
 			 		
 			 		flag = false;
@@ -409,7 +409,7 @@ public class TestModifcarAgente {
 			
 			 	boolean flag=false;
 			 	
-			 	if (gerente1.ModificarAgente2(agente, "Daniel", "Fernandez", fecha_nacimiento, 42332321, 122345678, "Agente@agente.com", "Daniel1234", 3030)==true) {
+			 	if (gerente1.ModificarAgente(agente, "Daniel", "Fernandez", fecha_nacimiento, 42332321, 122345678, "Agente@agente.com", "Daniel1234", 3030)==true) {
 			 		
 			 		
 			 		flag = false;
@@ -444,7 +444,7 @@ public class TestModifcarAgente {
 			
 			 	boolean flag=false;
 			 	
-			 	if (gerente1.ModificarAgente2(agente, "Daniel", "Fernandez", fecha_nacimiento, 42332321, 12234567, "Agentemail", "Daniel1234", 3030)==true) {
+			 	if (gerente1.ModificarAgente(agente, "Daniel", "Fernandez", fecha_nacimiento, 42332321, 12234567, "Agentemail", "Daniel1234", 3030)==true) {
 			 		
 			 		
 			 		flag = false;
@@ -479,7 +479,7 @@ public class TestModifcarAgente {
 			
 			 	boolean flag=false;
 			 	
-			 	if (gerente1.ModificarAgente2(agente, "Daniel", "Fernandez", fecha_nacimiento, 42332321, 12234567, "Agente@mail.com", "Dani", 3030)==true) {
+			 	if (gerente1.ModificarAgente(agente, "Daniel", "Fernandez", fecha_nacimiento, 42332321, 12234567, "Agente@mail.com", "Dani", 3030)==true) {
 			 		
 			 		
 			 		flag = false;
@@ -515,7 +515,7 @@ public class TestModifcarAgente {
 			
 			 	boolean flag=false;
 			 	
-			 	if (gerente1.ModificarAgente2(agente, "Daniel", "Fernandez", fecha_nacimiento, 87654321, 12234567, "Agentemail@mail.com", "Dani12", 3030)==true) {
+			 	if (gerente1.ModificarAgente(agente, "Daniel", "Fernandez", fecha_nacimiento, 87654321, 12234567, "Agentemail@mail.com", "Dani12", 3030)==true) {
 			 		
 			 		
 			 		flag = false;

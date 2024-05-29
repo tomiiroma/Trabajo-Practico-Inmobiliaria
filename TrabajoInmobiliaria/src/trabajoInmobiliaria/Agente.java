@@ -260,7 +260,81 @@ public class Agente extends Empleado implements Validacion, InicioSesion{
 				case 1:
 					
 					
-					RealizarReserva();
+					try {
+						
+						Empleado empleado = null;
+						
+						Cliente cliente = null;
+						
+						Inmueble inmueble = null;
+						
+						
+						
+						inmueble = SeleccionarInmueble();
+						
+						
+						int dia = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el dia"));
+						int mes = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el mes"));
+						int año = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el año"));
+						
+						LocalDate fecha_pago = LocalDate.of(año, mes, dia);
+						String pago = JOptionPane.showInputDialog("Ingresar el monto del pago");
+						
+						String[] Clientes = {"Inquilino","Comprador","Cancelar Operación"};
+						
+						
+						int clienteseleccionado = JOptionPane.showOptionDialog(null, "Seleccionar el tipo de cliente","Selección de clientes", 0, 0, null, Clientes, Clientes[0]);
+						
+						
+						switch (clienteseleccionado) {
+						case 0:
+							
+							cliente = SelectorInquilino();
+							
+							
+							break;
+							
+						case 1:
+							
+							cliente = SelectorComprador();
+							
+							break;
+							
+							
+						case 2:
+							
+							JOptionPane.showMessageDialog(null, "Se ha cancelado la operación");
+							
+							break;
+							
+						default:
+							break;
+						}
+						
+						
+						
+						String[] Empleados = {"Agente","Gerente","Cancelar operación"};
+						
+						
+						int seleccionEmpleados = JOptionPane.showOptionDialog(null, "Seleccionar el tipo de empleado que realizara la reserva", "Modulo reserva", 0, 0, null, Empleados, Empleados[0]);
+						
+						
+						if (seleccionEmpleados==0) {	empleado = SeleccionarAgente();}
+						
+						else if (seleccionEmpleados==1) { empleado = ObtenerGerenteId();}
+						
+						else { JOptionPane.showMessageDialog(null, "Se cancelo la operacioón");}
+						
+						
+						RealizarReserva(inmueble,empleado,cliente,fecha_pago,pago);
+						
+						
+						
+					} catch (Exception e) {
+						
+						JOptionPane.showMessageDialog(null, "Se produjo un error.");
+						
+					}	
 					
 					break;
 					

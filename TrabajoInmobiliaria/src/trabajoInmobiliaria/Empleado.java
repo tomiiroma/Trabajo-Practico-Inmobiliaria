@@ -257,117 +257,7 @@ public class Empleado implements InicioSesion,Validacion{
 	
 	/* ------------------------------------------------------------------------------------ REALIZAR RESERVA --------------------------------------------------------------------------------------------------------------------------- */
 
-	/* ------------------------------------------------------------------------------------------------------- Realizar reservas 2 ------------------------------------------------------------------------------- */
 	
-	
-	
-	
-	public void RealizarReserva() {
-		
-		boolean error = false;
-		Cliente cliente = null;
-		Empleado empleado = null;
-		LocalDate fecha_pago = null;
-		String pago="";
-		double montovalidado;
-		
-		try {
-			
-		ReservaControlador reservacontrolador = new ReservaControlador();
-		
-		
-		
-		Inmueble inmueble = SeleccionarInmueble();
-		
-		if (inmueble==null) {error=true;}
-		
-		
-		String[] Clientes = {"Inquilino","Comprador","Cancelar Operación"};
-		
-		
-		int clienteseleccionado = JOptionPane.showOptionDialog(null, "Seleccionar el tipo de cliente","Selección de clientes", 0, 0, null, Clientes, Clientes[0]);
-		
-		
-		switch (clienteseleccionado) {
-		case 0:
-			
-			 cliente = SelectorInquilino();
-			
-			
-			break;
-
-		case 1:
-			
-			cliente = SelectorComprador();
-			
-			break;
-			
-			
-		case 2:
-			
-			JOptionPane.showMessageDialog(null, "Se ha cancelado la operación");
-			
-			break;
-			
-		default:
-			break;
-		}
-		
-		if (cliente==null) {error=true;}
-		
-		
-		fecha_pago = validarFecha(fecha_pago);
-		
-		pago = JOptionPane.showInputDialog("Ingresar un número entero o con dos decimales para el monto de la reserva");
-		
-		montovalidado = ValidarMonto(pago);
-		
-		String forma_pago = JOptionPane.showInputDialog(null, "Escribar la forma de pago");
-		
-		
-		String[] Empleados = {"Agente","Gerente","Cancelar operación"};
-		
-		
-		int seleccionEmpleados = JOptionPane.showOptionDialog(null, "Seleccionar el tipo de empleado que realizara la reserva", "Modulo reserva", 0, 0, null, Empleados, Empleados[0]);
-		
-		
-		if (seleccionEmpleados==0) {	empleado = SeleccionarAgente();}
-		
-		else if (seleccionEmpleados==1) { empleado = ObtenerGerenteId();}
-		
-		else { JOptionPane.showMessageDialog(null, "Se cancelo la operacioón"); error=true; }
-		
-		if (empleado==null) {error = true;}
-		
-		if (error==false) {
-			
-			
-			reservacontrolador.addReserva(new Reserva(inmueble,cliente,fecha_pago,montovalidado,forma_pago,empleado));
-			
-			
-		}
-		
-		
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, e);
-		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	}
 	
 	
 	/* ------------------------------------------------------------------------------------------------------- VER TODAS LAS RESERVAS ------------------------------------------------------------------------------------------------- */
@@ -1106,6 +996,67 @@ public class Empleado implements InicioSesion,Validacion{
 	
 	
 	/*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+	
+public boolean RealizarReserva(Inmueble inmueble,Empleado empleado2,Cliente cliente2,LocalDate fecha_pago2,String pago2) {
+		
+		boolean error = false;
+		double montovalidado;
+		
+		try {
+			
+		ReservaControlador reservacontrolador = new ReservaControlador();
+		
+	
+		
+		if (inmueble==null) {	System.out.println("No se ha ingresado ningun inmueble");	error=true; return false;}
+		
+		if (cliente2==null) {System.out.println("No se ha ingresado ningun cliente"); error=true; return false; }
+		
+		
+		if (empleado2==null) {System.out.println("No se ha ingresado ningun empleado");error = true; return false;}
+		
+		montovalidado = ValidarMonto(pago2);
+		
+		
+		String forma_pago = "Efectivo";
+		
+		JOptionPane.showMessageDialog(null, error);
+		
+		if (error==false && validarFecha_pagoReserva(fecha_pago2)) {
+			
+			
+			reservacontrolador.addReserva(new Reserva(inmueble,cliente2,fecha_pago2,montovalidado,forma_pago,empleado2));
+			
+			return true;
+			
+		}
+		
+		
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e);
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		return false;
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+	
+	
+	
 	
 	
 	
