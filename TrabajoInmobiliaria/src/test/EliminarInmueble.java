@@ -12,11 +12,11 @@ import javax.swing.JOptionPane;
 public class EliminarInmueble {
 
 		@Test
-		//Eliminar Inmueble siendo Gerente. //puede saltar error pq no hay inmuebles cargados en la base de datos
+		//Eliminar Inmueble siendo Gerente. //el oriignal funciona todo bien
 		public void eliminarInmueble() {
 			InmuebleControlador inmuebleControlador = new InmuebleControlador();
 			
-		    inmuebleControlador.addInmueble(new Inmueble(22, "Departamento", "Excelente", "3", "2", "Agronomia", "corrientes", "Lindo Depto con buena vista", "30", "2", "1", 100, 50, 60000, true, false, true, false, false, "1200", "5"));
+		    inmuebleControlador.addInmueble(new Inmueble(0, "Departamento", "Excelente", "3", "2", "Agronomia", "corrientes", "Lindo Depto con buena vista", "30", "2", "1", 100, 50, 60000, true, false, true, false, false, "1200", "5"));
 			
 			boolean flag = false;
 			
@@ -78,7 +78,6 @@ public class EliminarInmueble {
 								
 							}else if(respuestaSeleccionada==1){
 								JOptionPane.showMessageDialog(null, "No se ha eliminado el inmueble");
-								flag = false;
 							}
 							
 						}
@@ -91,8 +90,9 @@ public class EliminarInmueble {
 		}
 		
 		
+
 		@Test
-		//Eliminar Inmueble siendo Gerente. 
+		//Eliminar Inmueble siendo Gerente. No hay inmuebles en la base de datos
 		public void eliminarInmuebleF() {
 			InmuebleControlador inmuebleControlador = new InmuebleControlador();
 			
@@ -169,7 +169,7 @@ public class EliminarInmueble {
 		}
 		
 		@Test
-		//Eliminar Inmueble siendo Gerente. No hay Inmuebles en la base de datos
+		//Eliminar Inmueble siendo Gerente. No hay Inmuebles inactivos  para poder eliminar en la base de datos
 		public void eliminarInmuebleF1() {
 			InmuebleControlador inmuebleControlador = new InmuebleControlador();
 			
