@@ -201,17 +201,15 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 			case "Realizar Nuevo Contrato":
 	
 				do {
-					String[] operacionesContrato = { "Nuevo Contrato de Venta","Nuevo Contrato de Alquiler","Confirmar Contratos","Volver" };
+					String[] operacionesContrato = { "Nuevo Contrato","Confirmar Contratos","Volver" };
 					
 					String operacionContratoSeleccionada = (String) JOptionPane.showInputDialog(null, "Seleccione una operación:",
 							"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, operacionesContrato,
 							operacionesContrato[0]);
 					
-					if(operacionContratoSeleccionada.equals("Nuevo Contrato de Venta")){
-						JOptionPane.showMessageDialog(null, "Completar y verificar datos de la venta");
+					if(operacionContratoSeleccionada.equals("Nuevo Contrato")){
 						
-					}else if(operacionContratoSeleccionada.equals("Nuevo Contrato de Alquiler")){
-						JOptionPane.showMessageDialog(null, "Completar y verificar datos del alquiler");  
+					registrarContrato(); 
 
 					}else if(operacionContratoSeleccionada.equals("Confirmar Contratos")){
 						JOptionPane.showMessageDialog(null, "Mostrar contratos hechos por el agente.. solo confirmar");

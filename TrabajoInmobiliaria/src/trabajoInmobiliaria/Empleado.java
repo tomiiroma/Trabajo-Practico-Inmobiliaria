@@ -530,22 +530,54 @@ public class Empleado implements InicioSesion,Validacion{
 		LocalDate fin = null;
 
 		InmuebleControlador inmueblecont = new InmuebleControlador();
-		InquilinoControlador clientecont = new InquilinoControlador();
+		InquilinoControlador inquilino = new InquilinoControlador();
+		PropietarioControlador propietario = new PropietarioControlador();
 
+
+		String [] opcionescontrato  = {"Alquiler", "Venta"};
+		String tipocontrato = (String)JOptionPane.showInputDialog(null,"Ingrese el tipo de Contrato", "Contratos", JOptionPane.DEFAULT_OPTION, null, opcionescontrato,opcionescontrato[0]);
 		
-		String tipocontrato = JOptionPane.showInputDialog("Ingrese el tipo de contrato");
 		String descripcion = JOptionPane.showInputDialog("Ingrese el descripcion del contrato");
 		String url = JOptionPane.showInputDialog("Ingrese la url del contrato");
 		
-		  int idInmueble = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del inmueble"));
-		    Inmueble inmueble = inmueblecont.getInmuebleById(idInmueble);
+		
+		
+	     String[] opcionesInmueble = new String[inmueblecont.getAllInmueble().size()];
+	     for (int i = 0; i < opcionesInmueble.length; i++) {
+	         int idInmueble = inmueblecont.getAllInmueble().get(i).getId_inmueble();
+	         opcionesInmueble[i] = String.valueOf(idInmueble);
+	     }
+	     String opcionesAelegirInmueble = (String) JOptionPane.showInputDialog(null,"Elige el ID del Inmueble","Inmuebles", JOptionPane.DEFAULT_OPTION, null, opcionesInmueble, opcionesInmueble[0]);
+	     int idInmuebleElegido = Integer.parseInt(opcionesAelegirInmueble);
+	     Inmueble inmueble = inmueblecont.getInmuebleById(idInmuebleElegido);	
 
-
-		    int idCliente = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del cliente"));
-		    Cliente cliente = clientecont.getInquilinoById(idCliente);		
-		    
+	     
+	     Cliente cliente = null;
+	     if(tipocontrato.equalsIgnoreCase("Alquiler")) {
+	    	  String [] opcionesInquilino = new String[inquilino.getAllInquilino().size()];
+			    for (int i = 0; i < opcionesInquilino.length; i++) {
+					int idInquilino = inquilino.getAllInquilino().get(i).getId_cliente();
+					opcionesInquilino[i] = String.valueOf(idInquilino);;
+				}
+			    String opcionesAelegirInquilino = (String)JOptionPane.showInputDialog(null,"Elige el ID del Inquilino", "Inquilinos", JOptionPane.DEFAULT_OPTION, null, opcionesInquilino, opcionesInquilino[0]);
+			     int idInquilinoElegido = Integer.parseInt(opcionesAelegirInquilino);
+			      cliente = inquilino.getInquilinoById(idInquilinoElegido);	
+	     }
+	     else if(tipocontrato.equalsIgnoreCase("Venta")) {
+	    	  String [] opcionesPropietario = new String[propietario.getAllPropietario().size()];
+			    for (int i = 0; i < opcionesPropietario.length; i++) {
+					int idPropietario = propietario.getAllPropietario().get(i).getId_cliente();
+					opcionesPropietario[i] = String.valueOf(idPropietario);;
+				}
+			    String opcionesAelegirInquilino = (String)JOptionPane.showInputDialog(null,"Elige el ID del Propietario", "Propietarios", JOptionPane.DEFAULT_OPTION, null, opcionesPropietario, opcionesPropietario[0]);
+			     int idPropietarioElegido = Integer.parseInt(opcionesAelegirInquilino);
+			      cliente = propietario.getPropietarioById(idPropietarioElegido);
+	     }
+	   
+		    JOptionPane.showMessageDialog(null, "Ingrese fecha de Inicio de Contrato");
 		    inicio = validarFecha(inicio);
 		    
+		    JOptionPane.showMessageDialog(null, "Ingrese fecha de Finalizacion de Contrato");
 		fin = validarFecha(fin);
 	    boolean aptoMascota = JOptionPane.showConfirmDialog(null, "¿El contrato permite mascotas?", "Permite mascotas", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
 	
