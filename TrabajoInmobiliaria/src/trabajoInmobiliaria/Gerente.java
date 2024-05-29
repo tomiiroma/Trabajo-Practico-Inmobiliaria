@@ -712,21 +712,21 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 				continue;
 			}
 			
-			int count = 0; // cuenta los inmuebles inactivos 
+			int contador  = 0; // cuenta los inmuebles inactivos 
 		    for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
 		        if (!inmueble.isDisponible()) {
-		            count++;
+		            contador ++;
 		        }
 		    }
 
-		    if (count == 0) {
+		    if (contador  == 0) {
 		        JOptionPane.showMessageDialog(null, "No hay Inmuebles por activar");
 			    repetir = false;
 			    break;	
 		    }
 
 		    
-		    String[] opcionesInmuebles = new String[count];
+		    String[] opcionesInmuebles = new String[contador ];
 		    int index = 0;
 		    for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
 		        if (!inmueble.isDisponible()) {
@@ -749,14 +749,15 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 		                          " - Ambientes: " + inmueble.getCantAmbientes();
 		          
 		          if (opcion.equals(inmuebleSeleccionado)) {	            	
-		        	  boolean activo = obtenerDisponible();
+		        	  boolean disponible = obtenerDisponible();
 		            	
-		            if(activo){	            		
+		            if(disponible){	            		
 		            	inmueble.setDisponible(true);
 		            	inmuebleControlador.updateInmueble(inmueble);
 		            	JOptionPane.showMessageDialog(null, "Felicidades! El inmueble ya se encuentra Disponible");	            		
 		            }else {
-		            	JOptionPane.showMessageDialog(null, "Error! No se pudo realizar la operacion");
+		            	inmueble.setDisponible(false);
+		            	JOptionPane.showMessageDialog(null, "El inmueble sigue sin estar Disponible");
 		            }
 		          }	        
 		    }	

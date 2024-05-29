@@ -321,6 +321,7 @@ public class Agente extends Empleado implements Validacion, InicioSesion{
 			boolean aptoMascota = obtenerMascota().equals("Si");
 			
 			boolean activo = true;
+			
 			//estes valor solo lo puede modificar el gerente
 			boolean disponible = false;
 			

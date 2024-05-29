@@ -683,20 +683,20 @@ public class Empleado implements InicioSesion,Validacion{
 			}
 			
 			
-			int count = 0; // cuenta los inmuebles activos y disponibles
+			int contador  = 0; // cuenta los inmuebles activos y disponibles
 			for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
 			    if (inmueble.isActivo() && inmueble.isDisponible()) {
-			        count++;
+			        contador ++;
 			    }
 			}
 			
-			if (count == 0) { // verificar si hay inmuebles disponibles 
+			if (contador  == 0) { // verificar si hay inmuebles disponibles 
 			    JOptionPane.showMessageDialog(null, "No hay Inmuebles activos y/o disponibles cargados");
 			    repetir = true;
 			    continue;	
 			}
 			
-			String[] opcionesInmuebles = new String[count]; // array con las opciones de inmuebles disponibles
+			String[] opcionesInmuebles = new String[contador ]; // array con las opciones de inmuebles disponibles
 			int index = 0;
 			for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
 			    if (inmueble.isActivo() && inmueble.isDisponible()) {
