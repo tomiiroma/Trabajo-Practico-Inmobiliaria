@@ -24,7 +24,7 @@ public class Agente extends Empleado implements Validacion, InicioSesion{
 
 	@Override
 	public String toString() {
-		return super.toString() + "Agente [id_agente=" + id_agente + "]";
+		return super.toString() + "Agente [id_agente=" + id_agente + "] + \n";
 	}
 
 	public int getId_agente() {

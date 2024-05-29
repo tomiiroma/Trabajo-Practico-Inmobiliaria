@@ -36,7 +36,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 	
 	@Override
 	public String toString() {
-		return super.toString() + "Gerente [id_gerente=" + id_gerente + ", inmuebleControlador=" + inmuebleControlador + "]";
+		return super.toString() + "Gerente [id_gerente=" + id_gerente + "] \n";
 	}
 
 
@@ -1424,7 +1424,7 @@ try {
 		
 		if ( dni == agentes.getDni() && agente.getId_empleado() != agentes.getId_empleado() ) {
 			
-			JOptionPane.showMessageDialog(null, "Se esta intenta modificar el dni al de una persona existente en la base de datos.");
+			JOptionPane.showMessageDialog(null, "Se esta intentandos modificar el dni al de una persona existente en la base de datos.");
 			
 			  return false;
 			
