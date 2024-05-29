@@ -484,7 +484,7 @@ public interface Validacion {
        }}
     	
         if (valido == true) {double num = Double.parseDouble(numero);
-        	if (num>=0) {
+        	if (num>=10000) {
         		
         		monto_final = num;
         		

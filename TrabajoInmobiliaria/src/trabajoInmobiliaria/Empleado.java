@@ -1009,7 +1009,7 @@ public boolean RealizarReserva(Inmueble inmueble,Empleado empleado2,Cliente clie
 		
 	
 		
-		if (inmueble==null) {	System.out.println("No se ha ingresado ningun inmueble");	error=true; return false;}
+		if (inmueble==null) {System.out.println("No se ha ingresado ningun inmueble");	error=true; return false;}
 		
 		if (cliente2==null) {System.out.println("No se ha ingresado ningun cliente"); error=true; return false; }
 		
