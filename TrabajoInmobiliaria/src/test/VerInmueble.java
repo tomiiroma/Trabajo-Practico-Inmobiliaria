@@ -115,8 +115,8 @@ public class VerInmueble {
 		
 		boolean flag = true;
 		
-		if(!inmuebleControlador.getAllInmueble().isEmpty()){
-			flag = true;
+		if(inmuebleControlador.getAllInmueble().isEmpty()){
+			flag = false;
 		}
 		
 		 
@@ -142,8 +142,8 @@ public class VerInmueble {
 		
 		boolean flag = true;
 		
-		if(!inmuebleControlador.getAllInmueble().isEmpty()){
-			flag = true;
+		if(inmuebleControlador.getAllInmueble().isEmpty()){
+			flag = false;
 		}
 		
 		 
@@ -172,8 +172,9 @@ public class VerInmueble {
 		
 		boolean flag = false;
 		
-		if(!inmuebleControlador.getAllInmueble().isEmpty()){
-			flag = true;
+		if(inmuebleControlador.getAllInmueble().isEmpty()){
+			//no hay inmuebles disponibles
+			flag = false;
 		}
 			
 		
@@ -223,7 +224,7 @@ public class VerInmueble {
 	    				System.out.println("Felicidades! El inmueble ya se encuentra Disponible");
 	    				flag = true;
 	    			}else {
-	    				System.out.println("Error! No se pudo realizar la operacion");
+	    				System.out.println("El inmueble no se ha activado");
 	    			}
 	    		}	        
 	    	}
@@ -243,7 +244,8 @@ public class VerInmueble {
 		boolean flag = false;
 		
 		if(inmuebleControlador.getAllInmueble().isEmpty()){
-			flag = true;
+			flag = false;
+			JOptionPane.showMessageDialog(null, "No hay inmuebles en base de datos");
 		}
 	
 	/*	
@@ -309,7 +311,7 @@ public class VerInmueble {
 		
 		boolean flag = false;
 		
-		if(!inmuebleControlador.getAllInmueble().isEmpty()){
+		if(inmuebleControlador.getAllInmueble().isEmpty()){
 	        JOptionPane.showMessageDialog(null, "No hay Inmuebles en la base de datos");
 			flag = true;
 		}
