@@ -705,6 +705,13 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 		
 		try {
 			
+			boolean hayInmuebles = verificarTabla();
+			
+			if(!hayInmuebles){
+				repetir = true;
+				continue;
+			}
+			
 			int count = 0; // cuenta los inmuebles inactivos 
 		    for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
 		        if (!inmueble.isDisponible()) {

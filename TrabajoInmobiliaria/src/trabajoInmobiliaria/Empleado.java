@@ -646,6 +646,26 @@ public class Empleado implements InicioSesion,Validacion{
 	
 	
 //todo inmuebles
+	
+	
+	
+	
+	public boolean verificarTabla() {
+		boolean flag = false;
+		
+		if(inmuebleControlador.getAllInmueble().isEmpty()){
+			JOptionPane.showMessageDialog(null, "No hay Inmuebles cargados");
+			flag = false;
+		}else {
+			flag = true;
+		}
+		
+		
+		return flag;
+	}
+	
+	
+	
 	// ---------------------------LISTA INMUEBLES DISPONIBLES---------------------------
 	public boolean verInmueblesDisponibles() {	
 		boolean repetir;
@@ -654,6 +674,14 @@ public class Empleado implements InicioSesion,Validacion{
 			repetir = false;
 			
 		try {
+			
+			boolean hayInmuebles = verificarTabla();
+			
+			if(!hayInmuebles){
+				repetir = true;
+				continue;
+			}
+			
 			
 			int count = 0; // cuenta los inmuebles activos y disponibles
 			for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
@@ -715,11 +743,14 @@ public class Empleado implements InicioSesion,Validacion{
 			repetir = false;
 			
 			try {
-				if(inmuebleControlador.getAllInmueble().isEmpty()){
-					JOptionPane.showMessageDialog(null, "No hay Inmuebles cargados");
+				
+				boolean hayInmuebles = verificarTabla();
+				
+				if(!hayInmuebles){
 					repetir = true;
-					continue;		
-				}	
+					continue;
+				}
+
 		
 			String[] opcionesInmuebles = new String[inmuebleControlador.getAllInmueble().size()];
 			for (int i = 0; i < opcionesInmuebles.length; i++) {
