@@ -43,7 +43,6 @@ public class Agente extends Empleado implements Validacion, InicioSesion{
 		
 		do {		
 			repetir = true;
-<<<<<<< HEAD
 			String[] opcionesAgente = { "Gestionar Inmuebles", 
 											"Registrar Nuevo Cliente", 
 											"Realizar Nueva Operacion",				
@@ -53,13 +52,10 @@ public class Agente extends Empleado implements Validacion, InicioSesion{
 											"Registrar Pago",
 											"Cargar Nuevo Documento",
 											"Ver Ultimas Operaciones",
+											"Gestionar Reserva",
 											"Cerrar Sesion",
 											"Salir" };
-=======
-			String[] opcionesAgente = { "Gestionar Inmuebles", "Registrar Nuevo Cliente", "Realizar Nueva Operacion",
-					"Realizar Nuevo Contrato", "Realizar Busqueda", "Agendar Reunion o Visita", "Registrar Pago","Cargar Nuevo Documento",
-					"Ver Ultimas Operaciones","Gestionar Reserva", "Cerrar Sesion","Salir" };
->>>>>>> origin/Dani
+
 	
 			String opcionSeleccionada = (String) JOptionPane.showInputDialog(null, "Seleccione una opción:",
 					"Inmobiliaria Maguez | Menu Agente", JOptionPane.DEFAULT_OPTION, null, opcionesAgente,

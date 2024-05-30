@@ -257,112 +257,16 @@ public class Empleado implements InicioSesion,Validacion{
 	
 	/* ------------------------------------------------------------------------------------ REALIZAR RESERVA --------------------------------------------------------------------------------------------------------------------------- */
 
-<<<<<<< HEAD
 	/* -----------------------------------------------------------------------------Realizar reservas 2 ------------------------------------------------------------------------------- */
 	
 	
 	
 	
-	public void RealizarReserva() {
-		
-		boolean error = false;
-		Cliente cliente = null;
-		Empleado empleado = null;
-		LocalDate fecha_pago = null;
-		String pago="";
-		double montovalidado;
-		
-		try {
-			
-		ReservaControlador reservacontrolador = new ReservaControlador();
-		
-		
-		
-		Inmueble inmueble = SeleccionarInmueble();
-		
-		if (inmueble==null) {error=true;}
-		
-		
-		String[] Clientes = {"Inquilino","Comprador","Cancelar Operación"};
-		
-		
-		int clienteseleccionado = JOptionPane.showOptionDialog(null, "Seleccionar el tipo de cliente","Selección de clientes", 0, 0, null, Clientes, Clientes[0]);
-		
-		
-		switch (clienteseleccionado) {
-		case 0:
-			
-			 cliente = SelectorInquilino();
-			
-			
-			break;
-
-		case 1:
-			
-			cliente = SelectorComprador();
-			
-			break;
-			
-			
-		case 2:
-			
-			JOptionPane.showMessageDialog(null, "Se ha cancelado la operación");
-			
-			break;
-			
-		default:
-			break;
-		}
-		
-		if (cliente==null) {error=true;}
-		
-		
-		fecha_pago = validarFecha(fecha_pago);
-		
-		pago = JOptionPane.showInputDialog("Ingresar un número entero o con dos decimales para el monto de la reserva");
-		
-		montovalidado = ValidarMonto(pago);
-		
-		String forma_pago = JOptionPane.showInputDialog(null, "Escribar la forma de pago");
-		
-		
-		String[] Empleados = {"Agente","Gerente","Cancelar operación"};
-		
-		
-		int seleccionEmpleados = JOptionPane.showOptionDialog(null, "Seleccionar el tipo de empleado que realizara la reserva", "Modulo reserva", 0, 0, null, Empleados, Empleados[0]);
-		
-		
-		if (seleccionEmpleados==0) {	empleado = SeleccionarAgente();}
-		
-		else if (seleccionEmpleados==1) { empleado = ObtenerGerenteId();}
-		
-		else { JOptionPane.showMessageDialog(null, "Se cancelo la operacioón"); error=true; }
-		
-		if (empleado==null) {error = true;}
-		
-		if (error==false) {
-			
-			
-			reservacontrolador.addReserva(new Reserva(inmueble,cliente,fecha_pago,montovalidado,forma_pago,empleado));
-			
-			
-		}
-		
-		
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, e);
-		}
-		
-
-		
-	}
-	
-	
-=======
 	
 	
 	
->>>>>>> origin/Dani
+	
+	
 	/* ------------------------------------------------------------------------------------------------------- VER TODAS LAS RESERVAS ------------------------------------------------------------------------------------------------- */
 
 	

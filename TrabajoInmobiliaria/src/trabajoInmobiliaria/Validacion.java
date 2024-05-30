@@ -563,7 +563,6 @@ public interface Validacion {
 	
 /*-------------------------------------------------------------------------------------------- ValidarNombre 2 ---------------------------------------------------------------------------------------------------------------- */	
 	
-<<<<<<< HEAD
 /* -----Inmuebles------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/	
 
 	InmuebleControlador inmuebleControlador = new InmuebleControlador();
@@ -601,7 +600,6 @@ public interface Validacion {
 	
 	
 	
-=======
 	default boolean validarNombre2(String nombre) {
 		
 		boolean confirmacion = true;
@@ -781,7 +779,6 @@ public interface Validacion {
 		
 		
 		
->>>>>>> origin/Dani
 }
 
 	
