@@ -929,193 +929,323 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 	
 //-----------------------------------------MODIFICAR INMUEBLE --------------------------------------u	
 	public boolean modificarInmueble() {
+		boolean flag = false;
+		InmuebleControlador inmuebleControlador = new InmuebleControlador();
+				
 
-					
-		try {
-			if(inmuebleControlador.getAllInmueble().isEmpty()){
-				JOptionPane.showMessageDialog(null, "No hay Inmuebles cargados");
+		if(inmuebleControlador.getAllInmueble().isEmpty()){
+			flag=false;
+			JOptionPane.showMessageDialog(null, "No hay inmuebles en la base de datos");
+			
+		}else {			
+			int contador = 0;
+			for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) { // verificamos que hayan inmuebles con el atributo activo en false, para poder setearlo
+				if(inmueble.isActivo()==false) {
+					contador ++;
+					flag = true;
+				}	    	    
 			}
 			
-			String[] opcionesInmuebles = new String[inmuebleControlador.getAllInmueble().size()];
-			for (int i = 0; i < opcionesInmuebles.length; i++) {
-				Inmueble inmueble = inmuebleControlador.getAllInmueble().get(i);				
-	            opcionesInmuebles[i] = "ID Inmueble: " + inmueble.getId_inmueble() + " - Dirección: " + inmueble.getDireccion() +" "+inmueble.getAlturaDireccion()+ " - Ambientes: " + inmueble.getCantAmbientes();
-			
-			}		
-
-			String inmuebleSeleccionado = (String) JOptionPane.showInputDialog(null, "Seleccione Inmueble", "Modificar Inmueble",
-					JOptionPane.QUESTION_MESSAGE, null, opcionesInmuebles, opcionesInmuebles[0]);
-			
-			
-			
-            Inmueble inmuebleAmodificar = null;
-            
-			if(inmuebleSeleccionado !=null){
+			if(contador==0){
+				JOptionPane.showMessageDialog(null, "No hay Inmuebles disponibles para modificar");
+				flag = false; // no hay inmuebles para activar
+				
+			}else {
+				
+			//Imprimimos los inmuebles ---con atributo Disponible seteado en False
+				
+				String[] opcionesInmuebles = new String[contador];
+				int index = 0;
 				for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
-					String opcion = "ID Inmueble: " + inmueble.getId_inmueble() + " - Dirección: " + inmueble.getDireccion() +" "+inmueble.getAlturaDireccion()+ " - Ambientes: " + inmueble.getCantAmbientes();					
-					
-					if(opcion.equals(inmuebleSeleccionado)){
-						inmuebleAmodificar=inmueble;
-						break;
-						}      
-					}			
-		
-	            if(inmuebleAmodificar !=null){	        
-	            	
-	            	boolean repetir2;
-	            	
-	            do {
-	            	repetir2 = false;
-	            	
-	            try {
-					String[] opcionesModificar = { "Tipo de Inmueble","Condición","Cantidad de Ambientes","Barrio","Dirección","Descripcion",
+					if (inmueble.isActivo()==false) {
+						opcionesInmuebles[index++] = "ID Inmueble: " + inmueble.getId_inmueble() + 
+														" - Dirección: " + inmueble.getDireccion() +
+														" "+inmueble.getAlturaDireccion()+ 
+														" - Ambientes: " + inmueble.getCantAmbientes();	
+					}
+				}
+				
+				//seleccion del inmueble
+				String inmuebleSeleccionado = (String) JOptionPane.showInputDialog(null,
+						"Seleccione Inmueble para activar","Activar Inmueble", JOptionPane.QUESTION_MESSAGE,null, opcionesInmuebles,opcionesInmuebles[0]);
+				
+				
+				Inmueble inmuebleAmodificar = null;
+				
+				if(inmuebleSeleccionado !=null){
+					for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
+						String opcion = "ID Inmueble: " + inmueble.getId_inmueble() + 
+										" - Dirección: " + inmueble.getDireccion() +
+										" "+inmueble.getAlturaDireccion()+ 
+										" - Ambientes: " + inmueble.getCantAmbientes();					
+						
+						if(opcion.equals(inmuebleSeleccionado)){
+							inmuebleAmodificar=inmueble;
+							break;
+							}      
+						}	
+					boolean repetir;
+			do {
+				repetir =false;
+				
+		        if(inmuebleSeleccionado!=null){
+		        	String[] opcionesModificar = { "Tipo de Inmueble","Condición","Cantidad de Ambientes","Barrio","Dirección","Descripcion",
 							"Años Antiguedad","Cantidad de Baños","Cantidad de Dormitorios","m2 Superficie Cubierta",
 							"Precio","Refacción","Apto para Mascotas","Patio","Volver"};
 						
 					String opcionSeleccionada = (String) JOptionPane.showInputDialog(null, "Seleccione un atributo para Modificar:",
 							"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, opcionesModificar,
 							opcionesModificar[0]);		
+		        	
+					
+					if(opcionSeleccionada.equals("Tipo de Inmueble")){
+						String tipoInmueble = obtenerTipoInmueble();
+							if (!tipoInmueble.equals("Departamento")) {
+
+								String direccion = null;
+								String alturaDireccion = null;
+						
+								direccion = validarCadena("Ingrese la calle donde se encuentra el Inmueble");
+								alturaDireccion = validarEntero("Ingrese la Altura de la calle del Inmueble");
 								
-				if(opcionSeleccionada.equals("Tipo de Inmueble")){
-					String tipoInmueble = obtenerTipoInmueble();
-					inmuebleAmodificar.setTipo_inmueble(tipoInmueble);
-					JOptionPane.showMessageDialog(null, "Tipo de Inmueble actualizado");
-					
-					 if (!tipoInmueble.equals("Departamento")) {
-                         inmuebleAmodificar.setPiso(null);
-                         inmuebleAmodificar.setNroDepto(null);
-                         
-                     }else {
-                    	String piso = null;
-                    	String nroDepto = null;
-             	    	piso = validarEntero("Ingrese el numero de piso donde se encuentra el Departamento");
-                        inmuebleAmodificar.setPiso(piso);
-                         
-         		    	nroDepto=validarCadena("Indique el Número o Letra de depatartamento"); //validar despues 
-                        inmuebleAmodificar.setNroDepto(nroDepto);
-                        
-    					JOptionPane.showMessageDialog(null, "Tipo De inmueble actualizado");
+								if(tipoInmueble.equalsIgnoreCase(inmuebleAmodificar.getTipo_inmueble()) && direccion.equalsIgnoreCase(inmuebleAmodificar.getDireccion())&&
+										alturaDireccion.equalsIgnoreCase(inmuebleAmodificar.getAlturaDireccion())){
+							        flag=true;
+									JOptionPane.showMessageDialog(null, "La nueva dirección y altura son iguales a los valores existentes. No se realizaron cambios en la direccion.");
+									break;
+								}else {
+									
+									for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {									
+										if(inmueble.getTipo_inmueble().equals("Casa")&&
+												inmueble.getDireccion().equalsIgnoreCase(direccion)&&
+												inmueble.getAlturaDireccion().equals(alturaDireccion)){
+											
+											flag = false;
+											JOptionPane.showMessageDialog(null, "Error No se pudo modificar la casa. Casa duplicada");
+											break;
+										}else {
+											flag = true;
+											inmuebleAmodificar.setPiso(null);
+											inmuebleAmodificar.setNroDepto(null);
+											inmuebleAmodificar.setTipo_inmueble(tipoInmueble);
+											inmuebleAmodificar.setDireccion(direccion);
+											inmuebleAmodificar.setAlturaDireccion(alturaDireccion);
+											
+											JOptionPane.showMessageDialog(null, "Tipo de Inmueble, direccion y altura modificados correctamente");
+										}									
+									}											
+								}
+                    
+	                     }else {
+	                    	String piso = null;
+	                    	String nroDepto = null;
+	                    	String direccion = null;
+							String alturaDireccion = null;	                    	
 
-                     }										
-					
-				}else if(opcionSeleccionada.equals("Condición")){
-					String condicion = obtenerCondicion();
-					inmuebleAmodificar.setCondicion(condicion);
-					JOptionPane.showMessageDialog(null, "Tipo de Condicion actualizada");
-					
-					
-				}else if(opcionSeleccionada.equals("Cantidad de Ambientes")){					
-					String cantAmbientes = null;
-					cantAmbientes = validarEntero("Ingrese la cantidad de Ambientes que tiene el Inmueble");
-					inmuebleAmodificar.setCantAmbientes(cantAmbientes);		
-					JOptionPane.showMessageDialog(null, "Cantidad de Ambientes Actualizada");
-					
-					
-				}else if(opcionSeleccionada.equals("Barrio")){
-					String barrio = obtenerBarrio();
-					inmuebleAmodificar.setBarrio(barrio);
-					JOptionPane.showMessageDialog(null, "Barrio Actualizado!");
-					
-					
-				}else if(opcionSeleccionada.equals("Dirección")){
-					String direccion = null;
-					String alturaDireccion = null;
-					direccion = validarCadena("Ingrese la calle donde se encuentra el Inmueble");
-					inmuebleAmodificar.setDireccion(direccion);
-					alturaDireccion = validarCadena("Ingrese la Altura de la calle del Inmueble");
-					inmuebleAmodificar.setAlturaDireccion(alturaDireccion);
-					
-					JOptionPane.showMessageDialog(null, "Dirección Actualizada");
+	             	    	piso = validarEntero("Ingrese el numero de piso donde se encuentra el Departamento");	                         
+	         		    	nroDepto=validarCadena("Indique el Número o Letra de depatartamento"); 
+							direccion = validarCadena("Ingrese la calle donde se encuentra el Departamento");
+							alturaDireccion = validarEntero("Ingrese la Altura de la calle del Departamento");
+							
+							for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
+								if(inmueble.getTipo_inmueble().equals("Departamento") && inmueble.getDireccion().equals(direccion)
+										&& inmueble.getAlturaDireccion().equalsIgnoreCase(alturaDireccion)&& inmueble.getPiso().equalsIgnoreCase(piso)
+										&& inmueble.getNroDepto().equalsIgnoreCase(nroDepto)){	
+									flag = false;
+									JOptionPane.showMessageDialog(null, "Error No se pudo modificar el Departamento. Departamento Duplicado");	
+									break;
+								}else {
+									flag = true;
+									// Agregar el inmueble al controlador
+									inmuebleAmodificar.setPiso(piso);
+									inmuebleAmodificar.setNroDepto(nroDepto);
+									inmuebleAmodificar.setTipo_inmueble(tipoInmueble);
+									inmuebleAmodificar.setDireccion(direccion);
+									inmuebleAmodificar.setAlturaDireccion(alturaDireccion);
+									JOptionPane.showMessageDialog(null, "Tipo de Inmueble,Nro de Piso, nro Depto, direccion  y altura modificados correctamente");
+								}
+							}															              
+	                     }										
+						
+					}else if(opcionSeleccionada.equals("Condición")){
+						String condicion = obtenerCondicion();
+						inmuebleAmodificar.setCondicion(condicion);
+						JOptionPane.showMessageDialog(null, "Tipo de Condicion actualizada");
+						
+						
+					}else if(opcionSeleccionada.equals("Cantidad de Ambientes")){					
+						String cantAmbientes = null;
+						cantAmbientes = validarEntero("Ingrese la cantidad de Ambientes que tiene el Inmueble");
+						inmuebleAmodificar.setCantAmbientes(cantAmbientes);		
+						JOptionPane.showMessageDialog(null, "Cantidad de Ambientes Actualizada");
+						
+						
+					}else if(opcionSeleccionada.equals("Barrio")){
+						String barrio = obtenerBarrio();
+						inmuebleAmodificar.setBarrio(barrio);
+						JOptionPane.showMessageDialog(null, "Barrio Actualizado!");
+						
+						
+					}else if(opcionSeleccionada.equals("Dirección")){
+						String direccionNueva = null;
+						String alturaDireccionNueva = null;
+						
+						direccionNueva = validarCadena("Ingrese la calle donde se encuentra el Inmueble");
+						alturaDireccionNueva = validarEntero("Ingrese la Altura de la calle del Inmueble");
+						
+						String tipoInmueble = obtenerTipoInmueble();
+						
+						if(!tipoInmueble.equals("Departamento")){
+							
+							if(direccionNueva.equalsIgnoreCase(inmuebleAmodificar.getDireccion())&&
+									alturaDireccionNueva.equalsIgnoreCase(inmuebleAmodificar.getAlturaDireccion())){
+						        flag=true;
+								JOptionPane.showMessageDialog(null, "La nueva dirección y altura son iguales a los valores existentes. No se realizaron cambios en la direccion.");
+							}else {
+								for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
+									if(inmueble.getTipo_inmueble().equals("Casa")&&
+											inmueble.getDireccion().equalsIgnoreCase(direccionNueva)&&
+											inmueble.getAlturaDireccion().equals(alturaDireccionNueva)){
+										
+										flag = false;
+										JOptionPane.showMessageDialog(null, "Error No se pudo modificar la casa. Casa duplicada");
+										break;
+									}else {
+										flag = true;
+										inmuebleAmodificar.setPiso(null);
+										inmuebleAmodificar.setNroDepto(null);
+										inmuebleAmodificar.setTipo_inmueble(tipoInmueble);
+										inmuebleAmodificar.setDireccion(direccionNueva);
+										inmuebleAmodificar.setAlturaDireccion(alturaDireccionNueva);
+										
+										JOptionPane.showMessageDialog(null, "Tipo de Inmueble, direccion y altura modificados correctamente");
+									}			
+								}									
+								
+							}
+		
+						}else {
+	                    	String piso = null;
+	                    	String nroDepto = null;          	
 
+	             	    	piso = validarEntero("Ingrese el numero de piso donde se encuentra el Departamento");	                         
+	         		    	nroDepto=validarCadena("Indique el Número o Letra de depatartamento"); 
+	         		    	
+	         		    	if(direccionNueva.equalsIgnoreCase(inmuebleAmodificar.getDireccion())
+	         		    		&&alturaDireccionNueva.equalsIgnoreCase(inmuebleAmodificar.getAlturaDireccion()) 
+								&&piso.equalsIgnoreCase(inmuebleAmodificar.getPiso())
+								&&nroDepto.equalsIgnoreCase(inmuebleAmodificar.getNroDepto())){
+						        flag=true;
+								JOptionPane.showMessageDialog(null, "La nueva dirección, la altura, el nro de piso y el nro de depto son iguales a los valores existentes. No se realizaron cambios.");
+							}else {
+								for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
+									if(inmueble.getTipo_inmueble().equals("Departamento") && inmueble.getDireccion().equals(direccionNueva)
+											&& inmueble.getAlturaDireccion().equalsIgnoreCase(alturaDireccionNueva)&& inmueble.getPiso().equalsIgnoreCase(piso)
+											&& inmueble.getNroDepto().equalsIgnoreCase(nroDepto)){	
+										flag = false;
+										JOptionPane.showMessageDialog(null, "Error No se pudo modificar el Departamento. Departamento Duplicado");			
+									}else {
+										flag = true;
+										// Agregar el inmueble al controlador
+										inmuebleAmodificar.setPiso(piso);
+										inmuebleAmodificar.setNroDepto(nroDepto);
+										inmuebleAmodificar.setTipo_inmueble(tipoInmueble);
+										inmuebleAmodificar.setDireccion(direccionNueva);
+										inmuebleAmodificar.setAlturaDireccion(alturaDireccionNueva);
+										JOptionPane.showMessageDialog(null, "Tipo de Inmueble,Nro de Piso, nro Depto, direccion  y altura modificados correctamente");
+									}
+								}															              						
+							}
+							
+	                     }				
 					
-				}else if(opcionSeleccionada.equals("Descripcion")){
-					String descripcion = null;
-					descripcion = validarCadena("Ingrese una descripción del inmueble");
-					inmuebleAmodificar.setDescripcion(descripcion);
-					JOptionPane.showMessageDialog(null, "Descripcion Actualizada");
+					}else if(opcionSeleccionada.equals("Descripcion")){
+						String descripcion = null;
+						descripcion = validarCadena("Ingrese una descripción del inmueble");
+						inmuebleAmodificar.setDescripcion(descripcion);
+						JOptionPane.showMessageDialog(null, "Descripcion Actualizada");
 
+						
+					}else if(opcionSeleccionada.equals("Años Antiguedad")){
+						String antiguedad = null;
+						antiguedad = validarEntero("Ingrese la antiguedad que tiene el inmueble");
+						inmuebleAmodificar.setAntiguedad(antiguedad);
+						JOptionPane.showMessageDialog(null, "Antiguedad actualizada");
+
+						
+					}else if(opcionSeleccionada.equals("Cantidad de Baños")){
+						String banios = null;
+						banios = validarCadena("Ingrese la cantidad de baños ");
+						inmuebleAmodificar.setBanio(banios);
+						JOptionPane.showMessageDialog(null, "Cantidad de baños Actualizada");
+
+						
+					}else if(opcionSeleccionada.equals("Cantidad de Dormitorios")){
+						String dormitorio = null;
+						dormitorio = validarCadena("Ingrese la cantidad de dormitorios");
+						inmuebleAmodificar.setDormitorio(dormitorio);
+						JOptionPane.showMessageDialog(null, "Cantidad de dormitorios Actualizada");
+
+						
+					}else if(opcionSeleccionada.equals("m2 Superficie Cubierta")) {
+						double superficieCubierta = 0;
+						superficieCubierta = validarDouble("Ingrese la cantidad la cantidad de m2 de superficie cubierta");
+						inmuebleAmodificar.setSuperficie_cubierta(superficieCubierta);	
+						JOptionPane.showMessageDialog(null, "m2 cubierta Actualizada");
+
+
+					}else if(opcionSeleccionada.equals("Patio")){
+						boolean tienePatio = obtenerPatio();	
+
+						if(tienePatio==true){
+							double superficieDescubierta = validarDouble("Ingrese la cantidad la cantidad de m2 de superficie descubierta");
+							inmuebleAmodificar.setSuperficie_descubierta(superficieDescubierta);		
+							JOptionPane.showMessageDialog(null, "Patio y M2 superficie descubierta actualizados");
+						}else {
+							inmuebleAmodificar.setSuperficie_descubierta(0);
+							JOptionPane.showMessageDialog(null, "Patio actualizado");
+						}			
+		
+					}else if(opcionSeleccionada.equals("Precio")){
+						double precio = 0;
+						precio = validarDouble("Ingrese el precio del Inmueble");
+						inmuebleAmodificar.setPrecio(precio);					
+						JOptionPane.showMessageDialog(null, "Precio actualizado");
+
+						
+					}else if(opcionSeleccionada.equals("Refacción")){
+						boolean refaccionar = obtenerRefaccion().equals("Si");
+						inmuebleAmodificar.setRefaccionar(refaccionar);				
+						JOptionPane.showMessageDialog(null, "Refaccion actualizada");
+
+						
+					}else if(opcionSeleccionada.equals("Apto para Mascotas")){
+						boolean aptoMascota = obtenerMascota().equals("Si");
+						inmuebleAmodificar.setApto_mascota(aptoMascota);
+						JOptionPane.showMessageDialog(null, "Apto para Mascotas actualizado");
 					
-				}else if(opcionSeleccionada.equals("Años Antiguedad")){
-					String antiguedad = null;
-					antiguedad = validarEntero("Ingrese la antiguedad que tiene el inmueble");
-					inmuebleAmodificar.setAntiguedad(antiguedad);
-					JOptionPane.showMessageDialog(null, "Antiguedad actualizada");
-
+					}else if(opcionSeleccionada.equals("Volver")){
+						break;
+					}
 					
-				}else if(opcionSeleccionada.equals("Cantidad de Baños")){
-					String banios = null;
-					banios = validarCadena("Ingrese la cantidad de baños ");
-					inmuebleAmodificar.setBanio(banios);
-					JOptionPane.showMessageDialog(null, "Cantidad de baños Actualizada");
-
-					
-				}else if(opcionSeleccionada.equals("Cantidad de Dormitorios")){
-					String dormitorio = null;
-					dormitorio = validarCadena("Ingrese la cantidad de dormitorios");
-					inmuebleAmodificar.setDormitorio(dormitorio);
-					JOptionPane.showMessageDialog(null, "Cantidad de dormitorios Actualizada");
-
-					
-				}else if(opcionSeleccionada.equals("m2 Superficie Cubierta")) {
-					double superficieCubierta = 0;
-					superficieCubierta = validarDouble("Ingrese la cantidad la cantidad de m2 de superficie cubierta");
-					inmuebleAmodificar.setSuperficie_cubierta(superficieCubierta);	
-					JOptionPane.showMessageDialog(null, "m2 cubierta Actualizada");
-
-
-				}else if(opcionSeleccionada.equals("Patio")){
-					boolean tienePatio = obtenerPatio();	
-
-					if(tienePatio==true){
-						double superficieDescubierta = validarDouble("Ingrese la cantidad la cantidad de m2 de superficie descubierta");
-						inmuebleAmodificar.setSuperficie_descubierta(superficieDescubierta);		
-						JOptionPane.showMessageDialog(null, "Patio y M2 superficie descubierta actualizados");
-					}else {
-						inmuebleAmodificar.setSuperficie_descubierta(0);
-						JOptionPane.showMessageDialog(null, "Patio actualizado");
-					}			
+					if(flag == true){
+						inmuebleControlador.updateInmueble(inmuebleAmodificar);
+						JOptionPane.showMessageDialog(null, "Inmueble actualizado exitosamente");
+						flag=true;
+						}
+			        	
+			        }
+				} while (!repetir);	
 	
-				}else if(opcionSeleccionada.equals("Precio")){
-					double precio = 0;
-					precio = validarDouble("Ingrese el precio del Inmueble");
-					inmuebleAmodificar.setPrecio(precio);					
-					JOptionPane.showMessageDialog(null, "Precio actualizado");
-
-					
-				}else if(opcionSeleccionada.equals("Refacción")){
-					boolean refaccionar = obtenerRefaccion().equals("Si");
-					inmuebleAmodificar.setRefaccionar(refaccionar);				
-					JOptionPane.showMessageDialog(null, "Refaccion actualizada");
-
-					
-				}else if(opcionSeleccionada.equals("Apto para Mascotas")){
-					boolean aptoMascota = obtenerMascota().equals("Si");
-					inmuebleAmodificar.setApto_mascota(aptoMascota);
-					JOptionPane.showMessageDialog(null, "Apto para Mascotas actualizado");
-				
 				}else {
-					break;
+					JOptionPane.showMessageDialog(null, "error");
 				}
-				 inmuebleControlador.updateInmueble(inmuebleAmodificar);
-                 JOptionPane.showMessageDialog(null, "Inmueble actualizado exitosamente");
-        		
-	            } catch (Exception e) {
-	            	JOptionPane.showMessageDialog(null, "Porfavor Seleccione una opción valida.");
-	            }
-	            
-	            }while(!repetir2);
-	            
-		            	}
-					
-				}
-			
-			} catch (Exception e) {
-            	JOptionPane.showMessageDialog(null, "Porfavor Seleccione una opción valida.");
 				
-				}
-
+			}
 			
-		return true;
+		}
+		
+		return true;				
 	}
 
 
@@ -1159,7 +1289,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 		boolean disponible = obtenerDisponible();
 		boolean refaccionar = obtenerRefaccion().equals("Si");
 		boolean aptoMascota = obtenerMascota().equals("Si");
-		boolean activo = true; //esto cambia segun las operaciones que se hagan con el inmueble
+		boolean activo = false; //esto cambia segun las operaciones que se hagan con el inmueble
 		
 		if(tipoInmueble.equals("Departamento") && validarDepto(direccion, alturaDireccion, piso, nroDepto)){
 			JOptionPane.showMessageDialog(null, "Error! No se pudo registrar el Departamento. Departamento duplicado.");
