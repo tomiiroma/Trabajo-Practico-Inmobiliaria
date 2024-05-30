@@ -888,31 +888,36 @@ public class ModificarInmueble implements Validacion{
 						
 						if(!tipoInmueble.equals("Departamento")){
 							
-							if(direccionNueva.equalsIgnoreCase(inmuebleAmodificar.getDireccion())&&
+							if(tipoInmueble.equalsIgnoreCase(inmuebleAmodificar.getTipo_inmueble()) && direccionNueva.equalsIgnoreCase(inmuebleAmodificar.getDireccion())&&
 									alturaDireccionNueva.equalsIgnoreCase(inmuebleAmodificar.getAlturaDireccion())){
+								
 						        flag=true;
 								JOptionPane.showMessageDialog(null, "La nueva dirección y altura son iguales a los valores existentes. No se realizaron cambios en la direccion.");
-							}else {
-								for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
+								
+							}else {				
+								boolean inmuebleDuplicado=false;
+								for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {									
 									if(inmueble.getTipo_inmueble().equals("Casa")&&
 											inmueble.getDireccion().equalsIgnoreCase(direccionNueva)&&
-											inmueble.getAlturaDireccion().equals(alturaDireccionNueva)){
+											inmueble.getAlturaDireccion().equals(alturaDireccionNueva)&&
+											inmueble.getId_inmueble() != inmuebleAmodificar.getId_inmueble()){		
 										
-										flag = false;
 										JOptionPane.showMessageDialog(null, "Error No se pudo modificar la casa. Casa duplicada");
+										inmuebleDuplicado=true;
+										flag = false;
 										break;
-									}else {
+										
+									}									
+								}
+								if(!inmuebleDuplicado){
 										flag = true;
 										inmuebleAmodificar.setPiso(null);
 										inmuebleAmodificar.setNroDepto(null);
 										inmuebleAmodificar.setTipo_inmueble(tipoInmueble);
 										inmuebleAmodificar.setDireccion(direccionNueva);
-										inmuebleAmodificar.setAlturaDireccion(alturaDireccionNueva);
-										
-										JOptionPane.showMessageDialog(null, "Tipo de Inmueble, direccion y altura modificados correctamente");
-									}			
-								}									
-								
+										inmuebleAmodificar.setAlturaDireccion(alturaDireccionNueva);											
+										JOptionPane.showMessageDialog(null, "Tipo de Inmueble, direccion y altura modificados correctamente");					
+								}
 							}
 		
 						}else {
@@ -922,33 +927,44 @@ public class ModificarInmueble implements Validacion{
 	             	    	piso = validarEntero("Ingrese el numero de piso donde se encuentra el Departamento");	                         
 	         		    	nroDepto=validarCadena("Indique el Número o Letra de depatartamento"); 
 	         		    	
-	         		    	if(direccionNueva.equalsIgnoreCase(inmuebleAmodificar.getDireccion())
-	         		    		&&alturaDireccionNueva.equalsIgnoreCase(inmuebleAmodificar.getAlturaDireccion()) 
-								&&piso.equalsIgnoreCase(inmuebleAmodificar.getPiso())
-								&&nroDepto.equalsIgnoreCase(inmuebleAmodificar.getNroDepto())){
+	         		    	if(tipoInmueble.equalsIgnoreCase(inmuebleAmodificar.getTipo_inmueble()) && 
+	         		    			direccionNueva.equalsIgnoreCase(inmuebleAmodificar.getDireccion())&&
+	         		    			alturaDireccionNueva.equalsIgnoreCase(inmuebleAmodificar.getAlturaDireccion())&&
+									piso.equalsIgnoreCase(inmuebleAmodificar.getPiso()) &&
+									nroDepto.equalsIgnoreCase(inmuebleAmodificar.getNroDepto())){
+		
 						        flag=true;
-								JOptionPane.showMessageDialog(null, "La nueva dirección, la altura, el nro de piso y el nro de depto son iguales a los valores existentes. No se realizaron cambios.");
+								JOptionPane.showMessageDialog(null, "La nueva dirección, altura el nro de piso y el nro de depto son iguales a los valores existentes. No se realizaron cambios en la direccion.");
+								
 							}else {
-								for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
-									if(inmueble.getTipo_inmueble().equals("Departamento") && inmueble.getDireccion().equals(direccionNueva)
-											&& inmueble.getAlturaDireccion().equalsIgnoreCase(alturaDireccionNueva)&& inmueble.getPiso().equalsIgnoreCase(piso)
-											&& inmueble.getNroDepto().equalsIgnoreCase(nroDepto)){	
-										flag = false;
+								boolean inmuebleDuplicado=false;
+								for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {									
+									if(inmueble.getTipo_inmueble().equals("Departamento")&&
+											inmueble.getDireccion().equalsIgnoreCase(direccionNueva)&&
+											inmueble.getAlturaDireccion().equals(alturaDireccionNueva)&&
+											inmueble.getPiso().equals(piso)&&
+											inmueble.getNroDepto().equals(nroDepto)&&
+											inmueble.getId_inmueble() != inmuebleAmodificar.getId_inmueble()){		
+										
 										JOptionPane.showMessageDialog(null, "Error No se pudo modificar el Departamento. Departamento Duplicado");			
-									}else {
+										inmuebleDuplicado=true;
+										flag = false;
+										break;
+										
+									}									
+								}
+								if(!inmuebleDuplicado){
 										flag = true;
-										// Agregar el inmueble al controlador
 										inmuebleAmodificar.setPiso(piso);
 										inmuebleAmodificar.setNroDepto(nroDepto);
 										inmuebleAmodificar.setTipo_inmueble(tipoInmueble);
 										inmuebleAmodificar.setDireccion(direccionNueva);
 										inmuebleAmodificar.setAlturaDireccion(alturaDireccionNueva);
-										JOptionPane.showMessageDialog(null, "Tipo de Inmueble,Nro de Piso, nro Depto, direccion  y altura modificados correctamente");
-									}
-								}															              						
-							}
-							
-	                     }				
+										JOptionPane.showMessageDialog(null, "Tipo de Inmueble,Nro de Piso, nro Depto, direccion  y altura modificados correctamente");			
+								}
+							}	
+														              
+						 }								
 					
 					}else if(opcionSeleccionada.equals("Descripcion")){
 						String descripcion = null;
