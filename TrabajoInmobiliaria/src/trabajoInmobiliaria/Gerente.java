@@ -1,6 +1,6 @@
 package trabajoInmobiliaria;
 
-import java.time.LocalDate;  
+import java.time.LocalDate;   
 
 
 import javax.swing.JOptionPane;
@@ -977,7 +977,6 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 		String cantAmbientes = null;
 		String antiguedad = null;
 		String banios = null;
-		String dormitorios= null;
 		String direccion = null;
 		String dormitorio = null;
 		String alturaDireccion = null;

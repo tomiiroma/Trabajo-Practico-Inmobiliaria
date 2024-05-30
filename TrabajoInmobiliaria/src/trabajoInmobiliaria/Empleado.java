@@ -983,7 +983,7 @@ public class Empleado implements InicioSesion,Validacion{
 		boolean confirmacion = false;
 		do {		
 			try {				
-				seleccion = (String) JOptionPane.showInputDialog(null, "¿El inmueble tiene Patio?",
+				seleccion = (String) JOptionPane.showInputDialog(null, "¿El inmueble tiene Patio o Balcón?",
 						"Inmobiliaria Maguez | Menu Gerente", JOptionPane.DEFAULT_OPTION, null, patioSeleccion, patioSeleccion[0]);
 				
 				if(seleccion ==null){
