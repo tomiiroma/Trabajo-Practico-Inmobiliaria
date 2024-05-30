@@ -1,9 +1,9 @@
 package trabajoInmobiliaria;
 
-import java.time.LocalDate; 
+import java.time.LocalDate;
+import java.util.Iterator;
 
 import javax.swing.JOptionPane;
-
 
 import controlador.AgenteControlador;
 import controlador.AlquilerControlador;
@@ -263,99 +263,9 @@ public class Empleado implements InicioSesion,Validacion{
 	
 	
 	
-	public void RealizarReserva() {
-		
-		boolean error = false;
-		Cliente cliente = null;
-		Empleado empleado = null;
-		LocalDate fecha_pago = null;
-		String pago="";
-		double montovalidado;
-		
-		try {
-			
-		ReservaControlador reservacontrolador = new ReservaControlador();
-		
-		
-		
-		Inmueble inmueble = SeleccionarInmueble();
-		
-		if (inmueble==null) {error=true;}
-		
-		
-		String[] Clientes = {"Inquilino","Comprador","Cancelar Operación"};
-		
-		
-		int clienteseleccionado = JOptionPane.showOptionDialog(null, "Seleccionar el tipo de cliente","Selección de clientes", 0, 0, null, Clientes, Clientes[0]);
-		
-		
-		switch (clienteseleccionado) {
-		case 0:
-			
-			 cliente = SelectorInquilino();
-			
-			
-			break;
-
-		case 1:
-			
-			cliente = SelectorComprador();
-			
-			break;
-			
-			
-		case 2:
-			
-			JOptionPane.showMessageDialog(null, "Se ha cancelado la operación");
-			
-			break;
-			
-		default:
-			break;
-		}
-		
-		if (cliente==null) {error=true;}
-		
-		
-		fecha_pago = validarFecha(fecha_pago);
-		
-		pago = JOptionPane.showInputDialog("Ingresar un número entero o con dos decimales para el monto de la reserva");
-		
-		montovalidado = ValidarMonto(pago);
-		
-		String forma_pago = JOptionPane.showInputDialog(null, "Escribar la forma de pago");
-		
-		
-		String[] Empleados = {"Agente","Gerente","Cancelar operación"};
-		
-		
-		int seleccionEmpleados = JOptionPane.showOptionDialog(null, "Seleccionar el tipo de empleado que realizara la reserva", "Modulo reserva", 0, 0, null, Empleados, Empleados[0]);
-		
-		
-		if (seleccionEmpleados==0) {	empleado = SeleccionarAgente();}
-		
-		else if (seleccionEmpleados==1) { empleado = ObtenerGerenteId();}
-		
-		else { JOptionPane.showMessageDialog(null, "Se cancelo la operacioón"); error=true; }
-		
-		if (empleado==null) {error = true;}
-		
-		if (error==false) {
-			
-			
-			reservacontrolador.addReserva(new Reserva(inmueble,cliente,fecha_pago,montovalidado,forma_pago,empleado));
-			
-			
-		}
-		
-		
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, e);
-		}
-		
-
-		
-	}
+	
+	
+	
 	
 	
 	/* ------------------------------------------------------------------------------------------------------- VER TODAS LAS RESERVAS ------------------------------------------------------------------------------------------------- */
@@ -515,22 +425,54 @@ public class Empleado implements InicioSesion,Validacion{
 		LocalDate fin = null;
 
 		InmuebleControlador inmueblecont = new InmuebleControlador();
-		InquilinoControlador clientecont = new InquilinoControlador();
+		InquilinoControlador inquilino = new InquilinoControlador();
+		PropietarioControlador propietario = new PropietarioControlador();
 
+
+		String [] opcionescontrato  = {"Alquiler", "Venta"};
+		String tipocontrato = (String)JOptionPane.showInputDialog(null,"Ingrese el tipo de Contrato", "Contratos", JOptionPane.DEFAULT_OPTION, null, opcionescontrato,opcionescontrato[0]);
 		
-		String tipocontrato = JOptionPane.showInputDialog("Ingrese el tipo de contrato");
 		String descripcion = JOptionPane.showInputDialog("Ingrese el descripcion del contrato");
 		String url = JOptionPane.showInputDialog("Ingrese la url del contrato");
 		
-		  int idInmueble = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del inmueble"));
-		    Inmueble inmueble = inmueblecont.getInmuebleById(idInmueble);
+		
+		
+	     String[] opcionesInmueble = new String[inmueblecont.getAllInmueble().size()];
+	     for (int i = 0; i < opcionesInmueble.length; i++) {
+	         int idInmueble = inmueblecont.getAllInmueble().get(i).getId_inmueble();
+	         opcionesInmueble[i] = String.valueOf(idInmueble);
+	     }
+	     String opcionesAelegirInmueble = (String) JOptionPane.showInputDialog(null,"Elige el ID del Inmueble","Inmuebles", JOptionPane.DEFAULT_OPTION, null, opcionesInmueble, opcionesInmueble[0]);
+	     int idInmuebleElegido = Integer.parseInt(opcionesAelegirInmueble);
+	     Inmueble inmueble = inmueblecont.getInmuebleById(idInmuebleElegido);	
 
-
-		    int idCliente = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del cliente"));
-		    Cliente cliente = clientecont.getInquilinoById(idCliente);		
-		    
+	     
+	     Cliente cliente = null;
+	     if(tipocontrato.equalsIgnoreCase("Alquiler")) {
+	    	  String [] opcionesInquilino = new String[inquilino.getAllInquilino().size()];
+			    for (int i = 0; i < opcionesInquilino.length; i++) {
+					int idInquilino = inquilino.getAllInquilino().get(i).getId_cliente();
+					opcionesInquilino[i] = String.valueOf(idInquilino);;
+				}
+			    String opcionesAelegirInquilino = (String)JOptionPane.showInputDialog(null,"Elige el ID del Inquilino", "Inquilinos", JOptionPane.DEFAULT_OPTION, null, opcionesInquilino, opcionesInquilino[0]);
+			     int idInquilinoElegido = Integer.parseInt(opcionesAelegirInquilino);
+			      cliente = inquilino.getInquilinoById(idInquilinoElegido);	
+	     }
+	     else if(tipocontrato.equalsIgnoreCase("Venta")) {
+	    	  String [] opcionesPropietario = new String[propietario.getAllPropietario().size()];
+			    for (int i = 0; i < opcionesPropietario.length; i++) {
+					int idPropietario = propietario.getAllPropietario().get(i).getId_cliente();
+					opcionesPropietario[i] = String.valueOf(idPropietario);;
+				}
+			    String opcionesAelegirInquilino = (String)JOptionPane.showInputDialog(null,"Elige el ID del Propietario", "Propietarios", JOptionPane.DEFAULT_OPTION, null, opcionesPropietario, opcionesPropietario[0]);
+			     int idPropietarioElegido = Integer.parseInt(opcionesAelegirInquilino);
+			      cliente = propietario.getPropietarioById(idPropietarioElegido);
+	     }
+	   
+		    JOptionPane.showMessageDialog(null, "Ingrese fecha de Inicio de Contrato");
 		    inicio = validarFecha(inicio);
 		    
+		    JOptionPane.showMessageDialog(null, "Ingrese fecha de Finalizacion de Contrato");
 		fin = validarFecha(fin);
 	    boolean aptoMascota = JOptionPane.showConfirmDialog(null, "¿El contrato permite mascotas?", "Permite mascotas", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
 	
@@ -559,28 +501,77 @@ public class Empleado implements InicioSesion,Validacion{
 	    ContratoControlador contratoCont = new ContratoControlador();
 	    AgenteControlador agenteCont = new AgenteControlador();
 	    GerenteControlador gerenteCont = new GerenteControlador();
+	    
 
-	    int idInmueble = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del inmueble"));
-	    Inmueble inmueble = inmuebleCont.getInmuebleById(idInmueble);
+	    String[] opcionesInmueble = new String[inmuebleCont.getAllInmueble().size()];
+	     for (int i = 0; i < opcionesInmueble.length; i++) {
+	         int idInmueble = inmuebleCont.getAllInmueble().get(i).getId_inmueble();
+	         opcionesInmueble[i] = String.valueOf(idInmueble);
+	     }
+	     String opcionesAelegirInmueble = (String) JOptionPane.showInputDialog(null,"Elige el ID del Inmueble","Inmuebles", JOptionPane.DEFAULT_OPTION, null, opcionesInmueble, opcionesInmueble[0]);
+	     int idInmuebleElegido = Integer.parseInt(opcionesAelegirInmueble);
+	     Inmueble inmueble = inmuebleCont.getInmuebleById(idInmuebleElegido);
+	     
+	     
+	     String[] opcionesComprador = new String[compradorCont.getAllComprador().size()];
+	     for (int i = 0; i < opcionesComprador.length; i++) {
+	         int idComprador = compradorCont.getAllComprador().get(i).getId_cliente();
+	         opcionesComprador[i] = String.valueOf(idComprador);
+	     }
+	     String opcionesAelegirComprador = (String) JOptionPane.showInputDialog(null,"Elige el ID del Comprador","Comprador", JOptionPane.DEFAULT_OPTION, null, opcionesComprador, opcionesComprador[0]);
+	     int idCompradorElegido = Integer.parseInt(opcionesAelegirComprador);
+	     Comprador comprador = compradorCont.getCompradorById(idCompradorElegido);
 
-	    int idComprador = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del comprador"));
-	    Comprador comprador = compradorCont.getCompradorById(idComprador);
 
-	    int idContrato = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del contrato"));
-	    Contrato contrato = contratoCont.getContratoById(idContrato);
+	     String [] opcionesContrato = new String[contratoCont.getAllContrato().size()];
+		    for (int i = 0; i < opcionesContrato.length; i++) {
+				int idContrato = contratoCont.getAllContrato().get(i).getId_contrato();
+				
+				opcionesContrato[i] = String.valueOf(idContrato);
+			}	    
+		     String opcionesAelegirContrato = (String)JOptionPane.showInputDialog(null,"Elige el ID Del Contrato", "Contratos", JOptionPane.DEFAULT_OPTION, null, opcionesContrato, opcionesContrato[0]);
+		     int idContratoElegido = Integer.parseInt(opcionesAelegirContrato);
+		     Contrato contrato = contratoCont.getContratoById(idContratoElegido);
+	    
+	    
+	    
 
-	    double montoTotal = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el monto total de la venta"));
-	    String formaPago = JOptionPane.showInputDialog("Ingrese la forma de pago");
+		 	String Ingresomonto = validarEntero("Ingrese Monto");
+			Double montoTotal = Double.parseDouble(Ingresomonto);	    
+			
+		    String formaPago = validarNombre("Ingrese Forma de Pago");
 
-	    int idEmpleado = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del empleado"));
-	    String tipoEmpleado = JOptionPane.showInputDialog("Ingrese el tipo de empleado (agente/gerente)");
 
-	    Empleado empleado = null;
-	    if (tipoEmpleado.equalsIgnoreCase("agente")) {
-	        empleado = agenteCont.getAgenteById(idEmpleado);
-	    } else if (tipoEmpleado.equalsIgnoreCase("gerente")) {
-	        empleado = gerenteCont.getGerenteById(idEmpleado);
-	    }
+		    String [] listaempleados = {"Agente", "Gerente"};
+		    
+		    String tipoEmpleado = (String) JOptionPane.showInputDialog(null, "Selecciones el Vendedor", "Tipos de Empleados",JOptionPane.DEFAULT_OPTION, null, listaempleados, listaempleados[0]);
+		    
+		    Empleado empleado = null;
+		    if(tipoEmpleado.equalsIgnoreCase("Agente")) {
+		    	 String [] opcionesEmpleado = new String[agenteCont.getAllAgente().size()];
+				    for (int i = 0; i < opcionesEmpleado.length; i++) {
+						int idEmpleado = agenteCont.getAllAgente().get(i).getId_empleado();
+						opcionesEmpleado[i] = String.valueOf(idEmpleado);;
+					}
+				    String opcionesAelegirEmpleado = (String)JOptionPane.showInputDialog(null,"Elige el ID del Empleado", "Empleado", JOptionPane.DEFAULT_OPTION, null, opcionesEmpleado, opcionesEmpleado[0]);
+				     int idEmpleadoElegido = Integer.parseInt(opcionesAelegirEmpleado);
+				      empleado = agenteCont.getAgenteById(idEmpleadoElegido);
+		    }
+		    
+		    else if(tipoEmpleado.equalsIgnoreCase("Gerente")) {
+		    	String [] opcionesEmpleado = new String[gerenteCont.getAllGerente().size()];
+			    for (int i = 0; i < opcionesEmpleado.length; i++) {
+					int idEmpleado = gerenteCont.getAllGerente().get(i).getId_empleado();
+					opcionesEmpleado[i] = String.valueOf(idEmpleado);;
+				}
+			    String opcionesAelegirEmpleado = (String)JOptionPane.showInputDialog(null,"Elige el ID del Empleado", "Empleado", JOptionPane.DEFAULT_OPTION, null, opcionesEmpleado, opcionesEmpleado[0]);
+			     int idEmpleadoElegido = Integer.parseInt(opcionesAelegirEmpleado);
+			      empleado = gerenteCont.getGerenteById(idEmpleadoElegido);
+		    }
+		    
+		   
+
+	  
 
 	    Venta venta = new Venta(0, inmueble, comprador, contrato, montoTotal, formaPago, empleado, tipoEmpleado);
 	    controlador.addVenta(venta);
@@ -611,29 +602,101 @@ public class Empleado implements InicioSesion,Validacion{
 		InquilinoControlador inquilino = new InquilinoControlador();
 		AgenteControlador agente = new AgenteControlador();
 		InmuebleControlador inmueble = new InmuebleControlador();
+		GerenteControlador gerente = new GerenteControlador();
+
 		LocalDate fecha = null;
 		
-		int monto = Integer.parseInt(JOptionPane.showInputDialog("Ingrese Monto Total"));
+		String Ingresomonto = validarEntero("Ingrese Monto");
+		int monto = Integer.parseInt(Ingresomonto);
+		
 	    fecha = validarFecha(fecha);
-	    String forma_pago = JOptionPane.showInputDialog("Ingrese Forma de Pago");
+	    String forma_pago = validarNombre("Ingrese Forma de Pago");
 	    
-	    int idGarante = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del garante"));
-	    Garante garantes = garante.getGaranteById(idGarante);
 	    
-	    int idContrato = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del Contrato"));
-	    Contrato contratos = contrato.getContratoById(idContrato);
 	    
-	    int idInquilino = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del del Inquilino"));
-	    Cliente cliente = inquilino.getInquilinoById(idInquilino);
 	    
-	    int idEmpleado = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del del Empleado"));
-	    Empleado empleado = agente.getAgenteById(idEmpleado);
+	    String [] opcionesGarante = new String[garante.getAllGarante().size()];
+	    for (int i = 0; i < opcionesGarante.length; i++) {
+			int idGarante = garante.getAllGarante().get(i).getId_garante();
+			opcionesGarante[i] = String.valueOf(idGarante);			
+		}
+	    String opcionesAelegirGarante = (String)JOptionPane.showInputDialog(null,"Elige el ID del Garante", "Garantes", JOptionPane.DEFAULT_OPTION, null, opcionesGarante, opcionesGarante[0]);
+	     int idGaranteElegido = Integer.parseInt(opcionesAelegirGarante);
+	     Garante garantes = garante.getGaranteById(idGaranteElegido);
 	    
-	    int idInmueble = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del del Inmueble"));
-	    Inmueble inmuebles = inmueble.getInmuebleById(idInmueble);
+	     
+	    
+	    
+	    String [] opcionesContrato = new String[contrato.getAllContrato().size()];
+	    for (int i = 0; i < opcionesContrato.length; i++) {
+			int idContrato = contrato.getAllContrato().get(i).getId_contrato();
+			
+			opcionesContrato[i] = String.valueOf(idContrato);
+		}	    
+	     String opcionesAelegirContrato = (String)JOptionPane.showInputDialog(null,"Elige el ID Del Contrato", "Contratos", JOptionPane.DEFAULT_OPTION, null, opcionesContrato, opcionesContrato[0]);
+	     int idContratoElegido = Integer.parseInt(opcionesAelegirContrato);
+	     Contrato contratos = contrato.getContratoById(idContratoElegido);
+	 
+	     
+	     
+	     
+	    String [] opcionesInquilino = new String[inquilino.getAllInquilino().size()];
+	    for (int i = 0; i < opcionesInquilino.length; i++) {
+			int idInquilino = inquilino.getAllInquilino().get(i).getId_cliente();
+			opcionesInquilino[i] = String.valueOf(idInquilino);;
+		}
+	    String opcionesAelegirInquilino = (String)JOptionPane.showInputDialog(null,"Elige el ID del Inquilino", "Inquilinos", JOptionPane.DEFAULT_OPTION, null, opcionesInquilino, opcionesInquilino[0]);
+	     int idInquilinoElegido = Integer.parseInt(opcionesAelegirInquilino);
+	     Cliente cliente = inquilino.getInquilinoById(idInquilinoElegido);
+	     
+	     
+	     String [] listaempleados = {
+	    	"Agente","Gerente"	 
+	     };
+	     String tipoEmpleado = (String) JOptionPane.showInputDialog(null, "Selecciones el Vendedor", "Tipos de Empleados",JOptionPane.DEFAULT_OPTION, null, listaempleados, listaempleados[0]);
+		    
+		    Empleado empleado = null;
+		    if(tipoEmpleado.equalsIgnoreCase("Agente")) {
+		    	 String [] opcionesEmpleado = new String[agente.getAllAgente().size()];
+				    for (int i = 0; i < opcionesEmpleado.length; i++) {
+						int idEmpleado = agente.getAllAgente().get(i).getId_empleado();
+						opcionesEmpleado[i] = String.valueOf(idEmpleado);;
+					}
+				    String opcionesAelegirEmpleado = (String)JOptionPane.showInputDialog(null,"Elige el ID del Empleado", "Empleado", JOptionPane.DEFAULT_OPTION, null, opcionesEmpleado, opcionesEmpleado[0]);
+				     int idEmpleadoElegido = Integer.parseInt(opcionesAelegirEmpleado);
+				      empleado = agente.getAgenteById(idEmpleadoElegido);
+		    }
+		    
+		    else if(tipoEmpleado.equalsIgnoreCase("Gerente")) {
+		    	String [] opcionesEmpleado = new String[gerente.getAllGerente().size()];
+			    for (int i = 0; i < opcionesEmpleado.length; i++) {
+					int idEmpleado = gerente.getAllGerente().get(i).getId_empleado();
+					opcionesEmpleado[i] = String.valueOf(idEmpleado);;
+				}
+			    String opcionesAelegirEmpleado = (String)JOptionPane.showInputDialog(null,"Elige el ID del Empleado", "Empleado", JOptionPane.DEFAULT_OPTION, null, opcionesEmpleado, opcionesEmpleado[0]);
+			     int idEmpleadoElegido = Integer.parseInt(opcionesAelegirEmpleado);
+			      empleado = gerente.getGerenteById(idEmpleadoElegido);
+		    }
+		    
+	    
+		     
+		     
+		     String[] opcionesInmueble = new String[inmueble.getAllInmueble().size()];
+		     for (int i = 0; i < opcionesInmueble.length; i++) {
+		         int idInmueble = inmueble.getAllInmueble().get(i).getId_inmueble();
+		         opcionesInmueble[i] = String.valueOf(idInmueble);
+		     }
+		     String opcionesAelegirInmueble = (String) JOptionPane.showInputDialog(null,"Elige el ID del Inmueble","Inmuebles", JOptionPane.DEFAULT_OPTION, null, opcionesInmueble, opcionesInmueble[0]);
+
+		     int idInmuebleElegido = Integer.parseInt(opcionesAelegirInmueble);
+
+		     Inmueble inmuebles = inmueble.getInmuebleById(idInmuebleElegido);	    
+	
+
 	    
 	    Alquiler alquiler = new Alquiler(0, monto, fecha, forma_pago, garantes, contratos, cliente, empleado, inmuebles);
 	    controlador.addAlquiler(alquiler);
+	    JOptionPane.showMessageDialog(null, "Alquiler Agregado Exitosamente");
 	}
 
 	
@@ -1031,6 +1094,148 @@ public class Empleado implements InicioSesion,Validacion{
 		} while (true);
 	    
 	    
+	}
+	
+/* ---------------------------------------------------------------------------- Selector de Agentes ----------------------------------------------------------------------------------------- */	
+	
+	public void SelectorAgentes() {
+		
+		AgenteControlador agentecontrolador = new AgenteControlador();   	
+		
+		 /* desde aca */  //JOptionPane.showMessageDialog(null, "Empleado");
+			
+			String[] listaEmpleado = {"Ver empleados","seleccionar empleado","Salir"};
+			
+			int seleccionEmpleado = JOptionPane.showOptionDialog(null, "Elegir opcion", null, 0, 0, null, listaEmpleado, listaEmpleado[0]);
+			
+			switch(seleccionEmpleado) {
+			
+			case 0:  // Ver empleados
+			
+				if (agentecontrolador.getAllAgente().size()==0) {JOptionPane.showMessageDialog(null, "No se han encontrado agentes.");} else {
+				 JOptionPane.showMessageDialog(null, "La lista de empleados"+"\n"+agentecontrolador.getAllAgente());}
+				
+				 JOptionPane.showMessageDialog(null, "La lista de empleados"+"\n"+agentecontrolador.getAllAgente());	
+				
+			break;
+			
+			
+			
+/*---------------------------------*/  case 1: // Ver empleado por id /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+		
+	if (agentecontrolador.getAllAgente().size()==0) { JOptionPane.showMessageDialog(null, "No hay empleados registrados.");}
+	else  {
+		String[] empleados = new String[agentecontrolador.getAllAgente().size()];
+			for (int i = 0; i < empleados.length; i++) {
+			empleados[i] = Integer.toString(agentecontrolador.getAllAgente().get(i).getId_empleado());}
+										
+			
+			String empleadoselect = (String) JOptionPane.showInputDialog(null, "Seleccione usuario", null, 0, null,
+			empleados, empleados[0]);
+
+				// JOptionPane.showMessageDialog(null, agentecontrolador.getAgenteById(Integer.parseInt(empleadoselect)));
+					Agente seleccionado = agentecontrolador.getAgenteById(Integer.parseInt(empleadoselect));
+					JOptionPane.showMessageDialog(null, "El agente seleccionado es:"+seleccionado.toString()); /* Recordar cambiar los nombres en el archivo princ */ }
+				
+				break;
+				
+			case 2: // Salir
+				
+				break;}}
+	
+	
+/*----------------------------------------------------------------- Fin del metodo SelectorAgente ---------------------------------------------------------------------------------------------------------------------------*/	
+	
+/* --------------------------------------------------------------- Seleccionar Agente por ID --------------------------------------------------------------------------------------------------------------------------------*/
+	
+	
+	public Agente SelectorAgente() {
+	
+		AgenteControlador agentecontrolador = new AgenteControlador();
+		
+		Agente seleccionado = null;
+		
+	if (agentecontrolador.getAllAgente().size()==0) { JOptionPane.showMessageDialog(null, "No hay empleados registrados.");}
+	else  {
+		String[] empleados = new String[agentecontrolador.getAllAgente().size()];
+			for (int i = 0; i < empleados.length; i++) {
+			empleados[i] = Integer.toString(agentecontrolador.getAllAgente().get(i).getId_empleado());}
+										
+			
+			String empleadoselect = (String) JOptionPane.showInputDialog(null, "Seleccione usuario", null, 0, null,
+			empleados, empleados[0]);
+
+				// JOptionPane.showMessageDialog(null, agentecontrolador.getAgenteById(Integer.parseInt(empleadoselect)));
+					 seleccionado = agentecontrolador.getAgenteById(Integer.parseInt(empleadoselect));
+					JOptionPane.showMessageDialog(null, "El agente seleccionado es:"+seleccionado.toString());
+	
+					
+	}
+	
+	
+	return seleccionado;
+	
+	}
+	
+	
+	
+	/*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+	
+public boolean RealizarReserva(Inmueble inmueble,Empleado empleado2,Cliente cliente2,LocalDate fecha_pago2,String pago2) {
+		
+		boolean error = false;
+		double montovalidado;
+		
+		try {
+			
+		ReservaControlador reservacontrolador = new ReservaControlador();
+		
+	
+		
+		if (inmueble==null) {System.out.println("No se ha ingresado ningun inmueble");	error=true; return false;}
+		
+		if (cliente2==null) {System.out.println("No se ha ingresado ningun cliente"); error=true; return false; }
+		
+		
+		if (empleado2==null) {System.out.println("No se ha ingresado ningun empleado");error = true; return false;}
+		
+		montovalidado = ValidarMonto(pago2);
+		
+		
+		String forma_pago = "Efectivo";
+		
+		JOptionPane.showMessageDialog(null, error);
+		
+		if (error==false && validarFecha_pagoReserva(fecha_pago2)) {
+			
+			
+			reservacontrolador.addReserva(new Reserva(inmueble,cliente2,fecha_pago2,montovalidado,forma_pago,empleado2));
+			
+			return true;
+			
+		}
+		
+		
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e);
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		return false;
+		
+		
+		
+		
+		
+		
+		
 	}
 	
 	

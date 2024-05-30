@@ -35,38 +35,27 @@ class Main{
 		VentaControlador venta = new VentaControlador();
 		AlquilerControlador alquiler = new AlquilerControlador();
 		
-		empleado.IniciarSesion();
 		
 
-		do {
+	      do {
+	            String dni = JOptionPane.showInputDialog("Ingrese DNI");
+	            
+	            String cont = JOptionPane.showInputDialog("Ingrese Contrasena");
 
-			String[] opcionesRoles = { "Agente", "Gerente", "Salir" };
-			int eleccionElegida1 = JOptionPane.showOptionDialog(null, "Iniciar Sesion Como", "Inmobiliaria Maguez", 0,
-					0, null, opcionesRoles, opcionesRoles[0]);
+	            Boolean esAgente = empleado.IniciarSesion(dni, cont);
 
-			if (eleccionElegida1 == 0) {
-				
-			agente1.menuAgente();
+	            if (esAgente != null) {
+	                if (esAgente) {
+	                    agente1.menuAgente();
+	                } else {
+	                    gerente1.menuGerente();
+	                }
+	            }
 
-				
-			} else if (eleccionElegida1 == 1) {
-				
-				gerente1.menuGerente();
-				
-
-				
-
-			} else {
-				JOptionPane.showMessageDialog(null, "Hasta luego!");
-				System.exit(0);
-			}
-
-			String[] preguntaEleccion = { "Si", "No" };
-			respuestaSeleccionada = JOptionPane.showOptionDialog(null, "Desea seguir en el programa: ", "Biblioteca", 0,
-					0, null, preguntaEleccion, preguntaEleccion[0]);
-		} while (respuestaSeleccionada == 0);
-
-	}
+	            String[] preguntaEleccion = {"Si", "No"};
+	            respuestaSeleccionada = JOptionPane.showOptionDialog(null, "¿Desea seguir en el programa?", "Inmobiliaria", 0, JOptionPane.INFORMATION_MESSAGE, null, preguntaEleccion, preguntaEleccion[0]);
+	        } while (respuestaSeleccionada == 0);
+	    }
 	
 
 }
