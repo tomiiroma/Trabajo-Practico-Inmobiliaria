@@ -58,4 +58,4 @@ El sistema de gestión de la inmobiliaria ofrece una variedad de funciones para 
 #### Base de Datos utilizada
 [Ver Base de Datos utilizada](https://drive.google.com/file/d/1P7TuTiVBMGVbriQVDdwxY2fCdreJlHLC/view?usp=sharing)
 
-
+https://docs.google.com/document/d/1pNHM48p7GJcVnBpj7CXS91ZfOjgmfYGS/edit
