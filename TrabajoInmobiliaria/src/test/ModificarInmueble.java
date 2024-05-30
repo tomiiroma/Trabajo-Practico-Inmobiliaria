@@ -335,7 +335,10 @@ public class ModificarInmueble implements Validacion{
 		assertEquals(true, flag);
 	}
 	
-	
+	//El Gerente ingresa en la sección Modificar Inmueble y Selecciona modificar tipo de Inmueble.
+	//El gerente cambia el tipo de inmueble de departamento a Casa.
+	//Ingresa nueva dirección calle y nueva dirección altura.
+
 	
 	@Test 
 	public void modificarInmuebleInmuebleF1(){
