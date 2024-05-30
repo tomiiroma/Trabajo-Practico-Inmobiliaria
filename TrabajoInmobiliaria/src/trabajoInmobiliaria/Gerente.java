@@ -182,8 +182,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 						registrarVenta();
 						
 					}else if(operacionNuevaSeleccionada.equals("Realizar Alquiler")){
-						JOptionPane.showMessageDialog(null, "Completar Alquiler");  
-
+						AgregarAlquiler();
 					}else if(operacionNuevaSeleccionada.equals("Confirmacion Operaciones")){
 						JOptionPane.showMessageDialog(null, "Mostrar operaciones hechas por el agente.. solo confirmar");
 					}else {
@@ -1061,6 +1060,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 									inmuebleAmodificar.setDireccion(direccion);
 									inmuebleAmodificar.setAlturaDireccion(alturaDireccion);
 									JOptionPane.showMessageDialog(null, "Tipo de Inmueble,Nro de Piso, nro Depto, direccion  y altura modificados correctamente");
+									break;
 								}
 							}															              
 	                     }										

@@ -190,6 +190,7 @@ public class AgregarInmueble implements Validacion{
 		
 	}
 	
+
 	@Test 
 	public void agregarInmuebleCasaF1() {
 		//Agregar Nuevo Inmueble (de tipo Casa  Tiene Patio, se encuentra Disponible, se encuentra sin Refaccionar y es apto para mascotas) 
@@ -474,7 +475,6 @@ public class AgregarInmueble implements Validacion{
 		assertEquals(false, flag);
 		
 	}
-	
 	
 	
 	

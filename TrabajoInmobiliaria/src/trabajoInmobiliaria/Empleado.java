@@ -650,15 +650,34 @@ public class Empleado implements InicioSesion,Validacion{
 	     Cliente cliente = inquilino.getInquilinoById(idInquilinoElegido);
 	     
 	     
-	     
-	     String [] opcionesEmpleado = new String[agente.getAllAgente().size()];
-		    for (int i = 0; i < opcionesEmpleado.length; i++) {
-				int idEmpleado = inquilino.getAllInquilino().get(i).getId_cliente();
-				opcionesEmpleado[i] = String.valueOf(idEmpleado);;
-			}
-		    String opcionesAelegirEmpleado = (String)JOptionPane.showInputDialog(null,"Elige el ID del Empleado", "Empleado", JOptionPane.DEFAULT_OPTION, null, opcionesEmpleado, opcionesEmpleado[0]);
-		     int idEmpleadoElegido = Integer.parseInt(opcionesAelegirEmpleado);
-		     Empleado empleado = agente.getAgenteById(idEmpleadoElegido);
+	     String [] listaempleados = {
+	    	"Agente","Gerente"	 
+	     };
+	     String tipoEmpleado = (String) JOptionPane.showInputDialog(null, "Selecciones el Vendedor", "Tipos de Empleados",JOptionPane.DEFAULT_OPTION, null, listaempleados, listaempleados[0]);
+		    
+		    Empleado empleado = null;
+		    if(tipoEmpleado.equalsIgnoreCase("Agente")) {
+		    	 String [] opcionesEmpleado = new String[agente.getAllAgente().size()];
+				    for (int i = 0; i < opcionesEmpleado.length; i++) {
+						int idEmpleado = agente.getAllAgente().get(i).getId_empleado();
+						opcionesEmpleado[i] = String.valueOf(idEmpleado);;
+					}
+				    String opcionesAelegirEmpleado = (String)JOptionPane.showInputDialog(null,"Elige el ID del Empleado", "Empleado", JOptionPane.DEFAULT_OPTION, null, opcionesEmpleado, opcionesEmpleado[0]);
+				     int idEmpleadoElegido = Integer.parseInt(opcionesAelegirEmpleado);
+				      empleado = agente.getAgenteById(idEmpleadoElegido);
+		    }
+		    
+		    else if(tipoEmpleado.equalsIgnoreCase("Gerente")) {
+		    	String [] opcionesEmpleado = new String[gerente.getAllGerente().size()];
+			    for (int i = 0; i < opcionesEmpleado.length; i++) {
+					int idEmpleado = gerente.getAllGerente().get(i).getId_empleado();
+					opcionesEmpleado[i] = String.valueOf(idEmpleado);;
+				}
+			    String opcionesAelegirEmpleado = (String)JOptionPane.showInputDialog(null,"Elige el ID del Empleado", "Empleado", JOptionPane.DEFAULT_OPTION, null, opcionesEmpleado, opcionesEmpleado[0]);
+			     int idEmpleadoElegido = Integer.parseInt(opcionesAelegirEmpleado);
+			      empleado = gerente.getGerenteById(idEmpleadoElegido);
+		    }
+		    
 	    
 		     
 		     
