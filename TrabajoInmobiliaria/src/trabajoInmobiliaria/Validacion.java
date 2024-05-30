@@ -513,7 +513,7 @@ public interface Validacion {
        }}
     	
         if (valido == true) {double num = Double.parseDouble(numero);
-        	if (num>=0) {
+        	if (num>=10000) {
         		
         		monto_final = num;
         		
@@ -561,7 +561,9 @@ public interface Validacion {
 /* -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/	
 	
 	
+/*-------------------------------------------------------------------------------------------- ValidarNombre 2 ---------------------------------------------------------------------------------------------------------------- */	
 	
+<<<<<<< HEAD
 /* -----Inmuebles------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/	
 
 	InmuebleControlador inmuebleControlador = new InmuebleControlador();
@@ -599,6 +601,187 @@ public interface Validacion {
 	
 	
 	
+=======
+	default boolean validarNombre2(String nombre) {
+		
+		boolean confirmacion = true;
+	
+		
+			try {
+				
+
+				if(nombre==null || nombre.trim().isEmpty()){
+					JOptionPane.showMessageDialog(null, "No se admiten campos en blanco.");
+					confirmacion = false;
+				}
+				
+				nombre = nombre.trim();
+				
+
+                boolean esString = true; 
+                for (int i = 0; i < nombre.length(); i++) {
+                    if (!Character.isAlphabetic(nombre.charAt(i))) {
+                    	esString = false;
+                        break; 
+                    }
+                }
+                
+                if(!esString){
+                    JOptionPane.showMessageDialog(null, "No se permiten espacios en blanco o caracteres numericos.");
+                    confirmacion = false;
+                }
+				
+               
+                
+			} catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al ingresar Nombre. Ingrese Nombre nuevamente");
+                confirmacion = false;
+			}
+
+			
+		
+		
+		return confirmacion;
+	}
+	
+	
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */	
+	
+/* ------------------------------------------------------------------------------------------------- VALIDAR DNI 2 ---------------------------------------------------------------------------------------------------------- */
+	
+	
+	default boolean validarDni2(int dni) {
+	    
+	    if (String.valueOf(dni).length() != 8) {
+	        JOptionPane.showMessageDialog(null, "El DNI debe tener exactamente 8 dígitos.");
+	        return false;
+	    } else if (dni<0) { JOptionPane.showMessageDialog(null, "Se ingreso un dni negativo."); return false; }
+
+	    return true;
+	}
+	
+	
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */	
+
+/* --------------------------------------------------------------------------- Validar Fechas 2----------------------------------------------------------------------------------------------------------------*/	
+		
+		default boolean validarFecha2(LocalDate fecha) {
+		    boolean error = true;
+
+		   LocalDate fecha_hoy = LocalDate.now();
+		   
+		    LocalDate Es_menor = fecha_hoy.minusYears(18);
+		    
+		    
+		    if (fecha == null) {
+		        JOptionPane.showMessageDialog(null, "La fecha no puede ser nula o se ingreso un dia o mes no validos.");
+		        error = false;
+		    }
+		    
+		    else if (fecha.isBefore(LocalDate.of(1900, 1, 1))) {
+		    	
+		    	JOptionPane.showMessageDialog(null, "La fecha no puede ser anterior al 1900.");
+		    	error = false;
+		    } else if (fecha.isAfter(Es_menor)) {
+		    	
+		    	
+		    	JOptionPane.showMessageDialog(null, "El agente debe ser mayor de 18 años...");
+		    	error = false;
+		    	
+		    	
+		    }
+
+		    return error; // 
+		}
+		
+/* -------------------------------------------------------------------------------- Validar Telefono --------------------------------------------------------------------------------------------------------------------- */
+		
+		
+		default boolean validarTelefono2(int telefonoen) {
+		    boolean error = true;
+
+		  
+		    if (String.valueOf(telefonoen).length() != 8) {
+		        JOptionPane.showMessageDialog(null, "El telefono debe tener 8 dígitos numéricos");
+		        error = false;
+		    } else if (telefonoen < 0) { JOptionPane.showMessageDialog(null, "Se ingreso un número negativo."); error=false;}
+
+		   
+		    return error;
+		}
+		
+		
+/*--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/		
+	
+/* --------------------------------------------------------------------------------------------------------------- Validar Email ------------------------------------------------------------------------------------------- */		
+		
+		
+		/* pruebas no definitivo */
+		
+		default boolean validarEmail2(String email) {
+		boolean flag=true;
+		String mail;
+			
+			mail = "^[^@]+@[^@]+\\.com$"; 
+			
+			Pattern pattern = Pattern.compile(mail);
+			Matcher matcher = pattern.matcher(email);
+			
+			if (!matcher.matches()) {
+				
+				JOptionPane.showMessageDialog(null, "El correo electrónico ingresado no es válidoo");
+				flag = false;
+				
+			} 
+			
+			
+			
+			return flag;
+			
+		}
+		
+		
+/*---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/		
+		
+		
+		
+/* ------------------------------------------------------------------------------------------------------ Validar fecha PagoReservas --------------------------------------------------------------------------------------------- */		
+
+		
+		default boolean validarFecha_pagoReserva(LocalDate fecha) {
+		    boolean error = true;
+
+		   
+		    
+		    
+		    
+		    if (fecha == null) {
+		        JOptionPane.showMessageDialog(null, "La fecha no puede ser nula o se ingreso un dia o mes no validos.");
+		        error = false;
+		    }
+		    
+		    else if (fecha.isBefore(LocalDate.now())) {
+		    	
+		    	JOptionPane.showMessageDialog(null, "La fecha no puede ser anterior al dia de hoy.");
+		    	error = false;
+		    } else if (fecha.isAfter(LocalDate.of(2028, 5, 30))) {
+		    	
+		    	
+		    	JOptionPane.showMessageDialog(null, "Se ingreso una fecha que no es valida.");
+		    	error = false;
+		    	
+		    	
+		    }
+
+		    return error; // 
+		}
+		
+
+/*----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+		
+		
+		
+>>>>>>> origin/Dani
 }
 
 	
