@@ -210,7 +210,30 @@ public class InmuebleControlador implements InmuebleRepository{
 	        }
 	
 	
-}
+	    }
+	    
+	    
+	    
+	    
+	    public void deleteAllInmuebles() {
+	        try {
+	            PreparedStatement statement = connection.prepareStatement("DELETE FROM inmueble");
+	            int rowsDeleted = statement.executeUpdate();
+	            if (rowsDeleted > 0) {
+	                System.out.println("Todos los inmuebles fueron eliminados exitosamente");
+	            } else {
+	                System.out.println("No se encontraron inmuebles para eliminar");
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+
+
+	    
+	    
+	    
+	    
 
 
 

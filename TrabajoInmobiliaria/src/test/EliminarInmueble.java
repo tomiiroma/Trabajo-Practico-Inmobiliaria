@@ -173,7 +173,7 @@ public class EliminarInmueble {
 		public void eliminarInmuebleF1() {
 			InmuebleControlador inmuebleControlador = new InmuebleControlador();
 			
-		    inmuebleControlador.addInmueble(new Inmueble(22, "Departamento", "Excelente", "3", "2", "Agronomia", "corrientes", "Lindo Depto con buena vista", "30", "2", "1", 100, 50, 60000, true, false, true, false, true, "1200", "5"));
+		    inmuebleControlador.addInmueble(new Inmueble(0, "Departamento", "Excelente", "3", "2", "Agronomia", "corrientes", "Lindo Depto con buena vista", "30", "2", "1", 100, 50, 60000, true, false, true, false, true, "1200", "5"));
 
 			
 			boolean flag = false;
@@ -244,5 +244,8 @@ public class EliminarInmueble {
 			assertEquals(false, flag);
 			
 		}
+		
+		
+		
 		
 }
