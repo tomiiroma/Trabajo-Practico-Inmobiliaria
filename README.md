@@ -59,6 +59,6 @@ El sistema de gestión de la inmobiliaria ofrece una variedad de funciones para 
 [Ver Base de Datos utilizada](https://drive.google.com/file/d/1cQAQaM0aBJnTzr5y-0lzpbXl6Ar9Rau9/view?usp=sharing)
 
 #### MVP
-[Ver Base de Datos utilizada](https://docs.google.com/spreadsheets/d/1AwUoLllS947xnFpY2bOT8_X2y_6WtGnpj2pOUMFe-98/edit?usp=sharing)
+[Ver MVP](https://docs.google.com/spreadsheets/d/1AwUoLllS947xnFpY2bOT8_X2y_6WtGnpj2pOUMFe-98/edit?usp=sharing)
 
 
