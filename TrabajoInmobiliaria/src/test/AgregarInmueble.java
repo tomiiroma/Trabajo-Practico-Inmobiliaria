@@ -99,7 +99,7 @@ public class AgregarInmueble implements Validacion{
 	
 	
 	@Test 
-	public void agregarInmuebleV() {
+	public void agregarInmuebleCasaV() {
 		//Agregar Nuevo Inmueble (de tipo Casa  Tiene Patio, se encuentra Disponible, se encuentra sin Refaccionar y es apto para mascotas) 
 		//Inmueble Registrado como Gerente
 		boolean flag = false;
@@ -160,6 +160,13 @@ public class AgregarInmueble implements Validacion{
 	
 		}else if(tipoInmueble.equalsIgnoreCase("Departamento")){
 			if(inmuebleControlador.getAllInmueble().isEmpty()){
+				flag = true;
+				// Agregar el inmueble al controlador
+				inmuebleControlador.addInmueble(new Inmueble(0, tipoInmueble, condicion, cantAmbientes, piso,barrio, direccion, descripcion, antiguedad,
+						banios, dormitorio, superficieCubierta, superficieDescubierta, precio, disponible, refaccionar, aptoMascota, tienePatio,activo,alturaDireccion,nroDepto));
+				JOptionPane.showMessageDialog(null, "Inmueble agregado correctamente");
+				
+			}else {		
 				for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
 					if(inmueble.getTipo_inmueble().equals("Departamento") && inmueble.getDireccion().equals(direccion)
 							&& inmueble.getAlturaDireccion().equalsIgnoreCase(alturaDireccion)&& inmueble.getPiso().equalsIgnoreCase(piso)
@@ -175,21 +182,304 @@ public class AgregarInmueble implements Validacion{
 						JOptionPane.showMessageDialog(null, "Inmueble agregado correctamente");
 					}
 				}	
-			}
-			
-			
+			}				
 		}
-		
-
-		
+				
 		inmuebleControlador.deleteAllInmuebles();
 		assertEquals(true, flag);
+		
+	}
+	
+	@Test 
+	public void agregarInmuebleCasaF1() {
+		//Agregar Nuevo Inmueble (de tipo Casa  Tiene Patio, se encuentra Disponible, se encuentra sin Refaccionar y es apto para mascotas) 
+		//Inmueble Registrado como Gerente
+		boolean flag = false;
+		InmuebleControlador inmuebleControlador = new InmuebleControlador();
+		
+		inmuebleControlador.addInmueble(new Inmueble(0, "Casa", "Excelente", "3", "2", "Agronomia", "Corrientes", "Lindo Depto con buena vista", "30", "2", "1", 100, 50, 60000, true, false, false, false, true, "1200", "5"));
+		//      id_inmueble, tipo_inmueble, condicion, cantAmbientes, piso, barrio, direccion, descripcion, antiguedad, banio, dormitorio, superficie_cubierta, superficie_descubierta, precio, disponible, refaccionar, apto_mascota, patio, activo, alturaDireccion, nroDepto
+
+		
+
+		String descripcion = "aaa";
+		String piso = null; 
+		String cantAmbientes = "4";
+		String antiguedad = "50";
+		String banios = "1";
+		String direccion = "Corrientes";
+		String dormitorio = "4";
+		String alturaDireccion = "1200";
+		String nroDepto = null;
+		double precio =30000;
+		double superficieCubierta = 120;
+		double superficieDescubierta = 30;
+					
+		String tipoInmueble = "Casa";
+		String condicion = "Excelente";		 
+
+		
+		String barrio = "Recoleta";
+			
+		boolean tienePatio = true;
+
+		boolean disponible = true;
+		boolean refaccionar = false;
+		boolean aptoMascota = true;
+		boolean activo = true; //esto cambia segun las operaciones que se hagan con el inmueble
+		
+
+		if(tipoInmueble.equalsIgnoreCase("Casa")){
+			
+			if(inmuebleControlador.getAllInmueble().isEmpty()){
+				flag = true;
+				inmuebleControlador.addInmueble(new Inmueble(0, tipoInmueble, condicion, cantAmbientes, piso,barrio, direccion, descripcion, antiguedad,
+				banios, dormitorio, superficieCubierta, superficieDescubierta, precio, disponible, refaccionar, aptoMascota, tienePatio,activo,alturaDireccion,nroDepto));
+				
+			}else {
+				for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
+					if(inmueble.getTipo_inmueble().equals("Casa")&&
+							inmueble.getDireccion().equalsIgnoreCase(direccion)&&
+							inmueble.getAlturaDireccion().equals(alturaDireccion)){
+						JOptionPane.showMessageDialog(null, "Error No se pudo registrar la casa. Casa duplicada");
+						flag = false;
+					}else {
+						flag = true;
+						inmuebleControlador.addInmueble(new Inmueble(0, tipoInmueble, condicion, cantAmbientes, piso,barrio, direccion, descripcion, antiguedad,
+								banios, dormitorio, superficieCubierta, superficieDescubierta, precio, disponible, refaccionar, aptoMascota, tienePatio,activo,alturaDireccion,nroDepto));
+						
+						JOptionPane.showMessageDialog(null, "Inmueble agregado correctamente");
+					}			
+				}		
+			}
+			
+	
+		}else if(tipoInmueble.equalsIgnoreCase("Departamento")){
+			if(inmuebleControlador.getAllInmueble().isEmpty()){
+				flag = true;
+				// Agregar el inmueble al controlador
+				inmuebleControlador.addInmueble(new Inmueble(0, tipoInmueble, condicion, cantAmbientes, piso,barrio, direccion, descripcion, antiguedad,
+						banios, dormitorio, superficieCubierta, superficieDescubierta, precio, disponible, refaccionar, aptoMascota, tienePatio,activo,alturaDireccion,nroDepto));
+				JOptionPane.showMessageDialog(null, "Inmueble agregado correctamente");
+				
+			}else {		
+				for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
+					if(inmueble.getTipo_inmueble().equals("Departamento") && inmueble.getDireccion().equals(direccion)
+							&& inmueble.getAlturaDireccion().equalsIgnoreCase(alturaDireccion)&& inmueble.getPiso().equalsIgnoreCase(piso)
+							&& inmueble.getNroDepto().equalsIgnoreCase(nroDepto)){
+						
+						flag = false;
+						JOptionPane.showMessageDialog(null, "Error No se pudo registrar el Departamento. Departamento Duplicado");			
+					}else {
+						flag = true;
+						// Agregar el inmueble al controlador
+						inmuebleControlador.addInmueble(new Inmueble(0, tipoInmueble, condicion, cantAmbientes, piso,barrio, direccion, descripcion, antiguedad,
+								banios, dormitorio, superficieCubierta, superficieDescubierta, precio, disponible, refaccionar, aptoMascota, tienePatio,activo,alturaDireccion,nroDepto));
+						JOptionPane.showMessageDialog(null, "Inmueble agregado correctamente");
+					}
+				}	
+			}				
+		}
+				
+		inmuebleControlador.deleteAllInmuebles();
+		assertEquals(false, flag);
 		
 	}
 	
 	
 	
 	
+	
+	
+	
+	@Test 
+	public void agregarInmuebleDeptoV2() {
+		//Agregar Nuevo Inmueble (de tipo Departamento  Tiene Patio, se encuentra Disponible, se encuentra sin Refaccionar y es apto para mascotas) 
+		//Inmueble Registrado como Gerente
+		boolean flag = false;
+		InmuebleControlador inmuebleControlador = new InmuebleControlador();
+		
+
+		String tipoInmueble = "Departamento";
+		String piso = "1"; 
+		String nroDepto = "3";
+		String cantAmbientes = "4";
+		String antiguedad = "50";
+		String banios = "1";
+		String dormitorio = "4";
+		String direccion = "Corrientes";
+		String alturaDireccion = "1200";
+		String descripcion = "aaa";
+		double precio =30000;
+		double superficieCubierta = 120;
+		double superficieDescubierta = 30;				
+		String condicion = "Excelente";		 
+
+		
+		String barrio = "Recoleta";
+			
+		boolean tienePatio = true;
+
+		boolean disponible = true;
+		boolean refaccionar = false;
+		boolean aptoMascota = true;
+		boolean activo = true; //esto cambia segun las operaciones que se hagan con el inmueble
+		
+
+		if(tipoInmueble.equalsIgnoreCase("Casa")){
+			
+			if(inmuebleControlador.getAllInmueble().isEmpty()){
+				flag = true;
+				inmuebleControlador.addInmueble(new Inmueble(0, tipoInmueble, condicion, cantAmbientes, piso,barrio, direccion, descripcion, antiguedad,
+				banios, dormitorio, superficieCubierta, superficieDescubierta, precio, disponible, refaccionar, aptoMascota, tienePatio,activo,alturaDireccion,nroDepto));
+				
+			}else {
+				for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
+					if(inmueble.getTipo_inmueble().equals("Casa")&&
+							inmueble.getDireccion().equalsIgnoreCase(direccion)&&
+							inmueble.getAlturaDireccion().equals(alturaDireccion)){
+						JOptionPane.showMessageDialog(null, "Error No se pudo registrar la casa. Casa duplicada");
+						flag = false;
+					}else {
+						flag = true;
+						inmuebleControlador.addInmueble(new Inmueble(0, tipoInmueble, condicion, cantAmbientes, piso,barrio, direccion, descripcion, antiguedad,
+								banios, dormitorio, superficieCubierta, superficieDescubierta, precio, disponible, refaccionar, aptoMascota, tienePatio,activo,alturaDireccion,nroDepto));
+						
+						JOptionPane.showMessageDialog(null, "Inmueble agregado correctamente");
+					}			
+				}		
+			}
+			
+	
+		}else if(tipoInmueble.equalsIgnoreCase("Departamento")){
+			if(inmuebleControlador.getAllInmueble().isEmpty()){
+				flag = true;
+				// Agregar el inmueble al controlador
+				inmuebleControlador.addInmueble(new Inmueble(0, tipoInmueble, condicion, cantAmbientes, piso,barrio, direccion, descripcion, antiguedad,
+						banios, dormitorio, superficieCubierta, superficieDescubierta, precio, disponible, refaccionar, aptoMascota, tienePatio,activo,alturaDireccion,nroDepto));
+				JOptionPane.showMessageDialog(null, "Inmueble agregado correctamente");
+				
+			}else {		
+				for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
+					if(inmueble.getTipo_inmueble().equals("Departamento") && inmueble.getDireccion().equals(direccion)
+							&& inmueble.getAlturaDireccion().equalsIgnoreCase(alturaDireccion)&& inmueble.getPiso().equalsIgnoreCase(piso)
+							&& inmueble.getNroDepto().equalsIgnoreCase(nroDepto)){	
+						flag = false;
+						JOptionPane.showMessageDialog(null, "Error No se pudo registrar el Departamento. Departamento Duplicado");			
+					}else {
+						flag = true;
+						// Agregar el inmueble al controlador
+						inmuebleControlador.addInmueble(new Inmueble(0, tipoInmueble, condicion, cantAmbientes, piso,barrio, direccion, descripcion, antiguedad,
+								banios, dormitorio, superficieCubierta, superficieDescubierta, precio, disponible, refaccionar, aptoMascota, tienePatio,activo,alturaDireccion,nroDepto));
+						JOptionPane.showMessageDialog(null, "Inmueble agregado correctamente");
+					}
+				}	
+			}				
+		}
+				
+		inmuebleControlador.deleteAllInmuebles();
+		assertEquals(true, flag);
+		
+	}
+	
+	
+	@Test 
+	public void agregarInmuebleDeptoF1() {
+		//Agregar Nuevo Inmueble  de tipo departamento duplicado
+		boolean flag = false;
+		InmuebleControlador inmuebleControlador = new InmuebleControlador();
+		
+		
+		inmuebleControlador.addInmueble(new Inmueble(0, "Departamento", "Excelente", "3", "1", "Agronomia", "Corrientes", "Lindo Depto con buena vista", "30", "2", "1", 100, 50, 60000, true, false, false, false, true, "1200", "3"));
+		//id_inmueble, tipo_inmueble, condicion, cantAmbientes, piso, barrio, direccion, descripcion, antiguedad, banio, dormitorio, superficie_cubierta, superficie_descubierta, precio, disponible, refaccionar, apto_mascota, patio, activo, alturaDireccion, nroDepto
+
+		String tipoInmueble = "Departamento";
+		String piso = "1"; 
+		String nroDepto = "3";
+		String cantAmbientes = "4";
+		String antiguedad = "50";
+		String banios = "1";
+		String dormitorio = "4";
+		String direccion = "Corrientes";
+		String alturaDireccion = "1200";
+		String descripcion = "aaa";
+		double precio = 30000;
+		double superficieCubierta = 120;
+		double superficieDescubierta = 30;				
+		String condicion = "Excelente";		 
+
+		
+		String barrio = "Recoleta";
+			
+		boolean tienePatio = true;
+
+		boolean disponible = true;
+		boolean refaccionar = false;
+		boolean aptoMascota = true;
+		boolean activo = true; //esto cambia segun las operaciones que se hagan con el inmueble
+		
+
+		if(tipoInmueble.equalsIgnoreCase("Casa")){
+			
+			if(inmuebleControlador.getAllInmueble().isEmpty()){
+				flag = true;
+				inmuebleControlador.addInmueble(new Inmueble(0, tipoInmueble, condicion, cantAmbientes, piso,barrio, direccion, descripcion, antiguedad,
+				banios, dormitorio, superficieCubierta, superficieDescubierta, precio, disponible, refaccionar, aptoMascota, tienePatio,activo,alturaDireccion,nroDepto));
+				
+			}else {
+				for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
+					if(inmueble.getTipo_inmueble().equals("Casa")&&
+							inmueble.getDireccion().equalsIgnoreCase(direccion)&&
+							inmueble.getAlturaDireccion().equals(alturaDireccion)){
+						JOptionPane.showMessageDialog(null, "Error No se pudo registrar la casa. Casa duplicada");
+						flag = false;
+					}else {
+						flag = true;
+						inmuebleControlador.addInmueble(new Inmueble(0, tipoInmueble, condicion, cantAmbientes, piso,barrio, direccion, descripcion, antiguedad,
+								banios, dormitorio, superficieCubierta, superficieDescubierta, precio, disponible, refaccionar, aptoMascota, tienePatio,activo,alturaDireccion,nroDepto));
+						
+						JOptionPane.showMessageDialog(null, "Inmueble agregado correctamente");
+					}			
+				}		
+			}
+			
+	
+		}else if(tipoInmueble.equalsIgnoreCase("Departamento")){
+			if(inmuebleControlador.getAllInmueble().isEmpty()){
+				flag = true;
+				// Agregar el inmueble al controlador
+				inmuebleControlador.addInmueble(new Inmueble(0, tipoInmueble, condicion, cantAmbientes, piso,barrio, direccion, descripcion, antiguedad,
+						banios, dormitorio, superficieCubierta, superficieDescubierta, precio, disponible, refaccionar, aptoMascota, tienePatio,activo,alturaDireccion,nroDepto));
+				JOptionPane.showMessageDialog(null, "Inmueble agregado correctamente");
+				
+			}else {		
+				for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
+					if(inmueble.getTipo_inmueble().equals("Departamento") && inmueble.getDireccion().equals(direccion)
+							&& inmueble.getAlturaDireccion().equalsIgnoreCase(alturaDireccion)&& inmueble.getPiso().equalsIgnoreCase(piso)
+							&& inmueble.getNroDepto().equalsIgnoreCase(nroDepto)){	
+						flag = false;
+						JOptionPane.showMessageDialog(null, "Error No se pudo registrar el Departamento. Departamento Duplicado");			
+					}else {
+						flag = true;
+						// Agregar el inmueble al controlador
+						inmuebleControlador.addInmueble(new Inmueble(0, tipoInmueble, condicion, cantAmbientes, piso,barrio, direccion, descripcion, antiguedad,
+								banios, dormitorio, superficieCubierta, superficieDescubierta, precio, disponible, refaccionar, aptoMascota, tienePatio,activo,alturaDireccion,nroDepto));
+						JOptionPane.showMessageDialog(null, "Inmueble agregado correctamente");
+					}
+				}	
+			}				
+		}
+				
+		inmuebleControlador.deleteAllInmuebles();
+		assertEquals(false, flag);
+		
+	}
+	
+	
+	
+	
+	
+
 	
 	
 
