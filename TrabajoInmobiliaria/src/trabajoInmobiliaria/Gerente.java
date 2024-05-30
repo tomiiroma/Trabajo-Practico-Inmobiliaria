@@ -797,7 +797,8 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 
 			String inmuebleSeleccionado = (String) JOptionPane.showInputDialog(null, "Seleccione Inmueble", "Modificar Inmueble",
 					JOptionPane.QUESTION_MESSAGE, null, opcionesInmuebles, opcionesInmuebles[0]);
-
+			
+			
 			
             Inmueble inmuebleAmodificar = null;
             
