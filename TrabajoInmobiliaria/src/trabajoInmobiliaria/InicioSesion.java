@@ -8,46 +8,44 @@ import controlador.AgenteControlador;
 import controlador.GerenteControlador;
 
 public interface InicioSesion {
+	
+	  default Boolean IniciarSesion(String dniString, String contrasena) {
+		   if (dniString == null || dniString.isEmpty()) {
+	            JOptionPane.showMessageDialog(null, "El DNI no puede estar vacío");
+	            return null;
+	        }
 
-    default void IniciarSesion() {
+	        for (int i = 0; i < dniString.length(); i++) {
+	            if (!Character.isDigit(dniString.charAt(i))) {
+	                JOptionPane.showMessageDialog(null, "El DNI debe contener solo números");
+	                return null;
+	            }
+	        }
 
-        int dni = Integer.parseInt(JOptionPane.showInputDialog("Ingrese DNI"));
-        String cont = JOptionPane.showInputDialog("Ingrese Contrasena");
+	        int dni = Integer.parseInt(dniString);
 
-        AgenteControlador agentecontrolador = new AgenteControlador();
-        GerenteControlador gerentecontrolador = new GerenteControlador();
+	        AgenteControlador agentecontrolador = new AgenteControlador();
+	        GerenteControlador gerentecontrolador = new GerenteControlador();
 
-        List<Agente> agentes = agentecontrolador.getAllAgente();
-        List<Gerente> gerentes = gerentecontrolador.getAllGerente();
-        boolean esAgente = false;
-        boolean inicio = false;
+	        List<Agente> agentes = agentecontrolador.getAllAgente();
+	        List<Gerente> gerentes = gerentecontrolador.getAllGerente();
 
-        for (Agente agente : agentes) {
-            if (agente.getDni() == dni && agente.getContraseña().equals(cont)) {
-                System.out.print("leyo lista agente");
-                
+	        for (Agente agente : agentes) {
+	            if (agente.getDni() == dni && agente.getContraseña().equals(contrasena)) {
+	                JOptionPane.showMessageDialog(null, "Inicio de Sesion Exitoso");
+	                return true;
+	            }
+	        }
 
-                inicio = true;
-                esAgente = true;
-                break;
-            }
-        }
+	        for (Gerente gerente : gerentes) {
+	            if (gerente.getDni() == dni && gerente.getContraseña().equals(contrasena)) {
+	                JOptionPane.showMessageDialog(null, "Inicio de Sesion Exitoso");
+	                return false;
+	            }
+	        }
 
-        if (!esAgente) {
-            for (Gerente gerente : gerentes) {
-                if (gerente.getDni() == dni && gerente.getContraseña().equals(cont)) {
-                    System.out.print("leyo lista gerente");
-
-                    inicio = true;
-                    break;
-                }
-            }
-        }
-
-        if (inicio) {
-            JOptionPane.showMessageDialog(null, "Inicio de Sesion Exitoso");
-        } else {
-            JOptionPane.showMessageDialog(null, "Ingrese correctamente el dni y/o contrasena");
-        }
-    }
+	        JOptionPane.showMessageDialog(null, "Ingrese correctamente el dni y/o contrasena");
+	        return null;
+	    }
+	    
 }

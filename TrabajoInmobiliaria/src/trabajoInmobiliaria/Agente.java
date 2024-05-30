@@ -143,22 +143,10 @@ public class Agente extends Empleado implements Validacion, InicioSesion{
 			case "Realizar Nuevo Contrato":
 	
 				do {
-					String[] operaciones = { "Nuevo Contrato de Venta","Nuevo Contrato de Alquiler","Volver" };
 					
-					String operacionSeleccionada = (String) JOptionPane.showInputDialog(null, "Seleccione una operación:",
-							"Inmobiliaria Maguez | Menu Agente", JOptionPane.DEFAULT_OPTION, null, operaciones,
-							operaciones[0]);
-					
-					if(operacionSeleccionada.equals("Nuevo Contrato de Venta")){
-						JOptionPane.showMessageDialog(null, "Completar y verificar datos de la venta");
 						
-					}else if(operacionSeleccionada.equals("Nuevo Contrato de Alquiler")){
 						JOptionPane.showMessageDialog(null, "Completar y verificar datos del alquiler");  
 						registrarContrato();
-
-					}else {
-						break;
-					}
 					
 					
 				} while (repetir);
