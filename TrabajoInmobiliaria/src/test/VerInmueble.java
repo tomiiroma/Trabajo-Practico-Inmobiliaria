@@ -206,7 +206,7 @@ public class VerInmueble {
 	public void activarInmuebleV() {
 		InmuebleControlador inmuebleControlador = new InmuebleControlador();
 		
-		//                                                                                                                                                                      precio,disponible,                  
+		//                                                                                                                                                                            disponible,                  
 	    inmuebleControlador.addInmueble(new Inmueble(0, "Departamento", "Excelente", "3", "2", "Agronomia", "corrientes", "Lindo Depto con buena vista", "30", "2", "1", 100, 50, 60000, false, false, false, false, false, "1200", "5"));
 		boolean flag = false;
 		
@@ -215,19 +215,223 @@ public class VerInmueble {
 			flag = false;
 			
 		}else {
-
-		}
-		
-		
-		
+			int contador = 0;
+			for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) { // verificamos que hayan inmuebles con el atributo disponible en false, para poder setearlo
+				if(inmueble.isDisponible()==false) {
+					contador ++;
+					flag = true;
+				}	    	    
+			}
 			
+			if(contador==0){
+				JOptionPane.showMessageDialog(null, "No hay Inmuebles por activar");
+				flag = false; // no hay inmuebles para activar
+			}else {
+				
+			//Imprimimos los inmuebles ---con atributo Disponible seteado en False
+				
+				String[] opcionesInmuebles = new String[contador];
+				int index = 0;
+				for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
+					if (inmueble.isDisponible()==false) {
+						opcionesInmuebles[index++] = "ID Inmueble: " + inmueble.getId_inmueble() +
+														" - Dirección: " + inmueble.getDireccion() +
+														" - Ambientes: " + inmueble.getCantAmbientes();
+					}
+				}
+				
+				//seleccion del gerente
+				String inmuebleSeleccionado = (String) JOptionPane.showInputDialog(null,
+						"Seleccione Inmueble para activar","Activar Inmueble", JOptionPane.QUESTION_MESSAGE,null, opcionesInmuebles,opcionesInmuebles[0]);
+				
+				
+				for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
+					String opcion = "ID Inmueble: " + inmueble.getId_inmueble() +
+									" - Dirección: " + inmueble.getDireccion() +
+									" - Ambientes: " + inmueble.getCantAmbientes();
+													
+		    		if (opcion.equals(inmuebleSeleccionado)) {	
+		    			
+		    			int activarInmueble;
+						String[] preguntaEleccion = { "Si", "No" };
+						activarInmueble = JOptionPane.showOptionDialog(null, "Desea activar el inmueble: ", "Eliminar Inmueble", 0,
+								0, null, preguntaEleccion, preguntaEleccion[0]);
+						
+						if(activarInmueble == 0){
+							// Realizar la eliminación del inmueble
+		    				inmueble.setDisponible(true);
+		    				inmuebleControlador.updateInmueble(inmueble);
+							JOptionPane.showMessageDialog(null, "El Inmueble ha sido activado Correctamente");
+							flag = true;
+							
+						}else if(activarInmueble==1){
+							JOptionPane.showMessageDialog(null, "El inmueble no ha sido activado");
+						}else {
+							JOptionPane.showMessageDialog(null, "Opcion no valida");
+						}
+		    		}
+				}
+			}						
+		}					
 		inmuebleControlador.deleteAllInmuebles(); 
 		assertEquals(true, flag);		
 	}
 	
 	
 	
+	@Test
+	// Activar Inmuebles cargados por Agente
+	// Ser gerente y además no haber inmuebles en la base de datos
+	public void activarInmuebleF1() {
+		InmuebleControlador inmuebleControlador = new InmuebleControlador();
+		
+		//                                                                                                                                                                            disponible,                  
+		boolean flag = false;
+		
+		if(inmuebleControlador.getAllInmueble().isEmpty()){
+			JOptionPane.showMessageDialog(null, "No hay inmuebles cargados en la base de datos - - - metodo activar inmuebles");
+			flag = false;
+			
+		}else {
+			int contador = 0;
+			for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) { // verificamos que hayan inmuebles con el atributo disponible en false, para poder setearlo
+				if(inmueble.isDisponible()==false) {
+					contador ++;
+					flag = true;
+				}	    	    
+			}
+			
+			if(contador==0){
+				JOptionPane.showMessageDialog(null, "No hay Inmuebles por activar");
+				flag = false; // no hay inmuebles para activar
+			}else {
+				
+			//Imprimimos los inmuebles ---con atributo Disponible seteado en False
+				
+				String[] opcionesInmuebles = new String[contador];
+				int index = 0;
+				for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
+					if (inmueble.isDisponible()==false) {
+						opcionesInmuebles[index++] = "ID Inmueble: " + inmueble.getId_inmueble() +
+														" - Dirección: " + inmueble.getDireccion() +
+														" - Ambientes: " + inmueble.getCantAmbientes();
+					}
+				}
+				
+				//seleccion del gerente
+				String inmuebleSeleccionado = (String) JOptionPane.showInputDialog(null,
+						"Seleccione Inmueble para activar","Activar Inmueble", JOptionPane.QUESTION_MESSAGE,null, opcionesInmuebles,opcionesInmuebles[0]);
+				
+				
+				for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
+					String opcion = "ID Inmueble: " + inmueble.getId_inmueble() +
+									" - Dirección: " + inmueble.getDireccion() +
+									" - Ambientes: " + inmueble.getCantAmbientes();
+													
+		    		if (opcion.equals(inmuebleSeleccionado)) {	
+		    			
+		    			int activarInmueble;
+						String[] preguntaEleccion = { "Si", "No" };
+						activarInmueble = JOptionPane.showOptionDialog(null, "Desea activar el inmueble: ", "Eliminar Inmueble", 0,
+								0, null, preguntaEleccion, preguntaEleccion[0]);
+						
+						if(activarInmueble == 0){
+							// Realizar la eliminación del inmueble
+		    				inmueble.setDisponible(true);
+		    				inmuebleControlador.updateInmueble(inmueble);
+							JOptionPane.showMessageDialog(null, "El Inmueble ha sido activado Correctamente");
+							flag = true;
+							
+						}else if(activarInmueble==1){
+							JOptionPane.showMessageDialog(null, "El inmueble no ha sido activado");
+						}else {
+							JOptionPane.showMessageDialog(null, "Opcion no valida");
+						}
+		    		}
+				}
+			}						
+		}					
+		inmuebleControlador.deleteAllInmuebles(); 
+		assertEquals(false, flag);		
+	}
+	
 
+	@Test
+	// Activar Inmuebles cargados por Agente
+	// Ser gerente y deben haber inmuebles en la base de datos e Inmuebles con el atributo isDisponible() == true.
+	public void activarInmuebleF2() {
+		InmuebleControlador inmuebleControlador = new InmuebleControlador();
+		
+		//                                                                                                                                                                            disponible,                  
+	    inmuebleControlador.addInmueble(new Inmueble(0, "Departamento", "Excelente", "3", "2", "Agronomia", "corrientes", "Lindo Depto con buena vista", "30", "2", "1", 100, 50, 60000, true, false, false, false, false, "1200", "5"));
+		boolean flag = false;
+		
+		if(inmuebleControlador.getAllInmueble().isEmpty()){
+			System.out.println("No hay inmuebles en la base de datos");
+			flag = false;
+			
+		}else {
+			int contador = 0;
+			for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) { // verificamos que hayan inmuebles con el atributo disponible en false, para poder setearlo
+				if(inmueble.isDisponible()==false) {
+					contador ++;
+					flag = true;
+				}	    	    
+			}
+			
+			if(contador==0){
+				JOptionPane.showMessageDialog(null, "No hay Inmuebles por activar");
+				flag = false; // no hay inmuebles para activar
+			}else {
+				
+			//Imprimimos los inmuebles ---con atributo Disponible seteado en False
+				
+				String[] opcionesInmuebles = new String[contador];
+				int index = 0;
+				for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
+					if (inmueble.isDisponible()==false) {
+						opcionesInmuebles[index++] = "ID Inmueble: " + inmueble.getId_inmueble() +
+														" - Dirección: " + inmueble.getDireccion() +
+														" - Ambientes: " + inmueble.getCantAmbientes();
+					}
+				}
+				
+				//seleccion del gerente
+				String inmuebleSeleccionado = (String) JOptionPane.showInputDialog(null,
+						"Seleccione Inmueble para activar","Activar Inmueble", JOptionPane.QUESTION_MESSAGE,null, opcionesInmuebles,opcionesInmuebles[0]);
+				
+				
+				for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
+					String opcion = "ID Inmueble: " + inmueble.getId_inmueble() +
+									" - Dirección: " + inmueble.getDireccion() +
+									" - Ambientes: " + inmueble.getCantAmbientes();
+													
+		    		if (opcion.equals(inmuebleSeleccionado)) {	
+		    			
+		    			int activarInmueble;
+						String[] preguntaEleccion = { "Si", "No" };
+						activarInmueble = JOptionPane.showOptionDialog(null, "Desea activar el inmueble: ", "Eliminar Inmueble", 0,
+								0, null, preguntaEleccion, preguntaEleccion[0]);
+						
+						if(activarInmueble == 0){
+							// Realizar la eliminación del inmueble
+		    				inmueble.setDisponible(true);
+		    				inmuebleControlador.updateInmueble(inmueble);
+							JOptionPane.showMessageDialog(null, "El Inmueble ha sido activado Correctamente");
+							flag = true;
+							
+						}else if(activarInmueble==1){
+							JOptionPane.showMessageDialog(null, "El inmueble no ha sido activado");
+						}else {
+							JOptionPane.showMessageDialog(null, "Opcion no valida");
+						}
+		    		}
+				}
+			}						
+		}					
+		inmuebleControlador.deleteAllInmuebles(); 
+		assertEquals(false, flag);		
+	}
 
 	
 }
