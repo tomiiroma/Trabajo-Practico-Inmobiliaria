@@ -12,6 +12,7 @@ import controlador.ReservaControlador;
 import controlador.VentaControlador;
 import controlador.AlquilerControlador;
 import controlador.ControladorEmpleado;
+import vista.MenuGestionEmpleados;
 
 public class Gerente extends Empleado implements Validacion, InicioSesion{
 
@@ -407,7 +408,14 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 				break;
 			
 			case "Gestionar Empleados":
+				
+				
+				
 				do {
+				
+					
+					
+					
 					String[] gestionEmpleados = {"Ver Lista Empleados","Agregar Nuevo Empleado","Volver"};
 					
 					String gestionSeleccionada = (String) JOptionPane.showInputDialog(null, "Seleccione una operación:",
