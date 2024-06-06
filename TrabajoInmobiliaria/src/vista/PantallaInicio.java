@@ -19,6 +19,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.JPasswordField;
+import java.awt.Font;
 
 public class PantallaInicio extends JFrame {
 
@@ -50,31 +51,39 @@ public class PantallaInicio extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 490, 316);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(255, 245, 238));
+		contentPane.setBackground(new Color(170, 199, 242));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel labNombre = new JLabel("Nombre");
-		labNombre.setBounds(211, 26, 65, 14);
+		JLabel labNombre = new JLabel("DNI");
+		labNombre.setBounds(282, 41, 65, 14);
 		contentPane.add(labNombre);
 		
 		inpNombre = new JTextField();
 		inpNombre.setForeground(new Color(0, 0, 0));
-		inpNombre.setBackground(new Color(209, 209, 163));
-		inpNombre.setBounds(155, 51, 176, 20);
+		inpNombre.setBackground(new Color(255, 255, 255));
+		inpNombre.setBounds(218, 66, 176, 20);
 		contentPane.add(inpNombre);
 		inpNombre.setColumns(10);
 		
+		JLabel lblerrorIngreso = new JLabel("DNI y/o contraseña incorrectos");
+		lblerrorIngreso.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblerrorIngreso.setForeground(new Color(255, 0, 0));
+		lblerrorIngreso.setBounds(218, 241, 220, 25);
+		contentPane.add(lblerrorIngreso);
+		lblerrorIngreso.setVisible(false);
+		
+		
 		JLabel labContrasena = new JLabel("Contraseña");
-		labContrasena.setBounds(193, 102, 100, 14);
+		labContrasena.setBounds(266, 121, 91, 14);
 		contentPane.add(labContrasena);
 		
 		inpContrasena = new JPasswordField();
 		inpContrasena.setForeground(new Color(0, 0, 0));
-		inpContrasena.setBackground(new Color(209, 209, 163));
-		inpContrasena.setBounds(155, 127, 176, 20);
+		inpContrasena.setBackground(new Color(255, 255, 255));
+		inpContrasena.setBounds(218, 146, 176, 20);
 		contentPane.add(inpContrasena);
 		
 		
@@ -85,6 +94,11 @@ public class PantallaInicio extends JFrame {
 				
 		        Boolean esAgente = empleado.IniciarSesion(inpNombre.getText(), inpContrasena.getText());
 
+		        if(esAgente == null) {
+	            	lblerrorIngreso.setVisible(true);
+
+		        }
+		        
 		        if (esAgente != null) {
 		            if (esAgente) {
 		            	PantallaAgente PantallaAgente = new PantallaAgente();
@@ -98,8 +112,14 @@ public class PantallaInicio extends JFrame {
 		        }
 			}
 		});
-		btnIngresar.setBounds(188, 194, 111, 23);
+		btnIngresar.setBounds(252, 200, 111, 23);
 		contentPane.add(btnIngresar);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(107, 157, 233));
+		panel.setBounds(0, 0, 132, 277);
+		contentPane.add(panel);
+		
 		
 	
 	}
