@@ -1649,7 +1649,7 @@ public boolean AgregarAgente(String nombre, String apellido, LocalDate fecha, in
     	if (agente_repetido == false) {
         Agente agente = new Agente(0, nombre, apellido, fecha, dni, telefono, correo, "Agente", contraseña, id_agente);
       
-        JOptionPane.showMessageDialog(null, "El agente se ha agregado con exito.");
+       /* JOptionPane.showMessageDialog(null, "El agente se ha agregado con exito."); */
         
         agentecontrolador.addAgente(agente);
         return true;

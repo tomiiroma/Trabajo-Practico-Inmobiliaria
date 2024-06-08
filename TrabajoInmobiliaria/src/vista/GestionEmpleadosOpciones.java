@@ -15,7 +15,7 @@ public class GestionEmpleadosOpciones extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private TipoEmpleado tipoempleado;
-
+	private Tipoempleado2 tipoempleado2;
 	/**
 	 * Launch the application.
 	 */
@@ -45,6 +45,28 @@ public class GestionEmpleadosOpciones extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		JButton btnNewButton = new JButton("Ver datos");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if (tipoempleado2 == null) {
+					
+					
+					tipoempleado2 = new Tipoempleado2();
+					
+					
+				}
+				
+				
+				tipoempleado2.setVisible(true);
+				
+				tipoempleado2.setLocationRelativeTo(null);
+				
+				dispose();
+				
+				
+				
+			}
+		});
 		btnNewButton.setBounds(125, 259, 206, 43);
 		contentPane.add(btnNewButton);
 		
