@@ -16,6 +16,7 @@ public class GestionEmpleadosOpciones extends JFrame {
 	private JPanel contentPane;
 	private TipoEmpleado tipoempleado;
 	private Tipoempleado2 tipoempleado2;
+	private ModificarEmpleado Modificar;
 	/**
 	 * Launch the application.
 	 */
@@ -76,6 +77,25 @@ public class GestionEmpleadosOpciones extends JFrame {
 		contentPane.add(lblNewLabel_2);
 		
 		JButton btnModificarEmpleado = new JButton("Modificar empleado");
+		btnModificarEmpleado.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if (Modificar == null) {
+					
+					Modificar = new ModificarEmpleado();
+					
+				}
+				
+				Modificar.setVisible(true);
+				
+				Modificar.setLocationRelativeTo(null);
+				
+				dispose();
+				
+				
+				
+			}
+		});
 		btnModificarEmpleado.setBounds(537, 259, 206, 43);
 		contentPane.add(btnModificarEmpleado);
 		
@@ -114,6 +134,10 @@ public class GestionEmpleadosOpciones extends JFrame {
 		contentPane.add(lblNewLabel_4);
 		
 		JButton btnNewButton_1_1 = new JButton("Eliminar empleado");
+		btnNewButton_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnNewButton_1_1.setBounds(537, 439, 206, 43);
 		contentPane.add(btnNewButton_1_1);
 		
