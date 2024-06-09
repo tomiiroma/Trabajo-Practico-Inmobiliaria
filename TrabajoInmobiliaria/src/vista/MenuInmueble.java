@@ -9,10 +9,10 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class MenuInmuebles extends JFrame {
+public class MenuInmueble extends JFrame {
 
-	private JPanel contentPane;
-
+    private static final long serialVersionUID = 1L;
+    private JPanel contentPane;
 	/**
 	 * Launch the application.
 	 */
@@ -20,7 +20,7 @@ public class MenuInmuebles extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MenuInmuebles frame = new MenuInmuebles();
+					MenuInmueble frame = new MenuInmueble();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -32,9 +32,9 @@ public class MenuInmuebles extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MenuInmuebles() {
+	public MenuInmueble() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 869, 691);
+		setBounds(100, 100, 870, 690);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
