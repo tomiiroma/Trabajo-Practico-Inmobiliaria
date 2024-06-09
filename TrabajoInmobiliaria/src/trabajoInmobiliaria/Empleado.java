@@ -5,7 +5,6 @@ import java.util.Iterator;
 
 import javax.swing.JOptionPane;
 
-
 import controlador.AgenteControlador;
 import controlador.AlquilerControlador;
 import controlador.CompradorControlador;
@@ -259,117 +258,7 @@ public class Empleado implements InicioSesion,Validacion{
 	
 	/* ------------------------------------------------------------------------------------ REALIZAR RESERVA --------------------------------------------------------------------------------------------------------------------------- */
 
-	/* ------------------------------------------------------------------------------------------------------- Realizar reservas 2 ------------------------------------------------------------------------------- */
 	
-	
-	
-	
-	public void RealizarReserva() {
-		
-		boolean error = false;
-		Cliente cliente = null;
-		Empleado empleado = null;
-		LocalDate fecha_pago = null;
-		String pago="";
-		double montovalidado;
-		
-		try {
-			
-		ReservaControlador reservacontrolador = new ReservaControlador();
-		
-		
-		
-		Inmueble inmueble = SeleccionarInmueble();
-		
-		if (inmueble==null) {error=true;}
-		
-		
-		String[] Clientes = {"Inquilino","Comprador","Cancelar Operación"};
-		
-		
-		int clienteseleccionado = JOptionPane.showOptionDialog(null, "Seleccionar el tipo de cliente","Selección de clientes", 0, 0, null, Clientes, Clientes[0]);
-		
-		
-		switch (clienteseleccionado) {
-		case 0:
-			
-			 cliente = SelectorInquilino();
-			
-			
-			break;
-
-		case 1:
-			
-			cliente = SelectorComprador();
-			
-			break;
-			
-			
-		case 2:
-			
-			JOptionPane.showMessageDialog(null, "Se ha cancelado la operación");
-			
-			break;
-			
-		default:
-			break;
-		}
-		
-		if (cliente==null) {error=true;}
-		
-		
-		fecha_pago = validarFecha(fecha_pago);
-		
-		pago = JOptionPane.showInputDialog("Ingresar un número entero o con dos decimales para el monto de la reserva");
-		
-		montovalidado = ValidarMonto(pago);
-		
-		String forma_pago = JOptionPane.showInputDialog(null, "Escribar la forma de pago");
-		
-		
-		String[] Empleados = {"Agente","Gerente","Cancelar operación"};
-		
-		
-		int seleccionEmpleados = JOptionPane.showOptionDialog(null, "Seleccionar el tipo de empleado que realizara la reserva", "Modulo reserva", 0, 0, null, Empleados, Empleados[0]);
-		
-		
-		if (seleccionEmpleados==0) {	empleado = SeleccionarAgente();}
-		
-		else if (seleccionEmpleados==1) { empleado = ObtenerGerenteId();}
-		
-		else { JOptionPane.showMessageDialog(null, "Se cancelo la operacioón"); error=true; }
-		
-		if (empleado==null) {error = true;}
-		
-		if (error==false) {
-			
-			
-			reservacontrolador.addReserva(new Reserva(inmueble,cliente,fecha_pago,montovalidado,forma_pago,empleado));
-			
-			
-		}
-		
-		
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, e);
-		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	}
 	
 	
 	/* ------------------------------------------------------------------------------------------------------- VER TODAS LAS RESERVAS ------------------------------------------------------------------------------------------------- */
@@ -1156,6 +1045,148 @@ public class Empleado implements InicioSesion,Validacion{
 		} while (true);
 	    
 	    
+	}
+	
+/* ---------------------------------------------------------------------------- Selector de Agentes ----------------------------------------------------------------------------------------- */	
+	
+	public void SelectorAgentes() {
+		
+		AgenteControlador agentecontrolador = new AgenteControlador();   	
+		
+		 /* desde aca */  //JOptionPane.showMessageDialog(null, "Empleado");
+			
+			String[] listaEmpleado = {"Ver empleados","seleccionar empleado","Salir"};
+			
+			int seleccionEmpleado = JOptionPane.showOptionDialog(null, "Elegir opcion", null, 0, 0, null, listaEmpleado, listaEmpleado[0]);
+			
+			switch(seleccionEmpleado) {
+			
+			case 0:  // Ver empleados
+			
+				if (agentecontrolador.getAllAgente().size()==0) {JOptionPane.showMessageDialog(null, "No se han encontrado agentes.");} else {
+				 JOptionPane.showMessageDialog(null, "La lista de empleados"+"\n"+agentecontrolador.getAllAgente());}
+				
+				 JOptionPane.showMessageDialog(null, "La lista de empleados"+"\n"+agentecontrolador.getAllAgente());	
+				
+			break;
+			
+			
+			
+/*---------------------------------*/  case 1: // Ver empleado por id /* ------------------------------------------------------------------------------------------------------------------------------------------------ */
+		
+	if (agentecontrolador.getAllAgente().size()==0) { JOptionPane.showMessageDialog(null, "No hay empleados registrados.");}
+	else  {
+		String[] empleados = new String[agentecontrolador.getAllAgente().size()];
+			for (int i = 0; i < empleados.length; i++) {
+			empleados[i] = Integer.toString(agentecontrolador.getAllAgente().get(i).getId_empleado());}
+										
+			
+			String empleadoselect = (String) JOptionPane.showInputDialog(null, "Seleccione usuario", null, 0, null,
+			empleados, empleados[0]);
+
+				// JOptionPane.showMessageDialog(null, agentecontrolador.getAgenteById(Integer.parseInt(empleadoselect)));
+					Agente seleccionado = agentecontrolador.getAgenteById(Integer.parseInt(empleadoselect));
+					JOptionPane.showMessageDialog(null, "El agente seleccionado es:"+seleccionado.toString()); /* Recordar cambiar los nombres en el archivo princ */ }
+				
+				break;
+				
+			case 2: // Salir
+				
+				break;}}
+	
+	
+/*----------------------------------------------------------------- Fin del metodo SelectorAgente ---------------------------------------------------------------------------------------------------------------------------*/	
+	
+/* --------------------------------------------------------------- Seleccionar Agente por ID --------------------------------------------------------------------------------------------------------------------------------*/
+	
+	
+	public Agente SelectorAgente() {
+	
+		AgenteControlador agentecontrolador = new AgenteControlador();
+		
+		Agente seleccionado = null;
+		
+	if (agentecontrolador.getAllAgente().size()==0) { JOptionPane.showMessageDialog(null, "No hay empleados registrados.");}
+	else  {
+		String[] empleados = new String[agentecontrolador.getAllAgente().size()];
+			for (int i = 0; i < empleados.length; i++) {
+			empleados[i] = Integer.toString(agentecontrolador.getAllAgente().get(i).getId_empleado());}
+										
+			
+			String empleadoselect = (String) JOptionPane.showInputDialog(null, "Seleccione usuario", null, 0, null,
+			empleados, empleados[0]);
+
+				// JOptionPane.showMessageDialog(null, agentecontrolador.getAgenteById(Integer.parseInt(empleadoselect)));
+					 seleccionado = agentecontrolador.getAgenteById(Integer.parseInt(empleadoselect));
+					JOptionPane.showMessageDialog(null, "El agente seleccionado es:"+seleccionado.toString());
+	
+					
+	}
+	
+	
+	return seleccionado;
+	
+	}
+	
+	
+	
+	/*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+	
+public boolean RealizarReserva(Inmueble inmueble,Empleado empleado2,Cliente cliente2,LocalDate fecha_pago2,String pago2) {
+		
+		boolean error = false;
+		double montovalidado;
+		
+		try {
+			
+		ReservaControlador reservacontrolador = new ReservaControlador();
+		
+	
+		
+		if (inmueble==null) {System.out.println("No se ha ingresado ningun inmueble");	error=true; return false;}
+		
+		if (cliente2==null) {System.out.println("No se ha ingresado ningun cliente"); error=true; return false; }
+		
+		
+		if (empleado2==null) {System.out.println("No se ha ingresado ningun empleado");error = true; return false;}
+		
+		montovalidado = ValidarMonto(pago2);
+		
+		
+		String forma_pago = "Efectivo";
+		
+		JOptionPane.showMessageDialog(null, error);
+		
+		if (error==false && validarFecha_pagoReserva(fecha_pago2)) {
+			
+			
+			reservacontrolador.addReserva(new Reserva(inmueble,cliente2,fecha_pago2,montovalidado,forma_pago,empleado2));
+			
+			return true;
+			
+		}
+		
+		
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e);
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		return false;
+		
+		
+		
+		
+		
+		
+		
 	}
 	
 	
