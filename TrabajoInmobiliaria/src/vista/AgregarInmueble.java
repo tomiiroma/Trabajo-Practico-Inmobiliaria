@@ -15,6 +15,10 @@ import javax.swing.JTextArea;
 
 public class AgregarInmueble extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JComboBox<String> cbTipoInmueble;
     private JComboBox<String> cbCondicionInmueble;
@@ -281,6 +285,14 @@ public class AgregarInmueble extends JFrame {
         JTextArea txtAreaDescrip = new JTextArea();
         txtAreaDescrip.setBounds(517, 274, 290, 170);
         contentPane.add(txtAreaDescrip);
+        
+        JButton btnVolver = new JButton("Volver");
+        btnVolver.setBounds(30, 570, 150, 34);
+        contentPane.add(btnVolver);
+        
+        JButton btnRegistrar = new JButton("Registrar Inmueble");
+        btnRegistrar.setBounds(657, 570, 150, 34);
+        contentPane.add(btnRegistrar);
         
         
 
