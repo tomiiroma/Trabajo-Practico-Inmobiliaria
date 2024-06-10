@@ -20,6 +20,14 @@ import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.JPasswordField;
 import java.awt.Font;
+import javax.swing.ImageIcon;
+import javax.swing.border.MatteBorder;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.border.EtchedBorder;
 
 public class PantallaInicio extends JFrame {
 
@@ -49,45 +57,56 @@ public class PantallaInicio extends JFrame {
 	 */
 	public PantallaInicio() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 490, 316);
+		setBounds(100, 100, 800, 500);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(170, 199, 242));
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBackground(new Color(52, 118, 113));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel labNombre = new JLabel("DNI");
-		labNombre.setBounds(282, 41, 65, 14);
+		labNombre.setFont(new Font("Trebuchet MS", Font.PLAIN, 14));
+		labNombre.setForeground(new Color(226, 228, 222));
+		labNombre.setBounds(200, 138, 65, 14);
 		contentPane.add(labNombre);
 		
 		inpNombre = new JTextField();
-		inpNombre.setForeground(new Color(0, 0, 0));
+		inpNombre.setBorder(new EmptyBorder(0, 0, 0, 0));
+		inpNombre.setToolTipText("");
+		inpNombre.setForeground(new Color(192, 192, 192));
 		inpNombre.setBackground(new Color(255, 255, 255));
-		inpNombre.setBounds(218, 66, 176, 20);
+		inpNombre.setBounds(200, 163, 360, 30);
 		contentPane.add(inpNombre);
 		inpNombre.setColumns(10);
 		
 		JLabel lblerrorIngreso = new JLabel("DNI y/o contraseña incorrectos");
 		lblerrorIngreso.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblerrorIngreso.setForeground(new Color(255, 0, 0));
-		lblerrorIngreso.setBounds(218, 241, 220, 25);
+		lblerrorIngreso.setForeground(new Color(255, 4, 4));
+		lblerrorIngreso.setBounds(291, 397, 197, 25);
 		contentPane.add(lblerrorIngreso);
 		lblerrorIngreso.setVisible(false);
 		
 		
 		JLabel labContrasena = new JLabel("Contraseña");
-		labContrasena.setBounds(266, 121, 91, 14);
+		labContrasena.setFont(new Font("Trebuchet MS", Font.PLAIN, 14));
+		labContrasena.setForeground(new Color(226, 228, 222));
+		labContrasena.setBounds(200, 221, 91, 14);
 		contentPane.add(labContrasena);
 		
 		inpContrasena = new JPasswordField();
+		inpContrasena.setToolTipText("");
+		inpContrasena.setBorder(new EmptyBorder(0, 0, 0, 0));
 		inpContrasena.setForeground(new Color(0, 0, 0));
 		inpContrasena.setBackground(new Color(255, 255, 255));
-		inpContrasena.setBounds(218, 146, 176, 20);
+		inpContrasena.setBounds(200, 246, 360, 30);
 		contentPane.add(inpContrasena);
 		
 		
 		JButton btnIngresar = new JButton("Iniciar Sesion");
+		btnIngresar.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
+		btnIngresar.setBorder(null);
+		btnIngresar.setForeground(new Color(192, 192, 192));
+		btnIngresar.setBackground(new Color(0, 47, 47));
 		btnIngresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Empleado empleado = new Empleado();
@@ -112,13 +131,14 @@ public class PantallaInicio extends JFrame {
 		        }
 			}
 		});
-		btnIngresar.setBounds(252, 200, 111, 23);
+		btnIngresar.setBounds(315, 329, 111, 45);
 		contentPane.add(btnIngresar);
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(107, 157, 233));
-		panel.setBounds(0, 0, 132, 277);
-		contentPane.add(panel);
+		JLabel lblInicioTitulo = new JLabel("INICIAR SESION");
+		lblInicioTitulo.setForeground(new Color(255, 255, 255));
+		lblInicioTitulo.setFont(new Font("Arial Black", Font.PLAIN, 24));
+		lblInicioTitulo.setBounds(268, 55, 220, 53);
+		contentPane.add(lblInicioTitulo);
 		
 		
 	
