@@ -1,6 +1,6 @@
 package vista;
 
-import java.awt.BorderLayout; 
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,18 +19,12 @@ import trabajoInmobiliaria.Inmueble;
 
 import javax.swing.JTable;
 
-public class EliminarInmueble extends JFrame {
+public class VerInmueblesDisponibles extends JFrame {
 
     private JPanel contentPane;
     private JTable table;
     private DefaultTableModel model;
     private InmuebleControlador controlador;
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
 	/**
 	 * Launch the application.
 	 */
@@ -38,7 +32,7 @@ public class EliminarInmueble extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					EliminarInmueble frame = new EliminarInmueble();
+					VerInmueblesDisponibles frame = new VerInmueblesDisponibles();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -50,7 +44,7 @@ public class EliminarInmueble extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public EliminarInmueble() {
+	public VerInmueblesDisponibles() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    setBounds(100, 100, 870, 690);
 	    contentPane = new JPanel();
@@ -72,6 +66,8 @@ public class EliminarInmueble extends JFrame {
 	    
 	    actualizarTabla();
 	    
+	    
+	    
         
         JButton btnVolver = new JButton("Volver");
         btnVolver.addActionListener(new ActionListener() {
@@ -80,38 +76,36 @@ public class EliminarInmueble extends JFrame {
         });
         btnVolver.setBounds(30, 570, 150, 34);
         contentPane.add(btnVolver);
-        
-        JButton btnEliminar = new JButton("Eliminar Inmueble");
-        btnEliminar.setBounds(681, 569, 150, 34);
-        contentPane.add(btnEliminar);
 	}
 
+        
+
+    private void actualizarTabla() {
+        // Limpiar el modelo de la tabla
+        model.setRowCount(0);
+
+        // Obtener la lista actualizada de inmuebles
+        List<Inmueble> inmuebles = controlador.getAllInmueble();
+
+        // Agregar los datos al modelo
+        for (Inmueble inmueble : inmuebles) {
+        	
+        	if(inmueble.isDisponible()==true){      		
+        		model.addRow(new Object[]{
+        				inmueble.getId_inmueble(),
+        				inmueble.getTipo_inmueble(),
+        				inmueble.getPiso(),
+        				inmueble.getCantAmbientes(),
+        				inmueble.getBarrio(),
+        				inmueble.getDireccion(),
+        				inmueble.getPrecio(),
+        				inmueble.isDisponible(),
+        				inmueble.getCondicion()
+        		});
+        	}
+        }
 		
-
-	    private void actualizarTabla() {
-	        // Limpiar el modelo de la tabla
-	        model.setRowCount(0);
-
-	        // Obtener la lista actualizada de inmuebles
-	        List<Inmueble> inmuebles = controlador.getAllInmueble();
-
-	        // Agregar los datos al modelo
-	        for (Inmueble inmueble : inmuebles) {
-	            model.addRow(new Object[]{
-	                    inmueble.getId_inmueble(),
-	                    inmueble.getTipo_inmueble(),
-	                    inmueble.getPiso(),
-	                    inmueble.getCantAmbientes(),
-	                    inmueble.getBarrio(),
-	                    inmueble.getDireccion(),
-	                    inmueble.getPrecio(),
-	                    inmueble.isDisponible(),
-	                    inmueble.getCondicion()
-	            });
-	        }
-
-			
-			
+		
 	}
 
 }
