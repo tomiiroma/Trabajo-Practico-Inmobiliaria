@@ -17,6 +17,7 @@ import java.awt.Color;
 import javax.swing.JTabbedPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
@@ -31,19 +32,24 @@ import javax.swing.ListSelectionModel;
 
 import controlador.AgenteControlador;
 import trabajoInmobiliaria.Agente;
+import trabajoInmobiliaria.Validacion;
+
+import javax.swing.JTextField;
 
 
 
-public class ModificarEmpleado extends JFrame {
+public class ModificarEmpleado extends JFrame implements Validacion {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTable table;
+	private JTable tableagentes;
 	private AgenteControlador agentecontrolador = new AgenteControlador();
 	private DefaultTableModel mt;
 	private GestionEmpleadosOpciones opciones;
 	private Agente seleccionado;
 	private JButton EditarEmpleado;
+	private JTable tablegerentes;
+	private JTextField inpBuscador;
 	/**
 	 * Launch the application.
 	 */
@@ -67,6 +73,7 @@ public class ModificarEmpleado extends JFrame {
 		panel.setBounds(0, 0, 182, 661);
 		contentPane.add(panel);
 		panel.setLayout(null);
+			
 		
 		JButton btnVolver = new JButton("Volver");
 		btnVolver.addActionListener(new ActionListener() {
@@ -95,6 +102,50 @@ public class ModificarEmpleado extends JFrame {
 		tabbedPane.setBounds(181, 0, 803, 661);
 		contentPane.add(tabbedPane);
 		
+		
+		String[] ColumNames = {"Id_empleado","Nombre","Apellido","Fecha_nac","dni","telefono","correo","tipo_empleado","contraseña","id_agente"};
+		mt = new DefaultTableModel(ColumNames, 0);
+		VerAgentes();
+		
+		JPanel panel_2 = new JPanel();
+		tabbedPane.addTab("Gerentes", null, panel_2, null);
+		panel_2.setLayout(null);
+		
+		JPanel panel_1_1 = new JPanel();
+		panel_1_1.setLayout(null);
+		panel_1_1.setBounds(0, 0, 798, 633);
+		panel_2.add(panel_1_1);
+		
+		JLabel lblGerentes = new JLabel("Tabla de gerentes");
+		lblGerentes.setFont(new Font("Verdana", Font.PLAIN, 20));
+		lblGerentes.setBounds(305, 0, 458, 63);
+		panel_1_1.add(lblGerentes);
+		
+		JSeparator separator_2 = new JSeparator();
+		separator_2.setBounds(21, 61, 751, 2);
+		panel_1_1.add(separator_2);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(21, 106, 751, 435);
+		panel_1_1.add(scrollPane_1);
+		
+		tablegerentes = new JTable();
+		scrollPane_1.setViewportView(tablegerentes);
+		
+		JSeparator separator_1_1 = new JSeparator();
+		separator_1_1.setBounds(14, 565, 751, 2);
+		panel_1_1.add(separator_1_1);
+		
+		JButton btnModgerentes = new JButton("Modificar");
+		btnModgerentes.setFont(new Font("Verdana", Font.PLAIN, 16));
+		btnModgerentes.setBounds(337, 578, 132, 44);
+		panel_1_1.add(btnModgerentes);
+		
+		JLabel lblgerenteseleccionado = new JLabel("Seleccion:");
+		lblgerenteseleccionado.setFont(new Font("Verdana", Font.PLAIN, 11));
+		lblgerenteseleccionado.setBounds(21, 70, 751, 30);
+		panel_1_1.add(lblgerenteseleccionado);
+		
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Agentes", null, panel_1, null);
 		panel_1.setLayout(null);
@@ -109,15 +160,11 @@ public class ModificarEmpleado extends JFrame {
 		panel_1.add(separator);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(21, 106, 751, 435);
+		scrollPane.setBounds(21, 141, 751, 400);
 		panel_1.add(scrollPane);
-		
-		
-		String[] ColumNames = {"Id_empleado","Nombre","Apellido","Fecha_nac","dni","telefono","correo","tipo_empleado","contraseña","id_agente"};
-		mt = new DefaultTableModel(ColumNames, 0);
-		table = new JTable(mt);
-		scrollPane.setColumnHeaderView(table);
-		scrollPane.setViewportView(table);
+		tableagentes = new JTable(mt);
+		scrollPane.setColumnHeaderView(tableagentes);
+		scrollPane.setViewportView(tableagentes);
 		
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setBounds(14, 565, 751, 2);
@@ -152,11 +199,99 @@ public class ModificarEmpleado extends JFrame {
 		lblElemento.setFont(new Font("Verdana", Font.PLAIN, 11));
 		lblElemento.setBounds(21, 70, 751, 30);
 		panel_1.add(lblElemento);
-		VerEmpleados();
 		
-		JPanel panel_2 = new JPanel();
-		tabbedPane.addTab("Gerentes", null, panel_2, null);
-		panel_2.setLayout(null);
+		inpBuscador = new JTextField();
+		inpBuscador.setBounds(101, 111, 222, 20);
+		panel_1.add(inpBuscador);
+		inpBuscador.setColumns(10);
+		
+		JLabel lblbuscadorAgentes = new JLabel("Buscador:");
+		lblbuscadorAgentes.setBounds(21, 111, 113, 20);
+		panel_1.add(lblbuscadorAgentes);
+		
+		JButton btnBuscarAgente = new JButton("Buscar");
+		btnBuscarAgente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				boolean flag = true;
+				boolean validarDni = true;
+				if (!inpBuscador.getText().isEmpty()) {
+					
+					try {
+						
+						
+						 for (int i = 0; i < inpBuscador.getText().length(); i++) {
+							
+							 if (!Character.isDigit(inpBuscador.getText().charAt(i))) {
+			                        flag = false;
+			                        break; 
+			                    }
+							 
+							 
+						}
+						
+						
+						if (flag == true) {
+							
+					
+							
+							int dni = Integer.parseInt(inpBuscador.getText());
+							
+							validarDni = validarDni2(dni);	
+							
+							if (validarDni == true) {
+								
+								BuscarAgenteDni(dni);
+								
+								
+							} else {
+								
+								inpBuscador.setForeground(Color.red);
+								inpBuscador.setText("El dni debe contener 8 digitos.");
+								
+							}
+						
+						
+						} else {
+							
+						
+							inpBuscador.setForeground(Color.red);
+							inpBuscador.setText("Se ingreso un caracter inválido");
+							
+						}
+						
+						
+						
+					} catch (Exception e2) {
+									
+					
+						inpBuscador.setForeground(Color.red);
+						inpBuscador.setText("Se ingreso un caracter inválido");
+						
+						
+					}
+					
+					
+					
+					
+				} else {
+					
+					inpBuscador.setForeground(Color.red);
+					inpBuscador.setText("No se puede ingresar un campo vacio.");
+					
+				}
+				
+				
+				
+				
+				
+				
+			}
+		});
+		btnBuscarAgente.setBounds(337, 111, 89, 20);
+		panel_1.add(btnBuscarAgente);
+		
+		
+		  ListSelectionModel selectionModel = tableagentes.getSelectionModel();
 		
 		
 		JButton btnAgente = new JButton("Agentes");
@@ -183,9 +318,6 @@ public class ModificarEmpleado extends JFrame {
 		});
 		btnGerentes.setBounds(43, 313, 89, 23);
 		panel.add(btnGerentes);
-		
-		
-		  ListSelectionModel selectionModel = table.getSelectionModel();
 	        selectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 	        // Agregar un escuchador de selección
@@ -193,15 +325,15 @@ public class ModificarEmpleado extends JFrame {
 	            @Override
 	            public void valueChanged(ListSelectionEvent e) {
 	                if (!e.getValueIsAdjusting()) {
-	                    int selectedRow = table.getSelectedRow();
+	                    int selectedRow = tableagentes.getSelectedRow();
 	                    if (selectedRow != -1) {
-	                        int id = (int) table.getValueAt(selectedRow, 0);
-	                        String nombre = (String) table.getValueAt(selectedRow, 1);
-	                        String apellido = (String) table.getValueAt(selectedRow, 2);	           
+	                        int id = (int) tableagentes.getValueAt(selectedRow, 0);
+	                        String nombre = (String) tableagentes.getValueAt(selectedRow, 1);
+	                        String apellido = (String) tableagentes.getValueAt(selectedRow, 2);	           
 	                       // LocalDate fecha = (LocalDate) table.getValueAt(selectedRow, 3);
-	                        int dni = (int) table.getValueAt(selectedRow, 4);
-	                        String correo = (String) table.getValueAt(selectedRow, 6);
-	                        String tipoempleado = (String) table.getValueAt(selectedRow, 7);
+	                        int dni = (int) tableagentes.getValueAt(selectedRow, 4);
+	                        String correo = (String) tableagentes.getValueAt(selectedRow, 6);
+	                        String tipoempleado = (String) tableagentes.getValueAt(selectedRow, 7);
 	                        lblElemento.setText("Seleccionado: ID_empleado=" + id + ", Nombre=" + nombre + ", Apellido=" + apellido + ", Dni: " + dni   + ", Tipo empleado" + tipoempleado );
 	                        seleccionado.setId_empleado(id);
 	                        seleccionado.setNombre(nombre);
@@ -218,11 +350,9 @@ public class ModificarEmpleado extends JFrame {
 	        });
 		
 		
-		
-		
 	}
 	
-	public void VerEmpleados() {
+	public void VerAgentes() {
 		
         mt.setRowCount(0);
 
@@ -255,6 +385,55 @@ public class ModificarEmpleado extends JFrame {
 		}
 		
 		
+		
+		
+	}
+	
+	
+	public void BuscarAgenteDni(int dni) {
+		int contador = 0;
+		mt.setRowCount(0);
+		
+		List<Agente> agentes = agentecontrolador.getAllAgente();
+		
+		for (Agente agente : agentes) {
+			
+			
+			if (agente.getDni() == dni) {
+				
+				mt.addRow(new Object[] {
+						
+						agente.getId_empleado()
+						, agente.getNombre()
+						, agente.getApellido()
+						, agente.getFecha_nacimiento()
+						, agente.getDni()
+						, agente.getTelefono()
+						, agente.getCorreo()
+						, agente.getTipo_empleado()
+						, agente.getContraseña()
+						, agente.getId_agente()
+						
+						
+						
+				});
+				
+				contador++;
+				
+			}
+			
+			
+			
+			break;
+			
+			
+		}
+		
+		if (contador == 0) {
+			
+			inpBuscador.setText("No existe el dni");
+			
+		}
 		
 		
 	}
