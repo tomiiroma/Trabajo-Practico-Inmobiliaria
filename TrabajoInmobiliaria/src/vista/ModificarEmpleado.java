@@ -5,7 +5,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+
+
+
+import java.time.LocalDate;
 
 import java.awt.Color;
 import javax.swing.JTabbedPane;
@@ -14,11 +20,15 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JSeparator;
 import javax.swing.JScrollPane;
 import javax.swing.JScrollBar;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+
 import controlador.AgenteControlador;
 import trabajoInmobiliaria.Agente;
 
@@ -32,6 +42,8 @@ public class ModificarEmpleado extends JFrame {
 	private AgenteControlador agentecontrolador = new AgenteControlador();
 	private DefaultTableModel mt;
 	private GestionEmpleadosOpciones opciones;
+	private Agente seleccionado;
+	private JButton EditarEmpleado;
 	/**
 	 * Launch the application.
 	 */
@@ -47,6 +59,8 @@ public class ModificarEmpleado extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		seleccionado = new Agente();
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(128, 128, 128));
@@ -109,10 +123,35 @@ public class ModificarEmpleado extends JFrame {
 		separator_1.setBounds(14, 565, 751, 2);
 		panel_1.add(separator_1);
 		
-		JButton btnNewButton = new JButton("Modificar");
-		btnNewButton.setFont(new Font("Verdana", Font.PLAIN, 16));
-		btnNewButton.setBounds(337, 578, 132, 44);
-		panel_1.add(btnNewButton);
+		JButton btnModificar = new JButton("Modificar");
+		btnModificar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if (seleccionado.getId_empleado()!=0) {
+					
+					EditarAgente editar = new EditarAgente(seleccionado);
+					
+					editar.setVisible(true);
+					
+					editar.setLocationRelativeTo(null);
+					
+        			dispose();
+        			
+				} else {
+					JOptionPane.showMessageDialog(null, "Seleccione un agente");
+				}
+				
+				
+			}
+		});
+		btnModificar.setFont(new Font("Verdana", Font.PLAIN, 16));
+		btnModificar.setBounds(337, 578, 132, 44);
+		panel_1.add(btnModificar);
+		
+		JLabel lblElemento = new JLabel("Seleccion:");
+		lblElemento.setFont(new Font("Verdana", Font.PLAIN, 11));
+		lblElemento.setBounds(21, 70, 751, 30);
+		panel_1.add(lblElemento);
 		VerEmpleados();
 		
 		JPanel panel_2 = new JPanel();
@@ -144,6 +183,42 @@ public class ModificarEmpleado extends JFrame {
 		});
 		btnGerentes.setBounds(43, 313, 89, 23);
 		panel.add(btnGerentes);
+		
+		
+		  ListSelectionModel selectionModel = table.getSelectionModel();
+	        selectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+	        // Agregar un escuchador de selección
+	        selectionModel.addListSelectionListener(new ListSelectionListener() {
+	            @Override
+	            public void valueChanged(ListSelectionEvent e) {
+	                if (!e.getValueIsAdjusting()) {
+	                    int selectedRow = table.getSelectedRow();
+	                    if (selectedRow != -1) {
+	                        int id = (int) table.getValueAt(selectedRow, 0);
+	                        String nombre = (String) table.getValueAt(selectedRow, 1);
+	                        String apellido = (String) table.getValueAt(selectedRow, 2);	           
+	                       // LocalDate fecha = (LocalDate) table.getValueAt(selectedRow, 3);
+	                        int dni = (int) table.getValueAt(selectedRow, 4);
+	                        String correo = (String) table.getValueAt(selectedRow, 6);
+	                        String tipoempleado = (String) table.getValueAt(selectedRow, 7);
+	                        lblElemento.setText("Seleccionado: ID_empleado=" + id + ", Nombre=" + nombre + ", Apellido=" + apellido + ", Dni: " + dni   + ", Tipo empleado" + tipoempleado );
+	                        seleccionado.setId_empleado(id);
+	                        seleccionado.setNombre(nombre);
+	                        seleccionado.setApellido(apellido);
+	                      //  seleccionado.setFecha_nacimiento(fecha);
+	                        seleccionado.setDni(dni);
+	                        seleccionado.setCorreo(correo);
+	                        seleccionado.setTipo_empleado(tipoempleado);
+	                       
+	                      
+	                    }
+	                }
+	            }
+	        });
+		
+		
+		
 		
 	}
 	
@@ -183,6 +258,4 @@ public class ModificarEmpleado extends JFrame {
 		
 		
 	}
-	
-	
 }
