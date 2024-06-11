@@ -73,7 +73,7 @@ public class PantallaInicio extends JFrame {
 		inpNombre = new JTextField();
 		inpNombre.setBorder(new EmptyBorder(0, 0, 0, 0));
 		inpNombre.setToolTipText("");
-		inpNombre.setForeground(new Color(192, 192, 192));
+		inpNombre.setForeground(new Color(0, 0, 0));
 		inpNombre.setBackground(new Color(255, 255, 255));
 		inpNombre.setBounds(200, 163, 360, 30);
 		contentPane.add(inpNombre);
