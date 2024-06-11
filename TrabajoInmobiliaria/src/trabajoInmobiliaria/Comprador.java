@@ -1,29 +1,22 @@
 package trabajoInmobiliaria;
 
-public class Comprador {
-	private int comprador;
-	private double Presupuesto;
-	public Comprador(int comprador, double presupuesto) {
-		super();
-		this.comprador = comprador;
-		Presupuesto = presupuesto;
+import java.time.LocalDate;
+
+public class Comprador extends Cliente{
+	
+	private int id_comprador;
+	public Comprador(String nombre,int id_cliente, String apellido, String correo,String direccion, int telefono, LocalDate fecha_nacimiento, int dni,int id_comprador) {
+		super(nombre,id_cliente,apellido,correo,direccion,telefono,fecha_nacimiento,dni);
+		this.id_comprador = id_comprador;
 	}
-	@Override
-	public String toString() {
-		return "Comprador [comprador=" + comprador + ", Presupuesto=" + Presupuesto + "]";
-	}
-	public int getComprador() {
-		return comprador;
-	}
-	public void setComprador(int comprador) {
-		this.comprador = comprador;
-	}
-	public double getPresupuesto() {
-		return Presupuesto;
-	}
-	public void setPresupuesto(double presupuesto) {
-		Presupuesto = presupuesto;
-	}
+
 	
 	
+	public int getId_comprador() {
+		return id_comprador;
+	}
+	public void setId_comprador(int comprador) {
+		this.id_comprador = comprador;
+	}
+
 }

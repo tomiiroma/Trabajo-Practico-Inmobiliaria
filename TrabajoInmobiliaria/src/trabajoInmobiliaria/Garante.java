@@ -2,28 +2,32 @@ package trabajoInmobiliaria;
 
 public class Garante {
 	
+	
 	private int id_garante;
 	private String nombre;
 	private String apellido;
-	private int telefono;
-	public Garante(int id_garante, String nombre, String apellido, int telefono) {
+	private String numero_telefono;
+	
+	
+	public Garante(int id_garante, String nombre, String apellido, String numero_telefono) {
 		super();
 		this.id_garante = id_garante;
 		this.nombre = nombre;
 		this.apellido = apellido;
-		this.telefono = telefono;
+		this.numero_telefono = numero_telefono;
 	}
-	@Override
-	public String toString() {
-		return "Garante [id_garante=" + id_garante + ", nombre=" + nombre + ", apellido=" + apellido + ", telefono="
-				+ telefono + "]";
-	}
+
+
 	public int getId_garante() {
 		return id_garante;
 	}
+
+
 	public void setId_garante(int id_garante) {
 		this.id_garante = id_garante;
 	}
+
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -36,12 +40,14 @@ public class Garante {
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
-	public int getTelefono() {
-		return telefono;
+	public String getNumero_telefono() {
+		return numero_telefono;
 	}
-	public void setTelefono(int telefono) {
-		this.telefono = telefono;
+	public void setNumero_telefono(String numero_telefono) {
+		this.numero_telefono = numero_telefono;
 	}
-
 	
+	
+	
+
 }
