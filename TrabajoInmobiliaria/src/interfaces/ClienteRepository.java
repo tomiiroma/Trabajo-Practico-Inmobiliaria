@@ -1,17 +1,17 @@
-package interfaces;
+package Interfaces;
 
-import java.util.List;
+import java.util.LinkedList;
 
-import trabajoInmobiliaria.Alquiler;
 import trabajoInmobiliaria.Cliente;
 
 public interface ClienteRepository {
-
+	LinkedList<Cliente> getAllCliente();
 	
+	void getClienteById(int id);
 	
+	void addCliente(Cliente Cliente);
 	
-List<Cliente> getAllClientes(); 
-    
-    Cliente getClienteById(int id); 
-    
+	void updateCliente(Cliente cliente );
+	
+    void deleteCliente(int id); 
 }

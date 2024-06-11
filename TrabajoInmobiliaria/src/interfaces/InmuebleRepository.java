@@ -1,21 +1,18 @@
-package interfaces;
+package Interfaces;
 
-import java.util.List;
+import java.util.LinkedList;
 
 import trabajoInmobiliaria.Inmueble;
-import trabajoInmobiliaria.Propietario;
 
 public interface InmuebleRepository {
 	
-	//prototipos de metodos 
-    List<Inmueble> getAllInmueble(); 
-    
-    Inmueble getInmuebleById(int id); 
-    
-    void addInmueble(Inmueble inmueble); 
-    
-    void updateInmueble(Inmueble inmueble); 
-    
+	LinkedList<Inmueble> getAllInmueble();
+	
+	void getInmuebleById(int id);
+	
+	void addInmueble(Inmueble Inmueble);
+	
+	void updateInmueble(Inmueble Inmueble );
+	
     void deleteInmueble(int id); 
-
 }

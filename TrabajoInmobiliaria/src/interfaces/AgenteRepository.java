@@ -1,22 +1,20 @@
-package interfaces;
-
-import java.util.List;
+package Interfaces;
+import java.util.LinkedList;
 
 import trabajoInmobiliaria.Agente;
 
 public interface AgenteRepository {
 
+	LinkedList<Agente> getAllAgente();
 	
-	List<Agente> getAllAgente(); 
-
-    
-    Agente getAgenteById(int id); 
-    
-    void addAgente(Agente agente); 
-    
-    void updateAgente(Agente agente); 
-    
+	void getAgenteById(int id);
+	
+	void addAgente(Agente agente);
+	
+	void updateAgente(Agente agente);
+	
     void deleteAgente(int id); 
 
-
+	
+	
 }
