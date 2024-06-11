@@ -11,13 +11,13 @@ public interface InicioSesion {
 	
 	  default Boolean IniciarSesion(String dniString, String contrasena) {
 		   if (dniString == null || dniString.isEmpty()) {
-	            JOptionPane.showMessageDialog(null, "El DNI no puede estar vacío");
+			   System.out.println("El DNI no puede estar vacío");
 	            return null;
 	        }
 
 	        for (int i = 0; i < dniString.length(); i++) {
 	            if (!Character.isDigit(dniString.charAt(i))) {
-	                JOptionPane.showMessageDialog(null, "El DNI debe contener solo números");
+	                System.out.println("El DNI debe contener solo números");
 	                return null;
 	            }
 	        }
@@ -32,19 +32,19 @@ public interface InicioSesion {
 
 	        for (Agente agente : agentes) {
 	            if (agente.getDni() == dni && agente.getContraseña().equals(contrasena)) {
-	                JOptionPane.showMessageDialog(null, "Inicio de Sesion Exitoso");
+	                System.out.println("Inicio de Sesion Exitoso");
 	                return true;
 	            }
 	        }
 
 	        for (Gerente gerente : gerentes) {
 	            if (gerente.getDni() == dni && gerente.getContraseña().equals(contrasena)) {
-	                JOptionPane.showMessageDialog(null, "Inicio de Sesion Exitoso");
+	            	 System.out.println("Inicio de Sesion Exitoso");
 	                return false;
 	            }
 	        }
 
-	        JOptionPane.showMessageDialog(null, "Ingrese correctamente el dni y/o contrasena");
+	        System.out.println("Ingrese correctamente el dni y/o contrasena");
 	        return null;
 	    }
 	    

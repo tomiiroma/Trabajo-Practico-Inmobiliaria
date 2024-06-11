@@ -6,6 +6,8 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import controlador.InquilinoControlador;
@@ -15,6 +17,7 @@ import trabajoInmobiliaria.Inquilino;
 import java.awt.Color;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -28,6 +31,7 @@ public class PantallaCliente extends JFrame {
     private DefaultTableModel model;
     private JTable table;
     private JLabel elemento;
+    private Inquilino seleccionado;
 
 
 	/**
@@ -117,10 +121,27 @@ public class PantallaCliente extends JFrame {
         elemento.setBounds(223, 0, 488, 14);
         contentPane.add(elemento);
         
-        
+        ListSelectionModel selectionModel = table.getSelectionModel();
+        selectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
       
-        
-	}
+        selectionModel.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    int selectedRow = table.getSelectedRow();
+                    if (selectedRow != -1) {
+                        int id = (int) table.getValueAt(selectedRow, 0);
+                        String nombre = (String) table.getValueAt(selectedRow, 1);
+                        elemento.setText("Seleccionado: ID=" + id + ", Nombre=" + nombre);
+         
+                    }
+                }
+            }
+        });
+    }
+ 
+	
+     
 	  private void actualizarTabla() {
 		InquilinoControlador inquilinocont = new InquilinoControlador();
 
