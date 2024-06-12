@@ -50,6 +50,7 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 	private JButton EditarEmpleado;
 	private JTable tablegerentes;
 	private JTextField inpBuscador;
+	private JTabbedPane tabbedPane;
 	/**
 	 * Launch the application.
 	 */
@@ -98,7 +99,7 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 		
 	
 		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(181, 0, 803, 661);
 		contentPane.add(tabbedPane);
 		
@@ -212,6 +213,8 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 		JButton btnBuscarAgente = new JButton("Buscar");
 		btnBuscarAgente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+		/* Validacion del Dni en el buscador */	
 				boolean flag = true;
 				boolean validarDni = true;
 				if (!inpBuscador.getText().isEmpty()) {
@@ -239,6 +242,7 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 							validarDni = validarDni2(dni);	
 							
 							if (validarDni == true) {
+								
 								
 								BuscarAgenteDni(dni);
 								
@@ -298,7 +302,7 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 		btnAgente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				tabbedPane.setSelectedIndex(0);
+				tabbedPane.setSelectedIndex(1);
 				
 			}
 		});
@@ -312,7 +316,7 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 		btnGerentes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			
-				tabbedPane.setSelectedIndex(1);
+				tabbedPane.setSelectedIndex(0);
 			
 			}
 		});
@@ -321,6 +325,7 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 	        selectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 	        // Agregar un escuchador de selección
+	        
 	        selectionModel.addListSelectionListener(new ListSelectionListener() {
 	            @Override
 	            public void valueChanged(ListSelectionEvent e) {
@@ -330,25 +335,32 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 	                        int id = (int) tableagentes.getValueAt(selectedRow, 0);
 	                        String nombre = (String) tableagentes.getValueAt(selectedRow, 1);
 	                        String apellido = (String) tableagentes.getValueAt(selectedRow, 2);	           
-	                       // LocalDate fecha = (LocalDate) table.getValueAt(selectedRow, 3);
+	                        LocalDate fecha = (LocalDate) tableagentes.getValueAt(selectedRow, 3);
 	                        int dni = (int) tableagentes.getValueAt(selectedRow, 4);
+	                        int telefono = (int) tableagentes.getValueAt(selectedRow, 5);
 	                        String correo = (String) tableagentes.getValueAt(selectedRow, 6);
 	                        String tipoempleado = (String) tableagentes.getValueAt(selectedRow, 7);
+	                        String contraseña = (String) tableagentes.getValueAt(selectedRow, 8);
+	                        int Id_agente = (int) tableagentes.getValueAt(selectedRow, 9);
 	                        lblElemento.setText("Seleccionado: ID_empleado=" + id + ", Nombre=" + nombre + ", Apellido=" + apellido + ", Dni: " + dni   + ", Tipo empleado" + tipoempleado );
 	                        seleccionado.setId_empleado(id);
 	                        seleccionado.setNombre(nombre);
 	                        seleccionado.setApellido(apellido);
-	                      //  seleccionado.setFecha_nacimiento(fecha);
+	                        seleccionado.setFecha_nacimiento(fecha);
 	                        seleccionado.setDni(dni);
+	                        seleccionado.setTelefono(telefono);
 	                        seleccionado.setCorreo(correo);
 	                        seleccionado.setTipo_empleado(tipoempleado);
-	                       
+	                        seleccionado.setContraseña(contraseña);
+	                        seleccionado.setId_agente(Id_agente);
 	                      
 	                    }
 	                }
 	            }
 	        });
 		
+	        
+	        
 		
 	}
 	
@@ -391,7 +403,8 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 	
 	
 	public void BuscarAgenteDni(int dni) {
-		int contador = 0;
+		JOptionPane.showMessageDialog(null, dni);
+		int contador = 0, i=0;
 		mt.setRowCount(0);
 		
 		List<Agente> agentes = agentecontrolador.getAllAgente();
@@ -399,32 +412,32 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 		for (Agente agente : agentes) {
 			
 			
-			if (agente.getDni() == dni) {
+			if (dni == agentes.get(i).getDni()) {
 				
 				mt.addRow(new Object[] {
 						
-						agente.getId_empleado()
-						, agente.getNombre()
-						, agente.getApellido()
-						, agente.getFecha_nacimiento()
-						, agente.getDni()
-						, agente.getTelefono()
-						, agente.getCorreo()
-						, agente.getTipo_empleado()
-						, agente.getContraseña()
-						, agente.getId_agente()
-						
+						agentes.get(i).getId_empleado()
+						, agentes.get(i).getNombre()
+						, agentes.get(i).getApellido()
+						, agentes.get(i).getFecha_nacimiento()
+						, agentes.get(i).getDni()
+						, agentes.get(i).getTelefono()
+						, agentes.get(i).getCorreo()
+						, agentes.get(i).getTipo_empleado()
+						, agentes.get(i).getContraseña()
+						, agentes.get(i).getId_agente()
 						
 						
 				});
 				
 				contador++;
+				break;
 				
 			}
 			
+ i++;			
 			
 			
-			break;
 			
 			
 		}
@@ -437,4 +450,21 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 		
 		
 	}
+	
+	
+	/* Funcion para volver a la interfaz ModificarEmpleado, pero en este caso devuelve a la tabla de agentes en vez de la de gerentes */
+	
+	public void Peticion (int numero) {
+		
+		if (numero == 1) {
+		tabbedPane.setSelectedIndex(1);
+		} else {
+			
+			tabbedPane.setSelectedIndex(0);
+			
+		}
+	}
+	
+	
+	
 }
