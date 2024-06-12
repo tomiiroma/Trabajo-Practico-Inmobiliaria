@@ -33,6 +33,7 @@ public class MenuInmueble extends JFrame {
 	 * Create the frame.
 	 */
 	public MenuInmueble() {
+		this.setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 870, 690);
 		contentPane = new JPanel();
@@ -44,8 +45,11 @@ public class MenuInmueble extends JFrame {
 		btnVerInmuebles.setBounds(301, 117, 220, 55);
 		btnVerInmuebles.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				VerInmueblesMenu verinmuebles= new VerInmueblesMenu();
+				dispose();
 			}
 		});
+		
 		contentPane.setLayout(null);
 		contentPane.add(btnVerInmuebles);
 		
@@ -53,16 +57,46 @@ public class MenuInmueble extends JFrame {
 		btnAgregarInmueble.setBounds(301, 200, 220, 55);
 		contentPane.add(btnAgregarInmueble);
 		
+		btnAgregarInmueble.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AgregarInmueble agregarInmueble= new AgregarInmueble();
+				dispose();
+			}
+		});
+		
 		JButton btnModificarInmueble = new JButton("Modificar Inmuebles");
 		btnModificarInmueble.setBounds(301, 298, 220, 55);
 		contentPane.add(btnModificarInmueble);
+		
+		btnModificarInmueble.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ModificarInmueble modificarInmueble= new ModificarInmueble();
+				dispose();
+			}
+		});
 		
 		JButton btnEliminarInmueble = new JButton("Eliminar Inmuebles");
 		btnEliminarInmueble.setBounds(301, 391, 220, 55);
 		contentPane.add(btnEliminarInmueble);
 		
+		btnEliminarInmueble.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EliminarInmueble eliminarInmueble= new EliminarInmueble();
+				dispose();
+			}
+		});
+		
+		
 		JButton btnVolver = new JButton("Volver");
 		btnVolver.setBounds(301, 486, 220, 55);
 		contentPane.add(btnVolver);
+		
+		btnVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PantallaAgente pantallaAgente= new PantallaAgente();
+				dispose();
+			}
+		});
+		
 	}
 }
