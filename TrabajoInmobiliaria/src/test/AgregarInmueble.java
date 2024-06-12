@@ -1,6 +1,6 @@
 package test;
 
-import controlador.InmuebleControlador;   
+import controlador.InmuebleControlador;    
 import trabajoInmobiliaria.Gerente;
 import trabajoInmobiliaria.Inmueble;
 import trabajoInmobiliaria.Validacion;

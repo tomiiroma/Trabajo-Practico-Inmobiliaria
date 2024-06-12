@@ -12,6 +12,9 @@ public class Cliente {
 	private LocalDate fecha_nacimiento;
 	private int dni;
 
+	public Cliente() {
+		
+	}
 	
 	public Cliente(String nombre, int id_cliente, String apellido, String correo, String direccion, int telefono, LocalDate fecha_nacimiento,
 			int dni) {

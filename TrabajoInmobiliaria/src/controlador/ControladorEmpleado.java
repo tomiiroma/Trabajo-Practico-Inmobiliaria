@@ -1,6 +1,6 @@
 package controlador;
 
-import java.sql.Connection;
+import java.sql.Connection; 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import trabajoInmobiliaria.Empleado;
-import interfaces.EmpleadoRepository;
+import Interfaces.EmpleadoRepository;
 import trabajoInmobiliaria.DatabaseConnection;
 
 public class ControladorEmpleado implements EmpleadoRepository {

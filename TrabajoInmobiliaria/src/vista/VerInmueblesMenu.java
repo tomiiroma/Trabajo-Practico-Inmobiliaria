@@ -1,6 +1,6 @@
 package vista;
 
-import java.awt.EventQueue;
+import java.awt.EventQueue; 
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -47,19 +47,19 @@ public class VerInmueblesMenu extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnVerListaCompleta.setBounds(299, 130, 220, 55);
+		btnVerListaCompleta.setBounds(81, 130, 220, 55);
 		contentPane.add(btnVerListaCompleta);
 		
 		JButton btnInmueblesDisp = new JButton("Ver Inmuebles Disponibles");
-		btnInmueblesDisp.setBounds(299, 228, 220, 55);
+		btnInmueblesDisp.setBounds(509, 130, 220, 55);
 		contentPane.add(btnInmueblesDisp);
 		
 		JButton btnActivarInmueble = new JButton("Activar Inmuebles");
-		btnActivarInmueble.setBounds(299, 321, 220, 55);
+		btnActivarInmueble.setBounds(509, 262, 220, 55);
 		contentPane.add(btnActivarInmueble);
 		
 		JButton btnVolver = new JButton("Volver");
-		btnVolver.setBounds(299, 416, 220, 55);
+		btnVolver.setBounds(81, 262, 220, 55);
 		contentPane.add(btnVolver);
 	}
 }

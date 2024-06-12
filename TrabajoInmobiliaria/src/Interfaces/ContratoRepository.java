@@ -1,13 +1,19 @@
 package Interfaces;
 
+import java.util.List; 
+
 import trabajoInmobiliaria.Contrato;
 
 public interface ContratoRepository {
-	
-	void getContratoById(int id);
-	
-	void addContrato(Contrato Contrato);
-	
-    void deleteContrato(int id); 
+
+	   List<Contrato> getAllContrato(); 
+	    
+	   Contrato getContratoById(int id); 
+	    
+	    void addContrato(Contrato contrato); 
+	    
+	    void updateContrato(Contrato contrato); 
+	    
+	    void deleteContrato(int id); 
 
 }

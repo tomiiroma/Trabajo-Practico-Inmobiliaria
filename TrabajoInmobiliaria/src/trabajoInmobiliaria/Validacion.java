@@ -2,13 +2,12 @@
 package trabajoInmobiliaria;
 
 import java.time.LocalDate;
-import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
-import controlador.InmuebleControlador;
 
+import controlador.InmuebleControlador;
 
 public interface Validacion {
 	
@@ -199,7 +198,7 @@ public interface Validacion {
 	                for (int i = 0; i < cadena.length(); i++) {
 	                    char caracter = cadena.charAt(i);
 
-	                    if (!Character.isDigit(caracter) && !Character.isAlphabetic(caracter) && !Character.isWhitespace(caracter)) {
+	                    if (!Character.isDigit(caracter) && !Character.isAlphabetic(caracter)) {
 	                    	valido = false;
 	                        break; 
 	                    }
@@ -222,32 +221,6 @@ public interface Validacion {
 			
 			return cadena;
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	
 	// Revisar luego que mas se le puede implementar.
 	
@@ -563,43 +536,6 @@ public interface Validacion {
 	
 /*-------------------------------------------------------------------------------------------- ValidarNombre 2 ---------------------------------------------------------------------------------------------------------------- */	
 	
-/* -----Inmuebles------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/	
-
-	InmuebleControlador inmuebleControlador = new InmuebleControlador();
-
-	
-	default boolean validarCasa(String direccion, String alturaDireccion) {
-		
-		for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
-			if(inmueble.getTipo_inmueble().equals("Casa") && inmueble.getDireccion().equalsIgnoreCase(direccion) 
-					&& inmueble.getAlturaDireccion().equalsIgnoreCase(alturaDireccion)){
-				
-				return true; // encontro misma casa
-			}
-		}
-			
-		return false; // no encontro misma casa
-	}
-	
-	
-	default boolean validarDepto(String direccion, String alturaDireccion, String piso, String nroDepto) {
-		
-		for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
-			if(inmueble.getTipo_inmueble().equals("Departamento") && inmueble.getDireccion().equals(direccion)
-					&& inmueble.getAlturaDireccion().equalsIgnoreCase(alturaDireccion)&& inmueble.getPiso().equalsIgnoreCase(piso)
-					&& inmueble.getNroDepto().equalsIgnoreCase(nroDepto)){				
-				return true;
-			}
-		}
-		
-		return false;
-	}
-	
-	
-	
-	
-	
-	
 	default boolean validarNombre2(String nombre) {
 		
 		boolean confirmacion = true;
@@ -776,7 +712,35 @@ public interface Validacion {
 		
 
 /*----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+		InmuebleControlador inmuebleControlador = new InmuebleControlador();
+
 		
+		default boolean validarCasa(String direccion, String alturaDireccion) {
+			
+			for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
+				if(inmueble.getTipo_inmueble().equals("Casa") && inmueble.getDireccion().equalsIgnoreCase(direccion) 
+						&& inmueble.getAlturaDireccion().equalsIgnoreCase(alturaDireccion)){
+					
+					return true; // encontro misma casa
+				}
+			}
+				
+			return false; // no encontro misma casa
+		}
+		
+		
+		default boolean validarDepto(String direccion, String alturaDireccion, String piso, String nroDepto) {
+			
+			for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
+				if(inmueble.getTipo_inmueble().equals("Departamento") && inmueble.getDireccion().equals(direccion)
+						&& inmueble.getAlturaDireccion().equalsIgnoreCase(alturaDireccion)&& inmueble.getPiso().equalsIgnoreCase(piso)
+						&& inmueble.getNroDepto().equalsIgnoreCase(nroDepto)){				
+					return true;
+				}
+			}
+			
+			return false;
+		}
 		
 		
 }
