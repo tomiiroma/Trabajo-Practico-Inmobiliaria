@@ -1,12 +1,13 @@
-package Interfaces;
+package interfaces;
 
 import java.util.LinkedList;
+import java.util.List;
 
 import trabajoInmobiliaria.Inmueble;
 
 public interface InmuebleRepository {
 	
-	LinkedList<Inmueble> getAllInmueble();
+	List<Inmueble> getAllInmueble();
 	
 	void getInmuebleById(int id);
 	
