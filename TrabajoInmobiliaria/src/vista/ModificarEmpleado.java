@@ -404,7 +404,7 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 	
 	public void BuscarAgenteDni(int dni) {
 		JOptionPane.showMessageDialog(null, dni);
-		int contador = 0, i=0;
+		int contador = 0;
 		mt.setRowCount(0);
 		
 		List<Agente> agentes = agentecontrolador.getAllAgente();
@@ -412,20 +412,20 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 		for (Agente agente : agentes) {
 			
 			
-			if (dni == agentes.get(i).getDni()) {
+			if (dni == agente.getDni()){
 				
 				mt.addRow(new Object[] {
 						
-						agentes.get(i).getId_empleado()
-						, agentes.get(i).getNombre()
-						, agentes.get(i).getApellido()
-						, agentes.get(i).getFecha_nacimiento()
-						, agentes.get(i).getDni()
-						, agentes.get(i).getTelefono()
-						, agentes.get(i).getCorreo()
-						, agentes.get(i).getTipo_empleado()
-						, agentes.get(i).getContraseña()
-						, agentes.get(i).getId_agente()
+						agente.getId_empleado()
+						, agente.getNombre()
+						, agente.getApellido()
+						, agente.getFecha_nacimiento()
+						, agente.getDni()
+						, agente.getTelefono()
+						, agente.getCorreo()
+						, agente.getTipo_empleado()
+						, agente.getContraseña()
+						, agente.getId_agente()
 						
 						
 				});
@@ -435,7 +435,7 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 				
 			}
 			
- i++;			
+ 
 			
 			
 			
