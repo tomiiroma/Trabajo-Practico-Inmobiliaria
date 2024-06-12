@@ -51,6 +51,8 @@ public class EliminarInmueble extends JFrame {
 	 * Create the frame.
 	 */
 	public EliminarInmueble() {
+		this.setVisible(true);
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    setBounds(100, 100, 870, 690);
 	    contentPane = new JPanel();
@@ -74,12 +76,15 @@ public class EliminarInmueble extends JFrame {
 	    
         
         JButton btnVolver = new JButton("Volver");
-        btnVolver.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        	}
-        });
         btnVolver.setBounds(30, 570, 150, 34);
         contentPane.add(btnVolver);
+        
+		btnVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MenuInmueble menuInmueble= new MenuInmueble();
+				dispose();
+			}
+		});
         
         JButton btnEliminar = new JButton("Eliminar Inmueble");
         btnEliminar.setBounds(681, 569, 150, 34);

@@ -1,6 +1,10 @@
 package vista;
 
+<<<<<<< HEAD
 import java.awt.EventQueue; 
+=======
+import java.awt.EventQueue;
+>>>>>>> dfc8f0e8d47d152c909565a21c38ea5f77334c97
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;

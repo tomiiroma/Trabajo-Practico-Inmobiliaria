@@ -45,6 +45,8 @@ public class VerInmueblesDisponibles extends JFrame {
 	 * Create the frame.
 	 */
 	public VerInmueblesDisponibles() {
+		this.setVisible(true);
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    setBounds(100, 100, 870, 690);
 	    contentPane = new JPanel();
@@ -70,12 +72,17 @@ public class VerInmueblesDisponibles extends JFrame {
 	    
         
         JButton btnVolver = new JButton("Volver");
-        btnVolver.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        	}
-        });
         btnVolver.setBounds(30, 570, 150, 34);
         contentPane.add(btnVolver);
+        
+		btnVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VerInmueblesMenu menuInmueble = new VerInmueblesMenu();
+				dispose();
+			}
+		});
+        
+        
 	}
 
         

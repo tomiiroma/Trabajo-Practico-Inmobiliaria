@@ -57,6 +57,8 @@ public class AgregarInmueble extends JFrame {
 	 * Create the frame.
 	 */
 	public AgregarInmueble() {
+		this.setVisible(true);
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 870, 690);
 		contentPane = new JPanel();
@@ -289,6 +291,14 @@ public class AgregarInmueble extends JFrame {
         JButton btnVolver = new JButton("Volver");
         btnVolver.setBounds(30, 570, 150, 34);
         contentPane.add(btnVolver);
+        
+		btnVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MenuInmueble menuInmueble= new MenuInmueble();
+				dispose();
+			}
+		});
+        
         
         JButton btnRegistrar = new JButton("Registrar Inmueble");
         btnRegistrar.setBounds(657, 570, 150, 34);

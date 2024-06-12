@@ -8,16 +8,20 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import controlador.InmuebleControlador;
 import trabajoInmobiliaria.Inmueble;
 
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 
 
 public class VerListaInmueblesCompleta extends JFrame {
@@ -49,6 +53,8 @@ public class VerListaInmueblesCompleta extends JFrame {
 	 * Create the frame.
 	 */
 	public VerListaInmueblesCompleta() {
+		this.setVisible(true);
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    setBounds(100, 100, 870, 690);
 	    contentPane = new JPanel();
@@ -67,6 +73,38 @@ public class VerListaInmueblesCompleta extends JFrame {
 	    scrollPane.setBounds(10, 37, 834, 521);
 	    contentPane.add(scrollPane);
         
+	      JLabel elemento = new JLabel("New label");
+	        elemento.setBounds(30, 11, 814, 14);
+	        contentPane.add(elemento);
+    
+        
+        ListSelectionModel selectionModel = table.getSelectionModel();
+        selectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+      
+        selectionModel.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    int selectedRow = table.getSelectedRow();
+                    if (selectedRow != -1) {
+                        int id = (int) table.getValueAt(selectedRow, 0);
+                        String tipoInmueble = (String) table.getValueAt(selectedRow, 1);
+                        String piso = (String) table.getValueAt(selectedRow, 2);
+                        String ambientes = (String) table.getValueAt(selectedRow, 3);
+                        String barrio = (String) table.getValueAt(selectedRow, 4);
+                        String direccion = (String) table.getValueAt(selectedRow, 5);
+
+                        
+                        elemento.setText("Seleccionado: ID=" + id + "Tipo Inmueble: " + tipoInmueble +" Piso: "+ piso+" Ambientes: "+ambientes+" Barrio: "+barrio+" Direccion: "+ direccion);
+                        
+ 
+                      
+                    }
+                }
+            }
+        });
+        
+        
 	    
 	    actualizarTabla();
 	    
@@ -78,6 +116,16 @@ public class VerListaInmueblesCompleta extends JFrame {
         });
         btnVolver.setBounds(30, 570, 150, 34);
         contentPane.add(btnVolver);
+        
+  
+        
+		btnVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VerInmueblesMenu menuInmueble = new VerInmueblesMenu();
+				dispose();
+			}
+		});
+        
 	}
 
         

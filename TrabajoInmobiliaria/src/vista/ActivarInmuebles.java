@@ -1,19 +1,13 @@
 package vista;
 
 import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class ModificarInmueble extends JFrame {
+public class ActivarInmuebles extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
@@ -24,7 +18,7 @@ public class ModificarInmueble extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ModificarInmueble frame = new ModificarInmueble();
+					ActivarInmuebles frame = new ActivarInmuebles();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,34 +30,15 @@ public class ModificarInmueble extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ModificarInmueble() {
+	public ActivarInmuebles() {
 		this.setVisible(true);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 870, 690);
+		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		
-		
-		
-		
-		
-		
-		
-		
-        JButton btnVolver = new JButton("Volver");
-        btnVolver.setBounds(30, 570, 150, 34);
-        contentPane.add(btnVolver);
-        
-		btnVolver.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				MenuInmueble menuInmueble= new MenuInmueble();
-				dispose();
-			}
-		});
 	}
 
 }
