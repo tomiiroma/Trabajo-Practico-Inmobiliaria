@@ -44,15 +44,12 @@ public class VerInmueblesMenu extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnVerListaCompleta = new JButton("Lista Completa de Inmuebles");
-<<<<<<< HEAD
 		btnVerListaCompleta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		btnVerListaCompleta.setBounds(81, 130, 220, 55);
-=======
 		btnVerListaCompleta.setBounds(299, 130, 220, 55);
->>>>>>> dfc8f0e8d47d152c909565a21c38ea5f77334c97
 		contentPane.add(btnVerListaCompleta);
 		
 		btnVerListaCompleta.addActionListener(new ActionListener() {

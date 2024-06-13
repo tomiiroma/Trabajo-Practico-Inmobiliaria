@@ -1,11 +1,8 @@
-<<<<<<< HEAD
 package Interfaces;
 
-import java.util.List;
-=======
+import java.util.List; 
 package interfaces;
 import java.util.LinkedList;
->>>>>>> dfc8f0e8d47d152c909565a21c38ea5f77334c97
 
 import trabajoInmobiliaria.Agente;
 
