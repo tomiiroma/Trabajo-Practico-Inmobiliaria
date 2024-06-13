@@ -1,6 +1,6 @@
-package interfaces;
+package Interfaces;
 
-import java.util.List;
+import java.util.List; 
 
 import trabajoInmobiliaria.Alquiler;
 import trabajoInmobiliaria.Cliente;

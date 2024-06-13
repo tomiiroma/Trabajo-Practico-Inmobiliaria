@@ -1,7 +1,6 @@
 package Interfaces;
 
-import java.util.List; 
-package interfaces;
+import java.util.List;  
 import java.util.LinkedList;
 
 import trabajoInmobiliaria.Agente;
