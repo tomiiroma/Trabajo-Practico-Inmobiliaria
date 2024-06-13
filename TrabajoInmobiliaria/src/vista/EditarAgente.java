@@ -284,7 +284,7 @@ public class EditarAgente extends JFrame implements Validacion {
 					 inpTelefono.setText(Integer.toString(agente.getTelefono()));
 					 inpCorreo.setText(agente.getCorreo());
 					 inpID_agente.setText(Integer.toString(agente.getId_agente()));
-					 
+					
 					 
 					 
 		 }
@@ -305,7 +305,7 @@ public class EditarAgente extends JFrame implements Validacion {
 				 boolean flagdni = true;
 				 
 				 /* El nombre y el apellido capturan el texto recibido por la GUI*/
-				 String nombre=inpNombre.getText(), apellido=inpApellido.getText();
+				 String nombre=inpNombre.getText(), apellido=inpApellido.getText(), correo = inpCorreo.getText();
 				
 				 
 				 /* Validaciones en nombre y apellido  */
@@ -414,10 +414,72 @@ public class EditarAgente extends JFrame implements Validacion {
 				}
 				 
 				 
-				/* Validar teléfono */ 
+/* Validar teléfono */ 
+				 
+				 String telefono2 = inpTelefono.getText();
+				 
+				 try {
+						
+					int	telefono = Integer.parseInt(telefono2);
+						
+						boolean Validartelefono = validarTelefono2(telefono);
+						
+						if (!Validartelefono) {
+							
+							
+							lblTelefonoError.setVisible(true);
+							lblTelefonoError.setForeground(Color.red);
+							lblTelefonoError.setText("El teléfono debe tener 8 dígitos.");
+							inpTelefono.setText(Integer.toString(agente.getTelefono()));
+//							Validacion = false;
+							
+						} else {
+							
+							lblTelefonoError.setForeground(Color.green);
+							lblTelefonoError.setText("Teléfono validado.");
+							lblTelefonoError.setVisible(true);
+							inpTelefono.setText(Integer.toString(telefono));
+							
+						}
+						
+						
+							
+						} catch (Exception e2) {
+							
+							lblTelefonoError.setVisible(true);
+							lblTelefonoError.setForeground(Color.red);
+							lblTelefonoError.setText("Se ingreso un cáracter inválido.");
+							inpTelefono.setText(Integer.toString(agente.getTelefono()));
+					//		Validacion = false;
+							
+						}
+
+
+/* Fin validar teléfono */
 					
 				 
+/* Validar Correo */
 				 
+				 boolean ValidarCorreo = validarEmail2(correo);
+				 
+				 if (ValidarCorreo) {
+				 
+					 lblCorreoErrror.setVisible(true);
+					 lblCorreoErrror.setForeground(Color.green);
+					 lblCorreoErrror.setText("Correo validado");
+					 inpCorreo.setText(correo);
+					 
+				 } else {
+				 
+					 lblCorreoErrror.setVisible(true);
+					 lblCorreoErrror.setForeground(Color.red);
+					 lblCorreoErrror.setText("El correo ingresado no es válido");
+					 inpCorreo.setText("Correo@algo.com");
+					 
+					 
+					 
+				 }
+				 /* Fin validar Correo */
 				 
 				 
 				 
