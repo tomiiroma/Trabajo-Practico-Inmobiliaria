@@ -40,10 +40,14 @@ public class PantallaCliente extends JFrame {
     private DefaultTableModel modelPropietario;
     private JLabel elemento;
 
+<<<<<<< HEAD
     private Inquilino seleccionadoInquilino;
     private JTable table;
     private JTable table_1;
     private JTable table_2;
+=======
+    private Inquilino seleccionado;
+>>>>>>> de72830fb8375d8b6e80ddecb882d564c2b1bd09
 
 
 	/**
@@ -149,6 +153,7 @@ public class PantallaCliente extends JFrame {
 		actualizarInquilino();
 		panel_1.add(table);
         JScrollPane scrollPane = new JScrollPane(table);
+<<<<<<< HEAD
 		panel_1.add(scrollPane, BorderLayout.CENTER);
 		
 		modelPropietario = new DefaultTableModel(columnNames, 0);
@@ -211,6 +216,41 @@ public class PantallaCliente extends JFrame {
 
 	}
 	private void actualizarInquilino() {
+=======
+        scrollPane.setBounds(223, 38, 551, 412);
+        contentPane.add(scrollPane);
+        
+        elemento = new JLabel("Seleccionado");
+        elemento.setBounds(223, 0, 488, 14);
+        contentPane.add(elemento);
+        
+        
+      
+        
+	
+        ListSelectionModel selectionModel = table.getSelectionModel();
+        selectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+      
+        selectionModel.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    int selectedRow = table.getSelectedRow();
+                    if (selectedRow != -1) {
+                        int id = (int) table.getValueAt(selectedRow, 0);
+                        String nombre = (String) table.getValueAt(selectedRow, 1);
+                        elemento.setText("Seleccionado: ID=" + id + ", Nombre=" + nombre);
+         
+                    }
+                }
+            }
+        });
+    }
+ 
+	
+     
+	  private void actualizarTabla() {
+>>>>>>> de72830fb8375d8b6e80ddecb882d564c2b1bd09
 		InquilinoControlador inquilinocont = new InquilinoControlador();
 
 		modelInquilino.setRowCount(0);

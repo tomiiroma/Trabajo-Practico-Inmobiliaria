@@ -1143,9 +1143,10 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 		String cantAmbientes = null;
 		String antiguedad = null;
 		String banios = null;
-		String dormitorios= null;
 		String direccion = null;
 		String dormitorio = null;
+		String alturaDireccion = null;
+		String nroDepto = null;
 		String tipoInmueble = obtenerTipoInmueble();
 		String condicion = obtenerCondicion();
 		double precio =0;
@@ -1155,9 +1156,12 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 		 cantAmbientes = validarEntero("Ingrese la cantidad de Ambientes que tiene el Inmueble");
 	    if (tipoInmueble.equals("Departamento")) {
 	    	piso = validarEntero("Ingrese el numero de piso donde se encuentra el Departamento");
+	    	nroDepto=validarCadena("Indique el Número o Letra de depatartamento"); //validar despues 
 	    }
+	    
 		String barrio = obtenerBarrio();
 		direccion = validarCadena("Ingrese la dirección");
+		alturaDireccion = validarCadena("Ingrese la Altura de la calle del Inmueble");
 		descripcion = validarCadena("Ingrese una descripción del inmueble");
 		antiguedad = validarEntero("Ingrese la antiguedad que tiene el inmueble");
 		banios = validarEntero("Ingrese la cantidad baños que tiene el inmueble");
@@ -1172,11 +1176,23 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 		boolean disponible = obtenerDisponible();
 		boolean refaccionar = obtenerRefaccion().equals("Si");
 		boolean aptoMascota = obtenerMascota().equals("Si");
-		boolean activo = obtenerActivo();
+		boolean activo = false; //esto cambia segun las operaciones que se hagan con el inmueble
 		
+		if(tipoInmueble.equals("Departamento") && validarDepto(direccion, alturaDireccion, piso, nroDepto)){
+			JOptionPane.showMessageDialog(null, "Error! No se pudo registrar el Departamento. Departamento duplicado.");
+			return;
+		}
+		
+		if(tipoInmueble.equals("Casa") && validarCasa(direccion, alturaDireccion)){
+			JOptionPane.showMessageDialog(null, "Error! No se pudo registrar la Casa. Casa duplicada.");
+			return;
+		}
+		
+		
+
 		    // Agregar el inmueble al controlador
 		    inmuebleControlador.addInmueble(new Inmueble(0, tipoInmueble, condicion, cantAmbientes, piso,barrio, direccion, descripcion, antiguedad,
-		            banios, dormitorio, superficieCubierta, superficieDescubierta, precio, disponible, refaccionar, aptoMascota, tienePatio,activo));
+		            banios, dormitorio, superficieCubierta, superficieDescubierta, precio, disponible, refaccionar, aptoMascota, tienePatio,activo,alturaDireccion,nroDepto));
 		}
 	
 	

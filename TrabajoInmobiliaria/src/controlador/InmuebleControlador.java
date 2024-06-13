@@ -1,13 +1,13 @@
 package controlador;
 
-import java.sql.Connection; 
+import java.sql.Connection;   
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import interfaces.InmuebleRepository;
+import Interfaces.InmuebleRepository;
 import trabajoInmobiliaria.Inmueble;
 import trabajoInmobiliaria.Propietario;
 import trabajoInmobiliaria.DatabaseConnection;
@@ -53,7 +53,9 @@ public class InmuebleControlador implements InmuebleRepository{
                             resultSet.getBoolean("refaccionar"),
                             resultSet.getBoolean("apto_mascota"),
                     		resultSet.getBoolean("patio"),     
-	            			resultSet.getBoolean("activo")); 
+	            			resultSet.getBoolean("activo"),
+                            resultSet.getString("alturaDireccion"), 
+                            resultSet.getString("nroDepto")); 
           
 	            	   inmueble.add(inmuebles);
 	          }
@@ -94,9 +96,10 @@ public class InmuebleControlador implements InmuebleRepository{
                             resultSet.getBoolean("refaccionar"),
                             resultSet.getBoolean("apto_mascota"),
                     		resultSet.getBoolean("patio"),     
-                    		resultSet.getBoolean("activo")); 
-
-	              
+                    		resultSet.getBoolean("activo"),
+                            resultSet.getString("alturaDireccion"), 
+                            resultSet.getString("nroDepto"));
+     
          
 	            }
 	            
@@ -112,8 +115,8 @@ public class InmuebleControlador implements InmuebleRepository{
 	    public void addInmueble(Inmueble inmueble) {
 	        try {                                               // id_propietario como clave foranea que conecta los datos del inmueble con el propietario.
 	            PreparedStatement statement = connection.prepareStatement(
-	            	    "INSERT INTO inmueble (id_inmueble, tipo_inmueble, condicion, disponible, cantAmbientes, piso, superficie_cubierta, superficie_descubierta, barrio, direccion, patio, descripcion, antiguedad, precio, banio, refaccionar, dormitorio, apto_mascota,activo) " +
-	            	    	    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+	            	    "INSERT INTO inmueble (id_inmueble, tipo_inmueble, condicion, disponible, cantAmbientes, piso, superficie_cubierta, superficie_descubierta, barrio, direccion, patio, descripcion, antiguedad, precio, banio, refaccionar, dormitorio, apto_mascota,activo, alturaDireccion, nroDepto) " +
+	            	    	    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
 	                );
 	            
 	            statement.setInt(1, inmueble.getId_inmueble());
@@ -135,9 +138,10 @@ public class InmuebleControlador implements InmuebleRepository{
 	            statement.setString(17, inmueble.getDormitorio());
 	            statement.setBoolean(18, inmueble.isApto_mascota());
 	            statement.setBoolean(19, inmueble.isActivo());
+	            statement.setString(20, inmueble.getAlturaDireccion());
+	            statement.setString(21, inmueble.getNroDepto());
 
-	            
-	            
+
 
  
 	            int rowsInserted = statement.executeUpdate();
@@ -154,7 +158,7 @@ public class InmuebleControlador implements InmuebleRepository{
 		public void updateInmueble(Inmueble inmueble) {
 		    try {
 		        PreparedStatement statement = connection.prepareStatement(
-		            "UPDATE inmueble SET tipo_inmueble = ?, condicion = ?, disponible = ?, cantAmbientes = ?, piso = ?, superficie_cubierta = ?, superficie_descubierta = ?, barrio = ?, direccion = ?, patio = ?, descripcion = ?, antiguedad = ?, precio = ?, banio = ?, refaccionar = ?, dormitorio = ?, apto_mascota = ?, activo = ? WHERE id_inmueble = ?"
+		            "UPDATE inmueble SET tipo_inmueble = ?, condicion = ?, disponible = ?, cantAmbientes = ?, piso = ?, superficie_cubierta = ?, superficie_descubierta = ?, barrio = ?, direccion = ?, patio = ?, descripcion = ?, antiguedad = ?, precio = ?, banio = ?, refaccionar = ?, dormitorio = ?, apto_mascota = ?, activo = ?,alturaDireccion = ?, nroDepto = ? WHERE id_inmueble = ?"
 		        );
 		        statement.setString(1, inmueble.getTipo_inmueble());
 		        statement.setString(2, inmueble.getCondicion());
@@ -174,9 +178,12 @@ public class InmuebleControlador implements InmuebleRepository{
 		        statement.setString(16, inmueble.getDormitorio());
 		        statement.setBoolean(17, inmueble.isApto_mascota());
 		        statement.setBoolean(18, inmueble.isActivo());
-		        statement.setInt(19, inmueble.getId_inmueble());
+	            statement.setString(19, inmueble.getAlturaDireccion());
+	            statement.setString(20, inmueble.getNroDepto());
+	            statement.setInt(21, inmueble.getId_inmueble());
 
 		        int rowsUpdated = statement.executeUpdate();
+		        
 		        if (rowsUpdated > 0) {
 		            System.out.println("Inmueble actualizado exitosamente");
 		        }
@@ -203,7 +210,30 @@ public class InmuebleControlador implements InmuebleRepository{
 	        }
 	
 	
-}
+	    }
+	    
+	    
+	    
+	    
+	    public void deleteAllInmuebles() {
+	        try {
+	            PreparedStatement statement = connection.prepareStatement("DELETE FROM inmueble");
+	            int rowsDeleted = statement.executeUpdate();
+	            if (rowsDeleted > 0) {
+	                System.out.println("Todos los inmuebles fueron eliminados exitosamente");
+	            } else {
+	                System.out.println("No se encontraron inmuebles para eliminar");
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+
+
+	    
+	    
+	    
+	    
 
 
 

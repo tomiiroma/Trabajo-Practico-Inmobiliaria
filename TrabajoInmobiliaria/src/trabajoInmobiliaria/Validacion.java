@@ -7,6 +7,8 @@ import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 
+import controlador.InmuebleControlador;
+
 public interface Validacion {
 	
 	
@@ -710,7 +712,35 @@ public interface Validacion {
 		
 
 /*----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+		InmuebleControlador inmuebleControlador = new InmuebleControlador();
+
 		
+		default boolean validarCasa(String direccion, String alturaDireccion) {
+			
+			for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
+				if(inmueble.getTipo_inmueble().equals("Casa") && inmueble.getDireccion().equalsIgnoreCase(direccion) 
+						&& inmueble.getAlturaDireccion().equalsIgnoreCase(alturaDireccion)){
+					
+					return true; // encontro misma casa
+				}
+			}
+				
+			return false; // no encontro misma casa
+		}
+		
+		
+		default boolean validarDepto(String direccion, String alturaDireccion, String piso, String nroDepto) {
+			
+			for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
+				if(inmueble.getTipo_inmueble().equals("Departamento") && inmueble.getDireccion().equals(direccion)
+						&& inmueble.getAlturaDireccion().equalsIgnoreCase(alturaDireccion)&& inmueble.getPiso().equalsIgnoreCase(piso)
+						&& inmueble.getNroDepto().equalsIgnoreCase(nroDepto)){				
+					return true;
+				}
+			}
+			
+			return false;
+		}
 		
 		
 }
