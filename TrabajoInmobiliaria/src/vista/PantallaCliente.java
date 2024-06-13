@@ -40,14 +40,11 @@ public class PantallaCliente extends JFrame {
     private DefaultTableModel modelPropietario;
     private JLabel elemento;
 
-<<<<<<< HEAD
     private Inquilino seleccionadoInquilino;
     private JTable table;
     private JTable table_1;
     private JTable table_2;
-=======
     private Inquilino seleccionado;
->>>>>>> de72830fb8375d8b6e80ddecb882d564c2b1bd09
 
 
 	/**
@@ -150,11 +147,11 @@ public class PantallaCliente extends JFrame {
 		modelInquilino = new DefaultTableModel(columnNames, 0);
 		
 		table = new JTable(modelInquilino);
-		actualizarInquilino();
+		actualizarTabla();
 		panel_1.add(table);
         JScrollPane scrollPane = new JScrollPane(table);
-<<<<<<< HEAD
 		panel_1.add(scrollPane, BorderLayout.CENTER);
+		
 		
 		modelPropietario = new DefaultTableModel(columnNames, 0);
 		actualizarPropietario();
@@ -213,12 +210,11 @@ public class PantallaCliente extends JFrame {
 		                }
 		            }
 		        });
-
+		  
 	}
 	private void actualizarInquilino() {
-=======
-        scrollPane.setBounds(223, 38, 551, 412);
-        contentPane.add(scrollPane);
+		
+      
         
         elemento = new JLabel("Seleccionado");
         elemento.setBounds(223, 0, 488, 14);
@@ -250,7 +246,6 @@ public class PantallaCliente extends JFrame {
 	
      
 	  private void actualizarTabla() {
->>>>>>> de72830fb8375d8b6e80ddecb882d564c2b1bd09
 		InquilinoControlador inquilinocont = new InquilinoControlador();
 
 		modelInquilino.setRowCount(0);

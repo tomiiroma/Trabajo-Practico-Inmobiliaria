@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import Interfaces.ReservaRepository;
+import interfaces.ReservaRepository;
 import trabajoInmobiliaria.Reserva;
 import trabajoInmobiliaria.Cliente;
 import trabajoInmobiliaria.DatabaseConnection;

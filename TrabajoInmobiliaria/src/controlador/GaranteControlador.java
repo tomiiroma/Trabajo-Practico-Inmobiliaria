@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import Interfaces.GaranteRepository;
+import interfaces.GaranteRepository;
 import trabajoInmobiliaria.DatabaseConnection;
 import trabajoInmobiliaria.Garante;
 

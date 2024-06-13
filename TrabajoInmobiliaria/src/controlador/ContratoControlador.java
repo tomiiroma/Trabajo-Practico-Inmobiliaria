@@ -9,7 +9,7 @@ import java.util.List;
 import java.time.LocalDate;
 
 
-import Interfaces.ContratoRepository;
+import interfaces.ContratoRepository;
 import trabajoInmobiliaria.Cliente;
 import trabajoInmobiliaria.Comprador;
 import trabajoInmobiliaria.Contrato;
