@@ -1,10 +1,9 @@
 /AgenteControlador.class
 /AlquilerControlador.class
-/AmbienteControlador.class
 /CompradorControlador.class
-/Contrato.class
-/ContratoAlquilerControlador.class
-/ContratoVentaControlador.class
+/ContratoControlador.class
+/ControladorCliente.class
+/ControladorEmpleado.class
 /GaranteControlador.class
 /GerenteControlador.class
 /InmuebleControlador.class
@@ -12,6 +11,3 @@
 /PropietarioControlador.class
 /ReservaControlador.class
 /VentaControlador.class
-/ContratoControlador.class
-/ControladorCliente.class
-/ControladorEmpleado.class
