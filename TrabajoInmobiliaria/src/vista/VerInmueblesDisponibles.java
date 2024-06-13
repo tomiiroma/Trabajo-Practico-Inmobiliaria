@@ -1,7 +1,9 @@
 package vista;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -72,15 +74,18 @@ public class VerInmueblesDisponibles extends JFrame {
 	    
         
         JButton btnVolver = new JButton("Volver");
+        btnVolver.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                VerInmueblesMenu menuInmueble = new VerInmueblesMenu();
+                dispose();
+            }
+        });
         btnVolver.setBounds(30, 570, 150, 34);
+        btnVolver.setFont(new Font("Tahoma", Font.BOLD, 12));
+        btnVolver.setForeground(new Color(255, 255, 255));
+        btnVolver.setBackground(new Color(48, 109, 105));
+        btnVolver.setBorder(null);
         contentPane.add(btnVolver);
-        
-		btnVolver.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				VerInmueblesMenu menuInmueble = new VerInmueblesMenu();
-				dispose();
-			}
-		});
         
         
 	}

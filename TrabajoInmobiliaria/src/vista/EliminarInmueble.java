@@ -22,6 +22,7 @@ import trabajoInmobiliaria.Inmueble;
 
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import java.awt.Color;
 
 public class EliminarInmueble extends JFrame {
 
@@ -55,11 +56,13 @@ public class EliminarInmueble extends JFrame {
 	 * Create the frame.
 	 */
 	public EliminarInmueble() {
+		setForeground(new Color(0, 128, 128));
 		this.setVisible(true);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    setBounds(100, 100, 870, 690);
 	    contentPane = new JPanel();
+	    contentPane.setForeground(new Color(0, 128, 128));
 	    contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 	    setContentPane(contentPane);
 	    contentPane.setLayout(null);
