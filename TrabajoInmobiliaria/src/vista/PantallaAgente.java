@@ -47,17 +47,21 @@ public class PantallaAgente extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Gestionar Inmuebles");
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnInmuebles = new JButton("Gestionar Inmuebles");
+		btnInmuebles.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnInmuebles.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				MenuInmueble verinmueblesCompleto = new MenuInmueble();
+				dispose();
 			}
 		});
-		btnNewButton.setBorder(null);
-		btnNewButton.setForeground(new Color(255, 255, 255));
-		btnNewButton.setBackground(new Color(48, 109, 105));
-		btnNewButton.setBounds(107, 136, 278, 35);
-		panel.add(btnNewButton);
+		
+		
+		btnInmuebles.setBorder(null);
+		btnInmuebles.setForeground(new Color(255, 255, 255));
+		btnInmuebles.setBackground(new Color(48, 109, 105));
+		btnInmuebles.setBounds(107, 136, 278, 35);
+		panel.add(btnInmuebles);
 		
 		JButton btnNuevoCliente = new JButton("Clientes");
 		btnNuevoCliente.setFont(new Font("Tahoma", Font.BOLD, 12));
