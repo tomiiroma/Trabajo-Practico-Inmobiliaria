@@ -1,6 +1,6 @@
 package Interfaces;
 
-import java.util.List;
+import java.util.List; 
 import trabajoInmobiliaria.Inmueble;
 
 public interface InmuebleRepository {

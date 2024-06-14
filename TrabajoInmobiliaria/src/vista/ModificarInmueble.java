@@ -1,6 +1,8 @@
 package vista;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -55,15 +57,30 @@ public class ModificarInmueble extends JFrame {
 		
 		
         JButton btnVolver = new JButton("Volver");
-        btnVolver.setBounds(30, 570, 150, 34);
-        contentPane.add(btnVolver);
-        
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MenuInmueble menuInmueble= new MenuInmueble();
+				VerInmueblesMenu menuInmueble = new VerInmueblesMenu();
 				dispose();
 			}
 		});
+        btnVolver.setBounds(30, 570, 150, 34);
+        btnVolver.setFont(new Font("Tahoma", Font.BOLD, 12));
+        btnVolver.setForeground(new Color(255, 255, 255));
+        btnVolver.setBackground(new Color(48, 109, 105));
+        btnVolver.setBorder(null);
+        contentPane.add(btnVolver);
+        
+        JButton btnModificar = new JButton("Modificar");
+        btnModificar.setForeground(Color.WHITE);
+        btnModificar.setFont(new Font("Tahoma", Font.BOLD, 12));
+        btnModificar.setBorder(null);
+        btnModificar.setBackground(new Color(48, 109, 105));
+        btnModificar.setBounds(669, 570, 150, 34);
+        contentPane.add(btnModificar);
+        
+        
+        
+        
 	}
 
 }
