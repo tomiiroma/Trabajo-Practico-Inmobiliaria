@@ -120,6 +120,8 @@ public class PantallaCliente extends JFrame {
 		JButton btnAgregar = new JButton("Agregar");
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				AgregarCliente agregarCliente = new AgregarCliente();
+				dispose();
 			}
 		});
 		btnAgregar.setForeground(Color.LIGHT_GRAY);

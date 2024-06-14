@@ -50,7 +50,6 @@ public class InquilinoControlador implements InquilinoRepository{
 	            ResultSet resultSet = statement.executeQuery();
 	            
 	            if (resultSet.next()) {
-	            							// id_inquilino no esta en la tabla cliente ""
 	                inquilino = new Inquilino(resultSet.getString("nombre"), resultSet.getInt("id_cliente"), resultSet.getString("apellido"), resultSet.getString("correo"), resultSet.getString("direccion"),resultSet.getInt("telefono"), resultSet.getDate("fecha_nacimiento").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("id_inquilino"));
 	            }
 	        } catch (SQLException e) {

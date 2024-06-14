@@ -323,7 +323,7 @@ public class MenuAgregarAgente extends JFrame implements Validacion {
 
 						lblerrorCorreo.setVisible(true);
 						textCorreo.setText("");
-						lblerrorCorreo.setText("<html>El correo debe tener el formato:<br>caracteres@caracteres.com</html>"); /* preguntar al profe por las dudas */
+						lblerrorCorreo.setText("<html>El correo debe tener el formato:<br>caracteres@caracteres.com</html>"); 
 						Validacion = false;
 					} else {
 						
