@@ -12,7 +12,7 @@ public interface InmuebleRepository {
     
 	List<Inmueble> getAllInmueble();
 	
-	void getInmuebleById(int id);
+	Inmueble getInmuebleById(int id);
 	
 	void addInmueble(Inmueble Inmueble);
 	
