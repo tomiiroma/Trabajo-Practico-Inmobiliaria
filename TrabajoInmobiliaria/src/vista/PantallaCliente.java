@@ -87,24 +87,10 @@ public class PantallaCliente extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JButton btnEliminar = new JButton("Eliminar");
-		btnEliminar.setForeground(new Color(192, 192, 192));
-		btnEliminar.setBorder(null);
-		btnEliminar.setBackground(new Color(34, 79, 75));
-		btnEliminar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(seleccionado.getId_cliente() != 0) {
-					controladorInquilino.deleteInquilino(seleccionado.getId_cliente());
-					actualizarInquilino();
-				}else {
-					JOptionPane.showMessageDialog(null, "Seleccione un Cliente");
-				}
-			}
-		});
+	
 		
 		
-		btnEliminar.setBounds(10, 184, 193, 43);
-		panel.add(btnEliminar);
+
 		
 		JButton btnModificar = new JButton("Modificar");
 		btnModificar.addActionListener(new ActionListener() {
@@ -190,6 +176,25 @@ public class PantallaCliente extends JFrame {
 	                }
 	            }
 	        });
+	      
+	  	JButton btnEliminar = new JButton("Eliminar");
+		btnEliminar.setForeground(new Color(192, 192, 192));
+		btnEliminar.setBorder(null);
+		btnEliminar.setBackground(new Color(34, 79, 75));
+		btnEliminar.setBounds(10, 184, 193, 43);
+		panel.add(btnEliminar);
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				  ListSelectionModel selectionModel = table.getSelectionModel();
+				  int selectedRow = table.getSelectedRow();
+				  int id = (int)table.getValueAt(selectedRow, 0);
+				
+				controladorInquilino.deleteInquilino(id);
+				actualizarTabla();
+			}
+		});
+		
 		  ListSelectionModel selectionModel2 = table_2.getSelectionModel();
 		     selectionModel2.addListSelectionListener(new ListSelectionListener() {
 		            @Override
