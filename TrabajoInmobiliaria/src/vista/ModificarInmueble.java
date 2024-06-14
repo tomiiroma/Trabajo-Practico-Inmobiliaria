@@ -59,7 +59,7 @@ public class ModificarInmueble extends JFrame {
         JButton btnVolver = new JButton("Volver");
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VerInmueblesMenu menuInmueble = new VerInmueblesMenu();
+				MenuInmueble menuInmueble = new MenuInmueble();
 				dispose();
 			}
 		});
