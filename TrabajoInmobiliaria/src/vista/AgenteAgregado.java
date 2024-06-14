@@ -22,7 +22,6 @@ public class AgenteAgregado extends JFrame {
 	 * Launch the application.
 	 */
 	
-
 	/**
 	 * Create the frame.
 	 */
