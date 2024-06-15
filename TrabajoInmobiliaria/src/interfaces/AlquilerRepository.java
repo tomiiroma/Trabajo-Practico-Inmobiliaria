@@ -16,8 +16,7 @@ public interface AlquilerRepository {
     
     void deleteAlquiler(int id); 
 	
-	
-	
+
 	
 	
 	

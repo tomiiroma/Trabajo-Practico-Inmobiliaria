@@ -19,8 +19,11 @@ class Main{
 		JOptionPane.showMessageDialog(null, "Bienvenido al Sistema de Gestión ", "Inmobiliaria Maguez",
 				JOptionPane.INFORMATION_MESSAGE);
 		
+<<<<<<< HEAD
 		
 		
+=======
+>>>>>>> Agus
 		int respuestaSeleccionada;
 
 		Agente agente1 = new Agente();
@@ -44,6 +47,7 @@ class Main{
 
 	            Boolean esAgente = empleado.IniciarSesion(dni, cont);
 
+<<<<<<< HEAD
 	            if (esAgente != null) {
 	                if (esAgente) {
 	                    agente1.menuAgente();
@@ -57,5 +61,18 @@ class Main{
 	        } while (respuestaSeleccionada == 0);
 	    }
 	
+=======
+			} else {
+				JOptionPane.showMessageDialog(null, "Hasta luego!");
+				System.exit(0);
+			}
+
+			String[] preguntaEleccion = { "Si", "No" };
+			respuestaSeleccionada = JOptionPane.showOptionDialog(null, "Desea seguir en el programa: ", "Biblioteca", 0,
+					0, null, preguntaEleccion, preguntaEleccion[0]);
+		} while (respuestaSeleccionada == 0);
+
+	}
+>>>>>>> Agus
 
 }
