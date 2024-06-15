@@ -17,6 +17,7 @@ public class GestionEmpleadosOpciones extends JFrame {
 	private TipoEmpleado tipoempleado;
 	private Tipoempleado2 tipoempleado2;
 	private ModificarEmpleado Modificar;
+	private EliminarEmpleados Eliminar;
 	/**
 	 * Launch the application.
 	 */
@@ -136,6 +137,22 @@ public class GestionEmpleadosOpciones extends JFrame {
 		JButton btnNewButton_1_1 = new JButton("Eliminar empleado");
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				if (Eliminar == null) {
+					
+					Eliminar = new EliminarEmpleados();
+					
+					
+				}
+				
+			
+				Eliminar.setLocationRelativeTo(null);
+				
+				Eliminar.setVisible(true);
+				
+				dispose();
+				
+				
 			}
 		});
 		btnNewButton_1_1.setBounds(537, 439, 206, 43);
