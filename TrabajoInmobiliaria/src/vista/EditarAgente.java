@@ -8,9 +8,12 @@ import javax.swing.border.EmptyBorder;
 
 import controlador.AgenteControlador;
 import trabajoInmobiliaria.Agente;
+import trabajoInmobiliaria.Gerente;
 import trabajoInmobiliaria.Validacion;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
@@ -18,6 +21,8 @@ import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.awt.event.ActionEvent;
 
@@ -35,6 +40,8 @@ public class EditarAgente extends JFrame implements Validacion {
 	private JPasswordField passwordField;
 	private ModificarEmpleado menuModificiacion;
 	private AgenteControlador controladoragente;
+	private Gerente gerente;
+
 	/**
 	 * Launch the application.
 	 */
@@ -51,6 +58,8 @@ public class EditarAgente extends JFrame implements Validacion {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		
 		
 		JLabel lblNewLabel = new JLabel("Modificar agente");
 		lblNewLabel.setFont(new Font("Verdana", Font.PLAIN, 30));
@@ -178,14 +187,14 @@ public class EditarAgente extends JFrame implements Validacion {
 		JLabel lblnombreError = new JLabel("Nombre inválido");
 		lblnombreError.setForeground(new Color(255, 0, 0));
 		lblnombreError.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblnombreError.setBounds(240, 8, 241, 35);
+		lblnombreError.setBounds(170, 8, 241, 35);
 		panel.add(lblnombreError);
 		lblnombreError.setVisible(false);
 		
 		JLabel lblApellidoError = new JLabel("Apellido inválido");
 		lblApellidoError.setForeground(new Color(255, 0, 0));
 		lblApellidoError.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblApellidoError.setBounds(750, 8, 241, 35);
+		lblApellidoError.setBounds(680, 8, 241, 35);
 		panel.add(lblApellidoError);
 		lblApellidoError.setVisible(false);
 		
@@ -193,35 +202,35 @@ public class EditarAgente extends JFrame implements Validacion {
 		lblDniError.setForeground(new Color(255, 0, 0));
 		lblDniError.setBackground(new Color(255, 255, 255));
 		lblDniError.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblDniError.setBounds(240, 100, 241, 35);
+		lblDniError.setBounds(170, 100, 241, 35);
 		panel.add(lblDniError);
 		lblDniError.setVisible(false);
 		
 		JLabel lblTelefonoError = new JLabel("Teléfono inválido");
 		lblTelefonoError.setForeground(new Color(255, 0, 0));
 		lblTelefonoError.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblTelefonoError.setBounds(750, 100, 241, 35);
+		lblTelefonoError.setBounds(680, 100, 241, 35);
 		panel.add(lblTelefonoError);
 		lblTelefonoError.setVisible(false);
 		
 		JLabel lblFechaError = new JLabel("Fecha inválida");
 		lblFechaError.setForeground(new Color(255, 0, 0));
 		lblFechaError.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblFechaError.setBounds(240, 200, 241, 35);
+		lblFechaError.setBounds(170, 200, 241, 35);
 		panel.add(lblFechaError);
 		lblFechaError.setVisible(false);
 		
 		JLabel lblCorreoErrror = new JLabel("Correo inválido");
 		lblCorreoErrror.setForeground(new Color(255, 0, 0));
 		lblCorreoErrror.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblCorreoErrror.setBounds(750, 200, 241, 35);
+		lblCorreoErrror.setBounds(680, 200, 241, 35);
 		panel.add(lblCorreoErrror);
 		lblCorreoErrror.setVisible(false);
 		
 		JLabel lblContraseñaError = new JLabel("Contraseña invalida.");
 		lblContraseñaError.setForeground(new Color(255, 0, 0));
 		lblContraseñaError.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblContraseñaError.setBounds(240, 300, 241, 35);
+		lblContraseñaError.setBounds(170, 300, 416, 35);
 		panel.add(lblContraseñaError);
 		
 		passwordField = new JPasswordField();
@@ -295,30 +304,47 @@ public class EditarAgente extends JFrame implements Validacion {
 			 public void actionPerformed(ActionEvent e) {
 				 /* Validaciones a la hora de intentar modificar el agente */
 				 
+				 LocalDate fecha = null;
+				 /* Bandera para validar el dni. */
+				 boolean flagdni = true;
+				 
+				 /* Bandera para validar si todos los campos estan correctos */
+				 
+				 boolean flagValidacion = true;
+				 
+				 /* Dni y telefono */
+				 
+				 int dni=0 , telefono=0;
+				 
+				 /* El nombre y el apellido capturan el texto recibido por la GUI*/
+				 String 
+				 nombre=inpNombre.getText(),
+				apellido=inpApellido.getText(),
+				correo = inpCorreo.getText(),
+				fecha2 = inpFecha.getText(),
+				fechaanterior; 
+				 LocalDate fechaAnterior = agente.getFecha_nacimiento();
+				 
+				 /* Validaciones en nombre y apellido  */
+				 boolean validarNombre = validarNombre2(nombre);
+				 boolean ValidarApellido = validarNombre2(apellido);
+				 
+				 
 				 if (controladoragente == null) {
 					 
 					 controladoragente = new AgenteControlador();
 					 
 					 
 				 }
-				 /* Bandera para validar el dni. */
-				 boolean flagdni = true;
-				 
-				 /* El nombre y el apellido capturan el texto recibido por la GUI*/
-				 String nombre=inpNombre.getText(), apellido=inpApellido.getText(), correo = inpCorreo.getText();
 				
 				 
-				 /* Validaciones en nombre y apellido  */
-				 boolean validarNombre = validarNombre2(nombre);
-				 boolean ValidarApellido = validarNombre2(apellido);
-				
-				 
-				 
+	/* Validar Nombre */			 
 				 if (validarNombre == false) {
 					 lblnombreError.setVisible(true);
 					 lblnombreError.setForeground(Color.red);
 					 lblnombreError.setText("El nombre ingresado no es válido");
 					 inpNombre.setText(agente.getNombre());
+					 flagValidacion = false;
 					 
 				 } else {
 					 
@@ -326,10 +352,11 @@ public class EditarAgente extends JFrame implements Validacion {
 					 lblnombreError.setForeground(Color.green);
 					 lblnombreError.setText("El nombre ingresado es válido");
 					 inpNombre.setText(nombre);
+					 
 				 }
+	/* Fin validar nombre */			 
 				 
-				 
-				 
+	/* Validar apellido */			 
 				 if (ValidarApellido == false ) {
 					 
 					 lblApellidoError.setVisible(true);
@@ -337,6 +364,7 @@ public class EditarAgente extends JFrame implements Validacion {
 					 lblApellidoError.setText("El apellido ingresado no es válido");
 					 lblApellidoError.setText(agente.getNombre());
 					 inpApellido.setText(agente.getApellido());
+					 flagValidacion = false;
 					 
 				 } else {
 					 
@@ -347,8 +375,9 @@ public class EditarAgente extends JFrame implements Validacion {
 					 
 				 }
 				 
-				 
-				/* Validación del DNI con multiples mensajes de error. */
+	/* Fin validar apellido */			 
+				
+	/* Validación del DNI con multiples mensajes de error. */
 				 
 				 try {
 						
@@ -368,7 +397,7 @@ public class EditarAgente extends JFrame implements Validacion {
 						
 				
 						
-						int dni = Integer.parseInt(inpDni.getText());
+						 dni = Integer.parseInt(inpDni.getText());
 						
 						 boolean validarDni = validarDni2(dni);
 						
@@ -388,7 +417,7 @@ public class EditarAgente extends JFrame implements Validacion {
 							lblDniError.setText("El dni debe contener 8 digitos");
 							lblDniError.setForeground(Color.red);
 							inpDni.setText(Integer.toString(agente.getDni()));
-							
+							flagValidacion = false;
 						}
 					
 					
@@ -398,7 +427,7 @@ public class EditarAgente extends JFrame implements Validacion {
 						lblDniError.setText("Se ingreso un caracter inválido");
 						lblDniError.setForeground(Color.red);
 						inpDni.setText(Integer.toString(agente.getDni()));
-						
+						flagValidacion = false;
 					}
 					
 					
@@ -409,10 +438,11 @@ public class EditarAgente extends JFrame implements Validacion {
 					lblDniError.setForeground(Color.red);
 					lblDniError.setText("Se ingreso un caracter invalido 2");
 					inpDni.setText(Integer.toString(agente.getDni()));
-					
+					flagValidacion = false;
 					
 				}
 				 
+/* Fin validar DNI */				
 				 
 /* Validar teléfono */ 
 				 
@@ -420,7 +450,7 @@ public class EditarAgente extends JFrame implements Validacion {
 				 
 				 try {
 						
-					int	telefono = Integer.parseInt(telefono2);
+						telefono = Integer.parseInt(telefono2);
 						
 						boolean Validartelefono = validarTelefono2(telefono);
 						
@@ -431,7 +461,7 @@ public class EditarAgente extends JFrame implements Validacion {
 							lblTelefonoError.setForeground(Color.red);
 							lblTelefonoError.setText("El teléfono debe tener 8 dígitos.");
 							inpTelefono.setText(Integer.toString(agente.getTelefono()));
-//							Validacion = false;
+							flagValidacion = false;
 							
 						} else {
 							
@@ -450,7 +480,7 @@ public class EditarAgente extends JFrame implements Validacion {
 							lblTelefonoError.setForeground(Color.red);
 							lblTelefonoError.setText("Se ingreso un cáracter inválido.");
 							inpTelefono.setText(Integer.toString(agente.getTelefono()));
-					//		Validacion = false;
+							flagValidacion = false;
 							
 						}
 
@@ -475,18 +505,122 @@ public class EditarAgente extends JFrame implements Validacion {
 					 lblCorreoErrror.setForeground(Color.red);
 					 lblCorreoErrror.setText("El correo ingresado no es válido");
 					 inpCorreo.setText("Correo@algo.com");
-					 
+					 flagValidacion = false;
 					 
 					 
 				 }
-				 /* Fin validar Correo */
+/* Fin validar Correo */
+
+/* Validar fecha de nacimiento */
+				 
+				 DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 				 
 				 
+				 fechaanterior = fechaAnterior.format(formato);
+				
+				 
+				 try {
+
+						fecha = LocalDate.parse(fecha2,  DateTimeFormatter.ofPattern("yyyy-MM-dd")); // Parsea La variable recibida en fecha2 en un LocalDate y debe escribirse con el patron yyyy-MM-dd
+						Boolean ValidarFecha = validarFecha2(fecha);
+						
+						
+						
+						if (!ValidarFecha) {
+							
+							lblFechaError.setVisible(true);
+							lblFechaError.setForeground(Color.red);
+							lblFechaError.setText("La fecha ingresada no es válida.");
+							inpFecha.setText(fechaanterior);
+							flagValidacion = false;
+							
+							
+						} else {
+							
+							lblFechaError.setVisible(true);
+							lblFechaError.setForeground(Color.green);
+							lblFechaError.setText("Fecha de nacimiento válida.");
+							inpFecha.setText(fecha2);
+						}
+						
+					} catch (Exception e2) {
+						
+						lblFechaError.setVisible(true);
+						lblFechaError.setForeground(Color.red);
+						lblFechaError.setText("No se permiten caracteres especiales.");
+						inpFecha.setText(fechaanterior);
+						flagValidacion = false;
+					}
 				 
 				 
+/* Fin validar fecha */				 
+				 
+/* Validar Nueva password */
 				 
 				 
+				
+					
+					boolean validarpass = validarContraseña(passwordField.getText());
+					
+					if (!validarpass) {
+						
+						lblContraseñaError.setVisible(true);
+						lblContraseñaError.setForeground(Color.red);
+					 	lblContraseñaError.setBounds(60,300,416,35); // Modifica la posicion del eje x del label
+						lblContraseñaError.setText("La contraseña debe contener 2 números y tener 6 caracteres.");
+						passwordField.setText("");
+						flagValidacion = false;
+					}
+					
+					else {
+						
+						lblContraseñaError.setVisible(true);
+						lblContraseñaError.setForeground(Color.green);
+						lblContraseñaError.setText("La contraseña es válida.");
+						lblContraseñaError.setBounds(170,300,416,35);
+						passwordField.setText(passwordField.getText());
+						
+					}
+
+
+/* Fin validar passwor */
 				 
+/* Modificación del Agente */
+					
+					JOptionPane.showMessageDialog(null, flagValidacion);
+					
+					if (flagValidacion == true) {
+						
+						
+						
+						
+						if (gerente == null) {
+							
+							gerente = new Gerente();
+							
+						}
+					
+					if (controladoragente == null) {
+						
+						controladoragente = new AgenteControlador();
+						
+					}
+					
+					if (!agente.getNombre().equalsIgnoreCase(nombre)  || !agente.getApellido().equalsIgnoreCase(apellido)  || !agente.getFecha_nacimiento().equals(fecha)  || agente.getDni() != dni || agente.getTelefono() != telefono || !agente.getCorreo().equalsIgnoreCase(correo)  || !agente.getContraseña().equalsIgnoreCase(passwordField.getText())) {
+						
+						
+					
+					gerente.ModificarAgente(agente, nombre, apellido, fecha, dni, telefono, correo, passwordField.getText(),Integer.parseInt(inpID_agente.getText()));
+					
+					} else {/* Despues modificarlo. */  JOptionPane.showMessageDialog(null, "No se ha modificado ningun dato, error.");}
+						
+					
+					}
+					
+					
+					
+					
+/* Fin del modificar Agente */
 				 
 				 
 				 
@@ -494,6 +628,8 @@ public class EditarAgente extends JFrame implements Validacion {
 		 });
 		 btnNewButton_1.setBounds(583, 662, 130, 41);
 		 contentPane.add(btnNewButton_1);
+		 
+		
 		 
 			 
 		 
