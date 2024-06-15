@@ -185,13 +185,40 @@ public class PantallaCliente extends JFrame {
 		panel.add(btnEliminar);
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(panel_1.isVisible()) {
+					  int selectedRow = table.getSelectedRow();
 				
-				  ListSelectionModel selectionModel = table.getSelectionModel();
-				  int selectedRow = table.getSelectedRow();
-				  int id = (int)table.getValueAt(selectedRow, 0);
-				
-				controladorInquilino.deleteInquilino(id);
-				actualizarTabla();
+					  if(selectedRow == -1) {
+						  System.out.println("Selecciones un valor");
+					  }else {
+						  try {
+							  int id = (int)table.getValueAt(selectedRow, 0);
+								
+								controladorInquilino.deleteInquilino(id);
+								actualizarTabla();
+						} catch (Exception e2) {
+							e2.printStackTrace();
+						}
+					  }
+				}else {
+					  PropietarioControlador propietariocont = new  PropietarioControlador();
+
+					  int selectedRow = table_2.getSelectedRow();
+					  if(selectedRow == -1) {
+						  System.out.println("Selecciones un valor");
+					  }else {
+						  try {
+							  int id = (int)table_2.getValueAt(selectedRow, 0);
+								
+							  propietariocont.deletePropietario(id);
+								actualizarPropietario();
+						} catch (Exception e2) {
+							e2.printStackTrace();
+						}
+				}
+			
+			
+				}
 			}
 		});
 		
