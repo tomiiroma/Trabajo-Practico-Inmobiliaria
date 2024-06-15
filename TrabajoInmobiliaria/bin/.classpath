@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 <<<<<<< HEAD
+<<<<<<< HEAD
 	<classpathentry excluding="src/" kind="src" path=""/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="C:/Users/Daniel/Desktop/mysql-connector-java-5.1.13.jar">
+=======
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+>>>>>>> parent of 12f98a7 (merge con Agus, a ver que onda)
 =======
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 >>>>>>> parent of 12f98a7 (merge con Agus, a ver que onda)
@@ -12,9 +16,12 @@
 		</attributes>
 	</classpathentry>
 <<<<<<< HEAD
+<<<<<<< HEAD
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="output" path="bin"/>
 =======
+=======
+>>>>>>> parent of 12f98a7 (merge con Agus, a ver que onda)
 	<classpathentry kind="src" path=""/>
 	<classpathentry kind="lib" path="C:/Users/Agustin/Documents/Programacion Avanzada/mysql-connector-java-5.1.13.jar">
 		<attributes>
@@ -22,5 +29,8 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path=""/>
+<<<<<<< HEAD
+>>>>>>> parent of 12f98a7 (merge con Agus, a ver que onda)
+=======
 >>>>>>> parent of 12f98a7 (merge con Agus, a ver que onda)
 </classpath>
