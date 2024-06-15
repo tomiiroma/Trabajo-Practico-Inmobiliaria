@@ -1,41 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-	<name>TrabajoInmobiliaria</name>
-=======
-	<name>src</name>
->>>>>>> parent of 12f98a7 (merge con Agus, a ver que onda)
-=======
-	<name>src</name>
->>>>>>> parent of 12f98a7 (merge con Agus, a ver que onda)
-=======
-	<name>src</name>
->>>>>>> parent of 12f98a7 (merge con Agus, a ver que onda)
-=======
-	<name>src</name>
->>>>>>> parent of 12f98a7 (merge con Agus, a ver que onda)
-=======
-	<name>src</name>
->>>>>>> parent of 12f98a7 (merge con Agus, a ver que onda)
-=======
-	<name>src</name>
->>>>>>> parent of 12f98a7 (merge con Agus, a ver que onda)
-	<comment></comment>
-	<projects>
-	</projects>
-	<buildSpec>
-		<buildCommand>
-			<name>org.eclipse.jdt.core.javabuilder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
-	</buildSpec>
-	<natures>
-		<nature>org.eclipse.jdt.core.javanature</nature>
-	</natures>
+    <name>TrabajoInmobiliaria</name>
+    <comment></comment>
+    <projects>
+    </projects>
+    <buildSpec>
+        <buildCommand>
+            <name>org.eclipse.jdt.core.javabuilder</name>
+            <arguments>
+            </arguments>
+        </buildCommand>
+    </buildSpec>
+    <natures>
+        <nature>org.eclipse.jdt.core.javanature</nature>
+    </natures>
 </projectDescription>

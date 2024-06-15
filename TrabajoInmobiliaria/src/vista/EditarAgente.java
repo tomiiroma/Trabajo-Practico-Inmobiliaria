@@ -442,6 +442,8 @@ public class EditarAgente extends JFrame implements Validacion {
 					
 				}
 				 
+				
+
 /* Fin validar DNI */				
 				 
 /* Validar teléfono */ 
