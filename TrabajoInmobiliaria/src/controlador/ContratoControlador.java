@@ -32,7 +32,6 @@ public class ContratoControlador implements ContratoRepository{
 	    @Override
 	    public List<Contrato> getAllContrato() {
 	        List<Contrato> contratos = new ArrayList<>();
-<<<<<<< HEAD
 	        try {
 	           PreparedStatement statement = connection.prepareStatement("SELECT * FROM contrato ");
 	           ResultSet resultSet = statement.executeQuery();
@@ -72,54 +71,6 @@ public class ContratoControlador implements ContratoRepository{
 	              contratos.add(contrato);
 	           }
 	        } catch (SQLException e) {
-=======
-	         try {
-	           PreparedStatement statement = connection.prepareStatement("SELECT * FROM contrato ");
-	            ResultSet resultSet = statement.executeQuery();
-	       
-	            while (resultSet.next()) {
-	        
-	            	Contrato contrato = new Contrato(resultSet.getInt("id_contrato"),
-                            resultSet.getDate("inicio_contrato").toLocalDate(),
-                            resultSet.getDate("fin_contrato").toLocalDate(),
-                            new Cliente(
-                            		resultSet.getString("nombre"),
-                            		resultSet.getInt("id_cliente"),
-                                        resultSet.getString("apellido"),
-                                        resultSet.getString("correo"),
-                                        resultSet.getInt("telefono"), 
-                                        resultSet.getDate("fecha_nac").toLocalDate(),
-                                        resultSet.getInt("dni")),
-                            resultSet.getString("descripcion"),
-                            resultSet.getDouble("monto"),
-                            new Reserva(
-                            			
-                            			resultSet.getInt("id_reserva"),
-                                        resultSet.getDate("fecha_reserva").toLocalDate(),
-                                        resultSet.getDate("fecha_expiracion").toLocalDate(),
-                                        resultSet.getDouble("pago"),
-                                        new Comprador(resultSet.getInt("id_comprador"),
-                                                      resultSet.getString("nombre_comprador"),
-                                                      resultSet.getString("apellido_comprador"),
-                                                      resultSet.getString("correo_comprador"),
-                                                      resultSet.getInt("telefono_comprador"),
-                                                      resultSet.getDate("fecha_nac_comprador").toLocalDate(),
-                                                      resultSet.getInt("dni_comprador")),
-                                        new Inquilino(resultSet.getInt("id_inquilino"),
-                                                       resultSet.getString("nombre_inquilino"),
-                                                       resultSet.getString("apellido_inquilino"),
-                                                       resultSet.getString("correo_inquilino"),
-                                                       resultSet.getInt("telefono_inquilino"),
-                                                       resultSet.getDate("fecha_nac_inquilino").toLocalDate(),
-                                                       resultSet.getInt("dni_inquilino")),
-                                        resultSet.getBoolean("estado_reserva"))); */
-
-	            
-	                users.add(Ambiente);
-	            }
-	        } catch (SQLException e) {
-	            e.printStackTrace();
->>>>>>> Agus
 	        }
 	      return contratos;
 	    }

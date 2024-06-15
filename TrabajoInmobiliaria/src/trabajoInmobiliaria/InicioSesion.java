@@ -4,11 +4,8 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
-<<<<<<< HEAD
 import controlador.AgenteControlador;
 import controlador.GerenteControlador;
-=======
->>>>>>> Agus
 
 public interface InicioSesion {
 	
@@ -18,7 +15,6 @@ public interface InicioSesion {
 	            return null;
 	        }
 
-<<<<<<< HEAD
 	        for (int i = 0; i < dniString.length(); i++) {
 	            if (!Character.isDigit(dniString.charAt(i))) {
 	                JOptionPane.showMessageDialog(null, "El DNI debe contener solo números");
@@ -53,10 +49,3 @@ public interface InicioSesion {
 	    }
 	    
 }
-=======
-	default void IniciarSesion() {
-		
-	}
-	
-}
->>>>>>> Agus
