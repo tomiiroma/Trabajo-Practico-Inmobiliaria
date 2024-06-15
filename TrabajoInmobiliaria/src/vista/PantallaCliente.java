@@ -9,7 +9,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
-import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+
+import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 
 import controlador.InquilinoControlador;
 import controlador.PropietarioControlador;
@@ -27,6 +28,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.awt.event.ActionEvent;
 import java.awt.ScrollPane;
@@ -213,12 +215,11 @@ public class PantallaCliente extends JFrame {
 								
 							  propietariocont.deletePropietario(id);
 								actualizarPropietario();
-						}catch(MySQLIntegrityConstraintViolationException e5){ 
+						}catch(SQLException error){ 
 							System.out.println("dsdas");
-							e5.printStackTrace();
+							error.printStackTrace();
 
-						}
-						  catch (Exception e2) {
+						}catch (Exception e2) {
 								e2.printStackTrace();
 
 						
