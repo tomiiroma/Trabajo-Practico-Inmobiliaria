@@ -34,6 +34,7 @@ import java.awt.event.ActionEvent;
 import java.awt.ScrollPane;
 import javax.swing.JTextArea;
 import java.awt.Font;
+import javax.swing.JTextField;
 
 public class PantallaCliente extends JFrame {
 
@@ -48,6 +49,7 @@ public class PantallaCliente extends JFrame {
     private JTable table_1;
     private JTable table_2;
     private Inquilino seleccionado;
+    private JTextField textBusqueda;
 
 
 	/**
@@ -211,6 +213,26 @@ public class PantallaCliente extends JFrame {
 		btnVolver.setBackground(new Color(34, 79, 75));
 		btnVolver.setBounds(42, 424, 117, 26);
 		panel.add(btnVolver);
+		
+		textBusqueda = new JTextField();
+		textBusqueda.setBounds(233, 64, 116, 19);
+		contentPane.add(textBusqueda);
+		textBusqueda.setColumns(10);
+
+		JButton btnNewButton = new JButton("Buscar");
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		btnNewButton.setBounds(359, 62, 73, 21);
+		contentPane.add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(panel_1.isVisible()) {
+					actualizarPorBusquedaInquilino(textBusqueda.getText());
+				}else {
+					actualizarPorBusquedaPropietario(textBusqueda.getText());
+				}
+			}
+		});
+		
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PantallaAgente PantallaAgente =  new PantallaAgente();
@@ -354,4 +376,53 @@ public class PantallaCliente extends JFrame {
 			});
 		}
 	}
+		
+		  private void actualizarPorBusquedaInquilino( String criterio) {
+				InquilinoControlador inquilinocont = new InquilinoControlador();
+
+		        modelInquilino.setRowCount(0);
+
+				List<Inquilino> Inquilinos = inquilinocont.getAllInquilino();
+
+				for (Inquilino inquilino : Inquilinos) {
+					if(inquilino.getNombre().contains(criterio)) {
+						modelInquilino.addRow(new Object[] {
+								inquilino.getId_cliente(),
+								inquilino.getNombre(),
+								inquilino.getApellido(),
+								inquilino.getCorreo(),
+								inquilino.getDireccion(),
+								inquilino.getTelefono(),
+								inquilino.getFecha_nacimiento(),
+								inquilino.getDni(),		
+						});
+					}		
+					} ;
+				
+				
+							} 
+		  private void actualizarPorBusquedaPropietario(String criterio) {
+				PropietarioControlador propietariocont = new PropietarioControlador();
+
+		        modelPropietario.setRowCount(0);
+
+				List<Propietario> propietarios = propietariocont.getAllPropietario();
+
+				for (Propietario propietario : propietarios) {
+					if(propietario.getNombre().contains(criterio)) {
+						modelPropietario.addRow(new Object[] {
+								propietario.getId_cliente(),
+								propietario.getNombre(),
+								propietario.getApellido(),
+								propietario.getCorreo(),
+								propietario.getDireccion(),
+								propietario.getTelefono(),
+								propietario.getFecha_nacimiento(),
+								propietario.getDni(),		
+						});						
+					}
+					
+					}		
+		        }
+		
 }
