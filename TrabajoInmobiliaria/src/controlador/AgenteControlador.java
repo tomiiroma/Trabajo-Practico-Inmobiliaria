@@ -28,7 +28,7 @@ public class AgenteControlador implements AgenteRepository{
 	        this.connection = DatabaseConnection.getInstance().getConnection();
 	    }
 	    
-	    
+	   
 	    @Override
 	    public List<Agente> getAllAgente() {
 	        List<Agente> agentes = new ArrayList<>();
