@@ -83,7 +83,8 @@ public class PantallaCliente extends JFrame {
 		
 		Inquilino seleccionado = new Inquilino();
 		InquilinoControlador controladorInquilino = new InquilinoControlador();
-		
+		PropietarioControlador controladorPropietario = new PropietarioControlador();
+
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(48, 109, 105));
 		panel.setBounds(0, 0, 213, 461);
@@ -96,15 +97,13 @@ public class PantallaCliente extends JFrame {
 
 		
 		JButton btnModificar = new JButton("Modificar");
-		btnModificar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnModificar.setForeground(Color.LIGHT_GRAY);
 		btnModificar.setBorder(null);
 		btnModificar.setBackground(new Color(34, 79, 75));
 		btnModificar.setBounds(10, 130, 193, 43);
 		panel.add(btnModificar);
+
+		
 		
 		JButton btnAgregar = new JButton("Agregar");
 		btnAgregar.addActionListener(new ActionListener() {
@@ -180,55 +179,84 @@ public class PantallaCliente extends JFrame {
 	            }
 	        });
 	      
+			btnModificar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if(panel_1.isVisible()) {
+						 int selectedRow = table.getSelectedRow();
+			                int idInquilino = (int) table.getValueAt(selectedRow, 0);
+
+							ModificarInquilino modificar = new ModificarInquilino(controladorInquilino.getInquilinoById(idInquilino));
+							dispose();
+					}else {
+						 int selectedRow2 = table_2.getSelectedRow();
+						 int idPropietario = (int) table_2.getValueAt(selectedRow2, 0);
+							ModificarPropietario modificarprop = new ModificarPropietario(controladorPropietario.getPropietarioById(idPropietario));
+							dispose();
+					}
+			       
+					
+				}
+			});
+	      
 	  	JButton btnEliminar = new JButton("Eliminar");
 		btnEliminar.setForeground(new Color(192, 192, 192));
 		btnEliminar.setBorder(null);
 		btnEliminar.setBackground(new Color(34, 79, 75));
 		btnEliminar.setBounds(10, 184, 193, 43);
 		panel.add(btnEliminar);
+		
+		JButton btnVolver = new JButton("Volver");
+		btnVolver.setForeground(Color.LIGHT_GRAY);
+		btnVolver.setBorder(null);
+		btnVolver.setBackground(new Color(34, 79, 75));
+		btnVolver.setBounds(42, 424, 117, 26);
+		panel.add(btnVolver);
+		btnVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PantallaAgente PantallaAgente =  new PantallaAgente();
+				dispose();
+			}
+		});
+		
+		
+		
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(panel_1.isVisible()) {
-					  int selectedRow = table.getSelectedRow();
-				
-					  if(selectedRow == -1) {
-						  System.out.println("Selecciones un valor");
-					  }else {
-						  try {
-							  int id = (int)table.getValueAt(selectedRow, 0);
-								
-								controladorInquilino.deleteInquilino(id);
-								actualizarTabla();
-						} catch (Exception e2) {
-							e2.printStackTrace();
-						}
-					  }
-				}else {
-					  PropietarioControlador propietariocont = new  PropietarioControlador();
+			    if (panel_1.isVisible()) {
+			        int selectedRow = table.getSelectedRow();
 
-					  int selectedRow = table_2.getSelectedRow();
-					  if(selectedRow == -1) {
-						  System.out.println("Selecciones un valor");
-					  }else {
-						  try {
-							  int id = (int)table_2.getValueAt(selectedRow, 0);
-								
-							  propietariocont.deletePropietario(id);
-								actualizarPropietario();
-						//}catch(SQLException error){ 
-							//System.out.println("dsdas");
-							//error.printStackTrace();
-
-						}catch (Exception e2) {
-								e2.printStackTrace();
-
-						
-						}
-				}
-			
-			
-				}
+			        if (selectedRow == -1) {
+			            System.out.println("Seleccione un valor");
+			        } else {
+			            try {
+			                int id = (int) table.getValueAt(selectedRow, 0);
+			                controladorInquilino.deleteInquilino(id);
+			                actualizarTabla();
+			            } catch (Exception e2) {
+			                e2.printStackTrace();
+			            }
+			        }
+			    } else {
+			        PropietarioControlador propietariocont = new PropietarioControlador();
+			        int selectedRow = table_2.getSelectedRow();
+			        if (selectedRow == -1) {
+			            System.out.println("Seleccione un valor");
+			        } else {
+			            try {
+			                int id = (int) table_2.getValueAt(selectedRow, 0);
+			                propietariocont.deletePropietario(id);
+			                actualizarPropietario();
+			            
+			            } catch (Exception e2) {
+			                e2.printStackTrace();
+			            }
+			        }
+			    }
 			}
+			
+			
+		
+			
 		});
 		
 		  ListSelectionModel selectionModel2 = table_2.getSelectionModel();

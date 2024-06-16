@@ -88,7 +88,7 @@ public class InquilinoControlador implements InquilinoRepository{
 		@Override
 	    public void updateInquilino(Inquilino inquilino) {
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("UPDATE cliente SET nombre = ?, apellido = ?, correo = ?, telefono = ?, fecha_nac = ?, dni = ? WHERE id_cliente = ?");
+	            PreparedStatement statement = connection.prepareStatement("UPDATE cliente SET nombre = ?, apellido = ?, correo = ?, telefono = ?, fecha_nacimiento = ?, dni = ? WHERE id_cliente = ?");
 	            statement.setString(1, inquilino.getNombre());
 	            statement.setString(2, inquilino.getApellido());
 	            statement.setString(3, inquilino.getCorreo());

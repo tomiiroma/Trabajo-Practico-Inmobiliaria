@@ -1,93 +1,80 @@
 package vista;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import controlador.InquilinoControlador;
-import controlador.PropietarioControlador;
-import trabajoInmobiliaria.Inquilino;
-import trabajoInmobiliaria.Propietario;
-
 import java.awt.Color;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.SwingConstants;
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JTextField;
-import javax.swing.JToggleButton;
-import javax.swing.JButton;
 import java.time.LocalDate;
+
+import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
+import controlador.PropietarioControlador;
+import trabajoInmobiliaria.Propietario;
 
-public class AgregarCliente extends JFrame {
+public class ModificarPropietario extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textNombre;
 	private JTextField textApellido;
 	private JTextField textDni;
-	private JTextField textFechadeNacimiento;
-	private JTextField textTelefono;
-	private JTextField textCorreo;
+	private JTextField textFechaNacimiento;
 	private JTextField textDireccion;
+	private JTextField textCorreo;
+	private JTextField textTelefono;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AgregarCliente frame = new AgregarCliente();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.
 	 */
-	public AgregarCliente() {
+	public ModificarPropietario(Propietario cliente) {
 		this.setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(48, 109, 106));
+		contentPane.setBackground(new Color(49, 109, 106));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
+		
+		
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		PropietarioControlador propietariocont = new PropietarioControlador();
+
+		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(48, 109, 106));
-		panel.setBounds(0, 30, 784, 32);
+		panel.setBounds(0, 11, 784, 32);
 		contentPane.add(panel);
 		
-		JLabel lblTitulo = new JLabel("Agregar Cliente");
-		lblTitulo.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
-		lblTitulo.setVerticalAlignment(SwingConstants.BOTTOM);
-		panel.add(lblTitulo);
+		JLabel lblModificarCliente = new JLabel("Modificar Cliente");
+		lblModificarCliente.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblModificarCliente.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
+		panel.add(lblModificarCliente);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(48, 109, 106));
-		panel_1.setBounds(10, 73, 764, 388);
-		contentPane.add(panel_1);
 		panel_1.setLayout(null);
+		panel_1.setBackground(new Color(48, 109, 106));
+		panel_1.setBounds(10, 54, 764, 388);
+		contentPane.add(panel_1);
 		
 		textNombre = new JTextField();
+		textNombre.setColumns(10);
 		textNombre.setBounds(10, 61, 349, 29);
 		panel_1.add(textNombre);
-		textNombre.setColumns(10);
+		textNombre.setText(cliente.getNombre());
 		
 		JLabel lblFechaDeNacimiento = new JLabel("Fecha de Nacimiento (YYYY-MM-DD)");
 		lblFechaDeNacimiento.setFont(new Font("Times New Roman", Font.BOLD, 15));
@@ -113,22 +100,37 @@ public class AgregarCliente extends JFrame {
 		textApellido.setColumns(10);
 		textApellido.setBounds(10, 141, 349, 29);
 		panel_1.add(textApellido);
-		
+		textApellido.setText(cliente.getApellido());
+
 		textDni = new JTextField();
 		textDni.setColumns(10);
 		textDni.setBounds(10, 225, 349, 29);
 		panel_1.add(textDni);
+		textDni.setText(String.valueOf(cliente.getDni()));
 		
-		textFechadeNacimiento = new JTextField();
-		textFechadeNacimiento.setColumns(10);
-		textFechadeNacimiento.setBounds(10, 302, 349, 29);
-		panel_1.add(textFechadeNacimiento);
+		textFechaNacimiento = new JTextField();
+		textFechaNacimiento.setColumns(10);
+		textFechaNacimiento.setBounds(10, 302, 349, 29);
+		panel_1.add(textFechaNacimiento);
+		String fechaString = cliente.getFecha_nacimiento().getYear() + "-" + cliente.getFecha_nacimiento().getMonthValue() + "-" + cliente.getFecha_nacimiento().getDayOfMonth();
+		if(cliente.getFecha_nacimiento().getMonthValue() < 10) {
+			 fechaString = cliente.getFecha_nacimiento().getYear() + "-0" + cliente.getFecha_nacimiento().getMonthValue() + "-" + cliente.getFecha_nacimiento().getDayOfMonth();
+		} if(cliente.getFecha_nacimiento().getDayOfMonth() < 10) {
+			 fechaString = cliente.getFecha_nacimiento().getYear() + "-" + cliente.getFecha_nacimiento().getMonthValue() + "-0" + cliente.getFecha_nacimiento().getDayOfMonth();
+
+		}
+		if(cliente.getFecha_nacimiento().getDayOfMonth() < 10 &&  cliente.getFecha_nacimiento().getMonthValue() < 10) {
+			 fechaString = cliente.getFecha_nacimiento().getYear() + "-0" + cliente.getFecha_nacimiento().getMonthValue() + "-0" + cliente.getFecha_nacimiento().getDayOfMonth();
+
+		}
+		textFechaNacimiento.setText(fechaString);
 		
 		textTelefono = new JTextField();
 		textTelefono.setColumns(10);
 		textTelefono.setBounds(405, 61, 349, 29);
 		panel_1.add(textTelefono);
-		
+		textTelefono.setText(String.valueOf(cliente.getTelefono()));
+
 		JLabel lblTelefono = new JLabel("Telefono");
 		lblTelefono.setFont(new Font("Times New Roman", Font.BOLD, 15));
 		lblTelefono.setBounds(405, 37, 166, 14);
@@ -138,6 +140,7 @@ public class AgregarCliente extends JFrame {
 		textCorreo.setColumns(10);
 		textCorreo.setBounds(405, 141, 349, 29);
 		panel_1.add(textCorreo);
+		textCorreo.setText(cliente.getCorreo());
 		
 		JLabel lblCorreo = new JLabel("Correo");
 		lblCorreo.setFont(new Font("Times New Roman", Font.BOLD, 15));
@@ -148,6 +151,8 @@ public class AgregarCliente extends JFrame {
 		textDireccion.setColumns(10);
 		textDireccion.setBounds(405, 225, 349, 29);
 		panel_1.add(textDireccion);
+		textDireccion.setText(cliente.getDireccion());
+
 		
 		JLabel lblDireccion = new JLabel("Direccion");
 		lblDireccion.setFont(new Font("Times New Roman", Font.BOLD, 15));
@@ -160,44 +165,30 @@ public class AgregarCliente extends JFrame {
 		panel_1.add(lblTipoDeCliente);
 		
 		JComboBox cbTipoCliente = new JComboBox();
-		cbTipoCliente.setBounds(394, 305, 360, 26);
+		cbTipoCliente.setBounds(405, 303, 349, 26);
 		panel_1.add(cbTipoCliente);
-		cbTipoCliente.addItem("Inquilino");
 		cbTipoCliente.addItem("Propietario");
 
-		JButton btnAgregar = new JButton("Agregar");
-		btnAgregar.setForeground(Color.LIGHT_GRAY);
-		btnAgregar.setBorder(null);
-		btnAgregar.setBackground(new Color(34, 79, 75));
-		btnAgregar.setBounds(353, 348, 117, 29);
-		panel_1.add(btnAgregar);
-		btnAgregar.addActionListener(new ActionListener() {
+		JButton btnModificar = new JButton("Modificar");
+		btnModificar.setForeground(Color.LIGHT_GRAY);
+		btnModificar.setBorder(null);
+		btnModificar.setBackground(new Color(34, 79, 75));
+		btnModificar.setBounds(353, 348, 117, 29);
+		panel_1.add(btnModificar);
+		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				cliente.setNombre(textNombre.getText());
+				cliente.setApellido(textApellido.getText());
+				cliente.setDni(Integer.parseInt(textDni.getText()));
+				cliente.setFecha_nacimiento(LocalDate.parse(textFechaNacimiento.getText()));
+				cliente.setTelefono(Integer.parseInt(textTelefono.getText()));
+				cliente.setCorreo(textCorreo.getText());
+				cliente.setDireccion(textDireccion.getText());
 				
-				String nombre = textNombre.getText();
-				String apellido = textApellido.getText();
-				int dni = Integer.parseInt(textDni.getText());
-				LocalDate fechanacimiento = LocalDate.parse(textFechadeNacimiento.getText());
-				int telefono = Integer.parseInt(textTelefono.getText());
-				String correo = textCorreo.getText();
-				String direccion = textDireccion.getText();
-				String tipoCliente = (String) cbTipoCliente.getSelectedItem();
-				
-				if(tipoCliente.equalsIgnoreCase("Inquilino")) {
-					
-					InquilinoControlador inquilino = new InquilinoControlador();
-					
-					inquilino.addInquilino(new Inquilino(nombre,apellido,correo,direccion,telefono,fechanacimiento,dni,10));
-					JOptionPane.showMessageDialog(null, "Inquilino Agregado");
-				}else if(tipoCliente.equalsIgnoreCase("Propietario")) {
-					PropietarioControlador propietario = new PropietarioControlador();
-					
-					propietario.addPropietario(new Propietario(nombre,apellido,correo,direccion,telefono,fechanacimiento,dni,10));
-					JOptionPane.showMessageDialog(null, "Propietario Agregado");
-				}else {
-					JOptionPane.showMessageDialog(null, "Error Inesperado");
-				}
-			}});
+				propietariocont.updatePropietario(cliente);
+				JOptionPane.showMessageDialog(null, "Modificacion exitosa");
+			}
+		});
 		
 		JButton btnVolver = new JButton("Volver");
 		btnVolver.setForeground(Color.LIGHT_GRAY);
@@ -211,6 +202,5 @@ public class AgregarCliente extends JFrame {
 				dispose();
 			}
 		});
-
 	}
 }

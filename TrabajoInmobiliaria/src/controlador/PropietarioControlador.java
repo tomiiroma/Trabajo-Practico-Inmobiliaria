@@ -8,6 +8,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+
 import interfaces.PropietarioRepository;
 import trabajoInmobiliaria.DatabaseConnection;
 import trabajoInmobiliaria.Propietario;
@@ -119,20 +123,13 @@ public class PropietarioControlador implements PropietarioRepository {
 	            if (rowsDeleted > 0) {
 	                System.out.println("Usuario eliminado exitosamente");
 	            }
-	        } catch (SQLException e) {
-	            e.printStackTrace();
+	        }catch(MySQLIntegrityConstraintViolationException  err) { 
+	        	JOptionPane.showMessageDialog(null, "No se puede eliminar ya que esta asociado a otra tabla");
+	        }catch(SQLException e) {
+	        	  e.printStackTrace();
 	        }
 	
-	
-}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	    }
+
 	
 }
