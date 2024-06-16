@@ -403,7 +403,7 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 	
 	
 	public void BuscarAgenteDni(int dni) {
-		JOptionPane.showMessageDialog(null, dni);
+		
 		int contador = 0;
 		mt.setRowCount(0);
 		
