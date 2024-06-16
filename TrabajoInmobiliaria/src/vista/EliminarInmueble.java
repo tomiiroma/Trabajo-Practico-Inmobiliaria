@@ -2,6 +2,7 @@ package vista;
 
 import java.awt.BorderLayout; 
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -115,19 +116,27 @@ public class EliminarInmueble extends JFrame {
 	    
         
         JButton btnVolver = new JButton("Volver");
-        btnVolver.setBounds(30, 570, 150, 34);
-        contentPane.add(btnVolver);
-        
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MenuInmueble menuInmueble= new MenuInmueble();
+				MenuInmueble menuInmueble = new MenuInmueble();
 				dispose();
 			}
 		});
+        btnVolver.setBounds(30, 570, 150, 34);
+        btnVolver.setFont(new Font("Tahoma", Font.BOLD, 12));
+        btnVolver.setForeground(new Color(255, 255, 255));
+        btnVolver.setBackground(new Color(48, 109, 105));
+        btnVolver.setBorder(null);
+        contentPane.add(btnVolver);
         
-        JButton btnEliminar = new JButton("Eliminar Inmueble");
-        btnEliminar.setBounds(681, 569, 150, 34);
-        contentPane.add(btnEliminar);
+        
+        JButton btnEliminarInmueble = new JButton("Eliminar Inmueble");
+        btnEliminarInmueble.setForeground(Color.WHITE);
+        btnEliminarInmueble.setFont(new Font("Tahoma", Font.BOLD, 12));
+        btnEliminarInmueble.setBorder(null);
+        btnEliminarInmueble.setBackground(new Color(48, 109, 105));
+        btnEliminarInmueble.setBounds(683, 569, 150, 34);
+        contentPane.add(btnEliminarInmueble);
 	}
 
 		
@@ -157,5 +166,4 @@ public class EliminarInmueble extends JFrame {
 			
 			
 	}
-
 }

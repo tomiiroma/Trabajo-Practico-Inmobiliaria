@@ -112,12 +112,12 @@ public class VerListaInmueblesCompleta extends JFrame {
 	    
         
         JButton btnVolver = new JButton("Volver");
-        btnVolver.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                VerInmueblesMenu menuInmueble = new VerInmueblesMenu();
-                dispose();
-            }
-        });
+		btnVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VerInmueblesMenu menuInmueble = new VerInmueblesMenu();
+				dispose();
+			}
+		});
         btnVolver.setBounds(30, 570, 150, 34);
         btnVolver.setFont(new Font("Tahoma", Font.BOLD, 12));
         btnVolver.setForeground(new Color(255, 255, 255));
@@ -126,12 +126,7 @@ public class VerListaInmueblesCompleta extends JFrame {
         contentPane.add(btnVolver);
         
 
-		btnVolver.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				VerInmueblesMenu menuInmueble = new VerInmueblesMenu();
-				dispose();
-			}
-		});
+
         
 	}
 

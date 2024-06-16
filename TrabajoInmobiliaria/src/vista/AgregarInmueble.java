@@ -85,7 +85,7 @@ public class AgregarInmueble extends JFrame {
         JLabel lblCondicionInmueble = new JLabel("Condición Inmueble:");
         lblCondicionInmueble.setForeground(new Color(255, 255, 255));
         lblCondicionInmueble.setFont(new Font("Tahoma", Font.BOLD, 12));
-        lblCondicionInmueble.setBounds(30, 129, 120, 25);
+        lblCondicionInmueble.setBounds(30, 129, 165, 25);
         contentPane.add(lblCondicionInmueble);
 
         cbCondicionInmueble = new JComboBox<String>();

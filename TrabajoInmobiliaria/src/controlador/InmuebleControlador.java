@@ -1,13 +1,14 @@
 package controlador;
 
-import java.sql.Connection;   
+import java.sql.Connection;     
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import interfaces.InmuebleRepository;
+
+import Interfaces.InmuebleRepository;
 import trabajoInmobiliaria.Inmueble;
 import trabajoInmobiliaria.Propietario;
 import trabajoInmobiliaria.DatabaseConnection;
@@ -21,9 +22,7 @@ public class InmuebleControlador implements InmuebleRepository{
 	        this.connection = DatabaseConnection.getInstance().getConnection();
 	    }
 	    
-   
-	    
-	    
+
 	    @Override
 	    public List<Inmueble> getAllInmueble() {
 	        List<Inmueble> inmueble = new ArrayList<>();
