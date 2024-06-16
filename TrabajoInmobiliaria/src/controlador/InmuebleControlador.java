@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import Interfaces.InmuebleRepository;
+import interfaces.InmuebleRepository;
 import trabajoInmobiliaria.Inmueble;
 import trabajoInmobiliaria.Propietario;
 import trabajoInmobiliaria.DatabaseConnection;

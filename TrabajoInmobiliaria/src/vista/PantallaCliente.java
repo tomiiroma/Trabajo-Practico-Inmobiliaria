@@ -215,9 +215,9 @@ public class PantallaCliente extends JFrame {
 								
 							  propietariocont.deletePropietario(id);
 								actualizarPropietario();
-						}catch(SQLException error){ 
-							System.out.println("dsdas");
-							error.printStackTrace();
+						//}catch(SQLException error){ 
+							//System.out.println("dsdas");
+							//error.printStackTrace();
 
 						}catch (Exception e2) {
 								e2.printStackTrace();
