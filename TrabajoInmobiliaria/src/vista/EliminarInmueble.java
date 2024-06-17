@@ -131,7 +131,6 @@ public class EliminarInmueble extends JFrame {
         });
         
 	    
-	    
 	    actualizarTabla();
 	    
         
@@ -176,9 +175,7 @@ public class EliminarInmueble extends JFrame {
                         } catch (Exception ex) {
                             ex.printStackTrace();
                         }
-                    
-                
-                	
+
                 }
             }
         });
