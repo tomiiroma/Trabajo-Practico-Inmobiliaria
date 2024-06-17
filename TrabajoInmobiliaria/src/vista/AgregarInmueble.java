@@ -34,11 +34,13 @@ public class AgregarInmueble extends JFrame {
     private JComboBox<String> cbBarrio;
     private JComboBox<String> cbBanio;
     private JComboBox<String> cbDormi;
-
+    private JComboBox<String> cbAptoMasc;
+    private JComboBox<String> cbRefaccionar;
+    private JComboBox<String> cbPatio;
 
     private JTextField txtCalleDireccion;
     private JTextField txtAlturaDireccion;
-    private JTextField txtAntiguedadd;
+    private JTextField txtAntiguedad;
     private JLabel lblCantBanios;
     private JLabel lblCantDormitorios;
     private JTextField txtM2cubierta;
@@ -183,10 +185,10 @@ public class AgregarInmueble extends JFrame {
         lblAntiguedad.setFont(new Font("Tahoma", Font.BOLD, 12));
         contentPane.add(lblAntiguedad);
         
-        txtAntiguedadd = new JTextField();
-        txtAntiguedadd.setBounds(205, 373, 150, 25);
-        txtAntiguedadd.setColumns(10);
-        contentPane.add(txtAntiguedadd);
+        txtAntiguedad = new JTextField();
+        txtAntiguedad.setBounds(205, 373, 150, 25);
+        txtAntiguedad.setColumns(10);
+        contentPane.add(txtAntiguedad);
         
         
         //Baños ----------------------
@@ -217,8 +219,8 @@ public class AgregarInmueble extends JFrame {
         }
         contentPane.add(cbDormi);
         
-        
-        JComboBox<String> cbAptoMasc = new JComboBox<String>();
+        //Mascota ----------------------
+        cbAptoMasc = new JComboBox<String>();
         cbAptoMasc.setBounds(205, 524, 150, 25);
         contentPane.add(cbAptoMasc);
         
@@ -226,13 +228,12 @@ public class AgregarInmueble extends JFrame {
         lblAptoMasco.setBounds(25, 534, 120, 15);
         lblAptoMasco.setForeground(new Color(255, 255, 255));
         lblAptoMasco.setFont(new Font("Tahoma", Font.BOLD, 12));
-        contentPane.add(lblAptoMasco);
-        
+        contentPane.add(lblAptoMasco);       
         cbAptoMasc.addItem("Si");
         cbAptoMasc.addItem("No");
 
-        
-        JComboBox<String> cbRefaccionar = new JComboBox<String>();
+        //Refaccion ----------------------       
+        cbRefaccionar = new JComboBox<String>();
         cbRefaccionar.setBounds(205, 571, 150, 25);
         contentPane.add(cbRefaccionar);
         
@@ -241,11 +242,12 @@ public class AgregarInmueble extends JFrame {
         lblRefaccion.setForeground(new Color(255, 255, 255));
         lblRefaccion.setFont(new Font("Tahoma", Font.BOLD, 12));
         contentPane.add(lblRefaccion);
-        
         cbRefaccionar.addItem("Si");
         cbRefaccionar.addItem("No");
         
-        JComboBox<String> cbPatio = new JComboBox<String>();
+        
+        //Patio ----------------------       
+        cbPatio = new JComboBox<String>();
         cbPatio.setBounds(655, 184, 150, 25);
         contentPane.add(cbPatio);
         
@@ -253,12 +255,13 @@ public class AgregarInmueble extends JFrame {
         lblPatio.setBounds(486, 188, 80, 15);
         lblPatio.setForeground(new Color(255, 255, 255));
         lblPatio.setFont(new Font("Tahoma", Font.BOLD, 12));
-        contentPane.add(lblPatio);
-        
+        contentPane.add(lblPatio);       
         cbPatio.addItem("Si");
         cbPatio.addItem("No");
         
         
+        
+        //Superficie Cubierta ----------------------       
         JLabel lblM2Cubierta = new JLabel("M2 Superficie Cubierta:");
         lblM2Cubierta.setBounds(486, 238, 150, 15);
         lblM2Cubierta.setForeground(new Color(255, 255, 255));
@@ -270,7 +273,7 @@ public class AgregarInmueble extends JFrame {
         txtM2cubierta.setColumns(10);
         contentPane.add(txtM2cubierta);
         
-        
+        //Superficie Descubierta ----------------------       
         JLabel lblM2Descubierta = new JLabel("M2 Superficie Descubierta:");
         lblM2Descubierta.setBounds(486, 333, 169, 25);
         lblM2Descubierta.setForeground(new Color(255, 255, 255));
@@ -294,7 +297,7 @@ public class AgregarInmueble extends JFrame {
         });
         
         
-        
+        //Precio----------------------       
         txtPrecio = new JTextField();
         txtPrecio.setBounds(655, 280, 150, 25);
         txtPrecio.setColumns(10);
@@ -306,6 +309,7 @@ public class AgregarInmueble extends JFrame {
         lblPrecio.setFont(new Font("Tahoma", Font.BOLD, 12));
         contentPane.add(lblPrecio);
         
+        //Descripcion----------------------       
         JLabel lblDescripcion = new JLabel("Descripción:");
         lblDescripcion.setBounds(486, 400, 120, 25);
         lblDescripcion.setForeground(new Color(255, 255, 255));
@@ -315,6 +319,41 @@ public class AgregarInmueble extends JFrame {
         JTextArea txtAreaDescrip = new JTextArea();
         txtAreaDescrip.setBounds(486, 426, 319, 170);
         contentPane.add(txtAreaDescrip);
+
+        
+        //Nro Piso----------------------       
+        JLabel lblPiso = new JLabel("Piso");
+        lblPiso.setBounds(486, 82, 169, 25);
+        lblPiso.setForeground(Color.WHITE);
+        lblPiso.setFont(new Font("Tahoma", Font.BOLD, 12));
+        contentPane.add(lblPiso);
+        
+        txtPiso = new JTextField();
+        txtPiso.setBounds(655, 77, 150, 25);
+        txtPiso.setColumns(10);
+        contentPane.add(txtPiso);
+        
+        
+        //Nro Depto----------------------      
+        JLabel lblNroDepartamento = new JLabel("Nro Departamento");
+        lblNroDepartamento.setBounds(486, 132, 169, 25);
+        lblNroDepartamento.setForeground(Color.WHITE);
+        lblNroDepartamento.setFont(new Font("Tahoma", Font.BOLD, 12));
+        contentPane.add(lblNroDepartamento);
+        
+        txtNroDepto = new JTextField();
+        txtNroDepto.setBounds(655, 133, 150, 25);
+        txtNroDepto.setColumns(10);
+        contentPane.add(txtNroDepto);
+        
+
+
+        
+        
+        
+        
+
+        
         
         JButton btnVolver = new JButton("Volver");
         btnVolver.setBounds(30, 634, 150, 34);
@@ -373,29 +412,51 @@ public class AgregarInmueble extends JFrame {
                 String barrio = (String) cbBarrio.getSelectedItem();
                 String calle = txtCalleDireccion.getText();
                 String altura = txtAlturaDireccion.getText();
-                String antiguedad = txtAntiguedadd.getText();
-                String banio = (String) cbBanio.getSelectedItem();
-                String dormi = (String) cbDormi.getSelectedItem();
-                String ambientes = (String) cbCantAmbientes.getSelectedItem();
-                String piso = txtPiso.getText();
-                String nroDepto = txtNroDepto.getText();          
-                boolean refaccion =  (boolean) cbRefaccionar.getSelectedItem();
-                boolean patio =  (boolean) cbPatio.getSelectedItem();
-                boolean mascota =  (boolean) cbAptoMasc.getSelectedItem();
-                String superficie_cubierta = txtM2cubierta.getText();
-                String superficie_descubierta = lblM2Descubierta.getText();
+                String antiguedad = txtAntiguedad.getText();
+                String cantAmbientes = (String) cbCantAmbientes.getSelectedItem();
+                String cantBanios = (String) cbBanio.getSelectedItem();
+                String cantDormitorios = (String) cbDormi.getSelectedItem();
+                String m2cubiertos = txtM2cubierta.getText();
+                String m2descubiertos = txtSuperDescu.getText();
                 String precio = txtPrecio.getText();
-                String desc = txtAreaDescrip.getText();
+                String descripcion = txtAreaDescrip.getText();
+                String nroDepto = txtNroDepto.getText();
+                String piso = txtPiso.getText();
                 
+                boolean refaccionar = cbRefaccionar.equals("Si");
+                boolean apto_mascota = cbRefaccionar.equals("Si");
+                boolean patio = cbPatio.equals("Si");
+                
+                
+                //esto por q estamos en agente
+                boolean activo = false;
+                boolean disponible = true;
+                
+                if (cbRefaccionar.equals("No")) {
+                    refaccionar = false;
+                }
+
+                if (cbRefaccionar.equals("No")) {
+                    apto_mascota = false;
+                }
+
+                if (cbPatio.equals("No")) {
+                    patio = false;
+                }
+
+                            
                 InmuebleControlador inmueble = new InmuebleControlador();
                 
-
-                
-                
-
-
+                inmueble.addInmueble(new Inmueble(0,tipoInmueble, condicion,
+                		cantAmbientes,piso,barrio,calle,descripcion,antiguedad,
+                		cantBanios,cantDormitorios,
+                		Double.parseDouble(m2cubiertos),Double.parseDouble(m2descubiertos),
+                		Double.parseDouble(precio),disponible,refaccionar,
+                		apto_mascota,patio,disponible,altura,nroDepto));
 			}
 		});
+        
+        
         
         JLabel lblAosDeAntiguedad = new JLabel("Años ingresados Incorrectos");
         lblAosDeAntiguedad.setBounds(205, 403, 160, 13);
@@ -440,36 +501,6 @@ public class AgregarInmueble extends JFrame {
 
         contentPane.add(lblCalleIngresadaIncorrecta);
         
-        txtNroDepto = new JTextField();
-        txtNroDepto.setBounds(655, 133, 150, 25);
-        txtNroDepto.setColumns(10);
-        contentPane.add(txtNroDepto);
-        
-        JLabel lblNroDepartamento = new JLabel("Nro Departamento");
-        lblNroDepartamento.setBounds(486, 132, 169, 25);
-        lblNroDepartamento.setForeground(Color.WHITE);
-        lblNroDepartamento.setFont(new Font("Tahoma", Font.BOLD, 12));
-        contentPane.add(lblNroDepartamento);
-        
-        txtPiso = new JTextField();
-        txtPiso.setBounds(655, 77, 150, 25);
-        txtPiso.setColumns(10);
-        contentPane.add(txtPiso);
-        
-        JLabel lblPiso = new JLabel("Piso");
-        lblPiso.setBounds(486, 82, 169, 25);
-        lblPiso.setForeground(Color.WHITE);
-        lblPiso.setFont(new Font("Tahoma", Font.BOLD, 12));
-        contentPane.add(lblPiso);
-        
-
-        
-
-        
-        
-        
-        
-
-        
+      
 	}
 }

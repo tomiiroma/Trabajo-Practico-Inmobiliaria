@@ -67,7 +67,9 @@ public class Inmueble {
 		// TODO Auto-generated constructor stub
 	}
 
-
+	public Inmueble() {
+		// TODO Auto-generated constructor stub
+	}
 
 
 	
