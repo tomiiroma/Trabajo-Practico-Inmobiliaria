@@ -61,9 +61,6 @@ public class Inmueble {
 	}
 
 
-	public Inmueble() {
-		
-	}
 
 
 	public Inmueble(int fkInmuebleId) {

@@ -8,8 +8,15 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controlador.InmuebleControlador;
+import controlador.InquilinoControlador;
+import trabajoInmobiliaria.Inmueble;
+import trabajoInmobiliaria.Inquilino;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
@@ -24,18 +31,23 @@ public class AgregarInmueble extends JFrame {
 	private JPanel contentPane;
 	private JComboBox<String> cbTipoInmueble;
     private JComboBox<String> cbCondicionInmueble;
-    private JTextField txtCantidadAmbientes;
     private JComboBox<String> cbBarrio;
+    private JComboBox<String> cbBanio;
+    private JComboBox<String> cbDormi;
+
+
     private JTextField txtCalleDireccion;
     private JTextField txtAlturaDireccion;
     private JTextField txtAntiguedadd;
     private JLabel lblCantBanios;
-    private JTextField txtCantBanio;
-    private JTextField txtCantDormi;
     private JLabel lblCantDormitorios;
     private JTextField txtM2cubierta;
     private JTextField txtSuperDescu;
     private JTextField txtPrecio;
+    private JTextField txtNroDepto;
+    private JTextField txtPiso;
+    
+    
 
     
     
@@ -67,174 +79,153 @@ public class AgregarInmueble extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
+        contentPane.setLayout(null);
 		
-		
+        
+        //Tipo de Inmueble ----------------------
         JLabel lblTipoInmueble = new JLabel("Tipo Inmueble:");
+        lblTipoInmueble.setBounds(25, 87, 91, 15);
         lblTipoInmueble.setForeground(new Color(255, 255, 255));
         lblTipoInmueble.setFont(new Font("Tahoma", Font.BOLD, 12));
-        lblTipoInmueble.setBounds(25, 87, 91, 15);
         contentPane.add(lblTipoInmueble);
 
         cbTipoInmueble = new JComboBox<String>();
+        cbTipoInmueble.setBounds(205, 77, 150, 25);
         cbTipoInmueble.addItem("Departamento");
         cbTipoInmueble.addItem("Casa");
-        cbTipoInmueble.setBounds(205, 77, 150, 25);
         contentPane.add(cbTipoInmueble);
 
+        
+        //Condicion ----------------------
         JLabel lblCondicionInmueble = new JLabel("Condición Inmueble:");
+        lblCondicionInmueble.setBounds(25, 137, 125, 15);
         lblCondicionInmueble.setForeground(new Color(255, 255, 255));
         lblCondicionInmueble.setFont(new Font("Tahoma", Font.BOLD, 12));
-        lblCondicionInmueble.setBounds(25, 131, 125, 15);
         contentPane.add(lblCondicionInmueble);
 
         cbCondicionInmueble = new JComboBox<String>();
+        cbCondicionInmueble.setBounds(205, 133, 150, 25);
         cbCondicionInmueble.addItem("Excelente");
         cbCondicionInmueble.addItem("Muy Bueno");
         cbCondicionInmueble.addItem("Bueno");
         cbCondicionInmueble.addItem("Regular");
         cbCondicionInmueble.addItem("Malo");
-        cbCondicionInmueble.setBounds(205, 121, 150, 25);
         contentPane.add(cbCondicionInmueble);
 
         
+        //Ambientes ----------------------
         JLabel lblCantidadAmbientes = new JLabel("Cantidad de Ambientes:");
+        lblCantidadAmbientes.setBounds(25, 238, 150, 15);
         lblCantidadAmbientes.setForeground(new Color(255, 255, 255));
         lblCantidadAmbientes.setFont(new Font("Tahoma", Font.BOLD, 12));
-        lblCantidadAmbientes.setBounds(25, 325, 150, 15);
         contentPane.add(lblCantidadAmbientes);
-
-        txtCantidadAmbientes = new JTextField();
-        txtCantidadAmbientes.setBounds(205, 315, 150, 25);
-        contentPane.add(txtCantidadAmbientes);
-        txtCantidadAmbientes.setColumns(10);
+        
+        JComboBox<String> cbCantAmbientes = new JComboBox<String>();
+        cbCantAmbientes.setBounds(205, 228, 150, 25);
+        for (int i = 1; i <= 10; i++) {
+        	cbCantAmbientes.addItem(String.valueOf(i));
+        }
+        contentPane.add(cbCantAmbientes);
         
         
-        
-        
+        //Barrio ----------------------
         JLabel lblBarrio = new JLabel("Barrio:");
+        lblBarrio.setBounds(25, 188, 47, 15);
         lblBarrio.setForeground(new Color(255, 255, 255));
         lblBarrio.setFont(new Font("Tahoma", Font.BOLD, 12));
-        lblBarrio.setBounds(25, 166, 47, 15);
         contentPane.add(lblBarrio);
 
         cbBarrio = new JComboBox<String>();
-        cbBarrio.addItem("Agronomía");
-        cbBarrio.addItem("Almagro");
-        cbBarrio.addItem("Balvanera");
-        cbBarrio.addItem("Barracas");
-        cbBarrio.addItem("Belgrano");
-        cbBarrio.addItem("Boedo");
-        cbBarrio.addItem("Caballito");
-        cbBarrio.addItem("Chacarita");
-        cbBarrio.addItem("Coghlan");
-        cbBarrio.addItem("Colegiales");
-        cbBarrio.addItem("Constitución");
-        cbBarrio.addItem("Flores");
-        cbBarrio.addItem("Floresta");
-        cbBarrio.addItem("La Boca");
-        cbBarrio.addItem("La Paternal");
-        cbBarrio.addItem("Liniers");
-        cbBarrio.addItem("Mataderos");
-        cbBarrio.addItem("Monte Castro");
-        cbBarrio.addItem("Monserrat");
-        cbBarrio.addItem("Nueva Pompeya");
-        cbBarrio.addItem("Núñez");
-        cbBarrio.addItem("Palermo");
-        cbBarrio.addItem("Parque Avellaneda");
-        cbBarrio.addItem("Parque Chacabuco");
-        cbBarrio.addItem("Parque Chas");
-        cbBarrio.addItem("Parque Patricios");
-        cbBarrio.addItem("Puerto Madero");
-        cbBarrio.addItem("Recoleta");
-        cbBarrio.addItem("Retiro");
-        cbBarrio.addItem("Saavedra");
-        cbBarrio.addItem("San Cristóbal");
-        cbBarrio.addItem("San Nicolás");
-        cbBarrio.addItem("San Telmo");
-        cbBarrio.addItem("Vélez Sársfield");
-        cbBarrio.addItem("Versalles");
-        cbBarrio.addItem("Villa Crespo");
-        cbBarrio.addItem("Villa del Parque");
-        cbBarrio.addItem("Villa Devoto");
-        cbBarrio.addItem("Villa General Mitre");
-        cbBarrio.addItem("Villa Lugano");
-        cbBarrio.addItem("Villa Luro");
-        cbBarrio.addItem("Villa Ortúzar");
-        cbBarrio.addItem("Villa Pueyrredón");
-        cbBarrio.addItem("Villa Real");
-        cbBarrio.addItem("Villa Riachuelo");
-        cbBarrio.addItem("Villa Santa Rita");
-        cbBarrio.addItem("Villa Soldati");
-        cbBarrio.addItem("Villa Urquiza");
-        cbBarrio.setBounds(205, 162, 150, 25);
+        cbBarrio.setBounds(205, 178, 150, 25);
+        String[] barrios = { "Agronomía", "Almagro", "Balvanera", "Barracas", "Belgrano", "Boedo", "Caballito",
+                "Chacarita", "Coghlan", "Colegiales", "Constitución", "Flores", "Floresta", "La Boca", "La Paternal",
+                "Liniers", "Mataderos", "Monte Castro", "Monserrat", "Nueva Pompeya", "Núñez", "Palermo",
+                "Parque Avellaneda", "Parque Chacabuco", "Parque Chas", "Parque Patricios", "Puerto Madero",
+                "Recoleta", "Retiro", "Saavedra", "San Cristóbal", "San Nicolás", "San Telmo", "Vélez Sársfield",
+                "Versalles", "Villa Crespo", "Villa del Parque", "Villa Devoto", "Villa General Mitre", "Villa Lugano",
+                "Villa Luro", "Villa Ortúzar", "Villa Pueyrredón", "Villa Real", "Villa Riachuelo", "Villa Santa Rita",
+                "Villa Soldati", "Villa Urquiza" };
+        for (String barrio : barrios) {
+            cbBarrio.addItem(barrio);
+        }
         contentPane.add(cbBarrio);
 
 
-        
+        //Calle ----------------------
         JLabel lblCalleDireccion = new JLabel("Calle:");
+        lblCalleDireccion.setBounds(25, 284, 32, 15);
         lblCalleDireccion.setForeground(new Color(255, 255, 255));
         lblCalleDireccion.setFont(new Font("Tahoma", Font.BOLD, 12));
-        lblCalleDireccion.setBounds(25, 217, 32, 15);
         contentPane.add(lblCalleDireccion);
 
         txtCalleDireccion = new JTextField();
-        txtCalleDireccion.setBounds(204, 207, 150, 25);
+        txtCalleDireccion.setBounds(205, 274, 150, 25);
         contentPane.add(txtCalleDireccion);
         txtCalleDireccion.setColumns(10);
         
+        
+        //Altura calle ----------------------
         JLabel lblAlturaDireccion = new JLabel("Altura:");
+        lblAlturaDireccion.setBounds(25, 333, 47, 15);
         lblAlturaDireccion.setForeground(new Color(255, 255, 255));
         lblAlturaDireccion.setFont(new Font("Tahoma", Font.BOLD, 12));
-        lblAlturaDireccion.setBounds(25, 271, 47, 15);
         contentPane.add(lblAlturaDireccion);
         
         txtAlturaDireccion = new JTextField();
+        txtAlturaDireccion.setBounds(205, 323, 150, 25);
         txtAlturaDireccion.setColumns(10);
-        txtAlturaDireccion.setBounds(205, 261, 150, 25);
-        contentPane.add(txtAlturaDireccion);
+        contentPane.add(txtAlturaDireccion);      
         
+        //Antiguedad ----------------------
         JLabel lblAntiguedad = new JLabel("Años de Antiguedad:");
+        lblAntiguedad.setBounds(25, 383, 130, 15);
         lblAntiguedad.setForeground(new Color(255, 255, 255));
         lblAntiguedad.setFont(new Font("Tahoma", Font.BOLD, 12));
-        lblAntiguedad.setBounds(20, 375, 130, 25);
         contentPane.add(lblAntiguedad);
         
         txtAntiguedadd = new JTextField();
+        txtAntiguedadd.setBounds(205, 373, 150, 25);
         txtAntiguedadd.setColumns(10);
-        txtAntiguedadd.setBounds(205, 375, 150, 25);
         contentPane.add(txtAntiguedadd);
         
+        
+        //Baños ----------------------
         lblCantBanios = new JLabel("Cantidad de Baños:");
+        lblCantBanios.setBounds(25, 437, 120, 15);
         lblCantBanios.setForeground(new Color(255, 255, 255));
         lblCantBanios.setFont(new Font("Tahoma", Font.BOLD, 12));
-        lblCantBanios.setBounds(30, 429, 120, 25);
         contentPane.add(lblCantBanios);
         
-        txtCantBanio = new JTextField();
-        txtCantBanio.setColumns(10);
-        txtCantBanio.setBounds(205, 429, 150, 25);
-        contentPane.add(txtCantBanio);
+        cbBanio = new JComboBox<String>();
+        cbBanio.setBounds(205, 427, 150, 25);
+        for (int i = 1; i <= 10; i++) {
+            cbBanio.addItem(String.valueOf(i));
+        }
+        contentPane.add(cbBanio);
         
-        txtCantDormi = new JTextField();
-        txtCantDormi.setColumns(10);
-        txtCantDormi.setBounds(205, 482, 150, 25);
-        contentPane.add(txtCantDormi);
-        
+        //Dormitorios ----------------------
         lblCantDormitorios = new JLabel("Cantidad de Dormitorios:");
+        lblCantDormitorios.setBounds(25, 485, 160, 15);
         lblCantDormitorios.setForeground(new Color(255, 255, 255));
         lblCantDormitorios.setFont(new Font("Tahoma", Font.BOLD, 12));
-        lblCantDormitorios.setBounds(25, 482, 160, 25);
         contentPane.add(lblCantDormitorios);
         
+        cbDormi = new JComboBox<String>();
+        cbDormi.setBounds(205, 475, 150, 25);
+        for (int i = 1; i <= 10; i++) {
+        	cbDormi.addItem(String.valueOf(i));
+        }
+        contentPane.add(cbDormi);
+        
+        
         JComboBox<String> cbAptoMasc = new JComboBox<String>();
-        cbAptoMasc.setBounds(657, 77, 150, 25);
+        cbAptoMasc.setBounds(205, 524, 150, 25);
         contentPane.add(cbAptoMasc);
         
         JLabel lblAptoMasco = new JLabel("Apto Mascotas:");
+        lblAptoMasco.setBounds(25, 534, 120, 15);
         lblAptoMasco.setForeground(new Color(255, 255, 255));
         lblAptoMasco.setFont(new Font("Tahoma", Font.BOLD, 12));
-        lblAptoMasco.setBounds(488, 87, 120, 15);
         contentPane.add(lblAptoMasco);
         
         cbAptoMasc.addItem("Si");
@@ -242,54 +233,54 @@ public class AgregarInmueble extends JFrame {
 
         
         JComboBox<String> cbRefaccionar = new JComboBox<String>();
-        cbRefaccionar.setBounds(657, 121, 150, 25);
+        cbRefaccionar.setBounds(205, 571, 150, 25);
         contentPane.add(cbRefaccionar);
         
         JLabel lblRefaccion = new JLabel("Debe Refaccionar:");
+        lblRefaccion.setBounds(25, 581, 125, 15);
         lblRefaccion.setForeground(new Color(255, 255, 255));
         lblRefaccion.setFont(new Font("Tahoma", Font.BOLD, 12));
-        lblRefaccion.setBounds(488, 131, 125, 15);
         contentPane.add(lblRefaccion);
         
         cbRefaccionar.addItem("Si");
         cbRefaccionar.addItem("No");
         
         JComboBox<String> cbPatio = new JComboBox<String>();
-        cbPatio.setBounds(657, 162, 150, 25);
+        cbPatio.setBounds(655, 184, 150, 25);
         contentPane.add(cbPatio);
         
         JLabel lblPatio = new JLabel("Tiene Patio:");
+        lblPatio.setBounds(486, 188, 80, 15);
         lblPatio.setForeground(new Color(255, 255, 255));
         lblPatio.setFont(new Font("Tahoma", Font.BOLD, 12));
-        lblPatio.setBounds(488, 172, 80, 15);
         contentPane.add(lblPatio);
         
         cbPatio.addItem("Si");
         cbPatio.addItem("No");
         
-        txtM2cubierta = new JTextField();
-        txtM2cubierta.setColumns(10);
-        txtM2cubierta.setBounds(657, 204, 150, 25);
-        contentPane.add(txtM2cubierta);
         
         JLabel lblM2Cubierta = new JLabel("M2 Superficie Cubierta:");
+        lblM2Cubierta.setBounds(486, 238, 150, 15);
         lblM2Cubierta.setForeground(new Color(255, 255, 255));
         lblM2Cubierta.setFont(new Font("Tahoma", Font.BOLD, 12));
-        lblM2Cubierta.setBounds(488, 214, 150, 15);
+        
         contentPane.add(lblM2Cubierta);
+        txtM2cubierta = new JTextField();
+        txtM2cubierta.setBounds(655, 234, 150, 25);
+        txtM2cubierta.setColumns(10);
+        contentPane.add(txtM2cubierta);
         
-        
-        
-        txtSuperDescu = new JTextField();
-        txtSuperDescu.setColumns(10);
-        txtSuperDescu.setBounds(657, 309, 150, 25);
-        contentPane.add(txtSuperDescu);
         
         JLabel lblM2Descubierta = new JLabel("M2 Superficie Descubierta:");
+        lblM2Descubierta.setBounds(486, 333, 169, 25);
         lblM2Descubierta.setForeground(new Color(255, 255, 255));
         lblM2Descubierta.setFont(new Font("Tahoma", Font.BOLD, 12));
-        lblM2Descubierta.setBounds(488, 310, 169, 25);
         contentPane.add(lblM2Descubierta);
+        
+        txtSuperDescu = new JTextField();
+        txtSuperDescu.setBounds(655, 329, 150, 25);
+        txtSuperDescu.setColumns(10);
+        contentPane.add(txtSuperDescu);
         
         cbPatio.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -305,24 +296,24 @@ public class AgregarInmueble extends JFrame {
         
         
         txtPrecio = new JTextField();
+        txtPrecio.setBounds(655, 280, 150, 25);
         txtPrecio.setColumns(10);
-        txtPrecio.setBounds(657, 256, 150, 25);
         contentPane.add(txtPrecio);
         
         JLabel lblPrecio = new JLabel("Precio:");
+        lblPrecio.setBounds(486, 284, 47, 15);
         lblPrecio.setForeground(new Color(255, 255, 255));
         lblPrecio.setFont(new Font("Tahoma", Font.BOLD, 12));
-        lblPrecio.setBounds(488, 266, 47, 15);
         contentPane.add(lblPrecio);
         
         JLabel lblDescripcion = new JLabel("Descripción:");
+        lblDescripcion.setBounds(486, 400, 120, 25);
         lblDescripcion.setForeground(new Color(255, 255, 255));
         lblDescripcion.setFont(new Font("Tahoma", Font.BOLD, 12));
-        lblDescripcion.setBounds(488, 363, 120, 25);
         contentPane.add(lblDescripcion);
         
         JTextArea txtAreaDescrip = new JTextArea();
-        txtAreaDescrip.setBounds(488, 399, 319, 170);
+        txtAreaDescrip.setBounds(486, 426, 319, 170);
         contentPane.add(txtAreaDescrip);
         
         JButton btnVolver = new JButton("Volver");
@@ -340,9 +331,9 @@ public class AgregarInmueble extends JFrame {
 
         
         JPanel panel_1 = new JPanel();
+        panel_1.setBounds(10, 11, 834, 55);
         panel_1.setLayout(null);
         panel_1.setBackground(new Color(133, 201, 196));
-        panel_1.setBounds(10, 11, 834, 55);
         contentPane.add(panel_1);
         
         
@@ -363,76 +354,120 @@ public class AgregarInmueble extends JFrame {
 		
 		
         JButton btnRegistrarInmueble = new JButton("Registrar Inmueble");
+        btnRegistrarInmueble.setBounds(657, 634, 150, 34);
+        btnRegistrarInmueble.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
         btnRegistrarInmueble.setForeground(Color.WHITE);
         btnRegistrarInmueble.setFont(new Font("Tahoma", Font.BOLD, 12));
         btnRegistrarInmueble.setBorder(null);
         btnRegistrarInmueble.setBackground(new Color(48, 109, 105));
-        btnRegistrarInmueble.setBounds(657, 634, 150, 34);
         contentPane.add(btnRegistrarInmueble);
         
-        JLabel ambientesLabel = new JLabel("Cantidad de ambientes Incorrecta");
-        ambientesLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-        ambientesLabel.setForeground(new Color(128, 0, 0));
-        ambientesLabel.setBounds(205, 339, 190, 15);
-        ambientesLabel.setVisible(false);
-        contentPane.add(ambientesLabel);
         
-        JLabel lblCantidadDeDormitorios = new JLabel("Cantidad de Dormitorios Incorrecta");
-        lblCantidadDeDormitorios.setForeground(new Color(128, 0, 0));
-        lblCantidadDeDormitorios.setFont(new Font("Tahoma", Font.PLAIN, 12));
-        lblCantidadDeDormitorios.setBounds(205, 506, 190, 15);
-        lblCantidadDeDormitorios.setVisible(false);
-        contentPane.add(lblCantidadDeDormitorios);
-        
-        JLabel lblCantidadDeBaos = new JLabel("Cantidad de Baños Incorrecta");
-        lblCantidadDeBaos.setForeground(new Color(128, 0, 0));
-        lblCantidadDeBaos.setFont(new Font("Tahoma", Font.PLAIN, 12));
-        lblCantidadDeBaos.setBounds(205, 456, 169, 15);
-        lblCantidadDeBaos.setVisible(false);
-        contentPane.add(lblCantidadDeBaos);
+        btnRegistrarInmueble.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+                String tipoInmueble = (String) cbTipoInmueble.getSelectedItem();
+                String condicion = (String) cbCondicionInmueble.getSelectedItem();
+                String barrio = (String) cbBarrio.getSelectedItem();
+                String calle = txtCalleDireccion.getText();
+                String altura = txtAlturaDireccion.getText();
+                String antiguedad = txtAntiguedadd.getText();
+                String banio = (String) cbBanio.getSelectedItem();
+                String dormi = (String) cbDormi.getSelectedItem();
+                String ambientes = (String) cbCantAmbientes.getSelectedItem();
+                String piso = txtPiso.getText();
+                String nroDepto = txtNroDepto.getText();          
+                boolean refaccion =  (boolean) cbRefaccionar.getSelectedItem();
+                boolean patio =  (boolean) cbPatio.getSelectedItem();
+                boolean mascota =  (boolean) cbAptoMasc.getSelectedItem();
+                String superficie_cubierta = txtM2cubierta.getText();
+                String superficie_descubierta = lblM2Descubierta.getText();
+                String precio = txtPrecio.getText();
+                String desc = txtAreaDescrip.getText();
+                
+                InmuebleControlador inmueble = new InmuebleControlador();
+                
+
+                
+                
+
+
+			}
+		});
         
         JLabel lblAosDeAntiguedad = new JLabel("Años ingresados Incorrectos");
+        lblAosDeAntiguedad.setBounds(205, 403, 160, 13);
         lblAosDeAntiguedad.setForeground(new Color(128, 0, 0));
         lblAosDeAntiguedad.setFont(new Font("Tahoma", Font.PLAIN, 12));
-        lblAosDeAntiguedad.setBounds(205, 403, 160, 15);
         lblAosDeAntiguedad.setVisible(false);
         contentPane.add(lblAosDeAntiguedad);
         
         JLabel lblAlturaIngresadaIncorrecta = new JLabel("Altura Ingresada Incorrecta");
+        lblAlturaIngresadaIncorrecta.setBounds(205, 351, 150, 15);
         lblAlturaIngresadaIncorrecta.setForeground(new Color(128, 0, 0));
         lblAlturaIngresadaIncorrecta.setFont(new Font("Tahoma", Font.PLAIN, 12));
-        lblAlturaIngresadaIncorrecta.setBounds(205, 289, 150, 15);
         lblAlturaIngresadaIncorrecta.setVisible(false);
         contentPane.add(lblAlturaIngresadaIncorrecta);
         
         JLabel lblSuperDesCubierta = new JLabel("Superficie Descubierta Incorrecta");
+        lblSuperDesCubierta.setBounds(655, 357, 209, 25);
         lblSuperDesCubierta.setForeground(new Color(128, 0, 0));
         lblSuperDesCubierta.setFont(new Font("Tahoma", Font.PLAIN, 12));
-        lblSuperDesCubierta.setBounds(657, 332, 209, 25);
         lblSuperDesCubierta.setVisible(false);
         contentPane.add(lblSuperDesCubierta);
         
         JLabel lblPrecioIncorrecto = new JLabel("Precio Ingresado Incorrecto");
+        lblPrecioIncorrecto.setBounds(655, 303, 160, 30);
         lblPrecioIncorrecto.setForeground(new Color(128, 0, 0));
         lblPrecioIncorrecto.setFont(new Font("Tahoma", Font.PLAIN, 12));
-        lblPrecioIncorrecto.setBounds(657, 284, 160, 15);
         lblPrecioIncorrecto.setVisible(false);
         contentPane.add(lblPrecioIncorrecto);
         
         JLabel lblSuperCubierta = new JLabel("Superficie cubierta Incorrecta");
+        lblSuperCubierta.setBounds(655, 263, 177, 15);
         lblSuperCubierta.setForeground(new Color(128, 0, 0));
         lblSuperCubierta.setFont(new Font("Tahoma", Font.PLAIN, 12));
-        lblSuperCubierta.setBounds(657, 232, 177, 15);
         lblSuperCubierta.setVisible(false);
         contentPane.add(lblSuperCubierta);
         
         JLabel lblCalleIngresadaIncorrecta = new JLabel("Calle Ingresada Incorrecta");
+        lblCalleIngresadaIncorrecta.setBounds(205, 304, 150, 13);
         lblCalleIngresadaIncorrecta.setForeground(new Color(128, 0, 0));
         lblCalleIngresadaIncorrecta.setFont(new Font("Tahoma", Font.PLAIN, 12));
-        lblCalleIngresadaIncorrecta.setBounds(204, 235, 150, 15);
         lblCalleIngresadaIncorrecta.setVisible(false);
 
         contentPane.add(lblCalleIngresadaIncorrecta);
+        
+        txtNroDepto = new JTextField();
+        txtNroDepto.setBounds(655, 133, 150, 25);
+        txtNroDepto.setColumns(10);
+        contentPane.add(txtNroDepto);
+        
+        JLabel lblNroDepartamento = new JLabel("Nro Departamento");
+        lblNroDepartamento.setBounds(486, 132, 169, 25);
+        lblNroDepartamento.setForeground(Color.WHITE);
+        lblNroDepartamento.setFont(new Font("Tahoma", Font.BOLD, 12));
+        contentPane.add(lblNroDepartamento);
+        
+        txtPiso = new JTextField();
+        txtPiso.setBounds(655, 77, 150, 25);
+        txtPiso.setColumns(10);
+        contentPane.add(txtPiso);
+        
+        JLabel lblPiso = new JLabel("Piso");
+        lblPiso.setBounds(486, 82, 169, 25);
+        lblPiso.setForeground(Color.WHITE);
+        lblPiso.setFont(new Font("Tahoma", Font.BOLD, 12));
+        contentPane.add(lblPiso);
+        
+
+        
+
+        
+        
+        
         
 
         
