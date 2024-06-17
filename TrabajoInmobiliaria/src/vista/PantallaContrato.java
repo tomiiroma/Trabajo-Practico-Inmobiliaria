@@ -49,6 +49,8 @@ public class PantallaContrato extends JFrame {
 		JButton btnNuevoContrato = new JButton("Nuevo Contrato");
 		btnNuevoContrato.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				NuevoContrato nuevocontrato = new NuevoContrato();
+				dispose();
 			}
 		});
 		btnNuevoContrato.setForeground(Color.LIGHT_GRAY);

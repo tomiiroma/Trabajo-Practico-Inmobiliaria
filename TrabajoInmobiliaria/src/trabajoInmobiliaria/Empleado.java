@@ -470,8 +470,8 @@ public class Empleado implements InicioSesion,Validacion{
 		fin = validarFecha(fin);
 	    boolean aptoMascota = JOptionPane.showConfirmDialog(null, "¿El contrato permite mascotas?", "Permite mascotas", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
 	
-	    Contrato contrato = new Contrato(0, tipocontrato, descripcion, url,inmueble,cliente, inicio, fin, aptoMascota);
-	    controlador.addContrato(contrato);
+	   // Contrato contrato = new Contrato(0, tipocontrato, descripcion, url,inmueble,cliente, inicio, fin, aptoMascota);
+	   // controlador.addContrato(contrato);
 	}
 	
 	

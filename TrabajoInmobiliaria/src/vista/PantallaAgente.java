@@ -104,6 +104,12 @@ public class PantallaAgente extends JFrame {
 		btnNuevoContrato.setBackground(new Color(48, 109, 105));
 		btnNuevoContrato.setBounds(415, 182, 278, 35);
 		panel.add(btnNuevoContrato);
+		btnNuevoContrato.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					PantallaContrato PantallaContrato = new PantallaContrato();
+					dispose();
+				}
+			});
 		
 		JButton btnAgendarReunionvisita = new JButton("Agendar Reunion/Visita");
 		btnAgendarReunionvisita.setFont(new Font("Tahoma", Font.BOLD, 12));
