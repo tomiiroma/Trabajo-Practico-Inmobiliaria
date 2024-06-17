@@ -20,6 +20,7 @@ import java.awt.event.ActionEvent;
 import trabajoInmobiliaria.Gerente;
 import trabajoInmobiliaria.Validacion;
 import java.awt.Color;
+import javax.swing.JComboBox;
 
 public class MenuAgregarAgente extends JFrame implements Validacion {
 
@@ -32,10 +33,11 @@ public class MenuAgregarAgente extends JFrame implements Validacion {
 	private JTextField textFecha;
 	private JTextField textCorreo;
 	private JPasswordField passwordContra;
-	private JTextField textID_agente;
 	private TipoEmpleado tipoempleado;
 	private Gerente gerente = new Gerente();
 	private AgenteAgregado agregado;
+	private JComboBox<String> comboBoxEmpleado;
+	private GerenteAgregado gerenteagregado;
 	/**
 	 * Launch the application.
 	 */
@@ -53,7 +55,7 @@ public class MenuAgregarAgente extends JFrame implements Validacion {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Registrar nuevo agente");
+		JLabel lblNewLabel = new JLabel("Registrar nuevo empleado");
 		lblNewLabel.setFont(new Font("Verdana", Font.PLAIN, 30));
 		lblNewLabel.setBounds(379, 0, 424, 89);
 		contentPane.add(lblNewLabel);
@@ -136,15 +138,10 @@ public class MenuAgregarAgente extends JFrame implements Validacion {
 		passwordContra.setBounds(190, 338, 241, 35);
 		panel.add(passwordContra);
 		
-		JLabel lblNewLabel_1_2_1_1_1 = new JLabel("ID Agente:");
+		JLabel lblNewLabel_1_2_1_1_1 = new JLabel("Puesto:");
 		lblNewLabel_1_2_1_1_1.setFont(new Font("Verdana", Font.PLAIN, 15));
 		lblNewLabel_1_2_1_1_1.setBounds(534, 336, 111, 35);
 		panel.add(lblNewLabel_1_2_1_1_1);
-		
-		textID_agente = new JTextField();
-		textID_agente.setColumns(10);
-		textID_agente.setBounds(636, 338, 241, 35);
-		panel.add(textID_agente);
 		
 		JLabel lblerrorNombre = new JLabel("Nombre inválido.");
 		lblerrorNombre.setForeground(new Color(255, 0, 0));
@@ -193,19 +190,27 @@ public class MenuAgregarAgente extends JFrame implements Validacion {
 		lblerrorCorreo.setFont(new Font("Verdana", Font.PLAIN, 16));
 		lblerrorCorreo.setBounds(636, 181, 328, 51);
 		panel.add(lblerrorCorreo);
+		
+	    comboBoxEmpleado = new JComboBox<String>();
+		comboBoxEmpleado.setBounds(636, 338, 241, 35);
+		panel.add(comboBoxEmpleado);
 		lblerrorCorreo.setVisible(false);
+		
+		comboBoxEmpleado.addItem("Agente");
+		comboBoxEmpleado.addItem("Gerente");
+		
 		
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setBounds(66, 548, 966, 2);
 		contentPane.add(separator_1);
 		
-		JButton btnNewButton = new JButton("Registrar Agente");
+		JButton btnNewButton = new JButton("Registrar ");
 		btnNewButton.setFont(new Font("Verdana", Font.PLAIN, 20));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				LocalDate fecha = null;
-				int dni=0, telefono=0 , idempleado=0;
+				int dni=0, telefono=0;
 				String nombre = textNombre.getText(),
 				apellido = textApellido.getText(),
 				 fecha2 = textFecha.getText(),
@@ -388,31 +393,123 @@ public class MenuAgregarAgente extends JFrame implements Validacion {
 				}
 				
 				
-				idempleado = Integer.parseInt(textID_agente.getText());
+				
+				String puesto="";
+				
+				puesto = (String) comboBoxEmpleado.getSelectedItem();
 				
 				
-				JOptionPane.showMessageDialog(null, Validacion);
+				JOptionPane.showMessageDialog(btnNewButton, puesto);
 				
 				if (Validacion == true) {
 					
 					
-					gerente.AgregarAgente(nombre, apellido, fecha, dni, telefono, correo, passwordContra.getText(), idempleado);
+					String Dniduplicado = "Dni", CorreoDuplicado="correo";
+					
+					Dniduplicado = ValidarDniDuplicado(dni);
+					CorreoDuplicado = ValidarMailDuplicado(correo);
+					
+					if (puesto.equalsIgnoreCase("Agente")) {
+						
+					
+						if (agregado == null) {
+							
+							
+							agregado = new AgenteAgregado();
+							
+						}
 					
 					
-					if (agregado == null) {
-						
-						
-						agregado = new AgenteAgregado();
-						
-					}
+				    /* Validaciones que verifican que no se encuentren repetido tanto el dni y el correo electronico. */
 					
+					if (Dniduplicado.equalsIgnoreCase("Se puede registrar") && CorreoDuplicado.equalsIgnoreCase("Mail valido")) {
+					
+					/* En caso de no encontrarse repetidos devuelve */	
+						
+					gerente.AgregarAgente(nombre, apellido, fecha, dni, telefono, correo, passwordContra.getText());
+						
 					
 					agregado.setVisible(true);
 					
+					
 					agregado.setLocationRelativeTo(null);
 					
-					dispose();
 					
+					dispose();}
+
+					
+					else {
+						
+						/* En caso de que se encuentre repetidos se verifica cual de los dos tiene problemas */
+						
+						if (Dniduplicado.equalsIgnoreCase("El DNI se encuentra repetido")) {
+							
+							
+							lblerrorDni.setVisible(true);
+							lblerrorDni.setText("El DNI se encuentra repetido");
+							
+						} else if (CorreoDuplicado.equalsIgnoreCase("El correo se encuentra registrado.")) {
+							
+							lblerrorCorreo.setVisible(true);
+							lblerrorCorreo.setText("El correo ya se encuentra registrado");
+							
+							
+							
+						}
+						
+						
+						
+						
+						
+					}
+					
+					} else if (puesto.equalsIgnoreCase("Gerente")) {
+						
+						if (gerenteagregado == null) {
+							
+							gerenteagregado = new GerenteAgregado();
+							
+						}
+
+						
+						if (Dniduplicado.equalsIgnoreCase("Se puede registrar") && CorreoDuplicado.equalsIgnoreCase("Mail valido")) {
+						
+							gerente.AgregarGerente(nombre, apellido, fecha, dni, telefono, correo, passwordContra.getText());
+							
+							
+							gerenteagregado.setLocationRelativeTo(null);
+							
+							gerenteagregado.setVisible(true);
+							
+							dispose();
+							
+							
+						} else {
+							
+							if (Dniduplicado.equalsIgnoreCase("El DNI se encuentra repetido")) {
+								
+								
+								lblerrorDni.setVisible(true);
+								lblerrorDni.setText("El DNI se encuentra repetido");
+								
+							} else if (CorreoDuplicado.equalsIgnoreCase("El correo se encuentra registrado.")) {
+								
+								lblerrorCorreo.setVisible(true);
+								lblerrorCorreo.setText("El correo ya se encuentra registrado");
+								
+								
+								
+							}
+						}
+						
+						
+						
+					} else {
+						
+						JOptionPane.showMessageDialog(btnNewButton, "Se ha producido un error");
+						
+						
+					}
 					
 				}
 				

@@ -575,7 +575,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 					case 0:
 						
 						String correo="";
-						int dni=0,telefon0=0,id_agente=0;	
+						int dni=0,telefon0=0;	
 						LocalDate fecha_nac=null;
 						String nombre="", apellido="" , contraseña="";
 						
@@ -597,7 +597,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 								fecha_nac = LocalDate.of(año, mes, dia);
 								 correo = JOptionPane.showInputDialog(null, "Ingresar correo"); 
 								 contraseña = JOptionPane.showInputDialog("Ingresar la contraseña");								
-								id_agente = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el id del empleado"));
+								
 								
 							} catch (Exception e) {
 								
@@ -605,7 +605,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 								
 							}
 							
-							AgregarAgente(nombre,apellido,fecha_nac,dni,telefon0,correo,contraseña,id_agente);
+							AgregarAgente(nombre,apellido,fecha_nac,dni,telefon0,correo,contraseña);
 							
 						
 							
@@ -619,7 +619,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 						
 						
 						String correog="";
-						int dnig=0,telefon1=0,id_gerente=0;	
+						int dnig=0,telefon1=0;	
 						LocalDate fecha_nacg=null;
 						String nombreg="", apellidog="" , contraseña1="";
 						
@@ -641,7 +641,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 								fecha_nacg = LocalDate.of(año, mes, dia);
 								correog = JOptionPane.showInputDialog(null, "Ingresar correo"); 
 								 contraseña1 = JOptionPane.showInputDialog("Ingresar la contraseña");								
-								 id_gerente = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el id del empleado"));
+								 
 								
 							} catch (Exception e) {
 								
@@ -651,7 +651,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 						
 						
 						
-						AgregarGerente(nombreg,apellidog,fecha_nacg,dnig,telefon1,correog,contraseña1,id_gerente);
+						AgregarGerente(nombreg,apellidog,fecha_nacg,dnig,telefon1,correog,contraseña1);
 						
 						break;
 						
@@ -1652,36 +1652,75 @@ public Gerente VerificarReferenciasGerente() {
 
 
 
-public boolean AgregarAgente(String nombre, String apellido, LocalDate fecha, int dni, int telefono, String correo, String contraseña, int id_agente) {
+public boolean AgregarAgente(String nombre, String apellido, LocalDate fecha, int dni, int telefono, String correo, String contraseña) {
    
 	AgenteControlador agentecontrolador = new AgenteControlador();	
-	boolean agente_repetido=false;
-	
+	boolean agente_repetido=false, correoRepetido=false;
+	String ValidacionDniDuplicado = "", ValidacionCorreoDuplicado = "";
+	int max=-1;
 
 	
 	if (validarNombre2(nombre) && validarNombre2(apellido) && validarFecha2(fecha) && validarDni2(dni) && validarTelefono2(telefono) && validarEmail2(correo) && validarContraseña(contraseña)) {
 	
 		
-		for (Agente agente : agentecontrolador.getAllAgente()) {
+		
+			ValidacionDniDuplicado = ValidarDniDuplicado(dni);
+		
+		
+			ValidacionCorreoDuplicado = ValidarMailDuplicado(correo);
 			
-			if (agente.getDni() == dni) {
+			
+			if  (ValidacionDniDuplicado.equalsIgnoreCase("El DNI se encuentra repetido")) {
 				
 				agente_repetido = true;
 				
 				JOptionPane.showMessageDialog(null, "El dni ingresado, ya se encuentra en la base de datos.");
 				
-			
+				System.out.println("El dni se encuentra repetido en algun empleado");
 				
 				return false;
-			
 			 
 			}
 			
 			
-		}
+			if (ValidacionCorreoDuplicado.equalsIgnoreCase("El correo se encuentra registrado.")) {
+				
+				correoRepetido = true;
+				
+				JOptionPane.showMessageDialog(null, "El correo ingresado se encuentra repetido en la base de datos.");
+				
+				System.out.println("El correo ingresado se encuentra repetido");
+				
+				return false;
+			}
 			
-    	if (agente_repetido == false) {
-        Agente agente = new Agente(0, nombre, apellido, fecha, dni, telefono, correo, "Agente", contraseña, id_agente);
+			
+			
+			
+		
+		
+		
+		
+		
+			
+    	if (agente_repetido == false && correoRepetido == false) {
+    		
+    		for (Agente agente : agentecontrolador.getAllAgente()) {
+    			
+    			if (max < agente.getId_agente()) {
+    				
+    				
+    				max = agente.getId_agente();
+    				
+    				
+    			}
+    			
+    		}
+    		
+    		
+    		max = max + 1;
+    		
+        Agente agente = new Agente(0, nombre, apellido, fecha, dni, telefono, correo, "Agente", contraseña, max);
       
        /* JOptionPane.showMessageDialog(null, "El agente se ha agregado con exito."); */
         
@@ -1711,36 +1750,72 @@ public boolean AgregarAgente(String nombre, String apellido, LocalDate fecha, in
 /*-------------------------------------------------------------------------------------------Agregar gerente---------------------------------------------------------------------------------------------------- */
 
 
-public boolean AgregarGerente(String nombre, String apellido, LocalDate fecha, int dni, int telefono, String correo, String contraseña, int id_gerente) {
-	boolean gerente_repetido=false;
+public boolean AgregarGerente(String nombre, String apellido, LocalDate fecha, int dni, int telefono, String correo, String contraseña) {
+	boolean gerente_repetido=false, correoRepetido=false;
+	int max = -1;
+	String ValidacionDniDuplicado = "", ValidacionCorreoDuplicado = "";
 		GerenteControlador gerentecontrolador = new GerenteControlador();
-		AgenteControlador agentecontrolador = new AgenteControlador();
-		ControladorEmpleado empleadocontrolador = new ControladorEmpleado();
+		
+	
 		
 if (validarNombre2(nombre) && validarNombre2(apellido) && validarFecha2(fecha) && validarDni2(dni) && validarTelefono2(telefono) && validarEmail2(correo) && validarContraseña(contraseña)) {
 	
-		for (Empleado empleado : empleadocontrolador.getAllEmpleados()) {
+		
 			
-				if (empleado.getDni() == dni) {
+			
+			ValidacionDniDuplicado = ValidarDniDuplicado(dni);
+			
+			
+			ValidacionCorreoDuplicado = ValidarMailDuplicado(correo);
+			
+			
+				if (ValidacionDniDuplicado.equalsIgnoreCase("El DNI se encuentra repetido")) {
 					
 					gerente_repetido = true;
 					
-					JOptionPane.showMessageDialog(null, "El dni se encuentra repetido en algun empleado");
+					System.out.println("El dni se encuentra repetido en algun empleado");
 					
 					return false;
 
 					
 					
 				}
+				
+				
+				if (ValidacionCorreoDuplicado.equalsIgnoreCase("El correo se encuentra registrado.")) {
+					
+					correoRepetido = true;
+					
+					System.out.println("El correo ingresado se encuentra repetido");
+					
+					return false;
+				
+				}
+				
 			
-			
-		}
 		
 		
 		
-		if (gerente_repetido==false) {
+		
+		if (gerente_repetido==false && correoRepetido==false) {
+		
+			for (Gerente gerente : gerentecontrolador.getAllGerente()) {
+    			
+    			if (max < gerente.getId_gerente()) {
+    				
+    				
+    				max = gerente.getId_gerente();
+    				
+    				
+    			}
+    			
+    			
+    			
+    		}
 			
-		gerentecontrolador.addGerente(new Gerente(0,nombre,apellido,fecha,dni,telefono,correo,"Gerente",contraseña,id_gerente));
+			max = max + 1;
+			
+		gerentecontrolador.addGerente(new Gerente(0,nombre,apellido,fecha,dni,telefono,correo,"Gerente",contraseña,max));
 		return true;
 		} else {
 			
@@ -1759,6 +1834,12 @@ return false;
 
 
 /* --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+
+
+
+
+
 
 
 }

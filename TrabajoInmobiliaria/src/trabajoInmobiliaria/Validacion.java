@@ -6,6 +6,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
+import controlador.ControladorEmpleado;
+
 
 public interface Validacion {
 	
@@ -710,6 +712,80 @@ public interface Validacion {
 		
 
 /*----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+		
+
+/* ----------------------------------------------------------------------------------- Validar DNI repetidos ------------------------------------------------------------------------------------------------------------------------ */		
+		
+/* Ver si modificar despues con las del metodo agregar Agente y Gerente */
+		
+		
+		default String ValidarDniDuplicado(int dni) {
+			
+			ControladorEmpleado controlador = new ControladorEmpleado();
+			
+			for (Empleado empleado : controlador.getAllEmpleados()) {
+				
+				
+				if (dni == empleado.getDni()) {
+					
+					
+					return "El DNI se encuentra repetido";
+					
+					
+				}
+				
+				
+				
+				
+			}
+			
+			
+			
+			
+			return "Se puede registrar";
+		}
+		
+		
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */		
+
+		
+/* ----------------------------------------------------------------------------------------- Validar Correo ------------------------------------------------------------------------------------------------------------------------- */	
+		default String ValidarMailDuplicado(String correo) {
+			
+			ControladorEmpleado controlador = new ControladorEmpleado();
+			
+			
+			
+			
+			for (Empleado empleado : controlador.getAllEmpleados()) {
+				
+				
+				if (empleado.getCorreo().equalsIgnoreCase(correo)) {
+					
+					
+					return "El correo se encuentra registrado.";
+					
+					
+				}
+				
+				
+				
+				
+			}
+			
+			
+			return "Mail valido";
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		
