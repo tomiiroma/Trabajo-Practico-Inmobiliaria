@@ -97,7 +97,7 @@ public class PantallaAgente extends JFrame {
 		btnNuevaOperacion.setBounds(107, 182, 278, 35);
 		panel.add(btnNuevaOperacion);
 		
-		JButton btnNuevoContrato = new JButton("Nuevo Contrato");
+		JButton btnNuevoContrato = new JButton("Contratos");
 		btnNuevoContrato.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnNuevoContrato.setForeground(Color.WHITE);
 		btnNuevoContrato.setBorder(null);

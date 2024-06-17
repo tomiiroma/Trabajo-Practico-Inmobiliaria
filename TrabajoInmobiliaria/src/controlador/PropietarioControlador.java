@@ -124,7 +124,12 @@ public class PropietarioControlador implements PropietarioRepository {
 	                System.out.println("Usuario eliminado exitosamente");
 	            }
 	        }catch(MySQLIntegrityConstraintViolationException  err) { 
-	        	JOptionPane.showMessageDialog(null, "No se puede eliminar ya que esta asociado a otra tabla");
+	        	if(err.getMessage().contains("contrato")) {
+		        	JOptionPane.showMessageDialog(null, "El cliente esta con un contrato activo");   		
+	        	}else {
+	        		JOptionPane.showMessageDialog(null, "No se puede eliminar este cliente");
+	        	}
+	        
 	        }catch(SQLException e) {
 	        	  e.printStackTrace();
 	        }
