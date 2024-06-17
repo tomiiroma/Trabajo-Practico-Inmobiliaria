@@ -14,12 +14,16 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import controlador.InmuebleControlador;
 import trabajoInmobiliaria.Inmueble;
 
 import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.ListSelectionModel;
 
 public class VerInmueblesDisponibles extends JFrame {
 
@@ -47,25 +51,75 @@ public class VerInmueblesDisponibles extends JFrame {
 	 * Create the frame.
 	 */
 	public VerInmueblesDisponibles() {
+		setForeground(new Color(0, 128, 128));
 		this.setVisible(true);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    setBounds(100, 100, 870, 690);
+	    setBounds(100, 100, 1325, 690);
 	    contentPane = new JPanel();
+	    contentPane.setBackground(new Color(0, 128, 128));
+	    contentPane.setForeground(new Color(0, 128, 128));
 	    contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 	    setContentPane(contentPane);
 	    contentPane.setLayout(null);
 
 	    controlador = new InmuebleControlador();
 
-	    String[] columnNames = {"ID", "Tipo Inmueble", "Piso", "Ambientes", "Barrio", "Dirección",
-	    "Precio", "Disponible", "Condición"};
+	    String[] columnNames = {"ID", "Tipo Inmueble", "Piso", "Ambientes", "Barrio", "Dirección","Altura Dirección",
+	    "Precio", "Disponible", "Condición","M2 Sup. Cubierta","¿Tiene Patio?","¿Refacción?"};
 	    model = new DefaultTableModel(columnNames, 0);
 	    table = new JTable(model);
 
 	    JScrollPane scrollPane = new JScrollPane(table);
-	    scrollPane.setBounds(10, 37, 834, 521);
+	    scrollPane.setBounds(10, 37, 1289, 521);
 	    contentPane.add(scrollPane);
+        
+		
+        JTextArea elemento_1 = new JTextArea();
+        elemento_1.setForeground(new Color(255, 255, 255));
+        elemento_1.setBackground(new Color(0, 128, 128));
+        elemento_1.setFont(new Font("Arial", Font.BOLD, 13));
+        elemento_1.setBounds(10, 11, 1289, 32);
+        elemento_1.setFocusable(false);
+        contentPane.add(elemento_1);
+    
+        
+        ListSelectionModel selectionModel = table.getSelectionModel();
+        selectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+      
+        selectionModel.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    int selectedRow = table.getSelectedRow();
+                    if (selectedRow != -1) {
+                        int id = (int) table.getValueAt(selectedRow, 0);
+                        String tipoInmueble = (String) table.getValueAt(selectedRow, 1);
+                        String piso = (String) table.getValueAt(selectedRow, 2);
+                        String ambientes = (String) table.getValueAt(selectedRow, 3);
+                        String barrio = (String) table.getValueAt(selectedRow, 4);
+                        String direccion = (String) table.getValueAt(selectedRow, 5);
+                        String altura = (String) table.getValueAt(selectedRow, 6);
+                        Double precio = (Double) table.getValueAt(selectedRow, 7);
+                        boolean disponible = (boolean) table.getValueAt(selectedRow, 8);
+                        String condicion = (String) table.getValueAt(selectedRow, 9);
+
+
+              
+                        elemento_1.setText("Seleccionado: ID: " + id 
+                        		+ ", Tipo Inmueble: " + tipoInmueble 
+                        		+", Piso: "+ piso
+                        		+", Ambientes: "+ambientes
+                        		+", Barrio: "+barrio
+                        		+", Direccion: "+ direccion
+                        		+", Altura: "+altura
+                        		+", Precio: $"+precio
+                        		+", Disponibilidad: "+disponible
+                        		+", Condicion: "+condicion);                                            
+                    }
+                }
+            }
+        });
         
 	    
 	    actualizarTabla();
@@ -104,15 +158,19 @@ public class VerInmueblesDisponibles extends JFrame {
         	
         	if(inmueble.isDisponible()==true){      		
         		model.addRow(new Object[]{
-        				inmueble.getId_inmueble(),
-        				inmueble.getTipo_inmueble(),
-        				inmueble.getPiso(),
-        				inmueble.getCantAmbientes(),
-        				inmueble.getBarrio(),
-        				inmueble.getDireccion(),
-        				inmueble.getPrecio(),
-        				inmueble.isDisponible(),
-        				inmueble.getCondicion()
+                        inmueble.getId_inmueble(),
+                        inmueble.getTipo_inmueble(),
+                        inmueble.getPiso(),
+                        inmueble.getCantAmbientes(),
+                        inmueble.getBarrio(),
+                        inmueble.getDireccion(),
+                        inmueble.getAlturaDireccion(),
+                        inmueble.getPrecio(),
+                        inmueble.isDisponible(),
+                        inmueble.getCondicion(),
+                        inmueble.getSuperficie_cubierta(),
+                        inmueble.isPatio(),
+                        inmueble.isRefaccionar()
         		});
         	}
         }
