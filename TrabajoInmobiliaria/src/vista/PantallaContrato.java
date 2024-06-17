@@ -56,19 +56,8 @@ public class PantallaContrato extends JFrame {
 		btnNuevoContrato.setForeground(Color.LIGHT_GRAY);
 		btnNuevoContrato.setBorder(null);
 		btnNuevoContrato.setBackground(new Color(34, 79, 75));
-		btnNuevoContrato.setBounds(280, 196, 193, 43);
+		btnNuevoContrato.setBounds(280, 226, 193, 43);
 		contentPane.add(btnNuevoContrato);
-		
-		JButton btnEliminarContrato = new JButton("Eliminar Contrato");
-		btnEliminarContrato.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnEliminarContrato.setForeground(Color.LIGHT_GRAY);
-		btnEliminarContrato.setBorder(null);
-		btnEliminarContrato.setBackground(new Color(34, 79, 75));
-		btnEliminarContrato.setBounds(280, 250, 193, 43);
-		contentPane.add(btnEliminarContrato);
 		
 		JButton btnverContrato = new JButton("Ver Contratos");
 		btnverContrato.addActionListener(new ActionListener() {
@@ -80,7 +69,7 @@ public class PantallaContrato extends JFrame {
 		btnverContrato.setForeground(Color.LIGHT_GRAY);
 		btnverContrato.setBorder(null);
 		btnverContrato.setBackground(new Color(34, 79, 75));
-		btnverContrato.setBounds(280, 142, 193, 43);
+		btnverContrato.setBounds(280, 172, 193, 43);
 		contentPane.add(btnverContrato);
 		
 		JButton btnVolver = new JButton("Volver");
