@@ -617,7 +617,41 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 
 					case 1:
 						
-						AgregarGerente();
+						
+						String correog="";
+						int dnig=0,telefon1=0,id_gerente=0;	
+						LocalDate fecha_nacg=null;
+						String nombreg="", apellidog="" , contraseña1="";
+						
+						
+							
+							
+							
+							
+							
+							try {
+								
+								nombreg = JOptionPane.showInputDialog(null, "Ingresar el nombre del agente");							
+								apellidog = JOptionPane.showInputDialog(null,"Ingresar el apellido del agente");
+								dnig = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el dni"));
+								telefon1 = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el numero"));
+								int dia = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el dia"));
+								int mes = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el mes"));
+								int año = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el año"));
+								fecha_nacg = LocalDate.of(año, mes, dia);
+								correog = JOptionPane.showInputDialog(null, "Ingresar correo"); 
+								 contraseña1 = JOptionPane.showInputDialog("Ingresar la contraseña");								
+								 id_gerente = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el id del empleado"));
+								
+							} catch (Exception e) {
+								
+								JOptionPane.showMessageDialog(null, "Error se ingreso algun tipo de dato incorrecto");
+								
+							}
+						
+						
+						
+						AgregarGerente(nombreg,apellidog,fecha_nacg,dnig,telefon1,correog,contraseña1,id_gerente);
 						
 						break;
 						
@@ -1256,7 +1290,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 	
 /* ---------------------------------------------------------------------------------------- AGREGAR GERENTES ----------------------------------------------------------------------------------------------------- */	
 	
-	
+	/*
 	public void AgregarGerente() {
 		int dni = 0,telefono;	
 		LocalDate fecha = null;
@@ -1283,7 +1317,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 			
 			
 		}
-	
+	*/
 	
 /* ----------------------------------------------------------------------------------- ELIMINAR GERENTE ------------------------------------------------------------------------------------------------------------------ */	
 	
@@ -1690,7 +1724,57 @@ public boolean AgregarAgente(String nombre, String apellido, LocalDate fecha, in
 
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
+/*-------------------------------------------------------------------------------------------Agregar gerente---------------------------------------------------------------------------------------------------- */
 
+
+public boolean AgregarGerente(String nombre, String apellido, LocalDate fecha, int dni, int telefono, String correo, String contraseña, int id_gerente) {
+	boolean gerente_repetido=false;
+		GerenteControlador gerentecontrolador = new GerenteControlador();
+		AgenteControlador agentecontrolador = new AgenteControlador();
+		ControladorEmpleado empleadocontrolador = new ControladorEmpleado();
+		
+if (validarNombre2(nombre) && validarNombre2(apellido) && validarFecha2(fecha) && validarDni2(dni) && validarTelefono2(telefono) && validarEmail2(correo) && validarContraseña(contraseña)) {
+	
+		for (Empleado empleado : empleadocontrolador.getAllEmpleados()) {
+			
+				if (empleado.getDni() == dni) {
+					
+					gerente_repetido = true;
+					
+					JOptionPane.showMessageDialog(null, "El dni se encuentra repetido en algun empleado");
+					
+					return false;
+
+					
+					
+				}
+			
+			
+		}
+		
+		
+		
+		if (gerente_repetido==false) {
+			
+		gerentecontrolador.addGerente(new Gerente(0,nombre,apellido,fecha,dni,telefono,correo,"Gerente",contraseña,id_gerente));
+		return true;
+		} else {
+			
+			return false;
+			
+		}
+}
+		
+return false;		
+		
+		
+	}
+
+
+
+
+
+/* --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
 
 }

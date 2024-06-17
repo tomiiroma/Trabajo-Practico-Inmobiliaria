@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import Interfaces.AgenteRepository;
+import interfaces.AgenteRepository;
 import trabajoInmobiliaria.DatabaseConnection;
 import trabajoInmobiliaria.Agente;
 import java.time.LocalDate;
@@ -28,9 +28,9 @@ public class AgenteControlador implements AgenteRepository{
 	        this.connection = DatabaseConnection.getInstance().getConnection();
 	    }
 	    
-	    
+	   
 	    @Override
-	    public List<Agente>  getAllAgente() {
+	    public List<Agente> getAllAgente() {
 	        List<Agente> agentes = new ArrayList<>();
 	        try {
 	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM empleado where tipo_empleado = 'Agente'"); 

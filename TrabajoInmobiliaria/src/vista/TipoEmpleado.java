@@ -17,6 +17,7 @@ public class TipoEmpleado extends JFrame {
 	private JPanel contentPane;
 	private GestionEmpleadosOpciones menuempleados; 
 	private MenuAgregarAgente menuAgente;
+	private MenuAgregarGerente menuGerente;
 	/**
 	 * Launch the application.
 	 */
@@ -40,6 +41,25 @@ public class TipoEmpleado extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Gerente");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if (menuGerente == null) {
+					
+					menuGerente = new MenuAgregarGerente();
+					
+					
+				}
+				
+				menuGerente.setLocationRelativeTo(null);
+				
+				dispose();
+			
+				
+				
+				
+			}
+		});
 		btnNewButton.setBounds(75, 130, 125, 42);
 		contentPane.add(btnNewButton);
 		

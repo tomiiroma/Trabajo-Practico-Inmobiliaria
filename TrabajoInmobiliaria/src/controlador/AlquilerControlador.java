@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import Interfaces.AlquilerRepository;
+import interfaces.AlquilerRepository;
 import trabajoInmobiliaria.Alquiler;
 import trabajoInmobiliaria.Cliente;
 import trabajoInmobiliaria.Contrato;

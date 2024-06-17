@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import Interfaces.CompradorRepository;
+import interfaces.CompradorRepository;
 import trabajoInmobiliaria.Comprador;
 import trabajoInmobiliaria.DatabaseConnection;
 import trabajoInmobiliaria.Inquilino;

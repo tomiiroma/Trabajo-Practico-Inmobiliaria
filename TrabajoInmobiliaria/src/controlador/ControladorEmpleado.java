@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import trabajoInmobiliaria.Empleado;
-import Interfaces.EmpleadoRepository;
+import interfaces.EmpleadoRepository;
 import trabajoInmobiliaria.DatabaseConnection;
 
 public class ControladorEmpleado implements EmpleadoRepository {

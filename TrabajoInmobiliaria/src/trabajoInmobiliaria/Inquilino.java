@@ -9,7 +9,9 @@ public class Inquilino extends Cliente implements Validacion{
 	private int id_inquilino;
 	
 
-
+	public Inquilino() {
+		
+	}
 	
 
 	public Inquilino(String nombre, String apellido, String correo, String direccion, int telefono,

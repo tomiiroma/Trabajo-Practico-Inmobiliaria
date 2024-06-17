@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import Interfaces.PropietarioRepository;
+import interfaces.PropietarioRepository;
 import trabajoInmobiliaria.DatabaseConnection;
 import trabajoInmobiliaria.Propietario;
 
@@ -112,7 +112,7 @@ public class PropietarioControlador implements PropietarioRepository {
 	    @Override
 	    public void deletePropietario(int id_cliente) {
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("DELETE FROM users WHERE id_cliente = ?");
+	            PreparedStatement statement = connection.prepareStatement("DELETE FROM cliente WHERE id_cliente = ?");
 	            statement.setInt(1, id_cliente);
 	            
 	            int rowsDeleted = statement.executeUpdate();
