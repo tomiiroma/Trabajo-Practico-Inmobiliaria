@@ -24,11 +24,8 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
-public class AgregarInmueble extends JFrame implements Validacion{
+public class ModificarInmueble2 extends JFrame implements Validacion{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JComboBox<String> cbTipoInmueble;
@@ -62,12 +59,7 @@ public class AgregarInmueble extends JFrame implements Validacion{
     private JLabel lblDescripcionIncorrecta;
     private JLabel lblInmuebleRepetido;
     private JLabel lblInmuebleRepetido2;
-    
-    
-    
 
-    
-    
 	/**
 	 * Launch the application.
 	 */
@@ -75,7 +67,7 @@ public class AgregarInmueble extends JFrame implements Validacion{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AgregarInmueble frame = new AgregarInmueble();
+					ModificarInmueble2 frame = new ModificarInmueble2();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -87,7 +79,7 @@ public class AgregarInmueble extends JFrame implements Validacion{
 	/**
 	 * Create the frame.
 	 */
-	public AgregarInmueble() {
+	public ModificarInmueble2() {
 		this.setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 907, 749);
@@ -696,11 +688,6 @@ public class AgregarInmueble extends JFrame implements Validacion{
         lblGestorPropiedades_1.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 30));
         lblGestorPropiedades_1.setBounds(10, 11, 624, 35);
         panel_1.add(lblGestorPropiedades_1);
-        
-
-        
-
-
-      
 	}
+
 }

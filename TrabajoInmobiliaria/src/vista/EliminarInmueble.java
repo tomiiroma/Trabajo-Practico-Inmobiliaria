@@ -25,6 +25,7 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import java.awt.Color;
 import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
 
 public class EliminarInmueble extends JFrame {
 
@@ -37,6 +38,7 @@ public class EliminarInmueble extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 
 	/**
 	 * Launch the application.
@@ -157,6 +159,13 @@ public class EliminarInmueble extends JFrame {
         btnEliminarInmueble.setBounds(1134, 570, 150, 34);
         contentPane.add(btnEliminarInmueble);
         
+        JLabel lblInmuebleEliminado = new JLabel("Inmueble Eliminado Con Exito");
+        lblInmuebleEliminado.setHorizontalAlignment(SwingConstants.CENTER);
+        lblInmuebleEliminado.setFont(new Font("Tahoma", Font.BOLD, 18));
+        lblInmuebleEliminado.setBounds(417, 569, 508, 59);
+        lblInmuebleEliminado.setVisible(false);
+        contentPane.add(lblInmuebleEliminado);
+        
 
         
 
@@ -171,6 +180,7 @@ public class EliminarInmueble extends JFrame {
                         try {
                             int id = (int) table.getValueAt(selectedRow, 0);
                             controlador.deleteInmueble(id);
+                            lblInmuebleEliminado.setVisible(true);
                             actualizarTabla();
                         } catch (Exception ex) {
                             ex.printStackTrace();
