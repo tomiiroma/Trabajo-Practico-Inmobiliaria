@@ -743,6 +743,51 @@ public interface Validacion {
 		}
 		
 		
-}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	   // Método para validar enteros
+	    default boolean validarEntero2(String texto) {
+	        if (texto == null || texto.trim().isEmpty()) {
+	            return false;
+	        }
 
-	
+	        texto = texto.trim();
+	        for (int i = 0; i < texto.length(); i++) {
+	            if (!Character.isDigit(texto.charAt(i))) {
+	                return false;
+	            }
+	        }
+
+	        return true;
+	    }
+	    
+	    
+}
