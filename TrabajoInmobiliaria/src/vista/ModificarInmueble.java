@@ -106,8 +106,7 @@ public class ModificarInmueble extends JFrame {
                         boolean disponible = (boolean) table.getValueAt(selectedRow, 8);
                         String condicion = (String) table.getValueAt(selectedRow, 9);
 
-
-              
+                        
                         elemento_1.setText("Seleccionado: ID: " + id 
                         		+ ", Tipo Inmueble: " + tipoInmueble 
                         		+", Piso: "+ piso
@@ -163,7 +162,7 @@ public class ModificarInmueble extends JFrame {
 
                 Inmueble inmueble = controlador.getInmuebleById(id);
 
-                ModificarInmueble2 modificarInmueble = new ModificarInmueble2(inmueble);
+                ModificarInmueble2 modificarInmueble = new ModificarInmueble2(inmueble.getId_inmueble(), inmueble);
                 modificarInmueble.setVisible(true);
                 modificarInmueble.setLocationRelativeTo(null);
                 dispose(); // Cerrar la ventana actual

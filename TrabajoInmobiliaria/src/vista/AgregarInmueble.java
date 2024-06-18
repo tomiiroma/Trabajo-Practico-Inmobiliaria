@@ -488,6 +488,7 @@ public class AgregarInmueble extends JFrame implements Validacion{
         	public void actionPerformed(ActionEvent e) {
         	}
         });
+        
         btnRegistrarInmueble.setForeground(Color.WHITE);
         btnRegistrarInmueble.setFont(new Font("Tahoma", Font.BOLD, 12));
         btnRegistrarInmueble.setBorder(null);

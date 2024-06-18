@@ -1,6 +1,6 @@
 package vista;
 
-import java.awt.Color;    
+import java.awt.Color;     
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -15,9 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controlador.InmuebleControlador;
-import controlador.InquilinoControlador;
 import trabajoInmobiliaria.Inmueble;
-import trabajoInmobiliaria.Inquilino;
 import trabajoInmobiliaria.Validacion;
 
 import javax.swing.JButton;
@@ -63,12 +61,16 @@ public class ModificarInmueble2 extends JFrame implements Validacion{
     private JLabel lblInmuebleRepetido2;
     
     private Inmueble inmueble;
-
+    private int idInmueble;
+    private InmuebleControlador inmuebleControlador;
 
 	/**
 	 * Create the frame.
 	 */
-	public ModificarInmueble2(Inmueble inmueble) {
+    
+
+    
+	public ModificarInmueble2(int idInmueble, Inmueble inmueble) {
 		this.setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 907, 818);
@@ -488,16 +490,6 @@ public class ModificarInmueble2 extends JFrame implements Validacion{
 
         	
         	
-        	
-        	
-        	
-
-
-
-
-			
-			
-			
 
         }
         
@@ -505,8 +497,8 @@ public class ModificarInmueble2 extends JFrame implements Validacion{
         
         
         
-		//BOTON REGISTRAR
-        JButton btnModificarInmueble = new JButton("Registrar Inmueble");
+		//BOTON Modificar
+        JButton btnModificarInmueble = new JButton("Modificar Inmueble");
         btnModificarInmueble.setBounds(659, 672, 150, 34);
         btnModificarInmueble.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -521,10 +513,11 @@ public class ModificarInmueble2 extends JFrame implements Validacion{
         
         btnModificarInmueble.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+			
+				
+				
                 String tipoInmueble = (String) cbTipoInmueble.getSelectedItem();
-                
-                
+                    
 
 				String calle = txtCalleDireccion.getText().trim();
 				boolean calleValida = validarCadena2(calle);
@@ -543,10 +536,7 @@ public class ModificarInmueble2 extends JFrame implements Validacion{
 				lblSuperCubiertaIncorrecta.setVisible(!m2cubiertosValido);
 				
 				boolean patio = cbPatio.getSelectedItem().equals("Si");
-				
-
-
-				
+		
 				
 				String precio = txtPrecio.getText().trim();
 				boolean precioValido = validarEntero2(precio);
@@ -658,19 +648,40 @@ public class ModificarInmueble2 extends JFrame implements Validacion{
                     lblInmuebleRepetido2.setVisible(true); 
         			return;
         		}
-                            
-                InmuebleControlador inmueble = new InmuebleControlador();
+        		
+        		
+                inmueble.setId_inmueble(idInmueble);            
                 
-                inmueble.addInmueble(new Inmueble(0,tipoInmueble, condicion,
-                		cantAmbientes,piso,barrio,calle,descripcion,antiguedad,
-                		cantBanios,cantDormitorios,
-                		m2cubiertosDouble,m2descubiertosDouble,
-                		precioDouble,disponible,refaccionar,
-                		apto_mascota,patio,disponible,altura,nroDepto));
+                inmueble.setTipo_inmueble(tipoInmueble);
+                inmueble.setCondicion(condicion);
+                inmueble.setCantAmbientes(cantAmbientes);
+                inmueble.setPiso(piso);
+                inmueble.setSuperficie_cubierta(m2cubiertosDouble);
+                inmueble.setSuperficie_descubierta(m2descubiertosDouble);
+                inmueble.setBarrio(barrio);
+                inmueble.setDireccion(calle);
+                inmueble.setPatio(patio);
+                inmueble.setDescripcion(descripcion);
+                inmueble.setAntiguedad(antiguedad);
+                inmueble.setPrecio(precioDouble);
+                inmueble.setBanio(cantBanios);
+                inmueble.setRefaccionar(refaccionar);
+                inmueble.setDormitorio(cantDormitorios);
+                inmueble.setApto_mascota(apto_mascota);
+                inmueble.setAlturaDireccion(altura);
+                inmueble.setNroDepto(nroDepto);
+   
+                System.out.println(idInmueble);
                 
+                
+                InmuebleControlador inmuebleControlador = new InmuebleControlador();
+                inmuebleControlador.updateInmueble(inmueble);
+      
                 
                 JOptionPane.showMessageDialog(null, "Inmueble Modificado correctamente");
-		
+                ModificarInmueble volver = new ModificarInmueble();
+                dispose();			
+                
                 
                 }
 		});
