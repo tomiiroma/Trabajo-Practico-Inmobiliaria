@@ -22,6 +22,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
 
 public class AgregarInmueble extends JFrame implements Validacion{
 
@@ -59,6 +60,8 @@ public class AgregarInmueble extends JFrame implements Validacion{
     private JLabel lblCalleIngresadaIncorrecta;
     private JLabel lblAlturaIngresadaIncorrecta;
     private JLabel lblDescripcionIncorrecta;
+    private JLabel lblInmuebleRepetido;
+    private JLabel lblInmuebleRepetido2;
     
     
     
@@ -263,8 +266,8 @@ public class AgregarInmueble extends JFrame implements Validacion{
         cbPatio.setBounds(655, 188, 150, 25);
         contentPane.add(cbPatio);
         
-        JLabel lblPatio = new JLabel("Tiene Patio:");
-        lblPatio.setBounds(486, 198, 80, 15);
+        JLabel lblPatio = new JLabel("Tiene Patio o Balcón:");
+        lblPatio.setBounds(486, 198, 159, 15);
         lblPatio.setForeground(new Color(255, 255, 255));
         lblPatio.setFont(new Font("Tahoma", Font.BOLD, 12));
         contentPane.add(lblPatio);       
@@ -457,8 +460,24 @@ public class AgregarInmueble extends JFrame implements Validacion{
         lblDescripcionIncorrecta.setVisible(false);
         contentPane.add(lblDescripcionIncorrecta);
         
-       
-
+        
+       //Inmueble REPETIDO
+        lblInmuebleRepetido = new JLabel("No se pudo Registrar El inmueble");
+        lblInmuebleRepetido.setHorizontalAlignment(SwingConstants.CENTER);
+        lblInmuebleRepetido.setFont(new Font("Tahoma", Font.BOLD, 18));
+        lblInmuebleRepetido.setForeground(new Color(128, 0, 0));
+        lblInmuebleRepetido.setBounds(190, 629, 506, 34);
+        lblInmuebleRepetido.setVisible(false);
+        contentPane.add(lblInmuebleRepetido);
+        
+        //Inmueble REPETIDO
+        lblInmuebleRepetido2 = new JLabel("Inmueble Repetido");
+        lblInmuebleRepetido2.setHorizontalAlignment(SwingConstants.CENTER);
+        lblInmuebleRepetido2.setForeground(new Color(128, 0, 0));
+        lblInmuebleRepetido2.setFont(new Font("Tahoma", Font.BOLD, 18));
+        lblInmuebleRepetido2.setBounds(190, 665, 506, 34);
+        lblInmuebleRepetido2.setVisible(false);
+        contentPane.add(lblInmuebleRepetido2);
         
         
         
@@ -480,15 +499,13 @@ public class AgregarInmueble extends JFrame implements Validacion{
 			public void actionPerformed(ActionEvent e) {
 
                 String tipoInmueble = (String) cbTipoInmueble.getSelectedItem();
+                
+                
 
 				String calle = txtCalleDireccion.getText().trim();
 				boolean calleValida = validarCadena2(calle);
 				lblCalleIngresadaIncorrecta.setVisible(!calleValida);
-
-				String piso = txtPiso.getText().trim();
-				boolean pisoValido = validarEntero2(piso);
-				lblNroPisoIncorrecto.setVisible(!pisoValido);
-
+	
 				String altura = txtAlturaDireccion.getText().trim();
 				boolean alturaValida = validarEntero2(altura);
 				lblAlturaIngresadaIncorrecta.setVisible(!alturaValida);
@@ -501,34 +518,51 @@ public class AgregarInmueble extends JFrame implements Validacion{
 				boolean m2cubiertosValido = validarEntero2(m2cubiertos);
 				lblSuperCubiertaIncorrecta.setVisible(!m2cubiertosValido);
 				
-				String m2descubiertos = txtSuperDescu.getText().trim();
-				boolean m2descubiertosValido = validarEntero2(m2descubiertos);
-				lblSuperDesCubiertaIncorrecta.setVisible(!m2descubiertosValido);
+				boolean patio = cbPatio.getSelectedItem().equals("Si");
+				
+
+
 				
 				
 				String precio = txtPrecio.getText().trim();
 				boolean precioValido = validarEntero2(precio);
 				lblPrecioIncorrecto.setVisible(!precioValido);
-				
-				
-				String nroDepto = txtNroDepto.getText().trim();
-				boolean nroDeptoValida = validarCadena2(nroDepto);
-				lblNroDeptoIngresadoIncorrecto.setVisible(!nroDeptoValida);
 
-				
 				String descripcion = txtAreaDescrip.getText().trim();
 				boolean descripcionValida = validarCadena2(descripcion);
 				lblDescripcionIncorrecta.setVisible(!descripcionValida);
 				
 				
-		        if (!calleValida || !pisoValido || !alturaValida || 
-		                !AntiguedadValida || !m2cubiertosValido || !m2descubiertosValido || 
-		                !precioValido || !nroDeptoValida || !descripcionValida) {
-		                return;
-		            }
+							if(tipoInmueble.equals("Departamento")){			
+								String piso = txtPiso.getText().trim();
+								boolean pisoValido = validarEntero2(piso);
+								lblNroPisoIncorrecto.setVisible(!pisoValido);
+								
+								String nroDepto = txtNroDepto.getText().trim();
+								boolean nroDeptoValida = validarCadena2(nroDepto);
+								lblNroDeptoIngresadoIncorrecto.setVisible(!nroDeptoValida);
+								
+						       if (!calleValida || !pisoValido || !alturaValida || 
+						 		   !AntiguedadValida || !m2cubiertosValido      || 
+						 		   !precioValido   || !nroDeptoValida || !descripcionValida) {
+						 		     return;
+						 		}
+							}
 				
 				
+				if(cbPatio.getSelectedItem().equals("Si")){
+					String m2descubiertos = txtSuperDescu.getText().trim();
+					boolean m2descubiertosValido = validarEntero2(m2descubiertos);
+					lblSuperDesCubiertaIncorrecta.setVisible(!m2descubiertosValido);
+					
+			        if (!calleValida  || !alturaValida || 
+					   !AntiguedadValida || !m2cubiertosValido || !m2descubiertosValido || 
+					   !precioValido || !descripcionValida) {
+					   return;
+					}
+				}
 				
+
 				
 				
                 String condicion = (String) cbCondicionInmueble.getSelectedItem();
@@ -538,15 +572,21 @@ public class AgregarInmueble extends JFrame implements Validacion{
                 String cantDormitorios = (String) cbDormi.getSelectedItem();
                 
                 
+				String piso = txtPiso.getText();
+				String nroDepto = txtNroDepto.getText();
+				String m2descubiertos = txtSuperDescu.getText();
+
                 
                 boolean refaccionar = cbRefaccionar.getSelectedItem().equals("Si");
                 boolean apto_mascota = cbAptoMasc.getSelectedItem().equals("Si");
-                boolean patio = cbPatio.getSelectedItem().equals("Si");
+
      
                 //esto por q estamos en agente
                 boolean activo = false;
                 boolean disponible = true;
                           
+                
+                
                 if(tipoInmueble.equals("Casa")){
                 	piso = null;
                 	nroDepto = null;
@@ -556,9 +596,6 @@ public class AgregarInmueble extends JFrame implements Validacion{
                 		m2descubiertos = "";
                 	}
                 	
-                }else if(tipoInmueble.equals("Departamento")){            	
-                	patio = false;
-                	m2descubiertos = "";                
                 }
 
                 
@@ -585,6 +622,18 @@ public class AgregarInmueble extends JFrame implements Validacion{
                 	precioDouble = Double.parseDouble(precio);
                 }
 
+                
+        		if(tipoInmueble.equals("Departamento") && validarDepto(calle, altura, piso, nroDepto)){
+        			lblInmuebleRepetido.setVisible(true);
+                    lblInmuebleRepetido2.setVisible(true); 
+        			return;
+        		}
+        		
+        		if(tipoInmueble.equals("Casa") && validarCasa(calle, altura)){
+        			lblInmuebleRepetido.setVisible(true);
+                    lblInmuebleRepetido2.setVisible(true); 
+        			return;
+        		}
                             
                 InmuebleControlador inmueble = new InmuebleControlador();
                 
@@ -647,6 +696,8 @@ public class AgregarInmueble extends JFrame implements Validacion{
         lblGestorPropiedades_1.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 30));
         lblGestorPropiedades_1.setBounds(10, 11, 624, 35);
         panel_1.add(lblGestorPropiedades_1);
+        
+
         
 
 
