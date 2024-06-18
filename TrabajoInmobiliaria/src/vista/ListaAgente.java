@@ -61,7 +61,7 @@ public class ListaAgente extends JFrame {
 		
 		JLabel lblTítulo = new JLabel("Lista de agentes");
 		lblTítulo.setFont(new Font("Verdana", Font.PLAIN, 28));
-		lblTítulo.setBounds(374, 11, 508, 49);
+		lblTítulo.setBounds(374, 0, 508, 49);
 		contentPane.add(lblTítulo);
 		
 		JSeparator separator = new JSeparator();
@@ -101,9 +101,9 @@ public class ListaAgente extends JFrame {
 		 btnVolver.setFont(new Font("Verdana", Font.PLAIN, 16));
 		 btnVolver.setBounds(445, 589, 116, 49);
 		 contentPane.add(btnVolver);
+		 
+		 
 		 MostrarAgentes();
-		   
-
 		
 		 
 		
