@@ -33,7 +33,7 @@ public class MenuAgregarAgente extends JFrame implements Validacion {
 	private JTextField textFecha;
 	private JTextField textCorreo;
 	private JPasswordField passwordContra;
-	private TipoEmpleado tipoempleado;
+	private GestionEmpleadosOpciones volverMenu;
 	private Gerente gerente = new Gerente();
 	private AgenteAgregado agregado;
 	private JComboBox<String> comboBoxEmpleado;
@@ -192,6 +192,7 @@ public class MenuAgregarAgente extends JFrame implements Validacion {
 		panel.add(lblerrorCorreo);
 		
 	    comboBoxEmpleado = new JComboBox<String>();
+	    comboBoxEmpleado.setBackground(new Color(255, 255, 255));
 		comboBoxEmpleado.setBounds(636, 338, 241, 35);
 		panel.add(comboBoxEmpleado);
 		lblerrorCorreo.setVisible(false);
@@ -525,16 +526,16 @@ public class MenuAgregarAgente extends JFrame implements Validacion {
 			public void actionPerformed(ActionEvent e) {
 				
 				
-				if (tipoempleado==null) {
+				if (volverMenu==null) {
 					
-					tipoempleado = new TipoEmpleado();
+					volverMenu = new GestionEmpleadosOpciones();
 					
 				}
 				
 				
-				tipoempleado.setLocationRelativeTo(null);
+				volverMenu.setLocationRelativeTo(null);
 				
-				tipoempleado.setVisible(true);
+				volverMenu.setVisible(true);
 				
 				dispose();
 				

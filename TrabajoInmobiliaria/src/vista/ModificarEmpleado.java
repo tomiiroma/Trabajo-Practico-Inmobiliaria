@@ -31,7 +31,9 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
 import controlador.AgenteControlador;
+import controlador.GerenteControlador;
 import trabajoInmobiliaria.Agente;
+import trabajoInmobiliaria.Gerente;
 import trabajoInmobiliaria.Validacion;
 
 import javax.swing.JTextField;
@@ -44,13 +46,16 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 	private JPanel contentPane;
 	private JTable tableagentes;
 	private AgenteControlador agentecontrolador = new AgenteControlador();
-	private DefaultTableModel mt;
+	private GerenteControlador gerentecontrolador;
+	private DefaultTableModel mt,mt2;
 	private GestionEmpleadosOpciones opciones;
 	private Agente seleccionado;
+	private Gerente gerenteseleccionado;
 	private JButton EditarEmpleado;
 	private JTable tablegerentes;
 	private JTextField inpBuscador;
 	private JTabbedPane tabbedPane;
+	private JTextField inpDniGerente;
 	/**
 	 * Launch the application.
 	 */
@@ -68,6 +73,15 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 		contentPane.setLayout(null);
 		
 		seleccionado = new Agente();
+		
+		if (gerentecontrolador == null) {
+			
+			gerentecontrolador = new GerenteControlador();
+			
+		}
+		
+		gerenteseleccionado = new Gerente();
+		
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(128, 128, 128));
@@ -127,10 +141,15 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 		panel_1_1.add(separator_2);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(21, 106, 751, 435);
+		scrollPane_1.setBounds(21, 141, 751, 400);
 		panel_1_1.add(scrollPane_1);
 		
-		tablegerentes = new JTable();
+		
+		String[] ColumNombresGerentes = {"Id_empleado","Nombre","Apellido","Fecha_nac","dni","telefono","correo","tipo_empleado","contraseña","id_gerente"};
+		mt2 = new DefaultTableModel(ColumNombresGerentes, 0);
+		VerGerentes();
+		
+		tablegerentes = new JTable(mt2);
 		scrollPane_1.setViewportView(tablegerentes);
 		
 		JSeparator separator_1_1 = new JSeparator();
@@ -138,6 +157,29 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 		panel_1_1.add(separator_1_1);
 		
 		JButton btnModgerentes = new JButton("Modificar");
+		btnModgerentes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if (gerenteseleccionado.getId_empleado()!=0) {
+					
+					EditarAgente editar = new EditarAgente(seleccionado);
+					
+					editar.setVisible(true);
+					
+					editar.setLocationRelativeTo(null);
+					
+        			dispose();
+        			
+				} else {
+					JOptionPane.showMessageDialog(null, "Seleccione un gerente");
+				}
+				
+				
+			}
+				
+				
+			
+		});
 		btnModgerentes.setFont(new Font("Verdana", Font.PLAIN, 16));
 		btnModgerentes.setBounds(337, 578, 132, 44);
 		panel_1_1.add(btnModgerentes);
@@ -146,6 +188,98 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 		lblgerenteseleccionado.setFont(new Font("Verdana", Font.PLAIN, 11));
 		lblgerenteseleccionado.setBounds(21, 70, 751, 30);
 		panel_1_1.add(lblgerenteseleccionado);
+		
+		JLabel lblbuscadorAgentes_1 = new JLabel("Buscador:");
+		lblbuscadorAgentes_1.setBounds(21, 110, 113, 20);
+		panel_1_1.add(lblbuscadorAgentes_1);
+		
+		inpDniGerente = new JTextField();
+		inpDniGerente.setColumns(10);
+		inpDniGerente.setBounds(101, 111, 222, 20);
+		panel_1_1.add(inpDniGerente);
+		
+		JButton btnBuscarGerente = new JButton("Buscar");
+		btnBuscarGerente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				boolean flag = true;
+				boolean validarDni = true;
+				if (!inpDniGerente.getText().isEmpty()) {
+					
+					try {
+						
+						
+						 for (int i = 0; i < inpDniGerente.getText().length(); i++) {
+							
+							 if (!Character.isDigit(inpDniGerente.getText().charAt(i))) {
+			                        flag = false;
+			                        break; 
+			                    }
+							 
+							 
+						}
+						
+						
+						if (flag == true) {
+							
+					
+							
+							int dni = Integer.parseInt(inpDniGerente.getText());
+							
+							validarDni = validarDni2(dni);	
+							
+							if (validarDni == true) {
+								
+								
+								BuscarGerenteDni(dni);
+								
+								
+							} else {
+								
+								inpDniGerente.setForeground(Color.red);
+								inpDniGerente.setText("El dni debe contener 8 digitos.");
+								
+							}
+						
+						
+						} else {
+							
+						
+							inpDniGerente.setForeground(Color.red);
+							inpDniGerente.setText("Se ingreso un caracter inválido");
+							
+						}
+						
+						
+						
+					} catch (Exception e2) {
+									
+					
+						inpDniGerente.setForeground(Color.red);
+						inpDniGerente.setText("Se ingreso un caracter inválido");
+						
+						
+					}
+					
+					
+					
+					
+				} else {
+					
+					inpDniGerente.setForeground(Color.red);
+					inpDniGerente.setText("No se puede ingresar un campo vacio.");
+					
+				}
+				
+				
+				
+				
+				
+			}
+		});
+		btnBuscarGerente.setBounds(337, 111, 89, 20);
+		panel_1_1.add(btnBuscarGerente);
 		
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Agentes", null, panel_1, null);
@@ -244,7 +378,7 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 							if (validarDni == true) {
 								
 								
-								BuscarAgenteDni(dni);
+								BuscarGerenteDni(dni);
 								
 								
 							} else {
@@ -295,7 +429,7 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 		panel_1.add(btnBuscarAgente);
 		
 		
-		  ListSelectionModel selectionModel = tableagentes.getSelectionModel();
+		  ListSelectionModel selectionModelAgentes = tableagentes.getSelectionModel();
 		
 		
 		JButton btnAgente = new JButton("Agentes");
@@ -322,11 +456,12 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 		});
 		btnGerentes.setBounds(43, 313, 89, 23);
 		panel.add(btnGerentes);
-	        selectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+	       
+		selectionModelAgentes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 	        // Agregar un escuchador de selección
 	        
-	        selectionModel.addListSelectionListener(new ListSelectionListener() {
+		selectionModelAgentes.addListSelectionListener(new ListSelectionListener() {
 	            @Override
 	            public void valueChanged(ListSelectionEvent e) {
 	                if (!e.getValueIsAdjusting()) {
@@ -359,6 +494,60 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 	            }
 	        });
 		
+	        
+	        
+		 ListSelectionModel selectionModelGerentes = tablegerentes.getSelectionModel();   
+	        
+		selectionModelGerentes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+	        
+		selectionModelGerentes.addListSelectionListener(new ListSelectionListener() {
+	            @Override
+	            public void valueChanged(ListSelectionEvent e) {
+	                if (!e.getValueIsAdjusting()) {
+	                    int selectedRow = tablegerentes.getSelectedRow();
+	                    if (selectedRow != -1) {
+	                        int id = (int) tablegerentes.getValueAt(selectedRow, 0);
+	                        String nombre = (String) tablegerentes.getValueAt(selectedRow, 1);
+	                        String apellido = (String) tablegerentes.getValueAt(selectedRow, 2);	           
+	                        LocalDate fecha = (LocalDate) tablegerentes.getValueAt(selectedRow, 3);
+	                        int dni = (int) tablegerentes.getValueAt(selectedRow, 4);
+	                        int telefono = (int) tablegerentes.getValueAt(selectedRow, 5);
+	                        String correo = (String) tablegerentes.getValueAt(selectedRow, 6);
+	                        String tipoempleado = (String) tablegerentes.getValueAt(selectedRow, 7);
+	                        String contraseña = (String) tablegerentes.getValueAt(selectedRow, 8);
+	                        int Id_gerente = (int) tablegerentes.getValueAt(selectedRow, 9);
+	                        lblgerenteseleccionado.setText("Seleccionado: ID_empleado=" + id + ", Nombre=" + nombre + ", Apellido=" + apellido + ", Dni: " + dni   + ", Tipo empleado" + tipoempleado );
+	                        gerenteseleccionado.setId_empleado(id);
+	                        gerenteseleccionado.setNombre(nombre);
+	                        gerenteseleccionado.setApellido(apellido);
+	                        gerenteseleccionado.setFecha_nacimiento(fecha);
+	                        gerenteseleccionado.setDni(dni);
+	                        gerenteseleccionado.setTelefono(telefono);
+	                        gerenteseleccionado.setCorreo(correo);
+	                        gerenteseleccionado.setTipo_empleado(tipoempleado);
+	                        gerenteseleccionado.setContraseña(contraseña);
+	                      //  gerenteseleccionado.setId_gerente(Id_gerente);
+	                      
+	                    }
+	                }
+	            }
+	        });
+	        
+	        
+	        
+	        
+	        
+	        
+	        
+	        
+	        
+	        
+	        
+	        
+	        
+	        
+	        
+	        
 	        
 	        
 		
@@ -464,6 +653,113 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 			
 		}
 	}
+	
+	
+	
+public void VerGerentes() {
+	
+	
+		
+        mt2.setRowCount(0);
+
+
+	       
+	        List<Gerente> gerentes = gerentecontrolador.getAllGerente();
+
+		
+	        for (Gerente gerente : gerentes) {
+			
+	        	 mt2.addRow(
+		            		new Object[]
+		            				{
+		            					      gerente.getId_empleado()
+		            						, gerente.getNombre()
+		            						, gerente.getApellido()
+		            						, gerente.getFecha_nacimiento()
+		            						, gerente.getDni()
+		            						, gerente.getTelefono()
+		            						, gerente.getCorreo()
+		            						, gerente.getTipo_empleado()
+		            						, gerente.getContraseña()
+		            						, gerente.getId_gerente()
+		            						}
+		            		);
+			
+			
+			
+			
+		}
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+public void BuscarGerenteDni(int dni) {
+	
+	int contador = 0;
+	mt2.setRowCount(0);
+	
+	List<Gerente> gerentes = gerentecontrolador.getAllGerente();
+	
+	for (Gerente gerente : gerentes) {
+		
+		
+		if (dni == gerente.getDni()){
+			
+			mt2.addRow(new Object[] {
+					
+					gerente.getId_empleado()
+					, gerente.getNombre()
+					, gerente.getApellido()
+					, gerente.getFecha_nacimiento()
+					, gerente.getDni()
+					, gerente.getTelefono()
+					, gerente.getCorreo()
+					, gerente.getTipo_empleado()
+					, gerente.getContraseña()
+					, gerente.getId_gerente()
+					
+					
+			});
+			
+			contador++;
+			break;
+			
+		}
+		
+
+		
+		
+		
+		
+	}
+	
+	if (contador == 0) {
+		
+		inpDniGerente.setText("No existe el dni");
+		
+	}
+	
+	
+}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

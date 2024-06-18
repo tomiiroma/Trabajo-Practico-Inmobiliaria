@@ -14,10 +14,10 @@ import java.awt.event.ActionEvent;
 public class GestionEmpleadosOpciones extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private TipoEmpleado tipoempleado;
 	private ModificarEmpleado Modificar;
 	private EliminarEmpleados Eliminar;
 	private ListaEmpleado verDatos;
+	private MenuAgregarAgente AgregarEmpleado;
 	/**
 	 * Launch the application.
 	 */
@@ -104,16 +104,16 @@ public class GestionEmpleadosOpciones extends JFrame {
 		btnAgregarEmpleado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (tipoempleado==null) {
+				if (AgregarEmpleado==null) {
 					
-					tipoempleado = new TipoEmpleado();
+					AgregarEmpleado = new MenuAgregarAgente();
 					
 					
 				}
 				
-				tipoempleado.setLocationRelativeTo(null);
+				AgregarEmpleado.setLocationRelativeTo(null);
 				
-				tipoempleado.setVisible(true);
+				AgregarEmpleado.setVisible(true);
 				
 				dispose();
 				
