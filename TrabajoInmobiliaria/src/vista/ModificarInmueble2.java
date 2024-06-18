@@ -1,10 +1,12 @@
 package vista;
 
-import java.awt.Color;  
+import java.awt.Color;    
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JTextField;
+
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -59,30 +61,17 @@ public class ModificarInmueble2 extends JFrame implements Validacion{
     private JLabel lblDescripcionIncorrecta;
     private JLabel lblInmuebleRepetido;
     private JLabel lblInmuebleRepetido2;
+    
+    private Inmueble inmueble;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ModificarInmueble2 frame = new ModificarInmueble2();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
-	public ModificarInmueble2() {
+	public ModificarInmueble2(Inmueble inmueble) {
 		this.setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 907, 749);
+		setBounds(100, 100, 907, 818);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 128, 128));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -93,13 +82,13 @@ public class ModificarInmueble2 extends JFrame implements Validacion{
         
         //Tipo de Inmueble ----------------------
         JLabel lblTipoInmueble = new JLabel("Tipo Inmueble:");
-        lblTipoInmueble.setBounds(25, 87, 91, 15);
+        lblTipoInmueble.setBounds(27, 125, 91, 15);
         lblTipoInmueble.setForeground(new Color(255, 255, 255));
         lblTipoInmueble.setFont(new Font("Tahoma", Font.BOLD, 12));
         contentPane.add(lblTipoInmueble);
 
         cbTipoInmueble = new JComboBox<String>();
-        cbTipoInmueble.setBounds(205, 77, 150, 25);
+        cbTipoInmueble.setBounds(207, 115, 150, 25);
         cbTipoInmueble.addItem("Departamento");
         cbTipoInmueble.addItem("Casa");
         contentPane.add(cbTipoInmueble);
@@ -107,13 +96,13 @@ public class ModificarInmueble2 extends JFrame implements Validacion{
         
         //Condicion ----------------------
         JLabel lblCondicionInmueble = new JLabel("Condición Inmueble:");
-        lblCondicionInmueble.setBounds(25, 137, 125, 15);
+        lblCondicionInmueble.setBounds(27, 175, 125, 15);
         lblCondicionInmueble.setForeground(new Color(255, 255, 255));
         lblCondicionInmueble.setFont(new Font("Tahoma", Font.BOLD, 12));
         contentPane.add(lblCondicionInmueble);
 
         cbCondicionInmueble = new JComboBox<String>();
-        cbCondicionInmueble.setBounds(205, 133, 150, 25);
+        cbCondicionInmueble.setBounds(207, 171, 150, 25);
         cbCondicionInmueble.addItem("Excelente");
         cbCondicionInmueble.addItem("Muy Bueno");
         cbCondicionInmueble.addItem("Bueno");
@@ -124,13 +113,13 @@ public class ModificarInmueble2 extends JFrame implements Validacion{
         
         //Ambientes ----------------------
         JLabel lblCantidadAmbientes = new JLabel("Cantidad de Ambientes:");
-        lblCantidadAmbientes.setBounds(25, 238, 150, 15);
+        lblCantidadAmbientes.setBounds(27, 276, 150, 15);
         lblCantidadAmbientes.setForeground(new Color(255, 255, 255));
         lblCantidadAmbientes.setFont(new Font("Tahoma", Font.BOLD, 12));
         contentPane.add(lblCantidadAmbientes);
         
         JComboBox<String> cbCantAmbientes = new JComboBox<String>();
-        cbCantAmbientes.setBounds(205, 228, 150, 25);
+        cbCantAmbientes.setBounds(207, 266, 150, 25);
         for (int i = 1; i <= 10; i++) {
         	cbCantAmbientes.addItem(String.valueOf(i));
         }
@@ -139,13 +128,13 @@ public class ModificarInmueble2 extends JFrame implements Validacion{
         
         //Barrio ----------------------
         JLabel lblBarrio = new JLabel("Barrio:");
-        lblBarrio.setBounds(25, 188, 47, 15);
+        lblBarrio.setBounds(27, 226, 47, 15);
         lblBarrio.setForeground(new Color(255, 255, 255));
         lblBarrio.setFont(new Font("Tahoma", Font.BOLD, 12));
         contentPane.add(lblBarrio);
 
         cbBarrio = new JComboBox<String>();
-        cbBarrio.setBounds(205, 178, 150, 25);
+        cbBarrio.setBounds(207, 216, 150, 25);
         String[] barrios = { "Agronomía", "Almagro", "Balvanera", "Barracas", "Belgrano", "Boedo", "Caballito",
                 "Chacarita", "Coghlan", "Colegiales", "Constitución", "Flores", "Floresta", "La Boca", "La Paternal",
                 "Liniers", "Mataderos", "Monte Castro", "Monserrat", "Nueva Pompeya", "Núñez", "Palermo",
@@ -162,51 +151,51 @@ public class ModificarInmueble2 extends JFrame implements Validacion{
 
         //Calle ----------------------
         JLabel lblCalleDireccion = new JLabel("Calle:");
-        lblCalleDireccion.setBounds(25, 284, 32, 15);
+        lblCalleDireccion.setBounds(27, 322, 32, 15);
         lblCalleDireccion.setForeground(new Color(255, 255, 255));
         lblCalleDireccion.setFont(new Font("Tahoma", Font.BOLD, 12));
         contentPane.add(lblCalleDireccion);
 
         txtCalleDireccion = new JTextField();
-        txtCalleDireccion.setBounds(205, 274, 150, 25);
+        txtCalleDireccion.setBounds(207, 312, 150, 25);
         contentPane.add(txtCalleDireccion);
         txtCalleDireccion.setColumns(10);
         
         
         //Altura calle ----------------------
         JLabel lblAlturaDireccion = new JLabel("Altura:");
-        lblAlturaDireccion.setBounds(25, 333, 47, 15);
+        lblAlturaDireccion.setBounds(27, 371, 47, 15);
         lblAlturaDireccion.setForeground(new Color(255, 255, 255));
         lblAlturaDireccion.setFont(new Font("Tahoma", Font.BOLD, 12));
         contentPane.add(lblAlturaDireccion);
         
         txtAlturaDireccion = new JTextField();
-        txtAlturaDireccion.setBounds(205, 323, 150, 25);
+        txtAlturaDireccion.setBounds(207, 361, 150, 25);
         txtAlturaDireccion.setColumns(10);
         contentPane.add(txtAlturaDireccion);      
         
         //Antiguedad ----------------------
         JLabel lblAntiguedad = new JLabel("Años de Antiguedad:");
-        lblAntiguedad.setBounds(25, 383, 130, 15);
+        lblAntiguedad.setBounds(27, 421, 130, 15);
         lblAntiguedad.setForeground(new Color(255, 255, 255));
         lblAntiguedad.setFont(new Font("Tahoma", Font.BOLD, 12));
         contentPane.add(lblAntiguedad);
         
         txtAntiguedad = new JTextField();
-        txtAntiguedad.setBounds(205, 373, 150, 25);
+        txtAntiguedad.setBounds(207, 411, 150, 25);
         txtAntiguedad.setColumns(10);
         contentPane.add(txtAntiguedad);
         
         
         //Baños ----------------------
         lblCantBaniosIncorrecta = new JLabel("Cantidad de Baños:");
-        lblCantBaniosIncorrecta.setBounds(25, 437, 120, 15);
+        lblCantBaniosIncorrecta.setBounds(27, 475, 120, 15);
         lblCantBaniosIncorrecta.setForeground(new Color(255, 255, 255));
         lblCantBaniosIncorrecta.setFont(new Font("Tahoma", Font.BOLD, 12));
         contentPane.add(lblCantBaniosIncorrecta);
         
         cbBanio = new JComboBox<String>();
-        cbBanio.setBounds(205, 427, 150, 25);
+        cbBanio.setBounds(207, 465, 150, 25);
         for (int i = 1; i <= 10; i++) {
             cbBanio.addItem(String.valueOf(i));
         }
@@ -214,13 +203,13 @@ public class ModificarInmueble2 extends JFrame implements Validacion{
         
         //Dormitorios ----------------------
         lblCantDormitoriosIncorrecta = new JLabel("Cantidad de Dormitorios:");
-        lblCantDormitoriosIncorrecta.setBounds(25, 485, 160, 15);
+        lblCantDormitoriosIncorrecta.setBounds(27, 523, 160, 15);
         lblCantDormitoriosIncorrecta.setForeground(new Color(255, 255, 255));
         lblCantDormitoriosIncorrecta.setFont(new Font("Tahoma", Font.BOLD, 12));
         contentPane.add(lblCantDormitoriosIncorrecta);
         
         cbDormi = new JComboBox<String>();
-        cbDormi.setBounds(205, 475, 150, 25);
+        cbDormi.setBounds(207, 513, 150, 25);
         for (int i = 1; i <= 10; i++) {
         	cbDormi.addItem(String.valueOf(i));
         }
@@ -228,11 +217,11 @@ public class ModificarInmueble2 extends JFrame implements Validacion{
         
         //Mascota ----------------------
         cbAptoMasc = new JComboBox<String>();
-        cbAptoMasc.setBounds(205, 524, 150, 25);
+        cbAptoMasc.setBounds(207, 562, 150, 25);
         contentPane.add(cbAptoMasc);
         
         JLabel lblAptoMasco = new JLabel("Apto Mascotas:");
-        lblAptoMasco.setBounds(25, 534, 120, 15);
+        lblAptoMasco.setBounds(27, 572, 120, 15);
         lblAptoMasco.setForeground(new Color(255, 255, 255));
         lblAptoMasco.setFont(new Font("Tahoma", Font.BOLD, 12));
         contentPane.add(lblAptoMasco);       
@@ -241,11 +230,11 @@ public class ModificarInmueble2 extends JFrame implements Validacion{
 
         //Refaccion ----------------------       
         cbRefaccionar = new JComboBox<String>();
-        cbRefaccionar.setBounds(205, 571, 150, 25);
+        cbRefaccionar.setBounds(207, 609, 150, 25);
         contentPane.add(cbRefaccionar);
         
         JLabel lblRefaccion = new JLabel("Debe Refaccionar:");
-        lblRefaccion.setBounds(25, 581, 125, 15);
+        lblRefaccion.setBounds(27, 619, 125, 15);
         lblRefaccion.setForeground(new Color(255, 255, 255));
         lblRefaccion.setFont(new Font("Tahoma", Font.BOLD, 12));
         contentPane.add(lblRefaccion);
@@ -255,11 +244,11 @@ public class ModificarInmueble2 extends JFrame implements Validacion{
         
         //Patio ----------------------       
         cbPatio = new JComboBox<String>();
-        cbPatio.setBounds(655, 188, 150, 25);
+        cbPatio.setBounds(657, 226, 150, 25);
         contentPane.add(cbPatio);
         
         JLabel lblPatio = new JLabel("Tiene Patio o Balcón:");
-        lblPatio.setBounds(486, 198, 159, 15);
+        lblPatio.setBounds(488, 236, 159, 15);
         lblPatio.setForeground(new Color(255, 255, 255));
         lblPatio.setFont(new Font("Tahoma", Font.BOLD, 12));
         contentPane.add(lblPatio);       
@@ -270,25 +259,25 @@ public class ModificarInmueble2 extends JFrame implements Validacion{
         
         //Superficie Cubierta ----------------------       
         JLabel lblM2Cubierta = new JLabel("M2 Superficie Cubierta:");
-        lblM2Cubierta.setBounds(486, 244, 150, 15);
+        lblM2Cubierta.setBounds(488, 282, 150, 15);
         lblM2Cubierta.setForeground(new Color(255, 255, 255));
         lblM2Cubierta.setFont(new Font("Tahoma", Font.BOLD, 12));
         
         contentPane.add(lblM2Cubierta);
         txtM2cubierta = new JTextField();
-        txtM2cubierta.setBounds(655, 234, 150, 25);
+        txtM2cubierta.setBounds(657, 272, 150, 25);
         txtM2cubierta.setColumns(10);
         contentPane.add(txtM2cubierta);
         
         //Superficie Descubierta ----------------------       
         JLabel lblM2Descubierta = new JLabel("M2 Superficie Descubierta:");
-        lblM2Descubierta.setBounds(486, 337, 169, 25);
+        lblM2Descubierta.setBounds(488, 375, 169, 25);
         lblM2Descubierta.setForeground(new Color(255, 255, 255));
         lblM2Descubierta.setFont(new Font("Tahoma", Font.BOLD, 12));
         contentPane.add(lblM2Descubierta);
         
         txtSuperDescu = new JTextField();
-        txtSuperDescu.setBounds(655, 333, 150, 25);
+        txtSuperDescu.setBounds(657, 371, 150, 25);
         txtSuperDescu.setColumns(10);
         contentPane.add(txtSuperDescu);
         
@@ -306,12 +295,12 @@ public class ModificarInmueble2 extends JFrame implements Validacion{
         
         //Precio----------------------       
         txtPrecio = new JTextField();
-        txtPrecio.setBounds(655, 284, 150, 25);
+        txtPrecio.setBounds(657, 322, 150, 25);
         txtPrecio.setColumns(10);
         contentPane.add(txtPrecio);
         
         JLabel lblPrecio = new JLabel("Precio:");
-        lblPrecio.setBounds(486, 288, 47, 15);
+        lblPrecio.setBounds(488, 326, 47, 15);
         lblPrecio.setForeground(new Color(255, 255, 255));
         lblPrecio.setFont(new Font("Tahoma", Font.BOLD, 12));
         contentPane.add(lblPrecio);
@@ -324,7 +313,7 @@ public class ModificarInmueble2 extends JFrame implements Validacion{
         contentPane.add(lblDescripcion);
         
         JTextArea txtAreaDescrip = new JTextArea();
-        txtAreaDescrip.setBounds(486, 426, 319, 170);
+        txtAreaDescrip.setBounds(488, 464, 319, 170);
         contentPane.add(txtAreaDescrip);
 
 
@@ -347,26 +336,26 @@ public class ModificarInmueble2 extends JFrame implements Validacion{
         
         //Nro Piso----------------------       
         JLabel lblPiso = new JLabel("Piso");
-        lblPiso.setBounds(486, 82, 169, 25);
+        lblPiso.setBounds(488, 120, 169, 25);
         lblPiso.setForeground(Color.WHITE);
         lblPiso.setFont(new Font("Tahoma", Font.BOLD, 12));
         contentPane.add(lblPiso);
         
         txtPiso = new JTextField();
-        txtPiso.setBounds(655, 77, 150, 25);
+        txtPiso.setBounds(657, 115, 150, 25);
         txtPiso.setColumns(10);
         contentPane.add(txtPiso);
         
         
         //Nro Depto----------------------      
         JLabel lblNroDepartamento = new JLabel("Nro Departamento");
-        lblNroDepartamento.setBounds(486, 133, 169, 25);
+        lblNroDepartamento.setBounds(488, 171, 169, 25);
         lblNroDepartamento.setForeground(Color.WHITE);
         lblNroDepartamento.setFont(new Font("Tahoma", Font.BOLD, 12));
         contentPane.add(lblNroDepartamento);
         
         txtNroDepto = new JTextField();
-        txtNroDepto.setBounds(655, 133, 150, 25);
+        txtNroDepto.setBounds(657, 171, 150, 25);
         txtNroDepto.setColumns(10);
         contentPane.add(txtNroDepto);
         
@@ -376,7 +365,7 @@ public class ModificarInmueble2 extends JFrame implements Validacion{
 
         //ANTIGUEDAD INCORRECTA
         lblAniosDeAntiguedadIncorrecto = new JLabel("Años ingresados Incorrectos");
-        lblAniosDeAntiguedadIncorrecto.setBounds(203, 400, 178, 13);
+        lblAniosDeAntiguedadIncorrecto.setBounds(205, 438, 178, 13);
         lblAniosDeAntiguedadIncorrecto.setForeground(new Color(128, 0, 0));
         lblAniosDeAntiguedadIncorrecto.setFont(new Font("Tahoma", Font.BOLD, 12));
         lblAniosDeAntiguedadIncorrecto.setVisible(false);
@@ -385,7 +374,7 @@ public class ModificarInmueble2 extends JFrame implements Validacion{
 
         //PRECIO INCORRECTO
         JLabel lblPrecioIncorrecto = new JLabel("Precio Ingresado Incorrecto");
-        lblPrecioIncorrecto.setBounds(627, 309, 178, 15);
+        lblPrecioIncorrecto.setBounds(629, 347, 178, 15);
         lblPrecioIncorrecto.setForeground(new Color(128, 0, 0));
         lblPrecioIncorrecto.setFont(new Font("Tahoma", Font.BOLD, 12));
         lblPrecioIncorrecto.setVisible(false);
@@ -394,7 +383,7 @@ public class ModificarInmueble2 extends JFrame implements Validacion{
         
         //SUPERFICIE CUBIERTA INCORRECTA
         lblSuperCubiertaIncorrecta = new JLabel("Superficie cubierta Ingresada Incorrecta");
-        lblSuperCubiertaIncorrecta.setBounds(553, 258, 252, 15);
+        lblSuperCubiertaIncorrecta.setBounds(555, 296, 252, 15);
         lblSuperCubiertaIncorrecta.setForeground(new Color(128, 0, 0));
         lblSuperCubiertaIncorrecta.setFont(new Font("Tahoma", Font.BOLD, 12));
         lblSuperCubiertaIncorrecta.setVisible(false);
@@ -402,7 +391,7 @@ public class ModificarInmueble2 extends JFrame implements Validacion{
         
         //SUPERFICIE DESCUBIERTA INCORRECTA
         lblSuperDesCubiertaIncorrecta = new JLabel("Superficie Descubierta Ingresada  Incorrecta");
-        lblSuperDesCubiertaIncorrecta.setBounds(533, 357, 272, 15);
+        lblSuperDesCubiertaIncorrecta.setBounds(535, 395, 272, 15);
         lblSuperDesCubiertaIncorrecta.setForeground(new Color(128, 0, 0));
         lblSuperDesCubiertaIncorrecta.setFont(new Font("Tahoma", Font.BOLD, 12));
         lblSuperDesCubiertaIncorrecta.setVisible(false);
@@ -411,7 +400,7 @@ public class ModificarInmueble2 extends JFrame implements Validacion{
 	
         //CALLE INCORRECTA
         lblCalleIngresadaIncorrecta = new JLabel("Calle Ingresada Incorrecta");    
-        lblCalleIngresadaIncorrecta.setBounds(205, 299, 178, 13);
+        lblCalleIngresadaIncorrecta.setBounds(207, 337, 178, 13);
         lblCalleIngresadaIncorrecta.setForeground(new Color(128, 0, 0));
         lblCalleIngresadaIncorrecta.setFont(new Font("Tahoma", Font.BOLD, 12));
         lblCalleIngresadaIncorrecta.setVisible(false);
@@ -420,7 +409,7 @@ public class ModificarInmueble2 extends JFrame implements Validacion{
         
         //ALTURA CALLE INCORRECTA
         lblAlturaIngresadaIncorrecta = new JLabel("Altura Ingresada Incorrecta");
-        lblAlturaIngresadaIncorrecta.setBounds(203, 347, 178, 15);
+        lblAlturaIngresadaIncorrecta.setBounds(205, 385, 178, 15);
         lblAlturaIngresadaIncorrecta.setForeground(new Color(128, 0, 0));
         lblAlturaIngresadaIncorrecta.setFont(new Font("Tahoma", Font.BOLD, 12));
         lblAlturaIngresadaIncorrecta.setVisible(false);
@@ -431,7 +420,7 @@ public class ModificarInmueble2 extends JFrame implements Validacion{
         lblNroPisoIncorrecto = new JLabel("Nro de Piso Ingresado Incorrecto");
         lblNroPisoIncorrecto.setFont(new Font("Tahoma", Font.BOLD, 12));
         lblNroPisoIncorrecto.setForeground(new Color(128, 0, 0));
-        lblNroPisoIncorrecto.setBounds(597, 102, 209, 15);
+        lblNroPisoIncorrecto.setBounds(599, 140, 209, 15);
         lblNroPisoIncorrecto.setVisible(false);
         contentPane.add(lblNroPisoIncorrecto);
             
@@ -440,7 +429,7 @@ public class ModificarInmueble2 extends JFrame implements Validacion{
         lblNroDeptoIngresadoIncorrecto = new JLabel("Nro Depto Ingresado Incorrecto");
         lblNroDeptoIngresadoIncorrecto.setForeground(new Color(128, 0, 0));
         lblNroDeptoIngresadoIncorrecto.setFont(new Font("Tahoma", Font.BOLD, 12));
-        lblNroDeptoIngresadoIncorrecto.setBounds(609, 157, 197, 14);
+        lblNroDeptoIngresadoIncorrecto.setBounds(611, 195, 197, 14);
         lblNroDeptoIngresadoIncorrecto.setVisible(false);
         contentPane.add(lblNroDeptoIngresadoIncorrecto);
         
@@ -448,17 +437,17 @@ public class ModificarInmueble2 extends JFrame implements Validacion{
         lblDescripcionIncorrecta = new JLabel("Descripcion Ingresada Incorrecta");
         lblDescripcionIncorrecta.setFont(new Font("Tahoma", Font.BOLD, 12));
         lblDescripcionIncorrecta.setForeground(new Color(128, 0, 0));
-        lblDescripcionIncorrecta.setBounds(487, 604, 318, 14);
+        lblDescripcionIncorrecta.setBounds(489, 642, 318, 14);
         lblDescripcionIncorrecta.setVisible(false);
         contentPane.add(lblDescripcionIncorrecta);
         
         
        //Inmueble REPETIDO
-        lblInmuebleRepetido = new JLabel("No se pudo Registrar El inmueble");
+        lblInmuebleRepetido = new JLabel("No se pudo Modificar El inmueble");
         lblInmuebleRepetido.setHorizontalAlignment(SwingConstants.CENTER);
         lblInmuebleRepetido.setFont(new Font("Tahoma", Font.BOLD, 18));
         lblInmuebleRepetido.setForeground(new Color(128, 0, 0));
-        lblInmuebleRepetido.setBounds(190, 629, 506, 34);
+        lblInmuebleRepetido.setBounds(192, 667, 506, 34);
         lblInmuebleRepetido.setVisible(false);
         contentPane.add(lblInmuebleRepetido);
         
@@ -467,27 +456,70 @@ public class ModificarInmueble2 extends JFrame implements Validacion{
         lblInmuebleRepetido2.setHorizontalAlignment(SwingConstants.CENTER);
         lblInmuebleRepetido2.setForeground(new Color(128, 0, 0));
         lblInmuebleRepetido2.setFont(new Font("Tahoma", Font.BOLD, 18));
-        lblInmuebleRepetido2.setBounds(190, 665, 506, 34);
+        lblInmuebleRepetido2.setBounds(192, 703, 506, 34);
         lblInmuebleRepetido2.setVisible(false);
         contentPane.add(lblInmuebleRepetido2);
         
         
         
+        
+        if(inmueble !=null){
+        	
+        	cbTipoInmueble.setSelectedItem(inmueble.getTipo_inmueble());
+        	cbCondicionInmueble.setSelectedItem(inmueble.getCondicion());
+        	cbBarrio.setSelectedItem(inmueble.getBarrio());        	
+        	cbBanio.setSelectedItem(inmueble.getBanio());
+        	cbDormi.setSelectedItem(inmueble.getDormitorio());
+        	cbAptoMasc.setSelectedItem(inmueble.isApto_mascota());
+        	cbRefaccionar.setSelectedItem(inmueble.isRefaccionar());
+        	cbPatio.setSelectedItem(inmueble.isPatio());
+        	
+        	txtCalleDireccion.setText(inmueble.getDireccion());         
+        	txtAlturaDireccion.setText(inmueble.getAlturaDireccion());
+        	txtAntiguedad.setText(inmueble.getAntiguedad());
+        	txtNroDepto.setText(inmueble.getNroDepto());
+        	txtPiso.setText(inmueble.getPiso());
+        	
+        	txtAreaDescrip.setText(inmueble.getDescripcion());
+    	
+        	txtPrecio.setText(Double.toString(inmueble.getPrecio()));
+        	txtM2cubierta.setText(Double.toString(inmueble.getSuperficie_cubierta()));
+        	txtSuperDescu.setText(Double.toString(inmueble.getSuperficie_descubierta()));
+
+        	
+        	
+        	
+        	
+        	
+
+
+
+
+			
+			
+			
+
+        }
+        
+        
+        
+        
+        
 		//BOTON REGISTRAR
-        JButton btnRegistrarInmueble = new JButton("Registrar Inmueble");
-        btnRegistrarInmueble.setBounds(657, 634, 150, 34);
-        btnRegistrarInmueble.addActionListener(new ActionListener() {
+        JButton btnModificarInmueble = new JButton("Registrar Inmueble");
+        btnModificarInmueble.setBounds(659, 672, 150, 34);
+        btnModificarInmueble.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         	}
         });
-        btnRegistrarInmueble.setForeground(Color.WHITE);
-        btnRegistrarInmueble.setFont(new Font("Tahoma", Font.BOLD, 12));
-        btnRegistrarInmueble.setBorder(null);
-        btnRegistrarInmueble.setBackground(new Color(48, 109, 105));
-        contentPane.add(btnRegistrarInmueble);
+        btnModificarInmueble.setForeground(Color.WHITE);
+        btnModificarInmueble.setFont(new Font("Tahoma", Font.BOLD, 12));
+        btnModificarInmueble.setBorder(null);
+        btnModificarInmueble.setBackground(new Color(48, 109, 105));
+        contentPane.add(btnModificarInmueble);
         
         
-        btnRegistrarInmueble.addActionListener(new ActionListener() {
+        btnModificarInmueble.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
                 String tipoInmueble = (String) cbTipoInmueble.getSelectedItem();
@@ -637,9 +669,8 @@ public class ModificarInmueble2 extends JFrame implements Validacion{
                 		apto_mascota,patio,disponible,altura,nroDepto));
                 
                 
-                JOptionPane.showMessageDialog(null, "Inmueble agregado correctamente");
-                MenuInmueble menuInmueble = new MenuInmueble();
-                dispose();			
+                JOptionPane.showMessageDialog(null, "Inmueble Modificado correctamente");
+		
                 
                 }
 		});
@@ -654,7 +685,7 @@ public class ModificarInmueble2 extends JFrame implements Validacion{
         
         //BOTON VOLVER
         JButton btnVolver = new JButton("Volver");
-        btnVolver.setBounds(30, 634, 150, 34);
+        btnVolver.setBounds(32, 672, 150, 34);
         btnVolver.setFont(new Font("Tahoma", Font.BOLD, 12));
         btnVolver.setForeground(new Color(255, 255, 255));
         btnVolver.setBackground(new Color(48, 109, 105));
@@ -668,7 +699,7 @@ public class ModificarInmueble2 extends JFrame implements Validacion{
         
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MenuInmueble menuInmueble= new MenuInmueble();
+				ModificarInmueble modificarInmueble= new ModificarInmueble();
 				dispose();
 			}
 		});
@@ -683,11 +714,18 @@ public class ModificarInmueble2 extends JFrame implements Validacion{
         
         
         
-        JLabel lblGestorPropiedades_1 = new JLabel("Gestor Propiedades | Agregar Inmueble");
+        JLabel lblGestorPropiedades_1 = new JLabel("Gestor Propiedades | Modificar Inmueble");
         lblGestorPropiedades_1.setForeground(Color.WHITE);
         lblGestorPropiedades_1.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 30));
         lblGestorPropiedades_1.setBounds(10, 11, 624, 35);
         panel_1.add(lblGestorPropiedades_1);
+        
+        JTextArea elemento_1 = new JTextArea();
+        elemento_1.setForeground(Color.WHITE);
+        elemento_1.setFont(new Font("Arial", Font.BOLD, 13));
+        elemento_1.setFocusable(false);
+        elemento_1.setBackground(new Color(0, 128, 128));
+        elemento_1.setBounds(10, 77, 1289, 32);
+        contentPane.add(elemento_1);
 	}
-
 }

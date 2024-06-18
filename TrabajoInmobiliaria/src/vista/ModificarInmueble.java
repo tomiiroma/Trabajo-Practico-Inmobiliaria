@@ -158,9 +158,15 @@ public class ModificarInmueble extends JFrame {
                     JOptionPane.showMessageDialog(null, "Por favor, seleccione un inmueble para modificar.");
                     return;
                 }
- 
                 
-                
+                int id = (int) table.getValueAt(selectedRow, 0);
+
+                Inmueble inmueble = controlador.getInmuebleById(id);
+
+                ModificarInmueble2 modificarInmueble = new ModificarInmueble2(inmueble);
+                modificarInmueble.setVisible(true);
+                modificarInmueble.setLocationRelativeTo(null);
+                dispose(); // Cerrar la ventana actual
                 
 			}
 		});
