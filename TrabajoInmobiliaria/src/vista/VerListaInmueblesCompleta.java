@@ -1,6 +1,6 @@
 package vista;
 
-import java.awt.BorderLayout; 
+import java.awt.BorderLayout;  
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -109,8 +109,7 @@ public class VerListaInmueblesCompleta extends JFrame {
                         boolean disponible = (boolean) table.getValueAt(selectedRow, 8);
                         String condicion = (String) table.getValueAt(selectedRow, 9);
 
-
-              
+                        
                         elemento_1.setText("Seleccionado: ID: " + id 
                         		+ ", Tipo Inmueble: " + tipoInmueble 
                         		+", Piso: "+ piso
@@ -133,7 +132,7 @@ public class VerListaInmueblesCompleta extends JFrame {
         JButton btnVolver = new JButton("Volver");
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VerInmueblesMenu menuInmueble = new VerInmueblesMenu();
+				VerInmueblesMenu volver = new VerInmueblesMenu();
 				dispose();
 			}
 		});
@@ -145,8 +144,42 @@ public class VerListaInmueblesCompleta extends JFrame {
         contentPane.add(btnVolver);
         
 
+        JButton btnVerDetalle = new JButton("Ver Detalle");
+        btnVerDetalle.setForeground(Color.WHITE);
+        btnVerDetalle.setFont(new Font("Tahoma", Font.BOLD, 12));
+        btnVerDetalle.setBorder(null);
+        btnVerDetalle.setBackground(new Color(48, 109, 105));
+        btnVerDetalle.setBounds(1134, 570, 150, 34);
+        
+        
+        btnVerDetalle.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+                int selectedRow = table.getSelectedRow();
+                
+                if (selectedRow == -1) {
+                    JOptionPane.showMessageDialog(null, "Por favor, seleccione un inmueble para visualizar.");
+                    return;
+                }
+                
+                int id = (int) table.getValueAt(selectedRow, 0);
+
+                Inmueble inmueble = controlador.getInmuebleById(id);
+
+                VerDetalleInmueble VerDetalleInmueble = new VerDetalleInmueble(inmueble.getId_inmueble(), inmueble);
+                VerDetalleInmueble.setVisible(true);
+                VerDetalleInmueble.setLocationRelativeTo(null);
+                dispose(); // Cerrar la ventana actual
+                
+			}
+		});
+        
+        
 
         
+        
+        
+        
+        contentPane.add(btnVerDetalle);    
 	}
 
         
