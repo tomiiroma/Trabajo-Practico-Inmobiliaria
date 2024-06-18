@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -34,7 +36,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class NuevoContrato extends JFrame {
+public class NuevoContrato extends JFrame  {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -221,33 +223,42 @@ public class NuevoContrato extends JFrame {
 		
 
 		btnAgregarContrato.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int inmuebleselec = (int) cbInmueble.getSelectedItem();
-				int clienteselec = (int) cbCliente.getSelectedItem();
-				Inmueble inmuebleseleccionado = inmueblecont.getInmuebleById(inmuebleselec);
-				Cliente clienteseleccionado = inquilinocont.getInquilinoById(clienteselec);
-				
-				String tipoContrato = cbTipoContrato.getSelectedItem().toString();
-				String descripcion = textArea.getText();
-				LocalDate fechaInicio = LocalDate.parse(textInicio.getText());
-				LocalDate fechaFin = LocalDate.parse(textFin.getText());
-				boolean aptoMascota;
-				
-				if(cbApto.getSelectedItem().toString().equals("Si")) {
-					aptoMascota = true;
-				}else {
-					aptoMascota = false;
-				}
+		    public void actionPerformed(ActionEvent e) {
+		        int inmuebleselec = (int) cbInmueble.getSelectedItem();
+		        int clienteselec = (int) cbCliente.getSelectedItem();
+		        Inmueble inmuebleseleccionado = inmueblecont.getInmuebleById(inmuebleselec);
+		        Cliente clienteseleccionado = inquilinocont.getInquilinoById(clienteselec);
+		        
+		        String tipoContrato = cbTipoContrato.getSelectedItem().toString();
+		        String descripcion = textArea.getText();
+		        boolean aptoMascota;
+		        
+		        if(cbApto.getSelectedItem().toString().equals("Si")) {
+		            aptoMascota = true;
+		        } else {
+		            aptoMascota = false;
+		        }
 
-				byte [] byteimagen = imagenData;
-				if(!textInicio.getText().isEmpty() && !textFin.getText().isEmpty() && !textArea.getText().isEmpty()) {
-					contratocont.addContrato(new Contrato(0, tipoContrato, descripcion, byteimagen, inmuebleseleccionado, clienteseleccionado,fechaInicio, fechaFin, aptoMascota));
-					JOptionPane.showMessageDialog(null, "Contrato creado exitosamente");
-				}else {
-					JOptionPane.showMessageDialog(null, "Completa todos los campos");
-				}
-				
-			}
+		        byte[] byteimagen = imagenData;
+
+		        if (!textInicio.getText().isEmpty() && !textFin.getText().isEmpty() && !textArea.getText().isEmpty()) {
+		            if (VerificarFecha(textInicio.getText())) {
+		                if (VerificarFecha(textFin.getText())) {
+		                    LocalDate fechaInicio = LocalDate.parse(textInicio.getText());
+		                    LocalDate fechaFin = LocalDate.parse(textFin.getText());
+
+		                    contratocont.addContrato(new Contrato(0, tipoContrato, descripcion, byteimagen, inmuebleseleccionado, clienteseleccionado, fechaInicio, fechaFin, aptoMascota));
+		                    JOptionPane.showMessageDialog(null, "Contrato creado exitosamente");
+		                } else {
+		                    JOptionPane.showMessageDialog(null, "Escribe la fecha de fin en el formato correcto");
+		                }
+		            } else {
+		                JOptionPane.showMessageDialog(null, "Escribe la fecha de inicio en el formato correcto");
+		            }
+		        } else {
+		            JOptionPane.showMessageDialog(null, "Completa todos los campos");
+		        }
+		    }
 		});
 		
 		
@@ -271,4 +282,17 @@ public class NuevoContrato extends JFrame {
         }
         return bFile;
     }
+    
+    private boolean VerificarFecha(String fechaString) {
+    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    	
+    	try {
+    		LocalDate fecha = LocalDate.parse(fechaString, formatter);
+    		return true;
+    	}catch(DateTimeParseException e){
+    		return false;
+    	}
+    }
+    
+    
 }
