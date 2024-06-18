@@ -775,7 +775,29 @@ public interface Validacion {
 		
 	   // Método para validar enteros
 	    default boolean validarEntero2(String texto) {
-	        if (texto == null || texto.trim().isEmpty()) {
+	        if (texto.isEmpty()) {
+	            return false;
+	        }
+
+	        texto = texto.trim();
+	        
+	        try {
+	            double valor = Double.parseDouble(texto);
+	            if (!texto.matches("[-+]?[0-9]*\\.?[0-9]+")) {
+	                return false;
+	            }
+	            
+	        } catch (NumberFormatException e) {
+	            return false;
+	        }
+
+	        return true;
+	    }
+	    
+	    
+		   // Método para double
+	    default boolean validarDobule(String texto) {
+	        if (texto.isEmpty()) {
 	            return false;
 	        }
 
@@ -789,5 +811,24 @@ public interface Validacion {
 	        return true;
 	    }
 	    
+	    
+	    //validar cadena 2
+	    
+	    default boolean validarCadena2(String texto) {
+	        if (texto.isEmpty()) {
+	            return false;
+	        }
+
+	        texto = texto.trim();
+	        for (int i = 0; i < texto.length(); i++) {
+	            char caracter = texto.charAt(i);
+
+	            if (!Character.isLetterOrDigit(caracter) && caracter != ' ') {
+	                return false;
+	            }
+	        }
+
+	        return true;
+	    }
 	    
 }
