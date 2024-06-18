@@ -92,7 +92,7 @@ public class AgregarInmueble extends JFrame implements Validacion{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 907, 749);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(0, 128, 128));
+	    contentPane.setBackground(new Color(52, 118, 113));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);

@@ -41,7 +41,7 @@ public class VerInmueblesMenu extends JFrame {
         setBounds(100, 100, 870, 690);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        contentPane.setBackground(new Color(0, 128, 128));
+	    contentPane.setBackground(new Color(52, 118, 113));
 
         setContentPane(contentPane);
         contentPane.setLayout(null);

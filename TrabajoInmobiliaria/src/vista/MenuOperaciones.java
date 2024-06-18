@@ -8,6 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JLabel;
 
 public class MenuOperaciones extends JFrame {
@@ -69,21 +72,43 @@ public class MenuOperaciones extends JFrame {
 		lblMenuOperaciones.setBounds(10, 12, 661, 35);
 		panel_1.add(lblMenuOperaciones);
 		
-		JButton btnCompraventa = new JButton("Compra/Venta");
+		JButton btnCompraventa = new JButton("Realizar Compra/Venta Inmueble");
 		btnCompraventa.setForeground(Color.WHITE);
 		btnCompraventa.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnCompraventa.setBorder(null);
 		btnCompraventa.setBackground(new Color(48, 109, 105));
 		btnCompraventa.setBounds(93, 220, 278, 35);
 		panel.add(btnCompraventa);
+		btnCompraventa.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                MenuVenta menuVenta = new MenuVenta();
+                dispose();
+            }
+        });
 		
-		JButton btnAlquiler = new JButton("Alquiler");
+		
+		JButton btnAlquiler = new JButton("Realizar Alquiler Inmueble");
 		btnAlquiler.setForeground(Color.WHITE);
 		btnAlquiler.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnAlquiler.setBorder(null);
 		btnAlquiler.setBackground(new Color(48, 109, 105));
 		btnAlquiler.setBounds(401, 220, 278, 35);
 		panel.add(btnAlquiler);
+		
+		JButton btnVolver = new JButton("Volver");
+		btnVolver.setForeground(Color.WHITE);
+		btnVolver.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnVolver.setBorder(null);
+		btnVolver.setBackground(new Color(48, 109, 105));
+		btnVolver.setBounds(28, 402, 150, 34);
+		panel.add(btnVolver);
+		
+        btnVolver.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                PantallaAgente pantallaAgente = new PantallaAgente();
+                dispose();
+            }
+        });
 		
 		
 	}
