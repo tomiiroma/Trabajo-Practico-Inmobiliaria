@@ -51,9 +51,8 @@ public class VerInmueblesDisponibles extends JFrame {
 	 * Create the frame.
 	 */
 	public VerInmueblesDisponibles() {
-		setForeground(new Color(0, 128, 128));
 		this.setVisible(true);
-
+		setForeground(new Color(0, 128, 128));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    setBounds(100, 100, 1325, 690);
 	    contentPane = new JPanel();

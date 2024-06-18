@@ -89,6 +89,8 @@ public class PantallaAgente extends JFrame {
 				}
 			});
 		
+		
+		
 		JButton btnNuevaOperacion = new JButton("Nueva Operacion");
 		btnNuevaOperacion.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnNuevaOperacion.setForeground(Color.WHITE);
@@ -96,6 +98,15 @@ public class PantallaAgente extends JFrame {
 		btnNuevaOperacion.setBackground(new Color(48, 109, 105));
 		btnNuevaOperacion.setBounds(107, 182, 278, 35);
 		panel.add(btnNuevaOperacion);
+		btnNuevaOperacion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					MenuOperaciones menuOperaciones = new MenuOperaciones();
+					dispose();
+				}
+			});
+		
+		
+		
 		
 		JButton btnNuevoContrato = new JButton("Nuevo Contrato");
 		btnNuevoContrato.setFont(new Font("Tahoma", Font.BOLD, 12));
