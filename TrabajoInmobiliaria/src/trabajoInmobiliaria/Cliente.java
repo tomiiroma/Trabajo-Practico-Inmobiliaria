@@ -44,8 +44,11 @@ public class Cliente {
 
 	@Override
 	public String toString() {
-		return "Cliente [nombre=" + nombre + ", id_cliente=" + id_cliente + ", apellido=" + apellido + ", correo="
-				+ correo + ", telefono=" + telefono + ", fecha_nac=" + fecha_nacimiento + ", dni=" + dni + "]";
+		return     "Id cliente:" + id_cliente 
+				+", Nombre: " + nombre 
+				+", Apellido: " + apellido 
+				+", Telefono: " + telefono 
+				+", Dni: " + dni ;
 	}
 
 	public String getDireccion() {

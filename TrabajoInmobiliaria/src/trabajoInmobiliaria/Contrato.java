@@ -114,14 +114,15 @@ public class Contrato {
 		this.apto_mascota = apto_mascota;
 	}
 	
-	
 
 	@Override
 	public String toString() {
-		return "Contrato [id_contrato=" + id_contrato + ", tipo_contrato=" + tipo_contrato + ", descripcion="
-				+ descripcion + ", url_contrato=" + url_contrato + ", inmueble=" + inmueble + ", cliente=" + cliente
-				+ ", inicio_contrato=" + inicio_contrato + ", fin_contrato=" + fin_contrato + ", apto_mascota="
-				+ apto_mascota + "]";
+		return "Id: " + id_contrato 
+				+", Tipo Contrato: " + tipo_contrato 
+				+", Id Inmueble: " + inmueble.getId_inmueble() 
+				+ ", Id Cliente: " + cliente.getId_cliente()
+				+ ", Inicio Contrato: " + inicio_contrato 
+				+ ", Fin Contrato: " + fin_contrato;
 	}
 
 

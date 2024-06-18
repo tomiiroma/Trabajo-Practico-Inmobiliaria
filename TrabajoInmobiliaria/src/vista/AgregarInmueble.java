@@ -643,7 +643,7 @@ public class AgregarInmueble extends JFrame implements Validacion{
                 		cantBanios,cantDormitorios,
                 		m2cubiertosDouble,m2descubiertosDouble,
                 		precioDouble,disponible,refaccionar,
-                		apto_mascota,patio,disponible,altura,nroDepto));
+                		apto_mascota,patio,activo,altura,nroDepto));
                 
                 
                 JOptionPane.showMessageDialog(null, "Inmueble agregado correctamente");
