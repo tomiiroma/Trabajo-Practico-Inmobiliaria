@@ -51,7 +51,6 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 	private GestionEmpleadosOpciones opciones;
 	private Agente seleccionado;
 	private Gerente gerenteseleccionado;
-	private JButton EditarEmpleado;
 	private JTable tablegerentes;
 	private JTextField inpBuscador;
 	private JTabbedPane tabbedPane;
@@ -162,11 +161,11 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 				
 				if (gerenteseleccionado.getId_empleado()!=0) {
 					
-					EditarAgente editar = new EditarAgente(seleccionado);
+					EditarGerente editargerente = new EditarGerente(gerenteseleccionado);
 					
-					editar.setVisible(true);
+					editargerente.setVisible(true);
 					
-					editar.setLocationRelativeTo(null);
+					editargerente.setLocationRelativeTo(null);
 					
         			dispose();
         			
@@ -526,7 +525,7 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 	                        gerenteseleccionado.setCorreo(correo);
 	                        gerenteseleccionado.setTipo_empleado(tipoempleado);
 	                        gerenteseleccionado.setContraseña(contraseña);
-	                      //  gerenteseleccionado.setId_gerente(Id_gerente);
+	                        gerenteseleccionado.setId_gerente(Id_gerente);
 	                      
 	                    }
 	                }

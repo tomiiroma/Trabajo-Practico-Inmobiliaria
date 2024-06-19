@@ -130,7 +130,7 @@ public class EditarAgente extends JFrame implements Validacion {
 		lblDni.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
 		JLabel lblFecha_nac = new JLabel("Fecha nac:");
-		lblFecha_nac.setBounds(60, 252, 105, 35);
+		lblFecha_nac.setBounds(60, 250, 105, 35);
 		panel.add(lblFecha_nac);
 		lblFecha_nac.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
@@ -180,7 +180,7 @@ public class EditarAgente extends JFrame implements Validacion {
 		lblApellido.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
 		inpApellido = new JTextField();
-		inpApellido.setBounds(680, 52, 241, 35);
+		inpApellido.setBounds(680, 50, 241, 35);
 		panel.add(inpApellido);
 		inpApellido.setColumns(10);
 		
