@@ -52,11 +52,15 @@ public class Reserva {
 
 	@Override
 	public String toString() {
-		return "Reserva \nID_inmueble: " + inmueble.getId_inmueble() 
-			   + "\ntipo inmueble= " + inmueble.getTipo_inmueble() +
-				", dirección= " + inmueble.getDireccion() + ", cliente= " + cliente.getId_cliente() + ", nombre del cliente= " + cliente.getNombre() + ", apellido cliente= " + cliente.getApellido() 
-				+ ", dni del cliente= " + cliente.getDni() + ", fecha_pago= " + fecha_pago + ", pago= "
-				+ pago + ", forma_pago= " + forma_pago + " , = " + empleado.getId_empleado() + ", nombre empleado= " + empleado.getNombre() + ", apellido empleado= " + empleado.getApellido() + ", cargo= "  + empleado.getTipo_empleado() + "]" +"\n";
+		return "ID inmueble: " + inmueble.getId_inmueble() 
+			   +", Tipo inmueble: " + inmueble.getTipo_inmueble() 
+			   +", Dirección: " + inmueble.getDireccion()+" "+inmueble.getAlturaDireccion() 
+			   +", Nombre: " + cliente.getNombre()+" "+ cliente.getApellido() 
+			   +", Dni: " + cliente.getDni() 
+			   +", Fecha pago: " + fecha_pago 
+			   +", Monto: $"+ pago 
+			   +", Forma pago: " + forma_pago 
+			   +", Id Empleado "+ empleado.getId_empleado();
 	}
 
 

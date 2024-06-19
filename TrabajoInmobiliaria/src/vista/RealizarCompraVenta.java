@@ -69,7 +69,7 @@ public class RealizarCompraVenta extends JFrame {
 	public RealizarCompraVenta() {
 		 this.setVisible(true);
 	        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	        setBounds(100, 100, 1031, 506);
+	        setBounds(100, 100, 1164, 392);
 	        contentPane = new JPanel();
 	        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		    contentPane.setBackground(new Color(52, 118, 113));
@@ -79,7 +79,7 @@ public class RealizarCompraVenta extends JFrame {
 	        JPanel panel_1 = new JPanel();
 	        panel_1.setLayout(null);
 	        panel_1.setBackground(new Color(133, 201, 196));
-	        panel_1.setBounds(30, 11, 956, 55);
+	        panel_1.setBounds(30, 11, 1089, 55);
 	        contentPane.add(panel_1);
 	        
 	        
@@ -94,18 +94,18 @@ public class RealizarCompraVenta extends JFrame {
 	        JLabel lblSeleccionarReservaCompra = new JLabel("Seleccionar Reserva:");
 	        lblSeleccionarReservaCompra.setForeground(Color.WHITE);
 	        lblSeleccionarReservaCompra.setFont(new Font("Tahoma", Font.BOLD, 12));
-	        lblSeleccionarReservaCompra.setBounds(30, 114, 181, 15);
+	        lblSeleccionarReservaCompra.setBounds(30, 147, 181, 15);
 	        contentPane.add(lblSeleccionarReservaCompra);
 	        
 	        cbReserva = new JComboBox<String>();
-	        cbReserva.setBounds(30, 129, 956, 124);
+	        cbReserva.setBounds(30, 162, 1089, 27);
 	        contentPane.add(cbReserva);
 	        
 	        
 	        
 	        
 	        JButton btnVolver = new JButton("Volver");
-	        btnVolver.setBounds(30, 415, 150, 34);
+	        btnVolver.setBounds(30, 279, 150, 34);
 	        btnVolver.setFont(new Font("Tahoma", Font.BOLD, 12));
 	        btnVolver.setForeground(new Color(255, 255, 255));
 	        btnVolver.setBackground(new Color(48, 109, 105));
@@ -120,12 +120,12 @@ public class RealizarCompraVenta extends JFrame {
 	        contentPane.add(btnVolver);
 	        
 	        
-	        JButton btnVerificarReserva = new JButton("Verificar Reserva");
+	        JButton btnVerificarReserva = new JButton("Confirmar Reserva");
 	        btnVerificarReserva.setForeground(Color.WHITE);
 	        btnVerificarReserva.setFont(new Font("Tahoma", Font.BOLD, 12));
 	        btnVerificarReserva.setBorder(null);
 	        btnVerificarReserva.setBackground(new Color(48, 109, 105));
-	        btnVerificarReserva.setBounds(836, 415, 150, 34);
+	        btnVerificarReserva.setBounds(969, 279, 150, 34);
 	        contentPane.add(btnVerificarReserva);
 	        
 
@@ -140,9 +140,11 @@ public class RealizarCompraVenta extends JFrame {
 	     ReservaControlador reservaControlador = new ReservaControlador();
 		     List<Reserva> reservas = reservaControlador.getAllReserva();
 		     	for (Reserva reserva : reservas) {
-
+		     		if(reserva.getTipo_reserva().equals("Venta")){
+		     			cbReserva.addItem(reserva.toString());  
+		     			
+		     		}
 		     		
-		        cbReserva.addItem(reserva.toString());  
 		          }
 		           
 		     	
