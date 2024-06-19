@@ -32,15 +32,18 @@ public class ReservaControlador implements ReservaRepository{
 	    	
 	        List<Reserva> reservas = new ArrayList<>();
 	        try {
-	        	PreparedStatement statement = connection.prepareStatement("SELECT *, empleado.tipo_empleado FROM reserva JOIN empleado ON reserva.fk_empleado_id = empleado.id_empleado");
+	        	PreparedStatement statement = connection.prepareStatement
+	        	("SELECT reserva.*, empleado.tipo_empleado FROM reserva JOIN empleado ON reserva.fk_empleado_id = empleado.id_empleado");
 	        	ResultSet resultSet = statement.executeQuery();
 	            ControladorCliente clientec = new ControladorCliente();
 	        	InmuebleControlador controlador = new InmuebleControlador();
 	            ControladorEmpleado empleadocontrolador = new ControladorEmpleado();
 	            while (resultSet.next()) {
 	            	
+	            	 int id_reserva = resultSet.getInt("id_reserva");
+
 	            	
-	            	String tipoEmpleado = resultSet.getString("tipo_empleado");
+	            	 String tipoEmpleado = resultSet.getString("tipo_empleado");
 	     
 	            	
 	            	 int fkInmuebleId = resultSet.getInt("fk_inmueble_id");
@@ -59,16 +62,16 @@ public class ReservaControlador implements ReservaRepository{
 	                 
 	                 String forma_pago = resultSet.getString("forma_pago");
 	            	
-	            	double montoTotal = resultSet.getDouble("monto_total");
+	            	 double montoTotal = resultSet.getDouble("monto_total");
 	            	
-	            	fkEmpleadoId = resultSet.getInt("fk_empleado_id");
-	            	Empleado empleado = empleadocontrolador.getEmpleadoById(fkEmpleadoId);
+	            	 fkEmpleadoId = resultSet.getInt("fk_empleado_id");
+	            	 Empleado empleado = empleadocontrolador.getEmpleadoById(fkEmpleadoId);
 	            	
-	                String tipo_reserva = resultSet.getString("tipo_reserva");
+	                 String tipo_reserva = resultSet.getString("tipo_reserva");
 
 	            	
-	                 Reserva reserva = new Reserva(inmueble, cliente, Fecha_pago, montoTotal, forma_pago, empleado,tipo_reserva);	       
-	                reservas.add(reserva);
+	                 Reserva reserva = new Reserva(id_reserva,inmueble, cliente, Fecha_pago, montoTotal, forma_pago, empleado,tipo_reserva);	       
+	                 reservas.add(reserva);
 	            }
 	        } catch (SQLException e) {
 	           e.printStackTrace();
