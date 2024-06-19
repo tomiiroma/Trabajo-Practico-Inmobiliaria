@@ -6,16 +6,22 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controlador.ReservaControlador;
 import trabajoInmobiliaria.Cliente;
 import trabajoInmobiliaria.Empleado;
+import trabajoInmobiliaria.Gerente;
 import trabajoInmobiliaria.Inmueble;
+import trabajoInmobiliaria.Reserva;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JSeparator;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 
@@ -30,6 +36,8 @@ public class RegistrarReserva extends JFrame {
 	private ReservaEmpleado SelectorEmpleado;
 	private ReservaCliente SelectorCliente;
 	private ReservaInmueble SelectorInmueble;
+	private Gerente gerente;
+	private ReservaControlador controladorR;
 	/**
 	 * Launch the application.
 	 */
@@ -97,8 +105,14 @@ if (SelectorInmueble == null) {
 		contentPane.add(btnInmueble);
 		
 		JLabel lblInmueble = new JLabel("Seleccionado:");
-		lblInmueble.setBounds(91, 116, 764, 32);
+		lblInmueble.setBounds(145, 116, 729, 32);
 		contentPane.add(lblInmueble);
+		
+		
+		JButton btnModificarInmueble = new JButton("Modificar");
+		btnModificarInmueble.setBounds(517, 159, 232, 37);
+		contentPane.add(btnModificarInmueble);
+		
 		
 		JLabel lblNewLabel_2 = new JLabel("Inmueble");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -200,6 +214,25 @@ if (SelectorInmueble == null) {
 		contentPane.add(btnModificarCliente);
 		
 		
+		if (inmueble == null) {
+			
+			lblInmueble.setText("No se ha seleccionado ningun inmueble");
+			btnModificarInmueble.setEnabled(false);
+			btnInmueble.setEnabled(true);
+			
+			
+			
+		} else {
+			
+			
+			lblInmueble.setText("Inmueble seleccionado: Dirección: " + inmueble.getDireccion() + ", Altura: " + inmueble.getAlturaDireccion() + ", Tipo de inmueble" + inmueble.getTipo_inmueble() );
+			btnModificarInmueble.setEnabled(true);
+			btnInmueble.setEnabled(false);
+			
+		}
+		
+		
+		
 		if (empleado == null) {
 			
 			
@@ -209,7 +242,7 @@ if (SelectorInmueble == null) {
 		} else {
 			
 			
-			lblEmpleado.setText("Empleado seleccionado: " +empleado.getNombre() + " ,Apellido: "+ empleado.getApellido() + " ,DNI: "+empleado.getDni() + " ,Tipo de empleado: "+empleado.getTipo_empleado());
+			lblEmpleado.setText("Empleado seleccionado: " +empleado.getNombre() + ", Apellido: "+ empleado.getApellido() + ", DNI: "+empleado.getDni() + ", Tipo de empleado: "+empleado.getTipo_empleado());
 			btnEmpleado.setEnabled(false);
 			btnModificarEmpleado.setEnabled(true);
 		
@@ -225,7 +258,7 @@ if (SelectorInmueble == null) {
 			
 		} else {
 			
-			lblCliente.setText("Cliente seleccionado: " + cliente.getNombre() + " ,Apellido: "+cliente.getApellido() + ",DNI: " +cliente.getDni());
+			lblCliente.setText("Cliente seleccionado: " + cliente.getNombre() + ", Apellido: "+cliente.getApellido() + ", DNI: " +cliente.getDni());
 			btnModificarCliente.setEnabled(true);
 			btnCliente.setEnabled(false);
 			
@@ -298,12 +331,46 @@ if (SelectorInmueble == null) {
 		
 		
 		JButton RegistrarReserva = new JButton("Registrar");
+		RegistrarReserva.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				if (inmueble != null && cliente != null && empleado != null) {
+					
+					if (controladorR == null) {
+						
+						controladorR = new ReservaControlador();
+						
+					}
+					
+					
+				 LocalDate fecha = LocalDate.now();
+				 
+				 Double monto = 3000.0;
+				 
+				 String forma = "Efectivo";
+				 
+				 String tipo_reserva = "Venta";
+					
+				 controladorR.addReserva(new Reserva(inmueble,cliente,fecha,monto,forma,empleado,tipo_reserva));
+					
+//				 inmueble,cliente2,fecha_pago2,montovalidado,forma_pago,empleado2,tipo_reserva
+				 
+				} else {
+					
+					
+					JOptionPane.showMessageDialog(null, "Error");
+					
+					
+				}
+				
+				
+				
+			}
+		});
 		RegistrarReserva.setBounds(474, 687, 232, 37);
 		contentPane.add(RegistrarReserva);
 		
-		JButton btnModificarInmueble = new JButton("Modificar");
-		btnModificarInmueble.setBounds(517, 159, 232, 37);
-		contentPane.add(btnModificarInmueble);
 		
 		
 	}

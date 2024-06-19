@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import controlador.InmuebleControlador;
@@ -12,15 +14,22 @@ import trabajoInmobiliaria.Cliente;
 import trabajoInmobiliaria.Empleado;
 import trabajoInmobiliaria.Inmueble;
 
+
 import javax.swing.JSeparator;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ReservaInmueble extends JFrame {
 
@@ -30,7 +39,8 @@ public class ReservaInmueble extends JFrame {
 	private JTable tableInmuebles;
 	private DefaultTableModel ModeloInmuebles;
 	private InmuebleControlador inmueblecontrolador;
-	
+	private Inmueble inmuebleseleccionado;
+	private RegistrarReserva VolverMenu;
 	/**
 	 * Launch the application.
 	 */
@@ -113,8 +123,81 @@ public class ReservaInmueble extends JFrame {
 		panel_1.add(btnNewButton_2);
 		
 		JButton btnNewButton_2_1 = new JButton("Seleccionar");
+		btnNewButton_2_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				 
+					
+					if (inmuebleseleccionado.getId_inmueble()!=0) {
+					if (VolverMenu==null) {
+						
+						VolverMenu = new RegistrarReserva(inmuebleseleccionado,cliente,empleado);
+						
+					}
+					
+					VolverMenu.setLocationRelativeTo(null);
+					
+					VolverMenu.setVisible(true);
+					
+					dispose();
+					
+				} else {
+					
+					JOptionPane.showMessageDialog(null, "Debes seleccionar un inmueble");
+					
+					
+				}
+				
+				
+				
+				
+				
+			}
+		});
 		btnNewButton_2_1.setBounds(517, 567, 143, 57);
 		panel_1.add(btnNewButton_2_1);
+		
+		
+		
+		ListSelectionModel selectionModelInmueble = tableInmuebles.getSelectionModel();
+		
+		
+		selectionModelInmueble.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        // Agregar un escuchador de selección
+        
+		selectionModelInmueble.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    int selectedRow = tableInmuebles.getSelectedRow();
+                    if (selectedRow != -1) {
+                    	  int id = (int) tableInmuebles.getValueAt(selectedRow, 0);
+                          String tipoInmueble = (String) tableInmuebles.getValueAt(selectedRow, 1);
+                          String piso = (String) tableInmuebles.getValueAt(selectedRow, 2);
+                          String ambientes = (String) tableInmuebles.getValueAt(selectedRow, 3);
+                          String barrio = (String) tableInmuebles.getValueAt(selectedRow, 4);
+                          String direccion = (String) tableInmuebles.getValueAt(selectedRow, 5);
+                          String altura = (String) tableInmuebles.getValueAt(selectedRow, 6);
+                          Double precio = (Double) tableInmuebles.getValueAt(selectedRow, 7);
+                          boolean disponible = (boolean) tableInmuebles.getValueAt(selectedRow, 8);
+                          String condicion = (String) tableInmuebles.getValueAt(selectedRow, 9);
+                        lblInmuebleSeleccionado.setText("Seleccionado: ID_empleado=" + id + ", Barrio: "+barrio + ", Direccion: " +direccion+ ", Altura: "+altura  );
+                        
+                        inmuebleseleccionado =inmueblecontrolador.getInmuebleById(id);
+                      
+                    }
+                }
+            }
+        });
+		
+		
+		
+		
+		
+		
+		
 	}
 	
 	

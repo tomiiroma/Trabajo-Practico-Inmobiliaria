@@ -1,41 +1,74 @@
+
 package trabajoInmobiliaria;
 
 import java.time.LocalDate;
 
 public class Reserva {
 	
+	private int id_reserva;
 	private Inmueble inmueble;
 	private Cliente cliente;
 	private LocalDate fecha_pago;
-	private String operacion;
 	private double pago;
     private String forma_pago;
     private Empleado empleado;
+    private String tipo_reserva;
     
     
     
-	public Reserva(Inmueble inmueble, Cliente cliente, LocalDate fecha_pago, String operacion , double pago,
-			String forma_pago, Empleado empleado) {
+	public Reserva(Inmueble inmueble, Cliente cliente, LocalDate fecha_pago, double pago,
+			String forma_pago, Empleado empleado, String tipo_reserva) {
 		super();
 		this.inmueble = inmueble;
 		this.cliente = cliente;
 		this.fecha_pago = fecha_pago;
-		this.operacion = operacion;
 		this.pago = pago;
 		this.forma_pago = forma_pago;
 		this.empleado = empleado;
+		this.tipo_reserva = tipo_reserva;
 	}
 
 	
+	
+	
+
+
+	public Reserva(
+			int id_reserva, 
+			Inmueble inmueble, 
+			Cliente cliente, 
+			LocalDate fecha_pago, 
+			double pago,
+			String forma_pago, 
+			Empleado empleado, 
+			String tipo_reserva) {
+		super();
+		this.id_reserva = id_reserva;
+		this.inmueble = inmueble;
+		this.cliente = cliente;
+		this.fecha_pago = fecha_pago;
+		this.pago = pago;
+		this.forma_pago = forma_pago;
+		this.empleado = empleado;
+		this.tipo_reserva = tipo_reserva;
+	}
+
+
+
+
 
 
 	@Override
 	public String toString() {
-		return "Reserva \nID_inmueble: " + inmueble.getId_inmueble() 
-			   + "\ntipo inmueble= " + inmueble.getTipo_inmueble() +
-				", dirección= " + inmueble.getDireccion() + ", cliente= " + cliente.getId_cliente() + ", nombre del cliente= " + cliente.getNombre() + ", apellido cliente= " + cliente.getApellido() 
-				+ ", dni del cliente= " + cliente.getDni() + ", fecha_pago= " + fecha_pago + ", pago= " + 
-				+ pago + ", operacion="+ operacion + ", forma_pago= " + forma_pago + " , = " + empleado.getId_empleado() + ", nombre empleado= " + empleado.getNombre() + ", apellido empleado= " + empleado.getApellido() + ", cargo= "  + empleado.getTipo_empleado() + "]" +"\n";
+		return "ID inmueble: " + inmueble.getId_inmueble() 
+			   +", Tipo inmueble: " + inmueble.getTipo_inmueble() 
+			   +", Dirección: " + inmueble.getDireccion()+" "+inmueble.getAlturaDireccion() 
+			   +", Nombre: " + cliente.getNombre()+" "+ cliente.getApellido() 
+			   +", Dni: " + cliente.getDni() 
+			   +", Fecha pago: " + fecha_pago 
+			   +", Monto: $"+ pago 
+			   +", Forma pago: " + forma_pago 
+			   +", Id Empleado "+ empleado.getId_empleado();
 	}
 
 
@@ -125,17 +158,36 @@ public class Reserva {
 
 
 
-	public String getOperacion() {
-		return operacion;
+	public String getTipo_reserva() {
+		return tipo_reserva;
 	}
 
 
 
 
-	public void setOperacion(String operacion) {
-		this.operacion = operacion;
+	public void setTipo_reserva(String tipo_reserva) {
+		this.tipo_reserva = tipo_reserva;
 	}
 
+
+
+
+
+
+	public int getId_reserva() {
+		return id_reserva;
+	}
+
+
+
+
+
+
+	public void setId_reserva(int id_reserva) {
+		this.id_reserva = id_reserva;
+	}
+
+	
 
 
 
