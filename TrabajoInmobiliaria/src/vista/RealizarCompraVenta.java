@@ -1,6 +1,6 @@
 package vista;
 
-import java.awt.EventQueue; 
+import java.awt.EventQueue;  
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -14,10 +14,11 @@ import controlador.CompradorControlador;
 import controlador.ContratoControlador;
 import controlador.InmuebleControlador;
 import controlador.PropietarioControlador;
+import controlador.ReservaControlador;
 import trabajoInmobiliaria.Comprador;
-import trabajoInmobiliaria.Contrato;
 import trabajoInmobiliaria.Inmueble;
 import trabajoInmobiliaria.Propietario;
+import trabajoInmobiliaria.Reserva;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -44,11 +45,7 @@ public class RealizarCompraVenta extends JFrame {
     private JPanel contentPane;
     private DefaultTableModel modelComprador;
     private JLabel elemento;
-    private JTable tabla_prop;
-    private JComboBox<String> cbComprador;
-    private JComboBox<String> cbInmueble;
-    private JComboBox<String> cbPropietario;
-
+    private JComboBox<String> cbReserva;
     private JButton btnVerificarReserva;
 	/**
 	 * Launch the application.
@@ -94,38 +91,15 @@ public class RealizarCompraVenta extends JFrame {
 	        panel_1.add(lblGestorPropiedades_1);
 	        
 
-	        JLabel lblSeleccionarComprador = new JLabel("Seleccionar Comprador:");
-	        lblSeleccionarComprador.setForeground(Color.WHITE);
-	        lblSeleccionarComprador.setFont(new Font("Tahoma", Font.BOLD, 12));
-	        lblSeleccionarComprador.setBounds(30, 90, 181, 15);
-	        contentPane.add(lblSeleccionarComprador);
+	        JLabel lblSeleccionarReservaCompra = new JLabel("Seleccionar Reserva:");
+	        lblSeleccionarReservaCompra.setForeground(Color.WHITE);
+	        lblSeleccionarReservaCompra.setFont(new Font("Tahoma", Font.BOLD, 12));
+	        lblSeleccionarReservaCompra.setBounds(30, 114, 181, 15);
+	        contentPane.add(lblSeleccionarReservaCompra);
 	        
-	        cbComprador = new JComboBox<String>();
-	        cbComprador.setBounds(30, 105, 956, 25);
-	        contentPane.add(cbComprador);
-	        
-	        
-	        JLabel lblSeleccionarInmueble = new JLabel("Seleccionar Inmueble:");
-	        lblSeleccionarInmueble.setForeground(Color.WHITE);
-	        lblSeleccionarInmueble.setFont(new Font("Tahoma", Font.BOLD, 12));
-	        lblSeleccionarInmueble.setBounds(30, 231, 181, 15);
-	        contentPane.add(lblSeleccionarInmueble);
-	        
-	        cbInmueble = new JComboBox<String>();
-	        cbInmueble.setBounds(30, 247, 956, 25);
-	        contentPane.add(cbInmueble);
-	        
-	        
-	        
-	        JLabel lblSeleccionarPropietario = new JLabel("Seleccionar Propietario / Vendedor\r\n:");
-	        lblSeleccionarPropietario.setForeground(Color.WHITE);
-	        lblSeleccionarPropietario.setFont(new Font("Tahoma", Font.BOLD, 12));
-	        lblSeleccionarPropietario.setBounds(30, 158, 225, 15);
-	        contentPane.add(lblSeleccionarPropietario);
-	        
-	        cbPropietario = new JComboBox<String>();
-	        cbPropietario.setBounds(30, 173, 956, 25);
-	        contentPane.add(cbPropietario);
+	        cbReserva = new JComboBox<String>();
+	        cbReserva.setBounds(30, 129, 956, 124);
+	        contentPane.add(cbReserva);
 	        
 	        
 	        
@@ -163,27 +137,15 @@ public class RealizarCompraVenta extends JFrame {
 
 	        
 	     private void cargarDatos() {
-	     CompradorControlador compradorControlador = new CompradorControlador();
-		     List<Comprador> compradores = compradorControlador.getAllComprador();
-		     	for (Comprador comprador : compradores) {
-		        cbComprador.addItem(comprador.toString());  
+	     ReservaControlador reservaControlador = new ReservaControlador();
+		     List<Reserva> reservas = reservaControlador.getAllReserva();
+		     	for (Reserva reserva : reservas) {
+
+		     		
+		        cbReserva.addItem(reserva.toString());  
 		          }
 		           
 		     	
-		 PropietarioControlador propietarioControlador = new PropietarioControlador();
-		 	List<Propietario> propietarios = propietarioControlador.getAllPropietario();
-				 for (Propietario propietario : propietarios) {
-				 cbPropietario.addItem(propietario.toString());  
-				 }        
-		           
-				 //Disponible false, pq en teoria ya se habria reservado y activo true ya q esta activo en una operacion
-		  InmuebleControlador inmuebleControlador = new InmuebleControlador();
-			List<Inmueble> inmuebles = inmuebleControlador.getAllInmueble();
-	        for (Inmueble inmueble : inmuebles) {
-	            if (!inmueble.isDisponible() && inmueble.isActivo()) {
-	                cbInmueble.addItem(inmueble.toString()); 
-	            }            
-	        }
 	    
 
 	        

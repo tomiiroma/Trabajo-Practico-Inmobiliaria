@@ -4,17 +4,19 @@ import java.time.LocalDate;
 
 public class Reserva {
 	
+	private int id_reserva;
 	private Inmueble inmueble;
 	private Cliente cliente;
 	private LocalDate fecha_pago;
 	private double pago;
     private String forma_pago;
     private Empleado empleado;
+    private String tipo_reserva;
     
     
     
 	public Reserva(Inmueble inmueble, Cliente cliente, LocalDate fecha_pago, double pago,
-			String forma_pago, Empleado empleado) {
+			String forma_pago, Empleado empleado, String tipo_reserva) {
 		super();
 		this.inmueble = inmueble;
 		this.cliente = cliente;
@@ -22,9 +24,30 @@ public class Reserva {
 		this.pago = pago;
 		this.forma_pago = forma_pago;
 		this.empleado = empleado;
+		this.tipo_reserva = tipo_reserva;
 	}
 
 	
+	
+	
+
+
+	public Reserva(int id_reserva, Inmueble inmueble, Cliente cliente, LocalDate fecha_pago, double pago,
+			String forma_pago, Empleado empleado, String tipo_reserva) {
+		super();
+		this.id_reserva = id_reserva;
+		this.inmueble = inmueble;
+		this.cliente = cliente;
+		this.fecha_pago = fecha_pago;
+		this.pago = pago;
+		this.forma_pago = forma_pago;
+		this.empleado = empleado;
+		this.tipo_reserva = tipo_reserva;
+	}
+
+
+
+
 
 
 	@Override
@@ -120,6 +143,39 @@ public class Reserva {
 		this.empleado = empleado;
 	}
 
+
+
+
+	public String getTipo_reserva() {
+		return tipo_reserva;
+	}
+
+
+
+
+	public void setTipo_reserva(String tipo_reserva) {
+		this.tipo_reserva = tipo_reserva;
+	}
+
+
+
+
+
+
+	public int getId_reserva() {
+		return id_reserva;
+	}
+
+
+
+
+
+
+	public void setId_reserva(int id_reserva) {
+		this.id_reserva = id_reserva;
+	}
+
+	
 
 
 

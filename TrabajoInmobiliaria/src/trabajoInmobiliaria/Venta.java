@@ -9,12 +9,20 @@ public class Venta {
 	private String forma_pago;
 	private Empleado empleado;
 	private String tipo_empleado;
-
+	private Reserva reservaVenta;
 	
 
-	
+
+
+
+
+
+
+
+
+
 	public Venta(int id_venta, Inmueble inmueble, Comprador comprador, Contrato contrato, double monto_total,
-			String forma_pago, Empleado empleado, String tipo_empleado) {
+			String forma_pago, Empleado empleado, String tipo_empleado, Reserva reservaVenta) {
 		super();
 		this.id_venta = id_venta;
 		this.inmueble = inmueble;
@@ -24,6 +32,7 @@ public class Venta {
 		this.forma_pago = forma_pago;
 		this.empleado = empleado;
 		this.tipo_empleado = tipo_empleado;
+		this.reservaVenta = reservaVenta;
 	}
 
 
@@ -136,6 +145,20 @@ public class Venta {
 
 	public void setTipo_empleado(String tipo_empleado) {
 		this.tipo_empleado = tipo_empleado;
+	}
+
+
+
+
+	public Reserva getReserva() {
+		return reservaVenta;
+	}
+
+
+
+
+	public void setReserva(Reserva reservaVenta) {
+		this.reservaVenta = reservaVenta;
 	}
 
 

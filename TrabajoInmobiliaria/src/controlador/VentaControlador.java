@@ -1,6 +1,6 @@
 package controlador;
 
-import java.sql.Connection; 
+import java.sql.Connection;  
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,6 +15,7 @@ import trabajoInmobiliaria.Contrato;
 import trabajoInmobiliaria.DatabaseConnection;
 import trabajoInmobiliaria.Empleado;
 import trabajoInmobiliaria.Inmueble;
+import trabajoInmobiliaria.Reserva;
 import trabajoInmobiliaria.Venta;
 
 public class VentaControlador implements VentaRepository {
@@ -38,7 +39,7 @@ public class VentaControlador implements VentaRepository {
 	            ContratoControlador controladorContrato = new ContratoControlador();
 	            AgenteControlador controladorAgente = new AgenteControlador();
 	            GerenteControlador controladorGerente = new GerenteControlador();
-
+	            ReservaControlador controladorReserva = new ReservaControlador();
 	            
 	            while (resultSet.next()) {
 	            	
@@ -50,6 +51,7 @@ public class VentaControlador implements VentaRepository {
 	            	  int fkContratoId = resultSet.getInt("fk_contrato_id");
 	            	  double montototal = resultSet.getInt("monto_total");
 	            	  int fkEmpleadoId = resultSet.getInt("fk_empleado_id");
+	            	  int fkReservaId = resultSet.getInt("fk_reserva_id");
 
 	            	  
 	            	  String forma_pago = resultSet.getString("forma_pago");
@@ -57,6 +59,7 @@ public class VentaControlador implements VentaRepository {
 	            	  Inmueble inmueble = controladorInmueble.getInmuebleById(fkInmuebleId);
 	            	  Comprador comprador = controladorComprador.getCompradorById(fkCompradorId);
 	                  Contrato contrato = controladorContrato.getContratoById(fkContratoId);
+	                  Reserva reserva = controladorReserva.getReservaById(fkReservaId);
 	                  String tipoEmpleado = resultSet.getString("tipo_empleado");
 
 	                  
@@ -68,7 +71,7 @@ public class VentaControlador implements VentaRepository {
 	                	  empleado = controladorGerente.getGerenteById(fkEmpleadoId);
 	                  }
 	                  	
-	                  Venta venta = new Venta(id_venta, inmueble, comprador, contrato, montototal,forma_pago,empleado, tipoEmpleado);
+	                  Venta venta = new Venta(id_venta, inmueble, comprador, contrato, montototal,forma_pago,empleado, tipoEmpleado,reserva);
 	                  
 	                  ventas.add(venta);
 	            }
@@ -92,6 +95,7 @@ public class VentaControlador implements VentaRepository {
 	            ContratoControlador controladorContrato = new ContratoControlador();
 	            AgenteControlador controladorAgente = new AgenteControlador();
 	            GerenteControlador controladorGerente = new GerenteControlador();
+	            ReservaControlador controladorReserva = new ReservaControlador();
 
 	            if (resultSet.next()) {
 	                int id_venta = resultSet.getInt("id_venta");
@@ -102,11 +106,14 @@ public class VentaControlador implements VentaRepository {
 	                String forma_pago = resultSet.getString("forma_pago");
 	                int fkEmpleadoId = resultSet.getInt("fk_empleado_id");
 	                String tipoEmpleado = resultSet.getString("tipo_empleado");
+	            	int fkReservaId = resultSet.getInt("fk_reserva_id");
+
 
 	                Inmueble inmueble = controladorInmueble.getInmuebleById(fkInmuebleId);
 	                Comprador comprador = controladorComprador.getCompradorById(fkCompradorId);
 	                Contrato contrato = controladorContrato.getContratoById(fkContratoId);
-	                
+	                Reserva reserva = controladorReserva.getReservaById(fkReservaId);
+
 	                Empleado empleado = null;
 	                if ("agente".equalsIgnoreCase(tipoEmpleado)) {
 	                    empleado = controladorAgente.getAgenteById(fkEmpleadoId);
@@ -114,7 +121,7 @@ public class VentaControlador implements VentaRepository {
 	                    empleado = controladorGerente.getGerenteById(fkEmpleadoId);
 	                }
 
-	                venta = new Venta(id_venta, inmueble, comprador, contrato, montototal, forma_pago, empleado, tipoEmpleado);
+	                venta = new Venta(id_venta, inmueble, comprador, contrato, montototal, forma_pago, empleado, tipoEmpleado,reserva);
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
@@ -127,7 +134,7 @@ public class VentaControlador implements VentaRepository {
 	    public void addVenta(Venta venta) {
 	        try {
 	            PreparedStatement statement = connection.prepareStatement(
-	                    "INSERT INTO venta (id_venta, fk_inmueble_id,fk_cliente_id,  fk_contrato_id, monto_total, forma_pago, fk_empleado_id, tipo_empleado) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
+	                    "INSERT INTO venta (id_venta, fk_inmueble_id,fk_cliente_id,  fk_contrato_id, monto_total, forma_pago, fk_empleado_id, tipo_empleado, fk_reserva_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
 	                );
 
 	                statement.setInt(1, venta.getId_venta());
@@ -138,7 +145,8 @@ public class VentaControlador implements VentaRepository {
 	                statement.setString(6, venta.getForma_pago());
 	                statement.setInt(7, venta.getEmpleado().getId_empleado()); 
 	                statement.setString(8, venta.getEmpleado().getTipo_empleado());
-	        	        
+	                statement.setInt(9, venta.getReserva().getId_reserva());
+
 	        	        
 	            
 	            int rowsInserted = statement.executeUpdate();

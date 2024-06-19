@@ -61,10 +61,13 @@ public class ReservaControlador implements ReservaRepository{
 	            	
 	            	double montoTotal = resultSet.getDouble("monto_total");
 	            	
-	            	 fkEmpleadoId = resultSet.getInt("fk_empleado_id");
+	            	fkEmpleadoId = resultSet.getInt("fk_empleado_id");
 	            	Empleado empleado = empleadocontrolador.getEmpleadoById(fkEmpleadoId);
 	            	
-	                 Reserva reserva = new Reserva(inmueble, cliente, Fecha_pago, montoTotal, forma_pago, empleado);	       
+	                String tipo_reserva = resultSet.getString("tipo_reserva");
+
+	            	
+	                 Reserva reserva = new Reserva(inmueble, cliente, Fecha_pago, montoTotal, forma_pago, empleado,tipo_reserva);	       
 	                reservas.add(reserva);
 	            }
 	        } catch (SQLException e) {
@@ -97,7 +100,7 @@ public class ReservaControlador implements ReservaRepository{
 		@Override
 	    public void addReserva(Reserva reserva) {
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("INSERT INTO reserva (fk_inmueble_id, fk_cliente_id, fecha_pago, monto_total, forma_pago, fk_empleado_id) VALUES (?, ?, ?, ?, ?, ?)");
+	            PreparedStatement statement = connection.prepareStatement("INSERT INTO reserva (fk_inmueble_id, fk_cliente_id, fecha_pago, monto_total, forma_pago, fk_empleado_id, tipo_reserva) VALUES (?, ?, ?, ?, ?, ?, ?)");
 	            statement.setInt(1, reserva.getInmueble().getId_inmueble());
 	            statement.setInt(2, reserva.getCliente().getId_cliente());
 	            java.sql.Date fecha_pago = java.sql.Date.valueOf(reserva.getFecha_pago());
@@ -105,7 +108,7 @@ public class ReservaControlador implements ReservaRepository{
 	            statement.setDouble(4,reserva.getPago());
 	            statement.setString(5,reserva.getForma_pago());
 	            statement.setInt(6,reserva.getEmpleado().getId_empleado());
-	            
+	            statement.setString(7, reserva.getTipo_reserva());
 	            
 	            int rowsInserted = statement.executeUpdate();
 	            if (rowsInserted > 0) {
