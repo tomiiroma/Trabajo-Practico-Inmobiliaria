@@ -11,7 +11,10 @@ import java.util.List;
 
 import interfaces.ReservaRepository;
 import trabajoInmobiliaria.Reserva;
+import trabajoInmobiliaria.Venta;
 import trabajoInmobiliaria.Cliente;
+import trabajoInmobiliaria.Comprador;
+import trabajoInmobiliaria.Contrato;
 import trabajoInmobiliaria.DatabaseConnection;
 import trabajoInmobiliaria.Empleado;
 import trabajoInmobiliaria.Inmueble;
@@ -81,24 +84,79 @@ public class ReservaControlador implements ReservaRepository{
 	    }
 
 	    
+	 //   @Override
+	  //  public Reserva getReservaById(int id) {
+	    //	Reserva reserva = null;
+	    //    try {
+	      //      PreparedStatement statement = connection.prepareStatement("SELECT * FROM reserva WHERE id = ?");
+	     //       statement.setInt(1, id);
+	            
+	     //       ResultSet resultSet = statement.executeQuery();
+	            
+	     //       if (resultSet.next()) {
+	            	// public Comprador(int comprador, double presupuesto) le falta Herencia con cliente.
+	             //   user = new Garante(resultSet.getInt("id_empleado"), resultSet.getString("name"), resultSet.getString("apellido") , resultSet.getString("telefono"), resultSet.getInt("fk_cliente"));
+	      //      }
+	 //       } catch (SQLException e) {
+	       //     e.printStackTrace();
+	   //       return reserva;
+	//    }
+	    
+	    
+	    
 	    @Override
 	    public Reserva getReservaById(int id) {
 	    	Reserva reserva = null;
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE id = ?");
+	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM reserva WHERE id_reserva = ?");
 	            statement.setInt(1, id);
 	            
 	            ResultSet resultSet = statement.executeQuery();
 	            
+	            ReservaControlador controladorReserva = new ReservaControlador();
+	            InmuebleControlador controladorInmueble = new InmuebleControlador();
+	            CompradorControlador controladorComprador = new CompradorControlador();
+	            AgenteControlador controladorAgente = new AgenteControlador();
+	            GerenteControlador controladorGerente = new GerenteControlador();            
+	            
 	            if (resultSet.next()) {
-	            	// public Comprador(int comprador, double presupuesto) le falta Herencia con cliente.
-	             //   user = new Garante(resultSet.getInt("id_empleado"), resultSet.getString("name"), resultSet.getString("apellido") , resultSet.getString("telefono"), resultSet.getInt("fk_cliente"));
+	                int id_reserva = resultSet.getInt("id_reserva");
+	                int fkInmuebleId = resultSet.getInt("fk_inmueble_id");
+	                int fkCompradorId = resultSet.getInt("fk_cliente_id");
+	                LocalDate fechaPago = resultSet.getDate("fecha_pago").toLocalDate();
+	                double montototal = resultSet.getDouble("monto_total");
+	                String forma_pago = resultSet.getString("forma_pago");
+	                int fkEmpleadoId = resultSet.getInt("fk_empleado_id");
+	                String tipo_reserva = resultSet.getString("tipo_reserva");
+
+
+	                Inmueble inmueble = controladorInmueble.getInmuebleById(fkInmuebleId);
+	                Comprador comprador = controladorComprador.getCompradorById(fkCompradorId);
+
+
+	                Empleado empleado = null;
+
+
+	                reserva = new Reserva(id_reserva, inmueble, comprador,fechaPago, montototal, forma_pago, empleado,tipo_reserva);
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
 	        }
 	        return reserva;
 	    }
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
 
 		@Override
 	    public void addReserva(Reserva reserva) {

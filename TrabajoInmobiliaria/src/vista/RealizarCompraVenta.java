@@ -16,6 +16,7 @@ import controlador.InmuebleControlador;
 import controlador.PropietarioControlador;
 import controlador.ReservaControlador;
 import trabajoInmobiliaria.Comprador;
+import trabajoInmobiliaria.Empleado;
 import trabajoInmobiliaria.Inmueble;
 import trabajoInmobiliaria.Propietario;
 import trabajoInmobiliaria.Reserva;
@@ -69,6 +70,7 @@ public class RealizarCompraVenta extends JFrame {
 	 * Create the frame.
 	 */
 	public RealizarCompraVenta() {
+		this.setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1325, 690);
 		contentPane = new JPanel();
@@ -155,10 +157,25 @@ public class RealizarCompraVenta extends JFrame {
 		btnVerificarReserva.setBorder(null);
 		btnVerificarReserva.setBackground(new Color(48, 109, 105));
 		btnVerificarReserva.setBounds(1112, 575, 150, 34);
+		
 		btnVerificarReserva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ConfirmarVenta confirmarVenta = new ConfirmarVenta();
-				dispose();
+                int selectedRow = table.getSelectedRow();
+                
+                if (selectedRow == -1) {
+                    JOptionPane.showMessageDialog(null, "Por favor, seleccione una reserva para continuar.");
+                    return;
+                }
+                
+                int id = (int) table.getValueAt(selectedRow, 0);
+
+                Reserva reserva = controlador.getReservaById(id);
+
+                
+                ConfirmarVenta confirmarVenta = new ConfirmarVenta(reserva.getId_reserva(),reserva);
+                confirmarVenta.setVisible(true);
+                confirmarVenta.setLocationRelativeTo(null);
+                dispose(); // Cerrar la ventana actual
 			}
 		});
 

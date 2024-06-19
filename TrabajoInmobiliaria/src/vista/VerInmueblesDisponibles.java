@@ -158,9 +158,9 @@ public class VerInmueblesDisponibles extends JFrame {
 
                 Inmueble inmueble = controlador.getInmuebleById(id);
 
-                VerDetalleInmueble VerDetalleInmueble = new VerDetalleInmueble(inmueble.getId_inmueble(), inmueble);
-                VerDetalleInmueble.setVisible(true);
-                VerDetalleInmueble.setLocationRelativeTo(null);
+                VerDetalleInmueble verDetalleInmueble = new VerDetalleInmueble(inmueble.getId_inmueble(), inmueble);
+                verDetalleInmueble.setVisible(true);
+                verDetalleInmueble.setLocationRelativeTo(null);
                 dispose(); // Cerrar la ventana actual
                 
 			}

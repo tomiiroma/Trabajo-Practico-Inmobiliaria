@@ -104,7 +104,7 @@ public class MenuVenta extends JFrame {
 		
         btnVolver.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                PantallaAgente pantallaAgente = new PantallaAgente();
+                MenuOperaciones volver = new MenuOperaciones();
                 dispose();
             }
         });

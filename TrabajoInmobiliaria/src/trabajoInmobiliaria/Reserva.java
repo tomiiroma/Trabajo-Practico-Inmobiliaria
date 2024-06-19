@@ -32,8 +32,15 @@ public class Reserva {
 	
 
 
-	public Reserva(int id_reserva, Inmueble inmueble, Cliente cliente, LocalDate fecha_pago, double pago,
-			String forma_pago, Empleado empleado, String tipo_reserva) {
+	public Reserva(
+			int id_reserva, 
+			Inmueble inmueble, 
+			Cliente cliente, 
+			LocalDate fecha_pago, 
+			double pago,
+			String forma_pago, 
+			Empleado empleado, 
+			String tipo_reserva) {
 		super();
 		this.id_reserva = id_reserva;
 		this.inmueble = inmueble;
