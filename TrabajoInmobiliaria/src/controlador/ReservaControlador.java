@@ -56,6 +56,8 @@ public class ReservaControlador implements ReservaRepository{
 	                
 	            	
 	                 LocalDate Fecha_pago = resultSet.getDate("fecha_pago").toLocalDate();   
+	                
+	                 String operacion = resultSet.getString("tipo_reserva");
 	                 
 	                 String forma_pago = resultSet.getString("forma_pago");
 	            	
@@ -64,7 +66,7 @@ public class ReservaControlador implements ReservaRepository{
 	            	 fkEmpleadoId = resultSet.getInt("fk_empleado_id");
 	            	Empleado empleado = empleadocontrolador.getEmpleadoById(fkEmpleadoId);
 	            	
-	                 Reserva reserva = new Reserva(inmueble, cliente, Fecha_pago, montoTotal, forma_pago, empleado);	       
+	                 Reserva reserva = new Reserva(inmueble, cliente, Fecha_pago, operacion, montoTotal, forma_pago, empleado);	       
 	                reservas.add(reserva);
 	            }
 	        } catch (SQLException e) {

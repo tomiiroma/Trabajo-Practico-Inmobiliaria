@@ -1161,7 +1161,7 @@ public boolean RealizarReserva(Inmueble inmueble,Empleado empleado2,Cliente clie
 		if (error==false && validarFecha_pagoReserva(fecha_pago2)) {
 			
 			
-			reservacontrolador.addReserva(new Reserva(inmueble,cliente2,fecha_pago2,montovalidado,forma_pago,empleado2));
+			reservacontrolador.addReserva(new Reserva(inmueble,cliente2,fecha_pago2,"venta",montovalidado,forma_pago,empleado2));
 			
 			return true;
 			

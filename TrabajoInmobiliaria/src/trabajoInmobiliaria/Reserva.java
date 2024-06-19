@@ -7,18 +7,20 @@ public class Reserva {
 	private Inmueble inmueble;
 	private Cliente cliente;
 	private LocalDate fecha_pago;
+	private String operacion;
 	private double pago;
     private String forma_pago;
     private Empleado empleado;
     
     
     
-	public Reserva(Inmueble inmueble, Cliente cliente, LocalDate fecha_pago, double pago,
+	public Reserva(Inmueble inmueble, Cliente cliente, LocalDate fecha_pago, String operacion , double pago,
 			String forma_pago, Empleado empleado) {
 		super();
 		this.inmueble = inmueble;
 		this.cliente = cliente;
 		this.fecha_pago = fecha_pago;
+		this.operacion = operacion;
 		this.pago = pago;
 		this.forma_pago = forma_pago;
 		this.empleado = empleado;
@@ -32,8 +34,8 @@ public class Reserva {
 		return "Reserva \nID_inmueble: " + inmueble.getId_inmueble() 
 			   + "\ntipo inmueble= " + inmueble.getTipo_inmueble() +
 				", dirección= " + inmueble.getDireccion() + ", cliente= " + cliente.getId_cliente() + ", nombre del cliente= " + cliente.getNombre() + ", apellido cliente= " + cliente.getApellido() 
-				+ ", dni del cliente= " + cliente.getDni() + ", fecha_pago= " + fecha_pago + ", pago= "
-				+ pago + ", forma_pago= " + forma_pago + " , = " + empleado.getId_empleado() + ", nombre empleado= " + empleado.getNombre() + ", apellido empleado= " + empleado.getApellido() + ", cargo= "  + empleado.getTipo_empleado() + "]" +"\n";
+				+ ", dni del cliente= " + cliente.getDni() + ", fecha_pago= " + fecha_pago + ", pago= " + 
+				+ pago + ", operacion="+ operacion + ", forma_pago= " + forma_pago + " , = " + empleado.getId_empleado() + ", nombre empleado= " + empleado.getNombre() + ", apellido empleado= " + empleado.getApellido() + ", cargo= "  + empleado.getTipo_empleado() + "]" +"\n";
 	}
 
 
@@ -118,6 +120,20 @@ public class Reserva {
 
 	public void setEmpleado(Empleado empleado) {
 		this.empleado = empleado;
+	}
+
+
+
+
+	public String getOperacion() {
+		return operacion;
+	}
+
+
+
+
+	public void setOperacion(String operacion) {
+		this.operacion = operacion;
 	}
 
 

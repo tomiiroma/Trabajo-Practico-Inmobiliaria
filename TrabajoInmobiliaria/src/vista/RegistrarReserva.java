@@ -29,6 +29,7 @@ public class RegistrarReserva extends JFrame {
 	private OpcionesReserva MenuPrincipalReserva;
 	private ReservaEmpleado SelectorEmpleado;
 	private ReservaCliente SelectorCliente;
+	private ReservaInmueble SelectorInmueble;
 	/**
 	 * Launch the application.
 	 */
@@ -76,8 +77,19 @@ public class RegistrarReserva extends JFrame {
 		btnInmueble.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+	
+if (SelectorInmueble == null) {
+					
+					
+					SelectorInmueble = new ReservaInmueble(inmueble,cliente,empleado);
+					
+				}
 				
+				SelectorInmueble.setLocationRelativeTo(null);
 				
+				SelectorInmueble.setVisible(true);
+				
+				dispose();
 				
 			}
 		});

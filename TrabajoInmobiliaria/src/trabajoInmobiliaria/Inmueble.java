@@ -1,3 +1,4 @@
+
 package trabajoInmobiliaria;
 
 public class Inmueble {
@@ -21,6 +22,11 @@ public class Inmueble {
 	private boolean apto_mascota;
 	private boolean patio;
 	private boolean activo;
+	private String alturaDireccion;
+	private String nroDepto;
+
+
+
 
 
 
@@ -28,7 +34,8 @@ public class Inmueble {
 	public Inmueble(int id_inmueble, String tipo_inmueble, String condicion, String cantAmbientes, String piso,
 			String barrio, String direccion, String descripcion, String antiguedad, String banio, String dormitorio,
 			double superficie_cubierta, double superficie_descubierta, double precio, boolean disponible,
-			boolean refaccionar, boolean apto_mascota, boolean patio, boolean activo) {
+			boolean refaccionar, boolean apto_mascota, boolean patio, boolean activo, String alturaDireccion,
+			String nroDepto) {
 		super();
 		this.id_inmueble = id_inmueble;
 		this.tipo_inmueble = tipo_inmueble;
@@ -49,21 +56,20 @@ public class Inmueble {
 		this.apto_mascota = apto_mascota;
 		this.patio = patio;
 		this.activo = activo;
+		this.alturaDireccion = alturaDireccion;
+		this.nroDepto = nroDepto;
 	}
 
 
-
-
-	public Inmueble() {
-		
-	}
 
 
 	public Inmueble(int fkInmuebleId) {
 		// TODO Auto-generated constructor stub
 	}
 
-
+	public Inmueble() {
+		// TODO Auto-generated constructor stub
+	}
 
 
 	
@@ -331,32 +337,42 @@ public class Inmueble {
 	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}
+	
+	
 
 
+	public String getAlturaDireccion() {
+		return alturaDireccion;
+	}
+
+
+	public void setAlturaDireccion(String alturaDireccion) {
+		this.alturaDireccion = alturaDireccion;
+	}
+
+
+	public String getNroDepto() {
+		return nroDepto;
+	}
+
+
+	public void setNroDepto(String nroDepto) {
+		this.nroDepto = nroDepto;
+	}
 
 
 	@Override
 	public String toString() {
-		return "\nLista de Inmuebles"+"\n"
-				+ "\nId de Inmueble:" + id_inmueble 
-				+ "\nTipo de Inmueble: " + tipo_inmueble
-				+"\nPiso: "+piso
-				+"\nCantidad de Ambientes: "+cantAmbientes
-				+ "\nCondición: " + condicion
-				+ "\nDisponibilidad: " + disponible 
-				+ "\nm2 superficie cubierta: " + superficie_cubierta
-				+ "\nm2 superficie descubierta: " + superficie_descubierta 
-				+ "\nBarrio: " + barrio 
-				+"\nDireccion del Inmueble: "+direccion
-				+ "\nPatio: "+ patio 
-				+ "\nDescripción: " + descripcion 
-				+ "\nAños de antiguedad: " + antiguedad 
-				+ "\nPrecio del inmueble: " + precio
-				+ "\nCantidad de Baños: " + banio 
-				+ "\nSe debe refaccionar: " + refaccionar 
-				+ "\nCantidad de Dormitorios: "+ dormitorio 
-				+ "\nEs apto para mascota: " + apto_mascota
-				+"\nInmueble Activo: "+activo;
+		return 
+				"Id: " + id_inmueble 
+				+", Tipo Inmueble: " + tipo_inmueble
+				+", Piso: "+piso
+				+", Nro Depto: "+nroDepto
+				+", Cant. Ambientes: "+cantAmbientes
+				+", Condición: " + condicion
+				+", Barrio: " + barrio 
+				+", Direccion: "+direccion+" "+alturaDireccion
+				+", Precio: " + precio;
 	}
 
 
