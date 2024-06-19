@@ -1423,7 +1423,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 	public String ModificarGerente2 (Gerente gerente,String nombre, String apellido, LocalDate fecha, int dni, int telefono, String correo, String contraseña){
 		
 		GerenteControlador gerentecontrolador = new GerenteControlador();
-		
+		ControladorEmpleado empleadocontrolador = new ControladorEmpleado();
 		
 		if (gerentecontrolador.getAllGerente().size()==0) {
 			
@@ -1458,11 +1458,11 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 			
 				
 				
-		for (Gerente gerentes : gerentecontrolador.getAllGerente()) {
+		for (Empleado empleados : empleadocontrolador.getAllEmpleados()) {
 			
-			if ( dni == gerentes.getDni() && gerente.getId_empleado() != gerentes.getId_empleado() ) {
+			if ( dni == empleados.getDni() && gerente.getId_empleado() != empleados.getId_empleado() ) {
 				
-				JOptionPane.showMessageDialog(null, "Se esta intentandos modificar el dni al de una persona existente en la base de datos.");
+				//JOptionPane.showMessageDialog(null, "Se esta intentandos modificar el dni al de una persona existente en la base de datos.");
 				
 				  return "Se esta intentandos modificar el dni al de una persona existente en la base de datos.";
 				
@@ -1474,11 +1474,11 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 		}
 					
 					
-	for (Gerente gerentes : gerentecontrolador.getAllGerente()) {
+	for (Empleado empleados : empleadocontrolador.getAllEmpleados()) {
 			
-			if (gerentes.getCorreo().equalsIgnoreCase(correo) && gerente.getId_empleado() != gerentes.getId_empleado() ) {
+			if (empleados.getCorreo().equalsIgnoreCase(correo) && gerente.getId_empleado() != empleados.getId_empleado() ) {
 				
-				JOptionPane.showMessageDialog(null, "El correo no se encuentra disponible.");
+		//		JOptionPane.showMessageDialog(null, "El correo no se encuentra disponible.");
 				
 				  return "El mail ya se encuentra utilizado";
 				

@@ -37,6 +37,9 @@ public class Cliente {
 		this.fecha_nacimiento = fecha_nacimiento;
 		this.dni = dni;
 	}
+	
+	
+	public Cliente() {}
 
 
 	@Override
