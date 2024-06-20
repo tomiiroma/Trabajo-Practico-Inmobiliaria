@@ -478,7 +478,8 @@ public class VerDetalleInmueble extends JFrame implements Validacion{
         elemento_1.setForeground(Color.WHITE);
         elemento_1.setFont(new Font("Arial", Font.BOLD, 13));
         elemento_1.setFocusable(false);
-        elemento_1.setBackground(new Color(0, 128, 128));
+        elemento_1.setBackground(new Color(52, 118, 113));
+
         elemento_1.setBounds(10, 77, 1289, 32);
         contentPane.add(elemento_1);
         

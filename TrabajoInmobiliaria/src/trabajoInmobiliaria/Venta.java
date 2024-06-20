@@ -15,14 +15,18 @@ public class Venta {
 
 
 
-
-
-
-
-
-
-	public Venta(int id_venta, Inmueble inmueble, Comprador comprador, Contrato contrato, double monto_total,
-			String forma_pago, Empleado empleado, String tipo_empleado, Reserva reservaVenta) {
+	public Venta(
+			int id_venta, 
+			Inmueble inmueble, 
+			Comprador comprador, 
+			Contrato contrato, 
+			double monto_total,
+			String forma_pago, 
+			Empleado empleado, 
+			String tipo_empleado, 
+			Reserva reservaVenta) {
+		
+		
 		super();
 		this.id_venta = id_venta;
 		this.inmueble = inmueble;
@@ -34,6 +38,30 @@ public class Venta {
 		this.tipo_empleado = tipo_empleado;
 		this.reservaVenta = reservaVenta;
 	}
+
+
+	
+	
+	
+	
+
+
+	public Venta(int id_venta, Inmueble inmueble, Comprador comprador, double monto_total, String forma_pago,
+			Empleado empleado, String tipo_empleado, Reserva reservaVenta) {
+		super();
+		this.id_venta = id_venta;
+		this.inmueble = inmueble;
+		this.comprador = comprador;
+		this.monto_total = monto_total;
+		this.forma_pago = forma_pago;
+		this.empleado = empleado;
+		this.tipo_empleado = tipo_empleado;
+		this.reservaVenta = reservaVenta;
+	}
+
+
+
+
 
 
 

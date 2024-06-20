@@ -72,7 +72,7 @@ public class RealizarCompraVenta extends JFrame {
 	public RealizarCompraVenta() {
 		this.setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1325, 690);
+		setBounds(100, 100, 1518, 690);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(52, 118, 113));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -81,19 +81,19 @@ public class RealizarCompraVenta extends JFrame {
 
 		controlador = new ReservaControlador();
 
-		String[] columnNames = { "ID Reserva", "ID Inmueble","Tipo Inmueble","Direccion", "ID Comprador","Nombre","Apellido","Dni","Fecha Pago", "Monto", "Forma Pago", 
-				"Tipo Reserva","ID Vendedor","Nombre","Apellido"};
+		String[] columnNames = { "ID Reserva", "ID Inmueble","Tipo Inmueble","Direccion", "ID Comprador","Nombre","Apellido"
+				,"Id Propietario","Fecha Pago", "Monto", "Forma Pago","ID Empleado","Nombre","Apellido","Tipo Empleado"};
 		model = new DefaultTableModel(columnNames, 0);
 		table = new JTable(model);
 
 	    JScrollPane scrollPane = new JScrollPane(table);
-	    scrollPane.setBounds(10, 37, 1289, 521);
+	    scrollPane.setBounds(10, 37, 1471, 521);
 	    contentPane.add(scrollPane);
 		
 	    
         JTextArea elemento_1 = new JTextArea();
         elemento_1.setForeground(new Color(255, 255, 255));
-        elemento_1.setBackground(new Color(0, 128, 128));
+        elemento_1.setBackground(new Color(52, 118, 113));    
         elemento_1.setFont(new Font("Arial", Font.BOLD, 13));
         elemento_1.setBounds(10, 11, 1289, 32);
         elemento_1.setFocusable(false);
@@ -110,20 +110,25 @@ public class RealizarCompraVenta extends JFrame {
                     int selectedRow = table.getSelectedRow();
                     if (selectedRow != -1) {
                         int id = (int) table.getValueAt(selectedRow, 0);
+                        
                         int idInmueble = (int) table.getValueAt(selectedRow, 1);
                         String tipoInmueble = (String) table.getValueAt(selectedRow, 2);
                         String direccion = (String) table.getValueAt(selectedRow, 3);
+                        
                         int idCliente = (int) table.getValueAt(selectedRow, 4);
                         String nombreCliente = (String) table.getValueAt(selectedRow, 5);
                         String apellidoCliente = (String) table.getValueAt(selectedRow, 6);
-                        int dniCliente = (int) table.getValueAt(selectedRow, 7);
+                        
+                        int idPropietario = (int) table.getValueAt(selectedRow, 7);
+                        
                         LocalDate fecha= (LocalDate) table.getValueAt(selectedRow, 8);
                         double pago = (double)table.getValueAt(selectedRow, 9);
                         String formaPago = (String) table.getValueAt(selectedRow, 10);
-                        String tipoReserva = (String) table.getValueAt(selectedRow, 11);
-                        int idEmpleado = (int) table.getValueAt(selectedRow, 12);
-                        String nombreEmpleado = (String) table.getValueAt(selectedRow, 13);
-                        String apellidoEmpleado = (String) table.getValueAt(selectedRow, 14);
+                        
+                        int idEmpleado = (int) table.getValueAt(selectedRow, 11);
+                        String nombreEmpleado = (String) table.getValueAt(selectedRow, 12);
+                        String apellidoEmpleado = (String) table.getValueAt(selectedRow, 13);
+                        String tipoEmpleado = (String) table.getValueAt(selectedRow, 14);
 
 
                     }
@@ -156,7 +161,7 @@ public class RealizarCompraVenta extends JFrame {
 		btnVerificarReserva.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnVerificarReserva.setBorder(null);
 		btnVerificarReserva.setBackground(new Color(48, 109, 105));
-		btnVerificarReserva.setBounds(1112, 575, 150, 34);
+		btnVerificarReserva.setBounds(1312, 575, 150, 34);
 		
 		btnVerificarReserva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -172,7 +177,7 @@ public class RealizarCompraVenta extends JFrame {
                 Reserva reserva = controlador.getReservaById(id);
 
                 
-                ConfirmarVenta confirmarVenta = new ConfirmarVenta(reserva.getId_reserva(),reserva);
+                ConfirmarVenta confirmarVenta = new ConfirmarVenta(id,reserva);
                 confirmarVenta.setVisible(true);
                 confirmarVenta.setLocationRelativeTo(null);
                 dispose(); // Cerrar la ventana actual
@@ -199,19 +204,23 @@ public class RealizarCompraVenta extends JFrame {
         		model.addRow(new Object[]{
         				reserva.getId_reserva(),
         				reserva.getInmueble().getId_inmueble(),
-        				reserva.getInmueble().getTipo_inmueble(),
+        				reserva.getInmueble().getTipo_inmueble(), 				
         				reserva.getInmueble().getDireccion(),    
+        				
         				reserva.getCliente().getId_cliente(),
         				reserva.getCliente().getNombre(),
         				reserva.getCliente().getApellido(),
-        				reserva.getCliente().getDni(),
+        				reserva.getCliente().getId_Propietario(),
+        				
         				reserva.getFecha_pago(),
         				reserva.getPago(),
         				reserva.getForma_pago(),
-        				reserva.getTipo_reserva(),
+        				
         				reserva.getEmpleado().getId_empleado(),
         				reserva.getEmpleado().getNombre(),
-        				reserva.getEmpleado().getApellido()
+        				reserva.getEmpleado().getApellido(),
+        				reserva.getEmpleado().getTipo_empleado(),
+
 
         		});
         	}

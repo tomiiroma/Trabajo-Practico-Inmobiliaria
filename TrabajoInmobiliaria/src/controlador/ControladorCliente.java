@@ -15,9 +15,6 @@ public class ControladorCliente implements ClienteRepository {
 
 	
 	
-	
-	
-	
 
 	   private final Connection connection;
 
@@ -44,8 +41,10 @@ public class ControladorCliente implements ClienteRepository {
 	            			resultSet.getString("direccion"),
 	            			resultSet.getInt("telefono"),
 	            			resultSet.getDate("fecha_nacimiento").toLocalDate(),
-	            			resultSet.getInt("dni"));
-	            	
+	            			resultSet.getInt("dni"),
+	            			resultSet.getInt("id_Propietario"));
+;
+
 	            	
 	            	
 	                agentes.add(cliente);
@@ -75,7 +74,9 @@ public class ControladorCliente implements ClienteRepository {
 	            			resultSet.getString("direccion"),
 	            			resultSet.getInt("telefono"),
 	            			resultSet.getDate("fecha_nacimiento").toLocalDate(),
-	            			resultSet.getInt("dni"));
+	            			resultSet.getInt("dni"),
+	            			resultSet.getInt("id_Propietario"));
+	            	
 	           
 	            }
 	        } catch (SQLException e) {
