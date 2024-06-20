@@ -12,14 +12,24 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controlador.AgenteControlador;
+import controlador.CompradorControlador;
+import controlador.ContratoControlador;
+import controlador.ControladorEmpleado;
+import controlador.GerenteControlador;
+import controlador.InmuebleControlador;
+import controlador.ReservaControlador;
 import controlador.VentaControlador;
 import trabajoInmobiliaria.Reserva;
+import trabajoInmobiliaria.Venta;
 import trabajoInmobiliaria.Empleado;
+import trabajoInmobiliaria.Inmueble;
 import trabajoInmobiliaria.Cliente;
-
-
+import trabajoInmobiliaria.Comprador;
+import trabajoInmobiliaria.Contrato;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 
@@ -214,36 +224,67 @@ public class ConfirmarVenta extends JFrame {
         
         
         if(reserva != null){
-        	txtIdInmueble.setText(Integer.toString(reserva.getInmueble().getId_inmueble()));
-
         	
+        	txtIdInmueble.setText(Integer.toString(reserva.getInmueble().getId_inmueble()));
+ 	
         	txtPropVende.setText(Integer.toString(id2));
-
         	
             txtIdComprador.setText(Integer.toString(reserva.getCliente().getId_cliente()));
-
         	
         	txtNomCompra.setText(reserva.getCliente().getNombre());
         	
-        	txtApeCompra.setText(reserva.getCliente().getApellido());
-        	
+        	txtApeCompra.setText(reserva.getCliente().getApellido());       	
         	        		
         	txtIdReserva.setText(String.valueOf(reserva.getId_reserva()));
         	
-        	txtIdEmpleado.setText(Integer.toString(empleado.getId_empleado()));
-        	
+        	txtIdEmpleado.setText(Integer.toString(empleado.getId_empleado()));        	
         	
         	txtTipoEmpleado.setText(empleado.getTipo_empleado());
         }
-        	
+        
+        
+        btnConfirmar.addActionListener(new ActionListener() {
+ 			public void actionPerformed(ActionEvent e) {
 
+ 		        int idInmueble = reserva.getInmueble().getId_inmueble();
+ 		        int idComprador = reserva.getCliente().getId_cliente();
+ 		        String monto = txtMonto.getText().trim();
+ 		        String formaPago = (String) cbMetodoPago.getSelectedItem();
+
+ 		        String tipoEmpleado = empleado.getTipo_empleado();
+ 		        int idReserva = reserva.getId_reserva();
+
+ 		        double montoDouble = Double.parseDouble(monto);
+
+ 		        int idEmpleado = empleado.getId_empleado();
+
+ 			    ControladorEmpleado empleadoCont =  new ControladorEmpleado();
+ 			    VentaControlador controlador = new VentaControlador();
+ 			    InmuebleControlador inmuebleCont = new InmuebleControlador();
+ 			    CompradorControlador compradorCont = new CompradorControlador();
+ 			    ContratoControlador contratoCont = new ContratoControlador();
+ 			    ReservaControlador  reservaCont = new ReservaControlador();
+ 			    Comprador comprador = compradorCont.getCompradorById(idComprador);
+
+ 			    
+ 			    Inmueble inmueble = inmuebleCont.getInmuebleById(idInmueble);
+ 			    Contrato contrato = null;
+ 			    Reserva reserva1 = reservaCont.getReservaById(idReserva);
+
+ 			    
+ 			    Empleado empleado1 = empleadoCont.getEmpleadoById(idEmpleado);
+ 			    
+
+   			   Venta venta = new Venta(0, inmueble, comprador, contrato, montoDouble, formaPago, empleado1, tipoEmpleado,reserva1);
+   			   JOptionPane.showMessageDialog(null, venta);
+
+                 
+                 }
+ 		});
         
-        VentaControlador venta = new VentaControlador();
         
 
-        	
-        	
-        
+
 
         
         

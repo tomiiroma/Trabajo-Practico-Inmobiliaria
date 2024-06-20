@@ -500,8 +500,7 @@ public class AgregarInmueble extends JFrame implements Validacion{
 			public void actionPerformed(ActionEvent e) {
 
                 String tipoInmueble = (String) cbTipoInmueble.getSelectedItem();
-                
-                
+              
 
 				String calle = txtCalleDireccion.getText().trim();
 				boolean calleValida = validarCadena2(calle);
@@ -520,9 +519,6 @@ public class AgregarInmueble extends JFrame implements Validacion{
 				lblSuperCubiertaIncorrecta.setVisible(!m2cubiertosValido);
 				
 				boolean patio = cbPatio.getSelectedItem().equals("Si");
-				
-
-
 				
 				
 				String precio = txtPrecio.getText().trim();
