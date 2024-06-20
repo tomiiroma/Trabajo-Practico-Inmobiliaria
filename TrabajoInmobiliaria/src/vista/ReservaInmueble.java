@@ -119,6 +119,26 @@ public class ReservaInmueble extends JFrame {
 		
 		scrollPane.setViewportView(tableInmuebles);
 		JButton btnNewButton_2 = new JButton("Volver");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if (VolverMenu == null) {
+					
+					
+					VolverMenu = new RegistrarReserva(inmueble,cliente,empleado);
+					
+				}
+				
+				VolverMenu.setLocationRelativeTo(null);
+				
+				VolverMenu.setVisible(true);
+				
+				dispose();
+				
+				
+				
+			}
+		});
 		btnNewButton_2.setBounds(279, 567, 143, 57);
 		panel_1.add(btnNewButton_2);
 		
@@ -174,15 +194,15 @@ public class ReservaInmueble extends JFrame {
                     int selectedRow = tableInmuebles.getSelectedRow();
                     if (selectedRow != -1) {
                     	  int id = (int) tableInmuebles.getValueAt(selectedRow, 0);
-                          String tipoInmueble = (String) tableInmuebles.getValueAt(selectedRow, 1);
+                       //   String tipoInmueble = (String) tableInmuebles.getValueAt(selectedRow, 1);
                           String piso = (String) tableInmuebles.getValueAt(selectedRow, 2);
-                          String ambientes = (String) tableInmuebles.getValueAt(selectedRow, 3);
+                     //     String ambientes = (String) tableInmuebles.getValueAt(selectedRow, 3);
                           String barrio = (String) tableInmuebles.getValueAt(selectedRow, 4);
                           String direccion = (String) tableInmuebles.getValueAt(selectedRow, 5);
                           String altura = (String) tableInmuebles.getValueAt(selectedRow, 6);
                           Double precio = (Double) tableInmuebles.getValueAt(selectedRow, 7);
-                          boolean disponible = (boolean) tableInmuebles.getValueAt(selectedRow, 8);
-                          String condicion = (String) tableInmuebles.getValueAt(selectedRow, 9);
+                      //    boolean disponible = (boolean) tableInmuebles.getValueAt(selectedRow, 8);
+                    //      String condicion = (String) tableInmuebles.getValueAt(selectedRow, 9);
                         lblInmuebleSeleccionado.setText("Seleccionado: ID_empleado=" + id + ", Barrio: "+barrio + ", Direccion: " +direccion+ ", Altura: "+altura  );
                         
                         inmuebleseleccionado =inmueblecontrolador.getInmuebleById(id);

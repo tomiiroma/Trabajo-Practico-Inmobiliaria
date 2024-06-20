@@ -24,6 +24,7 @@ import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
+import java.awt.Color;
 
 public class RegistrarReserva extends JFrame {
 
@@ -31,12 +32,10 @@ public class RegistrarReserva extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
-	private JTextField textField_2;
 	private OpcionesReserva MenuPrincipalReserva;
 	private ReservaEmpleado SelectorEmpleado;
 	private ReservaCliente SelectorCliente;
 	private ReservaInmueble SelectorInmueble;
-	private Gerente gerente;
 	private ReservaControlador controladorR;
 	/**
 	 * Launch the application.
@@ -72,9 +71,20 @@ public class RegistrarReserva extends JFrame {
 		btnModificarEmpleado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+			if (SelectorEmpleado == null) {
 				
+				SelectorEmpleado = new ReservaEmpleado(inmueble,cliente,empleado);
 				
+			}	
+			
 				
+			SelectorEmpleado.setLocationRelativeTo(null);
+			
+			SelectorEmpleado.setVisible(true);
+			
+			dispose();
+			
+			
 				
 			}
 		});
@@ -86,7 +96,7 @@ public class RegistrarReserva extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 	
-if (SelectorInmueble == null) {
+				if (SelectorInmueble == null) {
 					
 					
 					SelectorInmueble = new ReservaInmueble(inmueble,cliente,empleado);
@@ -110,6 +120,25 @@ if (SelectorInmueble == null) {
 		
 		
 		JButton btnModificarInmueble = new JButton("Modificar");
+		btnModificarInmueble.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+					if (SelectorInmueble == null) {
+					
+						SelectorInmueble = new ReservaInmueble(inmueble,cliente,empleado);
+					
+													}
+			
+
+					SelectorInmueble.setLocationRelativeTo(null);
+				
+					SelectorInmueble.setVisible(true);
+				
+					dispose();
+				
+				
+			}
+		});
 		btnModificarInmueble.setBounds(517, 159, 232, 37);
 		contentPane.add(btnModificarInmueble);
 		
@@ -301,7 +330,7 @@ if (SelectorInmueble == null) {
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(618, 534, 208, 37);
+		textField_1.setBounds(517, 534, 208, 37);
 		contentPane.add(textField_1);
 		
 		JLabel lblNewLabel_3 = new JLabel("Fecha pago:");
@@ -309,24 +338,24 @@ if (SelectorInmueble == null) {
 		contentPane.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("Monto:");
-		lblNewLabel_4.setBounds(521, 534, 87, 37);
+		lblNewLabel_4.setBounds(432, 534, 87, 37);
 		contentPane.add(lblNewLabel_4);
-		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(163, 615, 208, 37);
-		contentPane.add(textField_2);
 		
 		JLabel lblNewLabel_5 = new JLabel("Forma de pago:");
 		lblNewLabel_5.setBounds(60, 615, 87, 37);
 		contentPane.add(lblNewLabel_5);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(618, 615, 208, 37);
-		contentPane.add(comboBox);
+		JComboBox<String> comboBoxOperacion = new JComboBox<String>();
+		comboBoxOperacion.setBackground(new Color(255, 255, 255));
+		comboBoxOperacion.setBounds(517, 615, 208, 37);
+		contentPane.add(comboBoxOperacion);
+		
+		
+		comboBoxOperacion.addItem("Venta");
+		comboBoxOperacion.addItem("Alquiler");
 		
 		JLabel lblNewLabel_6 = new JLabel("Operacion");
-		lblNewLabel_6.setBounds(521, 615, 87, 37);
+		lblNewLabel_6.setBounds(432, 615, 87, 37);
 		contentPane.add(lblNewLabel_6);
 		
 		
@@ -368,8 +397,15 @@ if (SelectorInmueble == null) {
 				
 			}
 		});
-		RegistrarReserva.setBounds(474, 687, 232, 37);
+		RegistrarReserva.setBounds(528, 687, 232, 37);
 		contentPane.add(RegistrarReserva);
+		
+		JComboBox<String> comboBoxFormaPago = new JComboBox<String>();
+		comboBoxFormaPago.setBackground(new Color(255, 255, 255));
+		comboBoxFormaPago.setBounds(163, 615, 208, 37);
+		contentPane.add(comboBoxFormaPago);
+		
+		comboBoxFormaPago.addItem("Efectivo");
 		
 		
 		

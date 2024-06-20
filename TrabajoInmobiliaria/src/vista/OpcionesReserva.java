@@ -18,7 +18,7 @@ public class OpcionesReserva extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private RegistrarReserva nuevaReserva;
-    
+    private ListaReserva listaR;
 	/**
 	 * Launch the application.
 	 */
@@ -53,6 +53,25 @@ public class OpcionesReserva extends JFrame {
 		contentPane.add(lblOpcionesReserva);
 		
 		JButton btnNewButton = new JButton("Ver Reservas");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if (listaR == null) {
+					
+					listaR = new ListaReserva();
+					
+				}
+				
+				listaR.setLocationRelativeTo(null);
+				
+				listaR.setVisible(true);
+				
+				dispose();
+				
+				
+				
+			}
+		});
 		btnNewButton.setBounds(60, 173, 193, 47);
 		contentPane.add(btnNewButton);
 		
