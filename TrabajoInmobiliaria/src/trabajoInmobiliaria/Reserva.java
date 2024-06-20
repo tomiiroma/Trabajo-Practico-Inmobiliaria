@@ -27,26 +27,7 @@ public class Reserva {
 		this.tipo_reserva = tipo_reserva;
 	}
 
-
 	
-
-
-	public Propietario getPropietario() {
-		return propietario;
-	}
-
-
-
-
-
-	public void setPropietario(Propietario propietario) {
-		this.propietario = propietario;
-	}
-
-
-
-
-
 	public Reserva(int id_reserva, Inmueble inmueble, Cliente cliente, LocalDate fecha_pago, double pago,
 			String forma_pago, Empleado empleado, String tipo_reserva, Propietario propietario) {
 		super();
@@ -85,6 +66,28 @@ public class Reserva {
 		this.empleado = empleado;
 		this.tipo_reserva = tipo_reserva;
 	}
+	
+
+	
+
+
+	public Propietario getPropietario() {
+		return propietario;
+	}
+
+
+
+
+
+	public void setPropietario(Propietario propietario) {
+		this.propietario = propietario;
+	}
+
+
+
+
+
+
 
 
 

@@ -12,9 +12,12 @@ import javax.swing.table.DefaultTableModel;
 
 import controlador.CompradorControlador;
 import controlador.ContratoControlador;
+import controlador.ControladorCliente;
+import controlador.ControladorEmpleado;
 import controlador.InmuebleControlador;
 import controlador.PropietarioControlador;
 import controlador.ReservaControlador;
+import trabajoInmobiliaria.Cliente;
 import trabajoInmobiliaria.Comprador;
 import trabajoInmobiliaria.Empleado;
 import trabajoInmobiliaria.Inmueble;
@@ -49,10 +52,10 @@ public class RealizarCompraVenta extends JFrame {
 	private JTable table;
 	private DefaultTableModel model;
 	private ReservaControlador controlador;
+	private ControladorCliente controlador2;
+	private ControladorEmpleado controlador3;
 
-	/**
-	 * Launch the application.
-	 */
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -66,9 +69,7 @@ public class RealizarCompraVenta extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
+	
 	public RealizarCompraVenta() {
 		this.setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -80,9 +81,12 @@ public class RealizarCompraVenta extends JFrame {
 		contentPane.setLayout(null);
 
 		controlador = new ReservaControlador();
+		controlador2 = new ControladorCliente();
+		controlador3 = new ControladorEmpleado();
 
 		String[] columnNames = { "ID Reserva", "ID Inmueble","Tipo Inmueble","Direccion", "ID Comprador","Nombre","Apellido"
 				,"Id Propietario","Fecha Pago", "Monto", "Forma Pago","ID Empleado","Nombre","Apellido","Tipo Empleado"};
+		
 		model = new DefaultTableModel(columnNames, 0);
 		table = new JTable(model);
 
@@ -173,11 +177,21 @@ public class RealizarCompraVenta extends JFrame {
                 }
                 
                 int id = (int) table.getValueAt(selectedRow, 0);
-
                 Reserva reserva = controlador.getReservaById(id);
-
                 
-                ConfirmarVenta confirmarVenta = new ConfirmarVenta(id,reserva);
+                int idProp = (int) table.getValueAt(selectedRow, 7);
+                Cliente cliente = controlador2.getClienteById(idProp);
+                
+                
+                int idEmpleado = (int)table.getValueAt(selectedRow, 11);            
+                
+                String tipoEmpleado = (String) table.getValueAt(selectedRow, 14);
+                
+                Empleado empleado = controlador3.getEmpleadoById(idEmpleado);
+                
+                
+                ConfirmarVenta confirmarVenta = new ConfirmarVenta(id, reserva,idProp,cliente,idEmpleado,empleado);
+
                 confirmarVenta.setVisible(true);
                 confirmarVenta.setLocationRelativeTo(null);
                 dispose(); // Cerrar la ventana actual

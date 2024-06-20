@@ -5,12 +5,14 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controlador.VentaControlador;
 import trabajoInmobiliaria.Reserva;
 import trabajoInmobiliaria.Empleado;
 import trabajoInmobiliaria.Cliente;
@@ -31,31 +33,28 @@ public class ConfirmarVenta extends JFrame {
 	private JTextField txtIdReserva;
 	private JTextField txtNomCompra;
 	private JTextField txtApeCompra;
-	private JTextField txtPropVende;
 	private JTextField txtTipoEmpleado;
+	private JTextField txtPropVende;
 
 	/**
 	 * Launch the application.
 	 */
 
 
-	/**
-	 * Create the frame.
-	 * @param reserva 
-	 */
-	public ConfirmarVenta(int id,Reserva reserva) {
+
+	public ConfirmarVenta(int id,Reserva reserva,int id2, Cliente cliente,int id3,Empleado empleado) {
+		
 		 this.setVisible(true);
 	        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	        setBounds(100, 100, 964, 743);
+	        setBounds(100, 100, 964, 580);
 	        contentPane = new JPanel();
 	        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		    contentPane.setBackground(new Color(52, 118, 113));
 
 		setContentPane(contentPane);
 		
-		
         JButton btnVolver = new JButton("Volver");
-        btnVolver.setBounds(30, 626, 150, 34);
+        btnVolver.setBounds(30, 468, 150, 34);
         btnVolver.setFont(new Font("Tahoma", Font.BOLD, 12));
         btnVolver.setForeground(new Color(255, 255, 255));
         btnVolver.setBackground(new Color(48, 109, 105));
@@ -152,13 +151,7 @@ public class ConfirmarVenta extends JFrame {
         lblIdReserva.setBounds(550, 362, 170, 15);
         contentPane.add(lblIdReserva);
         
-        JButton btnConfirmar = new JButton("Confirmar Venta");
-        btnConfirmar.setForeground(Color.WHITE);
-        btnConfirmar.setFont(new Font("Tahoma", Font.BOLD, 12));
-        btnConfirmar.setBorder(null);
-        btnConfirmar.setBackground(new Color(48, 109, 105));
-        btnConfirmar.setBounds(770, 633, 150, 34);
-        contentPane.add(btnConfirmar);
+
         
         txtNomCompra = new JTextField();
         txtNomCompra.setEditable(false);
@@ -184,12 +177,6 @@ public class ConfirmarVenta extends JFrame {
         txtApeCompra.setBounds(210, 358, 150, 25);
         contentPane.add(txtApeCompra);
         
-        txtPropVende = new JTextField();
-        txtPropVende.setEditable(false);
-        txtPropVende.setColumns(10);
-        txtPropVende.setBounds(210, 169, 150, 25);
-        contentPane.add(txtPropVende);
-        
         JLabel lblIdVendedor = new JLabel("Id Propietario Vendedor:");
         lblIdVendedor.setForeground(Color.WHITE);
         lblIdVendedor.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -210,31 +197,54 @@ public class ConfirmarVenta extends JFrame {
         cbMetodoPago.addItem("Cheque");
         contentPane.add(cbMetodoPago);
         
+    	txtPropVende = new JTextField();
+    	txtPropVende.setEditable(false);
+    	txtPropVende.setColumns(10);
+    	txtPropVende.setBounds(210, 169, 150, 25);
+    	contentPane.add(txtPropVende);
+    	
+    	
+        JButton btnConfirmar = new JButton("Confirmar Venta");
+        btnConfirmar.setForeground(Color.WHITE);
+        btnConfirmar.setFont(new Font("Tahoma", Font.BOLD, 12));
+        btnConfirmar.setBorder(null);
+        btnConfirmar.setBackground(new Color(48, 109, 105));
+        btnConfirmar.setBounds(770, 475, 150, 34);
+        contentPane.add(btnConfirmar);
         
-        if(reserva!=null){
+        
+        if(reserva != null){
         	txtIdInmueble.setText(Integer.toString(reserva.getInmueble().getId_inmueble()));
-        	
-            txtPropVende.setText(Integer.toString(reserva.getCliente().getId_Propietario()));
 
+        	
+        	txtPropVende.setText(Integer.toString(id2));
+
+        	
             txtIdComprador.setText(Integer.toString(reserva.getCliente().getId_cliente()));
 
         	
         	txtNomCompra.setText(reserva.getCliente().getNombre());
+        	
         	txtApeCompra.setText(reserva.getCliente().getApellido());
         	
         	        		
         	txtIdReserva.setText(String.valueOf(reserva.getId_reserva()));
         	
+        	txtIdEmpleado.setText(Integer.toString(empleado.getId_empleado()));
+        	
+        	
+        	txtTipoEmpleado.setText(empleado.getTipo_empleado());
+        }
+        	
+
+        
+        VentaControlador venta = new VentaControlador();
+        
 
         	
         	
-        	
-        }
         
-        
-        
-        
-        
+
         
         
 		
