@@ -1,6 +1,6 @@
 package vista;
 
-import java.awt.Color; 
+import java.awt.Color;  
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -45,7 +45,7 @@ public class ConfirmarVenta extends JFrame {
 	private JTextField txtApeCompra;
 	private JTextField txtTipoEmpleado;
 	private JTextField txtPropVende;
-
+	private Empleado empleado1;
 	/**
 	 * Launch the application.
 	 */
@@ -62,6 +62,9 @@ public class ConfirmarVenta extends JFrame {
 		    contentPane.setBackground(new Color(52, 118, 113));
 
 		setContentPane(contentPane);
+		
+		
+		empleado1 = new Empleado();
 		
         JButton btnVolver = new JButton("Volver");
         btnVolver.setBounds(30, 468, 150, 34);
@@ -264,20 +267,24 @@ public class ConfirmarVenta extends JFrame {
  			    CompradorControlador compradorCont = new CompradorControlador();
  			    ContratoControlador contratoCont = new ContratoControlador();
  			    ReservaControlador  reservaCont = new ReservaControlador();
- 			    Comprador comprador = compradorCont.getCompradorById(idComprador);
-
  			    
+ 			    Comprador comprador = compradorCont.getCompradorById(idComprador);	    
  			    Inmueble inmueble = inmuebleCont.getInmuebleById(idInmueble);
  			    Contrato contrato = null;
  			    Reserva reserva1 = reservaCont.getReservaById(idReserva);
+ 			    Empleado empleado1= empleadoCont.getEmpleadoById(idEmpleado);	
+ 			   
 
- 			    
- 			    Empleado empleado1 = empleadoCont.getEmpleadoById(idEmpleado);
- 			    
+   			    Venta venta = new Venta(0, inmueble, comprador, montoDouble, formaPago, empleado1, tipoEmpleado,reserva1);
 
-   			   Venta venta = new Venta(0, inmueble, comprador, contrato, montoDouble, formaPago, empleado1, tipoEmpleado,reserva1);
-   			   JOptionPane.showMessageDialog(null, venta);
-
+   			    VentaControlador ventaControlador = new VentaControlador();
+   			   
+   			    
+   			    ventaControlador.addVenta(venta);
+                MenuVenta volver = new MenuVenta();
+                dispose();	
+   			    
+   			    
                  
                  }
  		});

@@ -479,7 +479,6 @@ public class Empleado implements InicioSesion,Validacion{
 		  for (Venta ventas : venta.getAllVentas()) {
 		        System.out.println("ID Venta: " + ventas.getId_venta());
 		        System.out.println("Comprador: " + ventas.getComprador());
-		        System.out.println("Contrato: " + ventas.getContrato());
 		        System.out.println("Monto Total: " + ventas.getMonto_total());
 		        System.out.println("Forma Pago: " + ventas.getForma_pago());
 		        System.out.println("Empleado que vendio: " + ventas.getEmpleado());
@@ -541,6 +540,7 @@ public class Empleado implements InicioSesion,Validacion{
 		    String tipoEmpleado = (String) JOptionPane.showInputDialog(null, "Selecciones el Vendedor", "Tipos de Empleados",JOptionPane.DEFAULT_OPTION, null, listaempleados, listaempleados[0]);
 		    
 		    Empleado empleado = null;
+		    
 		    if(tipoEmpleado.equalsIgnoreCase("Agente")) {
 		    	 String [] opcionesEmpleado = new String[agenteCont.getAllAgente().size()];
 				    for (int i = 0; i < opcionesEmpleado.length; i++) {
@@ -566,7 +566,7 @@ public class Empleado implements InicioSesion,Validacion{
 		   Reserva reserva = null;
 	  
 
-	    Venta venta = new Venta(0, inmueble, comprador, contrato, montoTotal, formaPago, empleado, tipoEmpleado,reserva);
+	    Venta venta = new Venta(0, inmueble, comprador, montoTotal, formaPago, empleado, tipoEmpleado,reserva);
 	    controlador.addVenta(venta);
 	}
 	

@@ -4,7 +4,6 @@ public class Venta {
 	private int id_venta;
 	private Inmueble inmueble;
 	private Comprador comprador;
-	private Contrato contrato;
 	private double monto_total;
 	private String forma_pago;
 	private Empleado empleado;
@@ -15,19 +14,6 @@ public class Venta {
 	
 
 
-	public Venta(int id_venta, Inmueble inmueble, Comprador comprador, Contrato contrato, double monto_total,
-			String forma_pago, Empleado empleado, String tipo_empleado, Reserva reservaVenta) {
-		super();
-		this.id_venta = id_venta;
-		this.inmueble = inmueble ;
-		this.comprador = comprador;
-		this.contrato = contrato;
-		this.monto_total = monto_total;
-		this.forma_pago = forma_pago;
-		this.empleado = empleado;
-		this.tipo_empleado = tipo_empleado;
-		this.reservaVenta = reservaVenta;
-	}
 
 
 
@@ -96,16 +82,7 @@ public class Venta {
 
 
 
-	public Contrato getContrato() {
-		return contrato;
-	}
 
-
-
-
-	public void setContrato(Contrato contrato) {
-		this.contrato = contrato;
-	}
 
 
 
@@ -181,8 +158,7 @@ public class Venta {
 
 	@Override
 	public String toString() {
-		return "Venta [id_venta=" + id_venta + ", inmueble=" + inmueble + ", comprador=" + comprador + ", contrato="
-				+ contrato + ", monto_total=" + monto_total + ", forma_pago=" + forma_pago + ", empleado=" + empleado
+		return "Venta [id_venta=" + id_venta + ", inmueble=" + inmueble + ", comprador=" + comprador + ", monto_total=" + monto_total + ", forma_pago=" + forma_pago + ", empleado=" + empleado
 				+ ", tipo_empleado=" + tipo_empleado + ", reservaVenta=" + reservaVenta + "]";
 	}
 
