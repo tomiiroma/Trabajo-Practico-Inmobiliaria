@@ -17,12 +17,14 @@ import controlador.ControladorEmpleado;
 import controlador.InmuebleControlador;
 import controlador.PropietarioControlador;
 import controlador.ReservaControlador;
+import controlador.VentaControlador;
 import trabajoInmobiliaria.Cliente;
 import trabajoInmobiliaria.Comprador;
 import trabajoInmobiliaria.Empleado;
 import trabajoInmobiliaria.Inmueble;
 import trabajoInmobiliaria.Propietario;
 import trabajoInmobiliaria.Reserva;
+import trabajoInmobiliaria.Venta;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -42,8 +44,7 @@ import java.awt.Font;
 import java.awt.Component;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
-
-public class RealizarCompraVenta extends JFrame {
+public class VerVentas extends JFrame {
 
 	private JPanel contentPane;
 	private DefaultTableModel modelComprador;
@@ -51,16 +52,18 @@ public class RealizarCompraVenta extends JFrame {
 	private JButton btnVerificarReserva;
 	private JTable table;
 	private DefaultTableModel model;
-	private ReservaControlador controlador;
+	private VentaControlador controlador;
 	private ControladorCliente controlador2;
 	private ControladorEmpleado controlador3;
 
-
+	/**
+	 * Launch the application.
+	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					RealizarCompraVenta frame = new RealizarCompraVenta();
+					VerVentas frame = new VerVentas();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -69,8 +72,10 @@ public class RealizarCompraVenta extends JFrame {
 		});
 	}
 
-	
-	public RealizarCompraVenta() {
+	/**
+	 * Create the frame.
+	 */
+	public VerVentas() {
 		this.setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1518, 690);
@@ -80,12 +85,24 @@ public class RealizarCompraVenta extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		controlador = new ReservaControlador();
+		controlador = new VentaControlador();
 		controlador2 = new ControladorCliente();
 		controlador3 = new ControladorEmpleado();
 
-		String[] columnNames = { "ID Reserva", "ID Inmueble","Tipo Inmueble","Direccion", "ID Comprador","Nombre","Apellido"
-				,"Id Propietario","Fecha Pago", "Monto", "Forma Pago","ID Empleado","Nombre","Apellido","Tipo Empleado"};
+		String[] columnNames = { "ID Venta", 
+								"ID Inmueble",
+								"Tipo Inmueble",
+								"Direccion",
+								"ID Comprador",
+								"Nombre",
+								"Apellido",
+								"Pago Total", 
+								"Forma Pago",
+								"ID Empleado",
+								"Tipo Empleado",
+								"Nombre",
+								"Apellido"
+								,"ID RESERVA"};
 		
 		model = new DefaultTableModel(columnNames, 0);
 		table = new JTable(model);
@@ -116,23 +133,28 @@ public class RealizarCompraVenta extends JFrame {
                         int id = (int) table.getValueAt(selectedRow, 0);
                         
                         int idInmueble = (int) table.getValueAt(selectedRow, 1);
+                        
                         String tipoInmueble = (String) table.getValueAt(selectedRow, 2);
                         String direccion = (String) table.getValueAt(selectedRow, 3);
-                        
+
                         int idCliente = (int) table.getValueAt(selectedRow, 4);
                         String nombreCliente = (String) table.getValueAt(selectedRow, 5);
                         String apellidoCliente = (String) table.getValueAt(selectedRow, 6);
                         
-                        int idPropietario = (int) table.getValueAt(selectedRow, 7);
+
+                        double pago = (double)table.getValueAt(selectedRow, 7);
+                        String formaPago = (String) table.getValueAt(selectedRow, 8);
                         
-                        LocalDate fecha= (LocalDate) table.getValueAt(selectedRow, 8);
-                        double pago = (double)table.getValueAt(selectedRow, 9);
-                        String formaPago = (String) table.getValueAt(selectedRow, 10);
+                        int idEmpleado = (int) table.getValueAt(selectedRow, 9);
+                        String nombreEmpleado = (String) table.getValueAt(selectedRow, 10);
+                        String apellidoEmpleado = (String) table.getValueAt(selectedRow, 11);
                         
-                        int idEmpleado = (int) table.getValueAt(selectedRow, 11);
-                        String nombreEmpleado = (String) table.getValueAt(selectedRow, 12);
-                        String apellidoEmpleado = (String) table.getValueAt(selectedRow, 13);
-                        String tipoEmpleado = (String) table.getValueAt(selectedRow, 14);
+                        String tipoEmpleado = (String) table.getValueAt(selectedRow, 12);
+                        
+                      
+                        int idReserva  = (int) table.getValueAt(selectedRow, 13);
+                        
+
 
 
                     }
@@ -160,86 +182,47 @@ public class RealizarCompraVenta extends JFrame {
 		contentPane.setLayout(null);
 		contentPane.add(btnVolver);
 
-		JButton btnVerificarReserva = new JButton("Confirmar Reserva");
-		btnVerificarReserva.setForeground(Color.WHITE);
-		btnVerificarReserva.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnVerificarReserva.setBorder(null);
-		btnVerificarReserva.setBackground(new Color(48, 109, 105));
-		btnVerificarReserva.setBounds(1312, 575, 150, 34);
-		
-		btnVerificarReserva.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-                int selectedRow = table.getSelectedRow();
-                
-                if (selectedRow == -1) {
-                    JOptionPane.showMessageDialog(null, "Por favor, seleccione una reserva para continuar.");
-                    return;
-                }
-                
-                int id = (int) table.getValueAt(selectedRow, 0);
-                Reserva reserva = controlador.getReservaById(id);
-                
-                int idProp = (int) table.getValueAt(selectedRow, 7);
-                Cliente cliente = controlador2.getClienteById(idProp);
-                
-                
-                int idEmpleado = (int)table.getValueAt(selectedRow, 11);            
-                
-                String tipoEmpleado = (String) table.getValueAt(selectedRow, 14);
-                
-                Empleado empleado = controlador3.getEmpleadoById(idEmpleado);
-                
-                
-                ConfirmarVenta confirmarVenta = new ConfirmarVenta(id, reserva,idProp,cliente,idEmpleado,empleado);
 
-                confirmarVenta.setVisible(true);
-                confirmarVenta.setLocationRelativeTo(null);
-                dispose(); // Cerrar la ventana actual
-			}
-		});
-
-		contentPane.add(btnVerificarReserva);
 			
 		
 
 	}
 	
-    private void actualizarTabla() {
-        // Limpiar el modelo de la tabla
-        model.setRowCount(0);
+	private void actualizarTabla() {
+	    model.setRowCount(0);
 
-        // Obtener la lista actualizada de inmuebles
-        List<Reserva> reservas = controlador.getAllReserva();
+	    List<Venta> ventas = controlador.getAllVentas();
 
-        // Agregar los datos al modelo
-        for (Reserva reserva : reservas) {
-        	
-        	if(reserva.getTipo_reserva().equals("Venta")){      		
-        		model.addRow(new Object[]{
-        				reserva.getId_reserva(),
-        				reserva.getInmueble().getId_inmueble(),
-        				reserva.getInmueble().getTipo_inmueble(), 				
-        				reserva.getInmueble().getDireccion(),    
-        				
-        				reserva.getCliente().getId_cliente(),
-        				reserva.getCliente().getNombre(),
-        				reserva.getCliente().getApellido(),
-        				reserva.getCliente().getId_Propietario(),
-        				
-        				reserva.getFecha_pago(),
-        				reserva.getPago(),
-        				reserva.getForma_pago(),
-        				
-        				reserva.getEmpleado().getId_empleado(),
-        				reserva.getEmpleado().getNombre(),
-        				reserva.getEmpleado().getApellido(),
-        				reserva.getEmpleado().getTipo_empleado(),
+	    for (Venta venta : ventas) {
+	        Inmueble inmueble = venta.getInmueble();
+	        Comprador comprador = venta.getComprador();
+	        Empleado empleado = venta.getEmpleado();
+	        Reserva reserva = venta.getReserva();
+	        
+	        if (inmueble == null || comprador == null || empleado == null || reserva == null) {
+	            continue;
+	        }
 
-
-        		});
-        	}
-        }
-		
-		
+	        model.addRow(new Object[]{
+	            venta.getId_venta(),
+	            inmueble.getId_inmueble(),
+	            inmueble.getTipo_inmueble(),
+	            inmueble.getDireccion(),
+	            comprador.getId_cliente(),
+	            comprador.getNombre(),
+	            comprador.getApellido(),
+	            venta.getMonto_total(),
+	            venta.getForma_pago(),
+	            empleado.getId_empleado(),
+	            empleado.getNombre(),
+	            empleado.getApellido(),
+	            venta.getTipo_empleado(),
+	           
+	            reserva.getId_reserva()
+	        });
+	    }
 	}
+	
+
+
 }

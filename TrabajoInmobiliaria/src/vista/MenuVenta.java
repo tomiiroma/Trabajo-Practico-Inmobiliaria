@@ -94,6 +94,15 @@ public class MenuVenta extends JFrame {
 		btnVerVentas.setBounds(401, 220, 278, 35);
 		panel.add(btnVerVentas);
 		
+		btnVerVentas.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                VerVentas verVentas = new VerVentas();
+                dispose();
+            }
+        });
+		
+		
+		
 		JButton btnVolver = new JButton("Volver");
 		btnVolver.setForeground(Color.WHITE);
 		btnVolver.setFont(new Font("Tahoma", Font.BOLD, 12));
