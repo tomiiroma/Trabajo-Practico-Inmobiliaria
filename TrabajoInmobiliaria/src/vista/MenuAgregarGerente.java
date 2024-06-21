@@ -202,14 +202,13 @@ public class MenuAgregarGerente extends JFrame {
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			
-				if (opcionesEmpleados == null) {
+				
 					
 					
 					opcionesEmpleados = new TipoEmpleado();
 					
 					
-					
-				}
+				
 				
 				opcionesEmpleados.setLocationRelativeTo(null);
 				opcionesEmpleados.setVisible(true);

@@ -129,13 +129,14 @@ public class ReservaCliente extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				
-				if (VolverMenu == null) {
+				
+					
 					
 					
 					VolverMenu = new RegistrarReserva(inmueble,cliente,empleado);
 					
 				
-			}
+			
 				
 
 			
@@ -156,11 +157,18 @@ public class ReservaCliente extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 	
 				if (Clienteseleccionado.getId_cliente()!=0) {
-				if (VolverMenu==null) {
+				
+					
+					 
+						 
+						 
+						 
+					 
+					
 					
 					VolverMenu = new RegistrarReserva(inmueble,Clienteseleccionado,empleado);
 					
-				}
+				
 				
 				VolverMenu.setLocationRelativeTo(null);
 				

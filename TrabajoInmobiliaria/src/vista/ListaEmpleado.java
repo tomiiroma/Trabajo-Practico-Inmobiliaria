@@ -396,13 +396,13 @@ public class ListaEmpleado extends JFrame implements Validacion{
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (opciones == null) {
+				
 					
 					
 					opciones = new GestionEmpleadosOpciones();
 					
 					
-				}
+				
 				
 				opciones.setLocationRelativeTo(null);
 				opciones.setVisible(true);

@@ -64,31 +64,30 @@ public class EliminarEmpleados extends JFrame implements Validacion{
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-		if (agentecontrolador == null) {
+		
 			
 			agentecontrolador = new AgenteControlador();
 			
-		}
 		
 		
-		if (gerentecontrolador == null) {
+		
+		
 			
 			gerentecontrolador = new GerenteControlador();
 			
-		}
 		
 		
-		if (seleccionado == null) {
+		
 			
 			seleccionado = new Agente();
 			
-		}
 		
-		if (gerenteseleccionado == null) {
+		
+		
 			
 			gerenteseleccionado = new Gerente(); ;
 			
-		}
+		
 		
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -102,11 +101,11 @@ public class EliminarEmpleados extends JFrame implements Validacion{
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (volverOpciones == null) {
+				
 					
-					volverOpciones = new GestionEmpleadosOpciones();
+				volverOpciones = new GestionEmpleadosOpciones();
 					
-				}
+				
 				
 				volverOpciones.setLocationRelativeTo(null);
 				

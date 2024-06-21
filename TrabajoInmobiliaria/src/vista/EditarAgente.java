@@ -83,11 +83,11 @@ public class EditarAgente extends JFrame implements Validacion {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (menuModificiacion == null) {
+			
 					
-					menuModificiacion = new ModificarEmpleado();
+				menuModificiacion = new ModificarEmpleado();
 					
-				}
+				
 				
 				
 				menuModificiacion.setVisible(true);

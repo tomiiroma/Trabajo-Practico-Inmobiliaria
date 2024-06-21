@@ -208,11 +208,11 @@ public class EditarGerente extends JFrame implements Validacion {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (VolverTablas == null) {
+				
 					
-					VolverTablas = new ModificarEmpleado();
+				VolverTablas = new ModificarEmpleado();
 					
-				}
+				
 			
 				VolverTablas.setLocationRelativeTo(null);
 				

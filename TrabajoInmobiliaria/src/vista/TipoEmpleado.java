@@ -44,12 +44,12 @@ public class TipoEmpleado extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (menuGerente == null) {
+				
 					
 					menuGerente = new MenuAgregarGerente();
 					
 					
-				}
+				
 				
 				menuGerente.setLocationRelativeTo(null);
 				
@@ -67,11 +67,10 @@ public class TipoEmpleado extends JFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (menuAgente ==  null) {
 					
 					menuAgente = new MenuAgregarAgente();
 					
-				}
+				
 				
 				
 				menuAgente.setLocationRelativeTo(null);

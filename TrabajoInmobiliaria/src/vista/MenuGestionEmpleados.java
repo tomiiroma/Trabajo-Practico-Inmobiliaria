@@ -65,9 +65,9 @@ public class MenuGestionEmpleados extends JFrame {
 				
 			
 				
-				if (empleadosOpciones == null) {
+				
 					empleadosOpciones = new GestionEmpleadosOpciones();
-				}
+				
 				empleadosOpciones.setVisible(true);
 				empleadosOpciones.setLocationRelativeTo(null);
 				dispose();
@@ -93,11 +93,11 @@ public class MenuGestionEmpleados extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			
 				
-				if (opciones == null) {
+			
 					
 					opciones = new TipoEmpleado();
 					
-				} 
+				
 					
 				
 					opciones.setVisible(true);

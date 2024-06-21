@@ -816,13 +816,59 @@ public interface Validacion {
 		
 
 
+/* ----------------------------------------------------------------------------------------------------------- Validacion de precio -------------------------------------------------------------------------------------- */
 
 
 
+ default String ValidarPrecio(double precio) {
+	 String validaciones;
+	 
+	 validaciones = Double.toString(precio);
+	 
+	 
+	 if (validaciones.isEmpty()) {
+		 
+		 
+		 return "No se ingreso ningun precio";
+		 
+		 
+	 }
+
+	 
+	 
+
+	 try {
+		
+		 if (precio >= 10000) {
+			 
+			 return "el precio es valido";
+			 
+		 }
+		 
+	
+	 
+	 } catch (Exception e) {
+	
+	
+		 return "error se esta intentado ingresar un caracter especial";
+	 
+	 
+	 }
+	 
+	 
+	 
+	 
+	 return "";
+ }
 
 
-
-
+		
+		
+		
+		
+		
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/		
+		
 }
 		
 

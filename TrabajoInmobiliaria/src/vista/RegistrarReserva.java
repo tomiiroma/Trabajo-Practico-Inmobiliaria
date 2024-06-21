@@ -12,6 +12,7 @@ import trabajoInmobiliaria.Empleado;
 import trabajoInmobiliaria.Gerente;
 import trabajoInmobiliaria.Inmueble;
 import trabajoInmobiliaria.Reserva;
+import trabajoInmobiliaria.Validacion;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -25,18 +26,26 @@ import java.time.LocalDate;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import java.awt.Color;
+import javax.swing.JProgressBar;
+import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 
-public class RegistrarReserva extends JFrame {
+public class RegistrarReserva extends JFrame implements Validacion {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField txtFecha;
+	private JTextField inpMonto;
 	private OpcionesReserva MenuPrincipalReserva;
 	private ReservaEmpleado SelectorEmpleado;
 	private ReservaCliente SelectorCliente;
 	private ReservaInmueble SelectorInmueble;
 	private ReservaControlador controladorR;
+	private Empleado empleadonuevo;
+	private ReservaRegistrada registrada;
+	private JComboBox<String> comboBoxFormaPago,comboBoxOperacion;
+	private JLabel lblInst;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -47,6 +56,14 @@ public class RegistrarReserva extends JFrame {
 	 */
 	public RegistrarReserva(Inmueble inmueble,Cliente cliente,Empleado empleado) {
 		
+		boolean progresoI = false, progresoC = false, progresoE = false;
+		
+		
+		
+			
+			empleadonuevo = new Empleado();
+			
+			
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -67,15 +84,22 @@ public class RegistrarReserva extends JFrame {
 		contentPane.add(separator);
 		
 		
+		JLabel lblMontoerror = new JLabel("El monto debe ser un valor irracional mayor a 10000");
+		lblMontoerror.setForeground(new Color(255, 0, 0));
+		lblMontoerror.setBounds(517, 509, 298, 14);
+		contentPane.add(lblMontoerror);
+		lblMontoerror.setVisible(false);
+		
+		
 		JButton btnModificarEmpleado = new JButton("Modificar");
 		btnModificarEmpleado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-			if (SelectorEmpleado == null) {
+			
 				
-				SelectorEmpleado = new ReservaEmpleado(inmueble,cliente,empleado);
+			SelectorEmpleado = new ReservaEmpleado(inmueble,cliente,empleado);
 				
-			}	
+			
 			
 				
 			SelectorEmpleado.setLocationRelativeTo(null);
@@ -96,12 +120,12 @@ public class RegistrarReserva extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 	
-				if (SelectorInmueble == null) {
+			
 					
 					
-					SelectorInmueble = new ReservaInmueble(inmueble,cliente,empleado);
+				SelectorInmueble = new ReservaInmueble(inmueble,cliente,empleado);
 					
-				}
+				
 				
 				SelectorInmueble.setLocationRelativeTo(null);
 				
@@ -123,11 +147,11 @@ public class RegistrarReserva extends JFrame {
 		btnModificarInmueble.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-					if (SelectorInmueble == null) {
 					
-						SelectorInmueble = new ReservaInmueble(inmueble,cliente,empleado);
 					
-													}
+					SelectorInmueble = new ReservaInmueble(inmueble,cliente,empleado);
+					
+													
 			
 
 					SelectorInmueble.setLocationRelativeTo(null);
@@ -161,12 +185,12 @@ public class RegistrarReserva extends JFrame {
 		btnCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (SelectorCliente == null) {
+				
 					
 					
-					SelectorCliente = new ReservaCliente(inmueble,cliente,empleado);
+				SelectorCliente = new ReservaCliente(inmueble,cliente,empleado);
 					
-				}
+				
 				
 				SelectorCliente.setLocationRelativeTo(null);
 				
@@ -194,13 +218,13 @@ public class RegistrarReserva extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				
-			if (SelectorEmpleado == null) {
+		
 				
 				
-				SelectorEmpleado = new ReservaEmpleado(inmueble,cliente,empleado);
+			SelectorEmpleado = new ReservaEmpleado(inmueble,cliente,empleado);
 				
 				
-			}
+			
 				
 			SelectorEmpleado.setLocationRelativeTo(null);
 			
@@ -218,11 +242,11 @@ public class RegistrarReserva extends JFrame {
 				
 				
 				
-				if (SelectorCliente == null) {
+				
 					
-					SelectorCliente = new ReservaCliente(inmueble,cliente,empleado);
+				SelectorCliente = new ReservaCliente(inmueble,cliente,empleado);
 					
-				}
+				
 			
 
 				SelectorCliente.setLocationRelativeTo(null);
@@ -248,8 +272,7 @@ public class RegistrarReserva extends JFrame {
 			lblInmueble.setText("No se ha seleccionado ningun inmueble");
 			btnModificarInmueble.setEnabled(false);
 			btnInmueble.setEnabled(true);
-			
-			
+			progresoI = false;			
 			
 		} else {
 			
@@ -257,6 +280,7 @@ public class RegistrarReserva extends JFrame {
 			lblInmueble.setText("Inmueble seleccionado: Dirección: " + inmueble.getDireccion() + ", Altura: " + inmueble.getAlturaDireccion() + ", Tipo de inmueble" + inmueble.getTipo_inmueble() );
 			btnModificarInmueble.setEnabled(true);
 			btnInmueble.setEnabled(false);
+			progresoI = true;
 			
 		}
 		
@@ -268,13 +292,16 @@ public class RegistrarReserva extends JFrame {
 			lblEmpleado.setText("No se ha seleccionado ningun empleado");
 			btnModificarEmpleado.setEnabled(false);
 			btnEmpleado.setEnabled(true);
+			progresoE = false;
+			
 		} else {
 			
 			
 			lblEmpleado.setText("Empleado seleccionado: " +empleado.getNombre() + ", Apellido: "+ empleado.getApellido() + ", DNI: "+empleado.getDni() + ", Tipo de empleado: "+empleado.getTipo_empleado());
 			btnEmpleado.setEnabled(false);
 			btnModificarEmpleado.setEnabled(true);
-		
+			progresoE = true;
+			
 		}
 		
 		
@@ -283,15 +310,17 @@ public class RegistrarReserva extends JFrame {
 			lblCliente.setText("No se ha seleccionado ningun Cliente");
 			btnModificarCliente.setEnabled(false);
 			btnCliente.setEnabled(true);
-			
+			progresoC = false;
 			
 		} else {
 			
 			lblCliente.setText("Cliente seleccionado: " + cliente.getNombre() + ", Apellido: "+cliente.getApellido() + ", DNI: " +cliente.getDni());
 			btnModificarCliente.setEnabled(true);
 			btnCliente.setEnabled(false);
+			progresoC = true;
 			
 		}
+		
 		
 		
 						
@@ -303,11 +332,11 @@ public class RegistrarReserva extends JFrame {
 		btnCliente_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (MenuPrincipalReserva == null) {
+				
 					
 					MenuPrincipalReserva = new OpcionesReserva();
 					
-				}
+				
 				
 			
 				MenuPrincipalReserva.setLocationRelativeTo(null);
@@ -323,15 +352,25 @@ public class RegistrarReserva extends JFrame {
 		btnCliente_1_1.setBounds(145, 687, 232, 37);
 		contentPane.add(btnCliente_1_1);
 		
-		textField = new JTextField();
-		textField.setBounds(163, 534, 208, 37);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		txtFecha = new JTextField();
+		txtFecha.setBounds(163, 534, 208, 37);
+		contentPane.add(txtFecha);
+		txtFecha.setColumns(10);
+		txtFecha.setText("La fecha es la del día de hoy.");
+		txtFecha.setEnabled(false);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(517, 534, 208, 37);
-		contentPane.add(textField_1);
+		comboBoxFormaPago = new JComboBox<String>();
+		comboBoxFormaPago.setBackground(new Color(255, 255, 255));
+		comboBoxFormaPago.setBounds(163, 615, 208, 37);
+		contentPane.add(comboBoxFormaPago);
+		
+		comboBoxFormaPago.addItem("Efectivo");
+		
+		
+		inpMonto = new JTextField();
+		inpMonto.setColumns(10);
+		inpMonto.setBounds(517, 534, 208, 37);
+		contentPane.add(inpMonto);
 		
 		JLabel lblNewLabel_3 = new JLabel("Fecha pago:");
 		lblNewLabel_3.setBounds(60, 534, 97, 37);
@@ -345,7 +384,7 @@ public class RegistrarReserva extends JFrame {
 		lblNewLabel_5.setBounds(60, 615, 87, 37);
 		contentPane.add(lblNewLabel_5);
 		
-		JComboBox<String> comboBoxOperacion = new JComboBox<String>();
+	    comboBoxOperacion = new JComboBox<String>();
 		comboBoxOperacion.setBackground(new Color(255, 255, 255));
 		comboBoxOperacion.setBounds(517, 615, 208, 37);
 		contentPane.add(comboBoxOperacion);
@@ -362,33 +401,75 @@ public class RegistrarReserva extends JFrame {
 		JButton RegistrarReserva = new JButton("Registrar");
 		RegistrarReserva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String pago = inpMonto.getText(), ValidarMonto = "",tipo_reserva = "",forma="";
+				double Montofinal=0;
 				
 				
-				if (inmueble != null && cliente != null && empleado != null) {
+				try {
+					
+					Montofinal = Double.parseDouble(pago);
+					ValidarMonto = ValidarPrecio(Montofinal);
+					
+				} catch (Exception e2) {
+					
+					lblMontoerror.setVisible(true);
+					
+				}
+				
+				if (ValidarMonto.equalsIgnoreCase("No se ingreso ningun precio") || ValidarMonto.equalsIgnoreCase("error se esta intentado ingresar un caracter especial")) {
+					
+					lblMontoerror.setVisible(true);
+					
+				}
+				
+				LocalDate fecha = LocalDate.now();
+				
+				forma = (String) comboBoxFormaPago.getSelectedItem();
+				
+				tipo_reserva = (String) comboBoxOperacion.getSelectedItem();
+
+				if (inmueble != null && cliente != null && empleado != null && (!ValidarMonto.equalsIgnoreCase("No se ingreso ningun precio") || !ValidarMonto.equalsIgnoreCase("error se esta intentado ingresar un caracter especial"))) {
 					
 					if (controladorR == null) {
 						
 						controladorR = new ReservaControlador();
 						
+						empleadonuevo.RealizarReserva(inmueble,empleado,cliente,fecha,Montofinal,forma,tipo_reserva);
+						
+						registrada = new ReservaRegistrada();
+						
+						registrada.setLocationRelativeTo(null);
+						
+						registrada.setVisible(true);
+						
+						dispose();
+						
 					}
 					
-					
-				 LocalDate fecha = LocalDate.now();
-				 
-				 Double monto = 3000.0;
-				 
-				 String forma = "Efectivo";
-				 
-				 String tipo_reserva = "Venta";
-					
-				 controladorR.addReserva(new Reserva(inmueble,cliente,fecha,monto,forma,empleado,tipo_reserva));
-					
-//				 inmueble,cliente2,fecha_pago2,montovalidado,forma_pago,empleado2,tipo_reserva
 				 
 				} else {
 					
+					if (cliente == null) {
+						
+						lblCliente.setForeground(Color.red);
+						
+					}  
 					
-					JOptionPane.showMessageDialog(null, "Error");
+					if (empleado==null) {
+						
+						lblEmpleado.setForeground(Color.red);
+						
+						
+					} 
+					
+					if (inmueble==null) {
+						
+						lblInmueble.setForeground(Color.red);
+						
+					} 
+						
+					
+					
 					
 					
 				}
@@ -400,14 +481,78 @@ public class RegistrarReserva extends JFrame {
 		RegistrarReserva.setBounds(528, 687, 232, 37);
 		contentPane.add(RegistrarReserva);
 		
-		JComboBox<String> comboBoxFormaPago = new JComboBox<String>();
-		comboBoxFormaPago.setBackground(new Color(255, 255, 255));
-		comboBoxFormaPago.setBounds(163, 615, 208, 37);
-		contentPane.add(comboBoxFormaPago);
+
 		
-		comboBoxFormaPago.addItem("Efectivo");
+		JProgressBar progressBar = new JProgressBar();
+		progressBar.setForeground(new Color(128, 255, 0));
+		progressBar.setOrientation(SwingConstants.VERTICAL);
+		progressBar.setBounds(49, 123, 35, 361);
+		contentPane.add(progressBar);
+		
+		pruebasbarra(progressBar,progresoI,progresoC,progresoE,cliente,empleado,inmueble);
+		
+		lblInst = new JLabel("Debes completar los campos Inmueble, cliente y empleado antes");
+		lblInst.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblInst.setBounds(202, 490, 547, 26);
+		contentPane.add(lblInst);
+		
+		
 		
 		
 		
 	}
-}
+	
+	
+	
+	private void pruebasbarra(JProgressBar progressBar,boolean progreso0,boolean progreso1,boolean progreso2, Cliente cliente,Empleado empleado,Inmueble inmueble) {
+		
+		   int progreso = 0;
+
+		    if (progreso0) {
+		        progreso = progreso + 33;
+		    }
+		    if (progreso1) {
+		        progreso = progreso + 33;
+		    }
+		    if (progreso2) {
+		        progreso = progreso + 34;
+		    }
+
+		    
+		    if (cliente == null || empleado == null || inmueble == null) {
+				
+				inpMonto.setEnabled(false);
+				comboBoxFormaPago.setEnabled(false);
+				comboBoxOperacion.setEnabled(false);
+				
+				
+			}
+		    
+		    
+		    final int progresoFinal = progreso;
+		    
+		    SwingUtilities.invokeLater(new Runnable() {
+		        public void run() {
+		            progressBar.setValue(progresoFinal);
+		            
+		            if (cliente == null || empleado == null || inmueble == null) {
+						
+						inpMonto.setEnabled(false);
+						comboBoxFormaPago.setEnabled(false);
+						comboBoxOperacion.setEnabled(false);
+						lblInst.setVisible(true);
+						
+						
+					} else {
+						
+						inpMonto.setEnabled(true);
+						comboBoxFormaPago.setEnabled(true);
+						comboBoxOperacion.setEnabled(true);
+						lblInst.setVisible(false);
+					}
+		            
+		            
+		        }
+		    											});
+																												}
+	}

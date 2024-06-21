@@ -39,6 +39,7 @@ public class OpcionesReserva extends JFrame {
 	 * Create the frame.
 	 */
 	public OpcionesReserva() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 700, 500);
 		contentPane = new JPanel();
@@ -56,11 +57,11 @@ public class OpcionesReserva extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (listaR == null) {
+				
 					
 					listaR = new ListaReserva();
 					
-				}
+				
 				
 				listaR.setLocationRelativeTo(null);
 				
@@ -82,12 +83,12 @@ public class OpcionesReserva extends JFrame {
 				Empleado empleado = null;
 				Inmueble inmueble = null;
 				Cliente cliente = null;
-				if (nuevaReserva == null) {
+				
 					
 					nuevaReserva = new RegistrarReserva(inmueble,cliente,empleado);
 					
 					
-				}
+				
 				
 				nuevaReserva.setLocationRelativeTo(null);
 				

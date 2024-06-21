@@ -74,36 +74,35 @@ public class ListaReserva extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-		if (controladorReserva == null) {
+		
 			
 			controladorReserva = new ReservaControlador();
 			
-		}
 		
-		if (reservaseleccionada == null) {
+	
 			
 			
 			reservaseleccionada = new Reserva();
 			
-		}
 		
-		if (empleadoselec == null ) {
+		
+		
 			
 			empleadoselec = new ControladorEmpleado();
 			
-		}
 		
-		if (clienteselec == null) {
+		
+		
 			
 			clienteselec = new ControladorCliente();
 			
-		}
 		
-		if (inmuebleselec == null) {
+		
+		
 			
 			inmuebleselec = new InmuebleControlador();
 			
-		}
+		
 		
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -125,7 +124,7 @@ public class ListaReserva extends JFrame {
 		
 		if (tabbedPane.getSelectedIndex() == -1) {
 			
-			btnReserva.setForeground(Color.cyan);
+			btnReserva.setForeground(Color.blue);
 			
 		}
 		
@@ -264,7 +263,7 @@ public class ListaReserva extends JFrame {
 				if (tabbedPane.getSelectedIndex() == 0) {
 					
 					
-					btnReserva.setForeground(Color.cyan);
+					btnReserva.setForeground(Color.blue);
 					btnIdCliente.setForeground(Color.black);
 					btnIdInmueble.setForeground(Color.black);
 					btnOperacion.setForeground(Color.black);
@@ -292,7 +291,7 @@ public class ListaReserva extends JFrame {
 					btnIdCliente.setForeground(Color.black);
 					btnReserva.setForeground(Color.black);
 					btnIdInmueble.setForeground(Color.black);
-					btnOperacion.setForeground(Color.cyan);
+					btnOperacion.setForeground(Color.blue);
 					
 				}
 				
@@ -312,7 +311,7 @@ public class ListaReserva extends JFrame {
 					
 					btnIdCliente.setForeground(Color.black);
 					btnReserva.setForeground(Color.black);
-					btnIdInmueble.setForeground(Color.cyan);
+					btnIdInmueble.setForeground(Color.blue);
 					btnOperacion.setForeground(Color.black);
 					
 					
@@ -333,7 +332,7 @@ public class ListaReserva extends JFrame {
 			
 			if (tabbedPane.getSelectedIndex() == 1) {
 				
-				btnIdCliente.setForeground(Color.cyan);
+				btnIdCliente.setForeground(Color.blue);
 				btnReserva.setForeground(Color.black);
 				btnIdInmueble.setForeground(Color.black);
 				btnOperacion.setForeground(Color.black);
@@ -365,11 +364,11 @@ public class ListaReserva extends JFrame {
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (VolverMenu == null) {
+				
 					
 					VolverMenu = new OpcionesReserva();
 					
-				}
+				
 				
 				VolverMenu.setLocationRelativeTo(null);
 				
@@ -404,13 +403,17 @@ public class ListaReserva extends JFrame {
 						
 					}
 					
-				}
 				
 				verDetalles.setLocationRelativeTo(null);
 				
 				verDetalles.setVisible(true);
 				
 				dispose();
+				} else {
+					
+					JOptionPane.showMessageDialog(null, "Debes seleccionar una reserva");
+					
+				}
 				
 				
 				

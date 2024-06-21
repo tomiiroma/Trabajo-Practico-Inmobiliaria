@@ -764,7 +764,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 				int año = Integer.parseInt(JOptionPane.showInputDialog("Ingresar el año"));
 				
 				LocalDate fecha_pago = LocalDate.of(año, mes, dia);
-				String pago = JOptionPane.showInputDialog("Ingresar el monto del pago");
+				double pago = Double.parseDouble(JOptionPane.showInputDialog("Ingresar el monto del pago"));
 				
 				String[] Clientes = {"Inquilino","Comprador","Cancelar Operación"};
 				
@@ -811,8 +811,13 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 				
 				else { JOptionPane.showMessageDialog(null, "Se cancelo la operación");}
 				
+				 String forma = "efectivo";
+				 
+				 String operacion = "Venta";
 				
-				RealizarReserva(inmueble,empleado,cliente,fecha_pago,pago);
+				
+				
+				RealizarReserva(inmueble,empleado,cliente,fecha_pago,pago,forma,operacion);
 				
 				
 				

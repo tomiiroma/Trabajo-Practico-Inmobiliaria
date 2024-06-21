@@ -17,6 +17,8 @@ import trabajoInmobiliaria.Inmueble;
 
 import javax.swing.JSeparator;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.GridLayout;
 import java.time.LocalDate;
 import java.util.List;
@@ -51,22 +53,20 @@ public class ReservaEmpleado extends JFrame {
 	 */
 	public ReservaEmpleado(Inmueble inmueble,Cliente cliente,Empleado empleado) {
 		
-		if (controladoremp==null) {
+		
 			
 			controladoremp = new ControladorEmpleado();
 			
-		}
 		
-		if (empleado == null) {
-			
-		 empleadoseleccionado = new Empleado();
-			
-		} else {
+		
+		
 			
 			
-			empleadoseleccionado = new Empleado();
+	
 			
-		}
+		empleadoseleccionado = new Empleado();
+			
+		
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -130,14 +130,14 @@ public class ReservaEmpleado extends JFrame {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (volverMenu == null) {
+				
 					
-					empleadoseleccionado = null;
+				empleadoseleccionado = empleado;
 					
-					volverMenu = new RegistrarReserva(inmueble,cliente,empleadoseleccionado);
+				volverMenu = new RegistrarReserva(inmueble,cliente,empleadoseleccionado);
 					
 					
-				}
+				
 				
 				volverMenu.setLocationRelativeTo(null);
 				
@@ -157,18 +157,22 @@ public class ReservaEmpleado extends JFrame {
 		btnNewButton_2_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (registrar==null) {
+			if (empleadoseleccionado.getId_empleado() != 0) {
 					
-					registrar = new RegistrarReserva(inmueble,cliente,empleadoseleccionado);
+				registrar = new RegistrarReserva(inmueble,cliente,empleadoseleccionado);
 					
-				}
+				
 				
 				registrar.setLocationRelativeTo(null);
 				
 				registrar.setVisible(true);
 				
 				dispose();
+			} else {
 				
+				JOptionPane.showMessageDialog(null, "Debes seleccionar un empleado");
+				
+			}
 				
 			}
 		});

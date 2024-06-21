@@ -526,11 +526,11 @@ public class MenuAgregarAgente extends JFrame implements Validacion {
 			public void actionPerformed(ActionEvent e) {
 				
 				
-				if (volverMenu==null) {
+				
 					
 					volverMenu = new GestionEmpleadosOpciones();
 					
-				}
+				
 				
 				
 				volverMenu.setLocationRelativeTo(null);

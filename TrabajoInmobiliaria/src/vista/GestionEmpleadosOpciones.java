@@ -50,13 +50,13 @@ public class GestionEmpleadosOpciones extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (verDatos == null) {
+				
 					
 					
 					verDatos = new ListaEmpleado();
 					
 					
-				}
+				
 				
 				
 				verDatos.setVisible(true);
@@ -81,11 +81,11 @@ public class GestionEmpleadosOpciones extends JFrame {
 		btnModificarEmpleado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (Modificar == null) {
+				
 					
 					Modificar = new ModificarEmpleado();
 					
-				}
+				
 				
 				Modificar.setVisible(true);
 				
@@ -104,12 +104,12 @@ public class GestionEmpleadosOpciones extends JFrame {
 		btnAgregarEmpleado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (AgregarEmpleado==null) {
+				
 					
 					AgregarEmpleado = new MenuAgregarAgente();
 					
 					
-				}
+				
 				
 				AgregarEmpleado.setLocationRelativeTo(null);
 				
@@ -138,12 +138,12 @@ public class GestionEmpleadosOpciones extends JFrame {
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (Eliminar == null) {
+		
 					
 					Eliminar = new EliminarEmpleados();
 					
 					
-				}
+				
 				
 			
 				Eliminar.setLocationRelativeTo(null);

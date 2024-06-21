@@ -51,11 +51,11 @@ public class GerenteAgregado extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (volverAlMenu == null){
+			
 					
-					volverAlMenu = new GestionEmpleadosOpciones();
+				volverAlMenu = new GestionEmpleadosOpciones();
 					
-				}
+				
 				
 				volverAlMenu.setLocationRelativeTo(null);
 				

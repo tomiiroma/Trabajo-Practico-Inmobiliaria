@@ -55,11 +55,11 @@ public class ReservaInmueble extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-		if (inmueblecontrolador == null) {
+		
 			
 			inmueblecontrolador = new InmuebleControlador();
 			
-		}
+		
 		
 		
 		setContentPane(contentPane);
@@ -122,12 +122,12 @@ public class ReservaInmueble extends JFrame {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (VolverMenu == null) {
+				
 					
 					
 					VolverMenu = new RegistrarReserva(inmueble,cliente,empleado);
 					
-				}
+				
 				
 				VolverMenu.setLocationRelativeTo(null);
 				
@@ -148,8 +148,7 @@ public class ReservaInmueble extends JFrame {
 				
 				
 				 
-					
-					if (inmuebleseleccionado.getId_inmueble()!=0) {
+					if (inmuebleseleccionado != null) {
 					if (VolverMenu==null) {
 						
 						VolverMenu = new RegistrarReserva(inmuebleseleccionado,cliente,empleado);
