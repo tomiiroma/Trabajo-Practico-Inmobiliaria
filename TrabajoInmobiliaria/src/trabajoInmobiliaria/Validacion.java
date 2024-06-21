@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 import controlador.InmuebleControlador;
+import controlador.VentaControlador;
 
 public interface Validacion {
 	
@@ -713,6 +714,7 @@ public interface Validacion {
 
 /*----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 		InmuebleControlador inmuebleControlador = new InmuebleControlador();
+		VentaControlador ventaControlador = new VentaControlador();
 
 		
 		default boolean validarCasa(String direccion, String alturaDireccion) {
@@ -741,12 +743,23 @@ public interface Validacion {
 			
 			return false;
 		}
+
 		
 		
 		
-		
-		
-		
+		default boolean validarVenta(int idInmueble, int idComprador,int idEmpleado, int idReserva) {
+			
+	        for (Venta venta : ventaControlador.getAllVentas()) {
+	            if (venta.getInmueble() != null && 
+	            	venta.getInmueble().getId_inmueble() == idInmueble &&
+	                venta.getComprador().getId_cliente() == idComprador &&
+	                venta.getEmpleado().getId_empleado() == idEmpleado &&
+	                venta.getReserva().getId_reserva() == idReserva) {
+	                return true;
+	            }
+	        }
+	        return false;
+	    }
 		
 		
 		

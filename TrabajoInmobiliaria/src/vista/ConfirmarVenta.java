@@ -21,6 +21,7 @@ import controlador.InmuebleControlador;
 import controlador.ReservaControlador;
 import controlador.VentaControlador;
 import trabajoInmobiliaria.Reserva;
+import trabajoInmobiliaria.Validacion;
 import trabajoInmobiliaria.Venta;
 import trabajoInmobiliaria.Empleado;
 import trabajoInmobiliaria.Inmueble;
@@ -32,8 +33,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.SwingConstants;
 
-public class ConfirmarVenta extends JFrame {
+public class ConfirmarVenta extends JFrame implements Validacion{
 
 	private JPanel contentPane;
 	private JTextField txtIdInmueble;
@@ -225,6 +227,32 @@ public class ConfirmarVenta extends JFrame {
         btnConfirmar.setBounds(770, 475, 150, 34);
         contentPane.add(btnConfirmar);
         
+        JLabel lblPrecioIncorrecto = new JLabel("Monto Ingresado Incorrecto");
+        lblPrecioIncorrecto.setFont(new Font("Tahoma", Font.BOLD, 12));
+        lblPrecioIncorrecto.setForeground(new Color(128, 0, 0));
+        lblPrecioIncorrecto.setBounds(730, 133, 190, 14);
+        lblPrecioIncorrecto.setVisible(false);
+
+        contentPane.add(lblPrecioIncorrecto);
+        
+        JLabel lblError = new JLabel("No se pudo Registrar La Venta\r\n");
+        lblError.setHorizontalAlignment(SwingConstants.CENTER);
+        lblError.setForeground(new Color(128, 0, 0));
+        lblError.setFont(new Font("Tahoma", Font.BOLD, 18));
+        lblError.setBounds(221, 437, 500, 34);
+        lblError.setVisible(false);
+
+        contentPane.add(lblError);
+        
+        JLabel lblError2 = new JLabel("Venta Duplicada");
+        lblError2.setHorizontalAlignment(SwingConstants.CENTER);
+        lblError2.setForeground(new Color(128, 0, 0));
+        lblError2.setFont(new Font("Tahoma", Font.BOLD, 18));
+        lblError2.setBounds(220, 479, 500, 34);
+        lblError2.setVisible(false);
+
+        contentPane.add(lblError2);
+        
         
         if(reserva != null){
         	
@@ -251,13 +279,27 @@ public class ConfirmarVenta extends JFrame {
 
  		        int idInmueble = reserva.getInmueble().getId_inmueble();
  		        int idComprador = reserva.getCliente().getId_cliente();
- 		        String monto = txtMonto.getText().trim();
+ 		        
+ 		        		        
+ 		        String monto = txtMonto.getText().trim(); 		        
+				boolean montoValido = validarEntero2(monto);
+				lblPrecioIncorrecto.setVisible(!montoValido);
+				
+				if(!montoValido){
+					return;
+				}
+				
+				
+                double montoDouble = 0.0;	
+                
+                if (!monto.isEmpty()) {
+                	montoDouble = Double.parseDouble(monto);
+                }
+ 		        
  		        String formaPago = (String) cbMetodoPago.getSelectedItem();
 
  		        String tipoEmpleado = empleado.getTipo_empleado();
  		        int idReserva = reserva.getId_reserva();
-
- 		        double montoDouble = Double.parseDouble(monto);
 
  		        int idEmpleado = empleado.getId_empleado();
 
@@ -276,17 +318,23 @@ public class ConfirmarVenta extends JFrame {
  			   
 
    			    Venta venta = new Venta(0, inmueble, comprador, montoDouble, formaPago, empleado1, tipoEmpleado,reserva1);
-
-   			    VentaControlador ventaControlador = new VentaControlador();
-   			   
    			    
-   			    ventaControlador.addVenta(venta);
-                MenuVenta volver = new MenuVenta();
-                dispose();	
-   			    
+   			    if(validarVenta(idInmueble, idComprador, idEmpleado, idReserva)){
+   			    	lblError.setVisible(true);
+   			    	lblError2.setVisible(true); 
+   			    	
+   			    }else {	    	
+   	   			    VentaControlador ventaControlador = new VentaControlador();
+   	   		    
+   	   			    ventaControlador.addVenta(venta);
+   	   			    JOptionPane.showMessageDialog(null, "Venta Agregada Correctamente");
+   	   			    
+   	                MenuVenta volver = new MenuVenta();
+   	                dispose();	
+   			    	}    
    			    
                  
-                 }
+                }
  		});
         
         
