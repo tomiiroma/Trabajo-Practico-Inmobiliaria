@@ -328,7 +328,7 @@ public class ConfirmarVenta extends JFrame implements Validacion{
    	   		    
    	   			    ventaControlador.addVenta(venta);
    	   			    JOptionPane.showMessageDialog(null, "Venta Agregada Correctamente");
-   	   			    
+   	   			    	    
    	                MenuVenta volver = new MenuVenta();
    	                dispose();	
    			    	}    

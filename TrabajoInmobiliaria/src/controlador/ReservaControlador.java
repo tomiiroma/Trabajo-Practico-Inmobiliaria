@@ -199,7 +199,7 @@ public class ReservaControlador implements ReservaRepository{
 	    @Override
 	    public void deleteReserva(int id) {
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("DELETE FROM users WHERE id = ?");
+	            PreparedStatement statement = connection.prepareStatement("DELETE FROM Reserva");
 	            statement.setInt(1, id);
 	            
 	            int rowsDeleted = statement.executeUpdate();
@@ -211,7 +211,11 @@ public class ReservaControlador implements ReservaRepository{
 	        }
 	
 	
-}
+	    }
+	    
+	    
+	
+
 
 
 
