@@ -41,6 +41,7 @@ public class EditarAgente extends JFrame implements Validacion {
 	private ModificarEmpleado menuModificiacion;
 	private AgenteControlador controladoragente;
 	private Gerente gerente;
+	private AgenteModificadoAviso volverAgente;
 
 	/**
 	 * Launch the application.
@@ -613,6 +614,18 @@ public class EditarAgente extends JFrame implements Validacion {
 						
 					
 					gerente.ModificarAgente(agente, nombre, apellido, fecha, dni, telefono, correo, passwordField.getText(),Integer.parseInt(inpID_agente.getText()));
+					
+					
+					volverAgente = new AgenteModificadoAviso();
+					
+					
+					volverAgente.setLocationRelativeTo(null);
+					
+					
+					volverAgente.setVisible(true);
+					
+					dispose();
+					
 					
 					} else {/* Despues modificarlo. */  JOptionPane.showMessageDialog(null, "No se ha modificado ningun dato, error.");}
 						

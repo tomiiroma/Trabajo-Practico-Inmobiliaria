@@ -164,11 +164,11 @@ public class GestionEmpleadosOpciones extends JFrame {
 			
 				
 				
-				MenuGestionEmpleados menuprincipalempleado = new MenuGestionEmpleados();
+				PantallaGerente pantallagerente = new PantallaGerente();
 
-				menuprincipalempleado.setVisible(true);
+				pantallagerente.setVisible(true);
 				
-				menuprincipalempleado.setLocationRelativeTo(null);
+				pantallagerente.setLocationRelativeTo(null);
 				
 				dispose();
 			

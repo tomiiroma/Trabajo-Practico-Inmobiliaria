@@ -55,6 +55,7 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 	private JTextField inpBuscador;
 	private JTabbedPane tabbedPane;
 	private JTextField inpDniGerente;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -317,6 +318,8 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 					editar.setLocationRelativeTo(null);
 					
         			dispose();
+        			
+        			
         			
 				} else {
 					JOptionPane.showMessageDialog(null, "Seleccione un agente");

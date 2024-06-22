@@ -109,16 +109,13 @@ public class OpcionesReserva extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				
-				/* Conectar con la pantalla de Gerente 
-				  
-				PantallaGerente menu = new PantallaGerente(); 
-				  
-				menu.setLocationRelativeTo(null);  
-				  
-				menu.setVisible(true);
-				  
-				 dispose(); 
-				*/
+				PantallaGerente pantallagerente = new PantallaGerente();
+
+				pantallagerente.setVisible(true);
+				
+				pantallagerente.setLocationRelativeTo(null);
+				
+				dispose();
 				
 				
 			}

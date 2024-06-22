@@ -35,7 +35,7 @@ public class EditarGerente extends JFrame implements Validacion {
 	private JTextField inpCorreo;
 	private ModificarEmpleado VolverTablas;
 	private JPasswordField inpContra;
-	
+	private GerenteModificadoAviso volverMenu;
 
 	/**
 	 * Launch the application.
@@ -65,7 +65,7 @@ public class EditarGerente extends JFrame implements Validacion {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Modificar agente");
+		JLabel lblNewLabel = new JLabel("Modificar Gerente");
 		lblNewLabel.setFont(new Font("Verdana", Font.PLAIN, 30));
 		lblNewLabel.setBounds(426, 11, 623, 70);
 		contentPane.add(lblNewLabel);
@@ -584,7 +584,13 @@ public class EditarGerente extends JFrame implements Validacion {
 								
 									if (respuesta.equalsIgnoreCase("El gerente se ha modificado")) {
 										
+										volverMenu = new GerenteModificadoAviso();
 										
+										volverMenu.setLocationRelativeTo(null);
+										
+										volverMenu.setVisible(true);
+										
+										dispose();
 										
 									} else if (respuesta.equalsIgnoreCase("Se esta intentandos modificar el dni al de una persona existente en la base de datos.")) {
 										

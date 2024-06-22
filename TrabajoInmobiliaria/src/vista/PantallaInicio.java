@@ -35,6 +35,7 @@ public class PantallaInicio extends JFrame {
 	private JPanel contentPane;
 	private JTextField inpNombre;
 	private JPasswordField inpContrasena;
+	
 
 	/**
 	 * Launch the application.
@@ -121,10 +122,17 @@ public class PantallaInicio extends JFrame {
 		        if (esAgente != null) {
 		            if (esAgente) {
 		            	PantallaAgente PantallaAgente = new PantallaAgente();
+		            	
 		            	dispose();
 		            } else if(!esAgente){
 		            	JOptionPane.showMessageDialog(null, "Inicio Sesion como gerente");
-
+		            	
+		            	PantallaGerente Pantallagerente = new PantallaGerente();
+		            	Pantallagerente.setLocationRelativeTo(null);
+		            	Pantallagerente.setVisible(true);
+		            
+		            	dispose();
+		            
 		            }else {
 		            	JOptionPane.showMessageDialog(null, "Error");
 		            }

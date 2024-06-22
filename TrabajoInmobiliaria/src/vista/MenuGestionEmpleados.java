@@ -26,7 +26,7 @@ public class MenuGestionEmpleados extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private GestionEmpleadosOpciones empleadosOpciones;
-	private TipoEmpleado opciones;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -95,16 +95,6 @@ public class MenuGestionEmpleados extends JFrame {
 				
 			
 					
-					opciones = new TipoEmpleado();
-					
-				
-					
-				
-					opciones.setVisible(true);
-					
-					opciones.setLocationRelativeTo(null);
-					
-					dispose();
 					
 					
 				
