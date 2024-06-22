@@ -407,20 +407,11 @@ public class RegistrarReserva extends JFrame implements Validacion {
 				
 				try {
 					
-					Montofinal = Double.parseDouble(pago);
-					ValidarMonto = ValidarPrecio(Montofinal);
-					
-				} catch (Exception e2) {
-					
-					lblMontoerror.setVisible(true);
-					
-				}
 				
-				if (ValidarMonto.equalsIgnoreCase("No se ingreso ningun precio") || ValidarMonto.equalsIgnoreCase("error se esta intentado ingresar un caracter especial")) {
 					
-					lblMontoerror.setVisible(true);
+					ValidarMonto = ValidarPrecio(Montofinal = Double.parseDouble(pago));
 					
-				}
+				
 				
 				LocalDate fecha = LocalDate.now();
 				
@@ -428,7 +419,9 @@ public class RegistrarReserva extends JFrame implements Validacion {
 				
 				tipo_reserva = (String) comboBoxOperacion.getSelectedItem();
 
-				if (inmueble != null && cliente != null && empleado != null && (!ValidarMonto.equalsIgnoreCase("No se ingreso ningun precio") || !ValidarMonto.equalsIgnoreCase("error se esta intentado ingresar un caracter especial"))) {
+				if (inmueble != null && cliente != null && empleado != null && (!ValidarMonto.equalsIgnoreCase("No se ingreso ningun precio") && !ValidarMonto.equalsIgnoreCase("error se esta intentado ingresar un caracter especial") && !ValidarMonto.equalsIgnoreCase("El monto debe ser mayor a 10000"))) {
+					
+					
 					
 					if (controladorR == null) {
 						
@@ -467,6 +460,14 @@ public class RegistrarReserva extends JFrame implements Validacion {
 						lblInmueble.setForeground(Color.red);
 						
 					} 
+					
+					if (ValidarMonto.equalsIgnoreCase("El monto debe ser mayor a 10000") || ValidarMonto.equalsIgnoreCase("No se ingreso ningun precio") || ValidarMonto.equalsIgnoreCase("error se esta intentado ingresar un caracter especial")){
+						
+						
+						lblMontoerror.setVisible(true);
+						
+						
+					}
 						
 					
 					
@@ -474,6 +475,12 @@ public class RegistrarReserva extends JFrame implements Validacion {
 					
 				}
 				
+				} catch (Exception e2) {
+					
+					lblMontoerror.setVisible(true);
+					
+					
+				}
 				
 				
 			}

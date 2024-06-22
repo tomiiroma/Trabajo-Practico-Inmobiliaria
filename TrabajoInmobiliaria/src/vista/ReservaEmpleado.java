@@ -37,13 +37,13 @@ public class ReservaEmpleado extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField InpEmpleado;
 	private JTable tablaEmpleado;
 	private DefaultTableModel ModeloEmpleado;
 	private ControladorEmpleado controladoremp;
 	private Empleado empleadoseleccionado;
 	private RegistrarReserva volverMenu,registrar;
-	
+	private JButton btnBuscarEmpleado;
 	/**
 	 * Launch the application.
 	 */
@@ -91,17 +91,26 @@ public class ReservaEmpleado extends JFrame {
 		lblNewLabel_1.setBounds(10, 78, 46, 14);
 		panel.add(lblNewLabel_1);
 		
-		textField = new JTextField();
-		textField.setBounds(66, 75, 162, 20);
-		panel.add(textField);
-		textField.setColumns(10);
+		InpEmpleado = new JTextField();
+		InpEmpleado.setBounds(66, 75, 187, 20);
+		panel.add(InpEmpleado);
+		InpEmpleado.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Buscar");
-		btnNewButton.setBounds(249, 74, 102, 23);
-		panel.add(btnNewButton);
+		btnBuscarEmpleado = new JButton("Buscar");
+		btnBuscarEmpleado.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				BuscarEmpleado();
+				
+				
+			}
+		});
+		btnBuscarEmpleado.setBounds(275, 74, 102, 23);
+		panel.add(btnBuscarEmpleado);
 		
 		JButton btnNewButton_1 = new JButton("Actualizar");
-		btnNewButton_1.setBounds(375, 74, 102, 23);
+		btnNewButton_1.setBounds(400, 74, 102, 23);
 		panel.add(btnNewButton_1);
 		
 		JPanel panel_1 = new JPanel();
@@ -281,7 +290,80 @@ public void VerEmpleados() {
 	}
 	
 	
+	public void BuscarEmpleado() {
+		
+		int contador=0;
+		boolean flag=true;
+		ModeloEmpleado.setRowCount(0);
+		int numero=0;
+
+	       
+        List<Empleado> empleados = controladoremp.getAllEmpleados();
+        
+        
+        
+        
+        
+
+	try {
+		
+		 numero =Integer.parseInt(InpEmpleado.getText());
+		
+		
+		
+	}
 	
+	catch(Exception e){
+		
+		InpEmpleado.setText("Error debe contener un número");	
+		flag = false;
+		
+	}
+	
+	if (flag == true) {
+	
+        for (Empleado empleado : empleados) {
+		
+        	if (numero == empleado.getId_empleado()) {
+        	
+        	ModeloEmpleado.addRow(
+        			
+        			
+	            		new Object[]
+	            				{
+	            					empleado.getId_empleado()
+	            						, empleado.getNombre()
+	            						, empleado.getApellido()
+	            						, empleado.getFecha_nacimiento()
+	            						, empleado.getDni()
+	            						, empleado.getTelefono()
+	            						, empleado.getCorreo()
+	            						, empleado.getTipo_empleado()
+	            						, empleado.getContraseña()
+	            						, 
+	            						}
+	            		);
+		
+		
+		
+	contador++;	
+	}
+		
+        }
+		
+		
+	} 
+		
+		
+		if (flag == true && contador == 0) {
+			
+			InpEmpleado.setText("No se encontro el empleado");
+			
+		}
+		
+	
+		
+	}
 	
 	
 	

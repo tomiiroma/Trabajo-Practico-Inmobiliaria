@@ -1181,7 +1181,9 @@ public boolean RealizarReserva(Inmueble inmueble,Empleado empleado2,Cliente clie
 		
 		
 		} catch (Exception e) {
+			
 		//	JOptionPane.showMessageDialog(null, e);
+		
 		}
 		
 		

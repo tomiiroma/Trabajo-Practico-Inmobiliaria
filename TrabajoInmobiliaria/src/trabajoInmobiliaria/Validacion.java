@@ -821,27 +821,21 @@ public interface Validacion {
 
 
  default String ValidarPrecio(double precio) {
-	 String validaciones;
-	 
-	 validaciones = Double.toString(precio);
-	 
-	 
-	 if (validaciones.isEmpty()) {
-		 
-		 
-		 return "No se ingreso ningun precio";
-		 
-		 
-	 }
 
-	 
 	 
 
 	 try {
 		
+	
+		
 		 if (precio >= 10000) {
 			 
 			 return "el precio es valido";
+			 
+		 } else {
+			 
+			 
+			 return "El monto debe ser mayor a 10000";
 			 
 		 }
 		 
@@ -858,7 +852,7 @@ public interface Validacion {
 	 
 	 
 	 
-	 return "";
+	
  }
 
 

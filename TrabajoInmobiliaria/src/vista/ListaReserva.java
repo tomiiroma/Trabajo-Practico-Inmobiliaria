@@ -49,6 +49,7 @@ public class ListaReserva extends JFrame {
 	private ControladorCliente clienteselec;
 	private InmuebleControlador inmuebleselec;
 	private VerReserva verDetalles;
+	private JComboBox<String> comboBoxOperacion;
 	/**
 	 * Launch the application.
 	 */
@@ -144,6 +145,14 @@ public class ListaReserva extends JFrame {
 		inpBusqReserva.setColumns(10);
 		
 		JButton btnBuscarReserva = new JButton("Buscar");
+		btnBuscarReserva.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				BuscarReservaID();
+			
+			
+			}
+		});
 		btnBuscarReserva.setBounds(535, 15, 113, 26);
 		panel_1.add(btnBuscarReserva);
 		
@@ -174,6 +183,13 @@ public class ListaReserva extends JFrame {
 		panel_3.add(inpBusqCliente);
 		
 		JButton btnBuscarCliente = new JButton("Buscar");
+		btnBuscarCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				BuscarClienteID();
+				
+			}
+		});
 		btnBuscarCliente.setBounds(535, 15, 113, 26);
 		panel_3.add(btnBuscarCliente);
 		
@@ -203,6 +219,13 @@ public class ListaReserva extends JFrame {
 		panel_4.add(inpBusqInmueble);
 		
 		JButton btnBuscarInmueble = new JButton("Buscar");
+		btnBuscarInmueble.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				MostrarInmuebleID();
+				
+			}
+		});
 		btnBuscarInmueble.setBounds(535, 15, 113, 26);
 		panel_4.add(btnBuscarInmueble);
 		
@@ -227,6 +250,13 @@ public class ListaReserva extends JFrame {
 		panel_5.add(lblBusqOperacion);
 		
 		JButton btnBuscarOperacion = new JButton("Buscar");
+		btnBuscarOperacion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				BuscarOperacion();
+				
+			}
+		});
 		btnBuscarOperacion.setBounds(535, 15, 113, 26);
 		panel_5.add(btnBuscarOperacion);
 		
@@ -241,7 +271,7 @@ public class ListaReserva extends JFrame {
 		btnResetOperacion.setBounds(670, 15, 109, 26);
 		panel_5.add(btnResetOperacion);
 		
-		JComboBox<String> comboBoxOperacion = new JComboBox<String>();
+		comboBoxOperacion = new JComboBox<String>();
 		comboBoxOperacion.setBackground(new Color(255, 255, 255));
 		comboBoxOperacion.setBounds(290, 15, 221, 26);
 		panel_5.add(comboBoxOperacion);
@@ -505,5 +535,278 @@ public class ListaReserva extends JFrame {
 		
 		
 	}
+	
+	
+	private void MostrarInmuebleID() {
+		  int contador=0, id_reserva=0;
+		  boolean flag=true;
+		  
+		  modeloReserva.setRowCount(0);
+
+		  List<Reserva> reservas = controladorReserva.getAllReserva();
+	        
+	        try {
+	        	
+	        	id_reserva = Integer.parseInt(inpBusqInmueble.getText());
+	        	
+	        } catch (Exception e) {
+	        	
+	        	inpBusqInmueble.setText("Error solo acepta numeros");
+	        	flag = false;
+	        	MostrarTabla();
+	        }
+
+	       if (flag == true) {
+	    	   
+	        
+	    	   for (Reserva reserva : reservas) {
+	   			if (id_reserva == reserva.getInmueble().getId_inmueble()) {
+	   				
+	   			modeloReserva.addRow( 
+	   					
+	   					new Object[] {
+	   							
+	   					
+	   					reserva.getId_reserva(),
+	   					reserva.getInmueble().getId_inmueble(),
+	   					reserva.getCliente().getId_cliente(),
+	   					reserva.getFecha_pago(),
+	   					reserva.getPago(),
+	   					reserva.getForma_pago(),
+	   					reserva.getEmpleado().getId_empleado(),
+	   					reserva.getTipo_reserva()
+	   			
+	   					}
+	   					);
+	   			
+	   				contador++;	
+	   		}
+	   
+	   			
+	   }
+	    	   
+	    	   
+	    	   
+	       } 
+	       
+	       
+	       if (contador==0 && flag == true) {
+	    	   
+	    	   
+	    	   inpBusqInmueble.setText("No existe la reserva");
+	    	   MostrarTabla();
+	    	   
+	       }
+		  
+		  
+		  
+		  
+		  
+		  
+	  }
+	
+	
+	
+	private void BuscarClienteID() {
+		
+		int contador=0, id_cliente=0;
+		boolean flag=true;
+		modeloReserva.setRowCount(0);
+		
+		try {
+			
+			id_cliente = Integer.parseInt(inpBusqCliente.getText());
+	
+		} catch (Exception e) {
+			
+			inpBusqCliente.setText("Solo se aceptan campo numericos");
+			flag = false;
+			 MostrarTabla();
+		}
+		
+		
+		List<Reserva> reservas = controladorReserva.getAllReserva();
+		
+		if(flag==true) {
+			
+		for (Reserva reserva : reservas) {
+			
+			if (id_cliente == reserva.getCliente().getId_cliente()) {
+				
+			
+			modeloReserva.addRow( 
+					
+					new Object[] {
+							
+					
+					reserva.getId_reserva(),
+					reserva.getInmueble().getId_inmueble(),
+					reserva.getCliente().getId_cliente(),
+					reserva.getFecha_pago(),
+					reserva.getPago(),
+					reserva.getForma_pago(),
+					reserva.getEmpleado().getId_empleado(),
+					reserva.getTipo_reserva()
+			
+					}
+					);
+			
+			contador++;
+			
+			}
+		}
+		
+		}
+		
+		
+		if (contador == 0 && flag==true) {
+			
+			inpBusqCliente.setText("El cliente no realizo ninguna reserva.");
+			 MostrarTabla();
+		}
+		
+		
+		
+		
+	}
+	
+	private void BuscarReservaID() {
+		int id_reserva = 0, contador = 0;
+		boolean flag = true;
+		
+		try {
+			
+			id_reserva = Integer.parseInt(inpBusqReserva.getText());
+			
+		} catch (Exception e) {
+			
+			inpBusqReserva.setText("Solo se aceptan campos numericos.");
+			flag = false;
+			 MostrarTabla();
+		}
+		
+	modeloReserva.setRowCount(0);
+		
+		List<Reserva> reservas = controladorReserva.getAllReserva();
+		
+	if (flag == true) {
+		
+		for (Reserva reserva : reservas) {
+		
+			if (id_reserva == reserva.getId_reserva()) {
+				
+			
+			modeloReserva.addRow( 
+					
+					new Object[] {
+							
+					
+					reserva.getId_reserva(),
+					reserva.getInmueble().getId_inmueble(),
+					reserva.getCliente().getId_cliente(),
+					reserva.getFecha_pago(),
+					reserva.getPago(),
+					reserva.getForma_pago(),
+					reserva.getEmpleado().getId_empleado(),
+					reserva.getTipo_reserva()
+			
+					}
+					);
+			
+				contador++;
+			}
+		}
+		
+	}	
+		
+	if (contador == 0 && flag == true) {
+		
+		
+		inpBusqReserva.setText("No hay reservas con ese id.");
+		 MostrarTabla();
+	}
+	
+	
+		
+	}
+	
+	
+	public void BuscarOperacion() {
+	 String operacion="";
+		
+	
+	modeloReserva.setRowCount(0);
+	
+	List<Reserva> reservas = controladorReserva.getAllReserva();
+	
+	operacion =(String) comboBoxOperacion.getSelectedItem();
+	if (operacion.equalsIgnoreCase("Venta")) {
+		
+	for (Reserva reserva : reservas) {
+		if (reserva.getTipo_reserva().equalsIgnoreCase("Venta")) {
+			
+		modeloReserva.addRow( 
+				
+				new Object[] {
+						
+				
+				reserva.getId_reserva(),
+				reserva.getInmueble().getId_inmueble(),
+				reserva.getCliente().getId_cliente(),
+				reserva.getFecha_pago(),
+				reserva.getPago(),
+				reserva.getForma_pago(),
+				reserva.getEmpleado().getId_empleado(),
+				reserva.getTipo_reserva()
+		
+				}
+				);
+		
+		
+		}
+	}
+	
+	
+	
+	} else {
+		for (Reserva reserva : reservas) {
+			if (reserva.getTipo_reserva().equalsIgnoreCase("Alquiler")) {
+				
+			modeloReserva.addRow( 
+					
+					new Object[] {
+							
+					
+					reserva.getId_reserva(),
+					reserva.getInmueble().getId_inmueble(),
+					reserva.getCliente().getId_cliente(),
+					reserva.getFecha_pago(),
+					reserva.getPago(),
+					reserva.getForma_pago(),
+					reserva.getEmpleado().getId_empleado(),
+					reserva.getTipo_reserva()
+			
+					}
+					);
+			
+			
+			}
+		}
+		
+		
+		
+	}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+	
 	
 }

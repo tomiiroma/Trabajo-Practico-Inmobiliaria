@@ -35,7 +35,7 @@ public class ReservaInmueble extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField inpInmueble;
 	private JTable tableInmuebles;
 	private DefaultTableModel ModeloInmuebles;
 	private InmuebleControlador inmueblecontrolador;
@@ -83,17 +83,30 @@ public class ReservaInmueble extends JFrame {
 		lblNewLabel_1.setBounds(10, 78, 46, 14);
 		panel.add(lblNewLabel_1);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(66, 75, 162, 20);
-		panel.add(textField);
+		inpInmueble = new JTextField();
+		inpInmueble.setColumns(10);
+		inpInmueble.setBounds(66, 75, 187, 20);
+		panel.add(inpInmueble);
 		
-		JButton btnNewButton = new JButton("Buscar");
-		btnNewButton.setBounds(249, 74, 102, 23);
-		panel.add(btnNewButton);
+		JButton btnInmueble = new JButton("Buscar");
+		btnInmueble.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				MostrarInmuebleID();
+			}
+		});
+		btnInmueble.setBounds(275, 74, 102, 23);
+		panel.add(btnInmueble);
 		
 		JButton btnNewButton_1 = new JButton("Actualizar");
-		btnNewButton_1.setBounds(375, 74, 102, 23);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				MostrarInmuebles();
+				
+			}
+		});
+		btnNewButton_1.setBounds(400, 74, 102, 23);
 		panel.add(btnNewButton_1);
 		
 		JPanel panel_1 = new JPanel();
@@ -257,5 +270,72 @@ public class ReservaInmueble extends JFrame {
 			
 			
 		}
+	  
+	  
+	  private void MostrarInmuebleID() {
+		  int contador=0, id_inmueble=0;
+		  boolean flag=true;
+		  
+		  ModeloInmuebles.setRowCount(0);
+
+		  List<Inmueble> inmuebles = inmueblecontrolador.getAllInmueble();
+	        
+	        try {
+	        	
+	        	id_inmueble = Integer.parseInt(inpInmueble.getText());
+	        	
+	        } catch (Exception e) {
+	        	
+	        	inpInmueble.setText("Error solo acepta numeros");
+	        	flag = false;
+	        }
+
+	       if (flag == true) {
+	    	   
+	        for (Inmueble inmueble : inmuebles) {
+	        	if (id_inmueble == inmueble.getId_inmueble()) {
+	        		
+	        	if(inmueble.isDisponible()==true){      		
+	        		ModeloInmuebles.addRow(new Object[]{
+	                        inmueble.getId_inmueble(),
+	                        inmueble.getTipo_inmueble(),
+	                        inmueble.getPiso(),
+	                        inmueble.getCantAmbientes(),
+	                        inmueble.getBarrio(),
+	                        inmueble.getDireccion(),
+	                        inmueble.getAlturaDireccion(),
+	                        inmueble.getPrecio(),
+	                        inmueble.isDisponible(),
+	                        inmueble.getCondicion(),
+	                        inmueble.getSuperficie_cubierta(),
+	                        inmueble.isPatio(),
+	                        inmueble.isRefaccionar()
+	        		});
+	        	contador++;
+	        	}
+	        }
+			
+	        }
+	       } 
+	       
+	       
+	       if (contador==0 && flag == true) {
+	    	   
+	    	   
+	    	   inpInmueble.setText("No existe el inmueble");
+	    	   
+	    	   
+	       }
+		  
+		  
+		  
+		  
+		  
+		  
+	  }
+	  
+	  
+	  
+	  
 
 }

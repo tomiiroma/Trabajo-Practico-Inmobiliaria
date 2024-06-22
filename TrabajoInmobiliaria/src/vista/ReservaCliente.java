@@ -36,7 +36,7 @@ public class ReservaCliente extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField BuscadorCliente;
 	private JTable tableCliente;
 	private DefaultTableModel ModeloCliente;
 	private Cliente Clienteseleccionado;
@@ -88,17 +88,32 @@ public class ReservaCliente extends JFrame {
 		lblNewLabel_1.setBounds(10, 78, 46, 14);
 		panel.add(lblNewLabel_1);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(66, 75, 162, 20);
-		panel.add(textField);
+		BuscadorCliente = new JTextField();
+		BuscadorCliente.setColumns(10);
+		BuscadorCliente.setBounds(66, 75, 187, 20);
+		panel.add(BuscadorCliente);
 		
-		JButton btnNewButton = new JButton("Buscar");
-		btnNewButton.setBounds(249, 74, 102, 23);
-		panel.add(btnNewButton);
+		JButton InpCliente = new JButton("Buscar");
+		InpCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				MostrarCliente();
+				
+			}
+		});
+		InpCliente.setBounds(275, 74, 102, 23);
+		panel.add(InpCliente);
 		
 		JButton btnNewButton_1 = new JButton("Actualizar");
-		btnNewButton_1.setBounds(375, 74, 102, 23);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				 MostrarInquilino();
+				 MostrarPropietarios();
+			}
+		});
+		btnNewButton_1.setBounds(400, 74, 102, 23);
 		panel.add(btnNewButton_1);
 		
 		JPanel panel_1 = new JPanel();
@@ -293,4 +308,122 @@ public class ReservaCliente extends JFrame {
 		}
 	
 	
+	 
+	 private void MostrarCliente() {
+		 
+		 int contador = 0, id_cliente = 0;
+		 
+		 boolean flag=true;
+		 
+		 try {
+			
+			 id_cliente = Integer.parseInt(BuscadorCliente.getText());
+			 
+			 
+		} catch (Exception e) {
+			
+			flag=false;
+			
+			BuscadorCliente.setText("Error solo numeros");
+			
+		}
+		 
+			InquilinoControlador inquilinocont = new InquilinoControlador();
+
+			ModeloCliente.setRowCount(0);
+
+			CompradorControlador compradorcontrol = new CompradorControlador();
+
+			List<Comprador> compradores = compradorcontrol.getAllComprador();
+			
+			
+			List<Inquilino> Inquilinos = inquilinocont.getAllInquilino();
+			
+			if (flag==true) {
+			
+				
+			for (Inquilino inquilino : Inquilinos) {
+				
+			if (id_cliente == inquilino.getId_cliente()) {	
+				ModeloCliente.addRow(new Object[] {
+						inquilino.getNombre(),
+						inquilino.getId_cliente(),
+						inquilino.getApellido(),
+						inquilino.getCorreo(),
+						inquilino.getDireccion(),
+						inquilino.getTelefono(),
+						inquilino.getFecha_nacimiento(),
+						inquilino.getDni(),
+								
+				});
+			contador++;	
+			}
+			
+			} 
+			
+			if (contador == 0) {
+				
+				for (Comprador comprador : compradores) {
+					if (id_cliente == comprador.getId_cliente()) {
+						
+					ModeloCliente.addRow(new Object[] {
+							comprador.getNombre(),
+							comprador.getId_cliente(),
+							comprador.getApellido(),
+							comprador.getCorreo(),
+							comprador.getDireccion(),
+							comprador.getTelefono(),
+							comprador.getFecha_nacimiento(),
+							comprador.getDni(),		
+					});
+						contador++;
+					}
+				}
+				
+				
+			if (contador == 0 && flag == true) {
+				
+				BuscadorCliente.setText("No existe un cliente con esa id.");
+				
+				
+			}	
+				
+				
+				
+				
+				
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		}
+		 
+	 } 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
 }

@@ -67,8 +67,7 @@ public class Reserva {
 			   +", Dni: " + cliente.getDni() 
 			   +", Fecha pago: " + fecha_pago 
 			   +", Monto: $"+ pago 
-			   +", Forma pago: " + forma_pago 
-			   +", Id Empleado "+ empleado.getId_empleado();
+			   +", Forma pago: " + forma_pago;
 	}
 
 
