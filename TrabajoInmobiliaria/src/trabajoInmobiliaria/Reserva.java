@@ -42,6 +42,9 @@ public class Reserva {
 		this.propietario = propietario;
 	}
 
+	public Reserva() {
+		
+	}
 
 
 

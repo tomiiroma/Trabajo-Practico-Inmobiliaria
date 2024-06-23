@@ -41,6 +41,7 @@ public class EditarAgente extends JFrame implements Validacion {
 	private ModificarEmpleado menuModificiacion;
 	private AgenteControlador controladoragente;
 	private Gerente gerente;
+	private AgenteModificadoAviso volverAgente;
 
 	/**
 	 * Launch the application.
@@ -83,11 +84,11 @@ public class EditarAgente extends JFrame implements Validacion {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (menuModificiacion == null) {
+			
 					
-					menuModificiacion = new ModificarEmpleado();
+				menuModificiacion = new ModificarEmpleado();
 					
-				}
+				
 				
 				
 				menuModificiacion.setVisible(true);
@@ -130,7 +131,7 @@ public class EditarAgente extends JFrame implements Validacion {
 		lblDni.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
 		JLabel lblFecha_nac = new JLabel("Fecha nac:");
-		lblFecha_nac.setBounds(60, 252, 105, 35);
+		lblFecha_nac.setBounds(60, 250, 105, 35);
 		panel.add(lblFecha_nac);
 		lblFecha_nac.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
@@ -180,7 +181,7 @@ public class EditarAgente extends JFrame implements Validacion {
 		lblApellido.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
 		inpApellido = new JTextField();
-		inpApellido.setBounds(680, 52, 241, 35);
+		inpApellido.setBounds(680, 50, 241, 35);
 		panel.add(inpApellido);
 		inpApellido.setColumns(10);
 		
@@ -613,6 +614,18 @@ public class EditarAgente extends JFrame implements Validacion {
 						
 					
 					gerente.ModificarAgente(agente, nombre, apellido, fecha, dni, telefono, correo, passwordField.getText(),Integer.parseInt(inpID_agente.getText()));
+					
+					
+					volverAgente = new AgenteModificadoAviso();
+					
+					
+					volverAgente.setLocationRelativeTo(null);
+					
+					
+					volverAgente.setVisible(true);
+					
+					dispose();
+					
 					
 					} else {/* Despues modificarlo. */  JOptionPane.showMessageDialog(null, "No se ha modificado ningun dato, error.");}
 						

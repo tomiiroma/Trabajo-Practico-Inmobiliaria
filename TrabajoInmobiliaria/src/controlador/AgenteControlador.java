@@ -1,6 +1,6 @@
 package controlador;
 
-import java.sql.Connection;  
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,7 +30,7 @@ public class AgenteControlador implements AgenteRepository{
 	    
 	   
 	    @Override
-	    public List<Agente> getAllAgente() {
+	    public List<Agente>  getAllAgente() {
 	        List<Agente> agentes = new ArrayList<>();
 	        try {
 	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM empleado where tipo_empleado = 'Agente'"); 
@@ -133,7 +133,7 @@ public class AgenteControlador implements AgenteRepository{
 		
 		
 		@Override
-		public void deleteAgente(int id) {
+		public String deleteAgente(int id) {
 		    try {
 		        
 		        String sql = "SELECT COUNT(*) AS total FROM " +
@@ -158,7 +158,7 @@ public class AgenteControlador implements AgenteRepository{
 		        
 		        if (referencesCount > 0) {
 		            JOptionPane.showMessageDialog(null,"El empleado no puede ser eliminado porque tiene referencias en otras tablas.");
-		            return;
+		            return "El empleado no puede ser eliminado, tiene referencias en otras tablas.";
 		        }
 		        
 		        PreparedStatement deleteStatement = connection.prepareStatement("DELETE FROM empleado WHERE id_empleado = ?");
@@ -167,12 +167,15 @@ public class AgenteControlador implements AgenteRepository{
 		        int rowsDeleted = deleteStatement.executeUpdate();
 		        if (rowsDeleted > 0) {
 		            System.out.println("Empleado eliminado exitosamente");
+		            return "Empleado eliminado";
 		        } else {
 		            System.out.println("No se encontró ningún empleado con ese ID.");
+		            return "No se encontro ningun empleado";
 		        }
 		        
 		    } catch (SQLException e) {
 		        e.printStackTrace();
+		        return "error";
 		    }
 		}
 

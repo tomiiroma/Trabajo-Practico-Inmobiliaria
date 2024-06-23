@@ -48,11 +48,14 @@ public class TestReservas {
 		 
 		 fecha_pago = LocalDate.now();
 		 
-		 String  pago ="10000";
+		 double  pago =10000.0;
+		 
+		 String forma = "efectivo";
+		 
+		 String operacion = "Venta";
 		 
 		 
-		 
-		 if (gerentev.RealizarReserva(inmueble,empleado,cliente,fecha_pago,pago)==true) {
+		 if (gerentev.RealizarReserva(inmueble,empleado,cliente,fecha_pago,pago,forma,operacion)==true) {
 			 
 			 flag = true;
 			 
@@ -92,11 +95,15 @@ public class TestReservas {
 		 
 		 fecha_pago = LocalDate.now();
 		 
-		 String  pago ="10000";
+		 double  pago =10000.0;
 		 
 		Inmueble inmueble = null;
+		
+		String forma = "efectivo";
 		 
-		 if (gerentev.RealizarReserva(inmueble,empleado,cliente,fecha_pago,pago)==true) {
+		 String operacion = "Venta";
+		 
+		 if (gerentev.RealizarReserva(inmueble,empleado,cliente,fecha_pago,pago,forma,operacion)==true) {
 			 
 			 flag = true;
 			 
@@ -136,11 +143,13 @@ public class TestReservas {
 		 
 		 fecha_pago = LocalDate.now();
 		 
-		 String  pago ="10000";
+		 double  pago =10000;
 		 
-		
+	 String forma = "efectivo";
 		 
-		 if (gerentev.RealizarReserva(inmueble,empleado,cliente,fecha_pago,pago)==true) {
+		 String operacion = "Venta";
+		 
+		 if (gerentev.RealizarReserva(inmueble,empleado,cliente,fecha_pago,pago,forma,operacion)==true) {
 			 
 			 flag = true;
 			 
@@ -179,11 +188,14 @@ public class TestReservas {
 		 
 		 fecha_pago = LocalDate.now();
 		 
-		 String  pago ="10000";
+		 double  pago =10000;
 		 
+	 String forma = "efectivo";
+		 
+		 String operacion = "Venta";
 		
 		 
-		 if (gerentev.RealizarReserva(inmueble,empleado,cliente,fecha_pago,pago)==true) {
+		 if (gerentev.RealizarReserva(inmueble,empleado,cliente,fecha_pago,pago,forma,operacion)==true) {
 			 
 			 flag = true;
 			 
@@ -225,11 +237,14 @@ public class TestReservas {
 		 
 		 fecha_pago = LocalDate.of(2020, 10, 22);
 		 
-		 String  pago ="10000";
+		 double  pago =10000;
 		 
 		
+	 String forma = "efectivo";
 		 
-		 if (gerentev.RealizarReserva(inmueble,empleado,cliente,fecha_pago,pago)==true) {
+		 String operacion = "Venta";
+		 
+		 if (gerentev.RealizarReserva(inmueble,empleado,cliente,fecha_pago,pago,forma,operacion)==true) {
 			 
 			 flag = true;
 			 

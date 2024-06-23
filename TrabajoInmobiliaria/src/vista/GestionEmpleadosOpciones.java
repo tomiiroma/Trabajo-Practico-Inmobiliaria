@@ -14,10 +14,10 @@ import java.awt.event.ActionEvent;
 public class GestionEmpleadosOpciones extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private TipoEmpleado tipoempleado;
-	private Tipoempleado2 tipoempleado2;
 	private ModificarEmpleado Modificar;
 	private EliminarEmpleados Eliminar;
+	private ListaEmpleado verDatos;
+	private MenuAgregarAgente AgregarEmpleado;
 	/**
 	 * Launch the application.
 	 */
@@ -50,18 +50,18 @@ public class GestionEmpleadosOpciones extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (tipoempleado2 == null) {
+				
 					
 					
-					tipoempleado2 = new Tipoempleado2();
+					verDatos = new ListaEmpleado();
 					
 					
-				}
 				
 				
-				tipoempleado2.setVisible(true);
 				
-				tipoempleado2.setLocationRelativeTo(null);
+				verDatos.setVisible(true);
+				
+				verDatos.setLocationRelativeTo(null);
 				
 				dispose();
 				
@@ -81,11 +81,11 @@ public class GestionEmpleadosOpciones extends JFrame {
 		btnModificarEmpleado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (Modificar == null) {
+				
 					
 					Modificar = new ModificarEmpleado();
 					
-				}
+				
 				
 				Modificar.setVisible(true);
 				
@@ -104,16 +104,16 @@ public class GestionEmpleadosOpciones extends JFrame {
 		btnAgregarEmpleado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (tipoempleado==null) {
-					
-					tipoempleado = new TipoEmpleado();
-					
-					
-				}
 				
-				tipoempleado.setLocationRelativeTo(null);
+					
+					AgregarEmpleado = new MenuAgregarAgente();
+					
+					
 				
-				tipoempleado.setVisible(true);
+				
+				AgregarEmpleado.setLocationRelativeTo(null);
+				
+				AgregarEmpleado.setVisible(true);
 				
 				dispose();
 				
@@ -138,12 +138,12 @@ public class GestionEmpleadosOpciones extends JFrame {
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (Eliminar == null) {
+		
 					
 					Eliminar = new EliminarEmpleados();
 					
 					
-				}
+				
 				
 			
 				Eliminar.setLocationRelativeTo(null);
@@ -164,11 +164,11 @@ public class GestionEmpleadosOpciones extends JFrame {
 			
 				
 				
-				MenuGestionEmpleados menuprincipalempleado = new MenuGestionEmpleados();
+				PantallaGerente pantallagerente = new PantallaGerente();
 
-				menuprincipalempleado.setVisible(true);
+				pantallagerente.setVisible(true);
 				
-				menuprincipalempleado.setLocationRelativeTo(null);
+				pantallagerente.setLocationRelativeTo(null);
 				
 				dispose();
 			

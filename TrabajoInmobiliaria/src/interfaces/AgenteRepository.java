@@ -1,7 +1,6 @@
 package interfaces;
 
-import java.util.List;  
-import java.util.LinkedList;
+import java.util.List;
 
 import trabajoInmobiliaria.Agente;
 
@@ -17,7 +16,7 @@ public interface AgenteRepository {
     
     void updateAgente(Agente agente); 
     
-    void deleteAgente(int id); 
+    String deleteAgente(int id); 
 
 
 }

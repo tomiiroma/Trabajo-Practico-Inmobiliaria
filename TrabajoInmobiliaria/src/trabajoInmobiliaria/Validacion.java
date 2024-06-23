@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 
+import controlador.ControladorEmpleado;
 import controlador.InmuebleControlador;
 import controlador.VentaControlador;
 
@@ -765,6 +766,63 @@ public interface Validacion {
 		
 		
 		
+		/* ----------------------------------------------------------------------------------------- Validar Correo ------------------------------------------------------------------------------------------------------------------------- */	
+		default String ValidarMailDuplicado(String correo) {
+			
+			ControladorEmpleado controlador = new ControladorEmpleado();
+			
+			
+			
+			
+			for (Empleado empleado : controlador.getAllEmpleados()) {
+				
+				
+				if (empleado.getCorreo().equalsIgnoreCase(correo)) {
+					
+					
+					return "El correo se encuentra registrado.";
+					
+					
+				}
+				
+				
+				
+				
+			}
+			
+			
+			return "Mail valido";
+		}
+		
+		
+/* Ver si modificar despues con las del metodo agregar Agente y Gerente */
+		
+		
+		default String ValidarDniDuplicado(int dni) {
+			
+			ControladorEmpleado controlador = new ControladorEmpleado();
+			
+			for (Empleado empleado : controlador.getAllEmpleados()) {
+				
+				
+				if (dni == empleado.getDni()) {
+					
+					
+					return "El DNI se encuentra repetido";
+					
+					
+				}
+				
+				
+				
+				
+			}
+			
+			
+			
+			
+			return "Se puede registrar";
+		}
 		
 		
 		
@@ -772,6 +830,49 @@ public interface Validacion {
 		
 		
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		 default String ValidarPrecio(double precio) {
+
+			 
+
+			 try {
+				
+			
+				
+				 if (precio >= 10000) {
+					 
+					 return "el precio es valido";
+					 
+				 } else {
+					 
+					 
+					 return "El monto debe ser mayor a 10000";
+					 
+				 }
+				 
+			
+			 
+			 } catch (Exception e) {
+			
+			
+				 return "error se esta intentado ingresar un caracter especial";
+			 
+			 
+			 }
+			 
+			 
+			 
+			 
+			
+		 }
 		
 		
 		

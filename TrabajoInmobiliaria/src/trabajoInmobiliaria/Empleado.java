@@ -1131,16 +1131,15 @@ public class Empleado implements InicioSesion,Validacion{
 	
 	/*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-	
-public boolean RealizarReserva(Inmueble inmueble,Empleado empleado2,Cliente cliente2,LocalDate fecha_pago2,String pago2) {
+public boolean RealizarReserva(Inmueble inmueble,Empleado empleado2,Cliente cliente2,LocalDate fecha_pago2,double pago2,String forma_pago,String tipo_operacion) {
 		
 		boolean error = false;
-		double montovalidado;
+		
 		
 		try {
 			
 		ReservaControlador reservacontrolador = new ReservaControlador();
-		
+		InmuebleControlador inmueblecontrolador = new InmuebleControlador();
 	
 		
 		if (inmueble==null) {System.out.println("No se ha ingresado ningun inmueble");	error=true; return false;}
@@ -1150,17 +1149,29 @@ public boolean RealizarReserva(Inmueble inmueble,Empleado empleado2,Cliente clie
 		
 		if (empleado2==null) {System.out.println("No se ha ingresado ningun empleado");error = true; return false;}
 		
-		montovalidado = ValidarMonto(pago2);
 		
 		
-		String forma_pago = "Efectivo";
+		if (ValidarPrecio(pago2).equalsIgnoreCase("No se ingreso ningun precio") || ValidarPrecio(pago2).equalsIgnoreCase("error se esta intentado ingresar un caracter especial")) {
+			
+			error = true;
+			
+		}
+		 
 		
-		JOptionPane.showMessageDialog(null, error);
+		 String tipo_reserva = tipo_operacion;
+		
+		
+		
 		
 		if (error==false && validarFecha_pagoReserva(fecha_pago2)) {
 			
 			
-			reservacontrolador.addReserva(new Reserva(inmueble,cliente2,fecha_pago2,montovalidado,forma_pago,empleado2, null));
+			reservacontrolador.addReserva(new Reserva(inmueble,cliente2,fecha_pago2,pago2,forma_pago,empleado2,tipo_reserva));
+			
+			inmueble.setDisponible(false);
+			 inmueble.setActivo(false);
+			 
+			 inmueblecontrolador.updateInmueble(inmueble);
 			
 			return true;
 			
@@ -1168,7 +1179,9 @@ public boolean RealizarReserva(Inmueble inmueble,Empleado empleado2,Cliente clie
 		
 		
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, e);
+			
+		//	JOptionPane.showMessageDialog(null, e);
+		
 		}
 		
 		
