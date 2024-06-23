@@ -79,6 +79,7 @@ public class MenuOperaciones extends JFrame {
 		btnCompraventa.setBackground(new Color(48, 109, 105));
 		btnCompraventa.setBounds(93, 220, 278, 35);
 		panel.add(btnCompraventa);
+		
 		btnCompraventa.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 MenuVenta menuVenta = new MenuVenta();

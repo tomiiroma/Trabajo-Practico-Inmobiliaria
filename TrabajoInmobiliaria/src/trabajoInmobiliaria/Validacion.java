@@ -2,6 +2,8 @@
 package trabajoInmobiliaria;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -843,5 +845,31 @@ public interface Validacion {
 
 	        return true;
 	    }
+	    
+	    
+	    
+	    
+		  default boolean VerificarFecha(String fechaString) {
+		    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		    	
+		    	try {
+		    		LocalDate fecha = LocalDate.parse(fechaString, formatter);
+		    		return true;
+		    	}catch(DateTimeParseException e){
+		    		return false;
+		    	}
+		    }
+		  
+		  
+		  
+		  default  boolean esNumero(String numero) {
+			       
+		        try {
+		            Integer.parseInt(numero);
+		            return true;
+		        } catch (NumberFormatException e) {
+		            return false;
+		        }
+		    }
 	    
 }

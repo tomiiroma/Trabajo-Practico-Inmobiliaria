@@ -17,6 +17,7 @@ import trabajoInmobiliaria.Empleado;
 import trabajoInmobiliaria.Garante;
 import trabajoInmobiliaria.Inmueble;
 import trabajoInmobiliaria.Inquilino;
+import trabajoInmobiliaria.Validacion;
 import trabajoInmobiliaria.Alquiler;
 import trabajoInmobiliaria.Cliente;
 
@@ -36,7 +37,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.awt.event.ActionEvent;
 
-public class AgregarAlquiler extends JFrame {
+public class AgregarAlquiler extends JFrame implements Validacion{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -67,61 +68,56 @@ public class AgregarAlquiler extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(48, 109, 106));
+		contentPane.setBackground(new Color(52, 118, 113));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(48, 109, 106));
-		panel.setBounds(0, 11, 784, 33);
-		contentPane.add(panel);
-		
-		JLabel lblNewLabel = new JLabel("Nuevo Alquiler");
-		lblNewLabel.setFont(new Font("Calibri", Font.BOLD, 19));
-		panel.add(lblNewLabel);
-		
 		JLabel lblMonto = new JLabel("Monto Total");
+		lblMonto.setForeground(new Color(255, 255, 255));
 		lblMonto.setFont(new Font("Calibri", Font.BOLD, 15));
-		lblMonto.setBounds(35, 97, 116, 14);
+		lblMonto.setBounds(32, 120, 116, 14);
 		contentPane.add(lblMonto);
 		
 		textMonto = new JTextField();
-		textMonto.setBounds(35, 122, 186, 27);
+		textMonto.setBounds(32, 134, 186, 27);
 		contentPane.add(textMonto);
 		textMonto.setColumns(10);
 		
 		textFecha = new JTextField();
 		textFecha.setColumns(10);
-		textFecha.setBounds(35, 208, 186, 27);
+		textFecha.setBounds(32, 198, 186, 27);
 		contentPane.add(textFecha);
 		
 		JLabel lblFecha = new JLabel("Fecha");
+		lblFecha.setForeground(new Color(255, 255, 255));
 		lblFecha.setFont(new Font("Calibri", Font.BOLD, 15));
-		lblFecha.setBounds(35, 183, 116, 14);
+		lblFecha.setBounds(32, 185, 116, 14);
 		contentPane.add(lblFecha);
 		
 		JLabel lblMetodo = new JLabel("Metodo de Pago");
+		lblMetodo.setForeground(new Color(255, 255, 255));
 		lblMetodo.setFont(new Font("Calibri", Font.BOLD, 15));
-		lblMetodo.setBounds(35, 273, 116, 14);
+		lblMetodo.setBounds(32, 244, 116, 14);
 		contentPane.add(lblMetodo);
 		
 		JComboBox cbMetodo = new JComboBox();
-		cbMetodo.setBounds(35, 298, 186, 27);
+		cbMetodo.setBounds(32, 258, 186, 27);
 		contentPane.add(cbMetodo);
 		cbMetodo.addItem("Efectivo");
 		cbMetodo.addItem("Transferencia");
 
 		
 		JLabel lblGarante = new JLabel("Garante");
+		lblGarante.setForeground(new Color(255, 255, 255));
 		lblGarante.setFont(new Font("Calibri", Font.BOLD, 15));
-		lblGarante.setBounds(474, 95, 116, 14);
+		lblGarante.setBounds(540, 120, 116, 14);
 		contentPane.add(lblGarante);
 	
 		
 		JComboBox cbGarante = new JComboBox();
-		cbGarante.setBounds(474, 124, 186, 27);
+		cbGarante.setBounds(540, 136, 186, 27);
 		contentPane.add(cbGarante);
 		
 		
@@ -135,12 +131,13 @@ public class AgregarAlquiler extends JFrame {
 		}
 		
 		JLabel lblContrato = new JLabel("Contrato");
+		lblContrato.setForeground(new Color(255, 255, 255));
 		lblContrato.setFont(new Font("Calibri", Font.BOLD, 15));
-		lblContrato.setBounds(474, 181, 116, 14);
+		lblContrato.setBounds(540, 187, 116, 14);
 		contentPane.add(lblContrato);
 		
 		JComboBox cbContrato = new JComboBox();
-		cbContrato.setBounds(474, 210, 186, 27);
+		cbContrato.setBounds(540, 200, 186, 27);
 		contentPane.add(cbContrato);
 		
 		ContratoControlador contratocont = new ContratoControlador();
@@ -150,12 +147,13 @@ public class AgregarAlquiler extends JFrame {
 		}
 		
 		JLabel lblCliente = new JLabel("Cliente");
+		lblCliente.setForeground(new Color(255, 255, 255));
 		lblCliente.setFont(new Font("Calibri", Font.BOLD, 15));
-		lblCliente.setBounds(474, 271, 116, 14);
+		lblCliente.setBounds(540, 246, 116, 14);
 		contentPane.add(lblCliente);
 		
 		JComboBox cbCliente = new JComboBox();
-		cbCliente.setBounds(474, 300, 186, 27);
+		cbCliente.setBounds(540, 260, 186, 27);
 		contentPane.add(cbCliente);
 
 		InquilinoControlador inquilinocont = new InquilinoControlador();
@@ -165,14 +163,15 @@ public class AgregarAlquiler extends JFrame {
 		}
 		
 		JLabel lblInmueble = new JLabel("Inmueble");
+		lblInmueble.setForeground(new Color(255, 255, 255));
 		lblInmueble.setFont(new Font("Calibri", Font.BOLD, 15));
-		lblInmueble.setBounds(474, 338, 116, 14);
+		lblInmueble.setBounds(540, 309, 116, 14);
 		contentPane.add(lblInmueble);
 		
 		
 		
 		JComboBox cbInmueble = new JComboBox();
-		cbInmueble.setBounds(474, 363, 186, 27);
+		cbInmueble.setBounds(540, 323, 186, 27);
 		contentPane.add(cbInmueble);
 		InmuebleControlador inmueblecont = new InmuebleControlador();
 		List <Inmueble> Inmueble = inmueblecont.getAllInmueble();
@@ -183,32 +182,48 @@ public class AgregarAlquiler extends JFrame {
 		}
 		
 		JButton btnVolver = new JButton("Volver");
-		btnVolver.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
-		btnVolver.setForeground(Color.LIGHT_GRAY);
-		btnVolver.setBorder(null);
-		btnVolver.setBackground(new Color(34, 79, 75));
-		btnVolver.setBounds(230, 424, 117, 31);
+        btnVolver.setFont(new Font("Tahoma", Font.BOLD, 12));
+        btnVolver.setForeground(new Color(255, 255, 255));
+        btnVolver.setBackground(new Color(48, 109, 105));
+        btnVolver.setBorder(null);
+		btnVolver.setBounds(32, 404, 117, 31);
 		contentPane.add(btnVolver);
 		
+		
+		btnVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+                MenuAlquiler volver = new MenuAlquiler();
+                dispose();			}
+		});
+		
 		JButton btnAgregar = new JButton("Agregar");
-		btnAgregar.setForeground(Color.LIGHT_GRAY);
+		btnAgregar.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnAgregar.setForeground(new Color(255, 255, 255));
+		btnAgregar.setBackground(new Color(48, 109, 105));
 		btnAgregar.setBorder(null);
-		btnAgregar.setBackground(new Color(34, 79, 75));
-		btnAgregar.setBounds(357, 424, 117, 31);
+		btnAgregar.setBounds(609, 404, 117, 31);
 		contentPane.add(btnAgregar);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setLayout(null);
+		panel_1.setBackground(new Color(133, 201, 196));
+		panel_1.setBounds(10, 11, 764, 55);
+		contentPane.add(panel_1);
+		
+		JLabel lblGestorPropiedades_1 = new JLabel("Registrar Nuevo Alquiler\r\n");
+		lblGestorPropiedades_1.setForeground(Color.WHITE);
+		lblGestorPropiedades_1.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 30));
+		lblGestorPropiedades_1.setBounds(10, 11, 624, 35);
+		panel_1.add(lblGestorPropiedades_1);
+		
+		
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String formapago = cbMetodo.getSelectedItem().toString();
 				int montototal =0;
 				LocalDate fecha= null;
 			
-				
-				
-				
+		
 				int clienteselec = (Integer)cbCliente.getSelectedItem();
 				Cliente cliente = inquilinocont.getInquilinoById(clienteselec);
 				
@@ -248,24 +263,7 @@ public class AgregarAlquiler extends JFrame {
 		
 	}
 	
-	  private boolean VerificarFecha(String fechaString) {
-	    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-	    	
-	    	try {
-	    		LocalDate fecha = LocalDate.parse(fechaString, formatter);
-	    		return true;
-	    	}catch(DateTimeParseException e){
-	    		return false;
-	    	}
-	    }
+
 	  
-	    public static boolean esNumero(String numero) {
-	       
-	        try {
-	            Integer.parseInt(numero);
-	            return true;
-	        } catch (NumberFormatException e) {
-	            return false;
-	        }
-	    }
+
 }

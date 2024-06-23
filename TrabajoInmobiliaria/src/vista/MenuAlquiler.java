@@ -96,7 +96,8 @@ public class MenuAlquiler extends JFrame {
 		
 		btnVerVentas.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                dispose();
+            //	VerAlquileres verAlquileres= new VerAlquileres();
+             //   dispose();
             }
         });
 		

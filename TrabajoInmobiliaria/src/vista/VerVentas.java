@@ -175,7 +175,7 @@ public class VerVentas extends JFrame {
 		btnVolver.setBorder(null);
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MenuVenta volver = new MenuVenta();
+				MenuVenta menuVenta = new MenuVenta();
 				dispose();
 			}
 		});
