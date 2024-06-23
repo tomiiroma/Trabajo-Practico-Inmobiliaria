@@ -34,6 +34,7 @@ import java.awt.event.ActionEvent;
 import java.awt.ScrollPane;
 import javax.swing.JTextArea;
 import java.awt.Font;
+import javax.swing.JTextField;
 
 public class PantallaCliente extends JFrame {
 
@@ -48,6 +49,7 @@ public class PantallaCliente extends JFrame {
     private JTable table_1;
     private JTable table_2;
     private Inquilino seleccionado;
+    private JTextField textBusqueda;
 
 
 	/**
@@ -73,7 +75,7 @@ public class PantallaCliente extends JFrame {
 		
 		this.setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 500);
+		setBounds(100, 100, 1057, 500);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -83,9 +85,10 @@ public class PantallaCliente extends JFrame {
 		
 		Inquilino seleccionado = new Inquilino();
 		InquilinoControlador controladorInquilino = new InquilinoControlador();
-		
+		PropietarioControlador controladorPropietario = new PropietarioControlador();
+
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(48, 109, 105));
+		panel.setBackground(new Color(52, 118, 113));
 		panel.setBounds(0, 0, 213, 461);
 		contentPane.add(panel);
 		panel.setLayout(null);
@@ -96,31 +99,34 @@ public class PantallaCliente extends JFrame {
 
 		
 		JButton btnModificar = new JButton("Modificar");
-		btnModificar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		btnModificar.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnModificar.setForeground(Color.LIGHT_GRAY);
 		btnModificar.setBorder(null);
-		btnModificar.setBackground(new Color(34, 79, 75));
+		btnModificar.setBackground(new Color(48, 109, 105));
 		btnModificar.setBounds(10, 130, 193, 43);
 		panel.add(btnModificar);
+
+		
 		
 		JButton btnAgregar = new JButton("Agregar");
+		btnAgregar.setFont(new Font("Tahoma", Font.BOLD, 12));
+	  	btnAgregar.setForeground(Color.LIGHT_GRAY);
+	  	btnAgregar.setBorder(null);
+	  	btnAgregar.setBackground(new Color(48, 109, 105));
+		btnAgregar.setBounds(10, 238, 193, 43);
+		panel.add(btnAgregar);
+		
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AgregarCliente agregarCliente = new AgregarCliente();
 				dispose();
 			}
 		});
-		btnAgregar.setForeground(Color.LIGHT_GRAY);
-		btnAgregar.setBorder(null);
-		btnAgregar.setBackground(new Color(34, 79, 75));
-		btnAgregar.setBounds(10, 238, 193, 43);
-		panel.add(btnAgregar);
+		
+
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(223, 89, 551, 361);
+		tabbedPane.setBounds(223, 89, 788, 361);
 		contentPane.add(tabbedPane);
 		
 		JPanel panel_1 = new JPanel();
@@ -180,55 +186,112 @@ public class PantallaCliente extends JFrame {
 	            }
 	        });
 	      
-	  	JButton btnEliminar = new JButton("Eliminar");
-		btnEliminar.setForeground(new Color(192, 192, 192));
-		btnEliminar.setBorder(null);
-		btnEliminar.setBackground(new Color(34, 79, 75));
-		btnEliminar.setBounds(10, 184, 193, 43);
-		panel.add(btnEliminar);
-		btnEliminar.addActionListener(new ActionListener() {
+			btnModificar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if(panel_1.isVisible()) {
+						 int selectedRow = table.getSelectedRow();
+			                int idInquilino = (int) table.getValueAt(selectedRow, 0);
+
+							ModificarInquilino modificar = new ModificarInquilino(controladorInquilino.getInquilinoById(idInquilino));
+							dispose();
+					}else {
+						 int selectedRow2 = table_2.getSelectedRow();
+						 int idPropietario = (int) table_2.getValueAt(selectedRow2, 0);
+							ModificarPropietario modificarprop = new ModificarPropietario(controladorPropietario.getPropietarioById(idPropietario));
+							dispose();
+					}
+			       
+					
+				}
+			});
+	      
+
+		
+		
+		
+		
+		JButton btnVolver = new JButton("Volver");
+		btnVolver.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnVolver.setForeground(Color.LIGHT_GRAY);
+		btnVolver.setBorder(null);
+		btnVolver.setBackground(new Color(48, 109, 105));
+		btnVolver.setBounds(42, 414, 117, 36);
+		panel.add(btnVolver);
+		
+		btnVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PantallaAgente PantallaAgente =  new PantallaAgente();
+				dispose();
+			}
+		});
+		
+		
+		textBusqueda = new JTextField();
+		textBusqueda.setBounds(233, 62, 116, 21);
+		contentPane.add(textBusqueda);
+		textBusqueda.setColumns(10);
+
+		JButton btnNewButton = new JButton("Buscar");
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnNewButton.setBounds(359, 62, 116, 21);
+		contentPane.add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(panel_1.isVisible()) {
-					  int selectedRow = table.getSelectedRow();
-				
-					  if(selectedRow == -1) {
-						  System.out.println("Selecciones un valor");
-					  }else {
-						  try {
-							  int id = (int)table.getValueAt(selectedRow, 0);
-								
-								controladorInquilino.deleteInquilino(id);
-								actualizarTabla();
-						} catch (Exception e2) {
-							e2.printStackTrace();
-						}
-					  }
+					actualizarPorBusquedaInquilino(textBusqueda.getText());
 				}else {
-					  PropietarioControlador propietariocont = new  PropietarioControlador();
-
-					  int selectedRow = table_2.getSelectedRow();
-					  if(selectedRow == -1) {
-						  System.out.println("Selecciones un valor");
-					  }else {
-						  try {
-							  int id = (int)table_2.getValueAt(selectedRow, 0);
-								
-							  propietariocont.deletePropietario(id);
-								actualizarPropietario();
-						//}catch(SQLException error){ 
-							//System.out.println("dsdas");
-							//error.printStackTrace();
-
-						}catch (Exception e2) {
-								e2.printStackTrace();
-
-						
-						}
-				}
-			
-			
+					actualizarPorBusquedaPropietario(textBusqueda.getText());
 				}
 			}
+		});
+		
+
+		
+	  	JButton btnEliminar = new JButton("Eliminar");
+	  	btnEliminar.setFont(new Font("Tahoma", Font.BOLD, 12));
+	  	btnEliminar.setForeground(Color.LIGHT_GRAY);
+	  	btnEliminar.setBorder(null);
+	  	btnEliminar.setBackground(new Color(48, 109, 105));
+		btnEliminar.setBounds(10, 184, 193, 43);
+		panel.add(btnEliminar);
+		
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			    if (panel_1.isVisible()) {
+			        int selectedRow = table.getSelectedRow();
+
+			        if (selectedRow == -1) {
+			            System.out.println("Seleccione un valor");
+			        } else {
+			            try {
+			                int id = (int) table.getValueAt(selectedRow, 0);
+			                controladorInquilino.deleteInquilino(id);
+			                actualizarTabla();
+			            } catch (Exception e2) {
+			                e2.printStackTrace();
+			            }
+			        }
+			    } else {
+			        PropietarioControlador propietariocont = new PropietarioControlador();
+			        int selectedRow = table_2.getSelectedRow();
+			        if (selectedRow == -1) {
+			            System.out.println("Seleccione un valor");
+			        } else {
+			            try {
+			                int id = (int) table_2.getValueAt(selectedRow, 0);
+			                propietariocont.deletePropietario(id);
+			                actualizarPropietario();
+			            
+			            } catch (Exception e2) {
+			                e2.printStackTrace();
+			            }
+			        }
+			    }
+			}
+			
+			
+		
+			
 		});
 		
 		  ListSelectionModel selectionModel2 = table_2.getSelectionModel();
@@ -326,4 +389,53 @@ public class PantallaCliente extends JFrame {
 			});
 		}
 	}
+		
+		  private void actualizarPorBusquedaInquilino( String criterio) {
+				InquilinoControlador inquilinocont = new InquilinoControlador();
+
+		        modelInquilino.setRowCount(0);
+
+				List<Inquilino> Inquilinos = inquilinocont.getAllInquilino();
+
+				for (Inquilino inquilino : Inquilinos) {
+					if(inquilino.getNombre().contains(criterio)) {
+						modelInquilino.addRow(new Object[] {
+								inquilino.getId_cliente(),
+								inquilino.getNombre(),
+								inquilino.getApellido(),
+								inquilino.getCorreo(),
+								inquilino.getDireccion(),
+								inquilino.getTelefono(),
+								inquilino.getFecha_nacimiento(),
+								inquilino.getDni(),		
+						});
+					}		
+					} ;
+				
+				
+							} 
+		  private void actualizarPorBusquedaPropietario(String criterio) {
+				PropietarioControlador propietariocont = new PropietarioControlador();
+
+		        modelPropietario.setRowCount(0);
+
+				List<Propietario> propietarios = propietariocont.getAllPropietario();
+
+				for (Propietario propietario : propietarios) {
+					if(propietario.getNombre().contains(criterio)) {
+						modelPropietario.addRow(new Object[] {
+								propietario.getId_cliente(),
+								propietario.getNombre(),
+								propietario.getApellido(),
+								propietario.getCorreo(),
+								propietario.getDireccion(),
+								propietario.getTelefono(),
+								propietario.getFecha_nacimiento(),
+								propietario.getDni(),		
+						});						
+					}
+					
+					}		
+		        }
+		
 }

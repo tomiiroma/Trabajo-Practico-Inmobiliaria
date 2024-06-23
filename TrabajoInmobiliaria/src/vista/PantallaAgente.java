@@ -76,7 +76,6 @@ public class PantallaAgente extends JFrame {
 		btnInmuebles.setBounds(107, 136, 278, 35);
 		panel.add(btnInmuebles);
 		
-		
 		JButton btnNuevoCliente = new JButton("Clientes");
 		btnNuevoCliente.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnNuevoCliente.setForeground(Color.WHITE);
@@ -133,8 +132,6 @@ public class PantallaAgente extends JFrame {
 		btnAgendarReunionvisita.setBounds(107, 228, 278, 35);
 		panel.add(btnAgendarReunionvisita);
 		
-		
-		
 		JButton btnRegistrarPago = new JButton("Registrar Pago");
 		btnRegistrarPago.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnRegistrarPago.setForeground(Color.WHITE);
@@ -186,11 +183,5 @@ public class PantallaAgente extends JFrame {
 		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 30));
 		lblNewLabel.setBounds(10, 12, 649, 35);
 		panel_1.add(lblNewLabel);
-		
-		JLabel lblNewLabel_1 = new JLabel("Bienvenido");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 30));
-		lblNewLabel_1.setBounds(107, 85, 586, 22);
-		panel.add(lblNewLabel_1);
 	}
 }

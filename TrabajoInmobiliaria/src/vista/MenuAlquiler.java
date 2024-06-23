@@ -2,18 +2,17 @@ package vista;
 
 import java.awt.Color;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
-public class MenuOperaciones extends JFrame {
+public class MenuAlquiler extends JFrame {
 
 	private JPanel contentPane;
 
@@ -24,7 +23,7 @@ public class MenuOperaciones extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MenuOperaciones frame = new MenuOperaciones();
+					MenuAlquiler frame = new MenuAlquiler();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,7 +35,7 @@ public class MenuOperaciones extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MenuOperaciones() {
+	public MenuAlquiler() {
 		this.setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
@@ -66,41 +65,41 @@ public class MenuOperaciones extends JFrame {
 		btnNewButton_9.setBounds(659, 0, 125, 55);
 		panel_1.add(btnNewButton_9);
 		
-		JLabel lblMenuOperaciones = new JLabel("Menu Operaciones");
-		lblMenuOperaciones.setForeground(Color.WHITE);
-		lblMenuOperaciones.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 30));
-		lblMenuOperaciones.setBounds(10, 12, 661, 35);
-		panel_1.add(lblMenuOperaciones);
+		JLabel lblMenuAlquiler = new JLabel("Menu Alquileres");
+		lblMenuAlquiler.setForeground(Color.WHITE);
+		lblMenuAlquiler.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 30));
+		lblMenuAlquiler.setBounds(10, 12, 661, 35);
+		panel_1.add(lblMenuAlquiler);
 		
-		JButton btnCompraventa = new JButton("Realizar Compra/Venta Inmueble");
-		btnCompraventa.setForeground(Color.WHITE);
-		btnCompraventa.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnCompraventa.setBorder(null);
-		btnCompraventa.setBackground(new Color(48, 109, 105));
-		btnCompraventa.setBounds(93, 220, 278, 35);
-		panel.add(btnCompraventa);
-		btnCompraventa.addActionListener(new ActionListener() {
+		JButton btnRealizarVenta = new JButton("Realizar Alquiler\r\n");
+		btnRealizarVenta.setForeground(Color.WHITE);
+		btnRealizarVenta.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnRealizarVenta.setBorder(null);
+		btnRealizarVenta.setBackground(new Color(48, 109, 105));
+		btnRealizarVenta.setBounds(93, 220, 278, 35);
+		panel.add(btnRealizarVenta);
+		btnRealizarVenta.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                MenuVenta menuVenta = new MenuVenta();
+                AgregarAlquiler agregarAlquiler = new AgregarAlquiler();
                 dispose();
             }
         });
 		
 		
-		JButton btnAlquiler = new JButton("Realizar Alquiler Inmueble");
-		btnAlquiler.setForeground(Color.WHITE);
-		btnAlquiler.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnAlquiler.setBorder(null);
-		btnAlquiler.setBackground(new Color(48, 109, 105));
-		btnAlquiler.setBounds(401, 220, 278, 35);
-		panel.add(btnAlquiler);
+		JButton btnVerVentas = new JButton("Ver Alquileres\r\n");
+		btnVerVentas.setForeground(Color.WHITE);
+		btnVerVentas.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnVerVentas.setBorder(null);
+		btnVerVentas.setBackground(new Color(48, 109, 105));
+		btnVerVentas.setBounds(401, 220, 278, 35);
+		panel.add(btnVerVentas);
 		
-		btnAlquiler.addActionListener(new ActionListener() {
+		btnVerVentas.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                MenuAlquiler menuAlquiler = new MenuAlquiler();
                 dispose();
             }
         });
+		
 		
 		
 		JButton btnVolver = new JButton("Volver");
@@ -113,11 +112,12 @@ public class MenuOperaciones extends JFrame {
 		
         btnVolver.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                PantallaAgente pantallaAgente = new PantallaAgente();
+                MenuOperaciones volver = new MenuOperaciones();
                 dispose();
             }
         });
 		
 		
 	}
+
 }

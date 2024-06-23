@@ -182,11 +182,5 @@ public class PantallaGerente extends JFrame {
 		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 30));
 		lblNewLabel.setBounds(10, 12, 668, 35);
 		panel_1.add(lblNewLabel);
-		
-		JLabel lblNewLabel_1 = new JLabel("Bienvenido");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 30));
-		lblNewLabel_1.setBounds(107, 88, 586, 22);
-		panel.add(lblNewLabel_1);
 	}
 }
