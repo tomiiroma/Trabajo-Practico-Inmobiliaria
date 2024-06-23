@@ -58,7 +58,7 @@ public class TestAgregarAgente {
 	
 	 	boolean flag=false;
 	 	
-	 	if (gerente1.AgregarAgente("Borrame","EnTestEliminarAgente", fecha_nacimiento , dni , 47502342, "Daniel@gmail.com", "asdasd20", dni)==true) {
+	 	if (gerente1.AgregarAgente("Borrame","EnTestEliminarAgente", fecha_nacimiento , dni , 47502342, "Daniel@gmail.com", "asdasd20")==true) {
 	 		
 	 		
 	 		flag = true;
