@@ -518,7 +518,7 @@ public class ListaReserva extends JFrame {
 		btnSeleccionar.setForeground(Color.WHITE);
 		btnSeleccionar.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnSeleccionar.setBorder(null);
-		btnSeleccionar.setBackground(new Color(52, 118, 113));
+		btnSeleccionar.setBackground(new Color(48, 109, 105));
 		btnSeleccionar.setBounds(744, 697, 107, 46);
 		contentPane.add(btnSeleccionar);
 		MostrarTabla();
