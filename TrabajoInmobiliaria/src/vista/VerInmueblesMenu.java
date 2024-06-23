@@ -99,5 +99,21 @@ public class VerInmueblesMenu extends JFrame {
         lblGestorPropiedades_1.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 30));
         lblGestorPropiedades_1.setBounds(10, 11, 624, 35);
         panel_1.add(lblGestorPropiedades_1);
+        
+        JButton btnActivarInmueble = new JButton("Activar Inmuebles");
+        btnActivarInmueble.setForeground(Color.WHITE);
+        btnActivarInmueble.setFont(new Font("Tahoma", Font.BOLD, 12));
+        btnActivarInmueble.setBorder(null);
+        btnActivarInmueble.setBackground(new Color(48, 109, 105));
+        btnActivarInmueble.setBounds(245, 262, 277, 35);
+        contentPane.add(btnActivarInmueble);
+        
+        btnActivarInmueble.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                ActivarInmuebles activarInmueble = new ActivarInmuebles();
+                dispose();
+            }
+        });
+        
     }
 }

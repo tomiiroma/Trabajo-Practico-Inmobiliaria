@@ -189,7 +189,7 @@ public class ActivarInmuebles extends JFrame {
         // Agregar los datos al modelo
         for (Inmueble inmueble : inmuebles) {
         	
-        	if(inmueble.isDisponible()==false){      		
+        	if(inmueble.isDisponible()==false && inmueble.isActivo()==false){      		
         		model.addRow(new Object[]{
                         inmueble.getId_inmueble(),
                         inmueble.getTipo_inmueble(),

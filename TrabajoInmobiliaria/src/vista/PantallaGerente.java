@@ -48,7 +48,6 @@ public class PantallaGerente extends JFrame {
 		setBounds(100, 100, 800, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
@@ -58,8 +57,18 @@ public class PantallaGerente extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
+		
+		
+		
 		JButton btnInmuebles = new JButton("Gestionar Inmuebles");
 		btnInmuebles.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnInmuebles.setBorder(null);
+		btnInmuebles.setForeground(new Color(255, 255, 255));
+		btnInmuebles.setBackground(new Color(48, 109, 105));
+		btnInmuebles.setBounds(107, 136, 278, 35);
+		panel.add(btnInmuebles);
+		
+		
 		btnInmuebles.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MenuInmueble verinmueblesCompleto = new MenuInmueble();
@@ -68,11 +77,10 @@ public class PantallaGerente extends JFrame {
 		});
 		
 		
-		btnInmuebles.setBorder(null);
-		btnInmuebles.setForeground(new Color(255, 255, 255));
-		btnInmuebles.setBackground(new Color(48, 109, 105));
-		btnInmuebles.setBounds(107, 136, 278, 35);
-		panel.add(btnInmuebles);
+
+		
+		
+		
 		
 		JButton btnNuevoCliente = new JButton("Clientes");
 		btnNuevoCliente.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -87,6 +95,7 @@ public class PantallaGerente extends JFrame {
 					dispose();
 				}
 			});
+		
 		
 		
 		
@@ -107,6 +116,7 @@ public class PantallaGerente extends JFrame {
 		
 		
 		
+		
 		JButton btnNuevoContrato = new JButton("Nuevo Contrato");
 		btnNuevoContrato.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnNuevoContrato.setForeground(Color.WHITE);
@@ -123,6 +133,7 @@ public class PantallaGerente extends JFrame {
 		});
 		
 		
+		
 		JButton btnAgendarReunionvisita = new JButton("Agendar Reunion/Visita");
 		btnAgendarReunionvisita.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnAgendarReunionvisita.setForeground(Color.WHITE);
@@ -130,6 +141,8 @@ public class PantallaGerente extends JFrame {
 		btnAgendarReunionvisita.setBackground(new Color(48, 109, 105));
 		btnAgendarReunionvisita.setBounds(107, 228, 278, 35);
 		panel.add(btnAgendarReunionvisita);
+		
+		
 		
 		JButton btnRegistrarPago = new JButton("Registrar Pago");
 		btnRegistrarPago.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -139,35 +152,49 @@ public class PantallaGerente extends JFrame {
 		btnRegistrarPago.setBounds(415, 228, 278, 35);
 		panel.add(btnRegistrarPago);
 		
-		JButton btnNewButton_6 = new JButton("Nuevo Documento");
-		btnNewButton_6.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnNewButton_6.setForeground(Color.WHITE);
-		btnNewButton_6.setBorder(null);
-		btnNewButton_6.setBackground(new Color(48, 109, 105));
-		btnNewButton_6.setBounds(107, 274, 278, 35);
-		panel.add(btnNewButton_6);
 		
-		JButton btnNewButton_7 = new JButton("Ver Operaciones");
-		btnNewButton_7.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnNewButton_7.setForeground(Color.WHITE);
-		btnNewButton_7.setBorder(null);
-		btnNewButton_7.setBackground(new Color(48, 109, 105));
-		btnNewButton_7.setBounds(415, 274, 278, 35);
-		panel.add(btnNewButton_7);
 		
-		JButton btnNewButton_7_1 = new JButton("Gestionar Reserva");
-		btnNewButton_7_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnNewButton_7_1.setForeground(Color.WHITE);
-		btnNewButton_7_1.setBorder(null);
-		btnNewButton_7_1.setBackground(new Color(48, 109, 105));
-		btnNewButton_7_1.setBounds(244, 320, 278, 35);
-		panel.add(btnNewButton_7_1);
+		JButton btnNuevoDocumento = new JButton("Nuevo Documento");
+		btnNuevoDocumento.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnNuevoDocumento.setForeground(Color.WHITE);
+		btnNuevoDocumento.setBorder(null);
+		btnNuevoDocumento.setBackground(new Color(48, 109, 105));
+		btnNuevoDocumento.setBounds(107, 274, 278, 35);
+		panel.add(btnNuevoDocumento);
+		
+		
+		
+		JButton btnVerOperaciones = new JButton("Ver Operaciones");
+		btnVerOperaciones.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnVerOperaciones.setForeground(Color.WHITE);
+		btnVerOperaciones.setBorder(null);
+		btnVerOperaciones.setBackground(new Color(48, 109, 105));
+		btnVerOperaciones.setBounds(415, 274, 278, 35);
+		panel.add(btnVerOperaciones);
+		
+		
+					
+		
+		JButton btnGestionReserva = new JButton("Gestionar Reserva");
+		btnGestionReserva.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnGestionReserva.setForeground(Color.WHITE);
+		btnGestionReserva.setBorder(null);
+		btnGestionReserva.setBackground(new Color(48, 109, 105));
+		btnGestionReserva.setBounds(244, 320, 278, 35);
+		panel.add(btnGestionReserva);
+		
+		
+		
+		
+
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(133, 201, 196));
 		panel_1.setBounds(0, 0, 784, 55);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
+		
+
 		
 		JButton btnNewButton_9 = new JButton("Salir");
 		btnNewButton_9.setForeground(new Color(255, 255, 255));
@@ -176,6 +203,9 @@ public class PantallaGerente extends JFrame {
 		btnNewButton_9.setBackground(new Color(133, 201, 196));
 		btnNewButton_9.setBounds(659, 0, 125, 55);
 		panel_1.add(btnNewButton_9);
+		
+		
+		
 		
 		JLabel lblNewLabel = new JLabel("Inmobiliaria Panel Gerente");
 		lblNewLabel.setForeground(new Color(255, 255, 255));

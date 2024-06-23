@@ -47,7 +47,7 @@ public class MenuInmueble extends JFrame {
         contentPane.setLayout(null);
 
         JButton btnVerInmuebles = new JButton("Ver Inmuebles");
-        btnVerInmuebles.setBounds(97, 216, 278, 35);
+        btnVerInmuebles.setBounds(96, 180, 278, 35);
         btnVerInmuebles.setFont(new Font("Tahoma", Font.BOLD, 12));
         btnVerInmuebles.setForeground(new Color(255, 255, 255));
         btnVerInmuebles.setBackground(new Color(48, 109, 105));
@@ -61,7 +61,7 @@ public class MenuInmueble extends JFrame {
         contentPane.add(btnVerInmuebles);
 
         JButton btnAgregarInmueble = new JButton("Agregar Inmuebles");
-        btnAgregarInmueble.setBounds(409, 216, 277, 35);
+        btnAgregarInmueble.setBounds(408, 180, 277, 35);
         btnAgregarInmueble.setFont(new Font("Tahoma", Font.BOLD, 12));
         btnAgregarInmueble.setForeground(new Color(255, 255, 255));
         btnAgregarInmueble.setBackground(new Color(48, 109, 105));
@@ -99,5 +99,36 @@ public class MenuInmueble extends JFrame {
         lblGestorPropiedades.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 30));
         lblGestorPropiedades.setBounds(10, 11, 298, 35);
         panel_1.add(lblGestorPropiedades);
+        
+        JButton btnEliminarInmueble = new JButton("Eliminar Inmuebles");
+        btnEliminarInmueble.setForeground(Color.WHITE);
+        btnEliminarInmueble.setFont(new Font("Tahoma", Font.BOLD, 12));
+        btnEliminarInmueble.setBorder(null);
+        btnEliminarInmueble.setBackground(new Color(48, 109, 105));
+        btnEliminarInmueble.setBounds(408, 256, 277, 35);
+        contentPane.add(btnEliminarInmueble);
+        btnEliminarInmueble.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                EliminarInmueble eliminarInmueble = new EliminarInmueble();
+                dispose();
+            }
+        });
+        
+  
+        
+        JButton btnModificarInmueble = new JButton("Modificar Inmuebles");
+        btnModificarInmueble.setForeground(Color.WHITE);
+        btnModificarInmueble.setFont(new Font("Tahoma", Font.BOLD, 12));
+        btnModificarInmueble.setBorder(null);
+        btnModificarInmueble.setBackground(new Color(48, 109, 105));
+        btnModificarInmueble.setBounds(96, 256, 278, 35);
+        contentPane.add(btnModificarInmueble);
+        
+        btnModificarInmueble.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                ModificarInmueble modificarInmueble = new ModificarInmueble();
+                dispose();
+            }
+        });
     }
 }
