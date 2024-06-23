@@ -1,3 +1,4 @@
+
 package controlador;
 
 
@@ -11,10 +12,8 @@ import java.util.List;
 
 import interfaces.ReservaRepository;
 import trabajoInmobiliaria.Reserva;
-import trabajoInmobiliaria.Venta;
 import trabajoInmobiliaria.Cliente;
 import trabajoInmobiliaria.Comprador;
-import trabajoInmobiliaria.Contrato;
 import trabajoInmobiliaria.DatabaseConnection;
 import trabajoInmobiliaria.Empleado;
 import trabajoInmobiliaria.Inmueble;
@@ -199,7 +198,7 @@ public class ReservaControlador implements ReservaRepository{
 	    @Override
 	    public void deleteReserva(int id) {
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("DELETE FROM Reserva");
+	            PreparedStatement statement = connection.prepareStatement("DELETE FROM users WHERE id = ?");
 	            statement.setInt(1, id);
 	            
 	            int rowsDeleted = statement.executeUpdate();
@@ -211,11 +210,7 @@ public class ReservaControlador implements ReservaRepository{
 	        }
 	
 	
-	    }
-	    
-	    
-	
-
+}
 
 
 
