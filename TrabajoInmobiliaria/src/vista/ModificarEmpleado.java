@@ -84,7 +84,7 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 		
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(128, 128, 128));
+		panel.setBackground(new Color(52, 118, 113));
 		panel.setBounds(0, 0, 182, 661);
 		contentPane.add(panel);
 		panel.setLayout(null);
@@ -108,12 +108,17 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 				dispose();
 			}
 		});
+		btnVolver.setFont(new Font("Tahoma", Font.BOLD, 12));
+		  btnVolver.setForeground(new Color(255, 255, 255));
+	        btnVolver.setBackground(new Color(48, 109, 105));
+	        btnVolver.setBorder(null);
 		btnVolver.setBounds(43, 599, 89, 23);
 		panel.add(btnVolver);
 		
 	
 		
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBackground(new Color(52, 118, 113));
 		tabbedPane.setBounds(181, 0, 803, 661);
 		contentPane.add(tabbedPane);
 		
@@ -127,6 +132,7 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 		panel_2.setLayout(null);
 		
 		JPanel panel_1_1 = new JPanel();
+		panel_1_1.setBackground(new Color(52, 118, 113));
 		panel_1_1.setLayout(null);
 		panel_1_1.setBounds(0, 0, 798, 633);
 		panel_2.add(panel_1_1);
@@ -157,6 +163,12 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 		panel_1_1.add(separator_1_1);
 		
 		JButton btnModgerentes = new JButton("Modificar");
+		btnModgerentes.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnModgerentes.setForeground(new Color(255, 255, 255));
+		btnModgerentes.setBackground(new Color(48, 109, 105));
+		btnModgerentes.setBorder(null);
+		btnModgerentes.setBounds(337, 578, 132, 44);
+		panel_1_1.add(btnModgerentes);
 		btnModgerentes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -180,16 +192,17 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 				
 			
 		});
-		btnModgerentes.setFont(new Font("Verdana", Font.PLAIN, 16));
-		btnModgerentes.setBounds(337, 578, 132, 44);
-		panel_1_1.add(btnModgerentes);
+
 		
 		JLabel lblgerenteseleccionado = new JLabel("Seleccion:");
-		lblgerenteseleccionado.setFont(new Font("Verdana", Font.PLAIN, 11));
+		lblgerenteseleccionado.setForeground(new Color(255, 255, 255));
+		lblgerenteseleccionado.setFont(new Font("Dialog", Font.BOLD, 12));
 		lblgerenteseleccionado.setBounds(21, 70, 751, 30);
 		panel_1_1.add(lblgerenteseleccionado);
 		
 		JLabel lblbuscadorAgentes_1 = new JLabel("Buscador:");
+		lblbuscadorAgentes_1.setForeground(new Color(255, 255, 255));
+		lblbuscadorAgentes_1.setFont(new Font("Dialog", Font.BOLD, 12));
 		lblbuscadorAgentes_1.setBounds(21, 110, 113, 20);
 		panel_1_1.add(lblbuscadorAgentes_1);
 		
@@ -278,6 +291,11 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 				
 			}
 		});
+		
+		btnBuscarGerente.setFont(new Font("Tahoma", Font.BOLD, 12));
+		  btnBuscarGerente.setForeground(new Color(255, 255, 255));
+	        btnBuscarGerente.setBackground(new Color(48, 109, 105));
+	        btnBuscarGerente.setBorder(null);
 		btnBuscarGerente.setBounds(337, 111, 89, 20);
 		panel_1_1.add(btnBuscarGerente);
 		
@@ -435,6 +453,13 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 		
 		
 		JButton btnAgente = new JButton("Agentes");
+		btnAgente.setBounds(27, 263, 105, 23);
+		btnAgente.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnAgente.setForeground(new Color(255, 255, 255));
+		btnAgente.setBackground(new Color(48, 109, 105));
+		btnAgente.setBorder(null);
+		btnAgente.setBounds(43, 263, 89, 23);
+		panel.add(btnAgente);
 		btnAgente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -443,12 +468,17 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 			}
 		});
 		
-		btnAgente.setBounds(43, 263, 89, 23);
-		panel.add(btnAgente);
 	
 		
 		
 		JButton btnGerentes = new JButton("Gerentes");
+		btnGerentes.setBounds(43, 313, 89, 49);
+		btnGerentes.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnGerentes.setForeground(new Color(255, 255, 255));
+		btnGerentes.setBackground(new Color(48, 109, 105));
+		btnGerentes.setBorder(null);
+		btnGerentes.setBounds(43, 313, 89, 23);
+		panel.add(btnGerentes);
 		btnGerentes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			
@@ -456,8 +486,6 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 			
 			}
 		});
-		btnGerentes.setBounds(43, 313, 89, 23);
-		panel.add(btnGerentes);
 	       
 		selectionModelAgentes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 

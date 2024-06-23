@@ -30,7 +30,7 @@ public class GestionEmpleadosOpciones extends JFrame {
 	public GestionEmpleadosOpciones() {
 		this.setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 900, 700);
+		setBounds(100, 100, 900, 581);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(52, 118, 113));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -38,22 +38,20 @@ public class GestionEmpleadosOpciones extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel_1 = new JLabel("Ver datos de los empleados");
-		lblNewLabel_1.setFont(new Font("Verdana", Font.PLAIN, 16));
-		lblNewLabel_1.setBounds(115, 200, 251, 43);
-		contentPane.add(lblNewLabel_1);
-		
-		JButton btnNewButton = new JButton("Ver datos");
+		JButton btnNewButton = new JButton("Ver datos de Empleados");
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnNewButton.setForeground(Color.WHITE);
+		btnNewButton.setBorder(null);
+		btnNewButton.setBackground(new Color(48, 109, 105));
+		btnNewButton.setBounds(124, 198, 206, 43);
+		contentPane.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				
-					
+
 					
 					verDatos = new ListaEmpleado();
-					
-					
-				
+						
 				
 				
 				verDatos.setVisible(true);
@@ -66,21 +64,20 @@ public class GestionEmpleadosOpciones extends JFrame {
 				
 			}
 		});
-		btnNewButton.setBounds(125, 259, 206, 43);
-		contentPane.add(btnNewButton);
-		
-		JLabel lblNewLabel_2 = new JLabel("Modificar empleado");
-		lblNewLabel_2.setFont(new Font("Verdana", Font.PLAIN, 16));
-		lblNewLabel_2.setBounds(562, 200, 206, 43);
-		contentPane.add(lblNewLabel_2);
 		
 		JButton btnModificarEmpleado = new JButton("Modificar empleado");
+		btnModificarEmpleado.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnModificarEmpleado.setForeground(Color.WHITE);
+		btnModificarEmpleado.setBorder(null);
+		btnModificarEmpleado.setBackground(new Color(48, 109, 105));
+		btnModificarEmpleado.setBounds(536, 198, 206, 43);
+		contentPane.add(btnModificarEmpleado);
 		btnModificarEmpleado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				
 					
-					Modificar = new ModificarEmpleado();
+				Modificar = new ModificarEmpleado();
 					
 				
 				
@@ -94,10 +91,12 @@ public class GestionEmpleadosOpciones extends JFrame {
 				
 			}
 		});
-		btnModificarEmpleado.setBounds(537, 259, 206, 43);
-		contentPane.add(btnModificarEmpleado);
 		
 		JButton btnAgregarEmpleado = new JButton("Agregar empleado");
+		btnAgregarEmpleado.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnAgregarEmpleado.setForeground(Color.WHITE);
+		btnAgregarEmpleado.setBorder(null);
+		btnAgregarEmpleado.setBackground(new Color(48, 109, 105));
 		btnAgregarEmpleado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -118,30 +117,24 @@ public class GestionEmpleadosOpciones extends JFrame {
 				
 			}
 		});
-		btnAgregarEmpleado.setBounds(125, 439, 206, 43);
+		btnAgregarEmpleado.setBounds(124, 378, 206, 43);
 		contentPane.add(btnAgregarEmpleado);
 		
-		JLabel lblNewLabel_3 = new JLabel("Agregar empleado");
-		lblNewLabel_3.setFont(new Font("Verdana", Font.PLAIN, 16));
-		lblNewLabel_3.setBounds(152, 380, 206, 43);
-		contentPane.add(lblNewLabel_3);
-		
-		JLabel lblNewLabel_4 = new JLabel("Eliminar empleado");
-		lblNewLabel_4.setFont(new Font("Verdana", Font.PLAIN, 16));
-		lblNewLabel_4.setBounds(562, 380, 206, 43);
-		contentPane.add(lblNewLabel_4);
-		
 		JButton btnNewButton_1_1 = new JButton("Eliminar empleado");
+		btnNewButton_1_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnNewButton_1_1.setForeground(Color.WHITE);
+		btnNewButton_1_1.setBorder(null);
+		btnNewButton_1_1.setBackground(new Color(48, 109, 105));
+		btnNewButton_1_1.setBounds(536, 378, 206, 43);
+		contentPane.add(btnNewButton_1_1);
+		
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-		
-					
-					Eliminar = new EliminarEmpleados();
-					
-					
 				
-				
+				Eliminar = new EliminarEmpleados();
+					
+							
 			
 				Eliminar.setLocationRelativeTo(null);
 				
@@ -152,15 +145,13 @@ public class GestionEmpleadosOpciones extends JFrame {
 				
 			}
 		});
-		btnNewButton_1_1.setBounds(537, 439, 206, 43);
-		contentPane.add(btnNewButton_1_1);
 		
 		JButton btnVolver = new JButton("Volver");
 		btnVolver.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnVolver.setForeground(Color.WHITE);
 		btnVolver.setBorder(null);
 		btnVolver.setBackground(new Color(48, 109, 105));
-		btnVolver.setBounds(333, 579, 206, 43);
+		btnVolver.setBounds(29, 482, 206, 43);
 		contentPane.add(btnVolver);
 		
 		
@@ -179,11 +170,6 @@ public class GestionEmpleadosOpciones extends JFrame {
 			
 			}
 		});
-		
-		JLabel lblNewLabel_5 = new JLabel("Seleccionar operación");
-		lblNewLabel_5.setFont(new Font("Verdana", Font.PLAIN, 22));
-		lblNewLabel_5.setBounds(314, 124, 400, 35);
-		contentPane.add(lblNewLabel_5);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
