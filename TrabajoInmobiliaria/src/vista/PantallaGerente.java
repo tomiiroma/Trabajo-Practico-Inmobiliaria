@@ -45,7 +45,7 @@ public class PantallaGerente extends JFrame {
 	public PantallaGerente() {
 		this.setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 500);
+		setBounds(100, 100, 800, 503);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -133,6 +133,21 @@ public class PantallaGerente extends JFrame {
 		});
 		
 		
+		JButton btnGestionarEmpleados = new JButton("Gestionar Empleados");
+		btnGestionarEmpleados.setForeground(Color.WHITE);
+		btnGestionarEmpleados.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnGestionarEmpleados.setBorder(null);
+		btnGestionarEmpleados.setBackground(new Color(48, 109, 105));
+		btnGestionarEmpleados.setBounds(415, 320, 278, 35);
+		panel.add(btnGestionarEmpleados);
+		
+		btnGestionarEmpleados.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GestionEmpleadosOpciones menuEmpleados = new GestionEmpleadosOpciones();
+				dispose();
+			}
+		});
+		
 		
 		JButton btnAgendarReunionvisita = new JButton("Agendar Reunion/Visita");
 		btnAgendarReunionvisita.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -180,21 +195,22 @@ public class PantallaGerente extends JFrame {
 		btnGestionReserva.setForeground(Color.WHITE);
 		btnGestionReserva.setBorder(null);
 		btnGestionReserva.setBackground(new Color(48, 109, 105));
-		btnGestionReserva.setBounds(244, 320, 278, 35);
+		btnGestionReserva.setBounds(107, 320, 278, 35);
 		panel.add(btnGestionReserva);
 		
 		
 		
+
 		
 
+		
+		
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(133, 201, 196));
 		panel_1.setBounds(0, 0, 784, 55);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
-		
-
 		
 		JButton btnNewButton_9 = new JButton("Salir");
 		btnNewButton_9.setForeground(new Color(255, 255, 255));
@@ -204,13 +220,17 @@ public class PantallaGerente extends JFrame {
 		btnNewButton_9.setBounds(659, 0, 125, 55);
 		panel_1.add(btnNewButton_9);
 		
-		
-		
-		
+
 		JLabel lblNewLabel = new JLabel("Inmobiliaria Panel Gerente");
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 30));
 		lblNewLabel.setBounds(10, 12, 668, 35);
 		panel_1.add(lblNewLabel);
+		
+		
+
+		
+		
+
 	}
 }

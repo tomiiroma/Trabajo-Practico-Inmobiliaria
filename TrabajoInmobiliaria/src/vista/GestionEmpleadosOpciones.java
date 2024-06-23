@@ -1,5 +1,6 @@
 package vista;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -27,19 +28,15 @@ public class GestionEmpleadosOpciones extends JFrame {
 	 * Create the frame.
 	 */
 	public GestionEmpleadosOpciones() {
-		//this.setVisible(true);
+		this.setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 700);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(52, 118, 113));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("Gestion de Empleados");
-		lblNewLabel.setFont(new Font("Verdana", Font.PLAIN, 30));
-		lblNewLabel.setBounds(274, 31, 600, 70);
-		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Ver datos de los empleados");
 		lblNewLabel_1.setFont(new Font("Verdana", Font.PLAIN, 16));
@@ -158,8 +155,16 @@ public class GestionEmpleadosOpciones extends JFrame {
 		btnNewButton_1_1.setBounds(537, 439, 206, 43);
 		contentPane.add(btnNewButton_1_1);
 		
-		JButton btnNewButton_1_1_1 = new JButton("Volver");
-		btnNewButton_1_1_1.addActionListener(new ActionListener() {
+		JButton btnVolver = new JButton("Volver");
+		btnVolver.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnVolver.setForeground(Color.WHITE);
+		btnVolver.setBorder(null);
+		btnVolver.setBackground(new Color(48, 109, 105));
+		btnVolver.setBounds(333, 579, 206, 43);
+		contentPane.add(btnVolver);
+		
+		
+		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			
 				
@@ -174,13 +179,23 @@ public class GestionEmpleadosOpciones extends JFrame {
 			
 			}
 		});
-		btnNewButton_1_1_1.setBounds(333, 579, 206, 43);
-		contentPane.add(btnNewButton_1_1_1);
 		
 		JLabel lblNewLabel_5 = new JLabel("Seleccionar operación");
 		lblNewLabel_5.setFont(new Font("Verdana", Font.PLAIN, 22));
 		lblNewLabel_5.setBounds(314, 124, 400, 35);
 		contentPane.add(lblNewLabel_5);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setLayout(null);
+		panel_1.setBackground(new Color(133, 201, 196));
+		panel_1.setBounds(10, 26, 864, 55);
+		contentPane.add(panel_1);
+		
+		JLabel lblGestorEmpleados = new JLabel("Gestor Empleados");
+		lblGestorEmpleados.setForeground(Color.WHITE);
+		lblGestorEmpleados.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 30));
+		lblGestorEmpleados.setBounds(10, 11, 298, 35);
+		panel_1.add(lblGestorEmpleados);
 	}
 
 }
