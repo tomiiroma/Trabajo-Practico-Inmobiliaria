@@ -30,6 +30,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import javax.swing.SwingConstants;
 
 public class ReservaInmueble extends JFrame {
 
@@ -53,6 +55,7 @@ public class ReservaInmueble extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 800);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(52, 118, 113));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		
@@ -70,16 +73,21 @@ public class ReservaInmueble extends JFrame {
 		contentPane.add(separator);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(52, 118, 113));
 		panel.setLayout(null);
 		panel.setBounds(0, 0, 984, 103);
 		contentPane.add(panel);
 		
 		JLabel lblSeleccionDeInmuebles = new JLabel("Seleccion de Inmuebles");
+		lblSeleccionDeInmuebles.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSeleccionDeInmuebles.setForeground(new Color(255, 255, 255));
 		lblSeleccionDeInmuebles.setFont(new Font("Verdana", Font.PLAIN, 18));
-		lblSeleccionDeInmuebles.setBounds(386, 0, 598, 42);
+		lblSeleccionDeInmuebles.setBounds(225, 0, 598, 42);
 		panel.add(lblSeleccionDeInmuebles);
 		
 		JLabel lblNewLabel_1 = new JLabel("Filtro:");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_1.setForeground(new Color(255, 255, 255));
 		lblNewLabel_1.setBounds(10, 78, 46, 14);
 		panel.add(lblNewLabel_1);
 		
@@ -110,11 +118,14 @@ public class ReservaInmueble extends JFrame {
 		panel.add(btnNewButton_1);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(52, 118, 113));
 		panel_1.setLayout(null);
 		panel_1.setBounds(0, 126, 984, 635);
 		contentPane.add(panel_1);
 		
 		JLabel lblInmuebleSeleccionado = new JLabel("Seleccion:");
+		lblInmuebleSeleccionado.setForeground(new Color(255, 255, 255));
+		lblInmuebleSeleccionado.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblInmuebleSeleccionado.setBounds(10, 0, 964, 22);
 		panel_1.add(lblInmuebleSeleccionado);
 		
@@ -152,7 +163,11 @@ public class ReservaInmueble extends JFrame {
 				
 			}
 		});
-		btnNewButton_2.setBounds(279, 567, 143, 57);
+		btnNewButton_2.setForeground(Color.WHITE);
+		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnNewButton_2.setBorder(null);
+		btnNewButton_2.setBackground(new Color(48, 109, 105));
+		btnNewButton_2.setBounds(20, 567, 143, 57);
 		panel_1.add(btnNewButton_2);
 		
 		JButton btnNewButton_2_1 = new JButton("Seleccionar");
@@ -187,7 +202,11 @@ public class ReservaInmueble extends JFrame {
 				
 			}
 		});
-		btnNewButton_2_1.setBounds(517, 567, 143, 57);
+		btnNewButton_2_1.setForeground(Color.WHITE);
+		btnNewButton_2_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnNewButton_2_1.setBorder(null);
+		btnNewButton_2_1.setBackground(new Color(48, 109, 105));
+		btnNewButton_2_1.setBounds(818, 567, 143, 57);
 		panel_1.add(btnNewButton_2_1);
 		
 		

@@ -31,6 +31,7 @@ import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.util.List;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class ReservaCliente extends JFrame {
 
@@ -65,6 +66,7 @@ public class ReservaCliente extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 800);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(52, 118, 113));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
 		setContentPane(contentPane);
@@ -75,16 +77,20 @@ public class ReservaCliente extends JFrame {
 		contentPane.add(separator);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(52, 118, 113));
 		panel.setLayout(null);
 		panel.setBounds(0, 0, 984, 103);
 		contentPane.add(panel);
 		
 		JLabel lblSeleccionCliente = new JLabel("Seleccion de Clientes");
-		lblSeleccionCliente.setFont(new Font("Verdana", Font.PLAIN, 18));
+		lblSeleccionCliente.setForeground(new Color(255, 255, 255));
+		lblSeleccionCliente.setFont(new Font("Verdana", Font.BOLD, 18));
 		lblSeleccionCliente.setBounds(386, 0, 598, 42);
 		panel.add(lblSeleccionCliente);
 		
 		JLabel lblNewLabel_1 = new JLabel("Filtro:");
+		lblNewLabel_1.setForeground(new Color(255, 255, 255));
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_1.setBounds(10, 78, 46, 14);
 		panel.add(lblNewLabel_1);
 		
@@ -117,11 +123,14 @@ public class ReservaCliente extends JFrame {
 		panel.add(btnNewButton_1);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(52, 118, 113));
 		panel_1.setLayout(null);
 		panel_1.setBounds(0, 126, 984, 635);
 		contentPane.add(panel_1);
 		
 		JLabel lblClienteseleccionado = new JLabel("Seleccion:");
+		lblClienteseleccionado.setForeground(new Color(255, 255, 255));
+		lblClienteseleccionado.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblClienteseleccionado.setBounds(10, 0, 964, 22);
 		panel_1.add(lblClienteseleccionado);
 		
@@ -164,7 +173,11 @@ public class ReservaCliente extends JFrame {
 				
 			}
 		});
-		btnNewButton_2.setBounds(279, 567, 143, 57);
+		btnNewButton_2.setForeground(Color.WHITE);
+		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnNewButton_2.setBorder(null);
+		btnNewButton_2.setBackground(new Color(48, 109, 105));
+		btnNewButton_2.setBounds(20, 567, 143, 57);
 		panel_1.add(btnNewButton_2);
 		
 		JButton btnNewButton_2_1 = new JButton("Seleccionar");
@@ -198,7 +211,11 @@ public class ReservaCliente extends JFrame {
 				
 			}}
 		});
-		btnNewButton_2_1.setBounds(517, 567, 143, 57);
+		btnNewButton_2_1.setForeground(Color.WHITE);
+		btnNewButton_2_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnNewButton_2_1.setBorder(null);
+		btnNewButton_2_1.setBackground(new Color(48, 109, 105));
+		btnNewButton_2_1.setBounds(818, 567, 143, 57);
 		panel_1.add(btnNewButton_2_1);
 		
 		 ListSelectionModel selectionModelCliente = tableCliente.getSelectionModel();

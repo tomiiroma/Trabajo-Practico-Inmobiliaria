@@ -1,5 +1,6 @@
 package vista;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -72,22 +73,27 @@ public class ReservaEmpleado extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 800);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(52, 118, 113));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(52, 118, 113));
 		panel.setBounds(0, 0, 984, 103);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Seleccion de Empleados");
-		lblNewLabel.setFont(new Font("Verdana", Font.PLAIN, 18));
+		lblNewLabel.setForeground(new Color(255, 255, 255));
+		lblNewLabel.setFont(new Font("Verdana", Font.BOLD, 18));
 		lblNewLabel.setBounds(386, 0, 598, 42);
 		panel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Filtro:");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_1.setForeground(new Color(255, 255, 255));
 		lblNewLabel_1.setBounds(10, 78, 46, 14);
 		panel.add(lblNewLabel_1);
 		
@@ -114,11 +120,14 @@ public class ReservaEmpleado extends JFrame {
 		panel.add(btnNewButton_1);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(52, 118, 113));
 		panel_1.setBounds(0, 126, 984, 635);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
 		JLabel lblSeleccionado = new JLabel("Seleccion:");
+		lblSeleccionado.setForeground(new Color(255, 255, 255));
+		lblSeleccionado.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblSeleccionado.setBounds(10, 0, 964, 22);
 		panel_1.add(lblSeleccionado);
 		
@@ -159,7 +168,11 @@ public class ReservaEmpleado extends JFrame {
 				
 			}
 		});
-		btnNewButton_2.setBounds(279, 567, 143, 57);
+		btnNewButton_2.setForeground(Color.WHITE);
+		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnNewButton_2.setBorder(null);
+		btnNewButton_2.setBackground(new Color(48, 109, 105));
+		btnNewButton_2.setBounds(20, 567, 143, 57);
 		panel_1.add(btnNewButton_2);
 		
 		JButton btnNewButton_2_1 = new JButton("Seleccionar");
@@ -185,7 +198,11 @@ public class ReservaEmpleado extends JFrame {
 				
 			}
 		});
-		btnNewButton_2_1.setBounds(517, 567, 143, 57);
+		btnNewButton_2_1.setForeground(Color.WHITE);
+		btnNewButton_2_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnNewButton_2_1.setBorder(null);
+		btnNewButton_2_1.setBackground(new Color(48, 109, 105));
+		btnNewButton_2_1.setBounds(820, 567, 143, 57);
 		panel_1.add(btnNewButton_2_1);
 		
 		JSeparator separator = new JSeparator();

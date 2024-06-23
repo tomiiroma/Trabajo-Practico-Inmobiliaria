@@ -69,15 +69,11 @@ public class RegistrarReserva extends JFrame implements Validacion {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 800);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(52, 118, 113));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("Registrar Reserva");
-		lblNewLabel.setFont(new Font("Verdana", Font.PLAIN, 25));
-		lblNewLabel.setBounds(345, 0, 539, 74);
-		contentPane.add(lblNewLabel);
 		
 		JSeparator separator = new JSeparator();
 		separator.setBounds(28, 72, 827, 2);
@@ -85,8 +81,9 @@ public class RegistrarReserva extends JFrame implements Validacion {
 		
 		
 		JLabel lblMontoerror = new JLabel("El monto debe ser un valor irracional mayor a 10000");
-		lblMontoerror.setForeground(new Color(255, 0, 0));
-		lblMontoerror.setBounds(517, 509, 298, 14);
+		lblMontoerror.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblMontoerror.setForeground(new Color(128, 0, 0));
+		lblMontoerror.setBounds(517, 571, 357, 14);
 		contentPane.add(lblMontoerror);
 		lblMontoerror.setVisible(false);
 		
@@ -112,10 +109,18 @@ public class RegistrarReserva extends JFrame implements Validacion {
 				
 			}
 		});
-		btnModificarEmpleado.setBounds(517, 437, 232, 37);
+		btnModificarEmpleado.setForeground(Color.WHITE);
+		btnModificarEmpleado.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnModificarEmpleado.setBorder(null);
+		btnModificarEmpleado.setBackground(new Color(48, 109, 105));
+		btnModificarEmpleado.setBounds(517, 391, 232, 37);
 		contentPane.add(btnModificarEmpleado);
 		
 		JButton btnInmueble = new JButton("Seleccionar");
+		btnInmueble.setForeground(Color.WHITE);
+		btnInmueble.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnInmueble.setBorder(null);
+		btnInmueble.setBackground(new Color(48, 109, 105));
 		btnInmueble.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -139,11 +144,13 @@ public class RegistrarReserva extends JFrame implements Validacion {
 		contentPane.add(btnInmueble);
 		
 		JLabel lblInmueble = new JLabel("Seleccionado:");
-		lblInmueble.setBounds(145, 116, 729, 32);
+		lblInmueble.setForeground(new Color(255, 255, 255));
+		lblInmueble.setBounds(145, 138, 729, 20);
 		contentPane.add(lblInmueble);
 		
 		
 		JButton btnModificarInmueble = new JButton("Modificar");
+		
 		btnModificarInmueble.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -163,25 +170,36 @@ public class RegistrarReserva extends JFrame implements Validacion {
 				
 			}
 		});
+		btnModificarInmueble.setForeground(Color.WHITE);
+		btnModificarInmueble.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnModificarInmueble.setBorder(null);
+		btnModificarInmueble.setBackground(new Color(48, 109, 105));
 		btnModificarInmueble.setBounds(517, 159, 232, 37);
 		contentPane.add(btnModificarInmueble);
 		
 		
 		JLabel lblNewLabel_2 = new JLabel("Inmueble");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel_2.setBounds(400, 85, 156, 20);
+		lblNewLabel_2.setForeground(new Color(255, 255, 255));
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNewLabel_2.setBounds(145, 107, 156, 20);
 		contentPane.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_2_1 = new JLabel("Cliente");
-		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel_2_1.setBounds(400, 235, 156, 20);
+		lblNewLabel_2_1.setForeground(new Color(255, 255, 255));
+		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNewLabel_2_1.setBounds(145, 223, 156, 20);
 		contentPane.add(lblNewLabel_2_1);
 		
 		JLabel lblCliente = new JLabel("Seleccionado:");
-		lblCliente.setBounds(145, 266, 739, 32);
+		lblCliente.setForeground(new Color(255, 255, 255));
+		lblCliente.setBounds(145, 254, 739, 20);
 		contentPane.add(lblCliente);
 		
 		JButton btnCliente = new JButton("Seleccionar");
+		btnCliente.setForeground(Color.WHITE);
+		btnCliente.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnCliente.setBorder(null);
+		btnCliente.setBackground(new Color(48, 109, 105));
 		btnCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -201,19 +219,26 @@ public class RegistrarReserva extends JFrame implements Validacion {
 				
 			}
 		});
-		btnCliente.setBounds(145, 309, 232, 37);
+		btnCliente.setBounds(145, 274, 232, 37);
 		contentPane.add(btnCliente);
 		
 		JLabel lblNewLabel_2_2 = new JLabel("Empleado");
-		lblNewLabel_2_2.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel_2_2.setBounds(391, 367, 156, 20);
+		lblNewLabel_2_2.setForeground(new Color(255, 255, 255));
+		lblNewLabel_2_2.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNewLabel_2_2.setBounds(145, 340, 156, 20);
 		contentPane.add(lblNewLabel_2_2);
 		
 		JLabel lblEmpleado = new JLabel("Seleccionado:");
-		lblEmpleado.setBounds(145, 394, 739, 32);
+		lblEmpleado.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblEmpleado.setForeground(new Color(255, 255, 255));
+		lblEmpleado.setBounds(145, 371, 739, 20);
 		contentPane.add(lblEmpleado);
 		
 		JButton btnEmpleado = new JButton("Seleccionar");
+		btnEmpleado.setForeground(Color.WHITE);
+		btnEmpleado.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnEmpleado.setBorder(null);
+		btnEmpleado.setBackground(new Color(48, 109, 105));
 		btnEmpleado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -263,7 +288,11 @@ public class RegistrarReserva extends JFrame implements Validacion {
 				
 			}
 		});
-		btnModificarCliente.setBounds(517, 309, 232, 37);
+		btnModificarCliente.setForeground(Color.WHITE);
+		btnModificarCliente.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnModificarCliente.setBorder(null);
+		btnModificarCliente.setBackground(new Color(48, 109, 105));
+		btnModificarCliente.setBounds(517, 274, 232, 37);
 		contentPane.add(btnModificarCliente);
 		
 		
@@ -325,7 +354,7 @@ public class RegistrarReserva extends JFrame implements Validacion {
 		
 						
 	
-		btnEmpleado.setBounds(140, 437, 232, 37);
+		btnEmpleado.setBounds(140, 391, 232, 37);
 		contentPane.add(btnEmpleado);
 		
 		JButton btnCliente_1_1 = new JButton("Volver");
@@ -349,7 +378,11 @@ public class RegistrarReserva extends JFrame implements Validacion {
 				
 			}
 		});
-		btnCliente_1_1.setBounds(145, 687, 232, 37);
+		btnCliente_1_1.setForeground(Color.WHITE);
+		btnCliente_1_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnCliente_1_1.setBorder(null);
+		btnCliente_1_1.setBackground(new Color(48, 109, 105));
+		btnCliente_1_1.setBounds(49, 696, 232, 37);
 		contentPane.add(btnCliente_1_1);
 		
 		txtFecha = new JTextField();
@@ -373,15 +406,21 @@ public class RegistrarReserva extends JFrame implements Validacion {
 		contentPane.add(inpMonto);
 		
 		JLabel lblNewLabel_3 = new JLabel("Fecha pago:");
-		lblNewLabel_3.setBounds(60, 534, 97, 37);
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_3.setForeground(new Color(255, 255, 255));
+		lblNewLabel_3.setBounds(67, 554, 97, 20);
 		contentPane.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("Monto:");
-		lblNewLabel_4.setBounds(432, 534, 87, 37);
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_4.setForeground(new Color(255, 255, 255));
+		lblNewLabel_4.setBounds(432, 557, 87, 14);
 		contentPane.add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("Forma de pago:");
-		lblNewLabel_5.setBounds(60, 615, 87, 37);
+		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_5.setForeground(new Color(255, 255, 255));
+		lblNewLabel_5.setBounds(67, 632, 87, 20);
 		contentPane.add(lblNewLabel_5);
 		
 	    comboBoxOperacion = new JComboBox<String>();
@@ -394,7 +433,9 @@ public class RegistrarReserva extends JFrame implements Validacion {
 		comboBoxOperacion.addItem("Alquiler");
 		
 		JLabel lblNewLabel_6 = new JLabel("Operacion");
-		lblNewLabel_6.setBounds(432, 615, 87, 37);
+		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_6.setForeground(new Color(255, 255, 255));
+		lblNewLabel_6.setBounds(432, 632, 87, 20);
 		contentPane.add(lblNewLabel_6);
 		
 		
@@ -485,7 +526,11 @@ public class RegistrarReserva extends JFrame implements Validacion {
 				
 			}
 		});
-		RegistrarReserva.setBounds(528, 687, 232, 37);
+		RegistrarReserva.setForeground(Color.WHITE);
+		RegistrarReserva.setFont(new Font("Tahoma", Font.BOLD, 12));
+		RegistrarReserva.setBorder(null);
+		RegistrarReserva.setBackground(new Color(48, 109, 105));
+		RegistrarReserva.setBounds(605, 697, 232, 37);
 		contentPane.add(RegistrarReserva);
 		
 
@@ -499,9 +544,23 @@ public class RegistrarReserva extends JFrame implements Validacion {
 		pruebasbarra(progressBar,progresoI,progresoC,progresoE,cliente,empleado,inmueble);
 		
 		lblInst = new JLabel("Debes completar los campos Inmueble, cliente y empleado antes");
-		lblInst.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblInst.setBounds(202, 490, 547, 26);
+		lblInst.setForeground(new Color(255, 255, 255));
+		lblInst.setHorizontalAlignment(SwingConstants.CENTER);
+		lblInst.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblInst.setBounds(145, 464, 605, 26);
 		contentPane.add(lblInst);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setLayout(null);
+		panel_1.setBackground(new Color(133, 201, 196));
+		panel_1.setBounds(28, 11, 827, 56);
+		contentPane.add(panel_1);
+		
+		JLabel lblMenuReservas = new JLabel("Menu Reservas\r\n");
+		lblMenuReservas.setForeground(Color.WHITE);
+		lblMenuReservas.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 30));
+		lblMenuReservas.setBounds(10, 12, 661, 35);
+		panel_1.add(lblMenuReservas);
 		
 		
 		
