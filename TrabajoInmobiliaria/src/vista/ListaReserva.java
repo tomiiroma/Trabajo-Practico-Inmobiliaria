@@ -73,6 +73,7 @@ public class ListaReserva extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 800);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(52, 118, 113));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		
@@ -118,10 +119,28 @@ public class ListaReserva extends JFrame {
 		panel.add(tabbedPane);
 		
 		JButton btnReserva = new JButton("ID reserva");
-		JButton btnIdCliente = new JButton("ID Cliente");
-		JButton btnIdInmueble = new JButton("ID inmueble");
-		JButton btnOperacion = new JButton("Operacion");
+		btnReserva.setForeground(Color.WHITE);
+		btnReserva.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnReserva.setBorder(null);
+		btnReserva.setBackground(new Color(48, 109, 105));
 		
+		JButton btnIdCliente = new JButton("ID Cliente");
+		btnIdCliente.setForeground(Color.WHITE);
+		btnIdCliente.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnIdCliente.setBorder(null);
+		btnIdCliente.setBackground(new Color(48, 109, 105));
+		
+		JButton btnIdInmueble = new JButton("ID inmueble");
+		btnIdInmueble.setForeground(Color.WHITE);
+		btnIdInmueble.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnIdInmueble.setBorder(null);
+		btnIdInmueble.setBackground(new Color(48, 109, 105));
+		
+		JButton btnOperacion = new JButton("Operacion");
+		btnOperacion.setForeground(Color.WHITE);
+		btnOperacion.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnOperacion.setBorder(null);
+		btnOperacion.setBackground(new Color(48, 109, 105));
 		
 		if (tabbedPane.getSelectedIndex() == -1) {
 			
@@ -131,11 +150,13 @@ public class ListaReserva extends JFrame {
 		
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(52, 118, 113));
 		tabbedPane.addTab("Filtrar por ID reserva", null, panel_1, null);
 		panel_1.setLayout(null);
 		
 		JLabel lblBusquedaReserva = new JLabel("Ingresar el id de la reserva:");
-		lblBusquedaReserva.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblBusquedaReserva.setForeground(new Color(255, 255, 255));
+		lblBusquedaReserva.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblBusquedaReserva.setBounds(100, 13, 192, 26);
 		panel_1.add(lblBusquedaReserva);
 		
@@ -145,6 +166,10 @@ public class ListaReserva extends JFrame {
 		inpBusqReserva.setColumns(10);
 		
 		JButton btnBuscarReserva = new JButton("Buscar");
+		btnBuscarReserva.setForeground(Color.WHITE);
+		btnBuscarReserva.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnBuscarReserva.setBorder(null);
+		btnBuscarReserva.setBackground(new Color(48, 109, 105));
 		btnBuscarReserva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -157,6 +182,10 @@ public class ListaReserva extends JFrame {
 		panel_1.add(btnBuscarReserva);
 		
 		JButton btnResetReserv = new JButton("Reset");
+		btnResetReserv.setForeground(Color.WHITE);
+		btnResetReserv.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnResetReserv.setBorder(null);
+		btnResetReserv.setBackground(new Color(48, 109, 105));
 		btnResetReserv.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -167,11 +196,13 @@ public class ListaReserva extends JFrame {
 		panel_1.add(btnResetReserv);
 		
 		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(new Color(52, 118, 113));
 		tabbedPane.addTab("New tab", null, panel_3, null);
 		panel_3.setLayout(null);
 		
 		JLabel lblBusquedaCliente = new JLabel("Ingresar el id del cliente:");
-		lblBusquedaCliente.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblBusquedaCliente.setForeground(new Color(255, 255, 255));
+		lblBusquedaCliente.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblBusquedaCliente.setBounds(100, 13, 192, 26);
 		panel_3.add(lblBusquedaCliente);
 		
@@ -183,6 +214,10 @@ public class ListaReserva extends JFrame {
 		panel_3.add(inpBusqCliente);
 		
 		JButton btnBuscarCliente = new JButton("Buscar");
+		btnBuscarCliente.setForeground(Color.WHITE);
+		btnBuscarCliente.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnBuscarCliente.setBorder(null);
+		btnBuscarCliente.setBackground(new Color(48, 109, 105));
 		btnBuscarCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -194,6 +229,10 @@ public class ListaReserva extends JFrame {
 		panel_3.add(btnBuscarCliente);
 		
 		JButton btnResetCliente = new JButton("Reset");
+		btnResetCliente.setForeground(Color.WHITE);
+		btnResetCliente.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnResetCliente.setBorder(null);
+		btnResetCliente.setBackground(new Color(48, 109, 105));
 		btnResetCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -205,11 +244,13 @@ public class ListaReserva extends JFrame {
 		panel_3.add(btnResetCliente);
 		
 		JPanel panel_4 = new JPanel();
+		panel_4.setBackground(new Color(52, 118, 113));
 		tabbedPane.addTab("New tab", null, panel_4, null);
 		panel_4.setLayout(null);
 		
 		JLabel lblBusquedaInmueble = new JLabel("Ingresar el id del inmueble:");
-		lblBusquedaInmueble.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblBusquedaInmueble.setForeground(new Color(255, 255, 255));
+		lblBusquedaInmueble.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblBusquedaInmueble.setBounds(100, 13, 192, 26);
 		panel_4.add(lblBusquedaInmueble);
 		
@@ -219,6 +260,10 @@ public class ListaReserva extends JFrame {
 		panel_4.add(inpBusqInmueble);
 		
 		JButton btnBuscarInmueble = new JButton("Buscar");
+		btnBuscarInmueble.setForeground(Color.WHITE);
+		btnBuscarInmueble.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnBuscarInmueble.setBorder(null);
+		btnBuscarInmueble.setBackground(new Color(48, 109, 105));
 		btnBuscarInmueble.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -230,6 +275,10 @@ public class ListaReserva extends JFrame {
 		panel_4.add(btnBuscarInmueble);
 		
 		JButton btnResetInmueble = new JButton("Reset");
+		btnResetInmueble.setForeground(Color.WHITE);
+		btnResetInmueble.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnResetInmueble.setBorder(null);
+		btnResetInmueble.setBackground(new Color(48, 109, 105));
 		btnResetInmueble.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -241,15 +290,22 @@ public class ListaReserva extends JFrame {
 		panel_4.add(btnResetInmueble);
 		
 		JPanel panel_5 = new JPanel();
+		panel_5.setBackground(new Color(52, 118, 113));
 		tabbedPane.addTab("New tab", null, panel_5, null);
 		panel_5.setLayout(null);
 		
 		JLabel lblBusqOperacion = new JLabel("Seleccionar el tipo de operacion:");
-		lblBusqOperacion.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblBusqOperacion.setForeground(new Color(255, 255, 255));
+		lblBusqOperacion.setBackground(new Color(255, 255, 255));
+		lblBusqOperacion.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblBusqOperacion.setBounds(56, 13, 236, 26);
 		panel_5.add(lblBusqOperacion);
 		
 		JButton btnBuscarOperacion = new JButton("Buscar");
+		btnBuscarOperacion.setForeground(Color.WHITE);
+		btnBuscarOperacion.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnBuscarOperacion.setBorder(null);
+		btnBuscarOperacion.setBackground(new Color(48, 109, 105));
 		btnBuscarOperacion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -261,6 +317,11 @@ public class ListaReserva extends JFrame {
 		panel_5.add(btnBuscarOperacion);
 		
 		JButton btnResetOperacion = new JButton("Reset");
+		btnResetOperacion.setForeground(Color.WHITE);
+		btnResetOperacion.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnResetOperacion.setBorder(null);
+		btnResetOperacion.setBackground(new Color(48, 109, 105));
+		
 		btnResetOperacion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -378,7 +439,8 @@ public class ListaReserva extends JFrame {
 		panel_2.add(btnIdCliente);
 		
 		JLabel lblNewLabel_2 = new JLabel("Reservas");
-		lblNewLabel_2.setFont(new Font("Verdana", Font.PLAIN, 26));
+		lblNewLabel_2.setForeground(new Color(255, 255, 255));
+		lblNewLabel_2.setFont(new Font("Verdana", Font.BOLD, 26));
 		lblNewLabel_2.setBounds(384, 110, 500, 53);
 		contentPane.add(lblNewLabel_2);
 		
@@ -408,7 +470,11 @@ public class ListaReserva extends JFrame {
 				
 			}
 		});
-		btnVolver.setBounds(250, 700, 107, 46);
+		btnVolver.setForeground(Color.WHITE);
+		btnVolver.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnVolver.setBorder(null);
+		btnVolver.setBackground(new Color(48, 109, 105));
+		btnVolver.setBounds(31, 696, 107, 46);
 		contentPane.add(btnVolver);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -449,7 +515,11 @@ public class ListaReserva extends JFrame {
 				
 			}
 		});
-		btnSeleccionar.setBounds(500, 700, 107, 46);
+		btnSeleccionar.setForeground(Color.WHITE);
+		btnSeleccionar.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnSeleccionar.setBorder(null);
+		btnSeleccionar.setBackground(new Color(52, 118, 113));
+		btnSeleccionar.setBounds(744, 697, 107, 46);
 		contentPane.add(btnSeleccionar);
 		MostrarTabla();
 		

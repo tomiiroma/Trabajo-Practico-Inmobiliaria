@@ -100,6 +100,10 @@ public class ReservaCliente extends JFrame {
 		panel.add(BuscadorCliente);
 		
 		JButton InpCliente = new JButton("Buscar");
+		InpCliente.setForeground(Color.WHITE);
+		InpCliente.setFont(new Font("Tahoma", Font.BOLD, 12));
+		InpCliente.setBorder(null);
+		InpCliente.setBackground(new Color(48, 109, 105));
 		InpCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -119,6 +123,10 @@ public class ReservaCliente extends JFrame {
 				 MostrarPropietarios();
 			}
 		});
+		btnNewButton_1.setForeground(Color.WHITE);
+		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnNewButton_1.setBorder(null);
+		btnNewButton_1.setBackground(new Color(48, 109, 105));
 		btnNewButton_1.setBounds(400, 74, 102, 23);
 		panel.add(btnNewButton_1);
 		
