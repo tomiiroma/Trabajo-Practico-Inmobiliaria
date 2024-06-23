@@ -10,7 +10,7 @@ public class Contrato {
 	private int id_contrato;
 	private String tipo_contrato;
 	private String descripcion;
-	private String url_contrato;
+	private byte[] url_contrato;
 	private Inmueble inmueble;
 	private Cliente cliente;
 	LocalDate inicio_contrato;
@@ -20,8 +20,7 @@ public class Contrato {
 
 	
 
-
-	public Contrato(int id_contrato, String tipo_contrato, String descripcion, String url_contrato, Inmueble inmueble,
+	public Contrato(int id_contrato, String tipo_contrato, String descripcion, byte[] url_contrato, Inmueble inmueble,
 			Cliente cliente, LocalDate inicio_contrato, LocalDate fin_contrato, boolean apto_mascota) {
 		super();
 		this.id_contrato = id_contrato;
@@ -38,6 +37,9 @@ public class Contrato {
 	
 	public Contrato() {
 	}
+
+
+	
 
 
 	public int getId_contrato() {
@@ -98,13 +100,17 @@ public class Contrato {
 		this.tipo_contrato = tipo_contrato;
 	}
 
-	public String getUrl_contrato() {
+
+
+	public byte[] getUrl_contrato() {
 		return url_contrato;
 	}
 
-	public void setUrl_contrato(String url_contrato) {
+
+	public void setUrl_contrato(byte[] url_contrato) {
 		this.url_contrato = url_contrato;
 	}
+
 
 	public boolean isApto_mascota() {
 		return apto_mascota;
@@ -114,15 +120,14 @@ public class Contrato {
 		this.apto_mascota = apto_mascota;
 	}
 	
+	
 
 	@Override
 	public String toString() {
-		return "Id: " + id_contrato 
-				+", Tipo Contrato: " + tipo_contrato 
-				+", Id Inmueble: " + inmueble.getId_inmueble() 
-				+ ", Id Cliente: " + cliente.getId_cliente()
-				+ ", Inicio Contrato: " + inicio_contrato 
-				+ ", Fin Contrato: " + fin_contrato;
+		return "Contrato [id_contrato=" + id_contrato + ", tipo_contrato=" + tipo_contrato + ", descripcion="
+				+ descripcion + ", url_contrato=" + url_contrato + ", inmueble=" + inmueble + ", cliente=" + cliente
+				+ ", inicio_contrato=" + inicio_contrato + ", fin_contrato=" + fin_contrato + ", apto_mascota="
+				+ apto_mascota + "]";
 	}
 
 

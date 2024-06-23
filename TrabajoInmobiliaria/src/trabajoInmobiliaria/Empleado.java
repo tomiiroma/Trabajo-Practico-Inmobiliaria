@@ -470,8 +470,8 @@ public class Empleado implements InicioSesion,Validacion{
 		fin = validarFecha(fin);
 	    boolean aptoMascota = JOptionPane.showConfirmDialog(null, "¿El contrato permite mascotas?", "Permite mascotas", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
 	
-	    Contrato contrato = new Contrato(0, tipocontrato, descripcion, url,inmueble,cliente, inicio, fin, aptoMascota);
-	    controlador.addContrato(contrato);
+	   // Contrato contrato = new Contrato(0, tipocontrato, descripcion, url,inmueble,cliente, inicio, fin, aptoMascota);
+	   // controlador.addContrato(contrato);
 	}
 	
 	
@@ -540,7 +540,6 @@ public class Empleado implements InicioSesion,Validacion{
 		    String tipoEmpleado = (String) JOptionPane.showInputDialog(null, "Selecciones el Vendedor", "Tipos de Empleados",JOptionPane.DEFAULT_OPTION, null, listaempleados, listaempleados[0]);
 		    
 		    Empleado empleado = null;
-		    
 		    if(tipoEmpleado.equalsIgnoreCase("Agente")) {
 		    	 String [] opcionesEmpleado = new String[agenteCont.getAllAgente().size()];
 				    for (int i = 0; i < opcionesEmpleado.length; i++) {
@@ -563,10 +562,11 @@ public class Empleado implements InicioSesion,Validacion{
 			      empleado = gerenteCont.getGerenteById(idEmpleadoElegido);
 		    }
 		    
-		   Reserva reserva = null;
+		   
+
 	  
 
-	    Venta venta = new Venta(0, inmueble, comprador, montoTotal, formaPago, empleado, tipoEmpleado,reserva);
+	    Venta venta = new Venta(0, inmueble, comprador, montoTotal, formaPago, empleado, tipoEmpleado, null);
 	    controlador.addVenta(venta);
 	}
 	
@@ -1155,15 +1155,12 @@ public boolean RealizarReserva(Inmueble inmueble,Empleado empleado2,Cliente clie
 		
 		String forma_pago = "Efectivo";
 		
-		///esto lo agregue para q no salte error
-		String tipo_reserva = "Venta";
-		
 		JOptionPane.showMessageDialog(null, error);
 		
 		if (error==false && validarFecha_pagoReserva(fecha_pago2)) {
 			
 			
-			reservacontrolador.addReserva(new Reserva(inmueble,cliente2,fecha_pago2,montovalidado,forma_pago,empleado2,tipo_reserva ));
+			reservacontrolador.addReserva(new Reserva(inmueble,cliente2,fecha_pago2,montovalidado,forma_pago,empleado2, null));
 			
 			return true;
 			

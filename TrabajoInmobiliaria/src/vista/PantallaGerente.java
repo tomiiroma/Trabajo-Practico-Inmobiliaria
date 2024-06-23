@@ -1,22 +1,20 @@
 package vista;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.Color;
-import javax.swing.border.SoftBevelBorder;
-import javax.swing.border.BevelBorder;
-import javax.swing.JTextPane;
+import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextPane;
+import javax.swing.border.EmptyBorder;
 import javax.swing.SwingConstants;
 
-public class PantallaAgente extends JFrame {
+public class PantallaGerente extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -32,7 +30,7 @@ public class PantallaAgente extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PantallaAgente frame = new PantallaAgente();
+					PantallaGerente frame = new PantallaGerente();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,7 +42,7 @@ public class PantallaAgente extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public PantallaAgente() {
+	public PantallaGerente() {
 		this.setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
@@ -76,7 +74,6 @@ public class PantallaAgente extends JFrame {
 		btnInmuebles.setBounds(107, 136, 278, 35);
 		panel.add(btnInmuebles);
 		
-		
 		JButton btnNuevoCliente = new JButton("Clientes");
 		btnNuevoCliente.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnNuevoCliente.setForeground(Color.WHITE);
@@ -107,7 +104,8 @@ public class PantallaAgente extends JFrame {
 				}
 			});
 		
-
+		
+		
 		
 		JButton btnNuevoContrato = new JButton("Nuevo Contrato");
 		btnNuevoContrato.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -132,8 +130,6 @@ public class PantallaAgente extends JFrame {
 		btnAgendarReunionvisita.setBackground(new Color(48, 109, 105));
 		btnAgendarReunionvisita.setBounds(107, 228, 278, 35);
 		panel.add(btnAgendarReunionvisita);
-		
-		
 		
 		JButton btnRegistrarPago = new JButton("Registrar Pago");
 		btnRegistrarPago.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -181,16 +177,16 @@ public class PantallaAgente extends JFrame {
 		btnNewButton_9.setBounds(659, 0, 125, 55);
 		panel_1.add(btnNewButton_9);
 		
-		JLabel lblNewLabel = new JLabel("Inmobiliaria Panel Agente");
+		JLabel lblNewLabel = new JLabel("Inmobiliaria Panel Gerente");
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 30));
-		lblNewLabel.setBounds(10, 12, 649, 35);
+		lblNewLabel.setBounds(10, 12, 668, 35);
 		panel_1.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Bienvenido");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 30));
-		lblNewLabel_1.setBounds(107, 85, 586, 22);
+		lblNewLabel_1.setBounds(107, 88, 586, 22);
 		panel.add(lblNewLabel_1);
 	}
 }

@@ -108,6 +108,7 @@ public class PantallaInicio extends JFrame {
 		btnIngresar.setForeground(new Color(192, 192, 192));
 		btnIngresar.setBackground(new Color(0, 47, 47));
 		btnIngresar.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
 				Empleado empleado = new Empleado();
 				
@@ -123,7 +124,8 @@ public class PantallaInicio extends JFrame {
 		            	PantallaAgente PantallaAgente = new PantallaAgente();
 		            	dispose();
 		            } else if(!esAgente){
-		            	JOptionPane.showMessageDialog(null, "Inicio Sesion como gerente");
+		            	PantallaGerente pantallaGerente = new PantallaGerente();
+		            	dispose();
 
 		            }else {
 		            	JOptionPane.showMessageDialog(null, "Error");

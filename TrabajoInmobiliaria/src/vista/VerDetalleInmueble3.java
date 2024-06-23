@@ -25,7 +25,7 @@ import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
 
-public class VerDetalleInmueble extends JFrame implements Validacion{
+public class VerDetalleInmueble3 extends JFrame implements Validacion{
 
 	private JPanel contentPane;
 	private JComboBox<String> cbTipoInmueble;
@@ -62,7 +62,7 @@ public class VerDetalleInmueble extends JFrame implements Validacion{
 	/**
 	 * Create the frame.
 	 */
-	public VerDetalleInmueble(int idInmueble, Inmueble inmueble) {
+	public VerDetalleInmueble3(int idInmueble, Inmueble inmueble) {
 		this.setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 907, 818);
@@ -450,7 +450,7 @@ public class VerDetalleInmueble extends JFrame implements Validacion{
         
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VerListaInmueblesCompleta volver= new VerListaInmueblesCompleta();
+				VerInmueblesDisponibles volver = new VerInmueblesDisponibles();
 				dispose();
 			}
 		});

@@ -25,12 +25,13 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.ListSelectionModel;
 
-public class VerInmueblesDisponibles extends JFrame {
+public class VerInmueblesDisponibles2 extends JFrame {
 
     private JPanel contentPane;
     private JTable table;
     private DefaultTableModel model;
     private InmuebleControlador controlador;
+    private JFrame parentFrame;
 	/**
 	 * Launch the application.
 	 */
@@ -38,7 +39,7 @@ public class VerInmueblesDisponibles extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VerInmueblesDisponibles frame = new VerInmueblesDisponibles();
+					VerInmueblesDisponibles2 frame = new VerInmueblesDisponibles2();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -50,10 +51,9 @@ public class VerInmueblesDisponibles extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VerInmueblesDisponibles() {
+	public VerInmueblesDisponibles2() {
 		this.setVisible(true);
 		setForeground(new Color(0, 128, 128));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    setBounds(100, 100, 1325, 690);
 	    contentPane = new JPanel();
 	    contentPane.setBackground(new Color(52, 118, 113));
@@ -121,21 +121,7 @@ public class VerInmueblesDisponibles extends JFrame {
  
 	    actualizarTabla();
 	    
-        
-        JButton btnVolver = new JButton("Volver");
-		btnVolver.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				VerInmueblesMenu volver = new VerInmueblesMenu();
-				dispose();
-			}
-		});
-        btnVolver.setBounds(30, 570, 150, 34);
-        btnVolver.setFont(new Font("Tahoma", Font.BOLD, 12));
-        btnVolver.setForeground(new Color(255, 255, 255));
-        btnVolver.setBackground(new Color(48, 109, 105));
-        btnVolver.setBorder(null);
-        contentPane.add(btnVolver);
-        
+
 
         JButton btnVerDetalle = new JButton("Ver Detalle");
         btnVerDetalle.setForeground(Color.WHITE);
@@ -158,21 +144,32 @@ public class VerInmueblesDisponibles extends JFrame {
 
                 Inmueble inmueble = controlador.getInmuebleById(id);
 
-                VerDetalleInmueble3 verDetalleInmueble = new VerDetalleInmueble3(inmueble.getId_inmueble(), inmueble);
-                verDetalleInmueble.setVisible(true);
-                verDetalleInmueble.setLocationRelativeTo(null);
+                VerDetalleInmueble2 verDetalleInmueble2 = new VerDetalleInmueble2(inmueble.getId_inmueble(), inmueble);
+                verDetalleInmueble2.setVisible(true);
+                verDetalleInmueble2.setLocationRelativeTo(null);
                 dispose(); // Cerrar la ventana actual
                 
 			}
 		});
-        
-        
-
-        
-        
-        
-        
         contentPane.add(btnVerDetalle);    
+        
+        JButton btnVolver = new JButton("Volver");
+        btnVolver.setBounds(30, 570, 150, 34);
+        btnVolver.setFont(new Font("Tahoma", Font.BOLD, 12));
+        btnVolver.setForeground(new Color(255, 255, 255));
+        btnVolver.setBackground(new Color(48, 109, 105));
+        btnVolver.setBorder(null);
+        contentPane.add(btnVolver);
+        
+        btnVolver.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                NuevoContrato volver = new NuevoContrato();
+                dispose();
+            }
+        });
+        
+        
+        
 	}
 	
     private void actualizarTabla() {
