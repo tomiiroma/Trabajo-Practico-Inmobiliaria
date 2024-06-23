@@ -73,11 +73,9 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 		contentPane.setLayout(null);
 		
 		seleccionado = new Agente();
-		
-		
 			
-		gerentecontrolador = new GerenteControlador();
 			
+		gerentecontrolador = new GerenteControlador();		
 		
 		
 		gerenteseleccionado = new Gerente();
@@ -93,13 +91,10 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 		JButton btnVolver = new JButton("Volver");
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
+		
 					
 			opciones = new GestionEmpleadosOpciones();
-					
-					
-				
+			
 				
 				opciones.setVisible(true);
 				

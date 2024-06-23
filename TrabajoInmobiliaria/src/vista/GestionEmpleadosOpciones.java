@@ -50,7 +50,7 @@ public class GestionEmpleadosOpciones extends JFrame {
 				
 
 					
-					verDatos = new ListaEmpleado();
+				verDatos = new ListaEmpleado();
 						
 				
 				

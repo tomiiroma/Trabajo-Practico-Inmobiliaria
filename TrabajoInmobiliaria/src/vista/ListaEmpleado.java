@@ -84,6 +84,7 @@ public class ListaEmpleado extends JFrame implements Validacion{
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(52, 118, 113));
 		panel.setBounds(0, 0, 984, 92);
 		contentPane.add(panel);
 		panel.setLayout(null);
@@ -93,11 +94,8 @@ public class ListaEmpleado extends JFrame implements Validacion{
 		lblListaDeEmpleados.setBounds(365, 11, 508, 49);
 		panel.add(lblListaDeEmpleados);
 		
-		JSeparator separator = new JSeparator();
-		separator.setBounds(30, 79, 924, 2);
-		panel.add(separator);
-		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(52, 118, 113));
 		panel_1.setBounds(0, 92, 984, 92);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
@@ -106,16 +104,20 @@ public class ListaEmpleado extends JFrame implements Validacion{
 	
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBackground(new Color(52, 118, 113));
 		
 		tabbedPane.setBorder(null);
 		tabbedPane.setBounds(0, 0, 587, 85);
 		panel_1.add(tabbedPane);
 		
 		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(new Color(52, 118, 113));
 		tabbedPane.addTab("Nombre", null, panel_3, null);
 		panel_3.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Busqueda por nombre:");
+		lblNewLabel.setForeground(new Color(255, 255, 255));
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel.setBounds(22, 11, 150, 35);
 		panel_3.add(lblNewLabel);
 		
@@ -163,14 +165,21 @@ public class ListaEmpleado extends JFrame implements Validacion{
 			
 			}
 		});
+		btnNombre.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnNombre.setForeground(Color.LIGHT_GRAY);
+		btnNombre.setBorder(null);
+		btnNombre.setBackground(new Color(48, 109, 105));
 		btnNombre.setBounds(444, 11, 116, 35);
 		panel_3.add(btnNombre);
 		
 		JPanel panel_4 = new JPanel();
+		panel_4.setBackground(new Color(52, 118, 113));
 		tabbedPane.addTab("Apellido", null, panel_4, null);
 		panel_4.setLayout(null);
 		
 		JLabel lblBusquedaPorApellido = new JLabel("Busqueda por apellido:");
+		lblBusquedaPorApellido.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblBusquedaPorApellido.setForeground(new Color(255, 255, 255));
 		lblBusquedaPorApellido.setBounds(22, 11, 150, 35);
 		panel_4.add(lblBusquedaPorApellido);
 		
@@ -225,14 +234,22 @@ public class ListaEmpleado extends JFrame implements Validacion{
 				
 			}
 		});
+		btnApellido.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnApellido.setForeground(Color.LIGHT_GRAY);
+		btnApellido.setBorder(null);
+		btnApellido.setBackground(new Color(48, 109, 105));
 		btnApellido.setBounds(444, 11, 116, 35);
 		panel_4.add(btnApellido);
 		
 		JPanel panel_5 = new JPanel();
+		panel_5.setBackground(new Color(52, 118, 113));
 		tabbedPane.addTab("DNI", null, panel_5, null);
 		panel_5.setLayout(null);
 		
 		JLabel lblNewLabel_2 = new JLabel("Busqueda por DNI:");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_2.setForeground(new Color(255, 255, 255));
+		lblNewLabel_2.setBackground(new Color(255, 255, 255));
 		lblNewLabel_2.setBounds(22, 11, 150, 35);
 		panel_5.add(lblNewLabel_2);
 		
@@ -322,14 +339,21 @@ public class ListaEmpleado extends JFrame implements Validacion{
 				
 			}
 		});
+		btnBuscarDni.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnBuscarDni.setForeground(Color.LIGHT_GRAY);
+		btnBuscarDni.setBorder(null);
+		btnBuscarDni.setBackground(new Color(48, 109, 105));
 		btnBuscarDni.setBounds(444, 11, 116, 35);
 		panel_5.add(btnBuscarDni);
 		
 		JPanel panel_6 = new JPanel();
+		panel_6.setBackground(new Color(52, 118, 113));
 		tabbedPane.addTab("Tipo de empleado", null, panel_6, null); 
 		panel_6.setLayout(null);
 		
 		JLabel lblNewLabel_2_1 = new JLabel("Busqueda por puesto:");
+		lblNewLabel_2_1.setForeground(new Color(255, 255, 255));
+		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_2_1.setBounds(21, 11, 150, 35);
 		panel_6.add(lblNewLabel_2_1);
 		
@@ -339,7 +363,10 @@ public class ListaEmpleado extends JFrame implements Validacion{
 		panel_6.add(comboBoxEmpleado);
 		
 		JButton btnPuesto = new JButton("Buscar");
-		btnPuesto.addActionListener(new ActionListener() {
+		btnPuesto.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnPuesto.setForeground(Color.LIGHT_GRAY);
+		btnPuesto.setBorder(null);
+		btnPuesto.setBackground(new Color(48, 109, 105));		btnPuesto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				
@@ -373,6 +400,10 @@ public class ListaEmpleado extends JFrame implements Validacion{
 				
 			}
 		});
+		btnResetearTabla.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnResetearTabla.setForeground(Color.LIGHT_GRAY);
+		btnResetearTabla.setBorder(null);
+		btnResetearTabla.setBackground(new Color(48, 109, 105));
 		btnResetearTabla.setBounds(714, 36, 168, 35);
 		panel_1.add(btnResetearTabla);
 		
@@ -380,6 +411,7 @@ public class ListaEmpleado extends JFrame implements Validacion{
 		
 		
 		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(52, 118, 113));
 		panel_2.setBounds(0, 181, 984, 580);
 		contentPane.add(panel_2);
 		panel_2.setLayout(null);
@@ -387,10 +419,6 @@ public class ListaEmpleado extends JFrame implements Validacion{
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(44, 22, 888, 447);
 		panel_2.add(scrollPane);
-		
-		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(29, 496, 924, 2);
-		panel_2.add(separator_1);
 		
 		JButton btnVolver = new JButton("Volver");
 		btnVolver.addActionListener(new ActionListener() {
@@ -411,8 +439,10 @@ public class ListaEmpleado extends JFrame implements Validacion{
 				
 			}
 		});
-		btnVolver.setFont(new Font("Verdana", Font.PLAIN, 16));
-		btnVolver.setBounds(440, 513, 116, 49);
+		btnVolver.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnVolver.setForeground(Color.LIGHT_GRAY);
+		btnVolver.setBorder(null);
+		btnVolver.setBackground(new Color(48, 109, 105));		btnVolver.setBounds(44, 509, 116, 49);
 		panel_2.add(btnVolver);
 		
 		String[] ColumNames = {"Id_empleado","Nombre","Apellido","Fecha_nac","dni","telefono","correo","tipo_empleado"};
