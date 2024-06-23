@@ -133,7 +133,8 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 		panel_2.add(panel_1_1);
 		
 		JLabel lblGerentes = new JLabel("Tabla de gerentes");
-		lblGerentes.setFont(new Font("Verdana", Font.PLAIN, 20));
+		lblGerentes.setForeground(new Color(255, 255, 255));
+		lblGerentes.setFont(new Font("Verdana", Font.BOLD, 20));
 		lblGerentes.setBounds(305, 0, 458, 63);
 		panel_1_1.add(lblGerentes);
 		
@@ -191,13 +192,13 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 		
 		JLabel lblgerenteseleccionado = new JLabel("Seleccion:");
 		lblgerenteseleccionado.setForeground(new Color(255, 255, 255));
-		lblgerenteseleccionado.setFont(new Font("Dialog", Font.BOLD, 12));
+		lblgerenteseleccionado.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblgerenteseleccionado.setBounds(21, 70, 751, 30);
 		panel_1_1.add(lblgerenteseleccionado);
 		
 		JLabel lblbuscadorAgentes_1 = new JLabel("Buscador:");
 		lblbuscadorAgentes_1.setForeground(new Color(255, 255, 255));
-		lblbuscadorAgentes_1.setFont(new Font("Dialog", Font.BOLD, 12));
+		lblbuscadorAgentes_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblbuscadorAgentes_1.setBounds(21, 110, 113, 20);
 		panel_1_1.add(lblbuscadorAgentes_1);
 		
@@ -295,12 +296,14 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 		panel_1_1.add(btnBuscarGerente);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(52, 118, 113));
 		tabbedPane.addTab("Agentes", null, panel_1, null);
 		panel_1.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Tabla de agentes");
+		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setBounds(305, 0, 458, 63);
-		lblNewLabel.setFont(new Font("Verdana", Font.PLAIN, 20));
+		lblNewLabel.setFont(new Font("Verdana", Font.BOLD, 20));
 		panel_1.add(lblNewLabel);
 		
 		JSeparator separator = new JSeparator();
@@ -341,12 +344,16 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 				
 			}
 		});
-		btnModificar.setFont(new Font("Verdana", Font.PLAIN, 16));
+		btnModificar.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnModificar.setForeground(Color.LIGHT_GRAY);
+		btnModificar.setBorder(null);
+		btnModificar.setBackground(new Color(48, 109, 105));
 		btnModificar.setBounds(337, 578, 132, 44);
 		panel_1.add(btnModificar);
 		
 		JLabel lblElemento = new JLabel("Seleccion:");
-		lblElemento.setFont(new Font("Verdana", Font.PLAIN, 11));
+		lblElemento.setForeground(new Color(255, 255, 255));
+		lblElemento.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblElemento.setBounds(21, 70, 751, 30);
 		panel_1.add(lblElemento);
 		
@@ -356,6 +363,8 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 		inpBuscador.setColumns(10);
 		
 		JLabel lblbuscadorAgentes = new JLabel("Buscador:");
+		lblbuscadorAgentes.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblbuscadorAgentes.setForeground(new Color(255, 255, 255));
 		lblbuscadorAgentes.setBounds(21, 111, 113, 20);
 		panel_1.add(lblbuscadorAgentes);
 		
@@ -440,6 +449,10 @@ public class ModificarEmpleado extends JFrame implements Validacion {
 				
 			}
 		});
+		btnBuscarAgente.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnBuscarAgente.setForeground(Color.LIGHT_GRAY);
+		btnBuscarAgente.setBorder(null);
+		btnBuscarAgente.setBackground(new Color(48, 109, 105));
 		btnBuscarAgente.setBounds(337, 111, 89, 20);
 		panel_1.add(btnBuscarAgente);
 		
