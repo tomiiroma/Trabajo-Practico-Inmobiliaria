@@ -33,6 +33,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 
 public class EliminarEmpleados extends JFrame implements Validacion{
 
@@ -62,6 +63,7 @@ public class EliminarEmpleados extends JFrame implements Validacion{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 700);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(52, 118, 113));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		
@@ -93,6 +95,7 @@ public class EliminarEmpleados extends JFrame implements Validacion{
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(52, 118, 113));
 		panel.setBounds(0, 0, 231, 661);
 		contentPane.add(panel);
 		panel.setLayout(null);
@@ -115,37 +118,45 @@ public class EliminarEmpleados extends JFrame implements Validacion{
 				
 			}
 		});
+		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnNewButton_2.setForeground(Color.LIGHT_GRAY);
+		btnNewButton_2.setBorder(null);
+		btnNewButton_2.setBackground(new Color(48, 109, 105));
 		btnNewButton_2.setBounds(61, 581, 107, 32);
 		panel.add(btnNewButton_2);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBackground(new Color(52, 118, 113));
 		tabbedPane.setBounds(230, 55, 754, 606);
 		contentPane.add(tabbedPane);
 		
 		JToolBar toolBar = new JToolBar();
+		toolBar.setBackground(new Color(52, 118, 113));
 		tabbedPane.addTab("Agentes", null, toolBar, null);
 		
 		
 		
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(52, 118, 113));
 		toolBar.add(panel_1);
 		panel_1.setLayout(null);
 		
-		JLabel lblNewLabel_1 = new JLabel("Agentes");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel_1.setBounds(335, 0, 401, 34);
-		panel_1.add(lblNewLabel_1);
-		
 		JLabel lblAgenteSelecc = new JLabel("Seleccionado:");
+		lblAgenteSelecc.setForeground(new Color(255, 255, 255));
+		lblAgenteSelecc.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblAgenteSelecc.setBounds(10, 33, 726, 23);
 		panel_1.add(lblAgenteSelecc);
 		
 		JLabel lblNewLabel_3 = new JLabel("Buscar por dni:");
+		lblNewLabel_3.setForeground(new Color(255, 255, 255));
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_3.setBounds(10, 69, 115, 14);
 		panel_1.add(lblNewLabel_3);
 		
 		JLabel lblAccionesAgente = new JLabel("Acciones agente");
+		lblAccionesAgente.setForeground(new Color(255, 255, 255));
+		lblAccionesAgente.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblAccionesAgente.setBounds(10, 12, 304, 14);
 		panel_1.add(lblAccionesAgente);
 		lblAccionesAgente.setVisible(false);
@@ -278,6 +289,10 @@ public class EliminarEmpleados extends JFrame implements Validacion{
 				
 			}
 		});
+		btnEliminarAgente.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnEliminarAgente.setForeground(Color.LIGHT_GRAY);
+		btnEliminarAgente.setBorder(null);
+		btnEliminarAgente.setBackground(new Color(48, 109, 105));
 		btnEliminarAgente.setBounds(288, 535, 162, 34);
 		panel_1.add(btnEliminarAgente);
 		
@@ -296,26 +311,41 @@ public class EliminarEmpleados extends JFrame implements Validacion{
 		btnResetearAgentes.setBounds(391, 65, 89, 23);
 		panel_1.add(btnResetearAgentes);
 		
+		JLabel lblAgentes = new JLabel("Agentes\r\n");
+		lblAgentes.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAgentes.setForeground(Color.WHITE);
+		lblAgentes.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblAgentes.setBounds(153, 0, 401, 34);
+		panel_1.add(lblAgentes);
+		
 		
 		
 		JToolBar toolBar_1 = new JToolBar();
+		toolBar_1.setBackground(new Color(52, 118, 113));
 		tabbedPane.addTab("Gerentes", null, toolBar_1, null);
 		
 		
 		JPanel panel_1_1 = new JPanel();
+		panel_1_1.setBackground(new Color(52, 118, 113));
 		panel_1_1.setLayout(null);
 		toolBar_1.add(panel_1_1);
 		
 		JLabel lblGerente = new JLabel("Gerentes");
-		lblGerente.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblGerente.setBounds(335, 0, 401, 34);
+		lblGerente.setHorizontalAlignment(SwingConstants.CENTER);
+		lblGerente.setForeground(new Color(255, 255, 255));
+		lblGerente.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblGerente.setBounds(164, 0, 401, 34);
 		panel_1_1.add(lblGerente);
 		
 		JLabel lblGerentes = new JLabel("Seleccionado:");
+		lblGerentes.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblGerentes.setForeground(new Color(255, 255, 255));
 		lblGerentes.setBounds(10, 33, 726, 23);
 		panel_1_1.add(lblGerentes);
 		
 		JLabel lblBuscadorGerentes = new JLabel("Buscar por dni:");
+		lblBuscadorGerentes.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblBuscadorGerentes.setForeground(new Color(255, 255, 255));
 		lblBuscadorGerentes.setBounds(10, 69, 115, 14);
 		panel_1_1.add(lblBuscadorGerentes);
 		
@@ -352,17 +382,16 @@ public class EliminarEmpleados extends JFrame implements Validacion{
 		
 		
 		JButton btnEliminarGerente = new JButton("Eliminar");
+		btnEliminarGerente.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnEliminarGerente.setForeground(Color.LIGHT_GRAY);
+		btnEliminarGerente.setBorder(null);
+		btnEliminarGerente.setBackground(new Color(48, 109, 105));
 		btnEliminarGerente.setBounds(288, 535, 162, 34);
 		panel_1_1.add(btnEliminarGerente);
 		
 		JButton btnResetearGerentes = new JButton("Resetear");
 		btnResetearGerentes.setBounds(391, 65, 89, 23);
 		panel_1_1.add(btnResetearGerentes);
-		
-		JLabel lblNewLabel = new JLabel("Eliminar empleados");
-		lblNewLabel.setFont(new Font("Verdana", Font.PLAIN, 20));
-		lblNewLabel.setBounds(532, -2, 452, 46);
-		contentPane.add(lblNewLabel);
 		
 		
 		JButton btnAgentes = new JButton("Agentes");
@@ -373,6 +402,10 @@ public class EliminarEmpleados extends JFrame implements Validacion{
 				
 			}
 		});
+		btnAgentes.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnAgentes.setForeground(Color.LIGHT_GRAY);
+		btnAgentes.setBorder(null);
+		btnAgentes.setBackground(new Color(48, 109, 105));
 		btnAgentes.setBounds(61, 183, 107, 32);
 		panel.add(btnAgentes);
 		
@@ -386,8 +419,24 @@ public class EliminarEmpleados extends JFrame implements Validacion{
 				
 			}
 		});
+		btnGerentes.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnGerentes.setForeground(Color.LIGHT_GRAY);
+		btnGerentes.setBorder(null);
+		btnGerentes.setBackground(new Color(48, 109, 105));
 		btnGerentes.setBounds(61, 257, 107, 32);
 		panel.add(btnGerentes);
+		
+		JPanel panel_1_1_1 = new JPanel();
+		panel_1_1_1.setLayout(null);
+		panel_1_1_1.setBackground(new Color(133, 201, 196));
+		panel_1_1_1.setBounds(230, 0, 966, 55);
+		contentPane.add(panel_1_1_1);
+		
+		JLabel lblGestorPropiedades_1 = new JLabel("Eliminar Empleados");
+		lblGestorPropiedades_1.setForeground(Color.WHITE);
+		lblGestorPropiedades_1.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 30));
+		lblGestorPropiedades_1.setBounds(10, 11, 624, 35);
+		panel_1_1_1.add(lblGestorPropiedades_1);
 		
 		
 		ListSelectionModel selectionModel = tablaAgentes.getSelectionModel();
