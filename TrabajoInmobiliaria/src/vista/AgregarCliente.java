@@ -21,6 +21,8 @@ import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.JButton;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 
 public class AgregarCliente extends JFrame {
@@ -170,19 +172,24 @@ public class AgregarCliente extends JFrame {
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				String nombre = textNombre.getText();
-				String apellido = textApellido.getText();
-				int dni = Integer.parseInt(textDni.getText());
-				LocalDate fechanacimiento = LocalDate.parse(textFechadeNacimiento.getText());
-				int telefono = Integer.parseInt(textTelefono.getText());
-				String correo = textCorreo.getText();
-				String direccion = textDireccion.getText();
-				String tipoCliente = txtTipoCliente.getText();
-				
-				InquilinoControlador inquilino = new InquilinoControlador();
-				
-				inquilino.addInquilino(new Inquilino(nombre,apellido,correo,direccion,telefono,fechanacimiento,dni,10));
-				JOptionPane.showMessageDialog(null, "Cliente Agregado");
+				if(VerificarFecha(textFechadeNacimiento.getText())) {
+					String nombre = textNombre.getText();
+					String apellido = textApellido.getText();
+					int dni = Integer.parseInt(textDni.getText());
+					LocalDate fechanacimiento = LocalDate.parse(textFechadeNacimiento.getText());
+					int telefono = Integer.parseInt(textTelefono.getText());
+					String correo = textCorreo.getText();
+					String direccion = textDireccion.getText();
+					String tipoCliente = txtTipoCliente.getText();
+					
+					InquilinoControlador inquilino = new InquilinoControlador();
+					
+					inquilino.addInquilino(new Inquilino(nombre,apellido,correo,direccion,telefono,fechanacimiento,dni,10));
+					JOptionPane.showMessageDialog(null, "Cliente Agregado");
+				}else {
+					JOptionPane.showMessageDialog(null, "Ingrese las fechas en formato YYYY-mm-DD");
+				}
+			
 			}});
 		
 		JButton btnVolver = new JButton("Volver");
@@ -217,4 +224,14 @@ public class AgregarCliente extends JFrame {
 	
 
 	}
+	   private boolean VerificarFecha(String fechaString) {
+	    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	    	
+	    	try {
+	    		LocalDate fecha = LocalDate.parse(fechaString, formatter);
+	    		return true;
+	    	}catch(DateTimeParseException e){
+	    		return false;
+	    	}
+	    }
 }

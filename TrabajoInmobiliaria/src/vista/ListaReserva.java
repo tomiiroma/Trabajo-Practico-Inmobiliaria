@@ -71,7 +71,7 @@ public class ListaReserva extends JFrame {
 	 */
 	public ListaReserva() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 900, 800);
+		setBounds(100, 100, 900, 675);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(52, 118, 113));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -449,7 +449,7 @@ public class ListaReserva extends JFrame {
 		contentPane.add(separator);
 		
 		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(31, 683, 820, 2);
+		separator_1.setBounds(31, 569, 820, 2);
 		contentPane.add(separator_1);
 		
 		JButton btnVolver = new JButton("Volver");
@@ -474,11 +474,11 @@ public class ListaReserva extends JFrame {
 		btnVolver.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnVolver.setBorder(null);
 		btnVolver.setBackground(new Color(48, 109, 105));
-		btnVolver.setBounds(31, 696, 107, 46);
+		btnVolver.setBounds(31, 582, 107, 46);
 		contentPane.add(btnVolver);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(31, 182, 820, 488);
+		scrollPane.setBounds(31, 182, 820, 363);
 		contentPane.add(scrollPane);
 		
 		
@@ -519,7 +519,7 @@ public class ListaReserva extends JFrame {
 		btnSeleccionar.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnSeleccionar.setBorder(null);
 		btnSeleccionar.setBackground(new Color(48, 109, 105));
-		btnSeleccionar.setBounds(744, 697, 107, 46);
+		btnSeleccionar.setBounds(744, 583, 107, 46);
 		contentPane.add(btnSeleccionar);
 		MostrarTabla();
 		
