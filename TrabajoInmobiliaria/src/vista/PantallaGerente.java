@@ -78,9 +78,7 @@ public class PantallaGerente extends JFrame {
 		
 		
 
-		
-		
-		
+
 		
 		JButton btnNuevoCliente = new JButton("Gestionar \r\nClientes");
 		btnNuevoCliente.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -178,7 +176,18 @@ public class PantallaGerente extends JFrame {
 		btnAgendarReunionvisita.setBorder(null);
 		btnAgendarReunionvisita.setBackground(new Color(48, 109, 105));
 		btnAgendarReunionvisita.setBounds(107, 274, 278, 35);
+		
+		btnAgendarReunionvisita.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MenuAgendarReunionVisita menuReunionVisita = new MenuAgendarReunionVisita();
+				dispose();
+			}
+		});
+		
 		panel.add(btnAgendarReunionvisita);
+		
+		
+		
 		
 		
 		
