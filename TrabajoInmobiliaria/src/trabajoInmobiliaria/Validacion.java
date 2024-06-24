@@ -734,7 +734,25 @@ public interface Validacion {
 		}
 		
 		
-		default boolean validarDepto(String direccion, String alturaDireccion, String piso, String nroDepto) {
+		default boolean validarCasa2(String direccion, String alturaDireccion, int idInmueble) {
+		    for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
+
+		    	if (inmueble.getTipo_inmueble().equals("Casa") &&
+		                inmueble.getId_inmueble() != idInmueble && 
+		                inmueble.getDireccion().equals(direccion) &&
+		                inmueble.getAlturaDireccion().equalsIgnoreCase(alturaDireccion)){
+		            return true;
+		        }
+		    }
+
+		    return false;
+		}
+		
+		
+		
+		
+		
+		default boolean validarDepto1(String direccion, String alturaDireccion, String piso, String nroDepto) {
 			
 			for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
 				if(inmueble.getTipo_inmueble().equals("Departamento") && inmueble.getDireccion().equals(direccion)
@@ -747,6 +765,22 @@ public interface Validacion {
 			return false;
 		}
 
+		
+		default boolean validarDepto2(String direccion, String alturaDireccion, String piso, String nroDepto, int idInmueble) {
+		    for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
+
+		    	if (inmueble.getTipo_inmueble().equals("Departamento") &&
+		                inmueble.getId_inmueble() != idInmueble && 
+		                inmueble.getDireccion().equals(direccion) &&
+		                inmueble.getAlturaDireccion().equalsIgnoreCase(alturaDireccion) &&
+		                inmueble.getPiso().equalsIgnoreCase(piso) &&
+		                inmueble.getNroDepto().equalsIgnoreCase(nroDepto)) {
+		            return true;
+		        }
+		    }
+
+		    return false;
+		}
 		
 		
 		
@@ -763,6 +797,9 @@ public interface Validacion {
 	        }
 	        return false;
 	    }
+		
+		
+		
 		
 		
 		
@@ -931,6 +968,24 @@ public interface Validacion {
 	    //validar cadena 2
 	    
 	    default boolean validarCadena2(String texto) {
+	        if (texto.isEmpty()) {
+	            return false;
+	        }
+
+	        texto = texto.trim();
+	        for (int i = 0; i < texto.length(); i++) {
+	            char caracter = texto.charAt(i);
+
+	            if (!Character.isLetterOrDigit(caracter) && caracter != ' ') {
+	                return false;
+	            }
+	        }
+
+	        return true;
+	    }
+	    
+	    
+	    default boolean validarCadena3(String texto) {
 	        if (texto.isEmpty()) {
 	            return false;
 	        }

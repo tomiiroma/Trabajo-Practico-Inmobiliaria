@@ -319,6 +319,8 @@ public class ConfirmarVenta extends JFrame implements Validacion{
 
    			    Venta venta = new Venta(0, inmueble, comprador, montoDouble, formaPago, empleado1, tipoEmpleado,reserva1);
    			    
+   			    
+   			    
    			    if(validarVenta(idInmueble, idComprador, idEmpleado, idReserva)){
    			    	lblError.setVisible(true);
    			    	lblError2.setVisible(true); 

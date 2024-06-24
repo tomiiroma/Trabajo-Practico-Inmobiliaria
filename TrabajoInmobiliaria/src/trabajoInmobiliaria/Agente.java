@@ -411,7 +411,7 @@ public class Agente extends Empleado implements Validacion, InicioSesion{
 			//estes valor solo lo puede modificar el gerente
 			boolean disponible = false;
 			
-			if(tipoInmueble.equals("Departamento") && validarDepto(direccion, alturaDireccion, piso, nroDepto)){
+			if(tipoInmueble.equals("Departamento") && validarDepto1(direccion, alturaDireccion, piso, nroDepto)){
 				JOptionPane.showMessageDialog(null, "Error! No se pudo registrar el Departamento. Departamento duplicado.");
 				return;
 			}

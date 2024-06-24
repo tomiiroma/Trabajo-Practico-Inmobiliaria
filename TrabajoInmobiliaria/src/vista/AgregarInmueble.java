@@ -620,7 +620,7 @@ public class AgregarInmueble extends JFrame implements Validacion{
                 }
 
                 
-        		if(tipoInmueble.equals("Departamento") && validarDepto(calle, altura, piso, nroDepto)){
+        		if(tipoInmueble.equals("Departamento") && validarDepto1(calle, altura, piso, nroDepto)){
         			lblInmuebleRepetido.setVisible(true);
                     lblInmuebleRepetido2.setVisible(true); 
         			return;

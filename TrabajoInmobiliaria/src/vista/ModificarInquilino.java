@@ -38,7 +38,7 @@ public class ModificarInquilino extends JFrame {
 
 	/**
 	 * Launch the application.
-	 */
+
 
 
 	/**

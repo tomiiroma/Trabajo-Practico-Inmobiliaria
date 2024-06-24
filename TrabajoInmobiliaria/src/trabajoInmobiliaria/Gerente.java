@@ -1261,7 +1261,7 @@ public class Gerente extends Empleado implements Validacion, InicioSesion{
 		boolean aptoMascota = obtenerMascota().equals("Si");
 		boolean activo = false; //esto cambia segun las operaciones que se hagan con el inmueble
 		
-		if(tipoInmueble.equals("Departamento") && validarDepto(direccion, alturaDireccion, piso, nroDepto)){
+		if(tipoInmueble.equals("Departamento") && validarDepto1(direccion, alturaDireccion, piso, nroDepto)){
 			JOptionPane.showMessageDialog(null, "Error! No se pudo registrar el Departamento. Departamento duplicado.");
 			return;
 		}

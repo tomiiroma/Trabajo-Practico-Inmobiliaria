@@ -571,7 +571,7 @@ public class ModificarInmueble2 extends JFrame implements Validacion{
 								lblNroPisoIncorrecto.setVisible(!pisoValido);
 								
 								String nroDepto = txtNroDepto.getText().trim();
-								boolean nroDeptoValida = validarCadena2(nroDepto);
+								boolean nroDeptoValida = validarCadena3(nroDepto);
 								lblNroDeptoIngresadoIncorrecto.setVisible(!nroDeptoValida);
 								
 						       if (!calleValida || !pisoValido || !alturaValida || 
@@ -654,22 +654,25 @@ public class ModificarInmueble2 extends JFrame implements Validacion{
                 	precioDouble = Double.parseDouble(precio);
                 }
 
+
                 
-        		if(tipoInmueble.equals("Departamento") && validarDepto(calle, altura, piso, nroDepto)){
+                int idInmueble = inmueble.getId_inmueble(); 
+
+                if (tipoInmueble.equals("Departamento") && validarDepto2(calle, altura, piso, nroDepto, idInmueble)) {
+                    lblInmuebleRepetido.setVisible(true);
+                    lblInmuebleRepetido2.setVisible(true);
+                    return;
+                }
+
+        		
+        		if(tipoInmueble.equals("Casa") && validarCasa2(calle, altura,idInmueble)){
         			lblInmuebleRepetido.setVisible(true);
                     lblInmuebleRepetido2.setVisible(true); 
         			return;
         		}
         		
-        		if(tipoInmueble.equals("Casa") && validarCasa(calle, altura)){
-        			lblInmuebleRepetido.setVisible(true);
-                    lblInmuebleRepetido2.setVisible(true); 
-        			return;
-        		}
         		
-        		
-                inmueble.setId_inmueble(idInmueble);            
-                
+                inmueble.setId_inmueble(idInmueble);                        
                 inmueble.setTipo_inmueble(tipoInmueble);
                 inmueble.setCondicion(condicion);
                 inmueble.setCantAmbientes(cantAmbientes);
