@@ -6,7 +6,9 @@ import trabajoInmobiliaria.Agente;
 
 public interface AgenteRepository {
 
-	List<Agente> getAllComprador(); 
+	
+	List<Agente> getAllAgente(); 
+
     
     Agente getAgenteById(int id); 
     
@@ -14,7 +16,7 @@ public interface AgenteRepository {
     
     void updateAgente(Agente agente); 
     
-    void deleteAgente(int id); 
+    String deleteAgente(int id); 
 
 
 }

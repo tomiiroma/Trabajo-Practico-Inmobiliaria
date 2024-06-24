@@ -1,7 +1,7 @@
 package controlador;
 
 
-import java.sql.Connection; 
+import java.sql.Connection;  
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,19 +27,19 @@ public class GerenteControlador implements GerenteRepository{
 	    @Override
 	    public List<Gerente> getAllGerente() {
 	        List<Gerente> gerente = new ArrayList<>();
-	     //   try {
-	          //  PreparedStatement statement = connection.prepareStatement("SELECT * FROM users ");
-	           // ResultSet resultSet = statement.executeQuery();
+	        try {
+	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM empleado where tipo_empleado = 'Gerente'");
+	            ResultSet resultSet = statement.executeQuery();
 	       
-	         //   while (resultSet.next()) {
-	        // public Gerente(String nombre,int id_cliente, String apellido, String correo, int telefono, LocalDate fecha_nac, int dni,int comprador, double presupuesto)
-	            //	Gerente Gerentes = new Gerente(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("email"));
-	             //   users.add(Gerente);
-	      //      }
-	     //   } catch (SQLException e) {
-	     //       e.printStackTrace();
-	   //     }
-	    //    return users;
+	            while (resultSet.next()) {
+	            	Gerente Gerentes = new Gerente(resultSet.getInt("id_empleado"), resultSet.getString("nombre"), resultSet.getString("apellido"), resultSet.getDate("fecha_nacimiento").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("telefono"), resultSet.getString("correo"), resultSet.getString("tipo_empleado"), resultSet.getString("contraseña"),resultSet.getInt("id_gerente"));
+	                
+	            	gerente.add(Gerentes);
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	      }
+	    
 	        return gerente;
 	    }
 
@@ -48,14 +48,14 @@ public class GerenteControlador implements GerenteRepository{
 	    public Gerente getGerenteById(int id) {
 	    	Gerente gerente = null;
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE id = ?");
+	            PreparedStatement statement = connection.prepareStatement("SELECT * FROM empleado WHERE id_empleado = ?");
 	            statement.setInt(1, id);
 	            
 	            ResultSet resultSet = statement.executeQuery();
 	            
 	            if (resultSet.next()) {
-	            	// public Gerente(int comprador, double presupuesto) le falta Herencia con cliente.
-	             //   user = new Garante(resultSet.getInt("id_empleado"), resultSet.getString("name"), resultSet.getString("apellido") , resultSet.getString("telefono"), resultSet.getInt("fk_cliente"));
+	            	 
+	            	gerente = new Gerente(resultSet.getInt("id_empleado"), resultSet.getString("nombre"), resultSet.getString("apellido"), resultSet.getDate("fecha_nacimiento").toLocalDate(), resultSet.getInt("dni"), resultSet.getInt("telefono"), resultSet.getString("correo"), resultSet.getString("tipo_empleado"), resultSet.getString("contraseña"),resultSet.getInt("id_gerente"));
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
@@ -65,10 +65,18 @@ public class GerenteControlador implements GerenteRepository{
 
 		@Override
 	    public void addGerente(Gerente gerente) {
-	        try {
-	            PreparedStatement statement = connection.prepareStatement("INSERT INTO users (name, correo) VALUES (?, ?)");
-	            statement.setString(1, gerente.getNombre());
-	            statement.setString(2, gerente.getCorreo());
+	        try {										// Podria utilizar un Inner join en una consulta insert	// Consultarle al profe sobre id_gerente. // Consultar si es valido.
+	            PreparedStatement statement = connection.prepareStatement("INSERT INTO empleado (id_empleado,nombre, apellido, fecha_nacimiento, dni, telefono, correo, tipo_empleado, contraseña, id_gerente) VALUES (null, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+	            statement.setString(1, gerente.getNombre()); // Verificar si id_empleado es auto increment y consultarle al profe si este valor debe ser null en java.
+	            statement.setString(2, gerente.getApellido());
+	            java.sql.Date fecha_nacimiento = java.sql.Date.valueOf(gerente.getFecha_nacimiento());
+	            statement.setDate(3, fecha_nacimiento);
+	            statement.setInt(4, gerente.getDni());
+	            statement.setInt(5, gerente.getTelefono());
+	            statement.setString(6, gerente.getCorreo());
+	            statement.setString(7, gerente.getTipo_empleado());
+	            statement.setString(8, gerente.getContraseña());
+	            statement.setInt(9, gerente.getId_gerente());
 	            
 	            int rowsInserted = statement.executeUpdate();
 	            if (rowsInserted > 0) {
@@ -82,10 +90,16 @@ public class GerenteControlador implements GerenteRepository{
 		@Override
 	    public void updateGerente(Gerente gerente) {
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("UPDATE users SET name = ?, apellido = ? WHERE id = ?");
+	            PreparedStatement statement = connection.prepareStatement("UPDATE empleado SET nombre = ?, apellido = ?, fecha_nacimiento = ?, dni = ?, telefono = ?, correo = ?, contraseña = ? WHERE id_empleado = ?");
 	            statement.setString(1, gerente.getNombre());
 	            statement.setString(2, gerente.getApellido());
-	            statement.setInt(3, gerente.getId_gerente());
+	            java.sql.Date fecha_nacimiento = java.sql.Date.valueOf(gerente.getFecha_nacimiento());
+	            statement.setDate(3, fecha_nacimiento);
+	            statement.setInt(4, gerente.getDni());
+	            statement.setInt(5, gerente.getTelefono());
+	            statement.setNString(6, gerente.getCorreo());
+	            statement.setString(7, gerente.getContraseña());
+	            statement.setInt(8, gerente.getId_empleado());
 	            
 	            int rowsUpdated = statement.executeUpdate();
 	            if (rowsUpdated > 0) {
@@ -97,10 +111,10 @@ public class GerenteControlador implements GerenteRepository{
 	    }
 
 	    @Override
-	    public void deleteGerente(int id) {
+	    public void deleteGerente(int id_empleado) {
 	        try {
-	            PreparedStatement statement = connection.prepareStatement("DELETE FROM users WHERE id = ?");
-	            statement.setInt(1, id);
+	            PreparedStatement statement = connection.prepareStatement("DELETE FROM empleado WHERE id_empleado = ?");
+	            statement.setInt(1, id_empleado);
 	            
 	            int rowsDeleted = statement.executeUpdate();
 	            if (rowsDeleted > 0) {
@@ -114,4 +128,3 @@ public class GerenteControlador implements GerenteRepository{
 	    }
 
 }
-
