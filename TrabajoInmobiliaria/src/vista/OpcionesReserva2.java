@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 
-public class OpcionesReserva extends JFrame {
+public class OpcionesReserva2 extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -27,7 +27,7 @@ public class OpcionesReserva extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					OpcionesReserva frame = new OpcionesReserva();
+					OpcionesReserva2 frame = new OpcionesReserva2();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -39,7 +39,7 @@ public class OpcionesReserva extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public OpcionesReserva() {
+	public OpcionesReserva2() {
 		this.setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 501);
@@ -114,11 +114,11 @@ public class OpcionesReserva extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				
-				PantallaAgente pantallaAgente = new PantallaAgente();
+				PantallaGerente pantallaGerente = new PantallaGerente();
 
-				pantallaAgente.setVisible(true);
+				pantallaGerente.setVisible(true);
 				
-				pantallaAgente.setLocationRelativeTo(null);
+				pantallaGerente.setLocationRelativeTo(null);
 				
 				dispose();
 				

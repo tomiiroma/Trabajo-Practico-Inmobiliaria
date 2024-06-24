@@ -748,13 +748,5 @@ public class ModificarInmueble2 extends JFrame implements Validacion{
         lblGestorPropiedades_1.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 30));
         lblGestorPropiedades_1.setBounds(10, 11, 624, 35);
         panel_1.add(lblGestorPropiedades_1);
-        
-        JTextArea elemento_1 = new JTextArea();
-        elemento_1.setForeground(Color.WHITE);
-        elemento_1.setFont(new Font("Arial", Font.BOLD, 13));
-        elemento_1.setFocusable(false);
-        elemento_1.setBackground(new Color(0, 128, 128));
-        elemento_1.setBounds(10, 77, 1289, 32);
-        contentPane.add(elemento_1);
 	}
 }

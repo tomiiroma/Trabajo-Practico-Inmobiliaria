@@ -2,17 +2,18 @@ package vista;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
-public class MenuAgendarReunionVisita extends JFrame {
+public class MenuOperaciones2 extends JFrame {
 
 	private JPanel contentPane;
 
@@ -23,7 +24,7 @@ public class MenuAgendarReunionVisita extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MenuAgendarReunionVisita frame = new MenuAgendarReunionVisita();
+					MenuOperaciones2 frame = new MenuOperaciones2();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -35,7 +36,7 @@ public class MenuAgendarReunionVisita extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MenuAgendarReunionVisita() {
+	public MenuOperaciones2() {
 		this.setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
@@ -71,31 +72,36 @@ public class MenuAgendarReunionVisita extends JFrame {
 		lblMenuOperaciones.setBounds(10, 12, 661, 35);
 		panel_1.add(lblMenuOperaciones);
 		
-		JButton btnNuevaVisita = new JButton("Agendar Nueva Visita\r\n");
-		btnNuevaVisita.setForeground(Color.WHITE);
-		btnNuevaVisita.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnNuevaVisita.setBorder(null);
-		btnNuevaVisita.setBackground(new Color(48, 109, 105));
-		btnNuevaVisita.setBounds(93, 220, 278, 35);
-		panel.add(btnNuevaVisita);
+		JButton btnCompraventa = new JButton("Realizar Compra/Venta Inmueble");
+		btnCompraventa.setForeground(Color.WHITE);
+		btnCompraventa.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnCompraventa.setBorder(null);
+		btnCompraventa.setBackground(new Color(48, 109, 105));
+		btnCompraventa.setBounds(93, 220, 278, 35);
+		panel.add(btnCompraventa);
 		
-	//	btnNuevaVisita.addActionListener(new ActionListener() {
-		//       public void actionPerformed(ActionEvent e) {
-		//       	NuevaVisita nuevaVisita = new NuevaVisita();
-		//      	dispose();
-		//     }
-		//   });
+		btnCompraventa.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                MenuVenta menuVenta = new MenuVenta();
+                dispose();
+            }
+        });
 		
 		
-		JButton btnNuevaReunion = new JButton("Agendar Nueva Reunion\r\n\r\n");
-		btnNuevaReunion.setForeground(Color.WHITE);
-		btnNuevaReunion.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnNuevaReunion.setBorder(null);
-		btnNuevaReunion.setBackground(new Color(48, 109, 105));
-		btnNuevaReunion.setBounds(401, 220, 278, 35);
-		panel.add(btnNuevaReunion);
+		JButton btnAlquiler = new JButton("Realizar Alquiler Inmueble");
+		btnAlquiler.setForeground(Color.WHITE);
+		btnAlquiler.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnAlquiler.setBorder(null);
+		btnAlquiler.setBackground(new Color(48, 109, 105));
+		btnAlquiler.setBounds(401, 220, 278, 35);
+		panel.add(btnAlquiler);
 		
-
+		btnAlquiler.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                MenuAlquiler menuAlquiler = new MenuAlquiler();
+                dispose();
+            }
+        });
 		
 		
 		JButton btnVolver = new JButton("Volver");
@@ -108,10 +114,11 @@ public class MenuAgendarReunionVisita extends JFrame {
 		
         btnVolver.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                PantallaAgente pantallaAgente = new PantallaAgente();
+                PantallaGerente pantallaAgente = new PantallaGerente();
                 dispose();
             }
         });
+		
+		
 	}
-
 }

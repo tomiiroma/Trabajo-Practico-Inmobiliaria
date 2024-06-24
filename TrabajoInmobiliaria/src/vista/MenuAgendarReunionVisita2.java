@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class MenuAgendarReunionVisita extends JFrame {
+public class MenuAgendarReunionVisita2 extends JFrame {
 
 	private JPanel contentPane;
 
@@ -23,7 +23,7 @@ public class MenuAgendarReunionVisita extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MenuAgendarReunionVisita frame = new MenuAgendarReunionVisita();
+					MenuAgendarReunionVisita2 frame = new MenuAgendarReunionVisita2();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -35,7 +35,7 @@ public class MenuAgendarReunionVisita extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MenuAgendarReunionVisita() {
+	public MenuAgendarReunionVisita2() {
 		this.setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
@@ -108,7 +108,7 @@ public class MenuAgendarReunionVisita extends JFrame {
 		
         btnVolver.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                PantallaAgente pantallaAgente = new PantallaAgente();
+				PantallaGerente pantallaGerente = new PantallaGerente();
                 dispose();
             }
         });

@@ -71,7 +71,7 @@ public class PantallaGerente extends JFrame {
 		
 		btnInmuebles.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MenuInmueble verinmueblesCompleto = new MenuInmueble();
+				MenuInmueble2 verinmueblesCompleto = new MenuInmueble2();
 				dispose();
 			}
 		});
@@ -89,7 +89,7 @@ public class PantallaGerente extends JFrame {
 		panel.add(btnNuevoCliente);
 		btnNuevoCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					PantallaCliente PantallaCliente = new PantallaCliente();
+					PantallaCliente2 PantallaCliente = new PantallaCliente2();
 					dispose();
 				}
 			});
@@ -106,7 +106,7 @@ public class PantallaGerente extends JFrame {
 		panel.add(btnNuevaOperacion);
 		btnNuevaOperacion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					MenuOperaciones menuOperaciones = new MenuOperaciones();
+					MenuOperaciones2 menuOperaciones = new MenuOperaciones2();
 					dispose();
 				}
 			});
@@ -125,7 +125,7 @@ public class PantallaGerente extends JFrame {
 		
 		btnNuevoContrato.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PantallaContrato contratosMenu = new PantallaContrato();
+				PantallaContrato2 contratosMenu = new PantallaContrato2();
 				dispose();
 			}
 		});
@@ -141,7 +141,7 @@ public class PantallaGerente extends JFrame {
 		
 		btnGestionarEmpleados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GestionEmpleadosOpciones menuEmpleados = new GestionEmpleadosOpciones();
+				GestionEmpleadosOpciones2 menuEmpleados = new GestionEmpleadosOpciones2();
 				dispose();
 			}
 		});
@@ -156,7 +156,7 @@ public class PantallaGerente extends JFrame {
 		
 		btnGestionReserva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				OpcionesReserva menuReserva = new OpcionesReserva();
+				OpcionesReserva2 menuReserva = new OpcionesReserva2();
 				dispose();
 			}
 		});
@@ -179,7 +179,7 @@ public class PantallaGerente extends JFrame {
 		
 		btnAgendarReunionvisita.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MenuAgendarReunionVisita menuReunionVisita = new MenuAgendarReunionVisita();
+				MenuAgendarReunionVisita2 menuReunionVisita = new MenuAgendarReunionVisita2();
 				dispose();
 			}
 		});
