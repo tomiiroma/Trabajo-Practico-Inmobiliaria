@@ -75,7 +75,7 @@ public class PantallaCliente extends JFrame {
 		
 		this.setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 500);
+		setBounds(100, 100, 1057, 500);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -88,7 +88,7 @@ public class PantallaCliente extends JFrame {
 		PropietarioControlador controladorPropietario = new PropietarioControlador();
 
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(48, 109, 105));
+		panel.setBackground(new Color(52, 118, 113));
 		panel.setBounds(0, 0, 213, 461);
 		contentPane.add(panel);
 		panel.setLayout(null);
@@ -99,29 +99,34 @@ public class PantallaCliente extends JFrame {
 
 		
 		JButton btnModificar = new JButton("Modificar");
+		btnModificar.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnModificar.setForeground(Color.LIGHT_GRAY);
 		btnModificar.setBorder(null);
-		btnModificar.setBackground(new Color(34, 79, 75));
+		btnModificar.setBackground(new Color(48, 109, 105));
 		btnModificar.setBounds(10, 130, 193, 43);
 		panel.add(btnModificar);
 
 		
 		
 		JButton btnAgregar = new JButton("Agregar");
+		btnAgregar.setFont(new Font("Tahoma", Font.BOLD, 12));
+	  	btnAgregar.setForeground(Color.LIGHT_GRAY);
+	  	btnAgregar.setBorder(null);
+	  	btnAgregar.setBackground(new Color(48, 109, 105));
+		btnAgregar.setBounds(10, 238, 193, 43);
+		panel.add(btnAgregar);
+		
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AgregarCliente agregarCliente = new AgregarCliente();
 				dispose();
 			}
 		});
-		btnAgregar.setForeground(Color.LIGHT_GRAY);
-		btnAgregar.setBorder(null);
-		btnAgregar.setBackground(new Color(34, 79, 75));
-		btnAgregar.setBounds(10, 238, 193, 43);
-		panel.add(btnAgregar);
+		
+
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(223, 89, 551, 361);
+		tabbedPane.setBounds(223, 89, 788, 361);
 		contentPane.add(tabbedPane);
 		
 		JPanel panel_1 = new JPanel();
@@ -200,28 +205,35 @@ public class PantallaCliente extends JFrame {
 				}
 			});
 	      
-	  	JButton btnEliminar = new JButton("Eliminar");
-		btnEliminar.setForeground(new Color(192, 192, 192));
-		btnEliminar.setBorder(null);
-		btnEliminar.setBackground(new Color(34, 79, 75));
-		btnEliminar.setBounds(10, 184, 193, 43);
-		panel.add(btnEliminar);
+
+		
+		
+		
 		
 		JButton btnVolver = new JButton("Volver");
+		btnVolver.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnVolver.setForeground(Color.LIGHT_GRAY);
 		btnVolver.setBorder(null);
-		btnVolver.setBackground(new Color(34, 79, 75));
-		btnVolver.setBounds(42, 424, 117, 26);
+		btnVolver.setBackground(new Color(48, 109, 105));
+		btnVolver.setBounds(42, 414, 117, 36);
 		panel.add(btnVolver);
 		
+		btnVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PantallaAgente PantallaAgente =  new PantallaAgente();
+				dispose();
+			}
+		});
+		
+		
 		textBusqueda = new JTextField();
-		textBusqueda.setBounds(233, 64, 116, 19);
+		textBusqueda.setBounds(233, 62, 116, 21);
 		contentPane.add(textBusqueda);
 		textBusqueda.setColumns(10);
 
 		JButton btnNewButton = new JButton("Buscar");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		btnNewButton.setBounds(359, 62, 73, 21);
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnNewButton.setBounds(359, 62, 116, 21);
 		contentPane.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -233,14 +245,15 @@ public class PantallaCliente extends JFrame {
 			}
 		});
 		
-		btnVolver.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				PantallaAgente PantallaAgente =  new PantallaAgente();
-				dispose();
-			}
-		});
+
 		
-		
+	  	JButton btnEliminar = new JButton("Eliminar");
+	  	btnEliminar.setFont(new Font("Tahoma", Font.BOLD, 12));
+	  	btnEliminar.setForeground(Color.LIGHT_GRAY);
+	  	btnEliminar.setBorder(null);
+	  	btnEliminar.setBackground(new Color(48, 109, 105));
+		btnEliminar.setBounds(10, 184, 193, 43);
+		panel.add(btnEliminar);
 		
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

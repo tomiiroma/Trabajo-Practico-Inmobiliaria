@@ -2,12 +2,16 @@
 package trabajoInmobiliaria;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 
+import controlador.ControladorEmpleado;
 import controlador.InmuebleControlador;
+import controlador.VentaControlador;
 
 public interface Validacion {
 	
@@ -713,6 +717,7 @@ public interface Validacion {
 
 /*----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 		InmuebleControlador inmuebleControlador = new InmuebleControlador();
+		VentaControlador ventaControlador = new VentaControlador();
 
 		
 		default boolean validarCasa(String direccion, String alturaDireccion) {
@@ -729,7 +734,25 @@ public interface Validacion {
 		}
 		
 		
-		default boolean validarDepto(String direccion, String alturaDireccion, String piso, String nroDepto) {
+		default boolean validarCasa2(String direccion, String alturaDireccion, int idInmueble) {
+		    for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
+
+		    	if (inmueble.getTipo_inmueble().equals("Casa") &&
+		                inmueble.getId_inmueble() != idInmueble && 
+		                inmueble.getDireccion().equals(direccion) &&
+		                inmueble.getAlturaDireccion().equalsIgnoreCase(alturaDireccion)){
+		            return true;
+		        }
+		    }
+
+		    return false;
+		}
+		
+		
+		
+		
+		
+		default boolean validarDepto1(String direccion, String alturaDireccion, String piso, String nroDepto) {
 			
 			for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
 				if(inmueble.getTipo_inmueble().equals("Departamento") && inmueble.getDireccion().equals(direccion)
@@ -741,8 +764,268 @@ public interface Validacion {
 			
 			return false;
 		}
-		
-		
-}
 
-	
+		
+		default boolean validarDepto2(String direccion, String alturaDireccion, String piso, String nroDepto, int idInmueble) {
+		    for (Inmueble inmueble : inmuebleControlador.getAllInmueble()) {
+
+		    	if (inmueble.getTipo_inmueble().equals("Departamento") &&
+		                inmueble.getId_inmueble() != idInmueble && 
+		                inmueble.getDireccion().equals(direccion) &&
+		                inmueble.getAlturaDireccion().equalsIgnoreCase(alturaDireccion) &&
+		                inmueble.getPiso().equalsIgnoreCase(piso) &&
+		                inmueble.getNroDepto().equalsIgnoreCase(nroDepto)) {
+		            return true;
+		        }
+		    }
+
+		    return false;
+		}
+		
+		
+		
+		default boolean validarVenta(int idInmueble, int idComprador,int idEmpleado, int idReserva) {
+			
+	        for (Venta venta : ventaControlador.getAllVentas()) {
+	            if (venta.getInmueble() != null && 
+	            	venta.getInmueble().getId_inmueble() == idInmueble &&
+	                venta.getComprador().getId_cliente() == idComprador &&
+	                venta.getEmpleado().getId_empleado() == idEmpleado &&
+	                venta.getReserva().getId_reserva() == idReserva) {
+	                return true;
+	            }
+	        }
+	        return false;
+	    }
+		
+		
+		
+		
+		
+		
+		/* ----------------------------------------------------------------------------------------- Validar Correo ------------------------------------------------------------------------------------------------------------------------- */	
+		default String ValidarMailDuplicado(String correo) {
+			
+			ControladorEmpleado controlador = new ControladorEmpleado();
+			
+			
+			
+			
+			for (Empleado empleado : controlador.getAllEmpleados()) {
+				
+				
+				if (empleado.getCorreo().equalsIgnoreCase(correo)) {
+					
+					
+					return "El correo se encuentra registrado.";
+					
+					
+				}
+				
+				
+				
+				
+			}
+			
+			
+			return "Mail valido";
+		}
+		
+		
+/* Ver si modificar despues con las del metodo agregar Agente y Gerente */
+		
+		
+		default String ValidarDniDuplicado(int dni) {
+			
+			ControladorEmpleado controlador = new ControladorEmpleado();
+			
+			for (Empleado empleado : controlador.getAllEmpleados()) {
+				
+				
+				if (dni == empleado.getDni()) {
+					
+					
+					return "El DNI se encuentra repetido";
+					
+					
+				}
+				
+				
+				
+				
+			}
+			
+			
+			
+			
+			return "Se puede registrar";
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		 default String ValidarPrecio(double precio) {
+
+			 
+
+			 try {
+				
+			
+				
+				 if (precio >= 10000) {
+					 
+					 return "el precio es valido";
+					 
+				 } else {
+					 
+					 
+					 return "El monto debe ser mayor a 10000";
+					 
+				 }
+				 
+			
+			 
+			 } catch (Exception e) {
+			
+			
+				 return "error se esta intentado ingresar un caracter especial";
+			 
+			 
+			 }
+			 
+			 
+			 
+			 
+			
+		 }
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	   // Método para validar enteros
+	    default boolean validarEntero2(String texto) {
+	        if (texto.isEmpty()) {
+	            return false;
+	        }
+
+	        texto = texto.trim();
+	        
+	        try {
+	            double valor = Double.parseDouble(texto);
+	            if (!texto.matches("[-+]?[0-9]*\\.?[0-9]+")) {
+	                return false;
+	            }
+	            
+	        } catch (NumberFormatException e) {
+	            return false;
+	        }
+
+	        return true;
+	    }
+	    
+	    
+		   // Método para double
+	    default boolean validarDobule(String texto) {
+	        if (texto.isEmpty()) {
+	            return false;
+	        }
+
+	        texto = texto.trim();
+	        for (int i = 0; i < texto.length(); i++) {
+	            if (!Character.isDigit(texto.charAt(i))) {
+	                return false;
+	            }
+	        }
+
+	        return true;
+	    }
+	    
+	    
+	    //validar cadena 2
+	    
+	    default boolean validarCadena2(String texto) {
+	        if (texto.isEmpty()) {
+	            return false;
+	        }
+
+	        texto = texto.trim();
+	        for (int i = 0; i < texto.length(); i++) {
+	            char caracter = texto.charAt(i);
+
+	            if (!Character.isLetterOrDigit(caracter) && caracter != ' ') {
+	                return false;
+	            }
+	        }
+
+	        return true;
+	    }
+	    
+	    
+	    default boolean validarCadena3(String texto) {
+	        if (texto.isEmpty()) {
+	            return false;
+	        }
+
+	        texto = texto.trim();
+	        for (int i = 0; i < texto.length(); i++) {
+	            char caracter = texto.charAt(i);
+
+	            if (!Character.isLetterOrDigit(caracter) && caracter != ' ') {
+	                return false;
+	            }
+	        }
+
+	        return true;
+	    }
+	    
+	    
+	    
+	    
+		  default boolean VerificarFecha(String fechaString) {
+		    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		    	
+		    	try {
+		    		LocalDate fecha = LocalDate.parse(fechaString, formatter);
+		    		return true;
+		    	}catch(DateTimeParseException e){
+		    		return false;
+		    	}
+		    }
+		  
+		  
+		  
+		  default  boolean esNumero(String numero) {
+			       
+		        try {
+		            Integer.parseInt(numero);
+		            return true;
+		        } catch (NumberFormatException e) {
+		            return false;
+		        }
+		    }
+	    
+}

@@ -21,12 +21,13 @@ import java.awt.event.ActionEvent;
 import trabajoInmobiliaria.Empleado;
 import trabajoInmobiliaria.Gerente;
 import trabajoInmobiliaria.Agente;
+import java.awt.Color;
 public class MenuGestionEmpleados extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private GestionEmpleadosOpciones empleadosOpciones;
-	private TipoEmpleado opciones;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -49,25 +50,30 @@ public class MenuGestionEmpleados extends JFrame {
 	 * Create the frame.
 	 */
 	public MenuGestionEmpleados() {
-		
+		this.setVisible(true);
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 800, 505);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(52, 118, 113));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnListaempleado = new JButton("Lista empleado");
+		JButton btnListaempleado = new JButton("Lista Empleados");
+		btnListaempleado.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnListaempleado.setForeground(Color.WHITE);
+		btnListaempleado.setBorder(null);
+		btnListaempleado.setBackground(new Color(48, 109, 105));
+		btnListaempleado.setBounds(404, 223, 278, 35);
+		contentPane.add(btnListaempleado);
 		btnListaempleado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+
+				empleadosOpciones = new GestionEmpleadosOpciones();
 				
-			
-				
-				if (empleadosOpciones == null) {
-					empleadosOpciones = new GestionEmpleadosOpciones();
-				}
 				empleadosOpciones.setVisible(true);
 				empleadosOpciones.setLocationRelativeTo(null);
 				dispose();
@@ -75,67 +81,50 @@ public class MenuGestionEmpleados extends JFrame {
 				
 			
 		});
-		btnListaempleado.setBounds(43, 178, 136, 23);
-		contentPane.add(btnListaempleado);
-		
-		JLabel lblNewLabel = new JLabel("Gestor de empleados");
-		lblNewLabel.setFont(new Font("Verdana", Font.PLAIN, 26));
-		lblNewLabel.setBounds(83, 24, 341, 23);
-		contentPane.add(lblNewLabel);
-		
-		JLabel lblNewLabel_1 = new JLabel("Seleccionar una opción");
-		lblNewLabel_1.setFont(new Font("Verdana", Font.PLAIN, 18));
-		lblNewLabel_1.setBounds(109, 64, 288, 38);
-		contentPane.add(lblNewLabel_1);
 		
 		JButton btnNuevoEmpleado = new JButton("Nuevo empleado");
+		
+		btnNuevoEmpleado.setBounds(70, 223, 278, 35);
+		contentPane.add(btnNuevoEmpleado);
+		btnNuevoEmpleado.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnNuevoEmpleado.setForeground(Color.WHITE);
+		btnNuevoEmpleado.setBorder(null);
+		btnNuevoEmpleado.setBackground(new Color(48, 109, 105));
+		
 		btnNuevoEmpleado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			
 				
-				if (opciones == null) {
-					
-					opciones = new TipoEmpleado();
-					
-				} 
-					
-				
-					opciones.setVisible(true);
-					
-					opciones.setLocationRelativeTo(null);
-					
-					dispose();
-					
-					
-				
-				
-				
-				
 			}
 		});
-		
-		btnNuevoEmpleado.setBounds(264, 178, 136, 23);
-		contentPane.add(btnNuevoEmpleado);
-		
-		
-		JLabel lblNewLabel_2 = new JLabel("Ver lista de empleados");
-		lblNewLabel_2.setBounds(55, 124, 124, 25);
-		contentPane.add(lblNewLabel_2);
-		
-		JLabel lblNewLabel_3 = new JLabel("Agregar nuevo empleado");
-		lblNewLabel_3.setBounds(276, 129, 121, 14);
-		contentPane.add(lblNewLabel_3);
 		
 		
 		 
 		
 		JButton btnVolver = new JButton("Volver");
-		btnVolver.setBounds(174, 227, 89, 23);
+		btnVolver.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnVolver.setForeground(Color.WHITE);
+		btnVolver.setBorder(null);
+		btnVolver.setBackground(new Color(48, 109, 105));
+		btnVolver.setBounds(28, 401, 151, 34);
 		contentPane.add(btnVolver);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setLayout(null);
+		panel_1.setBackground(new Color(133, 201, 196));
+		panel_1.setBounds(10, 11, 825, 55);
+		contentPane.add(panel_1);
+		
+		JLabel lblGestorEmpleados = new JLabel("Gestor Empleados");
+		lblGestorEmpleados.setForeground(Color.WHITE);
+		lblGestorEmpleados.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 30));
+		lblGestorEmpleados.setBounds(10, 11, 298, 35);
+		panel_1.add(lblGestorEmpleados);
+		
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				dispose(); // Faltaria agregar el menú de agente.
+				PantallaGerente volver = new PantallaGerente();
+				dispose(); 
 			}
 		});
 		

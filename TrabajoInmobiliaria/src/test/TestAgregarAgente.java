@@ -1,6 +1,6 @@
 package test;
 
-import static org.junit.Assert.assertEquals; 
+import static org.junit.Assert.assertEquals;
 
 import java.time.LocalDate;
 
@@ -58,7 +58,7 @@ public class TestAgregarAgente {
 	
 	 	boolean flag=false;
 	 	
-	 	if (gerente1.AgregarAgente("Borrame","EnTestEliminarAgente", fecha_nacimiento , dni , 47502342, "Daniel@gmail.com", "asdasd20", 23213)==true) {
+	 	if (gerente1.AgregarAgente("Borrame","EnTestEliminarAgente", fecha_nacimiento , dni , 47502342, "Daniel@gmail.com", "asdasd20")==true) {
 	 		
 	 		
 	 		flag = true;
@@ -84,7 +84,7 @@ public class TestAgregarAgente {
  	
  	 	boolean flag=false;
  	 	
- 	 	if (gerente1.AgregarAgente("Daniel el master","Fernandez", fecha_nacimiento , 42130100 , 47502342, "Daniel@gmail.com", "asdasd20", 23213)==true) {
+ 	 	if (gerente1.AgregarAgente("Daniel el master","Fernandez", fecha_nacimiento , 42130100 , 47502342, "Daniel@gmail.com", "asdasd20")==true) {
  	 		
  	 		
  	 		flag = true;
@@ -110,7 +110,7 @@ public class TestAgregarAgente {
  	
  	 	boolean flag=false;
  	 	
- 	 	if (gerente1.AgregarAgente("Daniel1","Fernandez", fecha_nacimiento , 42130100 , 47502342, "Daniel@gmail.com", "asdasd20", 23213)==true) {
+ 	 	if (gerente1.AgregarAgente("Daniel1","Fernandez", fecha_nacimiento , 42130100 , 47502342, "Daniel@gmail.com", "asdasd20")==true) {
  	 		
  	 		
  	 		flag = true;
@@ -140,7 +140,7 @@ public class TestAgregarAgente {
  	
  	 	boolean flag=false;
  	 	
- 	 	if (gerente1.AgregarAgente("Daniel","Fernandez123", fecha_nacimiento , 42130100 , 47502342, "Daniel@gmail.com", "asdasd20", 23213)==true) {
+ 	 	if (gerente1.AgregarAgente("Daniel","Fernandez123", fecha_nacimiento , 42130100 , 47502342, "Daniel@gmail.com", "asdasd20")==true) {
  	 		
  	 		
  	 		flag = true;
@@ -166,7 +166,7 @@ public class TestAgregarAgente {
  	
  	 	boolean flag=false;
  	 	
- 	 	if (gerente1.AgregarAgente("Daniel","Fer nandez", fecha_nacimiento , 42130100 , 47502342, "Daniel@gmail.com", "asdasd20", 23213)==true) {
+ 	 	if (gerente1.AgregarAgente("Daniel","Fer nandez", fecha_nacimiento , 42130100 , 47502342, "Daniel@gmail.com", "asdasd20")==true) {
  	 		
  	 		
  	 		flag = true;
@@ -197,7 +197,7 @@ public class TestAgregarAgente {
  	
  	 	boolean flag=false;
  	 	
- 	 	if (gerente1.AgregarAgente("Daniel","Fernandez", fecha_nacimiento , 42130100 , 47502342, "Daniel@gmail.com", "asdasd20", 23213)==true) {
+ 	 	if (gerente1.AgregarAgente("Daniel","Fernandez", fecha_nacimiento , 42130100 , 47502342, "Daniel@gmail.com", "asdasd20")==true) {
  	 		
  	 		
  	 		flag = true;
@@ -222,7 +222,7 @@ public class TestAgregarAgente {
  	
  	 	boolean flag=false;
  	 	
- 	 	if (gerente1.AgregarAgente("Daniel","Fernandez", fecha_nacimiento , 42130100 , 47502342, "Daniel@gmail.com", "asdasd20", 23213)==true) {
+ 	 	if (gerente1.AgregarAgente("Daniel","Fernandez", fecha_nacimiento , 42130100 , 47502342, "Daniel@gmail.com", "asdasd20")==true) {
  	 		
  	 		
  	 		flag = true;
@@ -248,7 +248,7 @@ public class TestAgregarAgente {
  	
  	 	boolean flag=false;
  	 	
- 	 	if (gerente1.AgregarAgente("Daniel","Fernandez", fecha_nacimiento , 42130100 , 47502342, "Daniel@gmail.com", "asdasd20", 23213)==true) {
+ 	 	if (gerente1.AgregarAgente("Daniel","Fernandez", fecha_nacimiento , 42130100 , 47502342, "Daniel@gmail.com", "asdasd20")==true) {
  	 		
  	 		
  	 		flag = true;
@@ -275,7 +275,7 @@ public class TestAgregarAgente {
  	
  	 	boolean flag=false;
  	 	
- 	 	if (gerente1.AgregarAgente("Daniel","Fernandez", fecha_nacimiento , 421301002 , 47502342, "Daniel@gmail.com", "asdasd20", 23213)==true) {
+ 	 	if (gerente1.AgregarAgente("Daniel","Fernandez", fecha_nacimiento , 421301002 , 47502342, "Daniel@gmail.com", "asdasd20")==true) {
  	 		
  	 		
  	 		flag = true;
@@ -301,7 +301,7 @@ public class TestAgregarAgente {
  	
  	 	boolean flag=false;
  	 	
- 	 	if (gerente1.AgregarAgente("Daniel","Fernandez", fecha_nacimiento , -1000000 , 47502342, "Daniel@gmail.com", "asdasd20", 23213)==true) {
+ 	 	if (gerente1.AgregarAgente("Daniel","Fernandez", fecha_nacimiento , -1000000 , 47502342, "Daniel@gmail.com", "asdasd20")==true) {
  	 		
  	 		
  	 		flag = true;
@@ -328,7 +328,7 @@ public class TestAgregarAgente {
  	
  	 	boolean flag=false;
  	 	
- 	 	if (gerente1.AgregarAgente("Daniel","Fernandez", fecha_nacimiento , 42131002 , 475023422, "Daniel@gmail.com", "asdasd20", 23213)==true) {
+ 	 	if (gerente1.AgregarAgente("Daniel","Fernandez", fecha_nacimiento , 42131002 , 475023422, "Daniel@gmail.com", "asdasd20")==true) {
  	 		
  	 		
  	 		flag = true;
@@ -359,7 +359,7 @@ public class TestAgregarAgente {
  	
  	 	boolean flag=false;
  	 	
- 	 	if (gerente1.AgregarAgente("Daniel","Fernandez", fecha_nacimiento , 42131002 , -1234567 , "Daniel@gmail.com", "asdasd20", 23213)==true) {
+ 	 	if (gerente1.AgregarAgente("Daniel","Fernandez", fecha_nacimiento , 42131002 , -1234567 , "Daniel@gmail.com", "asdasd20")==true) {
  	 		
  	 		
  	 		flag = true;
@@ -387,7 +387,7 @@ public class TestAgregarAgente {
  	
  	 	boolean flag=false;
  	 	
- 	 	if (gerente1.AgregarAgente("Daniel","Fernandez", fecha_nacimiento , 42430100 , 47502342, "Danielgmail.com", "asdasd20", 23213)==true) {
+ 	 	if (gerente1.AgregarAgente("Daniel","Fernandez", fecha_nacimiento , 42430100 , 47502342, "Danielgmail.com", "asdasd20")==true) {
  	 		
  	 		
  	 		flag = true;
@@ -413,7 +413,7 @@ public class TestAgregarAgente {
  	
  	 	boolean flag=false;
  	 	
- 	 	if (gerente1.AgregarAgente("Daniel","Fernandez", fecha_nacimiento , 42430100 , 47502342, "Daniel@gmail.com", "asd", 23213)==true) {
+ 	 	if (gerente1.AgregarAgente("Daniel","Fernandez", fecha_nacimiento , 42430100 , 47502342, "Daniel@gmail.com", "asd")==true) {
  	 		
  	 		
  	 		flag = true;
@@ -439,7 +439,7 @@ public class TestAgregarAgente {
  	
  	 	boolean flag=false;
  	 	
- 	 	if (gerente1.AgregarAgente("Daniel","Fernandez", fecha_nacimiento , 87654321 , 47502342, "Daniel@gmail.com", "asdasd23", 23213)==true) {
+ 	 	if (gerente1.AgregarAgente("Daniel","Fernandez", fecha_nacimiento , 87654321 , 47502342, "Daniel@gmail.com", "asdasd23")==true) {
  	 		
  	 		
  	 		flag = true;

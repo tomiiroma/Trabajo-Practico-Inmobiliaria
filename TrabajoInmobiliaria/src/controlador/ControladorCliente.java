@@ -1,6 +1,6 @@
 package controlador;
 
-import java.sql.Connection; 
+import java.sql.Connection;  
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,9 +13,6 @@ import trabajoInmobiliaria.DatabaseConnection;
 
 public class ControladorCliente implements ClienteRepository {
 
-	
-	
-	
 	
 	
 
@@ -44,8 +41,10 @@ public class ControladorCliente implements ClienteRepository {
 	            			resultSet.getString("direccion"),
 	            			resultSet.getInt("telefono"),
 	            			resultSet.getDate("fecha_nacimiento").toLocalDate(),
-	            			resultSet.getInt("dni"));
-	            	
+	            			resultSet.getInt("dni"),
+	            			resultSet.getInt("id_Propietario"));
+;
+
 	            	
 	            	
 	                agentes.add(cliente);
@@ -75,7 +74,9 @@ public class ControladorCliente implements ClienteRepository {
 	            			resultSet.getString("direccion"),
 	            			resultSet.getInt("telefono"),
 	            			resultSet.getDate("fecha_nacimiento").toLocalDate(),
-	            			resultSet.getInt("dni"));
+	            			resultSet.getInt("dni"),
+	            			resultSet.getInt("id_Propietario"));
+	            	
 	           
 	            }
 	        } catch (SQLException e) {

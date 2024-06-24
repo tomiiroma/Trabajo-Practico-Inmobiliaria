@@ -61,16 +61,15 @@ public class Inmueble {
 	}
 
 
-	public Inmueble() {
-		
-	}
 
 
 	public Inmueble(int fkInmuebleId) {
 		// TODO Auto-generated constructor stub
 	}
 
-
+	public Inmueble() {
+		// TODO Auto-generated constructor stub
+	}
 
 
 	
@@ -364,28 +363,16 @@ public class Inmueble {
 
 	@Override
 	public String toString() {
-		return "\nLista de Inmuebles"+"\n"
-				+ "\nId de Inmueble:" + id_inmueble 
-				+ "\nTipo de Inmueble: " + tipo_inmueble
-				+"\nPiso: "+piso
-				+"\nNro Departameno: "+nroDepto
-				+"\nCantidad de Ambientes: "+cantAmbientes
-				+ "\nCondición: " + condicion
-				+ "\nDisponibilidad: " + disponible 
-				+ "\nm2 superficie cubierta: " + superficie_cubierta
-				+ "\nm2 superficie descubierta: " + superficie_descubierta 
-				+ "\nBarrio: " + barrio 
-				+"\nDireccion del Inmueble: "+direccion
-				+"\nAltura Direccion"
-				+ "\nPatio: "+ patio 
-				+ "\nDescripción: " + descripcion 
-				+ "\nAños de antiguedad: " + antiguedad 
-				+ "\nPrecio del inmueble: " + precio
-				+ "\nCantidad de Baños: " + banio 
-				+ "\nSe debe refaccionar: " + refaccionar 
-				+ "\nCantidad de Dormitorios: "+ dormitorio 
-				+ "\nEs apto para mascota: " + apto_mascota
-				+"\nInmueble Activo: "+activo;
+		return 
+				"Id: " + id_inmueble 
+				+", Tipo Inmueble: " + tipo_inmueble
+				+", Piso: "+piso
+				+", Nro Depto: "+nroDepto
+				+", Cant. Ambientes: "+cantAmbientes
+				+", Condición: " + condicion
+				+", Barrio: " + barrio 
+				+", Direccion: "+direccion+" "+alturaDireccion
+				+", Precio: " + precio;
 	}
 
 

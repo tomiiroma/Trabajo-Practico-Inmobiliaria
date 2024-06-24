@@ -4,17 +4,19 @@ import java.time.LocalDate;
 
 public class Reserva {
 	
+	private int id_reserva;
 	private Inmueble inmueble;
 	private Cliente cliente;
 	private LocalDate fecha_pago;
 	private double pago;
     private String forma_pago;
     private Empleado empleado;
-    
+    private String tipo_reserva;
+    private Propietario propietario;
     
     
 	public Reserva(Inmueble inmueble, Cliente cliente, LocalDate fecha_pago, double pago,
-			String forma_pago, Empleado empleado) {
+			String forma_pago, Empleado empleado, String tipo_reserva) {
 		super();
 		this.inmueble = inmueble;
 		this.cliente = cliente;
@@ -22,18 +24,89 @@ public class Reserva {
 		this.pago = pago;
 		this.forma_pago = forma_pago;
 		this.empleado = empleado;
+		this.tipo_reserva = tipo_reserva;
 	}
+
+	
+	public Reserva(int id_reserva, Inmueble inmueble, Cliente cliente, LocalDate fecha_pago, double pago,
+			String forma_pago, Empleado empleado, String tipo_reserva, Propietario propietario) {
+		super();
+		this.id_reserva = id_reserva;
+		this.inmueble = inmueble;
+		this.cliente = cliente;
+		this.fecha_pago = fecha_pago;
+		this.pago = pago;
+		this.forma_pago = forma_pago;
+		this.empleado = empleado;
+		this.tipo_reserva = tipo_reserva;
+		this.propietario = propietario;
+	}
+
+	public Reserva() {
+		
+	}
+
+
+
+
+
+	public Reserva(
+			int id_reserva, 
+			Inmueble inmueble, 
+			Cliente cliente, 
+			LocalDate fecha_pago, 
+			double pago,
+			String forma_pago, 
+			Empleado empleado, 
+			String tipo_reserva) {
+		super();
+		this.id_reserva = id_reserva;
+		this.inmueble = inmueble;
+		this.cliente = cliente;
+		this.fecha_pago = fecha_pago;
+		this.pago = pago;
+		this.forma_pago = forma_pago;
+		this.empleado = empleado;
+		this.tipo_reserva = tipo_reserva;
+	}
+	
 
 	
 
 
+	public Propietario getPropietario() {
+		return propietario;
+	}
+
+
+
+
+
+	public void setPropietario(Propietario propietario) {
+		this.propietario = propietario;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
 	@Override
 	public String toString() {
-		return "Reserva \nID_inmueble: " + inmueble.getId_inmueble() 
-			   + "\ntipo inmueble= " + inmueble.getTipo_inmueble() +
-				", dirección= " + inmueble.getDireccion() + ", cliente= " + cliente.getId_cliente() + ", nombre del cliente= " + cliente.getNombre() + ", apellido cliente= " + cliente.getApellido() 
-				+ ", dni del cliente= " + cliente.getDni() + ", fecha_pago= " + fecha_pago + ", pago= "
-				+ pago + ", forma_pago= " + forma_pago + " , = " + empleado.getId_empleado() + ", nombre empleado= " + empleado.getNombre() + ", apellido empleado= " + empleado.getApellido() + ", cargo= "  + empleado.getTipo_empleado() + "]" +"\n";
+		return "ID inmueble: " + inmueble.getId_inmueble() 
+			   +", Tipo inmueble: " + inmueble.getTipo_inmueble() 
+			   +", Dirección: " + inmueble.getDireccion()+" "+inmueble.getAlturaDireccion() 
+			   +", Nombre: " + cliente.getNombre()+" "+ cliente.getApellido() 
+			   +", Dni: " + cliente.getDni() 
+			   +", Fecha pago: " + fecha_pago 
+			   +", Monto: $"+ pago 
+			   +", Forma pago: " + forma_pago ;
 	}
 
 
@@ -120,6 +193,40 @@ public class Reserva {
 		this.empleado = empleado;
 	}
 
+
+
+
+	public String getTipo_reserva() {
+		return tipo_reserva;
+	}
+
+
+
+
+	public void setTipo_reserva(String tipo_reserva) {
+		this.tipo_reserva = tipo_reserva;
+	}
+
+
+
+
+
+
+	public int getId_reserva() {
+		return id_reserva;
+	}
+
+
+
+
+
+
+	public void setId_reserva(int id_reserva) {
+		this.id_reserva = id_reserva;
+	}
+	
+
+	
 
 
 

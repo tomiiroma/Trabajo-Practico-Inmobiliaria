@@ -38,51 +38,63 @@ public class PantallaContrato extends JFrame{
 	public PantallaContrato() {
 		this.setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 500);
+		setBounds(100, 100, 800, 501);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(48, 109, 105));
+		contentPane.setBackground(new Color(52, 118, 113));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNuevoContrato = new JButton("Nuevo Contrato");
-		btnNuevoContrato.addActionListener(new ActionListener() {
+		JButton btnVerContrato = new JButton("Ver Contratos");
+		btnVerContrato.setForeground(Color.WHITE);
+		btnVerContrato.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnVerContrato.setBorder(null);
+		btnVerContrato.setBackground(new Color(48, 109, 105));
+		btnVerContrato.setBounds(403, 195, 278, 35);
+		contentPane.add(btnVerContrato);
+		
+		btnVerContrato.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				NuevoContrato nuevocontrato = new NuevoContrato();
-				dispose();
-			}
-		});
-		btnNuevoContrato.setForeground(Color.LIGHT_GRAY);
+					VerContratos verContratos = new VerContratos();
+					dispose();
+				}
+			});
+		
+		
+		
+		JButton btnNuevoContrato = new JButton("Nuevo Contrato\r\n");
+		btnNuevoContrato.setForeground(Color.WHITE);
+		btnNuevoContrato.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnNuevoContrato.setBorder(null);
-		btnNuevoContrato.setBackground(new Color(34, 79, 75));
-		btnNuevoContrato.setBounds(280, 226, 193, 43);
+		btnNuevoContrato.setBackground(new Color(48, 109, 105));
+		btnNuevoContrato.setBounds(92, 195, 278, 35);
 		contentPane.add(btnNuevoContrato);
 		
-		JButton btnverContrato = new JButton("Ver Contratos");
-		btnverContrato.addActionListener(new ActionListener() {
+		btnNuevoContrato.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VerContratos vercontratos = new VerContratos();
-				dispose();
-			}
-		});
-		btnverContrato.setForeground(Color.LIGHT_GRAY);
-		btnverContrato.setBorder(null);
-		btnverContrato.setBackground(new Color(34, 79, 75));
-		btnverContrato.setBounds(280, 172, 193, 43);
-		contentPane.add(btnverContrato);
+					NuevoContrato nuevoContrato = new NuevoContrato();
+					dispose();
+				}
+			});
+		
+		
 		
 		JButton btnVolver = new JButton("Volver");
+		btnVolver.setForeground(Color.WHITE);
+		btnVolver.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnVolver.setBorder(null);
+		btnVolver.setBackground(new Color(48, 109, 105));
+		btnVolver.setBounds(29, 407, 150, 34);
+		contentPane.add(btnVolver);
+		
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PantallaAgente pantallaagente = new PantallaAgente();
-				dispose();
-			}
-		});
-		btnVolver.setForeground(Color.LIGHT_GRAY);
-		btnVolver.setBorder(null);
-		btnVolver.setBackground(new Color(34, 79, 75));
-		btnVolver.setBounds(280, 407, 193, 43);
-		contentPane.add(btnVolver);
+					PantallaAgente pantallaAgente = new PantallaAgente();
+					dispose();
+				}
+			});
+		
+		
 	}
 }

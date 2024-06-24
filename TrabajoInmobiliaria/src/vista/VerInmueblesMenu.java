@@ -38,16 +38,16 @@ public class VerInmueblesMenu extends JFrame {
     public VerInmueblesMenu() {
         this.setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 870, 690);
+        setBounds(100, 100, 800, 505);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        contentPane.setBackground(new Color(0, 128, 128));
+	    contentPane.setBackground(new Color(52, 118, 113));
 
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
         JButton btnVerListaCompleta = new JButton("Lista Completa de Inmuebles");
-        btnVerListaCompleta.setBounds(58, 117, 220, 55);
+        btnVerListaCompleta.setBounds(97, 216, 278, 35);
         btnVerListaCompleta.setFont(new Font("Tahoma", Font.BOLD, 12));
         btnVerListaCompleta.setForeground(new Color(255, 255, 255));
         btnVerListaCompleta.setBackground(new Color(48, 109, 105));
@@ -61,35 +61,21 @@ public class VerInmueblesMenu extends JFrame {
         contentPane.add(btnVerListaCompleta);
 
         JButton btnInmueblesDisp = new JButton("Ver Inmuebles Disponibles");
-        btnInmueblesDisp.setBounds(560, 117, 220, 55);
+        btnInmueblesDisp.setBounds(409, 216, 277, 35);
         btnInmueblesDisp.setFont(new Font("Tahoma", Font.BOLD, 12));
         btnInmueblesDisp.setForeground(new Color(255, 255, 255));
         btnInmueblesDisp.setBackground(new Color(48, 109, 105));
         btnInmueblesDisp.setBorder(null);
         btnInmueblesDisp.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                VerInmueblesDisponibles verinmueblesCompleto = new VerInmueblesDisponibles();
+                VerInmueblesDisponibles verinmuebles = new VerInmueblesDisponibles();
                 dispose();
             }
         });
         contentPane.add(btnInmueblesDisp);
 
-        JButton btnActivarInmueble = new JButton("Activar Inmuebles");
-        btnActivarInmueble.setBounds(58, 343, 220, 55);
-        btnActivarInmueble.setFont(new Font("Tahoma", Font.BOLD, 12));
-        btnActivarInmueble.setForeground(new Color(255, 255, 255));
-        btnActivarInmueble.setBackground(new Color(48, 109, 105));
-        btnActivarInmueble.setBorder(null);
-        btnActivarInmueble.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                ActivarInmuebles activarInmueble = new ActivarInmuebles();
-                dispose();
-            }
-        });
-        contentPane.add(btnActivarInmueble);
-
         JButton btnVolver = new JButton("Volver");
-        btnVolver.setBounds(30, 570, 150, 34);
+        btnVolver.setBounds(32, 400, 150, 34);
         btnVolver.setFont(new Font("Tahoma", Font.BOLD, 12));
         btnVolver.setForeground(new Color(255, 255, 255));
         btnVolver.setBackground(new Color(48, 109, 105));
@@ -113,5 +99,21 @@ public class VerInmueblesMenu extends JFrame {
         lblGestorPropiedades_1.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 30));
         lblGestorPropiedades_1.setBounds(10, 11, 624, 35);
         panel_1.add(lblGestorPropiedades_1);
+        
+        JButton btnActivarInmueble = new JButton("Activar Inmuebles");
+        btnActivarInmueble.setForeground(Color.WHITE);
+        btnActivarInmueble.setFont(new Font("Tahoma", Font.BOLD, 12));
+        btnActivarInmueble.setBorder(null);
+        btnActivarInmueble.setBackground(new Color(48, 109, 105));
+        btnActivarInmueble.setBounds(245, 262, 277, 35);
+        contentPane.add(btnActivarInmueble);
+        
+        btnActivarInmueble.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                ActivarInmuebles activarInmueble = new ActivarInmuebles();
+                dispose();
+            }
+        });
+        
     }
 }
